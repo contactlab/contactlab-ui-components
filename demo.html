@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CLAB UI Components | Demo page</title>
+	
+	<link rel="stylesheet" href="_css/style.css">
+	<link rel="stylesheet" href="_css/icons.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+	<style>
+	.content.dark{
+		background-color: #eee;
+	}
+	.content:last-child{
+		margin-bottom: 100px;
+	}
+	</style>
+	
+
+	<!-- Polyfills -->
+	<script src="bower_components/webcomponentsjs/webcomponents.min.js"></script>
+	
+	<!-- Components -->
+	<link rel="import" href="alert/view.html">
+	<link rel="import" href="button/view.html">
+	<link rel="import" href="button-group/view.html">
+	<link rel="import" href="card/view.html">
+	<link rel="import" href="elekti/view.html">
+	<link rel="import" href="label-badge/view.html">
+	<link rel="import" href="panel/view.html">
+	<link rel="import" href="progress-bar/view.html">
+	<link rel="import" href="spinner/view.html">
+	
+
+</head>
+<body>
+	
+	<div class="content">
+		<h2>Alert</h2>
+		<alert-clab visible>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</p>
+		</alert-clab>
+	</div>
+
+	<div class="content">
+		<h2>Button</h2>
+		<button-clab>
+			Just click me
+		</button-clab>
+	</div>
+
+	<div class="content">
+		<h2>Button group</h2>
+		<group-clab>
+			<button-clab>First</button-clab>
+			<button-clab>Second</button-clab>
+		</group-clab>
+	</div>
+
+	<div class="content dark">
+		<h2>Card</h2>
+		<card-clab>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+		</card-clab>
+	</div>
+
+	<div class="content">
+		<h2>Enhanced select</h2>
+		<elekti-mer></elekti-mer>
+	</div>
+
+	<div class="content">
+		<h2>Label & badges</h2>
+		<label-clab>
+			Just a test
+		</label-clab>
+
+		<label-clab badge>
+			42
+		</label-clab>
+	</div>
+
+	<div class="content">
+		<h2>Panel</h2>
+		<panel-clab>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia maxime voluptatum odio dolor, beatae earum asperiores molestiae commodi nostrum ex repudiandae quos dolores ut quasi quod accusamus blanditiis itaque. Similique.</p>
+		</panel-clab>
+	</div>
+
+	<div class="content">
+		<h2>Progress bar</h2>
+		<progress-clab value="42"></progress-clab>
+	</div>
+
+	<div class="content">
+		<h2>Spinner</h2>
+		<spinner-clab></spinner-clab>
+	</div>
+
+	
+
+</body>
+</html>

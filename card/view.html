@@ -1,0 +1,42 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="card-clab">
+	<style></style>
+	
+	<template>		
+		<div class$="{{_computeEffectClass(effect)}}">
+			<template is="dom-if" if="{{!figure}}">
+				<div class$="{{_computeCardClass(big)}}">
+					<template is="dom-if" if="{{!big}}">
+						<i class$="{{_computeIconClass(icon)}}"></i>
+					</template>
+					<span>{{title}}</span>
+					<template is="dom-if" if="{{big}}">
+						<div class="circle"><i class="fa fa-circle"></i></div>
+						<div class="icon"><i class$="{{_computeIconClass(icon)}}"></i></div>
+					</template>
+				</div>
+			</template>
+			<template is="dom-if" if="{{figure}}">
+				<figure>
+					<img src="{{figure}}">
+					<h2>{{title}}</h2>
+				</figure>
+			</template>
+			<template is="dom-if" if="{{!table}}">
+				<div class="card-body">
+					<content></content>
+				</div>
+			</template>
+			<template is="dom-if" if="{{table}}">
+				<content></content>
+			</template>
+			<div class="card-actions">
+				<button class="btn flat">{{secondaryLabel}}</button>
+				<button class="btn primary flat">{{primaryLabel}}</button>
+			</div>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>

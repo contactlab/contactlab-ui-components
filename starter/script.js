@@ -1,0 +1,3 @@
+Polymer({
+	is: 'my-component'
+});

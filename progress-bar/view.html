@@ -1,0 +1,17 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="progress-clab">
+	<style></style>
+	
+	<template>		
+		<div class$="{{computeClass(minimal,primary,secondary,info,success,warning,error)}}">
+			<section>
+				<article style$="{{computeProp(value)}}">
+					<label id="label">{{percent(value)}}</label>
+				</article>
+			</section>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>

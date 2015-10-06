@@ -1,0 +1,16 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="button-clab">
+	<style></style>
+	
+	<template>
+		<button class$="{{_computeClass(type,appearance,size)}}">
+			<template is="dom-if" if="{{icon}}">
+				<i class$="{{_computeIconClass(icon)}}"></i>
+			</template>
+			<content></content>
+		</button>
+	</template>	
+
+	<script src="script.js"></script>
+</dom-module>

@@ -1,0 +1,221 @@
+@font-face {
+	font-family: 'contactlab-icons';
+	src:url('../fonts/contactlab-icons.eot?jvu558');
+	src:url('../fonts/contactlab-icons.eot?#iefixjvu558') format('embedded-opentype'),
+		url('../fonts/contactlab-icons.ttf?jvu558') format('truetype'),
+		url('../fonts/contactlab-icons.woff?jvu558') format('woff'),
+		url('../fonts/contactlab-icons.svg?jvu558#contactlab-icons') format('svg');
+	font-weight: normal;
+	font-style: normal;
+}
+
+.clab {
+	font-family: 'contactlab-icons';
+	speak: none;
+	font-style: normal;
+	font-weight: normal;
+	font-variant: normal;
+	text-transform: none;
+	line-height: 1;
+
+	/* Better Font Rendering =========== */
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+
+.clab-icon-sign-design:before {
+	content: "\e63f";
+}
+.clab-icon-sign-resources:before {
+	content: "\e640";
+}
+.clab-icon-cloud:before {
+	content: "\e600";
+}
+.clab-icon-cloud-rain:before {
+	content: "\e601";
+}
+.clab-icon-fog:before {
+	content: "\e602";
+}
+.clab-icon-moon:before {
+	content: "\e603";
+}
+.clab-icon-moon-cloud:before {
+	content: "\e604";
+}
+.clab-icon-rain:before {
+	content: "\e605";
+}
+.clab-icon-snow:before {
+	content: "\e606";
+}
+.clab-icon-storm:before {
+	content: "\e607";
+}
+.clab-icon-sun:before {
+	content: "\e608";
+}
+.clab-icon-sun-cloud:before {
+	content: "\e609";
+}
+.clab-icon-agenda:before {
+	content: "\e60a";
+}
+.clab-icon-analytics:before {
+	content: "\e60b";
+}
+.clab-icon-arrow-down:before {
+	content: "\e60c";
+}
+.clab-icon-arrow-left:before {
+	content: "\e60d";
+}
+.clab-icon-arrow-right:before {
+	content: "\e60e";
+}
+.clab-icon-arrow-top:before {
+	content: "\e60f";
+}
+.clab-icon-calendar:before {
+	content: "\e610";
+}
+.clab-icon-check:before {
+	content: "\e611";
+}
+.clab-icon-checkbox:before {
+	content: "\e612";
+}
+.clab-icon-checkbox-select:before {
+	content: "\e613";
+}
+.clab-icon-close:before {
+	content: "\e614";
+}
+.clab-icon-close-circle:before {
+	content: "\e615";
+}
+.clab-icon-code:before {
+	content: "\e616";
+}
+.clab-icon-dashboard:before {
+	content: "\e617";
+}
+.clab-icon-documentation:before {
+	content: "\e618";
+}
+.clab-icon-download:before {
+	content: "\e619";
+}
+.clab-icon-drag:before {
+	content: "\e61a";
+}
+.clab-icon-edit:before {
+	content: "\e61b";
+}
+.clab-icon-email:before {
+	content: "\e61c";
+}
+.clab-icon-erase:before {
+	content: "\e61d";
+}
+.clab-icon-expand:before {
+	content: "\e61e";
+}
+.clab-icon-file-doc:before {
+	content: "\e61f";
+}
+.clab-icon-file-pdf:before {
+	content: "\e620";
+}
+.clab-icon-file-ppt:before {
+	content: "\e621";
+}
+.clab-icon-filter:before {
+	content: "\e622";
+}
+.clab-icon-gear:before {
+	content: "\e623";
+}
+.clab-icon-hamburger-menu:before {
+	content: "\e624";
+}
+.clab-icon-image:before {
+	content: "\e625";
+}
+.clab-icon-list:before {
+	content: "\e626";
+}
+.clab-icon-minus:before {
+	content: "\e627";
+}
+.clab-icon-minus-circle:before {
+	content: "\e628";
+}
+.clab-icon-news:before {
+	content: "\e629";
+}
+.clab-icon-open:before {
+	content: "\e62a";
+}
+.clab-icon-plus:before {
+	content: "\e62b";
+}
+.clab-icon-plus-circle:before {
+	content: "\e62c";
+}
+.clab-icon-power:before {
+	content: "\e62d";
+}
+.clab-icon-radios:before {
+	content: "\e62e";
+}
+.clab-icon-radios_select:before {
+	content: "\e62f";
+}
+.clab-icon-report:before {
+	content: "\e630";
+}
+.clab-icon-resize:before {
+	content: "\e631";
+}
+.clab-icon-save:before {
+	content: "\e632";
+}
+.clab-icon-search:before {
+	content: "\e633";
+}
+.clab-icon-segment:before {
+	content: "\e634";
+}
+.clab-icon-send:before {
+	content: "\e635";
+}
+.clab-icon-settings:before {
+	content: "\e636";
+}
+.clab-icon-sign:before {
+	content: "\e637";
+}
+.clab-icon-sign-full:before {
+	content: "\e638";
+}
+.clab-icon-slide:before {
+	content: "\e639";
+}
+.clab-icon-switch-off:before {
+	content: "\e63a";
+}
+.clab-icon-switch-on:before {
+	content: "\e63b";
+}
+.clab-icon-trash:before {
+	content: "\e63c";
+}
+.clab-icon-user:before {
+	content: "\e63d";
+}
+.clab-icon-users:before {
+	content: "\e63e";
+}

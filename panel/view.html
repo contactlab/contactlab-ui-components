@@ -1,0 +1,16 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="panel-clab">
+	<style></style>
+	
+	<template>
+		<div class$="{{_computeType(type)}}">
+			<div class="panel-header">{{title}}</div>
+			<div class="panel-body">
+				<content></content>
+			</div>
+		</div>
+	</template>	
+
+	<script src="script.js"></script>
+</dom-module>

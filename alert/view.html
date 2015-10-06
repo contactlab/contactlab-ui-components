@@ -1,0 +1,22 @@
+<link rel="import" href="../bower_components/polymer/polymer.html">
+
+<dom-module id="alert-clab">
+	<style></style>
+	
+	<template>
+		<template is="dom-if" if="{{visible}}">
+			<div class$="{{_computeType(type)}}">
+				<h3>{{title}}</h3>
+				<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
+				<p>
+					<content></content>
+				</p>
+				<button class="btn flat default" on-click="_handleClick">Cancel</button> 
+				<button class="btn default" on-click="_handleClick">Confirm</button>
+			</div>
+		</template>	
+		
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>

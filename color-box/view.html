@@ -1,0 +1,17 @@
+<link rel="import" href="../../assets/bower/polymer/polymer.html">
+
+<dom-module id="color-box">
+	<style></style>
+	
+	<template>		
+		
+			<figure class$="{{getClass(label)}}"></figure>
+			<div class="card-body">
+				<span>{{label}}</span><br/>
+				#<span>{{hex}}</span>
+			</div>
+		
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
