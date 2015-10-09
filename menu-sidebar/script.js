@@ -20,12 +20,26 @@ Polymer({
 		reduceClose:{
 			type: String,
 			value: 'clab clab-icon-resize compress'
+		},
+		menu: {
+			type: Array,
+			value: []
 		}
 	},
 	attached: function(){
-		document.querySelector('body>main').addEventListener('click', function(){
-			document.querySelector('#logo a').focus();
-		});
+		setTimeout(function(){
+			$('menu-clab .first-level-menu>li>a').each(function(i, e){					
+				if(location.hash.search(e.getAttribute('href')) > -1){
+					e.parentNode.classList.add('active');
+				}else{
+					e.parentNode.classList.remove('active');
+				}
+			});
+		},10)
+	},
+	_activeItem: function(evt){
+		$('menu-clab li').removeClass('active');
+		evt.currentTarget.parentNode.classList.add('active');
 	},
 	_reduce: function(){
 		document.body.classList.toggle('main-sidebar-small');
