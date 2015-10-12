@@ -16,6 +16,11 @@ Polymer({
 			type: 'String',
 			readonly: true
 		},
+		open: {
+			type: Boolean,
+			value: false,
+			readonly: true
+		},
 		noSearch: {
 			type: Boolean,
 			value: false
@@ -29,6 +34,11 @@ Polymer({
 			thisComp.activeInput('blur');
 		};
 		this.value = this.input.value;
+	},
+	_computeWrapperClass: function(open){
+		var arr = ['elekti-wrapper',''];
+		open ? arr[1] = 'active' : arr[1] = '';
+		return arr.join(' ');
 	},
 	dashify: function(str){
 		return str.replace(/ /g,'-');
@@ -59,9 +69,15 @@ Polymer({
 		this.input.classList.add('active');
 		var thisComp = this;
 		setTimeout(function(){
-			thisComp.$.list.classList.toggle('visible');
-			thisComp.highlightedElement();
-		},150);
+			this.$.list.classList.toggle('visible');
+			if(this.$.list.classList.contains('visible')){
+				this.$.list.style.height = (44 * this.options.length) + "px";
+			}else{
+				this.$.list.style.height = "0px"
+			}
+			this.open = this.$.list.classList.contains('visible');
+			this.highlightedElement();
+		}.bind(this),150);
 		this.activeInput(evt.type);
 	},
 	dropOnly: function(){

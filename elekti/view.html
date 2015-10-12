@@ -1,22 +1,35 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="elekti-mer">
-	<style></style>
-	
-	<template>		
-		<div class="input-group" on-click="dropOnly">
-			<input id$="{{dashify(label)}}" type="text" class="js-users-list-filter" 
-			on-focus="handleListVisibility" on-blur="handleListVisibility" disabled="{{noSearch}}"
-			on-keyup="searchElement" on-change="updateValue" >
-			<label for$="{{dashify(label)}}">{{label}}</label>
-			<ol class="js-users-list" id="list">
-				<template is="dom-repeat" items="{{options}}">
-					<li on-tap="selectElement">{{item}}</li>
-				</template>
-				<div class="noResults hide" id="noRes">No results found</div>
-			</ol>
-		</div>
-	</template>
+	<style>
+	ol{
+		display: block !important;
+		height: 0;
+		transition: all 0.3s ease;
+		overflow: hidden;
+	}
+	.active ol{
+		overflow: auto;
+	}
+	</style>
+
+	<template>        
+        <div class="input-wrapper" on-click="dropOnly">
+            <label for$="{{dashify(label)}}">{{label}}</label>
+            <div class$="{{ _computeWrapperClass(open) }}">
+                <input id$="{{dashify(label)}}" type="text" class="js-users-list-filter" 
+                on-focus="handleListVisibility" on-blur="handleListVisibility" disabled="{{noSearch}}"
+                on-keyup="searchElement" on-change="updateValue" >
+                <ol class="js-users-list" id="list">
+                    <template is="dom-repeat" items="{{options}}">
+                        <li on-tap="selectElement">{{item}}</li>
+                    </template>
+                    <div class="noResults hide" id="noRes">No results found</div>
+                </ol>
+            </div>
+            
+        </div>
+    </template>
 
 	<script src="script.js"></script>
 </dom-module>
