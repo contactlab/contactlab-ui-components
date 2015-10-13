@@ -33,6 +33,7 @@
 	<link rel="import" href="input/view.html">
 	<link rel="import" href="tabs/view.html">
 	<link rel="import" href="modal/view.html">
+	<link rel="import" href="calendar/view.html">
 	
 
 </head>
@@ -120,6 +121,12 @@
 		</modal-clab>
 	</div>
 
+	<div class="content">
+		<h2>Caledar | Rome script by bevacqua</h2>
+		<calendar-clab></calendar-clab>
+		<calendar-clab inline></calendar-clab>
+	</div>
+
 
 <script>
 	
@@ -137,6 +144,9 @@ modal.addEventListener('modal-primary',function(){
 modal.addEventListener('modal-secondary',function(){
 	modal.visible = false;
 })
+
+// Calendar
+document.querySelector('calendar-clab').options = {time: false};
 
 </script>
 
