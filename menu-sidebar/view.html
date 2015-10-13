@@ -18,7 +18,7 @@
 							<ul class="second-level-menu">
 								<li class="menu-title">Settings</li>
 								<template is="dom-repeat" items="{{item.submenu}}">
-									<li><a href="{{item.url}}">{{item.label}}</a></li>
+									<li><a on-click="_activeItem" href="{{item.url}}">{{item.label}}</a></li>
 								</template>
 							</ul>
 						</template>

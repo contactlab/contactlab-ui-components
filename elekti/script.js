@@ -69,22 +69,24 @@ Polymer({
 		this.input.classList.add('active');
 		var thisComp = this;
 		setTimeout(function(){
-			this.$.list.classList.toggle('visible');
-			if(this.$.list.classList.contains('visible')){
-				this.$.list.style.height = (44 * this.options.length) + "px";
-			}else{
-				this.$.list.style.height = "0px"
-			}
+			this._slideToggle();
 			this.open = this.$.list.classList.contains('visible');
 			this.highlightedElement();
 		}.bind(this),150);
 		this.activeInput(evt.type);
 	},
+	_slideToggle : function(){
+		this.$.list.classList.toggle('visible');
+		if(this.$.list.classList.contains('visible')){
+			this.$.list.style.height = (44 * this.options.length) + "px";
+		}else{
+			this.$.list.style.height = "0px"
+		}
+	},
 	dropOnly: function(){
-		var thisComp = this;
 		if(this.noSearch){
-			thisComp.$.list.classList.toggle('visible');
-			thisComp.highlightedElement();
+			this._slideToggle();
+			this.highlightedElement();
 		}
 	},
 	searchElement: function(e){
