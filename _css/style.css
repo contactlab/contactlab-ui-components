@@ -2707,14 +2707,42 @@ table {
   box-sizing: border-box;
 }
 
-.faster-transition, .alert.primary .btn, .buttons-group.primary .alert.btn .btn, .alert.secondary .btn, .buttons-group.secondary .alert.btn .btn, .alert.info .btn, .buttons-group.info .alert.btn .btn, .alert.success .btn, .buttons-group.success .alert.btn .btn, .alert.warning .btn, .buttons-group.warning .alert.btn .btn, .alert.error .btn, .buttons-group.error .alert.btn .btn, .btn, .btn.flat, .btn.full, .buttons-group .btn:active, .btn:active, .btn.active, .btn.primary:active, .btn.primary.active, .buttons-group.primary .btn.active, .btn.secondary:active, .btn.secondary.active, .buttons-group.secondary .btn.active, .btn.info:active, .btn.info.active, .buttons-group.info .btn.active, .btn.success:active, .btn.success.active, .buttons-group.success .btn.active, .btn.warning:active, .btn.warning.active, .buttons-group.warning .btn.active, .btn.error:active, .btn.error.active, .buttons-group.error .btn.active, .floating-button, .floating-button.primary:active, .floating-button.secondary:active, .floating-button.info:active, .floating-button.success:active, .floating-button.warning:active, .floating-button.error:active, .action-bar-button, #main-sidebar #reduce a, #secondary-sidebar #secondary-sidebar-label, .back, .action-bar-button:active, .back:active, .user-bar.active, .user-bar .picture img, .user-bar .actions .action, .user-bar .actions .action:active {
+.faster-transition, .alert.primary .btn, .buttons-group.primary .alert.btn .btn, .alert.secondary .btn, .buttons-group.secondary .alert.btn .btn, .alert.info .btn, .buttons-group.info .alert.btn .btn, .alert.success .btn, .buttons-group.success .alert.btn .btn, .alert.warning .btn, .buttons-group.warning .alert.btn .btn, .alert.error .btn, .buttons-group.error .alert.btn .btn, .btn, .btn.flat, .btn.full, .buttons-group .btn:active, .btn:active, .btn.active, .btn.primary:active, .btn.primary.active, .buttons-group.primary .btn.active, .btn.secondary:active, .btn.secondary.active, .buttons-group.secondary .btn.active, .btn.info:active, .btn.info.active, .buttons-group.info .btn.active, .btn.success:active, .btn.success.active, .buttons-group.success .btn.active, .btn.warning:active, .btn.warning.active, .buttons-group.warning .btn.active, .btn.error:active, .btn.error.active, .buttons-group.error .btn.active, .floating-button, .floating-button.primary:active, .floating-button.secondary:active, .floating-button.info:active, .floating-button.success:active, .floating-button.warning:active, .floating-button.error:active, .action-bar-button, #main-sidebar #reduce a, #secondary-sidebar .user-actions .action, .back, .action-bar-button:active, .back:active, .user-bar .picture img {
   -moz-transition: all 50ms ease-in-out;
   -o-transition: all 50ms ease-in-out;
   -webkit-transition: all 50ms ease-in-out;
   transition: all 50ms ease-in-out;
 }
 
-.fast-transition, .user-bar {
+.fast-transition, .input-wrapper input[type="color"],
+.input-wrapper input[type="date"],
+.input-wrapper input[type="datetime"],
+.input-wrapper input[type="datetime-local"],
+.input-wrapper input[type="email"],
+.input-wrapper input[type="month"],
+.input-wrapper input[type="number"],
+.input-wrapper input[type="password"],
+.input-wrapper input[type="search"],
+.input-wrapper input[type="tel"],
+.input-wrapper input[type="text"],
+.input-wrapper input[type="time"],
+.input-wrapper input[type="url"],
+.input-wrapper input[type="week"],
+.input-wrapper textarea, .input-wrapper input[type="color"]:focus,
+.input-wrapper input[type="date"]:focus,
+.input-wrapper input[type="datetime"]:focus,
+.input-wrapper input[type="datetime-local"]:focus,
+.input-wrapper input[type="email"]:focus,
+.input-wrapper input[type="month"]:focus,
+.input-wrapper input[type="number"]:focus,
+.input-wrapper input[type="password"]:focus,
+.input-wrapper input[type="search"]:focus,
+.input-wrapper input[type="tel"]:focus,
+.input-wrapper input[type="text"]:focus,
+.input-wrapper input[type="time"]:focus,
+.input-wrapper input[type="url"]:focus,
+.input-wrapper input[type="week"]:focus,
+.input-wrapper textarea:focus {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
   -webkit-transition: all 100ms ease-in-out;
@@ -2722,77 +2750,7 @@ table {
 }
 
 .default-transition, .hover-effect, .card, .modal, .hover-effect:hover, .card:hover, .modal:hover, .saturation figure img, .saturation:hover figure img, .blur figure img, .blur:hover figure img, .zoom-in figure img, .zoom-in:hover figure img, .zoom-out figure img, .zoom-out:hover figure img, .ui-slider .ui-slider-handle, .ui-slider .ui-slider-handle.ui-state-hover,
-.ui-slider .ui-slider-handle .ui-state-focus, .ui-slider .ui-slider-handle.ui-state-active, input[type="color"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
-textarea, input[type="color"]:focus,
-input[type="date"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="email"]:focus,
-input[type="month"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="text"]:focus,
-input[type="time"]:focus,
-input[type="url"]:focus,
-input[type="week"]:focus,
-textarea:focus, .input-group input[type="color"] + label,
-.input-group input[type="date"] + label,
-.input-group input[type="datetime"] + label,
-.input-group input[type="datetime-local"] + label,
-.input-group input[type="email"] + label,
-.input-group input[type="month"] + label,
-.input-group input[type="number"] + label,
-.input-group input[type="password"] + label,
-.input-group input[type="search"] + label,
-.input-group input[type="tel"] + label,
-.input-group input[type="text"] + label,
-.input-group input[type="time"] + label,
-.input-group input[type="url"] + label,
-.input-group input[type="week"] + label,
-.input-group textarea + label, .input-group input[type="color"]:focus + label,
-.input-group input[type="date"]:focus + label,
-.input-group input[type="datetime"]:focus + label,
-.input-group input[type="datetime-local"]:focus + label,
-.input-group input[type="email"]:focus + label,
-.input-group input[type="month"]:focus + label,
-.input-group input[type="number"]:focus + label,
-.input-group input[type="password"]:focus + label,
-.input-group input[type="search"]:focus + label,
-.input-group input[type="tel"]:focus + label,
-.input-group input[type="text"]:focus + label,
-.input-group input[type="time"]:focus + label,
-.input-group input[type="url"]:focus + label,
-.input-group input[type="week"]:focus + label,
-.input-group textarea:focus + label, .input-group input[type="color"].active + label,
-.input-group input[type="date"].active + label,
-.input-group input[type="datetime"].active + label,
-.input-group input[type="datetime-local"].active + label,
-.input-group input[type="email"].active + label,
-.input-group input[type="month"].active + label,
-.input-group input[type="number"].active + label,
-.input-group input[type="password"].active + label,
-.input-group input[type="search"].active + label,
-.input-group input[type="tel"].active + label,
-.input-group input[type="text"].active + label,
-.input-group input[type="time"].active + label,
-.input-group input[type="url"].active + label,
-.input-group input[type="week"].active + label,
-.input-group textarea.active + label, .search .search-input, .search .search-input.active {
+.ui-slider .ui-slider-handle .ui-state-focus, .ui-slider .ui-slider-handle.ui-state-active {
   -moz-transition: all 200ms ease-in-out;
   -o-transition: all 200ms ease-in-out;
   -webkit-transition: all 200ms ease-in-out;
@@ -2812,7 +2770,7 @@ textarea:focus, .input-group input[type="color"] + label,
   box-shadow: 0 0 0 0 transparent !important;
 }
 
-.depth-1, .card, .modal {
+.depth-1, .card, .modal, .js-users-list, #secondary-sidebar {
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
@@ -2844,7 +2802,7 @@ textarea:focus, .input-group input[type="color"] + label,
 
 .clab {
   font-size: 24px;
-  vertical-align: middle;
+  /* vertical-align: middle; */
 }
 .clab.icon-medium {
   font-size: 36px;
@@ -2969,8 +2927,12 @@ a:hover {
   color: #006cb3;
 }
 
+b {
+  font-weight: 700;
+}
+
 body {
-  background: #FFFFFF;
+  background: #f8f8f9;
   font-weight: 400;
   font-size: 16px;
   color: #353A3D;
@@ -3086,6 +3048,17 @@ h1, .static-input .user-title {
   font-weight: 400;
   line-height: 1.5;
 }
+h1.page-title, .static-input .page-title.user-title {
+  position: relative;
+}
+h1.page-title:before, .static-input .page-title.user-title:before {
+  position: absolute;
+  bottom: 0px;
+  width: 75px;
+  height: 3px;
+  content: '';
+  background-color: #0072bc;
+}
 
 h2 {
   font-size: 1.5rem;
@@ -3093,11 +3066,11 @@ h2 {
 }
 
 h3 {
-  font-size: 1rem;
+  font-size: 16px;
 }
 
 h4 {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
 }
 
 .label, .badge {
@@ -3701,7 +3674,7 @@ td {
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(248, 248, 249, 0.9);
   z-index: 3;
 }
 .card .card-loader .spinner, .modal .card-loader .spinner {
@@ -3771,7 +3744,7 @@ td {
   line-height: 1;
 }
 .card .card-title .note, .modal .card-title .note, .modal .modal-title .note {
-  font-size: 0.75rem;
+  font-size: 0.8125rem;
   line-height: 1;
 }
 .card .big-icon, .modal .big-icon {
@@ -3822,6 +3795,14 @@ td {
   margin: 0;
 }
 
+.breadcrumb {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 0.8125rem;
+}
 .breadcrumb li {
   display: inline;
 }
@@ -3877,7 +3858,7 @@ td {
   margin-left: 0;
   margin-right: 0;
   font-family: "Open Sans", sans-serif;
-  font-size: 1rem;
+  font-size: 16px;
 }
 .accordion .ui-icon {
   background-image: none !important;
@@ -3891,7 +3872,7 @@ td {
 }
 .accordion .ui-state-default, .accordion .ui-widget-content .ui-state-default, .accordion .ui-widget-header .ui-state-default {
   background-image: none !important;
-  background: #FFFFFF;
+  background: #f8f8f9;
   color: #353A3D;
 }
 .accordion.ui-accordion .ui-accordion-header .ui-accordion-header-icon {
@@ -3904,7 +3885,7 @@ td {
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
   border-radius: 0;
-  background: #FFFFFF;
+  background: #f8f8f9;
 }
 .accordion .ui-accordion-header {
   -moz-border-radius: 0;
@@ -3915,7 +3896,7 @@ td {
   margin-bottom: 20px;
 }
 .accordion .ui-state-active, .accordion .ui-widget-content .ui-state-active, .accordion .ui-widget-header .ui-state-active {
-  background: #FFFFFF;
+  background: #f8f8f9;
   color: #0072bc;
 }
 
@@ -3941,7 +3922,7 @@ td {
 }
 
 .modal {
-  background: #FFFFFF;
+  background: #f8f8f9;
   text-align: left;
   -moz-box-shadow: 0 2px 7px 5px rgba(0, 0, 0, 0.22);
   -webkit-box-shadow: 0 2px 7px 5px rgba(0, 0, 0, 0.22);
@@ -3979,14 +3960,14 @@ td {
   color: #353A3D;
 }
 .tabs.ui-tabs .ui-tabs-nav .ui-tabs-anchor:hover, .ui-tabs.pills .ui-tabs-nav .ui-tabs-anchor:hover {
-  color: #0072bc;
+  color: #4d9cd0;
 }
 .tabs.ui-tabs .ui-tabs-nav .ui-tabs-active .ui-tabs-anchor, .ui-tabs.pills .ui-tabs-nav .ui-tabs-active .ui-tabs-anchor {
-  color: #0072bc;
+  color: #4d9cd0;
   padding-bottom: 10px;
-  -moz-box-shadow: 0 3px 0 0 #0072bc;
-  -webkit-box-shadow: 0 3px 0 0 #0072bc;
-  box-shadow: 0 3px 0 0 #0072bc;
+  -moz-box-shadow: 0 3px 0 0 #4d9cd0;
+  -webkit-box-shadow: 0 3px 0 0 #4d9cd0;
+  box-shadow: 0 3px 0 0 #4d9cd0;
 }
 .tabs.ui-tabs .ui-tabs-nav .ui-state-default.ui-state-disabled a, .ui-tabs.pills .ui-tabs-nav .ui-state-default.ui-state-disabled a {
   color: #E0E0E0;
@@ -4009,7 +3990,7 @@ td {
 .tabs .ui-widget-header .ui-state-default,
 .pills .ui-widget-header .ui-state-default {
   border: 0;
-  background: #FFFFFF;
+  background: #f8f8f9;
   color: #353A3D;
   -moz-border-radius: 0;
   -webkit-border-radius: 0;
@@ -4686,6 +4667,9 @@ footer .footer-nav ul li {
   font-size: 40px;
   line-height: 1;
 }
+.feature .icon .clab {
+  font-size: 40px;
+}
 .feature .icon img {
   clear: both;
   width: 100%;
@@ -4719,6 +4703,18 @@ footer .footer-nav ul li {
   margin: 0;
   width: 80px;
   font-size: 80px;
+}
+.feature.big-icon .icon .clab {
+  font-size: 80px;
+}
+.feature.small-icon .icon {
+  float: left;
+  margin: 0;
+  width: 24px;
+  font-size: 24px;
+}
+.feature.small-icon .icon .clab {
+  font-size: 24px;
 }
 .feature.vertical .icon {
   clear: both;
@@ -4770,7 +4766,7 @@ main.with-sidebar.left {
   top: 30px;
   right: 5px;
   border: 1px solid #eaeced;
-  background: #FFFFFF;
+  background: #f8f8f9;
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.15);
@@ -4811,11 +4807,532 @@ main.with-sidebar.left {
 }
 .dropdown-menu li a.disabled:hover {
   color: #E0E0E0;
-  background: #FFFFFF;
+  background: #f8f8f9;
 }
 
 textarea {
   resize: vertical;
+}
+
+input:focus,
+textarea:focus {
+  box-shadow: none;
+}
+
+input[type="submit"],
+input[type="reset"] {
+  width: auto;
+}
+
+.input-icon-wrapper {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  position: relative;
+}
+.input-icon-wrapper:after {
+  font-family: 'contactlab-icons';
+  content: "\e62a";
+  position: absolute;
+  font-size: 18px;
+  right: 6.66667px;
+  top: 9px;
+  line-height: 1;
+}
+.input-icon-wrapper input {
+  padding-right: 30px !important;
+}
+
+.input-wrapper {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  position: relative;
+}
+.input-wrapper label {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  font-weight: 600;
+  font-size: 0.8125rem;
+  padding-bottom: 6.66667px;
+  line-height: 1;
+}
+.input-wrapper .note {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  font-size: 0.8125rem;
+}
+.input-wrapper input[type="color"],
+.input-wrapper input[type="date"],
+.input-wrapper input[type="datetime"],
+.input-wrapper input[type="datetime-local"],
+.input-wrapper input[type="email"],
+.input-wrapper input[type="month"],
+.input-wrapper input[type="number"],
+.input-wrapper input[type="password"],
+.input-wrapper input[type="search"],
+.input-wrapper input[type="tel"],
+.input-wrapper input[type="text"],
+.input-wrapper input[type="time"],
+.input-wrapper input[type="url"],
+.input-wrapper input[type="week"],
+.input-wrapper textarea {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  background-color: rgba(255, 255, 255, 0.6);
+  border: 0;
+  border-bottom: 1px solid #eaeced;
+  padding: 6.66667px;
+  font-size: 16px;
+  height: 36px;
+}
+.input-wrapper input[type="color"]:focus,
+.input-wrapper input[type="date"]:focus,
+.input-wrapper input[type="datetime"]:focus,
+.input-wrapper input[type="datetime-local"]:focus,
+.input-wrapper input[type="email"]:focus,
+.input-wrapper input[type="month"]:focus,
+.input-wrapper input[type="number"]:focus,
+.input-wrapper input[type="password"]:focus,
+.input-wrapper input[type="search"]:focus,
+.input-wrapper input[type="tel"]:focus,
+.input-wrapper input[type="text"]:focus,
+.input-wrapper input[type="time"]:focus,
+.input-wrapper input[type="url"]:focus,
+.input-wrapper input[type="week"]:focus,
+.input-wrapper textarea:focus {
+  border-color: #0072bc;
+  -moz-box-shadow: #0072bc 0 1px 0 0;
+  -webkit-box-shadow: #0072bc 0 1px 0 0;
+  box-shadow: #0072bc 0 1px 0 0;
+  background-color: white;
+}
+.input-wrapper.primary input[type="color"], .buttons-group.primary .input-wrapper.btn input[type="color"],
+.input-wrapper.primary input[type="date"],
+.buttons-group.primary .input-wrapper.btn input[type="date"],
+.input-wrapper.primary input[type="datetime"],
+.buttons-group.primary .input-wrapper.btn input[type="datetime"],
+.input-wrapper.primary input[type="datetime-local"],
+.buttons-group.primary .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.primary input[type="email"],
+.buttons-group.primary .input-wrapper.btn input[type="email"],
+.input-wrapper.primary input[type="month"],
+.buttons-group.primary .input-wrapper.btn input[type="month"],
+.input-wrapper.primary input[type="number"],
+.buttons-group.primary .input-wrapper.btn input[type="number"],
+.input-wrapper.primary input[type="password"],
+.buttons-group.primary .input-wrapper.btn input[type="password"],
+.input-wrapper.primary input[type="search"],
+.buttons-group.primary .input-wrapper.btn input[type="search"],
+.input-wrapper.primary input[type="tel"],
+.buttons-group.primary .input-wrapper.btn input[type="tel"],
+.input-wrapper.primary input[type="text"],
+.buttons-group.primary .input-wrapper.btn input[type="text"],
+.input-wrapper.primary input[type="time"],
+.buttons-group.primary .input-wrapper.btn input[type="time"],
+.input-wrapper.primary input[type="url"],
+.buttons-group.primary .input-wrapper.btn input[type="url"],
+.input-wrapper.primary input[type="week"],
+.buttons-group.primary .input-wrapper.btn input[type="week"],
+.input-wrapper.primary textarea,
+.buttons-group.primary .input-wrapper.btn textarea {
+  border-bottom-color: #0072bc;
+}
+.input-wrapper.primary input[type="color"]:focus, .buttons-group.primary .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.primary input[type="date"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.primary input[type="datetime"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.primary input[type="datetime-local"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.primary input[type="email"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.primary input[type="month"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.primary input[type="number"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.primary input[type="password"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.primary input[type="search"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.primary input[type="tel"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.primary input[type="text"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.primary input[type="time"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.primary input[type="url"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.primary input[type="week"]:focus,
+.buttons-group.primary .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.primary textarea:focus,
+.buttons-group.primary .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #0072bc 0 1px 0 0;
+  -webkit-box-shadow: #0072bc 0 1px 0 0;
+  box-shadow: #0072bc 0 1px 0 0;
+}
+.input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label,
+.input-wrapper.primary .note,
+.buttons-group.primary .input-wrapper.btn .note {
+  color: #0072bc;
+}
+.input-wrapper.secondary input[type="color"], .buttons-group.secondary .input-wrapper.btn input[type="color"],
+.input-wrapper.secondary input[type="date"],
+.buttons-group.secondary .input-wrapper.btn input[type="date"],
+.input-wrapper.secondary input[type="datetime"],
+.buttons-group.secondary .input-wrapper.btn input[type="datetime"],
+.input-wrapper.secondary input[type="datetime-local"],
+.buttons-group.secondary .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.secondary input[type="email"],
+.buttons-group.secondary .input-wrapper.btn input[type="email"],
+.input-wrapper.secondary input[type="month"],
+.buttons-group.secondary .input-wrapper.btn input[type="month"],
+.input-wrapper.secondary input[type="number"],
+.buttons-group.secondary .input-wrapper.btn input[type="number"],
+.input-wrapper.secondary input[type="password"],
+.buttons-group.secondary .input-wrapper.btn input[type="password"],
+.input-wrapper.secondary input[type="search"],
+.buttons-group.secondary .input-wrapper.btn input[type="search"],
+.input-wrapper.secondary input[type="tel"],
+.buttons-group.secondary .input-wrapper.btn input[type="tel"],
+.input-wrapper.secondary input[type="text"],
+.buttons-group.secondary .input-wrapper.btn input[type="text"],
+.input-wrapper.secondary input[type="time"],
+.buttons-group.secondary .input-wrapper.btn input[type="time"],
+.input-wrapper.secondary input[type="url"],
+.buttons-group.secondary .input-wrapper.btn input[type="url"],
+.input-wrapper.secondary input[type="week"],
+.buttons-group.secondary .input-wrapper.btn input[type="week"],
+.input-wrapper.secondary textarea,
+.buttons-group.secondary .input-wrapper.btn textarea {
+  border-bottom-color: #4d9cd0;
+}
+.input-wrapper.secondary input[type="color"]:focus, .buttons-group.secondary .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.secondary input[type="date"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.secondary input[type="datetime"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.secondary input[type="datetime-local"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.secondary input[type="email"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.secondary input[type="month"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.secondary input[type="number"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.secondary input[type="password"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.secondary input[type="search"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.secondary input[type="tel"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.secondary input[type="text"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.secondary input[type="time"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.secondary input[type="url"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.secondary input[type="week"]:focus,
+.buttons-group.secondary .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.secondary textarea:focus,
+.buttons-group.secondary .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #4d9cd0 0 1px 0 0;
+  -webkit-box-shadow: #4d9cd0 0 1px 0 0;
+  box-shadow: #4d9cd0 0 1px 0 0;
+}
+.input-wrapper.secondary label, .buttons-group.secondary .input-wrapper.btn label,
+.input-wrapper.secondary .note,
+.buttons-group.secondary .input-wrapper.btn .note {
+  color: #4d9cd0;
+}
+.input-wrapper.info input[type="color"], .buttons-group.info .input-wrapper.btn input[type="color"],
+.input-wrapper.info input[type="date"],
+.buttons-group.info .input-wrapper.btn input[type="date"],
+.input-wrapper.info input[type="datetime"],
+.buttons-group.info .input-wrapper.btn input[type="datetime"],
+.input-wrapper.info input[type="datetime-local"],
+.buttons-group.info .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.info input[type="email"],
+.buttons-group.info .input-wrapper.btn input[type="email"],
+.input-wrapper.info input[type="month"],
+.buttons-group.info .input-wrapper.btn input[type="month"],
+.input-wrapper.info input[type="number"],
+.buttons-group.info .input-wrapper.btn input[type="number"],
+.input-wrapper.info input[type="password"],
+.buttons-group.info .input-wrapper.btn input[type="password"],
+.input-wrapper.info input[type="search"],
+.buttons-group.info .input-wrapper.btn input[type="search"],
+.input-wrapper.info input[type="tel"],
+.buttons-group.info .input-wrapper.btn input[type="tel"],
+.input-wrapper.info input[type="text"],
+.buttons-group.info .input-wrapper.btn input[type="text"],
+.input-wrapper.info input[type="time"],
+.buttons-group.info .input-wrapper.btn input[type="time"],
+.input-wrapper.info input[type="url"],
+.buttons-group.info .input-wrapper.btn input[type="url"],
+.input-wrapper.info input[type="week"],
+.buttons-group.info .input-wrapper.btn input[type="week"],
+.input-wrapper.info textarea,
+.buttons-group.info .input-wrapper.btn textarea {
+  border-bottom-color: #6ac7f1;
+}
+.input-wrapper.info input[type="color"]:focus, .buttons-group.info .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.info input[type="date"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.info input[type="datetime"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.info input[type="datetime-local"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.info input[type="email"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.info input[type="month"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.info input[type="number"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.info input[type="password"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.info input[type="search"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.info input[type="tel"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.info input[type="text"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.info input[type="time"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.info input[type="url"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.info input[type="week"]:focus,
+.buttons-group.info .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.info textarea:focus,
+.buttons-group.info .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #6ac7f1 0 1px 0 0;
+  -webkit-box-shadow: #6ac7f1 0 1px 0 0;
+  box-shadow: #6ac7f1 0 1px 0 0;
+}
+.input-wrapper.info label, .buttons-group.info .input-wrapper.btn label,
+.input-wrapper.info .note,
+.buttons-group.info .input-wrapper.btn .note {
+  color: #6ac7f1;
+}
+.input-wrapper.success input[type="color"], .buttons-group.success .input-wrapper.btn input[type="color"],
+.input-wrapper.success input[type="date"],
+.buttons-group.success .input-wrapper.btn input[type="date"],
+.input-wrapper.success input[type="datetime"],
+.buttons-group.success .input-wrapper.btn input[type="datetime"],
+.input-wrapper.success input[type="datetime-local"],
+.buttons-group.success .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.success input[type="email"],
+.buttons-group.success .input-wrapper.btn input[type="email"],
+.input-wrapper.success input[type="month"],
+.buttons-group.success .input-wrapper.btn input[type="month"],
+.input-wrapper.success input[type="number"],
+.buttons-group.success .input-wrapper.btn input[type="number"],
+.input-wrapper.success input[type="password"],
+.buttons-group.success .input-wrapper.btn input[type="password"],
+.input-wrapper.success input[type="search"],
+.buttons-group.success .input-wrapper.btn input[type="search"],
+.input-wrapper.success input[type="tel"],
+.buttons-group.success .input-wrapper.btn input[type="tel"],
+.input-wrapper.success input[type="text"],
+.buttons-group.success .input-wrapper.btn input[type="text"],
+.input-wrapper.success input[type="time"],
+.buttons-group.success .input-wrapper.btn input[type="time"],
+.input-wrapper.success input[type="url"],
+.buttons-group.success .input-wrapper.btn input[type="url"],
+.input-wrapper.success input[type="week"],
+.buttons-group.success .input-wrapper.btn input[type="week"],
+.input-wrapper.success textarea,
+.buttons-group.success .input-wrapper.btn textarea {
+  border-bottom-color: #61b769;
+}
+.input-wrapper.success input[type="color"]:focus, .buttons-group.success .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.success input[type="date"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.success input[type="datetime"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.success input[type="datetime-local"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.success input[type="email"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.success input[type="month"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.success input[type="number"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.success input[type="password"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.success input[type="search"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.success input[type="tel"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.success input[type="text"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.success input[type="time"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.success input[type="url"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.success input[type="week"]:focus,
+.buttons-group.success .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.success textarea:focus,
+.buttons-group.success .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #61b769 0 1px 0 0;
+  -webkit-box-shadow: #61b769 0 1px 0 0;
+  box-shadow: #61b769 0 1px 0 0;
+}
+.input-wrapper.success label, .buttons-group.success .input-wrapper.btn label,
+.input-wrapper.success .note,
+.buttons-group.success .input-wrapper.btn .note {
+  color: #61b769;
+}
+.input-wrapper.warning input[type="color"], .buttons-group.warning .input-wrapper.btn input[type="color"],
+.input-wrapper.warning input[type="date"],
+.buttons-group.warning .input-wrapper.btn input[type="date"],
+.input-wrapper.warning input[type="datetime"],
+.buttons-group.warning .input-wrapper.btn input[type="datetime"],
+.input-wrapper.warning input[type="datetime-local"],
+.buttons-group.warning .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.warning input[type="email"],
+.buttons-group.warning .input-wrapper.btn input[type="email"],
+.input-wrapper.warning input[type="month"],
+.buttons-group.warning .input-wrapper.btn input[type="month"],
+.input-wrapper.warning input[type="number"],
+.buttons-group.warning .input-wrapper.btn input[type="number"],
+.input-wrapper.warning input[type="password"],
+.buttons-group.warning .input-wrapper.btn input[type="password"],
+.input-wrapper.warning input[type="search"],
+.buttons-group.warning .input-wrapper.btn input[type="search"],
+.input-wrapper.warning input[type="tel"],
+.buttons-group.warning .input-wrapper.btn input[type="tel"],
+.input-wrapper.warning input[type="text"],
+.buttons-group.warning .input-wrapper.btn input[type="text"],
+.input-wrapper.warning input[type="time"],
+.buttons-group.warning .input-wrapper.btn input[type="time"],
+.input-wrapper.warning input[type="url"],
+.buttons-group.warning .input-wrapper.btn input[type="url"],
+.input-wrapper.warning input[type="week"],
+.buttons-group.warning .input-wrapper.btn input[type="week"],
+.input-wrapper.warning textarea,
+.buttons-group.warning .input-wrapper.btn textarea {
+  border-bottom-color: #fd6b3c;
+}
+.input-wrapper.warning input[type="color"]:focus, .buttons-group.warning .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.warning input[type="date"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.warning input[type="datetime"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.warning input[type="datetime-local"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.warning input[type="email"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.warning input[type="month"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.warning input[type="number"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.warning input[type="password"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.warning input[type="search"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.warning input[type="tel"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.warning input[type="text"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.warning input[type="time"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.warning input[type="url"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.warning input[type="week"]:focus,
+.buttons-group.warning .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.warning textarea:focus,
+.buttons-group.warning .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #fd6b3c 0 1px 0 0;
+  -webkit-box-shadow: #fd6b3c 0 1px 0 0;
+  box-shadow: #fd6b3c 0 1px 0 0;
+}
+.input-wrapper.warning label, .buttons-group.warning .input-wrapper.btn label,
+.input-wrapper.warning .note,
+.buttons-group.warning .input-wrapper.btn .note {
+  color: #fd6b3c;
+}
+.input-wrapper.error input[type="color"], .buttons-group.error .input-wrapper.btn input[type="color"],
+.input-wrapper.error input[type="date"],
+.buttons-group.error .input-wrapper.btn input[type="date"],
+.input-wrapper.error input[type="datetime"],
+.buttons-group.error .input-wrapper.btn input[type="datetime"],
+.input-wrapper.error input[type="datetime-local"],
+.buttons-group.error .input-wrapper.btn input[type="datetime-local"],
+.input-wrapper.error input[type="email"],
+.buttons-group.error .input-wrapper.btn input[type="email"],
+.input-wrapper.error input[type="month"],
+.buttons-group.error .input-wrapper.btn input[type="month"],
+.input-wrapper.error input[type="number"],
+.buttons-group.error .input-wrapper.btn input[type="number"],
+.input-wrapper.error input[type="password"],
+.buttons-group.error .input-wrapper.btn input[type="password"],
+.input-wrapper.error input[type="search"],
+.buttons-group.error .input-wrapper.btn input[type="search"],
+.input-wrapper.error input[type="tel"],
+.buttons-group.error .input-wrapper.btn input[type="tel"],
+.input-wrapper.error input[type="text"],
+.buttons-group.error .input-wrapper.btn input[type="text"],
+.input-wrapper.error input[type="time"],
+.buttons-group.error .input-wrapper.btn input[type="time"],
+.input-wrapper.error input[type="url"],
+.buttons-group.error .input-wrapper.btn input[type="url"],
+.input-wrapper.error input[type="week"],
+.buttons-group.error .input-wrapper.btn input[type="week"],
+.input-wrapper.error textarea,
+.buttons-group.error .input-wrapper.btn textarea {
+  border-bottom-color: #f3594e;
+}
+.input-wrapper.error input[type="color"]:focus, .buttons-group.error .input-wrapper.btn input[type="color"]:focus,
+.input-wrapper.error input[type="date"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="date"]:focus,
+.input-wrapper.error input[type="datetime"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="datetime"]:focus,
+.input-wrapper.error input[type="datetime-local"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="datetime-local"]:focus,
+.input-wrapper.error input[type="email"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="email"]:focus,
+.input-wrapper.error input[type="month"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="month"]:focus,
+.input-wrapper.error input[type="number"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="number"]:focus,
+.input-wrapper.error input[type="password"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="password"]:focus,
+.input-wrapper.error input[type="search"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="search"]:focus,
+.input-wrapper.error input[type="tel"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="tel"]:focus,
+.input-wrapper.error input[type="text"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="text"]:focus,
+.input-wrapper.error input[type="time"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="time"]:focus,
+.input-wrapper.error input[type="url"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="url"]:focus,
+.input-wrapper.error input[type="week"]:focus,
+.buttons-group.error .input-wrapper.btn input[type="week"]:focus,
+.input-wrapper.error textarea:focus,
+.buttons-group.error .input-wrapper.btn textarea:focus {
+  -moz-box-shadow: #f3594e 0 1px 0 0;
+  -webkit-box-shadow: #f3594e 0 1px 0 0;
+  box-shadow: #f3594e 0 1px 0 0;
+}
+.input-wrapper.error label, .buttons-group.error .input-wrapper.btn label,
+.input-wrapper.error .note,
+.buttons-group.error .input-wrapper.btn .note {
+  color: #f3594e;
 }
 
 .static-input {
@@ -4830,7 +5347,7 @@ textarea {
 }
 .static-input label {
   font-weight: 600;
-  font-size: 0.8em;
+  font-size: 0.8125rem;
   min-width: 150px;
   display: inline-block;
 }
@@ -4884,957 +5401,126 @@ textarea {
   padding: 6.66667px 0;
 }
 
-input:focus,
-textarea:focus {
-  box-shadow: none;
-}
-
-input[type="color"],
-input[type="date"],
-input[type="datetime"],
-input[type="datetime-local"],
-input[type="email"],
-input[type="month"],
-input[type="number"],
-input[type="password"],
-input[type="search"],
-input[type="tel"],
-input[type="text"],
-input[type="time"],
-input[type="url"],
-input[type="week"],
-textarea {
-  border: 0px;
-  box-shadow: none;
-  border-bottom: 1px solid #eaeced;
-  padding: 6.66667px 0;
+input[type=range] {
+  -webkit-appearance: none;
+  margin: 10px 0;
   width: 100%;
-  color: #353A3D;
-  font-size: 16px;
-  font-family: "Open Sans", sans-serif;
-  background: #FFFFFF;
-}
-input[type="color"]:focus,
-input[type="date"]:focus,
-input[type="datetime"]:focus,
-input[type="datetime-local"]:focus,
-input[type="email"]:focus,
-input[type="month"]:focus,
-input[type="number"]:focus,
-input[type="password"]:focus,
-input[type="search"]:focus,
-input[type="tel"]:focus,
-input[type="text"]:focus,
-input[type="time"]:focus,
-input[type="url"]:focus,
-input[type="week"]:focus,
-textarea:focus {
-  border-color: #0072bc;
-  -moz-box-shadow: #0072bc 0 1px 0 0;
-  -webkit-box-shadow: #0072bc 0 1px 0 0;
-  box-shadow: #0072bc 0 1px 0 0;
 }
 
-input[type="submit"],
-input[type="reset"] {
-  width: auto;
+input[type=range]:focus {
+  outline: none;
 }
 
-.input-group {
+input[type=range]::-webkit-slider-runnable-track {
   width: 100%;
-  float: left;
-  margin-left: 0;
-  margin-right: 0;
-  position: relative;
-  padding: 15px 0 0 0;
-  margin-bottom: 20px;
+  height: 3px;
+  cursor: pointer;
+  animate: 0.2s;
+  background: #eaeced;
+  border-radius: 0;
+  border: 0px solid #000101;
 }
-.input-group input[type="color"],
-.input-group input[type="date"],
-.input-group input[type="datetime"],
-.input-group input[type="datetime-local"],
-.input-group input[type="email"],
-.input-group input[type="month"],
-.input-group input[type="number"],
-.input-group input[type="password"],
-.input-group input[type="search"],
-.input-group input[type="tel"],
-.input-group input[type="text"],
-.input-group input[type="time"],
-.input-group input[type="url"],
-.input-group input[type="week"],
-.input-group textarea {
-  margin-bottom: 0;
-  color: #353A3D;
-  font-weight: 400;
+
+input[type=range]::-webkit-slider-thumb {
+  border: 0px solid #000000;
+  height: 14px;
+  width: 14px;
+  border-radius: 50%;
+  background: #0072bc;
+  cursor: pointer;
+  -webkit-appearance: none;
+  margin-top: -5px;
+  -moz-transform:  scale(1, 1);
+  -ms-transform:  scale(1, 1);
+  -webkit-transform:  scale(1, 1);
+  transform:  scale(1, 1);
+  -moz-transition: -moz-transform 200ms ease-in-out;
+  -o-transition: -o-transform 200ms ease-in-out;
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+}
+
+input[type=range]:hover::-webkit-slider-thumb,
+input[type=range]:focus::-webkit-slider-thumb,
+input[type=range]:active::-webkit-slider-thumb {
+  -moz-transform:  scale(1.3, 1.3);
+  -ms-transform:  scale(1.3, 1.3);
+  -webkit-transform:  scale(1.3, 1.3);
+  transform:  scale(1.3, 1.3);
+  -moz-transition: -moz-transform 200ms ease-in-out;
+  -o-transition: -o-transform 200ms ease-in-out;
+  -webkit-transition: -webkit-transform 200ms ease-in-out;
+  transition: transform 200ms ease-in-out;
+}
+
+input[type=range]:focus::-webkit-slider-runnable-track {
+  background: #eaeced;
+}
+
+input[type=range]::-moz-range-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  background: #ac51b5;
+  border-radius: 25px;
+  border: 0px solid #000101;
+}
+
+input[type=range]::-moz-range-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 39px;
+  border-radius: 7px;
+  background: #65001c;
+  cursor: pointer;
+}
+
+input[type=range]::-ms-track {
+  width: 100%;
+  height: 12.8px;
+  cursor: pointer;
+  animate: 0.2s;
   background: transparent;
-}
-.input-group input[type="color"] + label,
-.input-group input[type="date"] + label,
-.input-group input[type="datetime"] + label,
-.input-group input[type="datetime-local"] + label,
-.input-group input[type="email"] + label,
-.input-group input[type="month"] + label,
-.input-group input[type="number"] + label,
-.input-group input[type="password"] + label,
-.input-group input[type="search"] + label,
-.input-group input[type="tel"] + label,
-.input-group input[type="text"] + label,
-.input-group input[type="time"] + label,
-.input-group input[type="url"] + label,
-.input-group input[type="week"] + label,
-.input-group textarea + label {
-  position: absolute;
-  top: 21px;
-  left: 0;
-  cursor: text;
-  font-weight: 400;
-}
-.input-group input[type="color"]:focus + label,
-.input-group input[type="date"]:focus + label,
-.input-group input[type="datetime"]:focus + label,
-.input-group input[type="datetime-local"]:focus + label,
-.input-group input[type="email"]:focus + label,
-.input-group input[type="month"]:focus + label,
-.input-group input[type="number"]:focus + label,
-.input-group input[type="password"]:focus + label,
-.input-group input[type="search"]:focus + label,
-.input-group input[type="tel"]:focus + label,
-.input-group input[type="text"]:focus + label,
-.input-group input[type="time"]:focus + label,
-.input-group input[type="url"]:focus + label,
-.input-group input[type="week"]:focus + label,
-.input-group textarea:focus + label {
-  color: #0072bc !important;
-  font-weight: 600;
-  -moz-transform:  scale(0.8, 0.8) translateY(-25px);
-  -ms-transform:  scale(0.8, 0.8) translateY(-25px);
-  -webkit-transform:  scale(0.8, 0.8) translateY(-25px);
-  transform:  scale(0.8, 0.8) translateY(-25px);
-  -moz-transform-origin: left top;
-  -ms-transform-origin: left top;
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-  border-color: #0072bc;
-}
-.input-group input[type="color"].active + label,
-.input-group input[type="date"].active + label,
-.input-group input[type="datetime"].active + label,
-.input-group input[type="datetime-local"].active + label,
-.input-group input[type="email"].active + label,
-.input-group input[type="month"].active + label,
-.input-group input[type="number"].active + label,
-.input-group input[type="password"].active + label,
-.input-group input[type="search"].active + label,
-.input-group input[type="tel"].active + label,
-.input-group input[type="text"].active + label,
-.input-group input[type="time"].active + label,
-.input-group input[type="url"].active + label,
-.input-group input[type="week"].active + label,
-.input-group textarea.active + label {
-  color: #353A3D;
-  font-weight: 600;
-  -moz-transform:  scale(0.8, 0.8) translateY(-25px);
-  -ms-transform:  scale(0.8, 0.8) translateY(-25px);
-  -webkit-transform:  scale(0.8, 0.8) translateY(-25px);
-  transform:  scale(0.8, 0.8) translateY(-25px);
-  -moz-transform-origin: left top;
-  -ms-transform-origin: left top;
-  -webkit-transform-origin: left top;
-  transform-origin: left top;
-}
-.input-group .note {
-  width: 100%;
-  font-size: 0.8em;
-}
-.input-group.primary input[type="color"], .buttons-group.primary .input-group.btn input[type="color"],
-.input-group.primary input[type="date"],
-.buttons-group.primary .input-group.btn input[type="date"],
-.input-group.primary input[type="datetime"],
-.buttons-group.primary .input-group.btn input[type="datetime"],
-.input-group.primary input[type="datetime-local"],
-.buttons-group.primary .input-group.btn input[type="datetime-local"],
-.input-group.primary input[type="email"],
-.buttons-group.primary .input-group.btn input[type="email"],
-.input-group.primary input[type="month"],
-.buttons-group.primary .input-group.btn input[type="month"],
-.input-group.primary input[type="number"],
-.buttons-group.primary .input-group.btn input[type="number"],
-.input-group.primary input[type="password"],
-.buttons-group.primary .input-group.btn input[type="password"],
-.input-group.primary input[type="search"],
-.buttons-group.primary .input-group.btn input[type="search"],
-.input-group.primary input[type="tel"],
-.buttons-group.primary .input-group.btn input[type="tel"],
-.input-group.primary input[type="text"],
-.buttons-group.primary .input-group.btn input[type="text"],
-.input-group.primary input[type="time"],
-.buttons-group.primary .input-group.btn input[type="time"],
-.input-group.primary input[type="url"],
-.buttons-group.primary .input-group.btn input[type="url"],
-.input-group.primary input[type="week"],
-.buttons-group.primary .input-group.btn input[type="week"],
-.input-group.primary textarea,
-.buttons-group.primary .input-group.btn textarea {
-  border-color: #0072bc;
-}
-.input-group.primary input[type="color"]:focus, .buttons-group.primary .input-group.btn input[type="color"]:focus,
-.input-group.primary input[type="date"]:focus,
-.buttons-group.primary .input-group.btn input[type="date"]:focus,
-.input-group.primary input[type="datetime"]:focus,
-.buttons-group.primary .input-group.btn input[type="datetime"]:focus,
-.input-group.primary input[type="datetime-local"]:focus,
-.buttons-group.primary .input-group.btn input[type="datetime-local"]:focus,
-.input-group.primary input[type="email"]:focus,
-.buttons-group.primary .input-group.btn input[type="email"]:focus,
-.input-group.primary input[type="month"]:focus,
-.buttons-group.primary .input-group.btn input[type="month"]:focus,
-.input-group.primary input[type="number"]:focus,
-.buttons-group.primary .input-group.btn input[type="number"]:focus,
-.input-group.primary input[type="password"]:focus,
-.buttons-group.primary .input-group.btn input[type="password"]:focus,
-.input-group.primary input[type="search"]:focus,
-.buttons-group.primary .input-group.btn input[type="search"]:focus,
-.input-group.primary input[type="tel"]:focus,
-.buttons-group.primary .input-group.btn input[type="tel"]:focus,
-.input-group.primary input[type="text"]:focus,
-.buttons-group.primary .input-group.btn input[type="text"]:focus,
-.input-group.primary input[type="time"]:focus,
-.buttons-group.primary .input-group.btn input[type="time"]:focus,
-.input-group.primary input[type="url"]:focus,
-.buttons-group.primary .input-group.btn input[type="url"]:focus,
-.input-group.primary input[type="week"]:focus,
-.buttons-group.primary .input-group.btn input[type="week"]:focus,
-.input-group.primary textarea:focus,
-.buttons-group.primary .input-group.btn textarea:focus {
-  -moz-box-shadow: #0072bc 0 1px 0 0;
-  -webkit-box-shadow: #0072bc 0 1px 0 0;
-  box-shadow: #0072bc 0 1px 0 0;
-}
-.input-group.primary input[type="color"]:focus + label, .buttons-group.primary .input-group.btn input[type="color"]:focus + label,
-.input-group.primary input[type="date"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="date"]:focus + label,
-.input-group.primary input[type="datetime"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="datetime"]:focus + label,
-.input-group.primary input[type="datetime-local"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.primary input[type="email"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="email"]:focus + label,
-.input-group.primary input[type="month"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="month"]:focus + label,
-.input-group.primary input[type="number"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="number"]:focus + label,
-.input-group.primary input[type="password"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="password"]:focus + label,
-.input-group.primary input[type="search"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="search"]:focus + label,
-.input-group.primary input[type="tel"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="tel"]:focus + label,
-.input-group.primary input[type="text"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="text"]:focus + label,
-.input-group.primary input[type="time"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="time"]:focus + label,
-.input-group.primary input[type="url"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="url"]:focus + label,
-.input-group.primary input[type="week"]:focus + label,
-.buttons-group.primary .input-group.btn input[type="week"]:focus + label,
-.input-group.primary textarea:focus + label,
-.buttons-group.primary .input-group.btn textarea:focus + label {
-  color: #0072bc !important;
-}
-.input-group.primary input[type="color"].active + label, .buttons-group.primary .input-group.btn input[type="color"].active + label,
-.input-group.primary input[type="date"].active + label,
-.buttons-group.primary .input-group.btn input[type="date"].active + label,
-.input-group.primary input[type="datetime"].active + label,
-.buttons-group.primary .input-group.btn input[type="datetime"].active + label,
-.input-group.primary input[type="datetime-local"].active + label,
-.buttons-group.primary .input-group.btn input[type="datetime-local"].active + label,
-.input-group.primary input[type="email"].active + label,
-.buttons-group.primary .input-group.btn input[type="email"].active + label,
-.input-group.primary input[type="month"].active + label,
-.buttons-group.primary .input-group.btn input[type="month"].active + label,
-.input-group.primary input[type="number"].active + label,
-.buttons-group.primary .input-group.btn input[type="number"].active + label,
-.input-group.primary input[type="password"].active + label,
-.buttons-group.primary .input-group.btn input[type="password"].active + label,
-.input-group.primary input[type="search"].active + label,
-.buttons-group.primary .input-group.btn input[type="search"].active + label,
-.input-group.primary input[type="tel"].active + label,
-.buttons-group.primary .input-group.btn input[type="tel"].active + label,
-.input-group.primary input[type="text"].active + label,
-.buttons-group.primary .input-group.btn input[type="text"].active + label,
-.input-group.primary input[type="time"].active + label,
-.buttons-group.primary .input-group.btn input[type="time"].active + label,
-.input-group.primary input[type="url"].active + label,
-.buttons-group.primary .input-group.btn input[type="url"].active + label,
-.input-group.primary input[type="week"].active + label,
-.buttons-group.primary .input-group.btn input[type="week"].active + label,
-.input-group.primary textarea.active + label,
-.buttons-group.primary .input-group.btn textarea.active + label {
-  color: #0072bc;
-}
-.input-group.primary label, .buttons-group.primary .input-group.btn label,
-.input-group.primary .note,
-.buttons-group.primary .input-group.btn .note {
-  color: #0072bc;
-}
-.input-group.secondary input[type="color"], .buttons-group.secondary .input-group.btn input[type="color"],
-.input-group.secondary input[type="date"],
-.buttons-group.secondary .input-group.btn input[type="date"],
-.input-group.secondary input[type="datetime"],
-.buttons-group.secondary .input-group.btn input[type="datetime"],
-.input-group.secondary input[type="datetime-local"],
-.buttons-group.secondary .input-group.btn input[type="datetime-local"],
-.input-group.secondary input[type="email"],
-.buttons-group.secondary .input-group.btn input[type="email"],
-.input-group.secondary input[type="month"],
-.buttons-group.secondary .input-group.btn input[type="month"],
-.input-group.secondary input[type="number"],
-.buttons-group.secondary .input-group.btn input[type="number"],
-.input-group.secondary input[type="password"],
-.buttons-group.secondary .input-group.btn input[type="password"],
-.input-group.secondary input[type="search"],
-.buttons-group.secondary .input-group.btn input[type="search"],
-.input-group.secondary input[type="tel"],
-.buttons-group.secondary .input-group.btn input[type="tel"],
-.input-group.secondary input[type="text"],
-.buttons-group.secondary .input-group.btn input[type="text"],
-.input-group.secondary input[type="time"],
-.buttons-group.secondary .input-group.btn input[type="time"],
-.input-group.secondary input[type="url"],
-.buttons-group.secondary .input-group.btn input[type="url"],
-.input-group.secondary input[type="week"],
-.buttons-group.secondary .input-group.btn input[type="week"],
-.input-group.secondary textarea,
-.buttons-group.secondary .input-group.btn textarea {
-  border-color: #4d9cd0;
-}
-.input-group.secondary input[type="color"]:focus, .buttons-group.secondary .input-group.btn input[type="color"]:focus,
-.input-group.secondary input[type="date"]:focus,
-.buttons-group.secondary .input-group.btn input[type="date"]:focus,
-.input-group.secondary input[type="datetime"]:focus,
-.buttons-group.secondary .input-group.btn input[type="datetime"]:focus,
-.input-group.secondary input[type="datetime-local"]:focus,
-.buttons-group.secondary .input-group.btn input[type="datetime-local"]:focus,
-.input-group.secondary input[type="email"]:focus,
-.buttons-group.secondary .input-group.btn input[type="email"]:focus,
-.input-group.secondary input[type="month"]:focus,
-.buttons-group.secondary .input-group.btn input[type="month"]:focus,
-.input-group.secondary input[type="number"]:focus,
-.buttons-group.secondary .input-group.btn input[type="number"]:focus,
-.input-group.secondary input[type="password"]:focus,
-.buttons-group.secondary .input-group.btn input[type="password"]:focus,
-.input-group.secondary input[type="search"]:focus,
-.buttons-group.secondary .input-group.btn input[type="search"]:focus,
-.input-group.secondary input[type="tel"]:focus,
-.buttons-group.secondary .input-group.btn input[type="tel"]:focus,
-.input-group.secondary input[type="text"]:focus,
-.buttons-group.secondary .input-group.btn input[type="text"]:focus,
-.input-group.secondary input[type="time"]:focus,
-.buttons-group.secondary .input-group.btn input[type="time"]:focus,
-.input-group.secondary input[type="url"]:focus,
-.buttons-group.secondary .input-group.btn input[type="url"]:focus,
-.input-group.secondary input[type="week"]:focus,
-.buttons-group.secondary .input-group.btn input[type="week"]:focus,
-.input-group.secondary textarea:focus,
-.buttons-group.secondary .input-group.btn textarea:focus {
-  -moz-box-shadow: #4d9cd0 0 1px 0 0;
-  -webkit-box-shadow: #4d9cd0 0 1px 0 0;
-  box-shadow: #4d9cd0 0 1px 0 0;
-}
-.input-group.secondary input[type="color"]:focus + label, .buttons-group.secondary .input-group.btn input[type="color"]:focus + label,
-.input-group.secondary input[type="date"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="date"]:focus + label,
-.input-group.secondary input[type="datetime"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="datetime"]:focus + label,
-.input-group.secondary input[type="datetime-local"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.secondary input[type="email"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="email"]:focus + label,
-.input-group.secondary input[type="month"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="month"]:focus + label,
-.input-group.secondary input[type="number"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="number"]:focus + label,
-.input-group.secondary input[type="password"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="password"]:focus + label,
-.input-group.secondary input[type="search"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="search"]:focus + label,
-.input-group.secondary input[type="tel"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="tel"]:focus + label,
-.input-group.secondary input[type="text"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="text"]:focus + label,
-.input-group.secondary input[type="time"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="time"]:focus + label,
-.input-group.secondary input[type="url"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="url"]:focus + label,
-.input-group.secondary input[type="week"]:focus + label,
-.buttons-group.secondary .input-group.btn input[type="week"]:focus + label,
-.input-group.secondary textarea:focus + label,
-.buttons-group.secondary .input-group.btn textarea:focus + label {
-  color: #4d9cd0 !important;
-}
-.input-group.secondary input[type="color"].active + label, .buttons-group.secondary .input-group.btn input[type="color"].active + label,
-.input-group.secondary input[type="date"].active + label,
-.buttons-group.secondary .input-group.btn input[type="date"].active + label,
-.input-group.secondary input[type="datetime"].active + label,
-.buttons-group.secondary .input-group.btn input[type="datetime"].active + label,
-.input-group.secondary input[type="datetime-local"].active + label,
-.buttons-group.secondary .input-group.btn input[type="datetime-local"].active + label,
-.input-group.secondary input[type="email"].active + label,
-.buttons-group.secondary .input-group.btn input[type="email"].active + label,
-.input-group.secondary input[type="month"].active + label,
-.buttons-group.secondary .input-group.btn input[type="month"].active + label,
-.input-group.secondary input[type="number"].active + label,
-.buttons-group.secondary .input-group.btn input[type="number"].active + label,
-.input-group.secondary input[type="password"].active + label,
-.buttons-group.secondary .input-group.btn input[type="password"].active + label,
-.input-group.secondary input[type="search"].active + label,
-.buttons-group.secondary .input-group.btn input[type="search"].active + label,
-.input-group.secondary input[type="tel"].active + label,
-.buttons-group.secondary .input-group.btn input[type="tel"].active + label,
-.input-group.secondary input[type="text"].active + label,
-.buttons-group.secondary .input-group.btn input[type="text"].active + label,
-.input-group.secondary input[type="time"].active + label,
-.buttons-group.secondary .input-group.btn input[type="time"].active + label,
-.input-group.secondary input[type="url"].active + label,
-.buttons-group.secondary .input-group.btn input[type="url"].active + label,
-.input-group.secondary input[type="week"].active + label,
-.buttons-group.secondary .input-group.btn input[type="week"].active + label,
-.input-group.secondary textarea.active + label,
-.buttons-group.secondary .input-group.btn textarea.active + label {
-  color: #4d9cd0;
-}
-.input-group.secondary label, .buttons-group.secondary .input-group.btn label,
-.input-group.secondary .note,
-.buttons-group.secondary .input-group.btn .note {
-  color: #4d9cd0;
-}
-.input-group.info input[type="color"], .buttons-group.info .input-group.btn input[type="color"],
-.input-group.info input[type="date"],
-.buttons-group.info .input-group.btn input[type="date"],
-.input-group.info input[type="datetime"],
-.buttons-group.info .input-group.btn input[type="datetime"],
-.input-group.info input[type="datetime-local"],
-.buttons-group.info .input-group.btn input[type="datetime-local"],
-.input-group.info input[type="email"],
-.buttons-group.info .input-group.btn input[type="email"],
-.input-group.info input[type="month"],
-.buttons-group.info .input-group.btn input[type="month"],
-.input-group.info input[type="number"],
-.buttons-group.info .input-group.btn input[type="number"],
-.input-group.info input[type="password"],
-.buttons-group.info .input-group.btn input[type="password"],
-.input-group.info input[type="search"],
-.buttons-group.info .input-group.btn input[type="search"],
-.input-group.info input[type="tel"],
-.buttons-group.info .input-group.btn input[type="tel"],
-.input-group.info input[type="text"],
-.buttons-group.info .input-group.btn input[type="text"],
-.input-group.info input[type="time"],
-.buttons-group.info .input-group.btn input[type="time"],
-.input-group.info input[type="url"],
-.buttons-group.info .input-group.btn input[type="url"],
-.input-group.info input[type="week"],
-.buttons-group.info .input-group.btn input[type="week"],
-.input-group.info textarea,
-.buttons-group.info .input-group.btn textarea {
-  border-color: #6ac7f1;
-}
-.input-group.info input[type="color"]:focus, .buttons-group.info .input-group.btn input[type="color"]:focus,
-.input-group.info input[type="date"]:focus,
-.buttons-group.info .input-group.btn input[type="date"]:focus,
-.input-group.info input[type="datetime"]:focus,
-.buttons-group.info .input-group.btn input[type="datetime"]:focus,
-.input-group.info input[type="datetime-local"]:focus,
-.buttons-group.info .input-group.btn input[type="datetime-local"]:focus,
-.input-group.info input[type="email"]:focus,
-.buttons-group.info .input-group.btn input[type="email"]:focus,
-.input-group.info input[type="month"]:focus,
-.buttons-group.info .input-group.btn input[type="month"]:focus,
-.input-group.info input[type="number"]:focus,
-.buttons-group.info .input-group.btn input[type="number"]:focus,
-.input-group.info input[type="password"]:focus,
-.buttons-group.info .input-group.btn input[type="password"]:focus,
-.input-group.info input[type="search"]:focus,
-.buttons-group.info .input-group.btn input[type="search"]:focus,
-.input-group.info input[type="tel"]:focus,
-.buttons-group.info .input-group.btn input[type="tel"]:focus,
-.input-group.info input[type="text"]:focus,
-.buttons-group.info .input-group.btn input[type="text"]:focus,
-.input-group.info input[type="time"]:focus,
-.buttons-group.info .input-group.btn input[type="time"]:focus,
-.input-group.info input[type="url"]:focus,
-.buttons-group.info .input-group.btn input[type="url"]:focus,
-.input-group.info input[type="week"]:focus,
-.buttons-group.info .input-group.btn input[type="week"]:focus,
-.input-group.info textarea:focus,
-.buttons-group.info .input-group.btn textarea:focus {
-  -moz-box-shadow: #6ac7f1 0 1px 0 0;
-  -webkit-box-shadow: #6ac7f1 0 1px 0 0;
-  box-shadow: #6ac7f1 0 1px 0 0;
-}
-.input-group.info input[type="color"]:focus + label, .buttons-group.info .input-group.btn input[type="color"]:focus + label,
-.input-group.info input[type="date"]:focus + label,
-.buttons-group.info .input-group.btn input[type="date"]:focus + label,
-.input-group.info input[type="datetime"]:focus + label,
-.buttons-group.info .input-group.btn input[type="datetime"]:focus + label,
-.input-group.info input[type="datetime-local"]:focus + label,
-.buttons-group.info .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.info input[type="email"]:focus + label,
-.buttons-group.info .input-group.btn input[type="email"]:focus + label,
-.input-group.info input[type="month"]:focus + label,
-.buttons-group.info .input-group.btn input[type="month"]:focus + label,
-.input-group.info input[type="number"]:focus + label,
-.buttons-group.info .input-group.btn input[type="number"]:focus + label,
-.input-group.info input[type="password"]:focus + label,
-.buttons-group.info .input-group.btn input[type="password"]:focus + label,
-.input-group.info input[type="search"]:focus + label,
-.buttons-group.info .input-group.btn input[type="search"]:focus + label,
-.input-group.info input[type="tel"]:focus + label,
-.buttons-group.info .input-group.btn input[type="tel"]:focus + label,
-.input-group.info input[type="text"]:focus + label,
-.buttons-group.info .input-group.btn input[type="text"]:focus + label,
-.input-group.info input[type="time"]:focus + label,
-.buttons-group.info .input-group.btn input[type="time"]:focus + label,
-.input-group.info input[type="url"]:focus + label,
-.buttons-group.info .input-group.btn input[type="url"]:focus + label,
-.input-group.info input[type="week"]:focus + label,
-.buttons-group.info .input-group.btn input[type="week"]:focus + label,
-.input-group.info textarea:focus + label,
-.buttons-group.info .input-group.btn textarea:focus + label {
-  color: #6ac7f1 !important;
-}
-.input-group.info input[type="color"].active + label, .buttons-group.info .input-group.btn input[type="color"].active + label,
-.input-group.info input[type="date"].active + label,
-.buttons-group.info .input-group.btn input[type="date"].active + label,
-.input-group.info input[type="datetime"].active + label,
-.buttons-group.info .input-group.btn input[type="datetime"].active + label,
-.input-group.info input[type="datetime-local"].active + label,
-.buttons-group.info .input-group.btn input[type="datetime-local"].active + label,
-.input-group.info input[type="email"].active + label,
-.buttons-group.info .input-group.btn input[type="email"].active + label,
-.input-group.info input[type="month"].active + label,
-.buttons-group.info .input-group.btn input[type="month"].active + label,
-.input-group.info input[type="number"].active + label,
-.buttons-group.info .input-group.btn input[type="number"].active + label,
-.input-group.info input[type="password"].active + label,
-.buttons-group.info .input-group.btn input[type="password"].active + label,
-.input-group.info input[type="search"].active + label,
-.buttons-group.info .input-group.btn input[type="search"].active + label,
-.input-group.info input[type="tel"].active + label,
-.buttons-group.info .input-group.btn input[type="tel"].active + label,
-.input-group.info input[type="text"].active + label,
-.buttons-group.info .input-group.btn input[type="text"].active + label,
-.input-group.info input[type="time"].active + label,
-.buttons-group.info .input-group.btn input[type="time"].active + label,
-.input-group.info input[type="url"].active + label,
-.buttons-group.info .input-group.btn input[type="url"].active + label,
-.input-group.info input[type="week"].active + label,
-.buttons-group.info .input-group.btn input[type="week"].active + label,
-.input-group.info textarea.active + label,
-.buttons-group.info .input-group.btn textarea.active + label {
-  color: #6ac7f1;
-}
-.input-group.info label, .buttons-group.info .input-group.btn label,
-.input-group.info .note,
-.buttons-group.info .input-group.btn .note {
-  color: #6ac7f1;
-}
-.input-group.success input[type="color"], .buttons-group.success .input-group.btn input[type="color"],
-.input-group.success input[type="date"],
-.buttons-group.success .input-group.btn input[type="date"],
-.input-group.success input[type="datetime"],
-.buttons-group.success .input-group.btn input[type="datetime"],
-.input-group.success input[type="datetime-local"],
-.buttons-group.success .input-group.btn input[type="datetime-local"],
-.input-group.success input[type="email"],
-.buttons-group.success .input-group.btn input[type="email"],
-.input-group.success input[type="month"],
-.buttons-group.success .input-group.btn input[type="month"],
-.input-group.success input[type="number"],
-.buttons-group.success .input-group.btn input[type="number"],
-.input-group.success input[type="password"],
-.buttons-group.success .input-group.btn input[type="password"],
-.input-group.success input[type="search"],
-.buttons-group.success .input-group.btn input[type="search"],
-.input-group.success input[type="tel"],
-.buttons-group.success .input-group.btn input[type="tel"],
-.input-group.success input[type="text"],
-.buttons-group.success .input-group.btn input[type="text"],
-.input-group.success input[type="time"],
-.buttons-group.success .input-group.btn input[type="time"],
-.input-group.success input[type="url"],
-.buttons-group.success .input-group.btn input[type="url"],
-.input-group.success input[type="week"],
-.buttons-group.success .input-group.btn input[type="week"],
-.input-group.success textarea,
-.buttons-group.success .input-group.btn textarea {
-  border-color: #61b769;
-}
-.input-group.success input[type="color"]:focus, .buttons-group.success .input-group.btn input[type="color"]:focus,
-.input-group.success input[type="date"]:focus,
-.buttons-group.success .input-group.btn input[type="date"]:focus,
-.input-group.success input[type="datetime"]:focus,
-.buttons-group.success .input-group.btn input[type="datetime"]:focus,
-.input-group.success input[type="datetime-local"]:focus,
-.buttons-group.success .input-group.btn input[type="datetime-local"]:focus,
-.input-group.success input[type="email"]:focus,
-.buttons-group.success .input-group.btn input[type="email"]:focus,
-.input-group.success input[type="month"]:focus,
-.buttons-group.success .input-group.btn input[type="month"]:focus,
-.input-group.success input[type="number"]:focus,
-.buttons-group.success .input-group.btn input[type="number"]:focus,
-.input-group.success input[type="password"]:focus,
-.buttons-group.success .input-group.btn input[type="password"]:focus,
-.input-group.success input[type="search"]:focus,
-.buttons-group.success .input-group.btn input[type="search"]:focus,
-.input-group.success input[type="tel"]:focus,
-.buttons-group.success .input-group.btn input[type="tel"]:focus,
-.input-group.success input[type="text"]:focus,
-.buttons-group.success .input-group.btn input[type="text"]:focus,
-.input-group.success input[type="time"]:focus,
-.buttons-group.success .input-group.btn input[type="time"]:focus,
-.input-group.success input[type="url"]:focus,
-.buttons-group.success .input-group.btn input[type="url"]:focus,
-.input-group.success input[type="week"]:focus,
-.buttons-group.success .input-group.btn input[type="week"]:focus,
-.input-group.success textarea:focus,
-.buttons-group.success .input-group.btn textarea:focus {
-  -moz-box-shadow: #61b769 0 1px 0 0;
-  -webkit-box-shadow: #61b769 0 1px 0 0;
-  box-shadow: #61b769 0 1px 0 0;
-}
-.input-group.success input[type="color"]:focus + label, .buttons-group.success .input-group.btn input[type="color"]:focus + label,
-.input-group.success input[type="date"]:focus + label,
-.buttons-group.success .input-group.btn input[type="date"]:focus + label,
-.input-group.success input[type="datetime"]:focus + label,
-.buttons-group.success .input-group.btn input[type="datetime"]:focus + label,
-.input-group.success input[type="datetime-local"]:focus + label,
-.buttons-group.success .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.success input[type="email"]:focus + label,
-.buttons-group.success .input-group.btn input[type="email"]:focus + label,
-.input-group.success input[type="month"]:focus + label,
-.buttons-group.success .input-group.btn input[type="month"]:focus + label,
-.input-group.success input[type="number"]:focus + label,
-.buttons-group.success .input-group.btn input[type="number"]:focus + label,
-.input-group.success input[type="password"]:focus + label,
-.buttons-group.success .input-group.btn input[type="password"]:focus + label,
-.input-group.success input[type="search"]:focus + label,
-.buttons-group.success .input-group.btn input[type="search"]:focus + label,
-.input-group.success input[type="tel"]:focus + label,
-.buttons-group.success .input-group.btn input[type="tel"]:focus + label,
-.input-group.success input[type="text"]:focus + label,
-.buttons-group.success .input-group.btn input[type="text"]:focus + label,
-.input-group.success input[type="time"]:focus + label,
-.buttons-group.success .input-group.btn input[type="time"]:focus + label,
-.input-group.success input[type="url"]:focus + label,
-.buttons-group.success .input-group.btn input[type="url"]:focus + label,
-.input-group.success input[type="week"]:focus + label,
-.buttons-group.success .input-group.btn input[type="week"]:focus + label,
-.input-group.success textarea:focus + label,
-.buttons-group.success .input-group.btn textarea:focus + label {
-  color: #61b769 !important;
-}
-.input-group.success input[type="color"].active + label, .buttons-group.success .input-group.btn input[type="color"].active + label,
-.input-group.success input[type="date"].active + label,
-.buttons-group.success .input-group.btn input[type="date"].active + label,
-.input-group.success input[type="datetime"].active + label,
-.buttons-group.success .input-group.btn input[type="datetime"].active + label,
-.input-group.success input[type="datetime-local"].active + label,
-.buttons-group.success .input-group.btn input[type="datetime-local"].active + label,
-.input-group.success input[type="email"].active + label,
-.buttons-group.success .input-group.btn input[type="email"].active + label,
-.input-group.success input[type="month"].active + label,
-.buttons-group.success .input-group.btn input[type="month"].active + label,
-.input-group.success input[type="number"].active + label,
-.buttons-group.success .input-group.btn input[type="number"].active + label,
-.input-group.success input[type="password"].active + label,
-.buttons-group.success .input-group.btn input[type="password"].active + label,
-.input-group.success input[type="search"].active + label,
-.buttons-group.success .input-group.btn input[type="search"].active + label,
-.input-group.success input[type="tel"].active + label,
-.buttons-group.success .input-group.btn input[type="tel"].active + label,
-.input-group.success input[type="text"].active + label,
-.buttons-group.success .input-group.btn input[type="text"].active + label,
-.input-group.success input[type="time"].active + label,
-.buttons-group.success .input-group.btn input[type="time"].active + label,
-.input-group.success input[type="url"].active + label,
-.buttons-group.success .input-group.btn input[type="url"].active + label,
-.input-group.success input[type="week"].active + label,
-.buttons-group.success .input-group.btn input[type="week"].active + label,
-.input-group.success textarea.active + label,
-.buttons-group.success .input-group.btn textarea.active + label {
-  color: #61b769;
-}
-.input-group.success label, .buttons-group.success .input-group.btn label,
-.input-group.success .note,
-.buttons-group.success .input-group.btn .note {
-  color: #61b769;
-}
-.input-group.warning input[type="color"], .buttons-group.warning .input-group.btn input[type="color"],
-.input-group.warning input[type="date"],
-.buttons-group.warning .input-group.btn input[type="date"],
-.input-group.warning input[type="datetime"],
-.buttons-group.warning .input-group.btn input[type="datetime"],
-.input-group.warning input[type="datetime-local"],
-.buttons-group.warning .input-group.btn input[type="datetime-local"],
-.input-group.warning input[type="email"],
-.buttons-group.warning .input-group.btn input[type="email"],
-.input-group.warning input[type="month"],
-.buttons-group.warning .input-group.btn input[type="month"],
-.input-group.warning input[type="number"],
-.buttons-group.warning .input-group.btn input[type="number"],
-.input-group.warning input[type="password"],
-.buttons-group.warning .input-group.btn input[type="password"],
-.input-group.warning input[type="search"],
-.buttons-group.warning .input-group.btn input[type="search"],
-.input-group.warning input[type="tel"],
-.buttons-group.warning .input-group.btn input[type="tel"],
-.input-group.warning input[type="text"],
-.buttons-group.warning .input-group.btn input[type="text"],
-.input-group.warning input[type="time"],
-.buttons-group.warning .input-group.btn input[type="time"],
-.input-group.warning input[type="url"],
-.buttons-group.warning .input-group.btn input[type="url"],
-.input-group.warning input[type="week"],
-.buttons-group.warning .input-group.btn input[type="week"],
-.input-group.warning textarea,
-.buttons-group.warning .input-group.btn textarea {
-  border-color: #fd6b3c;
-}
-.input-group.warning input[type="color"]:focus, .buttons-group.warning .input-group.btn input[type="color"]:focus,
-.input-group.warning input[type="date"]:focus,
-.buttons-group.warning .input-group.btn input[type="date"]:focus,
-.input-group.warning input[type="datetime"]:focus,
-.buttons-group.warning .input-group.btn input[type="datetime"]:focus,
-.input-group.warning input[type="datetime-local"]:focus,
-.buttons-group.warning .input-group.btn input[type="datetime-local"]:focus,
-.input-group.warning input[type="email"]:focus,
-.buttons-group.warning .input-group.btn input[type="email"]:focus,
-.input-group.warning input[type="month"]:focus,
-.buttons-group.warning .input-group.btn input[type="month"]:focus,
-.input-group.warning input[type="number"]:focus,
-.buttons-group.warning .input-group.btn input[type="number"]:focus,
-.input-group.warning input[type="password"]:focus,
-.buttons-group.warning .input-group.btn input[type="password"]:focus,
-.input-group.warning input[type="search"]:focus,
-.buttons-group.warning .input-group.btn input[type="search"]:focus,
-.input-group.warning input[type="tel"]:focus,
-.buttons-group.warning .input-group.btn input[type="tel"]:focus,
-.input-group.warning input[type="text"]:focus,
-.buttons-group.warning .input-group.btn input[type="text"]:focus,
-.input-group.warning input[type="time"]:focus,
-.buttons-group.warning .input-group.btn input[type="time"]:focus,
-.input-group.warning input[type="url"]:focus,
-.buttons-group.warning .input-group.btn input[type="url"]:focus,
-.input-group.warning input[type="week"]:focus,
-.buttons-group.warning .input-group.btn input[type="week"]:focus,
-.input-group.warning textarea:focus,
-.buttons-group.warning .input-group.btn textarea:focus {
-  -moz-box-shadow: #fd6b3c 0 1px 0 0;
-  -webkit-box-shadow: #fd6b3c 0 1px 0 0;
-  box-shadow: #fd6b3c 0 1px 0 0;
-}
-.input-group.warning input[type="color"]:focus + label, .buttons-group.warning .input-group.btn input[type="color"]:focus + label,
-.input-group.warning input[type="date"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="date"]:focus + label,
-.input-group.warning input[type="datetime"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="datetime"]:focus + label,
-.input-group.warning input[type="datetime-local"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.warning input[type="email"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="email"]:focus + label,
-.input-group.warning input[type="month"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="month"]:focus + label,
-.input-group.warning input[type="number"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="number"]:focus + label,
-.input-group.warning input[type="password"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="password"]:focus + label,
-.input-group.warning input[type="search"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="search"]:focus + label,
-.input-group.warning input[type="tel"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="tel"]:focus + label,
-.input-group.warning input[type="text"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="text"]:focus + label,
-.input-group.warning input[type="time"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="time"]:focus + label,
-.input-group.warning input[type="url"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="url"]:focus + label,
-.input-group.warning input[type="week"]:focus + label,
-.buttons-group.warning .input-group.btn input[type="week"]:focus + label,
-.input-group.warning textarea:focus + label,
-.buttons-group.warning .input-group.btn textarea:focus + label {
-  color: #fd6b3c !important;
-}
-.input-group.warning input[type="color"].active + label, .buttons-group.warning .input-group.btn input[type="color"].active + label,
-.input-group.warning input[type="date"].active + label,
-.buttons-group.warning .input-group.btn input[type="date"].active + label,
-.input-group.warning input[type="datetime"].active + label,
-.buttons-group.warning .input-group.btn input[type="datetime"].active + label,
-.input-group.warning input[type="datetime-local"].active + label,
-.buttons-group.warning .input-group.btn input[type="datetime-local"].active + label,
-.input-group.warning input[type="email"].active + label,
-.buttons-group.warning .input-group.btn input[type="email"].active + label,
-.input-group.warning input[type="month"].active + label,
-.buttons-group.warning .input-group.btn input[type="month"].active + label,
-.input-group.warning input[type="number"].active + label,
-.buttons-group.warning .input-group.btn input[type="number"].active + label,
-.input-group.warning input[type="password"].active + label,
-.buttons-group.warning .input-group.btn input[type="password"].active + label,
-.input-group.warning input[type="search"].active + label,
-.buttons-group.warning .input-group.btn input[type="search"].active + label,
-.input-group.warning input[type="tel"].active + label,
-.buttons-group.warning .input-group.btn input[type="tel"].active + label,
-.input-group.warning input[type="text"].active + label,
-.buttons-group.warning .input-group.btn input[type="text"].active + label,
-.input-group.warning input[type="time"].active + label,
-.buttons-group.warning .input-group.btn input[type="time"].active + label,
-.input-group.warning input[type="url"].active + label,
-.buttons-group.warning .input-group.btn input[type="url"].active + label,
-.input-group.warning input[type="week"].active + label,
-.buttons-group.warning .input-group.btn input[type="week"].active + label,
-.input-group.warning textarea.active + label,
-.buttons-group.warning .input-group.btn textarea.active + label {
-  color: #fd6b3c;
-}
-.input-group.warning label, .buttons-group.warning .input-group.btn label,
-.input-group.warning .note,
-.buttons-group.warning .input-group.btn .note {
-  color: #fd6b3c;
-}
-.input-group.error input[type="color"], .buttons-group.error .input-group.btn input[type="color"],
-.input-group.error input[type="date"],
-.buttons-group.error .input-group.btn input[type="date"],
-.input-group.error input[type="datetime"],
-.buttons-group.error .input-group.btn input[type="datetime"],
-.input-group.error input[type="datetime-local"],
-.buttons-group.error .input-group.btn input[type="datetime-local"],
-.input-group.error input[type="email"],
-.buttons-group.error .input-group.btn input[type="email"],
-.input-group.error input[type="month"],
-.buttons-group.error .input-group.btn input[type="month"],
-.input-group.error input[type="number"],
-.buttons-group.error .input-group.btn input[type="number"],
-.input-group.error input[type="password"],
-.buttons-group.error .input-group.btn input[type="password"],
-.input-group.error input[type="search"],
-.buttons-group.error .input-group.btn input[type="search"],
-.input-group.error input[type="tel"],
-.buttons-group.error .input-group.btn input[type="tel"],
-.input-group.error input[type="text"],
-.buttons-group.error .input-group.btn input[type="text"],
-.input-group.error input[type="time"],
-.buttons-group.error .input-group.btn input[type="time"],
-.input-group.error input[type="url"],
-.buttons-group.error .input-group.btn input[type="url"],
-.input-group.error input[type="week"],
-.buttons-group.error .input-group.btn input[type="week"],
-.input-group.error textarea,
-.buttons-group.error .input-group.btn textarea {
-  border-color: #f3594e;
-}
-.input-group.error input[type="color"]:focus, .buttons-group.error .input-group.btn input[type="color"]:focus,
-.input-group.error input[type="date"]:focus,
-.buttons-group.error .input-group.btn input[type="date"]:focus,
-.input-group.error input[type="datetime"]:focus,
-.buttons-group.error .input-group.btn input[type="datetime"]:focus,
-.input-group.error input[type="datetime-local"]:focus,
-.buttons-group.error .input-group.btn input[type="datetime-local"]:focus,
-.input-group.error input[type="email"]:focus,
-.buttons-group.error .input-group.btn input[type="email"]:focus,
-.input-group.error input[type="month"]:focus,
-.buttons-group.error .input-group.btn input[type="month"]:focus,
-.input-group.error input[type="number"]:focus,
-.buttons-group.error .input-group.btn input[type="number"]:focus,
-.input-group.error input[type="password"]:focus,
-.buttons-group.error .input-group.btn input[type="password"]:focus,
-.input-group.error input[type="search"]:focus,
-.buttons-group.error .input-group.btn input[type="search"]:focus,
-.input-group.error input[type="tel"]:focus,
-.buttons-group.error .input-group.btn input[type="tel"]:focus,
-.input-group.error input[type="text"]:focus,
-.buttons-group.error .input-group.btn input[type="text"]:focus,
-.input-group.error input[type="time"]:focus,
-.buttons-group.error .input-group.btn input[type="time"]:focus,
-.input-group.error input[type="url"]:focus,
-.buttons-group.error .input-group.btn input[type="url"]:focus,
-.input-group.error input[type="week"]:focus,
-.buttons-group.error .input-group.btn input[type="week"]:focus,
-.input-group.error textarea:focus,
-.buttons-group.error .input-group.btn textarea:focus {
-  -moz-box-shadow: #f3594e 0 1px 0 0;
-  -webkit-box-shadow: #f3594e 0 1px 0 0;
-  box-shadow: #f3594e 0 1px 0 0;
-}
-.input-group.error input[type="color"]:focus + label, .buttons-group.error .input-group.btn input[type="color"]:focus + label,
-.input-group.error input[type="date"]:focus + label,
-.buttons-group.error .input-group.btn input[type="date"]:focus + label,
-.input-group.error input[type="datetime"]:focus + label,
-.buttons-group.error .input-group.btn input[type="datetime"]:focus + label,
-.input-group.error input[type="datetime-local"]:focus + label,
-.buttons-group.error .input-group.btn input[type="datetime-local"]:focus + label,
-.input-group.error input[type="email"]:focus + label,
-.buttons-group.error .input-group.btn input[type="email"]:focus + label,
-.input-group.error input[type="month"]:focus + label,
-.buttons-group.error .input-group.btn input[type="month"]:focus + label,
-.input-group.error input[type="number"]:focus + label,
-.buttons-group.error .input-group.btn input[type="number"]:focus + label,
-.input-group.error input[type="password"]:focus + label,
-.buttons-group.error .input-group.btn input[type="password"]:focus + label,
-.input-group.error input[type="search"]:focus + label,
-.buttons-group.error .input-group.btn input[type="search"]:focus + label,
-.input-group.error input[type="tel"]:focus + label,
-.buttons-group.error .input-group.btn input[type="tel"]:focus + label,
-.input-group.error input[type="text"]:focus + label,
-.buttons-group.error .input-group.btn input[type="text"]:focus + label,
-.input-group.error input[type="time"]:focus + label,
-.buttons-group.error .input-group.btn input[type="time"]:focus + label,
-.input-group.error input[type="url"]:focus + label,
-.buttons-group.error .input-group.btn input[type="url"]:focus + label,
-.input-group.error input[type="week"]:focus + label,
-.buttons-group.error .input-group.btn input[type="week"]:focus + label,
-.input-group.error textarea:focus + label,
-.buttons-group.error .input-group.btn textarea:focus + label {
-  color: #f3594e !important;
-}
-.input-group.error input[type="color"].active + label, .buttons-group.error .input-group.btn input[type="color"].active + label,
-.input-group.error input[type="date"].active + label,
-.buttons-group.error .input-group.btn input[type="date"].active + label,
-.input-group.error input[type="datetime"].active + label,
-.buttons-group.error .input-group.btn input[type="datetime"].active + label,
-.input-group.error input[type="datetime-local"].active + label,
-.buttons-group.error .input-group.btn input[type="datetime-local"].active + label,
-.input-group.error input[type="email"].active + label,
-.buttons-group.error .input-group.btn input[type="email"].active + label,
-.input-group.error input[type="month"].active + label,
-.buttons-group.error .input-group.btn input[type="month"].active + label,
-.input-group.error input[type="number"].active + label,
-.buttons-group.error .input-group.btn input[type="number"].active + label,
-.input-group.error input[type="password"].active + label,
-.buttons-group.error .input-group.btn input[type="password"].active + label,
-.input-group.error input[type="search"].active + label,
-.buttons-group.error .input-group.btn input[type="search"].active + label,
-.input-group.error input[type="tel"].active + label,
-.buttons-group.error .input-group.btn input[type="tel"].active + label,
-.input-group.error input[type="text"].active + label,
-.buttons-group.error .input-group.btn input[type="text"].active + label,
-.input-group.error input[type="time"].active + label,
-.buttons-group.error .input-group.btn input[type="time"].active + label,
-.input-group.error input[type="url"].active + label,
-.buttons-group.error .input-group.btn input[type="url"].active + label,
-.input-group.error input[type="week"].active + label,
-.buttons-group.error .input-group.btn input[type="week"].active + label,
-.input-group.error textarea.active + label,
-.buttons-group.error .input-group.btn textarea.active + label {
-  color: #f3594e;
-}
-.input-group.error label, .buttons-group.error .input-group.btn label,
-.input-group.error .note,
-.buttons-group.error .input-group.btn .note {
-  color: #f3594e;
+  border-color: transparent;
+  border-width: 39px 0;
+  color: transparent;
 }
 
-/*** custom checkboxes ***/
+input[type=range]::-ms-fill-lower {
+  background: #ac51b5;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+
+input[type=range]::-ms-fill-upper {
+  background: #ac51b5;
+  border: 0px solid #000101;
+  border-radius: 50px;
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+}
+
+input[type=range]::-ms-thumb {
+  box-shadow: 0px 0px 0px #000000, 0px 0px 0px #0d0d0d;
+  border: 0px solid #000000;
+  height: 20px;
+  width: 39px;
+  border-radius: 7px;
+  background: #65001c;
+  cursor: pointer;
+}
+
+input[type=range]:focus::-ms-fill-lower {
+  background: #ac51b5;
+}
+
+input[type=range]:focus::-ms-fill-upper {
+  background: #ac51b5;
+}
+
 input[type=checkbox],
 input[type=radio] {
   display: none;
@@ -5887,47 +5573,31 @@ h2 + .form-row {
   margin-top: 20px;
 }
 
-input[type="file"] {
+.input-wrapper input[type="file"] {
+  display: none;
+}
+
+.elekti-wrapper {
   clear: both;
   width: 100%;
   float: left;
   margin-left: 0;
   margin-right: 0;
+  position: relative;
 }
 
-.input-file-label {
-  font-size: 0.8rem;
-  font-weight: 600;
-}
-
-.fileUpload {
-  overflow: hidden;
-  display: inline-block;
-  vertical-align: top;
-}
-
-.uploadBtn {
+.elekti-wrapper:after {
+  font-family: 'contactlab-icons';
+  content: "\e60c";
   position: absolute;
-  bottom: 5px;
-  right: 0;
-  font-size: 1rem;
-  color: #353A3D;
+  top: 12px;
+  right: 6.66667px;
+  line-height: 1;
+  font-size: 12px;
 }
 
-.file-name {
-  padding-right: 20px;
-}
-
-.fileUpload input.upload {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: 0;
-  padding: 0;
-  bottom: 0;
-  font-size: 20px;
-  cursor: pointer;
-  opacity: 0;
+input[type="text"].js-users-list-filter {
+  padding-right: 25px;
 }
 
 .js-users-list-filter-message,
@@ -5944,9 +5614,7 @@ input[type="file"] {
   position: absolute;
   z-index: 1;
   width: 100%;
-  -moz-box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-  -webkit-box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
-  box-shadow: 0 4px 10px 0 rgba(0, 0, 0, 0.1);
+  top: 37px;
   max-height: 200px;
   overflow: auto;
 }
@@ -6517,7 +6185,7 @@ button:disabled {
   margin: 0;
   border-right: 0;
 }
-.buttons-group .btn:last-of-type {
+.buttons-group .btn:last-of-type, .buttons-group .btn:last-of-type:active {
   border-right: 1px solid #353A3D;
 }
 .buttons-group .btn:active {
@@ -6551,14 +6219,14 @@ body {
   min-height: 100%;
 }
 
-.action-bar-button, #main-sidebar #reduce a, #secondary-sidebar #secondary-sidebar-label, .back {
+.action-bar-button, #main-sidebar #reduce a, #secondary-sidebar .user-actions .action, .back {
   width: 40px;
   height: 40px;
   line-height: 40px;
   text-align: center;
   font-size: 20px;
 }
-.action-bar-button:active, #main-sidebar #reduce a:active, #secondary-sidebar #secondary-sidebar-label:active, .back:active {
+.action-bar-button:active, #main-sidebar #reduce a:active, #secondary-sidebar .user-actions .action:active, .back:active {
   background-color: #0072bc !important;
   color: #FFFFFF;
 }
@@ -6571,12 +6239,6 @@ body {
   width: 250px;
   background-color: #282c2e;
   z-index: 10;
-}
-#main-sidebar a {
-  color: #FFFFFF;
-  display: block;
-  padding: 8px 20px;
-  text-decoration: none;
 }
 #main-sidebar #logo {
   clear: both;
@@ -6600,51 +6262,30 @@ body {
 #main-sidebar #logo .name {
   font-size: 25px;
   font-weight: 300;
-  color: #0072bc;
-}
-#main-sidebar #logo .name b {
-  font-weight: 400;
   color: #FFFFFF;
-}
-#main-sidebar #logo a {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-#main-sidebar nav,
-#main-sidebar nav ul,
-#main-sidebar nav ul li {
   clear: both;
   width: 100%;
   float: left;
   margin-left: 0;
   margin-right: 0;
-  margin: 0;
+  padding-left: 45px;
+  text-align: left;
 }
-#main-sidebar nav ul li > ul li a {
-  font-size: 0.875rem;
-  color: #AAA;
-  padding: 6.66667px 20px 6.66667px 60px;
+#main-sidebar #logo .name b {
+  font-weight: 400;
+  color: #0072bc;
 }
-#main-sidebar nav ul li > ul li a:hover {
-  background-color: transparent;
-  color: #FFFFFF;
-}
-#main-sidebar nav ul li > ul li.active a, #main-sidebar nav ul li > ul li.active a:hover {
-  background-color: transparent;
-  color: #FFFFFF;
-  border-color: transparent;
-}
-#main-sidebar nav ul li > ul {
-  display: none;
-}
-#main-sidebar nav ul li.active > ul {
-  display: block;
+#main-sidebar #logo a {
+  padding-top: 0;
+  padding-bottom: 0;
 }
 #main-sidebar nav {
   position: absolute;
   top: 80px;
   left: 0;
+  right: 0;
   bottom: 40px;
+  overflow: auto;
 }
 #main-sidebar nav .icon {
   width: 20px;
@@ -6655,22 +6296,120 @@ body {
 #main-sidebar nav a {
   border-left: 2px solid transparent;
 }
-#main-sidebar nav a:hover {
+#main-sidebar nav a:active {
   background-color: rgba(0, 0, 0, 0.3);
 }
 #main-sidebar nav .active > a,
 #main-sidebar nav .active > a:hover {
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
   color: #FFFFFF;
   border-color: #0072bc;
 }
 #main-sidebar nav .menu-title {
   display: none;
-  line-height: 40px;
+  padding: 8px 20px;
   color: #FFFFFF;
-  padding-left: 20px;
-  padding-right: 20px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
+}
+#main-sidebar .first-level-menu,
+#main-sidebar .second-level-menu,
+#main-sidebar .third-level-menu {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  margin: 0;
+}
+#main-sidebar .first-level-menu li,
+#main-sidebar .second-level-menu li,
+#main-sidebar .third-level-menu li {
+  cursor: pointer;
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  margin: 0;
+  position: relative;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
+}
+#main-sidebar .first-level-menu a,
+#main-sidebar .second-level-menu a,
+#main-sidebar .third-level-menu a {
+  color: #FFFFFF;
+  display: block;
+  padding: 8px 20px;
+  text-decoration: none;
+}
+#main-sidebar .first-level-menu .active > a {
+  background-color: rgba(255, 255, 255, 0.15);
+}
+#main-sidebar .first-level-menu .active .second-level-menu,
+#main-sidebar .first-level-menu .open .second-level-menu {
+  display: block;
+}
+#main-sidebar .second-level-menu {
+  display: none;
+  background-color: rgba(0, 0, 0, 0.3);
+  padding-bottom: 10px;
+}
+#main-sidebar .second-level-menu a {
+  font-size: 0.8125rem;
+  color: #AAA;
+  padding: 6.66667px 20px 6.66667px 60px;
+}
+#main-sidebar .second-level-menu li:hover > a {
+  background-color: transparent;
+  color: #FFFFFF;
+}
+#main-sidebar .second-level-menu .active a,
+#main-sidebar .second-level-menu .active a:hover {
+  background-color: transparent;
+  border-color: transparent;
+}
+#main-sidebar .second-level-menu li.active > a,
+#main-sidebar .second-level-menu li.open > a {
+  color: #FFFFFF;
+}
+#main-sidebar .second-level-menu li.active .third-level-menu,
+#main-sidebar .second-level-menu li.open .third-level-menu {
+  padding-bottom: 10px;
+}
+#main-sidebar .second-level-menu li.active .third-level-menu:before,
+#main-sidebar .second-level-menu li.open .third-level-menu:before {
+  content: "\e614";
+}
+#main-sidebar .second-level-menu li.active .third-level-menu li,
+#main-sidebar .second-level-menu li.open .third-level-menu li {
+  display: block;
+}
+#main-sidebar .third-level-menu {
+  background-color: rgba(0, 0, 0, 0.5);
+}
+#main-sidebar .third-level-menu li {
+  display: none;
+}
+#main-sidebar .third-level-menu li a {
+  font-size: 0.8125rem;
+  color: #AAAAAA;
+  padding-left: 80px;
+}
+#main-sidebar .third-level-menu li.active a {
+  color: #FFFFFF;
+}
+#main-sidebar .third-level-menu:before {
+  font-family: 'contactlab-icons';
+  content: "\e62b";
+  position: absolute;
+  right: 10px;
+  top: 11px;
+  color: #FFFFFF;
+  font-size: 10px;
 }
 #main-sidebar #reduce {
   position: absolute;
@@ -6687,12 +6426,15 @@ body {
   background-color: rgba(255, 255, 255, 0.1);
   float: right;
   cursor: pointer;
+  color: #FFFFFF;
 }
 #main-sidebar #reduce .expand {
   display: none;
+  vertical-align: middle;
 }
 #main-sidebar #reduce .compress {
   display: inline-block;
+  vertical-align: middle;
 }
 
 main {
@@ -6702,8 +6444,9 @@ main {
   margin-left: 0;
   margin-right: 0;
   padding-left: 250px;
-  padding-right: 200px;
+  padding-right: 0;
   padding-top: 80px;
+  max-width: 1500px;
 }
 
 header {
@@ -6716,48 +6459,42 @@ header {
   z-index: 4;
 }
 
-.search {
-  line-height: 80px;
-  margin-left: 40px;
-  float: left;
-  font-size: 20px;
+.app-switch {
+  position: absolute;
+  left: 0;
+  top: 25px;
 }
-.search .search-icon {
-  cursor: pointer;
+.app-switch .btn {
+  border-left: 0;
 }
-.search .search-input {
-  width: 0;
-  background-color: transparent;
-  border-color: #cfd3d5;
-  padding: 0;
-}
-.search .search-input.active {
-  width: 200px;
+.app-switch .btn .icon {
+  margin-right: 0;
 }
 
 #user-menu-toggle {
   cursor: pointer;
   float: left;
+  padding-left: 20px;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none;
 }
-#user-menu-toggle:active .picture img {
+#user-menu-toggle:active .picture img, #user-menu-toggle.active .picture img {
   border-color: #0072bc;
 }
 
 .user-bar {
-  position: absolute;
-  right: -40px;
-  top: 0;
+  float: right;
   height: 80px;
   font-size: 0;
-}
-.user-bar.active {
-  right: 0;
 }
 .user-bar .name {
   line-height: 80px;
   display: inline-block;
   vertical-align: top;
-  font-size: 1rem;
+  font-size: 16px;
   margin-right: 20px;
 }
 .user-bar .picture {
@@ -6765,8 +6502,9 @@ header {
   height: 54px;
   display: inline-block;
   vertical-align: top;
-  font-size: 1rem;
+  font-size: 16px;
   margin: 15px 20px 0 0;
+  position: relative;
 }
 .user-bar .picture img {
   width: 100%;
@@ -6775,30 +6513,11 @@ header {
   border-radius: 50%;
   border: 2px solid transparent;
 }
-.user-bar .actions {
-  font-size: 1rem;
-  display: inline-block;
-  width: 40px;
-  text-align: center;
-}
-.user-bar .actions .action {
-  float: left;
-  width: 100%;
-  height: 40px;
-  line-height: 40px;
-  color: #353A3D;
-  font-size: 20px;
-  background-color: #f8f8f9;
-}
-.user-bar .actions .action:active {
-  background-color: #0072bc;
-  color: #FFFFFF;
-}
 
-.notifications {
+.notifications-badge {
   position: absolute;
-  top: 5px;
-  left: 5px;
+  top: 0;
+  left: 0;
   width: 15px;
   height: 15px;
   font-size: 12px;
@@ -6813,20 +6532,96 @@ header {
 
 #secondary-sidebar {
   position: fixed;
-  width: 200px;
-  right: 0;
+  width: 280px;
+  right: -300px;
   top: 80px;
   bottom: 0;
   background-color: #f8f8f9;
   z-index: 2;
+  padding: 0;
+  overflow: auto;
 }
-#secondary-sidebar #secondary-sidebar-label {
-  position: absolute;
-  top: 0;
-  right: 200px;
-  z-index: 10;
+#secondary-sidebar .user-actions {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  text-align: right;
+  border-bottom: 1px solid #eaeced;
+  margin-bottom: 20px;
+  font-size: 0;
+  padding-right: 12px;
+}
+#secondary-sidebar .user-actions .action {
+  width: 35px;
+  height: 35px;
+  line-height: 35px;
+  display: inline-block;
   cursor: pointer;
-  background-color: #f8f8f9;
+  font-size: 20px;
+}
+#secondary-sidebar .user-actions .action .clab {
+  font-size: 20px;
+}
+#secondary-sidebar.sidebar-open {
+  right: 0;
+}
+#secondary-sidebar .notifications {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+#secondary-sidebar .sidebar-tabs {
+  padding: 0 20px;
+}
+#secondary-sidebar .sidebar-tabs .pills .tab,
+#secondary-sidebar .sidebar-tabs .tabs .tab,
+#secondary-sidebar .sidebar-tabs .pills .tab {
+  font-size: 0.8125rem;
+}
+#secondary-sidebar .sidebar-block {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 0 20px 40px;
+  font-size: 0.8125rem;
+}
+#secondary-sidebar .sidebar-block h3 {
+  font-weight: 600;
+}
+#secondary-sidebar .sidebar-block .feature {
+  position: relative;
+}
+#secondary-sidebar .sidebar-block .feature .description {
+  padding-left: 10px;
+}
+#secondary-sidebar .sidebar-block .feature .description p {
+  font-size: 0.8125rem;
+}
+#secondary-sidebar .sidebar-block ul,
+#secondary-sidebar .sidebar-block ul li {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+}
+#secondary-sidebar .sidebar-block.notifications .highlighted:before {
+  content: '';
+  position: absolute;
+  left: -5px;
+  top: 0;
+  width: 5px;
+  height: 5px;
+  background-color: #0072bc;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
 }
 
 .content {
@@ -6855,11 +6650,16 @@ header {
 body.main-sidebar-small #main-sidebar {
   width: 40px;
 }
+body.main-sidebar-small #main-sidebar nav {
+  overflow: initial;
+}
 body.main-sidebar-small #main-sidebar #reduce .expand {
   display: inline-block;
+  vertical-align: middle;
 }
 body.main-sidebar-small #main-sidebar #reduce .compress {
   display: none;
+  vertical-align: middle;
 }
 @media (max-width: 48em) {
   body.main-sidebar-small #main-sidebar #reduce {
@@ -6875,8 +6675,7 @@ body.main-sidebar-small #main-sidebar #logo .name {
 }
 body.main-sidebar-small #main-sidebar #logo .sign {
   display: block;
-  left: 12px;
-  top: 25px;
+  left: 8px;
 }
 body.main-sidebar-small #main-sidebar a {
   padding: 0;
@@ -6894,25 +6693,41 @@ body.main-sidebar-small #main-sidebar a span {
 body.main-sidebar-small #main-sidebar .menu-title {
   display: block;
 }
-body.main-sidebar-small #main-sidebar nav ul li {
+body.main-sidebar-small #main-sidebar .first-level-menu li {
   position: relative;
   text-align: center;
 }
-body.main-sidebar-small #main-sidebar nav ul li:hover > ul {
+@media (max-width: 48em) {
+  body.main-sidebar-small #main-sidebar .first-level-menu li > ul {
+    /* max-height: 250px; */
+    /* overflow: auto; */
+  }
+}
+body.main-sidebar-small #main-sidebar .first-level-menu li.active .second-level-menu {
+  display: none;
+}
+body.main-sidebar-small #main-sidebar .first-level-menu li.active.open .second-level-menu {
   display: block;
 }
-body.main-sidebar-small #main-sidebar nav ul li ul {
+body.main-sidebar-small #main-sidebar .second-level-menu {
   display: none;
   position: absolute;
   left: 40px;
   top: 0;
   background-color: #282c2e;
   width: 200px;
+  max-height: 200px;
+  overflow: auto;
 }
-body.main-sidebar-small #main-sidebar nav ul li ul li a {
-  padding: 0 20px;
-  line-height: 40px;
-  font-size: 1rem;
+body.main-sidebar-small #main-sidebar .second-level-menu li {
+  text-align: left;
+}
+body.main-sidebar-small #main-sidebar .second-level-menu li a {
+  padding: 5px 20px;
+  font-size: 0.8125rem;
+}
+body.main-sidebar-small #main-sidebar .third-level-menu {
+  left: 200px;
 }
 body.main-sidebar-small #main-sidebar #reduce .icon {
   margin: 0;
@@ -6923,17 +6738,19 @@ body.main-sidebar-small main {
 body.main-sidebar-small header {
   left: 40px;
 }
-
-body.secondary-sidebar-closed #secondary-sidebar {
-  right: -200px;
-}
-body.secondary-sidebar-closed #secondary-sidebar #secondary-sidebar-label {
-  background-color: #FFFFFF;
-}
-body.secondary-sidebar-closed main {
-  padding-right: 0;
+body.main-sidebar-small header .app-switch {
+  top: 12px;
 }
 
+/* body.secondary-sidebar-open {
+
+	@include susy-breakpoint(1600px) {
+		.content {
+			padding-right: $large-spacing + $secondary-sidebar-width;
+		}
+	}
+}
+ */
 @media (max-width: 1200px) {
   main {
     padding-right: 0;
@@ -6967,6 +6784,7 @@ body.secondary-sidebar-closed main {
     margin-right: 10px;
     width: 40px;
     height: 40px;
+    position: relative;
   }
   .user-bar .actions {
     width: 80px;
@@ -6983,11 +6801,6 @@ body.secondary-sidebar-closed main {
 
   main {
     padding-top: 50px;
-  }
-
-  body.secondary-sidebar-closed .content,
-  .content {
-    padding: 20px 10px;
   }
 
   .toolbar {
@@ -7016,8 +6829,25 @@ header h1, header .static-input .user-title, .static-input header .user-title {
 header #product-switch {
   float: right;
   margin-top: 10px;
+  		/* input[type="text"]{
+  			color: #FFFFFF !important;
+  			
+  			&:focus {
+  			    border-color: #FFFFFF;
+  			    @include box-shadow(#FFFFFF 0 1px 0 0);
+  
+  			    + label { 
+  		          color: #FFFFFF !important;
+  		        }
+  		  	}
+  		}
+  
+  		input[type="text"].active + label {
+  			color: #FFFFFF !important; 
+  		} */
 }
 header #product-switch input[type="text"] {
+  background-color: transparent !important;
   color: #FFFFFF !important;
 }
 header #product-switch input[type="text"]:focus {
@@ -7027,9 +6857,6 @@ header #product-switch input[type="text"]:focus {
   box-shadow: #FFFFFF 0 1px 0 0;
 }
 header #product-switch input[type="text"]:focus + label {
-  color: #FFFFFF !important;
-}
-header #product-switch input[type="text"].active + label {
   color: #FFFFFF !important;
 }
 header #product-switch ol {

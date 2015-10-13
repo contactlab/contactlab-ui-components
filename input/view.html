@@ -1,0 +1,17 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="input-clab">
+	<style></style>
+	
+	<template>		
+		<div class$="{{_computeType(type)}}">
+			<label for="field">{{label}}</label>
+			<input type="text" id="field" on-keyup="_updateCompValue" disabled="{{disabled}}" value="{{value}}">
+			<div class="note">
+				<content></content>
+			</div>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
