@@ -31,6 +31,8 @@
 	<link rel="import" href="progress-bar/view.html">
 	<link rel="import" href="spinner/view.html">
 	<link rel="import" href="input/view.html">
+	<link rel="import" href="tabs/view.html">
+	<link rel="import" href="modal/view.html">
 	
 
 </head>
@@ -103,6 +105,40 @@
 		<input-clab value="ciao" label="My label" type="info">A simple note</input-clab>
 	</div>
 
+	<div class="content">
+		<h2>Tabs</h2>
+		<tabs-clab></tabs-clab>
+	</div>
+
+	<div class="content">
+		<h2>Modal</h2>
+		<button-clab id="openModal">
+			Open modal
+		</button-clab>
+		<modal-clab title="Dummy modal" primary="Confirm" secondary="Cancel">
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
+		</modal-clab>
+	</div>
+
+
+<script>
 	
+// MODAL
+var modal = document.querySelector('modal-clab');
+
+document.querySelector('#openModal').addEventListener('click',function(){
+	modal.visible = true;
+});
+
+modal.addEventListener('modal-primary',function(){
+	alert('Clicked');
+});
+
+modal.addEventListener('modal-secondary',function(){
+	modal.visible = false;
+})
+
+</script>
+
 </body>
 </html>

@@ -1,0 +1,20 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="tabs-clab">
+	<style></style>
+	
+	<template>		
+		<div class="pills contextual-tabs">
+			<ul class="contextual-menu">
+				<template is="dom-repeat" items="{{labels}}">
+					<li class="tab" data-index$="{{index}}"><a on-click="_changeTab" href="#">{{item}}</a></li>
+				</template>
+			</ul>
+			<div class="contextual-content ui-tabs-panel">lorem 1</div>
+			<div class="contextual-content ui-tabs-panel">lorem 2</div>
+			<div class="contextual-content ui-tabs-panel">lorem 3</div>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
