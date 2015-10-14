@@ -28,8 +28,11 @@ Polymer({
 		this.querySelector('input').value = this.value;
 	},
 	_updateCompValue: function(evt){
-		
 		this.value = this.querySelector('input').value;
 		console.log(this.value);
+	},
+	_dashify: function(label){
+		var str = label.replace(' ','-');
+		return str.toLowerCase();
 	}
 });

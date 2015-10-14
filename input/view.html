@@ -5,8 +5,8 @@
 	
 	<template>		
 		<div class$="{{_computeType(type)}}">
-			<label for="field">{{label}}</label>
-			<input type="text" id="field" on-keyup="_updateCompValue" disabled="{{disabled}}" value="{{value}}">
+			<label for$="{{_dashify(label)}}">{{label}}</label>
+			<input type="text" name$="{{_dashify(label)}}" on-keyup="_updateCompValue" disabled="{{disabled}}" value="{{value}}">
 			<div class="note">
 				<content></content>
 			</div>

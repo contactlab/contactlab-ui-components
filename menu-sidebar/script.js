@@ -82,6 +82,7 @@ Polymer({
 				case 'BUTTON':
 				case 'TEXTAREA':
 				case 'LABEL':
+				case 'SELECT':
 					return true;
 					break;
 				default:
