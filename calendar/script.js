@@ -18,9 +18,9 @@ Polymer({
 			value: {}
 		}
 	},
-	attached: function(){
-		// console.log(this.querySelector('input'));
-		// console.log(this.inline);
-		this.inline ? rome(this.querySelector('div.inline-cal'), this.options) : rome(this.querySelector('input'), this.options) ;
+	attached: function(){		
+		setTimeout(function(){
+			this.inline ? rome(this.querySelector('div.inline-cal'), this.options) : rome(this.querySelector('input'), this.options) ;
+		}.bind(this),100)
 	}
 });

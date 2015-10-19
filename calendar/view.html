@@ -6,8 +6,8 @@
 	<template>
 		<template is="dom-if" if="{{!inline}}">
 			<div class="input-wrapper">
-				<label for="field">{{label}}</label>
-				<input type="text" id="field" disabled="{{disabled}}">
+				<label>{{label}}</label>
+				<input type="text" disabled="{{disabled}}">
 				<div class="note">
 					<content></content>
 				</div>
@@ -19,6 +19,6 @@
 	</template>
 	
 	<script src="../../moment/moment.js"></script>
-	<script src="../../rome/dist/rome.min.js"></script>
+	<script src="../../rome/dist/rome.js"></script>
 	<script src="script.js"></script>
 </dom-module>

@@ -3,7 +3,10 @@ Polymer({
 	properties: {
 		label: {
 			type: String,
-			value: 'Label'
+		},
+		name: {
+			type: String,
+			value: 'textinput'
 		},
 		type: {
 			type: String,

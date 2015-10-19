@@ -14,9 +14,9 @@
 
 	<template>        
         <div class="input-wrapper" on-click="dropOnly">
-            <label for$="{{dashify(label)}}">{{label}}</label>
+            <label for$="{{dashify(name)}}">{{label}}</label>
             <div class$="{{ _computeWrapperClass(open) }}">
-                <input id$="{{dashify(label)}}" type="text" class="js-users-list-filter" 
+                <input id$="{{dashify(name)}}" name$="{{dashify(name)}}" type="text" class="js-users-list-filter" 
                 on-focus="handleListVisibility" on-blur="handleListVisibility" disabled="{{noSearch}}"
                 on-keyup="searchElement" on-change="updateValue" >
                 <ol class="js-users-list" id="list">

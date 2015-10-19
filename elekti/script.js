@@ -3,7 +3,10 @@ Polymer({
 	properties: {
 		label: {
 			type: String,
-			value: 'My label'
+		},
+		name: {
+			type: String,
+			value: 'elekti'
 		},
 		options: {
 			type: Array,
@@ -28,7 +31,7 @@ Polymer({
 	},
 	ready: function(){
 		var thisComp = this;
-		this.input = this.$$('#' + this.dashify(this.label));
+		this.input = this.$$('#' + this.dashify(this.name));
 		if(this.default || this.default === 0){
 			thisComp.input.value = thisComp.options[thisComp.default];
 			thisComp.activeInput('blur');
