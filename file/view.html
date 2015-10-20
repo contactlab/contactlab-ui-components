@@ -5,11 +5,13 @@
 	
 	<template>		
 		<div class="input-wrapper">
-			<label for="field">Input file label</label>
+			<label for$="{{_dashify(name)}}">{{label}}</label>
 			<div class="input-icon-wrapper" on-click="_selection">
-				<input type="text" id="file-field">
+				<input type="text" name$="{{_dashify(name)}}" disabled="{{disabled}}" value="{{value}}">
 			</div>
-			<div class="note">Lorem ipsum dolor sit.</div>
+			<div class="note">
+				<content></content>
+			</div>
 			<input type="file" multiple$={{multiple}}>
 		</div>
 	</template>

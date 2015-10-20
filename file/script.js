@@ -1,6 +1,13 @@
 Polymer({
 	is: 'file-clab',
 	properties: {
+		label: {
+			type: String,
+		},
+		name: {
+			type: String,
+			value: 'textinput'
+		},
 		value: {
 			type: String
 		},
@@ -24,5 +31,9 @@ Polymer({
 	},
 	_selection: function(evt){
 		this.querySelector('input[type="file"]').click();
+	},
+	_dashify: function(label){
+		var str = label.replace(' ','-');
+		return str.toLowerCase();
 	}
 });
