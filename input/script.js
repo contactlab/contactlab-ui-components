@@ -20,6 +20,9 @@ Polymer({
 		disabled: {
 			type: Boolean,
 			value: false
+		},
+		placeholder: {
+			type: String
 		}
 	},
 	_computeType: function(type){
