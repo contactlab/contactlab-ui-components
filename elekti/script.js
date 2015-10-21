@@ -102,5 +102,12 @@ Polymer({
 		var results = this.$.list.querySelectorAll('li.hide');
 		( results.length === elems.length ) ? this.$.noRes.classList.remove('hide') : this.$.noRes.classList.add('hide');
 		this.highlightedElement();
+	},
+	_viewLabel: function(label) {
+		if(label.length > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 });

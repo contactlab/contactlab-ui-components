@@ -5,7 +5,9 @@
 	
 	<template>		
 		<div class$="{{_computeType(type)}}">
-			<label for$="{{_dashify(name)}}">{{label}}</label>
+			<template is="dom-if" if="{{_viewLabel(label)}}">
+				<label for$="{{_dashify(name)}}">{{label}}</label>
+			</template>
 			<input type="text" name$="{{_dashify(name)}}" on-keyup="_updateCompValue" disabled="{{disabled}}" value="{{value}}">
 			<div class="note">
 				<content></content>

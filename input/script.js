@@ -37,5 +37,12 @@ Polymer({
 	_dashify: function(label){
 		var str = label.replace(' ','-');
 		return str.toLowerCase();
+	},
+	_viewLabel: function(label) {
+		if(label.length > 0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 });
