@@ -16,7 +16,7 @@
 					<li><a on-click="_openItem" href="{{item.url}}"><i class$="{{item.icon}}"></i><span>{{item.label}}</span></a>
 						<template is="dom-if" if="{{item.submenu}}">
 							<ul class="second-level-menu">
-								<li class="menu-title">Settings</li>
+								<li class="menu-title">{{item.label}}</li>
 								<template is="dom-repeat" items="{{item.submenu}}">
 									<li><a on-click="_activeItem" href="{{item.url}}">{{item.label}}</a></li>
 								</template>

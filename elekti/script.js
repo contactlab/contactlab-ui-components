@@ -27,6 +27,10 @@ Polymer({
 		noSearch: {
 			type: Boolean,
 			value: false
+		},
+		noResults: {
+			type: String,
+			value: 'No results found'
 		}
 	},
 	ready: function(){

@@ -12,6 +12,13 @@ Polymer({
 		visible: {
 			type: Boolean,
 			value: false
+		},
+		labels:{
+			type: Object,
+			value: {
+				primary: 'Confirm',
+				secondary: 'Cancel'
+			}
 		}
 	},
 	_computeType: function(type){

@@ -6,7 +6,9 @@
 	<template>
 		<template is="dom-if" if="{{!inline}}">
 			<div class="input-wrapper">
-				<label>{{label}}</label>
+				<template is="dom-if" if="{{_viewLabel(label)}}">
+					<label for$="{{_dashify(name)}}">{{label}}</label>
+				</template>
 				<input type="text" disabled="{{disabled}}">
 				<div class="note">
 					<content></content>

@@ -25,7 +25,7 @@
                     <template is="dom-repeat" items="{{options}}">
                         <li on-tap="selectElement">{{item}}</li>
                     </template>
-                    <div class="noResults hide" id="noRes">No results found</div>
+                    <div class="noResults hide" id="noRes">{{noResults}}</div>
                 </ol>
             </div>
             
