@@ -17,6 +17,10 @@ Polymer({
 		}
 	},
 	attached: function(){
+		var btns = this.getContentChildren();
+		for(var i = 0; i < btns.length; i++){
+			btns[i].classList.add('group-item');
+		}
 		this._initialize();
 	},
 	_initialize: function(){
