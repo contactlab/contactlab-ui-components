@@ -10,7 +10,8 @@ Polymer({
 		},
 		options: {
 			type: Array,
-			value: ['Option 1','Option 2']
+			value: [{value: 0, label: 'Option 1'}
+			,{value: 1, label: 'Option 2'}]
 		},
 		default: {
 			type: Number
@@ -37,10 +38,20 @@ Polymer({
 		var thisComp = this;
 		this.input = this.$$('#' + this.dashify(this.name));
 		if(this.default || this.default === 0){
-			thisComp.input.value = thisComp.options[thisComp.default];
+			var n = thisComp._searchKey(thisComp.default)
+			thisComp.input.value = thisComp.options[n].label;
+			thisComp.value = thisComp.options[n].value;
 			thisComp.activeInput('blur');
 		};
 		this.value = this.input.value;
+	},
+	_searchKey: function(key){
+		var n;
+		var thisComp = this;
+		for(var i = 0; i < thisComp.options.length; i++){
+			(thisComp.options[i].value === key) ? n = i : null;
+		}
+		return n;
 	},
 	_computeWrapperClass: function(open){
 		var arr = ['elekti-wrapper',''];
@@ -51,7 +62,7 @@ Polymer({
 		return str.replace(/ /g,'-');
 	},
 	updateValue: function(){
-		this.value = this.input.value;
+		// this.value = this.input.value;
 	},
 	highlightedElement: function(){
 		var search = this.input.value.toLowerCase();
@@ -70,6 +81,7 @@ Polymer({
 	},
 	selectElement: function(evt){
 		this.input.value = evt.target.innerHTML;
+		this.value = evt.target.getAttribute('data-value');
 		this.activeInput('blur');
 	},
 	handleListVisibility: function(evt){

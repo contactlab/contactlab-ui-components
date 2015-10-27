@@ -23,7 +23,7 @@
                 on-keyup="searchElement" on-change="updateValue" >
                 <ol class="js-users-list" id="list">
                     <template is="dom-repeat" items="{{options}}">
-                        <li on-tap="selectElement">{{item}}</li>
+                        <li on-tap="selectElement" data-value$="{{item.value}}">{{item.label}}</li>
                     </template>
                     <div class="noResults hide" id="noRes">{{noResults}}</div>
                 </ol>
