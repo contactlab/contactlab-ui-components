@@ -37,8 +37,8 @@ Polymer({
 	ready: function(){
 		var thisComp = this;
 		this.input = this.$$('#' + this.dashify(this.name));
-		if(this.default || this.default === 0){
-			var n = thisComp._searchKey(thisComp.default)
+		var n = this._searchKey(this.default)
+		if((this.default || this.default === 0) && (typeof n == 'number')){
 			thisComp.input.value = thisComp.options[n].label;
 			thisComp.value = thisComp.options[n].value;
 			thisComp.activeInput('blur');
