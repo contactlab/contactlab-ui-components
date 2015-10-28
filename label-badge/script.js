@@ -21,5 +21,8 @@ Polymer({
 	_computeClass: function(badge,type){
 		var str = badge ? 'badge' : 'label';
 		return [str,type].join(' ');
+	},
+	_removeClicked: function(){
+		this.fire('remove');
 	}
 });
