@@ -5,11 +5,13 @@
 	
 	<template>
 		<template is="dom-if" if="{{!inline}}">
-			<div class="input-icon-wrapper calendar">
+			<div class="input-wrapper calendar">
 				<template is="dom-if" if="{{_viewLabel(label)}}">
 					<label for$="{{_dashify(name)}}">{{label}}</label>
 				</template>
-				<input type="text" disabled="{{disabled}}">
+				<div class="input-icon-wrapper">
+					<input type="text" disabled="{{disabled}}" placeholder="{{placeholder}}">
+				</div>
 				<div class="note">
 					<content></content>
 				</div>

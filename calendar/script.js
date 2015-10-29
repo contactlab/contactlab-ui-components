@@ -2,8 +2,7 @@ Polymer({
 	is: 'calendar-clab',
 	properties: {
 		label: {
-			type: String,
-			value: 'Date'
+			type: String
 		},
 		disable: {
 			type: Boolean,
@@ -16,7 +15,10 @@ Polymer({
 		options: {
 			type: Object,
 			value: {}
-		}
+		},
+		placeholder: {
+			type: String,
+		},
 	},
 	attached: function(){		
 		setTimeout(function(){
