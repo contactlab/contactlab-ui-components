@@ -83,6 +83,7 @@ Polymer({
 		this.input.value = evt.target.innerHTML;
 		this.value = evt.target.getAttribute('data-value');
 		this.activeInput('blur');
+		this.fire('change');
 	},
 	handleListVisibility: function(evt){
 		this.input.classList.add('active');
