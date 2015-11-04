@@ -10,14 +10,14 @@ Polymer({
 		},
 		options: {
 			type: Array,
-			value: [{value: 0, label: 'Option 1'}
-			,{value: 1, label: 'Option 2'}]
+			value: [{value: 'A', label: 'Option 1'}
+			,{value: 'B', label: 'Option 2'}]
 		},
 		default: {
 			type: Number
 		},
 		value: {
-			type: 'String',
+			type: 'Object',
 			readonly: true
 		},
 		open: {
@@ -81,9 +81,17 @@ Polymer({
 	},
 	selectElement: function(evt){
 		this.input.value = evt.target.innerHTML;
-		this.value = evt.target.getAttribute('data-value');
+		var i = this._getValue(evt.target.getAttribute('data-value'))
+		this.value = this.options[i];
 		this.activeInput('blur');
 		this.fire('change');
+	},
+	_getValue: function(value){
+		var n;
+		for(var i = 0; i < this.options.length; i++){
+			(this.options[i].value == value) ? n = i : null;
+		}
+		return n;
 	},
 	handleListVisibility: function(evt){
 		this.input.classList.add('active');
