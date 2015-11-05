@@ -19,11 +19,20 @@ Polymer({
 		placeholder: {
 			type: String,
 		},
+		type: {
+			type: String,
+			value: ''
+		}
 	},
 	attached: function(){		
 		setTimeout(function(){
 			this.inline ? rome(this.querySelector('div.inline-cal'), this.options) : rome(this.querySelector('input'), this.options) ;
 		}.bind(this),100)
+	},
+	_computeType: function(type){
+		var arr = ['input-wrapper','calendar'];
+		arr.push(type);
+		return arr.join(' ');
 	},
 	_dashify: function(label){
 		var str = label.replace(' ','-');

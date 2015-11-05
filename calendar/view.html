@@ -5,7 +5,7 @@
 	
 	<template>
 		<template is="dom-if" if="{{!inline}}">
-			<div class="input-wrapper calendar">
+			<div class$="{{_computeType(type)}}">
 				<template is="dom-if" if="{{_viewLabel(label)}}">
 					<label for$="{{_dashify(name)}}">{{label}}</label>
 				</template>
