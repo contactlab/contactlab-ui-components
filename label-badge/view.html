@@ -4,12 +4,12 @@
 	<style></style>
 	
 	<template>		
-		<span class$="{{_computeClass(badge,type)}}">
+		<span class$="[[_computeClass(badge,type)]]">
 			<content></content>
-			<template is="dom-if" if="{{counter}}">
-				<span class="counter">{{counter}}</span>
+			<template is="dom-if" if="[[counter]]">
+				<span class="counter">[[counter]]</span>
 			</template>
-			<template is="dom-if" if="{{remove}}">
+			<template is="dom-if" if="[[remove]]">
 				<span class="remove" on-tap="_removeClicked"><i class="clab clab-icon-close"></i></span>
 			</template>
 		</span>

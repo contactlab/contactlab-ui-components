@@ -4,10 +4,10 @@
 	<style></style>
 	
 	<template>		
-		<div class$="{{computeClass(minimal,primary,secondary,info,success,warning,error)}}">
+		<div class$="[[computeClass(minimal,primary,secondary,info,success,warning,error)]]">
 			<section>
-				<article style$="{{computeProp(value)}}">
-					<label id="label">{{percent(value)}}</label>
+				<article style$="[[computeProp(value)]]">
+					<label id="label">[[percent(value)]]</label>
 				</article>
 			</section>
 		</div>
