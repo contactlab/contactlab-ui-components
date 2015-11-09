@@ -5,6 +5,11 @@ Polymer({
 			type: Boolean,
 			value: false
 		},
+		disabled: {
+			type: Boolean,
+			value: false,
+			observer: '_updateDisabled'
+		},
 		type: {
 			type: String,
 			value: ''
@@ -22,6 +27,13 @@ Polymer({
 			btns[i].classList.add('group-item');
 		}
 		this._initialize();
+	},
+	_updateDisabled: function(){
+		var btns = this.querySelectorAll('button');
+		for(var i = 0; i < btns.length; i++){
+			btns[i].disabled = this.disabled;
+			console.log(btns, btns[i], this.disabled ,btns[i].disabled, this);
+		}
 	},
 	_initialize: function(){
 		var btns = this.getContentChildren();

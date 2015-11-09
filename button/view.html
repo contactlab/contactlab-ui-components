@@ -4,7 +4,7 @@
 	<style></style>
 	
 	<template>
-		<button class$="[[_computeClass(type,appearance,size)]]">
+		<button class$="[[_computeClass(type,appearance,size)]]" disabled="[[disabled]]">
 			<template is="dom-if" if="[[icon]]">
 				<i class$="[[_computeIconClass(icon)]]"></i>
 			</template>
