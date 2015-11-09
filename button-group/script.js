@@ -32,7 +32,6 @@ Polymer({
 		var btns = this.querySelectorAll('button');
 		for(var i = 0; i < btns.length; i++){
 			btns[i].disabled = this.disabled;
-			console.log(btns, btns[i], this.disabled ,btns[i].disabled, this);
 		}
 	},
 	_initialize: function(){
