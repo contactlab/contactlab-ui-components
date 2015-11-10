@@ -16,6 +16,10 @@ Polymer({
 		icon: {
 			type: String,
 			value: ''
+		},
+		disabled: {
+			type: Boolean,
+			value: false
 		}
 	},
 	_computeClass: function(type,appearance,size){

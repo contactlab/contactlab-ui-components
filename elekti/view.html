@@ -14,18 +14,18 @@
 
 	<template>        
         <div class="input-wrapper" on-click="dropOnly">
-            <template is="dom-if" if="{{_viewLabel(label)}}">
-                <label for$="{{dashify(name)}}">{{label}}</label>
+            <template is="dom-if" if="[[_viewLabel(label)]]">
+                <label for$="[[dashify(name)]]">[[label]]</label>
             </template>
-            <div class$="{{ _computeWrapperClass(open) }}">
-                <input id$="{{dashify(name)}}" name$="{{dashify(name)}}" type="text" class="js-users-list-filter" 
-                on-focus="handleListVisibility" on-blur="handleListVisibility" disabled="{{noSearch}}"
+            <div class$="[[ _computeWrapperClass(open) ]]">
+                <input id$="[[dashify(name)]]" name$="[[dashify(name)]]" type="text" class="js-users-list-filter" 
+                on-focus="handleListVisibility" on-blur="handleListVisibility" disabled="[[noSearch]]"
                 on-keyup="searchElement" on-change="updateValue" >
                 <ol class="js-users-list" id="list">
-                    <template is="dom-repeat" items="{{options}}">
-                        <li on-tap="selectElement" data-value$="{{item.value}}">{{item.label}}</li>
+                    <template is="dom-repeat" items="[[options]]">
+                        <li on-tap="selectElement" data-value$="[[item.value]]">[[item.label]]</li>
                     </template>
-                    <div class="noResults hide" id="noRes">{{noResults}}</div>
+                    <div class="noResults hide" id="noRes">[[noResults]]</div>
                 </ol>
             </div>
             

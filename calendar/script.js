@@ -19,11 +19,27 @@ Polymer({
 		placeholder: {
 			type: String,
 		},
+		type: {
+			type: String,
+			value: ''
+		}
 	},
 	attached: function(){		
 		setTimeout(function(){
-			this.inline ? rome(this.querySelector('div.inline-cal'), this.options) : rome(this.querySelector('input'), this.options) ;
-		}.bind(this),100)
+			this.inline ? this._createInstance('div.inline-cal') : this._createInstance('input') ;
+		}.bind(this),100);
+	},
+	_createInstance: function(selector){
+		rome(this.querySelector(selector), this.options)
+			.on('data', this._changeDate.bind(this));
+	},
+	_changeDate: function(evt){
+		this.fire('datechange', {date: evt});
+	},
+	_computeType: function(type){
+		var arr = ['input-wrapper','calendar'];
+		arr.push(type);
+		return arr.join(' ');
 	},
 	_dashify: function(label){
 		var str = label.replace(' ','-');
@@ -35,5 +51,8 @@ Polymer({
 		} else {
 			return false;
 		}
+	},
+	getRomeInstance: function(){
+		return rome.find(this.querySelector('input'));
 	}
 });

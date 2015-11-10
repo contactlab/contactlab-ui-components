@@ -14,8 +14,8 @@ Polymer({
 		},
 		value: {
 			type: String,
-			value: '',
-			observer: '_updateInputValue'
+			notify: true,
+			reflectToAttribute: true
 		},
 		disabled: {
 			type: Boolean,
@@ -29,9 +29,6 @@ Polymer({
 		var arr = ['input-wrapper'];
 		arr.push(type);
 		return arr.join(' ');
-	},
-	_updateInputValue: function(){
-		this.querySelector('input').value = this.value;
 	},
 	_updateCompValue: function(evt){
 		this.value = this.querySelector('input').value;
