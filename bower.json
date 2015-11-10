@@ -17,7 +17,7 @@
     "tests"
   ],
   "dependencies": {
-    "polymer": "~1.1.4",
+    "polymer": "~1.1.5",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "~2.10.6"
   }

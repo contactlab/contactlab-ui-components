@@ -4,6 +4,10 @@ Polymer({
 		label: {
 			type: String
 		},
+		value: {
+			type: String,
+			reflectToAttribute: true
+		},
 		disable: {
 			type: Boolean,
 			value: false
@@ -28,13 +32,19 @@ Polymer({
 		setTimeout(function(){
 			this.inline ? this._createInstance('div.inline-cal') : this._createInstance('input') ;
 		}.bind(this),100);
+
+		console.log(this.querySelector('template'));
+		this.querySelector('template').addEventListener('dom-change', function(evt) {
+			console.log('yo');
+		});
 	},
 	_createInstance: function(selector){
 		rome(this.querySelector(selector), this.options)
 			.on('data', this._changeDate.bind(this));
 	},
 	_changeDate: function(evt){
-		this.fire('datechange', {date: evt});
+		this.value = moment(evt).format();
+		this.fire('datechange', {date: evt , dateISO: moment(evt).format() });
 	},
 	_computeType: function(type){
 		var arr = ['input-wrapper','calendar'];
