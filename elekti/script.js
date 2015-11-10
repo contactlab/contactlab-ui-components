@@ -18,7 +18,9 @@ Polymer({
 		},
 		value: {
 			type: 'Object',
-			readonly: true
+			/*readonly: true*/
+			reflectToAttribute: true,
+			notify: true
 		},
 		open: {
 			type: Boolean,
