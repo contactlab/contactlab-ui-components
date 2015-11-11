@@ -29,14 +29,12 @@ Polymer({
 		}
 	},
 	attached: function(){		
-		setTimeout(function(){
-			this.inline ? this._createInstance('div.inline-cal') : this._createInstance('input') ;
-		}.bind(this),100);
-
-		console.log(this.querySelector('template'));
-		this.querySelector('template').addEventListener('dom-change', function(evt) {
-			console.log('yo');
-		});
+		// setTimeout(function(){
+		this.inline ? this._createInstance('div.inline-cal') : this._createInstance('input') ;
+		// }.bind(this),100);
+	},
+	_focusElement: function(){
+		this.querySelector('input').focus();
 	},
 	_createInstance: function(selector){
 		rome(this.querySelector(selector), this.options)
