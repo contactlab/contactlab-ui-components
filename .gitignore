@@ -1,1 +1,4 @@
 .bowerrc
+node_modules/
+.babelrc
+.sublime-gulp.cache
