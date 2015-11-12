@@ -21,6 +21,12 @@ gulp.task('babel', function () {
   for (var i = 0; i < arr.length; i++){
     var ctx = arr[i];
     var folders = getFolders(ctx);
+    for(var i = 0; i < folders.length; i++) {
+      if(folders[i] == '.git' || folders[i] == '_css' || folders[i] == 'node_modules'){
+        folders.splice(i,1);
+      }
+    };
+    console.log(folders);
     var tasks = folders.map(function(folder) {
       return gulp.src(path.join(ctx, folder, '/**/*.es6.js'))
         .pipe(babel())
