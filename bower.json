@@ -19,6 +19,7 @@
   "dependencies": {
     "polymer": "~1.1.5",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "opentip": "~2.4.6"
   }
 }

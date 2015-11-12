@@ -12,10 +12,10 @@ class ModalClab{
 				value: false
 			},
 			primary: {
-				type: String,
+				type: String
 			},
 			secondary: {
-				type: String,
+				type: String
 			}
 		}
 	}

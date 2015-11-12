@@ -41,4 +41,4 @@ gulp.task('_es6Watch', function() {
 });
 
 
-gulp.task('default', ['babel']);
+gulp.task('default', ['_es6Watch']);

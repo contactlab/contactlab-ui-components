@@ -1,0 +1,15 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="tooltip-clab" attributes="data-ot">
+	<style></style>
+	
+	<template>	
+		<div data-ot$="[[text]]" data-ot-hide-trigger="[[hideTrigger]]" on-click="_sayHi">
+			<content></content>
+		</div>
+	</template>
+
+	<script src="../../opentip/lib/opentip.js"></script>
+	<script src="../../opentip/lib/adapter-native.js"></script>
+	<script src="script.js"></script>
+</dom-module>
