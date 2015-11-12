@@ -2,6 +2,8 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ElektiMer = (function () {
@@ -32,7 +34,8 @@ var ElektiMer = (function () {
 					type: 'Object',
 					/*readonly: true*/
 					reflectToAttribute: true,
-					notify: true
+					notify: true,
+					observer: '_updateValue'
 				},
 				open: {
 					type: Boolean,
@@ -63,6 +66,14 @@ var ElektiMer = (function () {
 			this.value = this.input.value;
 		}
 	}, {
+		key: '_updateValue',
+		value: function _updateValue() {
+			if (_typeof(this.value) == 'object') {
+				this.input.value = this.value.label;
+				this.highlightedElement();
+			}
+		}
+	}, {
 		key: '_searchKey',
 		value: function _searchKey(key) {
 			var n = undefined;
@@ -83,11 +94,6 @@ var ElektiMer = (function () {
 		key: 'dashify',
 		value: function dashify(str) {
 			return str.replace(/ /g, '-');
-		}
-	}, {
-		key: 'updateValue',
-		value: function updateValue() {
-			// this.value = this.input.value;
 		}
 	}, {
 		key: 'highlightedElement',
