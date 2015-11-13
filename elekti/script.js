@@ -25,7 +25,6 @@ var ElektiMer = (function () {
 				},
 				options: {
 					type: Array,
-					observer: '_setOptions',
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
 				},
 				default: {
@@ -50,6 +49,10 @@ var ElektiMer = (function () {
 				noResults: {
 					type: String,
 					value: 'No results found'
+				},
+				optionsFn: {
+					type: Function,
+					observer: '_setOptions'
 				}
 			};
 		}
@@ -68,17 +71,12 @@ var ElektiMer = (function () {
 		}
 	}, {
 		key: '_setOptions',
-		value: function _setOptions(data) {
+		value: function _setOptions(promise) {
 			var _this = this;
 
-			if (typeof data == 'function') {
-				data.then(function (resp) {
-					_this.options = resp;
-				});
-			}
-			if ((typeof data === 'undefined' ? 'undefined' : _typeof(data)) == 'object') {
-				this.value = data;
-			}
+			promise.then(function (resp) {
+				_this.options = resp;
+			});
 		}
 	}, {
 		key: '_updateValue',
