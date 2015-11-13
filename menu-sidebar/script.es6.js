@@ -34,53 +34,51 @@ class MenuClab{
 		this._iosMenu();
 
 		setTimeout(() => {
-			let firstLevelA = Array.from($('menu-clab .first-level-menu>li>a'));
-			let secondLevelA = Array.from($('menu-clab .second-level-menu>li>a'));
-
-			for(let e of firstLevelA){
-				if(location.hash.search(e.getAttribute('href')) > -1)
+			$('menu-clab .first-level-menu>li>a').each((i, e) => {					
+				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
-				else
+				}else{
 					e.parentNode.classList.remove('active');
-			}
+				}
+			});
 
-			for(let e of secondLevelA){
-				if(location.hash.search(e.getAttribute('href')) > -1)
+			$('menu-clab .second-level-menu>li>a').each((i, e) => {					
+				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
-				else
+				}else{
 					e.parentNode.classList.remove('active');
-			}
+				}
+			});
 		},10)
 	}
 
 	_openItem(evt){
 		let selector = 'menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a';
-		for(let e of $(selector)){
-			if(location.hash.search(e.getAttribute('href')) > -1)
+		$(selector).each((i, e) => {					
+			if(location.hash.search(e.getAttribute('href')) > -1){
 				e.parentNode.classList.add('active');
-			else
+			}else{
 				e.parentNode.classList.remove('active');
-		}
-
-		for(let e of $('menu-clab .first-level-menu>li')){
+			}
+		});
+		$('menu-clab .first-level-menu>li').each((i, e) => {					
 			e.classList.remove('open');
-		}
-
+		});
 		if(evt.currentTarget.nextElementSibling.tagName === 'UL'){
 			evt.preventDefault();
 			evt.currentTarget.parentNode.classList.add('open');
-			for(let e of $(selector)){
+			$(selector).each((i,e) => {
 				e.parentNode.classList.remove('active');
-			}
+			});
 			evt.currentTarget.parentNode.classList.add('active');
 		}
 	}
 
 	_activeItem(evt){
 		let selector = 'menu-clab .second-level-menu>li>a';
-		for(let e of $(selector)){
+		$(selector).each((i, e) => {
 			e.parentNode.classList.remove('active');
-		}
+		});
 		evt.currentTarget.parentNode.classList.add('active')
 	}
 
@@ -96,9 +94,9 @@ class MenuClab{
 					break;
 				default:
 					document.querySelector('#logo a').focus();
-					for(let e of $('menu-clab .first-level-menu>li')){
+					$('menu-clab .first-level-menu>li').each((i,e) =>{
 						e.classList.remove('open');
-					}
+					});
 					break;
 			}
 		});
