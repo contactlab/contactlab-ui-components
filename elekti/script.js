@@ -50,8 +50,9 @@ var ElektiMer = (function () {
 					type: String,
 					value: 'No results found'
 				},
-				getOptions: {
-					type: Function
+				optionsFn: {
+					type: Function,
+					observer: '_setOptions'
 				}
 			};
 		}
@@ -69,14 +70,12 @@ var ElektiMer = (function () {
 			this.value = this.input.value;
 		}
 	}, {
-		key: 'setOptions',
-		value: function setOptions(promise) {
+		key: '_setOptions',
+		value: function _setOptions(promise) {
 			var _this = this;
 
-			var test = [{ value: 'A', label: 'Bella raga' }, { value: 'B', label: 'Tuttp rego' }, { value: 'B', label: 'La gazza' }];
 			promise.then(function (resp) {
-				_this.options = test;
-				_this.value = _this.options[0];
+				_this.options = resp;
 			});
 		}
 	}, {
