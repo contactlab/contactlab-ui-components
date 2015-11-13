@@ -22,7 +22,8 @@ class ElektiMer{
 				type: 'Object',
 				/*readonly: true*/
 				reflectToAttribute: true,
-				notify: true
+				notify: true,
+				observer: '_updateValue'
 			},
 			open: {
 				type: Boolean,
@@ -53,6 +54,13 @@ class ElektiMer{
 		this.value = this.input.value;
 	}
 
+	_updateValue(){
+		if(typeof this.value == 'object'){
+			this.input.value = this.value.label;
+			this.highlightedElement();
+		}
+	}
+
 	_searchKey(key){
 		let n;
 		let thisComp = this;
@@ -70,10 +78,6 @@ class ElektiMer{
 
 	dashify(str){
 		return str.replace(/ /g,'-');
-	}
-
-	updateValue(){
-		// this.value = this.input.value;
 	}
 
 	highlightedElement(){
