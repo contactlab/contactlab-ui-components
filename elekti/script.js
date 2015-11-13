@@ -113,11 +113,12 @@ var ElektiMer = (function () {
 	}, {
 		key: 'selectElement',
 		value: function selectElement(evt) {
+			var old = this.value;
 			this.input.value = evt.target.innerHTML;
 			var i = this._getValue(evt.target.getAttribute('data-value'));
 			this.value = this.options[i];
 			this.activeInput('blur');
-			this.fire('change');
+			this.fire('change', { 'newValue': this.value, 'oldValue': old });
 		}
 	}, {
 		key: '_getValue',

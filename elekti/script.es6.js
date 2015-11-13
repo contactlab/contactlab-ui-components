@@ -97,11 +97,12 @@ class ElektiMer{
 	}
 
 	selectElement(evt){
+		let old = this.value;
 		this.input.value = evt.target.innerHTML;
 		let i = this._getValue(evt.target.getAttribute('data-value'))
 		this.value = this.options[i];
 		this.activeInput('blur');
-		this.fire('change');
+		this.fire('change', { 'newValue': this.value, 'oldValue': old});
 	}
 
 	_getValue(value){
