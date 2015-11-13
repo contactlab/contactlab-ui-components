@@ -38,8 +38,9 @@ class ElektiMer{
 				type: String,
 				value: 'No results found'
 			},
-			getOptions: {
-				type: Function
+			optionsFn: {
+				type: Function,
+				observer: '_setOptions'
 			}
 		}
 	}
@@ -57,9 +58,9 @@ class ElektiMer{
 		this.value = this.input.value;
 	}
 
-	setOptions(promise){
+	_setOptions(promise){
 		promise.then((resp) => {
-			this.options = test;
+			this.options = resp;
 		});
 	}
 
