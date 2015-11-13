@@ -74,6 +74,7 @@ var ElektiMer = (function () {
 		value: function _setOptions(promise) {
 			var _this = this;
 
+			console.log('test');
 			promise.then(function (resp) {
 				_this.options = resp;
 			});

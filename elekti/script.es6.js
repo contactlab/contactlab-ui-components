@@ -12,6 +12,7 @@ class ElektiMer{
 			},
 			options: {
 				type: Array,
+				observer: '_setOptions',
 				value: [{value: 'A', label: 'Option 1'}
 				,{value: 'B', label: 'Option 2'}]
 			},
@@ -37,10 +38,6 @@ class ElektiMer{
 			noResults: {
 				type: String,
 				value: 'No results found'
-			},
-			optionsFn: {
-				type: Function,
-				observer: '_setOptions'
 			}
 		}
 	}
@@ -58,10 +55,15 @@ class ElektiMer{
 		this.value = this.input.value;
 	}
 
-	_setOptions(promise){
-		promise.then((resp) => {
-			this.options = resp;
-		});
+	_setOptions(data){
+		if(typeof data == 'function'){
+			data.then((resp) => {
+				this.options = resp;
+			});
+		}
+		if(typeof data == 'object'){
+			this.value = data;
+		}
 	}
 
 	_updateValue(){
