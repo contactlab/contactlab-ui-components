@@ -34,8 +34,8 @@ class MenuClab{
 		this._iosMenu();
 
 		setTimeout(() => {
-			let firstLevelA = $('menu-clab .first-level-menu>li>a');
-			let secondLevelA = $('menu-clab .second-level-menu>li>a');
+			let firstLevelA = Array.from($('menu-clab .first-level-menu>li>a'));
+			let secondLevelA = Array.from($('menu-clab .second-level-menu>li>a'));
 
 			for(let e of firstLevelA){
 				if(location.hash.search(e.getAttribute('href')) > -1)
