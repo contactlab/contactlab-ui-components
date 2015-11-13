@@ -49,6 +49,9 @@ var ElektiMer = (function () {
 				noResults: {
 					type: String,
 					value: 'No results found'
+				},
+				getOptions: {
+					type: Function
 				}
 			};
 		}
@@ -64,6 +67,17 @@ var ElektiMer = (function () {
 				thisComp.activeInput('blur');
 			};
 			this.value = this.input.value;
+		}
+	}, {
+		key: 'setOptions',
+		value: function setOptions(promise) {
+			var _this = this;
+
+			var test = [{ value: 'A', label: 'Bella raga' }, { value: 'B', label: 'Tuttp rego' }, { value: 'B', label: 'La gazza' }];
+			promise.then(function (resp) {
+				_this.options = test;
+				_this.value = _this.options[0];
+			});
 		}
 	}, {
 		key: '_updateValue',
@@ -123,25 +137,25 @@ var ElektiMer = (function () {
 	}, {
 		key: '_getValue',
 		value: function _getValue(value) {
-			var _this = this;
+			var _this2 = this;
 
 			var n = undefined;
 			this.options.forEach(function (opt) {
-				opt.value == value ? n = _this.options.indexOf(opt) : null;
+				opt.value == value ? n = _this2.options.indexOf(opt) : null;
 			});
 			return n;
 		}
 	}, {
 		key: 'handleListVisibility',
 		value: function handleListVisibility(evt) {
-			var _this2 = this;
+			var _this3 = this;
 
 			this.input.classList.add('active');
 			var thisComp = this;
 			setTimeout(function () {
-				_this2._slideToggle();
-				_this2.open = _this2.$.list.classList.contains('visible');
-				_this2.highlightedElement();
+				_this3._slideToggle();
+				_this3.open = _this3.$.list.classList.contains('visible');
+				_this3.highlightedElement();
 			}, 150);
 			this.activeInput(evt.type);
 		}

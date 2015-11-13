@@ -179,9 +179,31 @@ modal.addEventListener('modal-secondary',function(){
 // Calendar
 document.querySelector('calendar-clab').options = {time: false};
 
-document.querySelector('elekti-mer').addEventListener('change', function(evt){
+// Advanced select
+var elekti = document.querySelector('elekti-mer');
+
+elekti.addEventListener('change', function(evt){
 	console.log(evt.detail);
-})
+});
+
+function chiamata(){
+	return window.fetch('http://jsonplaceholder.typicode.com/users')
+	  .then(function(data){
+	    return data.json();
+	  })
+	  .then(function(data){
+	    data.push('yo');
+	    return window.fetch('http://jsonplaceholder.typicode.com/posts')
+	      .then(function(data2){
+	        return data2.json();
+	      })
+	      .then(function(resp){
+	        return data.concat(resp)
+	      })
+	  })
+}
+
+elekti.setOptions(chiamata());
 
 </script>
 

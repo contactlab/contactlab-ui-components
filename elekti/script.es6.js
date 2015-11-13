@@ -37,6 +37,9 @@ class ElektiMer{
 			noResults: {
 				type: String,
 				value: 'No results found'
+			},
+			getOptions: {
+				type: Function
 			}
 		}
 	}
@@ -52,6 +55,12 @@ class ElektiMer{
 			thisComp.activeInput('blur');
 		};
 		this.value = this.input.value;
+	}
+
+	setOptions(promise){
+		promise.then((resp) => {
+			this.options = test;
+		});
 	}
 
 	_updateValue(){
