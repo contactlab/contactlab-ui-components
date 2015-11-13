@@ -37,7 +37,7 @@ gulp.task('babel', function () {
 });
 
 gulp.task('_es6Watch', function() {
-  return gulp.src('**/*.es6.sj')
+  return gulp.src('**/*.es6.js')
     .pipe(watch('**/*es6.js'))
     .pipe(babel())
     .pipe(rename(function(path){

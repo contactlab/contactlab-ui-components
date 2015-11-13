@@ -2,11 +2,12 @@
 
 <dom-module id="tooltip-clab" attributes="data-ot">
 	<style></style>
+	<link rel="stylesheet" href="../../opentip/css/opentip.css">
 	
 	<template>	
-		<div data-ot$="[[text]]" data-ot-hide-trigger="[[hideTrigger]]" on-click="_sayHi">
+		<span id$="[[ttId]]" class="tooltip">
 			<content></content>
-		</div>
+		</span>
 	</template>
 
 	<script src="../../opentip/lib/opentip.js"></script>

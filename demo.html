@@ -140,8 +140,21 @@
 
 	<div class="content">
 		<h2>Tooltip</h2>
-		<tooltip-clab content="Ciccio puzzo">
-			Esempio di tooltip
+		<tooltip-clab tt-id="tooltip1" tt-content="Here goes the content" tt-title="Title">
+			Very simple tooltip
+		</tooltip-clab>
+
+		<tooltip-clab tt-id="tooltip2" tt-content="Here goes the content" tt-title="Title" shown-on="click" hide-on="click">
+			Tooltip triggered on click
+		</tooltip-clab>
+
+		<br><br>
+
+		<tooltip-clab tt-id="tooltip3" tt-content="Here goes the content" tt-title="Title" tip-joint="top left">
+			Tooltip on top-right
+		</tooltip-clab>
+		<tooltip-clab tt-id="tooltip6" tt-content="Here goes the content" tt-title="Title" tip-joint="top">
+			Tooltip on top
 		</tooltip-clab>
 	</div>
 
