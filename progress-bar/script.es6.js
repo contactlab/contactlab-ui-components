@@ -38,20 +38,20 @@ class ProgressClab{
 		}
 	}
 
-	computeProp(value){
+	_computeProp(value){
 		return 'width:' + this.value + '%;';
 	}
 
-	computeClass(minimal,color){
+	_computeClass(minimal,color){
 		let vals = ['minimal','primary','secondary','info','success','warning','error'];
 		let classes = ['progress-bar'];
-		for(let a of arguments){
-			a ? classes.push(vals[i]) : null;
+		for(let i = 0; i < arguments.length; i++){
+			arguments[i] ? classes.push(vals[i]) : null;
 		}
 		return classes.join(' ');
 	}
 
-	percent(value){
+	_percent(value){
 		return value + '%';
 	}
 

@@ -45,7 +45,11 @@ var CalendarClab = (function () {
 	}, {
 		key: "attached",
 		value: function attached() {
-			this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
+			var _this = this;
+
+			setTimeout(function () {
+				_this.inline ? _this._createInstance('div.inline-cal') : _this._createInstance("input");
+			}, 50);
 		}
 	}, {
 		key: "_focusElement",
