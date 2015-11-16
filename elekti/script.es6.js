@@ -59,7 +59,7 @@ class ElektiMer{
 	}
 
 	_setOptions(promise){
-		promise.then((resp) => {
+		promise().then((resp) => {
 			this.options = resp;
 		});
 	}
