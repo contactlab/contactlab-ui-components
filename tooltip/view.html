@@ -1,16 +1,18 @@
 <link rel="import" href="../../polymer/polymer.html">
 
-<dom-module id="tooltip-clab" attributes="data-ot">
-	<style></style>
-	<link rel="stylesheet" href="../../opentip/css/opentip.css">
+<dom-module id="tooltip-clab">
+	<style>
+
+	</style>
 	
-	<template>	
-		<span id$="[[ttId]]" class="tooltip">
+	<template>
+		<span class$="[[_computeBtnClass(type)]]" data-tooltip$="[[content]]" on-mouseover="_onHover">
 			<content></content>
 		</span>
 	</template>
 
-	<script src="../../opentip/lib/opentip.js"></script>
-	<script src="../../opentip/lib/adapter-native.js"></script>
+	<script src="../../kawo-tooltip/kawo-tooltip.js"></script>
 	<script src="script.js"></script>
 </dom-module>
+
+<!-- https://github.com/mailmangroup/kawo-tooltip/ -->

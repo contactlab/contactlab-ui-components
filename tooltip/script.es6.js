@@ -3,48 +3,31 @@ class TooltipClab{
 	beforeRegister(){
 		this.is = "tooltip-clab";
 		this.properties = {
-			ttId: String,
-			ttTitle: String,
-			ttContent: String,
-			fixed: {
-				type: Boolean,
-				value: true
+			content: {
+				type: String
 			},
-			titleIsHtml: {
-				type: Boolean,
-				value: false
-			},
-			contentIsHtml: {
-				type: Boolean,
-				value: false
-			},
-			shownOn: {
+			type: {
 				type: String,
-				value: "mouseover"
+				value: ""
 			},
-			hideOn: {
+			ttType: {
 				type: String,
-				value: "mouseleave"
-			},
-			tipJoint: {
-				type: String,
-				value: "top left"
+				value: ""
 			}
 		}
 	}
 
-	ready(){
-		let tt = new Opentip('#'+this.ttId, this.ttContent, this.ttTitle, {
-			tipJoint: this.tipJoint,
-			fixed: this.fixed,
-			showOn: this.shownOn,
-			hideOn: this.hideOn
-		});
-		console.log(tt);
+	_onHover(){
+		document.querySelector('.kawo-tooltip').className = 'kawo-tooltip'; 
+		document.querySelector('.kawo-tooltip-arrow').className = 'kawo-tooltip-arrow';
+		if(this.ttType){
+			document.querySelector('.kawo-tooltip').classList.add(this.ttType); 
+			document.querySelector('.kawo-tooltip-arrow').classList.add(this.ttType);
+		} 
+	}
 
-		/*this.querySelector('#'+this.ttId).setAttribute('data-ot', this.ttContent);
-		this.querySelector('#'+this.ttId).setAttribute('data-ot-title', this.ttTitle);		
-		this.querySelector('#'+this.ttId).setAttribute('data-ot-fixed', this.fixed);*/	
+	_computeBtnClass(type){
+		return ['tooltip',type].join(' ');
 	}
 
 
