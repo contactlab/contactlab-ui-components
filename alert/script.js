@@ -49,9 +49,9 @@ var AlertClab = (function () {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
 			if (!evt.target.classList.contains('flat')) {
-				this.fire('primary', { secondary: true });
+				this.fire('primary');
 			} else {
-				this.fire('secondary', { primary: true });
+				this.fire('secondary');
 			}
 		}
 	}]);

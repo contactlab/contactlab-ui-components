@@ -33,7 +33,9 @@ class CalendarClab{
 	}
 
 	attached(){
-		this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
+		setTimeout(() => {
+			this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
+		},50 );
 	}
 
 	_focusElement(){

@@ -49,45 +49,23 @@ var ProgressClab = (function () {
 			};
 		}
 	}, {
-		key: 'computeProp',
-		value: function computeProp(value) {
+		key: '_computeProp',
+		value: function _computeProp(value) {
 			return 'width:' + this.value + '%;';
 		}
 	}, {
-		key: 'computeClass',
-		value: function computeClass(minimal, color) {
+		key: '_computeClass',
+		value: function _computeClass(minimal, color) {
 			var vals = ['minimal', 'primary', 'secondary', 'info', 'success', 'warning', 'error'];
 			var classes = ['progress-bar'];
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = arguments[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var a = _step.value;
-
-					a ? classes.push(vals[i]) : null;
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
+			for (var i = 0; i < arguments.length; i++) {
+				arguments[i] ? classes.push(vals[i]) : null;
 			}
-
 			return classes.join(' ');
 		}
 	}, {
-		key: 'percent',
-		value: function percent(value) {
+		key: '_percent',
+		value: function _percent(value) {
 			return value + '%';
 		}
 	}]);
