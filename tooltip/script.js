@@ -15,7 +15,8 @@ var TooltipClab = (function () {
 			this.is = "tooltip-clab";
 			this.properties = {
 				content: {
-					type: String
+					type: String,
+					value: 'The content'
 				},
 				type: {
 					type: String,
