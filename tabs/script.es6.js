@@ -5,7 +5,7 @@ class TabsClab{
 		this.properties = {
 			labels: {
 				type: Array,
-				value: ['Tab 1', 'Tab 2']
+				value: []
 			},
 			pills: {
 				type: Boolean,
@@ -32,6 +32,22 @@ class TabsClab{
 			content.style.display = 'none';
 		}
 		this.tabContent[this.active].style.display = 'block';
+	}
+
+	_computedLabels(tabContent, labels){
+		var newLabels = labels;
+
+		if(tabContent.length>=labels.length){
+			for(var i=0; i<tabContent.length; i++){
+				if(newLabels[i]===undefined){
+					newLabels.push('Tab '+(i+1));
+				}
+			}
+		} else {
+			console.error("There are labels without content" );
+		}
+
+		return newLabels;
 	}
 
 	_computeType(pills){
