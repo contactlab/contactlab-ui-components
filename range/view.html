@@ -1,0 +1,47 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="range-clab">
+	<style>
+
+		.range-wrapper::after,
+		.range-wrapper::before{
+			content:"";
+			display: block;
+			clear:both;
+		}
+		.range-wrapper span{
+			float: left;
+			clear:none;
+			width: 2.3%;
+			text-align: center;
+		}
+		.range-wrapper input{
+			float: left;
+			clear:none;
+			width: 95%;
+		}
+
+	</style>
+	
+	<template>		
+		<div class$="[[_computeType(type)]]">
+			<template is="dom-if" if="[[_viewLabel(label)]]">
+				<label for$="[[_dashify(name)]]">[[label]]</label>
+			</template>
+			<div class="range-wrapper">
+				<span>[[min]]</span>
+				<input type="range" name$="[[_dashify(name)]]" min$="[[min]]" max$="[[max]]" step$="[[step]]" value$="{{value}}" on-change="_updateCompValue">
+				<span>[[max]]</span>
+			</div>
+			<div class="value">
+				Range value: <span>[[value]]</span>
+			</div>
+			<!-- <div class="note">
+				<content></content>
+			</div> -->
+		</div>
+
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
