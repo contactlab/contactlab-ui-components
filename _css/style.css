@@ -8069,6 +8069,68 @@ body.main-sidebar-small header .app-switch {
 
 
 
+.kawo-tooltip {
+    max-width: 200px;
+    padding: 5px 8px;
+    font-size: 12px;
+    color: #fff;
+    background-color: #353A3D;
+    border-radius: 2px;
+    -webkit-transition: opacity .2s ease-in-out;
+  }
+
+  .kawo-tooltip-arrow {
+    border: 6px solid #353A3D;
+    border-bottom-color: transparent;
+    border-right-color: transparent;
+  }
+
+  .kawo-tooltip.primary{
+    background-color: #0072bc;
+  }
+  .kawo-tooltip-arrow.primary{
+        border-color: #0072bc;
+  }
+
+  .kawo-tooltip.secondary{
+    background-color: #4d9cd0;
+  }
+  .kawo-tooltip-arrow.secondary{
+        border-color: #4d9cd0;
+  }
+
+  .kawo-tooltip.info{
+    background-color: #6ac7f1;
+  }
+  .kawo-tooltip-arrow.info{
+        border-color: #6ac7f1;
+  }
+
+  .kawo-tooltip.success{
+    background-color: #73bf7a;
+  }
+  .kawo-tooltip-arrow.success{
+        border-color: #73bf7a;
+  }
+
+  .kawo-tooltip.warning{
+    background-color: #fd6b3c;
+  }
+  .kawo-tooltip-arrow.warning{
+        border-color: #fd6b3c;
+  }
+
+  .kawo-tooltip.error{
+    background-color: #f3594e;
+  }
+  .kawo-tooltip-arrow.error{
+        border-color: #f3594e;
+  }
+
+
+
+
+
 
 
 

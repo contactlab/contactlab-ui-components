@@ -34,7 +34,7 @@ class AlertClab {
 	}
 
 	_handleClick(evt){
-		if(!evt.target.classList.contains('flat')){
+		if(evt.target.classList.contains('flat')){
 			this.fire('primary');
 		}else{
 			this.fire('secondary');
