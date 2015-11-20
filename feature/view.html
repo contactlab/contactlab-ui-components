@@ -1,0 +1,28 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="feature-clab">
+	<style></style>
+	
+	<template>
+		<div class$="[[_computeFeatureClass(size, vertical)]]">
+			<template is="dom-if" if="[[iconClass]]">
+				<div class="icon">
+	        		<i class$="[[iconClass]]"></i>
+	        	</div>
+			</template>
+			<template is="dom-if" if="[[src]]">
+				<div class="icon">
+	        		<img src$="[[src]]" alt="">
+	        	</div>
+			</template>
+
+	        <div class="description">
+	          <a href$="[[link]]">
+	            <content></content>
+	          </a>
+	        </div>
+      	</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
