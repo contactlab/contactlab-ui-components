@@ -1,0 +1,19 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="radio-clab">
+	<style>
+
+	</style>
+	
+	<template>		
+		<template is="dom-repeat" items="[[labels]]">
+			<div class$="[[_computeType(wrapperType)]]">
+				<input id$="[[_dashify(item)]]" type="radio" name="[[name]]" value$="[[_dashify(item)]]" checked$="[[_checkIfTrue(index, active)]]" disabled$="[[_checkIfTrue(index, disabled)]]">
+				<label for$="[[_dashify(item)]]">[[item]]</label>
+			</div>
+		</template>
+
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
