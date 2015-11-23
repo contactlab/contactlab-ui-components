@@ -1,0 +1,35 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="pagination-clab">
+	<style>
+	
+		.page.invisible{
+			display: none;
+		}
+
+	</style>
+	
+	<template>
+		<ul class="pagination">
+			<li class="first">
+				<a href$="[[firstPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-double-left" data-index="0"></i></a>
+			</li>
+			<li>
+		      <a href$="[[prevPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-left" data-index$="[[_getIndex(prevPage)]]"></i></a>
+		    </li>
+
+			<template is="dom-repeat" items="[[pages]]">
+				<li class="page invisible"><a href$="[[item]]" on-click="setThisAsCurrent" data-index$="[[index]]">[[_pageNumber(index)]]</a></li>
+			</template>
+
+			<li>
+		      <a href$="[[nextPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-right" data-index$="[[_getIndex(nextPage)]]"></i></a>
+		    </li>
+			<li class="last">
+		      <a href$="[[lastPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-double-right" data-index$="[[_getIndex(lastPage)]]"></i></a>
+		    </li>
+		 </ul>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
