@@ -4,7 +4,8 @@ var gulp = require('gulp'),
   	babel = require("gulp-babel"),
     connect = require('gulp-connect'),
   	watch = require('gulp-watch'),
-  	rename = require("gulp-rename");
+  	rename = require("gulp-rename"),
+    plumber = require('gulp-plumber');
 
 var currentPath = './';
 
@@ -38,6 +39,7 @@ gulp.task('babel', function () {
 
 gulp.task('_es6Watch', function() {
   return gulp.src('**/*.es6.js')
+    .pipe(plumber())
     .pipe(watch('**/*es6.js'))
     .pipe(babel())
     .pipe(rename(function(path){
