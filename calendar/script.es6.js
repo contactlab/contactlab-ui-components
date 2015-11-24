@@ -76,6 +76,13 @@ class CalendarClab{
 		return rome.find(this.querySelector('input'));
 	}
 
+	clear(){
+		this.value = '';
+		this.querySelector('input').value = '';
+		let rome  = this.getRomeInstance();
+		rome.setValue(moment().format());
+	}
+
 }
 
 

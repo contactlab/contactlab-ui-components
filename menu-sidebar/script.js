@@ -46,7 +46,7 @@ var MenuClab = (function () {
 			this._iosMenu();
 
 			setTimeout(function () {
-				$('menu-clab .first-level-menu>li>a').each(function (i, e) {
+				_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li>a'), function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -54,7 +54,7 @@ var MenuClab = (function () {
 					}
 				});
 
-				$('menu-clab .second-level-menu>li>a').each(function (i, e) {
+				_.forEach(document.querySelectorAll('menu-clab .second-level-menu>li>a'), function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -66,21 +66,21 @@ var MenuClab = (function () {
 	}, {
 		key: '_openItem',
 		value: function _openItem(evt) {
-			var selector = 'menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a';
-			$(selector).each(function (i, e) {
+			var selector = document.querySelectorAll('menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a');
+			_.forEach(selector, function (e, i) {
 				if (location.hash.search(e.getAttribute('href')) > -1) {
 					e.parentNode.classList.add('active');
 				} else {
 					e.parentNode.classList.remove('active');
 				}
 			});
-			$('menu-clab .first-level-menu>li').each(function (i, e) {
+			_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li'), function (e, i) {
 				e.classList.remove('open');
 			});
 			if (evt.currentTarget.nextElementSibling.tagName === 'UL') {
 				evt.preventDefault();
 				evt.currentTarget.parentNode.classList.add('open');
-				$(selector).each(function (i, e) {
+				_.forEach(selector, function (e, i) {
 					e.parentNode.classList.remove('active');
 				});
 				evt.currentTarget.parentNode.classList.add('active');
@@ -89,8 +89,8 @@ var MenuClab = (function () {
 	}, {
 		key: '_activeItem',
 		value: function _activeItem(evt) {
-			var selector = 'menu-clab .second-level-menu>li>a';
-			$(selector).each(function (i, e) {
+			var selector = document.querySelectorAll('menu-clab .second-level-menu>li>a');
+			_.forEach(selector, function (e, i) {
 				e.parentNode.classList.remove('active');
 			});
 			evt.currentTarget.parentNode.classList.add('active');
@@ -98,7 +98,7 @@ var MenuClab = (function () {
 	}, {
 		key: '_iosMenu',
 		value: function _iosMenu() {
-			$('body main').on('click', function (evt) {
+			document.querySelector('body main').addEventListener('click', function (evt) {
 				switch (evt.target.nodeName) {
 					case 'INPUT':
 					case 'BUTTON':
@@ -109,7 +109,8 @@ var MenuClab = (function () {
 						break;
 					default:
 						document.querySelector('#logo a').focus();
-						$('menu-clab .first-level-menu>li').each(function (i, e) {
+						var elems = document.querySelectorAll('menu-clab .first-level-menu>li');
+						_.forEach(elems, function (e, i) {
 							e.classList.remove('open');
 						});
 						break;
