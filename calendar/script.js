@@ -90,6 +90,14 @@ var CalendarClab = (function () {
 		value: function getRomeInstance() {
 			return rome.find(this.querySelector('input'));
 		}
+	}, {
+		key: "clear",
+		value: function clear() {
+			this.value = '';
+			this.querySelector('input').value = '';
+			var rome = this.getRomeInstance();
+			rome.setValue(moment().format());
+		}
 	}]);
 
 	return CalendarClab;
