@@ -1,4 +1,4 @@
-class PaginationClab {
+class PaginationClab{
 
 	beforeRegister(){
 		this.is = "pagination-clab";
@@ -48,9 +48,11 @@ class PaginationClab {
 	}
 
 	attached(){
-		this.querySelectorAll('.page')[this.currentPage-1].classList.add('active');
-		this._updateAvailablePages();
-		this.addEventListener('pageChanged', this.updateSelectedPage);
+		this.async(function(){
+			this.querySelectorAll('.page')[this.currentPage-1].classList.add('active');
+			this._updateAvailablePages();
+			this.addEventListener('pageChanged', this.updateSelectedPage);
+		},500);
 	}
 
 	updateSelectedPage(e){
@@ -131,12 +133,7 @@ class PaginationClab {
 		}
 	}
 
-
-
-	
-
-
 }
 
-
 Polymer(PaginationClab);
+

@@ -59,9 +59,11 @@ var PaginationClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
-			this.querySelectorAll('.page')[this.currentPage - 1].classList.add('active');
-			this._updateAvailablePages();
-			this.addEventListener('pageChanged', this.updateSelectedPage);
+			this.async(function () {
+				this.querySelectorAll('.page')[this.currentPage - 1].classList.add('active');
+				this._updateAvailablePages();
+				this.addEventListener('pageChanged', this.updateSelectedPage);
+			}, 500);
 		}
 	}, {
 		key: 'updateSelectedPage',
