@@ -46,7 +46,7 @@ gulp.task('watch-es6', function() {
     .pipe(babel())
     .pipe(rename(function(path){
         path.basename = path.basename.replace(/.es6$/, '');
-        console.log(path.basename);
+        console.log('updated: ',path.basename);
     }))
     .pipe(gulp.dest(''));
 });

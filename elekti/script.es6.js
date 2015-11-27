@@ -12,15 +12,21 @@ class ElektiMer{
 			},
 			options: {
 				type: Array,
-				value: [{value: 'A', label: 'Option 1'}
-				,{value: 'B', label: 'Option 2'}]
+				value: [
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'}
+				]
 			},
 			default: {
-				type: Number
+				type: String
+			},
+			placeholder: {
+				type: String,
+				value: 'Select...'
 			},
 			value: {
 				type: 'Object',
-				/*readonly: true*/
+				/*readonly: true,*/
 				reflectToAttribute: true,
 				notify: true,
 				observer: '_updateValue'
@@ -45,18 +51,32 @@ class ElektiMer{
 		}
 	}
 
-
 	ready(){
-		let thisComp = this;
-		this.input = this.$$('#' + this.dashify(this.name));
-		let n = this._searchKey(this.default)
-		if((this.default || this.default === 0) && (typeof n == 'number')){
-			thisComp.input.value = thisComp.options[n].label;
-			thisComp.value = thisComp.options[n].value;
-			thisComp.activeInput('blur');
-		};
-		this.value = this.input.value;
+		this.input = this.$$('#' + this._dashify(this.name));
+		let i = this.getIndex(this.default);
+		if((this.default || this.default === 0) && (typeof i == 'number')){
+			this.input.value = this.options[i].label;
+			this.value = this.options[i];
+			//this.activeInput('blur');
+		}
 	}
+
+	attached(){
+		this.liHeight = this.$.list.children[0].clientHeight;
+
+		this.$$('.input-wrapper').addEventListener('mousedown', (evt)=>{
+			if(evt.target.localName=='ol') this.dontHide=true; else this.dontHide=false;
+		});
+		this.$$('.input-wrapper').addEventListener('mouseup', (evt)=>{
+			this.dontHide=false;
+		});
+	}
+
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
 
 	_setOptions(promise){
 		promise().then((resp) => {
@@ -71,11 +91,16 @@ class ElektiMer{
 		}
 	}
 
-	_searchKey(key){
+
+
+	/*---------- 
+	UTILS & COMPUTED VALUES
+	----------*/
+
+	getIndex(value){
 		let n;
-		let thisComp = this;
-		thisComp.options.forEach(opt => {
-			(opt.value === key) ? n = thisComp.options.indexOf(opt) : null;
+		this.options.forEach(opt => {
+			opt.value == value ? n = this.options.indexOf(opt) : null;
 		});
 		return n;
 	}
@@ -86,8 +111,22 @@ class ElektiMer{
 		return arr.join(' ');
 	}
 
-	dashify(str){
+	_dashify(str){
 		return str.replace(/ /g,'-');
+	}
+
+	activeInput(type){
+		if(type === 'blur' && this.input.value !== "")
+			this.input.classList.add('active');
+		else
+			this.input.classList.remove('active');
+	}
+
+	_viewLabel(label) {
+		if(label.length > 0)
+			return true;
+		else 
+			return false;
 	}
 
 	highlightedElement(){
@@ -99,75 +138,93 @@ class ElektiMer{
 		});
 	}
 
-	activeInput(type){
-		if(type === 'blur' && this.input.value !== "")
-			this.input.classList.add('active');
+	slideToggle(action){
+		if(action==='open'){
+			this.$.list.classList.add('visible');
+			let n= this.$.list.querySelectorAll('li.hide').length;
+			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+		} else {
+			this.$.list.classList.remove('visible');
+			this.$.list.style.height = "0px";
+		}
+		/*this.$.list.classList.toggle('visible');
+		if(this.$.list.classList.contains('visible'))
+			this.$.list.style.height = (this.liHeight * this.options.length) + "px";
 		else
-			this.input.classList.remove('active');
+			this.$.list.style.height = "0px";*/
 	}
 
-	selectElement(evt){
+	/*_dropOnly(){
+		if(this.noSearch){
+			this.slideToggle();
+			this.highlightedElement();
+		}
+	}*/
+
+
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+
+	_selectElement(evt){
 		let old = this.value;
 		this.input.value = evt.target.innerHTML;
-		let i = this._getValue(evt.target.getAttribute('data-value'))
+		let i = this.getIndex(evt.target.getAttribute('data-value'));
 		this.value = this.options[i];
 		this.activeInput('blur');
 		this.fire('change', { 'newValue': this.value, 'oldValue': old});
+		console.log(this.value);
+		this._handleListVisibility(evt);
 	}
 
-	_getValue(value){
-		let n;
-		this.options.forEach(opt => {
-			opt.value == value ? n = this.options.indexOf(opt) : null;
-		});
-		return n;
-	}
-
-	handleListVisibility(evt){
-		this.input.classList.add('active');
-		let thisComp = this;
-		setTimeout(() => {
-			this._slideToggle();
-			this.open = this.$.list.classList.contains('visible');
-			this.highlightedElement();
-		},150);
-		this.activeInput(evt.type);
-	}
-
-	_slideToggle(){
-		this.$.list.classList.toggle('visible');
-		if(this.$.list.classList.contains('visible'))
-			this.$.list.style.height = (44 * this.options.length) + "px";
-		else
-			this.$.list.style.height = "0px";
-	}
-
-	dropOnly(){
-		if(this.noSearch){
-			this._slideToggle();
-			this.highlightedElement();
+	_handleListVisibility(evt){
+		console.log(this.dontHide);
+		if(evt.type=='focus'){
+			this.input.classList.add('active');
+			setTimeout(() => {
+				this.slideToggle('open');
+				this.open = true;
+				this.highlightedElement();
+			},150);
+		} else if(this.dontHide){
+			this.input.focus();
+		} else if(!this.dontHide) {
+			this.input.classList.remove('active');
+			setTimeout(() => {
+				this.slideToggle('close');
+				this.open = false;
+			},150);
 		}
 	}
 
-	searchElement(e){
+	_searchElement(evt){
 		let search = this.input.value.toLowerCase();
 		let elems = this.$.list.querySelectorAll('li');
+		this.$.list.style.height = (this.liHeight*elems.length) + 'px';
+		let height = this.$.list.clientHeight;
+
 		Array.from(elems).forEach(el => {
 			let str = el.innerHTML;
-			(str.toLowerCase().search(search) == -1) ? el.classList.add('hide') : el.classList.remove('hide');
+			if(str.toLowerCase().search(search) == -1){
+				el.classList.add('hide');
+			} else {
+				el.classList.remove('hide');
+			}
 		});
-		let results = this.$.list.querySelectorAll('li.hide');
-		( results.length === elems.length ) ? this.$.noRes.classList.remove('hide') : this.$.noRes.classList.add('hide');
+
+		let unMatchedOpt = this.$.list.querySelectorAll('li.hide');
+		this.$.list.style.height = ((elems.length - unMatchedOpt.length) * this.liHeight) + "px";
+
+		if( unMatchedOpt.length === elems.length ){
+			this.$.noRes.classList.remove('hide');
+			this.$.list.style.height = this.liHeight + "px";
+		} else {
+			this.$.noRes.classList.add('hide');
+		}
 		this.highlightedElement();
 	}
-
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else 
-			return false;
-	}
-
 }
 
 

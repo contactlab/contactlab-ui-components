@@ -6154,7 +6154,7 @@ select[multiple] {
   z-index: 1;
   width: 100%;
   top: 37px;
-  max-height: 200px;
+  max-height: 205px;
   overflow: auto;
 }
 .elekti-wrapper .js-users-list li,
