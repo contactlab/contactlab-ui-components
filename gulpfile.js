@@ -37,16 +37,19 @@ gulp.task('babel', function () {
   }
 });
 
-gulp.task('_es6Watch', function() {
+
+
+gulp.task('watch-es6', function() {
   return gulp.src('**/*.es6.js')
     .pipe(plumber())
     .pipe(watch('**/*es6.js'))
     .pipe(babel())
     .pipe(rename(function(path){
         path.basename = path.basename.replace(/.es6$/, '');
+        console.log(path.basename);
     }))
     .pipe(gulp.dest(''));
 });
 
 
-gulp.task('default', ['_es6Watch']);
+gulp.task('default', ['watch-es6']);
