@@ -49,6 +49,7 @@ class GroupClab{
 			btn.addEventListener('click',this._selectElement.bind(this))
 		});
 		(typeof btns[this.value].appearance === 'string') ? btns[this.value].appearance = 'full' : null;
+		this.fire('change', {value: this.value});
 	}
 
 	_computeGroupClass(type,small){
