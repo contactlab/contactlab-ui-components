@@ -38,8 +38,14 @@ class CalendarClab{
 		},50 );
 	}
 
-	_focusElement(){
-		this.querySelector('input').focus();
+	_checkClear(evt){
+		this.querySelector('input').value == "" ? this.clear() : null;
+	}
+
+	_focusElement(evt){
+		setTimeout(() => {
+			this.getRomeInstance().show();
+		},50);
 	}
 
 	_createInstance(selector){
