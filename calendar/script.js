@@ -52,9 +52,18 @@ var CalendarClab = (function () {
 			}, 50);
 		}
 	}, {
+		key: "_checkClear",
+		value: function _checkClear(evt) {
+			this.querySelector('input').value == "" ? this.clear() : null;
+		}
+	}, {
 		key: "_focusElement",
-		value: function _focusElement() {
-			this.querySelector('input').focus();
+		value: function _focusElement(evt) {
+			var _this2 = this;
+
+			setTimeout(function () {
+				_this2.getRomeInstance().show();
+			}, 50);
 		}
 	}, {
 		key: "_createInstance",
