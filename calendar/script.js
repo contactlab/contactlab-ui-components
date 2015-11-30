@@ -2,6 +2,8 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var CalendarClab = (function () {
@@ -31,8 +33,7 @@ var CalendarClab = (function () {
 					value: false
 				},
 				options: {
-					type: Object,
-					value: {}
+					type: Object
 				},
 				placeholder: {
 					type: String
@@ -69,7 +70,9 @@ var CalendarClab = (function () {
 	}, {
 		key: "_createInstance",
 		value: function _createInstance(selector) {
-			rome(this.querySelector(selector), this.options).on('data', this._changeDate.bind(this));
+			var obj = undefined;
+			_typeof(this.options) == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
+			rome(this.querySelector(selector), obj).on('data', this._changeDate.bind(this));
 		}
 	}, {
 		key: "_formatDate",

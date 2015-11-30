@@ -50,7 +50,7 @@ class CalendarClab{
 
 	_createInstance(selector){
 		let obj;
-		type this.options == 'object' ? obj = type this.options : obj = this.getRomeInstance().options();
+		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
 		rome(this.querySelector(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
