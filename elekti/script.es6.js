@@ -142,7 +142,8 @@ class ElektiMer{
 		if(action==='open'){
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
-			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+			// this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+			this.$.list.style.height = (30 * (this.options.length-n)) + "px";
 		} else {
 			this.$.list.classList.remove('visible');
 			this.$.list.style.height = "0px";
