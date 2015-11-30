@@ -37,6 +37,10 @@ class ModalClab{
 		this.fire('modal-secondary');
 	}
 
+	setContent(content){
+		this.querySelector('.modal-body').innerHTML = '<p>' + content + '</p>';
+	}
+
 }
 
 
