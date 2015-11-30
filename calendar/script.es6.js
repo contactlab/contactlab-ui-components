@@ -62,7 +62,9 @@ class CalendarClab{
 	}
 
 	_changeDate(evt){
-		this.value = moment(evt).format();
+		let thisFormat; 
+		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
+		this.value = moment(evt).format(thisFormat);
 		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 	}
 
