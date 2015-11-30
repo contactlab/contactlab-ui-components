@@ -19,11 +19,6 @@ var CalendarClab = (function () {
 				label: {
 					type: String
 				},
-				value: {
-					type: String,
-					reflectToAttribute: true,
-					observer: '_formatDate'
-				},
 				disable: {
 					type: Boolean,
 					value: false
@@ -75,18 +70,15 @@ var CalendarClab = (function () {
 			rome(this.querySelector(selector), obj).on('data', this._changeDate.bind(this));
 		}
 	}, {
-		key: "_formatDate",
-		value: function _formatDate() {
+		key: "_getFormat",
+		value: function _getFormat() {
 			var thisFormat = undefined;
 			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
-			this.querySelector('input').value = moment(this.value).format(thisFormat);
+			return thisFormat;
 		}
 	}, {
 		key: "_changeDate",
 		value: function _changeDate(evt) {
-			var thisFormat = undefined;
-			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
-			this.value = moment(evt).format(thisFormat);
 			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 		}
 	}, {
@@ -106,6 +98,18 @@ var CalendarClab = (function () {
 		key: "_viewLabel",
 		value: function _viewLabel(label) {
 			if (label.length > 0) return true;else return false;
+		}
+	}, {
+		key: "setValue",
+		value: function setValue(userValue) {
+			this.querySelector('input').value = moment(userValue).format(this._getFormat());
+		}
+	}, {
+		key: "getValue",
+		value: function getValue() {
+			var elem = this.querySelector('input').value;
+			var formatted = moment(elem, this._getFormat()).format();
+			return formatted;
 		}
 	}, {
 		key: "getRomeInstance",
