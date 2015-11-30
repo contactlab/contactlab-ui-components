@@ -36,7 +36,6 @@ var ElektiMer = (function () {
 				},
 				value: {
 					type: 'Object',
-					/*readonly: true,*/
 					reflectToAttribute: true,
 					notify: true,
 					observer: '_updateValue'
@@ -97,6 +96,7 @@ var ElektiMer = (function () {
 
 			promise().then(function (resp) {
 				_this2.options = resp;
+				_this2.liHeight = _this2.$.list.children[0].clientHeight;
 			});
 		}
 	}, {
@@ -193,7 +193,6 @@ var ElektiMer = (function () {
 			this.value = this.options[i];
 			this.activeInput('blur');
 			this.fire('change', { 'newValue': this.value, 'oldValue': old });
-			console.log(this.value);
 			this._handleListVisibility(evt);
 		}
 	}, {
@@ -201,7 +200,6 @@ var ElektiMer = (function () {
 		value: function _handleListVisibility(evt) {
 			var _this4 = this;
 
-			console.log(this.dontHide);
 			if (evt.type == 'focus') {
 				this.input.classList.add('active');
 				setTimeout(function () {

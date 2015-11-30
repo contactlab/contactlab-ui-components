@@ -26,7 +26,6 @@ class ElektiMer{
 			},
 			value: {
 				type: 'Object',
-				/*readonly: true,*/
 				reflectToAttribute: true,
 				notify: true,
 				observer: '_updateValue'
@@ -81,6 +80,7 @@ class ElektiMer{
 	_setOptions(promise){
 		promise().then((resp) => {
 			this.options = resp;
+			this.liHeight = this.$.list.children[0].clientHeight;
 		});
 	}
 
@@ -175,12 +175,10 @@ class ElektiMer{
 		this.value = this.options[i];
 		this.activeInput('blur');
 		this.fire('change', { 'newValue': this.value, 'oldValue': old});
-		console.log(this.value);
 		this._handleListVisibility(evt);
 	}
 
 	_handleListVisibility(evt){
-		console.log(this.dontHide);
 		if(evt.type=='focus'){
 			this.input.classList.add('active');
 			setTimeout(() => {
