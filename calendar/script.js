@@ -74,8 +74,8 @@ var CalendarClab = (function () {
 	}, {
 		key: "_formatDate",
 		value: function _formatDate() {
-			// this.querySelector('input').value =
-			var thisFormat = this.getRomeInstance().options().inputFormat;
+			var thisFormat = undefined;
+			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 			this.querySelector('input').value = moment(this.value).format(thisFormat);
 		}
 	}, {

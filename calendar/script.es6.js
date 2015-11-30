@@ -21,7 +21,6 @@ class CalendarClab{
 			},
 			options: {
 				type: Object,
-				value: {}
 			},
 			placeholder: {
 				type: String
@@ -50,12 +49,15 @@ class CalendarClab{
 	}
 
 	_createInstance(selector){
-		rome(this.querySelector(selector), this.options)
+		let obj;
+		type this.options == 'object' ? obj = type this.options : obj = this.getRomeInstance().options();
+		rome(this.querySelector(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
 
 	_formatDate(){
-		let thisFormat = this.getRomeInstance().options().inputFormat;
+		let thisFormat; 
+		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 		this.querySelector('input').value = moment(this.value).format(thisFormat);
 	}
 
