@@ -8,7 +8,8 @@ class CalendarClab{
 			},
 			value: {
 				type: String,
-				reflectToAttribute: true
+				reflectToAttribute: true,
+				observer: '_formatDate'
 			},
 			disable: {
 				type: Boolean,
@@ -51,6 +52,11 @@ class CalendarClab{
 	_createInstance(selector){
 		rome(this.querySelector(selector), this.options)
 			.on('data', this._changeDate.bind(this));
+	}
+
+	_formatDate(){
+		let thisFormat = this.getRomeInstance().options().inputFormat;
+		this.querySelector('input').value = moment(this.value).format(thisFormat);
 	}
 
 	_changeDate(evt){

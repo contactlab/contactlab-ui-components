@@ -19,7 +19,8 @@ var CalendarClab = (function () {
 				},
 				value: {
 					type: String,
-					reflectToAttribute: true
+					reflectToAttribute: true,
+					observer: '_formatDate'
 				},
 				disable: {
 					type: Boolean,
@@ -69,6 +70,13 @@ var CalendarClab = (function () {
 		key: "_createInstance",
 		value: function _createInstance(selector) {
 			rome(this.querySelector(selector), this.options).on('data', this._changeDate.bind(this));
+		}
+	}, {
+		key: "_formatDate",
+		value: function _formatDate() {
+			// this.querySelector('input').value =
+			var thisFormat = this.getRomeInstance().options().inputFormat;
+			this.querySelector('input').value = moment(this.value).format(thisFormat);
 		}
 	}, {
 		key: "_changeDate",
