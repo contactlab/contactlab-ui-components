@@ -18,7 +18,7 @@
                 <label for$="[[_dashify(name)]]">[[label]]</label>
             </template>
             <div class$="[[ _computeWrapperClass(open) ]]">
-                <input id$="[[_dashify(name)]]" name$="[[_dashify(name)]]" type="text" class="js-users-list-filter" 
+                <input id$="[[_dashify(name)]]" disabled=[[disabled]] name$="[[_dashify(name)]]" type="text" class="js-users-list-filter" 
                 on-focus="_handleListVisibility" on-blur="_handleListVisibility" disabled="[[noSearch]]"
                 on-keyup="_searchElement" on-change="_updateValue" placeholder="[[placeholder]]">
                 <ol class="js-users-list" id="list">
