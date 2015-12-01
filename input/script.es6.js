@@ -25,10 +25,16 @@ class InputClab{
 			},
 			placeholder: {
 				type: String
+			},
+			note: {
+				type: String
+			}
+			noteType: {
+				type: String,
+				value: ''
 			}
 		}
 	}
-
 
 	_computeType(type){
 		let arr = ['input-wrapper'];

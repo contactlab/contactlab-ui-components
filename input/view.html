@@ -10,9 +10,7 @@
 			</template>
 			<input type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
 				disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
-			<div class="note">
-				<content></content>
-			</div>
+			<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
 		</div>
 	</template>
 

@@ -45,6 +45,7 @@
 	<link rel="import" href="checkbox/view.html">
 	<link rel="import" href="tooltip/view.html">
 	<link rel="import" href="pagination/view.html">
+	<link rel="import" href="note/view.html">
 	
 
 </head>
@@ -52,7 +53,7 @@
 	
 	<div class="content">
 		<h2>Alert</h2>
-		<alert-clab visible>
+		<alert-clab visible labels='{"primary": "ciccio", "secondary": "puzzo"}'>
 			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</p>
 		</alert-clab>
 	</div>
@@ -95,7 +96,8 @@
 
 	<div class="content">
 		<h2>Enhanced select</h2>
-		<elekti-mer options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'></elekti-mer>
+		<elekti-mer></elekti-mer>
+		<!-- options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' -->
 	</div>
 
 	<div class="content">
@@ -128,7 +130,7 @@
 
 	<div class="content">
 		<h2>Input</h2>
-		<input-clab value="ciao" label="My label" type="info">A simple note</input-clab>
+		<input-clab value="ciao" label="My label" type="info" note="A simple input component"></input-clab>
 	</div>
 
 	<div class="content">
@@ -227,9 +229,9 @@ modal.addEventListener('modal-secondary',function(){
 document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
 
 // Advanced select
-/*var elekti = document.querySelector('elekti-mer');
+var elekti = document.querySelector('elekti-mer');
 
-elekti.addEventListener('change', function(evt){
+/*elekti.addEventListener('change', function(evt){
 	console.log(evt.detail);
 });*/
 
@@ -250,7 +252,7 @@ function chiamata(){
 	  })
 }
 
-// elekti.setOptions(chiamata());
+//elekti._setOptions(chiamata());
 
 </script>
 

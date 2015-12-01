@@ -4,70 +4,40 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var InputClab = (function () {
-	function InputClab() {
-		_classCallCheck(this, InputClab);
+var NoteClab = (function () {
+	function NoteClab() {
+		_classCallCheck(this, NoteClab);
 	}
 
-	_createClass(InputClab, [{
+	_createClass(NoteClab, [{
 		key: 'beforeRegister',
 		value: function beforeRegister() {
-			this.is = "input-clab";
+			this.is = "note-clab";
 			this.properties = {
-				label: {
+				text: {
 					type: String
-				},
-				name: {
-					type: String,
-					value: 'textinput'
 				},
 				type: {
 					type: String,
 					value: ''
 				},
-				value: {
+
+				classes: {
 					type: String,
-					notify: true,
-					reflectToAttribute: true
-				},
-				disabled: {
-					type: Boolean,
-					value: false
-				},
-				placeholder: {
-					type: String
-				},
-				note: {
-					type: String
+					computed: 'computeClasses(type)'
 				}
 			};
 		}
 	}, {
-		key: '_computeType',
-		value: function _computeType(type) {
-			var arr = ['input-wrapper'];
+		key: 'computeClasses',
+		value: function computeClasses(type) {
+			var arr = ['note'];
 			arr.push(type);
 			return arr.join(' ');
 		}
-	}, {
-		key: '_updateCompValue',
-		value: function _updateCompValue(evt) {
-			this.value = this.querySelector('input').value;
-		}
-	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
-		}
 	}]);
 
-	return InputClab;
+	return NoteClab;
 })();
 
-Polymer(InputClab);
+Polymer(NoteClab);
