@@ -4,14 +4,12 @@
 	<style></style>
 	
 	<template>		
-		<div class$="[[_computeType(type)]]">
-			<template is="dom-if" if="[[_viewLabel(label)]]">
-				<label for$="[[_dashify(name)]]">[[label}}</label>
-			</template>
-			<input type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
-				disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
-			<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
-		</div>
+		<template is="dom-if" if="[[_viewLabel(label)]]">
+			<label for$="[[_dashify(name)]]">[[label}}</label>
+		</template>
+		<input type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
+			disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
+		<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
 	</template>
 
 	<script src="script.js"></script>

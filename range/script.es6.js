@@ -10,10 +10,10 @@ class RangeClab{
 				type: String,
 				value: 'rangeinput'
 			},
-			type: {
+			/*type: {
 				type: String,
 				value: ''
-			},
+			},*/
 			value: {
 				type: Number,
 				notify: true,
@@ -32,11 +32,11 @@ class RangeClab{
 	}
 
 
-	_computeType(type){
+	/*_computeType(type){
 		let arr = ['input-wrapper'];
 		arr.push(type);
 		return arr.join(' ');
-	}
+	}*/
 
 	_updateCompValue(evt){
 		this.value = this.querySelector('input').value;

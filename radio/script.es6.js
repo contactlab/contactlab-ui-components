@@ -27,9 +27,9 @@ class RadioClab{
 		return str.toLowerCase();
 	}
 
-	_computeType(type){
+	_computeType(wt){
 		let arr = ['row'];
-		arr.push(type);
+		arr.push(wt);
 		return arr.join(' ');
 	}
 

@@ -36,6 +36,13 @@ var CalendarClab = (function () {
 				type: {
 					type: String,
 					value: ""
+				},
+				note: {
+					type: String
+				},
+				noteType: {
+					type: String,
+					value: ''
 				}
 			};
 		}

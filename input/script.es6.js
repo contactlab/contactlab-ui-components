@@ -36,12 +36,12 @@ class InputClab{
 		}
 	}
 
-	_computeType(type){
+	/*_computeType(type){
 		let arr = ['input-wrapper'];
 		arr.push(type);
 		return arr.join(' ');
 	}
-
+*/
 	_updateCompValue(evt){
 		this.value = this.querySelector('input').value;
 	}

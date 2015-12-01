@@ -8132,6 +8132,29 @@ body.main-sidebar-small header .app-switch {
 
 
 
+  .range-wrapper::after,
+    .range-wrapper::before{
+      content:"";
+      display: block;
+      clear:both;
+    }
+    .range-wrapper span{
+      float: left;
+      clear:none;
+      width: 2.3%;
+      text-align: center;
+    }
+    .range-wrapper input{
+      float: left;
+      clear:none;
+      width: 95%;
+    }
+
+
+
+
+
+
 
 
 

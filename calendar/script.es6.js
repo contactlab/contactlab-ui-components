@@ -23,6 +23,13 @@ class CalendarClab{
 			type: {
 				type: String,
 				value: ""
+			},
+			note:{
+				type: String
+			},
+			noteType:{
+				type: String,
+				value: ''
 			}
 		}
 	}

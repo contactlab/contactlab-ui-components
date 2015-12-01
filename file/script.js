@@ -27,6 +27,13 @@ var FileClab = (function () {
 				multiple: {
 					type: Boolean,
 					value: false
+				},
+				note: {
+					type: String
+				},
+				noteType: {
+					type: String,
+					value: ''
 				}
 			};
 		}

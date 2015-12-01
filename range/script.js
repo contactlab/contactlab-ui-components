@@ -21,10 +21,10 @@ var RangeClab = (function () {
 					type: String,
 					value: 'rangeinput'
 				},
-				type: {
-					type: String,
-					value: ''
-				},
+				/*type: {
+    	type: String,
+    	value: ''
+    },*/
 				value: {
 					type: Number,
 					notify: true,
@@ -41,13 +41,13 @@ var RangeClab = (function () {
 				}
 			};
 		}
-	}, {
-		key: '_computeType',
-		value: function _computeType(type) {
-			var arr = ['input-wrapper'];
-			arr.push(type);
-			return arr.join(' ');
-		}
+
+		/*_computeType(type){
+  	let arr = ['input-wrapper'];
+  	arr.push(type);
+  	return arr.join(' ');
+  }*/
+
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {

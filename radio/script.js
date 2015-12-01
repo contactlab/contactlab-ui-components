@@ -42,9 +42,9 @@ var RadioClab = (function () {
 		}
 	}, {
 		key: '_computeType',
-		value: function _computeType(type) {
+		value: function _computeType(wt) {
 			var arr = ['row'];
-			arr.push(type);
+			arr.push(wt);
 			return arr.join(' ');
 		}
 	}, {
