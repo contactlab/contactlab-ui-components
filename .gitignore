@@ -1,3 +1,5 @@
 .bowerrc
 node_modules/
 .sublime-gulp.cache
+**/*.sublime-project
+**/*.sublime-workspace

@@ -186,14 +186,20 @@ var ElektiMer = (function () {
 
 	}, {
 		key: '_selectElement',
-		value: function _selectElement(evt) {
+		value: function _selectElement(evt, value) {
 			var old = this.value;
-			this.input.value = evt.target.innerHTML;
 			var i = this.getIndex(evt.target.getAttribute('data-value'));
+			this.input.value = evt.target.innerHTML;
+			/*if(!value){
+   	i = this.getIndex(evt.target.getAttribute('data-value'));
+   }
+   else{
+   	i = this.getIndex(value);
+   }*/
 			this.value = this.options[i];
-			this.activeInput('blur');
-			this.fire('change', { 'newValue': this.value, 'oldValue': old });
 			console.log(this.value);
+			//this.activeInput('blur');
+			this.fire('change', { 'newValue': this.value, 'oldValue': old });
 			this._handleListVisibility(evt);
 		}
 	}, {
@@ -201,7 +207,6 @@ var ElektiMer = (function () {
 		value: function _handleListVisibility(evt) {
 			var _this4 = this;
 
-			console.log(this.dontHide);
 			if (evt.type == 'focus') {
 				this.input.classList.add('active');
 				setTimeout(function () {
@@ -222,14 +227,15 @@ var ElektiMer = (function () {
 	}, {
 		key: '_searchElement',
 		value: function _searchElement(evt) {
-			var search = this.input.value.toLowerCase();
+			var input = this.input.value.toLowerCase();
 			var elems = this.$.list.querySelectorAll('li');
 			this.$.list.style.height = this.liHeight * elems.length + 'px';
-			var height = this.$.list.clientHeight;
+
+			if (evt.keyCode == 13) null;
 
 			Array.from(elems).forEach(function (el) {
 				var str = el.innerHTML;
-				if (str.toLowerCase().search(search) == -1) {
+				if (str.toLowerCase().search(input) == -1) {
 					el.classList.add('hide');
 				} else {
 					el.classList.remove('hide');
@@ -246,6 +252,19 @@ var ElektiMer = (function () {
 				this.$.noRes.classList.add('hide');
 			}
 			this.highlightedElement();
+
+			/*if(evt.keyCode==13){
+   	() => {
+   		Array.from(elems).forEach(el => {
+   			let str = el.innerHTML;
+   			console.log('searching: ',str.toLowerCase().search(input));
+   			if(str.toLowerCase().search(input) != -1){
+   				this._selectElement(evt, el.getAttribute('data-value'));
+   				return;
+   			}
+   		});
+   	}
+   }*/
 		}
 	}]);
 
