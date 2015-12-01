@@ -35,6 +35,12 @@ class ElektiMer{
 				value: false,
 				readonly: true
 			},
+			disabled: {
+				type: Boolean,
+				value: false,
+				notify: true,
+				reflectToAttribute: true
+			},
 			noSearch: {
 				type: Boolean,
 				value: false
