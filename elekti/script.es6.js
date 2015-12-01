@@ -26,7 +26,6 @@ class ElektiMer{
 			},
 			value: {
 				type: 'Object',
-				/*readonly: true,*/
 				reflectToAttribute: true,
 				notify: true,
 				observer: '_updateValue'
@@ -81,6 +80,7 @@ class ElektiMer{
 	_setOptions(promise){
 		promise().then((resp) => {
 			this.options = resp;
+			this.liHeight = this.$.list.children[0].clientHeight;
 		});
 	}
 
@@ -142,7 +142,8 @@ class ElektiMer{
 		if(action==='open'){
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
-			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+			// this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+			this.$.list.style.height = (30 * (this.options.length-n)) + "px";
 		} else {
 			this.$.list.classList.remove('visible');
 			this.$.list.style.height = "0px";

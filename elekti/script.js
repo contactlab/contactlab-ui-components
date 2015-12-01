@@ -36,7 +36,6 @@ var ElektiMer = (function () {
 				},
 				value: {
 					type: 'Object',
-					/*readonly: true,*/
 					reflectToAttribute: true,
 					notify: true,
 					observer: '_updateValue'
@@ -97,6 +96,7 @@ var ElektiMer = (function () {
 
 			promise().then(function (resp) {
 				_this2.options = resp;
+				_this2.liHeight = _this2.$.list.children[0].clientHeight;
 			});
 		}
 	}, {
@@ -161,7 +161,8 @@ var ElektiMer = (function () {
 			if (action === 'open') {
 				this.$.list.classList.add('visible');
 				var n = this.$.list.querySelectorAll('li.hide').length;
-				this.$.list.style.height = this.liHeight * (this.options.length - n) + "px";
+				// this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
+				this.$.list.style.height = 30 * (this.options.length - n) + "px";
 			} else {
 				this.$.list.classList.remove('visible');
 				this.$.list.style.height = "0px";
@@ -197,8 +198,12 @@ var ElektiMer = (function () {
    	i = this.getIndex(value);
    }*/
 			this.value = this.options[i];
+<<<<<<< HEAD
 			console.log(this.value);
 			//this.activeInput('blur');
+=======
+			this.activeInput('blur');
+>>>>>>> a346dca623fa8bebf07411fadcde180e16f19c60
 			this.fire('change', { 'newValue': this.value, 'oldValue': old });
 			this._handleListVisibility(evt);
 		}

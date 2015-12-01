@@ -6,10 +6,6 @@ class CalendarClab{
 			label: {
 				type: String
 			},
-			value: {
-				type: String,
-				reflectToAttribute: true
-			},
 			disable: {
 				type: Boolean,
 				value: false
@@ -20,7 +16,6 @@ class CalendarClab{
 			},
 			options: {
 				type: Object,
-				value: {}
 			},
 			placeholder: {
 				type: String
@@ -49,12 +44,19 @@ class CalendarClab{
 	}
 
 	_createInstance(selector){
-		rome(this.querySelector(selector), this.options)
+		let obj;
+		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
+		rome(this.querySelector(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
 
+	_getFormat(){
+		let thisFormat; 
+		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
+		return thisFormat;
+	}
+
 	_changeDate(evt){
-		this.value = moment(evt).format();
 		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 	}
 
@@ -76,7 +78,15 @@ class CalendarClab{
 			return false;
 	}
 
+	setValue(userValue){
+		this.querySelector('input').value = moment(userValue).format(this._getFormat());
+	}
 
+	getValue(){
+		let elem = this.querySelector('input').value;
+		let formatted = moment(elem, this._getFormat()).format();
+		return formatted;
+	}
 
 	getRomeInstance(){
 		return rome.find(this.querySelector('input'));

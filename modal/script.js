@@ -51,6 +51,11 @@ var ModalClab = (function () {
 		value: function _secondary(evt) {
 			this.fire('modal-secondary');
 		}
+	}, {
+		key: 'setContent',
+		value: function setContent(content) {
+			this.querySelector('.modal-body').innerHTML = '<p>' + content + '</p>';
+		}
 	}]);
 
 	return ModalClab;
