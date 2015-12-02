@@ -32,9 +32,6 @@ var FileClab = (function () {
 					type: Boolean,
 					value: false
 				},
-				note: {
-					type: String
-				},
 				noteType: {
 					type: String,
 					value: ''

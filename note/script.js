@@ -14,9 +14,6 @@ var NoteClab = (function () {
 		value: function beforeRegister() {
 			this.is = "note-clab";
 			this.properties = {
-				text: {
-					type: String
-				},
 				type: {
 					type: String,
 					value: ''

@@ -10,7 +10,9 @@
 		<div class="input-icon-wrapper" on-click="_selection">
 			<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
 		</div>
-		<note-clab text="[[note]]" type="[[compNoteType]]"></note-clab>
+		<note-clab type="[[compNoteType]]">
+			<content></content>
+		</note-clab>
 		<input type="file" multiple$=[[multiple]]>
 	</template>
 

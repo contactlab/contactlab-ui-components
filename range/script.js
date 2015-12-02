@@ -61,8 +61,8 @@ var RangeClab = (function () {
 		key: 'computeRangeWrapperClasses',
 		value: function computeRangeWrapperClasses(show) {
 			var name = '';
-			if (show) name = ' details';
-			return 'range-wrapper' + name;
+			if (show) name = 'details';
+			return ['range-wrapper', name].join(' ');
 		}
 	}, {
 		key: '_updateCompValue',

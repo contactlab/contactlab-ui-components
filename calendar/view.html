@@ -11,7 +11,9 @@
 				</template>
 				<div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
 				<input on-keyup="_checkClear" type="text" disabled="[[disabled]]]" placeholder="[[placeholder]]">
-				<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
+				<note-clab type="[[noteType]]">
+					<content></content>
+				</note-clab>
 			</div>
 		</template>
 		<template is="dom-if" if="[[inline]]">

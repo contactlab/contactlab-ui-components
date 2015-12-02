@@ -24,9 +24,6 @@ class CalendarClab{
 				type: String,
 				value: ""
 			},
-			note:{
-				type: String
-			},
 			noteType:{
 				type: String,
 				value: ''

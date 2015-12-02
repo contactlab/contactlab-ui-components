@@ -3,9 +3,6 @@ class NoteClab{
 	beforeRegister(){
 		this.is = "note-clab";
 		this.properties = {
-			text: {
-				type: String
-			},
 			type: {
 				type: String,
 				value: ''
