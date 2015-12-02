@@ -65,7 +65,7 @@ class CalendarClab{
 	}
 
 	_computeType(type){
-		var arr = ['input-wrapper', 'calendar'];
+		var arr = ['calendar'];
 		arr.push(type);
 		return arr.join(' ');
 	}

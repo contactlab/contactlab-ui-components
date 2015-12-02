@@ -22,46 +22,58 @@ var ProgressClab = (function () {
 					type: Boolean,
 					value: false
 				},
-				primary: {
-					type: Boolean,
-					value: false
-				},
-				secondary: {
-					type: Boolean,
-					value: false
-				},
-				info: {
-					type: Boolean,
-					value: false
-				},
-				success: {
-					type: Boolean,
-					value: false
-				},
-				warning: {
-					type: Boolean,
-					value: false
-				},
-				error: {
-					type: Boolean,
-					value: false
+				type: {
+					type: String,
+					value: null
 				}
 			};
 		}
 	}, {
 		key: '_computeProp',
+		/*primary: {
+  	type: Boolean,
+  	value: false
+  },
+  secondary: {
+  	type: Boolean,
+  	value: false
+  },
+  info: {
+  	type: Boolean,
+  	value: false
+  },
+  success: {
+  	type: Boolean,
+  	value: false
+  },
+  warning: {
+  	type: Boolean,
+  	value: false
+  },
+  error: {
+  	type: Boolean,
+  	value: false
+  }*/
 		value: function _computeProp(value) {
 			return 'width:' + this.value + '%;';
 		}
+
+		/*_computeClass(minimal,color){
+  	let vals = ['minimal','primary','secondary','info','success','warning','error'];
+  	let classes = ['progress-bar'];
+  	for(let i = 0; i < arguments.length; i++){
+  		arguments[i] ? classes.push(vals[i]) : null;
+  	}
+  	return classes.join(' ');
+  }*/
+
 	}, {
 		key: '_computeClass',
-		value: function _computeClass(minimal, color) {
-			var vals = ['minimal', 'primary', 'secondary', 'info', 'success', 'warning', 'error'];
-			var classes = ['progress-bar'];
-			for (var i = 0; i < arguments.length; i++) {
-				arguments[i] ? classes.push(vals[i]) : null;
-			}
-			return classes.join(' ');
+		value: function _computeClass(minimal, type) {
+			var arr = ['progress-bar'];
+			if (minimal) arr.push('minimal');
+			if (type != null) arr.push(type);
+			return arr.join(' ');
 		}
 	}, {
 		key: '_percent',
