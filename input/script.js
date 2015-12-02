@@ -39,6 +39,10 @@ var InputClab = (function () {
 				},
 				note: {
 					type: String
+				},
+				noteType: {
+					type: String,
+					value: ''
 				}
 			};
 		}

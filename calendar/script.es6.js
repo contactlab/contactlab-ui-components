@@ -6,7 +6,7 @@ class CalendarClab{
 			label: {
 				type: String
 			},
-			disable: {
+			disabled: {
 				type: Boolean,
 				value: false
 			},

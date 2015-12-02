@@ -19,7 +19,7 @@ var CalendarClab = (function () {
 				label: {
 					type: String
 				},
-				disable: {
+				disabled: {
 					type: Boolean,
 					value: false
 				},
