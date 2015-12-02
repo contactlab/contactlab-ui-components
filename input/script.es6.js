@@ -32,16 +32,19 @@ class InputClab{
 			noteType: {
 				type: String,
 				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 		}
 	}
 
-	/*_computeType(type){
-		let arr = ['input-wrapper'];
-		arr.push(type);
-		return arr.join(' ');
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
-*/
+
 	_updateCompValue(evt){
 		this.value = this.querySelector('input').value;
 	}

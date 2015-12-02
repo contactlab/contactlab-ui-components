@@ -19,9 +19,7 @@ class NoteClab{
 	}
 
 	computeClasses(type){
-		let arr = ['note'];
-		arr.push(type);
-		return arr.join(' ');
+		return ['note', type].join(' ');
 	}
 }
 

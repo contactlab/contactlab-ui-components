@@ -43,17 +43,19 @@ var InputClab = (function () {
 				noteType: {
 					type: String,
 					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
-
-		/*_computeType(type){
-  	let arr = ['input-wrapper'];
-  	arr.push(type);
-  	return arr.join(' ');
-  }
-  */
-
+	}, {
+		key: 'computeNoteType',
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
+		}
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {

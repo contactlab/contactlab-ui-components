@@ -5,12 +5,12 @@
 	
 	<template>		
 		<template is="dom-if" if="[[_viewLabel(label)]]">
-			<label for$="[[_dashify(name)]]">[[label]]</label>
+			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 		</template>
 		<div class="input-icon-wrapper" on-click="_selection">
-			<input type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
+			<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
 		</div>
-		<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
+		<note-clab text="[[note]]" type="[[compNoteType]]"></note-clab>
 		<input type="file" multiple$=[[multiple]]>
 	</template>
 

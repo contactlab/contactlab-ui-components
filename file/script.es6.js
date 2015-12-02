@@ -10,6 +10,10 @@ class FileClab{
 				type: String,
 				value: 'textinput'
 			},
+			type: {
+				type: String,
+				value: ''
+			},
 			value: {
 				type: String
 			},
@@ -20,9 +24,14 @@ class FileClab{
 			note:{
 				type: String
 			},
-			noteType:{
+			noteType: {
 				type: String,
 				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -43,6 +52,10 @@ class FileClab{
 			textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 			this.value = textInput.value;
 		});
+	}
+
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 

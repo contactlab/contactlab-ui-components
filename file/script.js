@@ -21,6 +21,10 @@ var FileClab = (function () {
 					type: String,
 					value: 'textinput'
 				},
+				type: {
+					type: String,
+					value: ''
+				},
 				value: {
 					type: String
 				},
@@ -34,6 +38,11 @@ var FileClab = (function () {
 				noteType: {
 					type: String,
 					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -56,6 +65,11 @@ var FileClab = (function () {
 				textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 				_this.value = textInput.value;
 			});
+		}
+	}, {
+		key: 'computeNoteType',
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
 		}
 	}, {
 		key: '_selection',

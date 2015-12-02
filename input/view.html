@@ -5,11 +5,11 @@
 	
 	<template>		
 		<template is="dom-if" if="[[_viewLabel(label)]]">
-			<label for$="[[_dashify(name)]]">[[label}}</label>
+			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 		</template>
-		<input type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
+		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
 			disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
-		<note-clab text="[[note]]" type="[[noteType]]"></note-clab>
+		<note-clab text="[[note]]" type="[[compNoteType]]"></note-clab>
 	</template>
 
 	<script src="script.js"></script>
