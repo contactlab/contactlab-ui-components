@@ -9,14 +9,20 @@
 		<template is="dom-if" if="[[_viewLabel(label)]]">
 			<label for$="[[_dashify(name)]]">[[label]]</label>
 		</template>
-		<div class="range-wrapper">
-			<span>[[min]]</span>
+		<div class$="[[rangeWrapperClasses]]">
+			<template is="dom-if" if="[[showDetails]]">
+				<span>[[min]]</span>
+			</template>
 			<input type="range" name$="[[_dashify(name)]]" min$="[[min]]" max$="[[max]]" step$="[[step]]" value$="{{value}}" on-change="_updateCompValue">
-			<span>[[max]]</span>
+			<template is="dom-if" if="[[showDetails]]">
+				<span>[[max]]</span>
+			</template>
 		</div>
-		<div class="value">
-			Range value: <span>[[value]]</span>
-		</div>
+		<template is="dom-if" if="[[showDetails]]">
+			<div class="value">
+				Range value: <span>[[value]]</span>
+			</div>
+		</template>
 	</template>
 
 	<script src="script.js"></script>

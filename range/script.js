@@ -38,6 +38,15 @@ var RangeClab = (function () {
 				},
 				step: {
 					type: Number
+				},
+				showDetails: {
+					type: Boolean,
+					value: false
+				},
+
+				rangeWrapperClasses: {
+					type: String,
+					computed: 'computeRangeWrapperClasses(showDetails)'
 				}
 			};
 		}
@@ -48,6 +57,13 @@ var RangeClab = (function () {
   	return arr.join(' ');
   }*/
 
+	}, {
+		key: 'computeRangeWrapperClasses',
+		value: function computeRangeWrapperClasses(show) {
+			var name = '';
+			if (show) name = ' details';
+			return 'range-wrapper' + name;
+		}
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {

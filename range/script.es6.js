@@ -27,6 +27,15 @@ class RangeClab{
 			},
 			step: {
 				type: Number
+			},
+			showDetails: {
+				type: Boolean,
+				value: false
+			},
+
+			rangeWrapperClasses: {
+				type: String,
+				computed: 'computeRangeWrapperClasses(showDetails)'
 			}
 		}
 	}
@@ -37,6 +46,12 @@ class RangeClab{
 		arr.push(type);
 		return arr.join(' ');
 	}*/
+
+	computeRangeWrapperClasses(show){
+		let name = '';
+		if(show) name = 'details';
+		return ['range-wrapper',name].join(' ');
+	}
 
 	_updateCompValue(evt){
 		this.value = this.querySelector('input').value;
