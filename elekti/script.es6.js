@@ -10,6 +10,11 @@ class ElektiMer{
 				type: String,
 				value: 'elekti'
 			},
+			disabled: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true
+			},
 			options: {
 				type: Array,
 				value: [
@@ -37,7 +42,8 @@ class ElektiMer{
 			},
 			noSearch: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: '_setDisabled'
 			},
 			noResults: {
 				type: String,
@@ -103,6 +109,10 @@ class ElektiMer{
 			opt.value == value ? n = this.options.indexOf(opt) : null;
 		});
 		return n;
+	}
+
+	_setDisabled(){
+		this.disabled = this.noSearch;
 	}
 
 	_computeWrapperClass(open){

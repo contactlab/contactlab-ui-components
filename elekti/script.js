@@ -23,6 +23,11 @@ var ElektiMer = (function () {
 					type: String,
 					value: 'elekti'
 				},
+				disabled: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
+				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
@@ -47,7 +52,8 @@ var ElektiMer = (function () {
 				},
 				noSearch: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: '_setDisabled'
 				},
 				noResults: {
 					type: String,
@@ -122,6 +128,11 @@ var ElektiMer = (function () {
 				opt.value == value ? n = _this3.options.indexOf(opt) : null;
 			});
 			return n;
+		}
+	}, {
+		key: '_setDisabled',
+		value: function _setDisabled() {
+			this.disabled = this.noSearch;
 		}
 	}, {
 		key: '_computeWrapperClass',
