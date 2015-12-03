@@ -67,6 +67,7 @@ var RangeClab = (function () {
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {
+			console.log(evt);
 			this.value = this.$$('input').value;
 		}
 	}, {

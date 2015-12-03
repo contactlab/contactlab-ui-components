@@ -54,6 +54,7 @@ class RangeClab{
 	}
 
 	_updateCompValue(evt){
+		console.log(evt);
 		this.value = this.$$('input').value;
 	}
 
