@@ -15,7 +15,8 @@ class FileClab{
 				value: ''
 			},
 			value: {
-				type: String
+				type: String,
+				value: null
 			},
 			multiple: {
 				type: Boolean,
@@ -43,9 +44,6 @@ class FileClab{
 			Array.from(fileInput.files).forEach(file => {
 				arr.push(file.name);
 			});
-			/*for (var i = 0; i < file.files.length; i++) {
-				arr.push(file.files[i].name);
-			}*/
 			textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 			this.value = textInput.value;
 		});
@@ -57,12 +55,11 @@ class FileClab{
 
 
 	_selection(evt){
-		this.querySelector('input[type="file"]').click();
+		this.$$('input[type=file]').click();
 	}
 
 	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
+		return label.toLowerCase().replace(' ','-');
 	}
 
 	_viewLabel(label) {

@@ -13,7 +13,7 @@ class ElektiMer{
 			type: {
 				type: String,
 				value: 'primary'
-			}
+			},
 			options: {
 				type: Array,
 				value: [
@@ -72,11 +72,11 @@ class ElektiMer{
 
 	attached(){
 		this.liHeight = this.$.list.children[0].clientHeight;
-
-		this.$$('.input-wrapper').addEventListener('mousedown', (evt)=>{
+		this.addEventListener('mousedown', (evt)=>{
+		console.log(evt.target.localName);
 			if(evt.target.localName=='ol') this.dontHide=true; else this.dontHide=false;
 		});
-		this.$$('.input-wrapper').addEventListener('mouseup', (evt)=>{
+		this.addEventListener('mouseup', (evt)=>{
 			this.dontHide=false;
 		});
 	}
@@ -160,11 +160,6 @@ class ElektiMer{
 			this.$.list.classList.remove('visible');
 			this.$.list.style.height = "0px";
 		}
-		/*this.$.list.classList.toggle('visible');
-		if(this.$.list.classList.contains('visible'))
-			this.$.list.style.height = (this.liHeight * this.options.length) + "px";
-		else
-			this.$.list.style.height = "0px";*/
 	}
 
 	/*_dropOnly(){
@@ -192,7 +187,6 @@ class ElektiMer{
 			i = this.getIndex(value);
 		}*/
 		this.value = this.options[i];
-		console.log(this.value);
 		//this.activeInput('blur');
 		this.fire('change', { 'newValue': this.value, 'oldValue': old});
 		this._handleListVisibility(evt);

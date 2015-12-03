@@ -46,7 +46,7 @@ var MenuClab = (function () {
 			this._iosMenu();
 
 			setTimeout(function () {
-				_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li>a'), function (e, i) {
+				Array.from(document.querySelectorAll('menu-clab .first-level-menu>li>a')).forEach(function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -54,7 +54,7 @@ var MenuClab = (function () {
 					}
 				});
 
-				_.forEach(document.querySelectorAll('menu-clab .second-level-menu>li>a'), function (e, i) {
+				Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach(function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -67,20 +67,20 @@ var MenuClab = (function () {
 		key: '_openItem',
 		value: function _openItem(evt) {
 			var selector = document.querySelectorAll('menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a');
-			_.forEach(selector, function (e, i) {
+			Array.from(selector).forEach(function (e, i) {
 				if (location.hash.search(e.getAttribute('href')) > -1) {
 					e.parentNode.classList.add('active');
 				} else {
 					e.parentNode.classList.remove('active');
 				}
 			});
-			_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li'), function (e, i) {
+			Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach(function (e, i) {
 				e.classList.remove('open');
 			});
 			if (evt.currentTarget.nextElementSibling.tagName === 'UL') {
 				evt.preventDefault();
 				evt.currentTarget.parentNode.classList.add('open');
-				_.forEach(selector, function (e, i) {
+				Array.from(selector).forEach(function (e, i) {
 					e.parentNode.classList.remove('active');
 				});
 				evt.currentTarget.parentNode.classList.add('active');
@@ -89,8 +89,7 @@ var MenuClab = (function () {
 	}, {
 		key: '_activeItem',
 		value: function _activeItem(evt) {
-			var selector = document.querySelectorAll('menu-clab .second-level-menu>li>a');
-			_.forEach(selector, function (e, i) {
+			Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach(function (e, i) {
 				e.parentNode.classList.remove('active');
 			});
 			evt.currentTarget.parentNode.classList.add('active');
@@ -108,9 +107,8 @@ var MenuClab = (function () {
 						return true;
 						break;
 					default:
-						document.querySelector('#logo a').focus();
-						var elems = document.querySelectorAll('menu-clab .first-level-menu>li');
-						_.forEach(elems, function (e, i) {
+						document.$$('#logo a').focus();
+						Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach(function (e, i) {
 							e.classList.remove('open');
 						});
 						break;

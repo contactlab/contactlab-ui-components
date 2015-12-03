@@ -34,7 +34,7 @@ class MenuClab{
 		this._iosMenu();
 
 		setTimeout(() => {
-			_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li>a'), (e,i ) => {				
+			Array.from(document.querySelectorAll('menu-clab .first-level-menu>li>a')).forEach( (e,i) => {				
 				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
 				}else{
@@ -42,7 +42,8 @@ class MenuClab{
 				}
 			});
 
-			_.forEach(document.querySelectorAll('menu-clab .second-level-menu>li>a'), (e,i ) => {				
+
+			Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach((e,i) => {				
 				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
 				}else{
@@ -54,20 +55,20 @@ class MenuClab{
 
 	_openItem(evt){
 		let selector = document.querySelectorAll('menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a');
-		_.forEach(selector, (e,i ) => {					
+		Array.from(selector).forEach((e,i ) => {					
 			if(location.hash.search(e.getAttribute('href')) > -1){
 				e.parentNode.classList.add('active');
 			}else{
 				e.parentNode.classList.remove('active');
 			}
 		});
-		_.forEach(document.querySelectorAll('menu-clab .first-level-menu>li'), (e,i ) => {
+		Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach((e,i ) => {
 			e.classList.remove('open');
 		});
 		if(evt.currentTarget.nextElementSibling.tagName === 'UL'){
 			evt.preventDefault();
 			evt.currentTarget.parentNode.classList.add('open');
-			_.forEach(selector, (e,i ) => {
+			Array.from(selector).forEach((e,i ) => {
 				e.parentNode.classList.remove('active');
 			});
 			evt.currentTarget.parentNode.classList.add('active');
@@ -75,8 +76,7 @@ class MenuClab{
 	}
 
 	_activeItem(evt){
-		let selector = document.querySelectorAll('menu-clab .second-level-menu>li>a');
-		_.forEach(selector, (e,i ) => {
+		Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach((e,i ) => {
 			e.parentNode.classList.remove('active');
 		});
 		evt.currentTarget.parentNode.classList.add('active')
@@ -93,9 +93,8 @@ class MenuClab{
 					return true;
 					break;
 				default:
-					document.querySelector('#logo a').focus();
-					let elems = document.querySelectorAll('menu-clab .first-level-menu>li');
-					_.forEach(elems, (e, i) => {
+					document.$$('#logo a').focus();
+					Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach((e, i) => {
 						e.classList.remove('open');
 					});
 					break;

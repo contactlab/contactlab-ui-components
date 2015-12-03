@@ -56,7 +56,7 @@ var InputClab = (function () {
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {
-			this.value = this.querySelector('input').value;
+			this.value = this.$$('input').value;
 		}
 	}, {
 		key: '_dashify',

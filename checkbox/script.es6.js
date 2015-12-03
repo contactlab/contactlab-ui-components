@@ -25,9 +25,7 @@ class CheckboxClab{
 	}
 
 	_computeType(type){
-		let arr = ['row'];
-		arr.push(type);
-		return arr.join(' ');
+		return ['row',type].join(' ');
 	}
 
 	_checkIfTrue(i, n){

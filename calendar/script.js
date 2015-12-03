@@ -60,7 +60,7 @@ var CalendarClab = (function () {
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
-			this.querySelector('input').value == "" ? this.clear() : null;
+			this.$$('input').value == "" ? this.clear() : null;
 		}
 	}, {
 		key: "_focusElement",
@@ -76,7 +76,7 @@ var CalendarClab = (function () {
 		value: function _createInstance(selector) {
 			var obj = undefined;
 			_typeof(this.options) == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
-			rome(this.querySelector(selector), obj).on('data', this._changeDate.bind(this));
+			rome(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 		}
 	}, {
 		key: "_getFormat",
@@ -93,9 +93,7 @@ var CalendarClab = (function () {
 	}, {
 		key: "_computeType",
 		value: function _computeType(type) {
-			var arr = ['calendar'];
-			arr.push(type);
-			return arr.join(' ');
+			return ['calendar', type].join(' ');
 		}
 	}, {
 		key: "computeNoteType",
@@ -105,8 +103,7 @@ var CalendarClab = (function () {
 	}, {
 		key: "_dashify",
 		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
+			return label.toLowerCase().replace(' ', '-');
 		}
 	}, {
 		key: "_viewLabel",
@@ -116,25 +113,25 @@ var CalendarClab = (function () {
 	}, {
 		key: "setValue",
 		value: function setValue(userValue) {
-			this.querySelector('input').value = moment(userValue).format(this._getFormat());
+			this.$$('input').value = moment(userValue).format(this._getFormat());
 		}
 	}, {
 		key: "getValue",
 		value: function getValue() {
-			var elem = this.querySelector('input').value;
+			var elem = this.$$('input').value;
 			var formatted = moment(elem, this._getFormat()).format();
 			return formatted;
 		}
 	}, {
 		key: "getRomeInstance",
 		value: function getRomeInstance() {
-			return rome.find(this.querySelector('input'));
+			return rome.find(this.$$('input'));
 		}
 	}, {
 		key: "clear",
 		value: function clear() {
 			this.value = '';
-			this.querySelector('input').value = '';
+			this.$$('input').value = '';
 			var rome = this.getRomeInstance();
 			rome.setValue(moment().format());
 		}

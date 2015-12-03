@@ -40,9 +40,6 @@ var TabsClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			this.tabContent = this.querySelectorAll('.tab-content');
-			/*for(let content of Array.from(this.tabContent)){
-   	content.style.display = 'none';
-   }*/
 			Array.from(this.tabContent).forEach(function (content) {
 				content.style.display = 'none';
 			});
@@ -60,7 +57,7 @@ var TabsClab = (function () {
 					}
 				}
 			} else {
-				console.error("There are labels without content");
+				console.error("Some of the labels need a content");
 			}
 
 			return newLabels;

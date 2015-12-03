@@ -54,7 +54,7 @@ var ModalClab = (function () {
 	}, {
 		key: 'setContent',
 		value: function setContent(content) {
-			this.querySelector('.modal-body').innerHTML = '<p>' + content + '</p>';
+			this.$$('.modal-body').innerHTML = '<p>' + content + '</p>';
 		}
 	}]);
 

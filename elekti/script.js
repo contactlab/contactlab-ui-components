@@ -23,6 +23,10 @@ var ElektiMer = (function () {
 					type: String,
 					value: 'elekti'
 				},
+				type: {
+					type: String,
+					value: 'primary'
+				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
@@ -82,11 +86,11 @@ var ElektiMer = (function () {
 			var _this = this;
 
 			this.liHeight = this.$.list.children[0].clientHeight;
-
-			this.$$('.input-wrapper').addEventListener('mousedown', function (evt) {
+			this.addEventListener('mousedown', function (evt) {
+				console.log(evt.target.localName);
 				if (evt.target.localName == 'ol') _this.dontHide = true;else _this.dontHide = false;
 			});
-			this.$$('.input-wrapper').addEventListener('mouseup', function (evt) {
+			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
 		}
@@ -175,11 +179,6 @@ var ElektiMer = (function () {
 				this.$.list.classList.remove('visible');
 				this.$.list.style.height = "0px";
 			}
-			/*this.$.list.classList.toggle('visible');
-   if(this.$.list.classList.contains('visible'))
-   	this.$.list.style.height = (this.liHeight * this.options.length) + "px";
-   else
-   	this.$.list.style.height = "0px";*/
 		}
 
 		/*_dropOnly(){
@@ -206,7 +205,6 @@ var ElektiMer = (function () {
    	i = this.getIndex(value);
    }*/
 			this.value = this.options[i];
-			console.log(this.value);
 			//this.activeInput('blur');
 			this.fire('change', { 'newValue': this.value, 'oldValue': old });
 			this._handleListVisibility(evt);

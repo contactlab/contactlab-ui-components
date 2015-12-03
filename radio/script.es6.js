@@ -23,14 +23,11 @@ class RadioClab{
 	}
 
 	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
+		return label.toLowerCase().replace(' ','-');
 	}
 
 	_computeType(wt){
-		let arr = ['row'];
-		arr.push(wt);
-		return arr.join(' ');
+		return ['row',wt].join(' ');
 	}
 
 	_checkIfTrue(i, n){

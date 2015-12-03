@@ -43,7 +43,7 @@ class CalendarClab{
 	}
 
 	_checkClear(evt){
-		this.querySelector('input').value == "" ? this.clear() : null;
+		this.$$('input').value == "" ? this.clear() : null;
 	}
 
 	_focusElement(evt){
@@ -55,7 +55,7 @@ class CalendarClab{
 	_createInstance(selector){
 		let obj;
 		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
-		rome(this.querySelector(selector), obj)
+		rome(this.$$(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
 
@@ -70,9 +70,7 @@ class CalendarClab{
 	}
 
 	_computeType(type){
-		var arr = ['calendar'];
-		arr.push(type);
-		return arr.join(' ');
+		return ['calendar',type].join(' ');
 	}
 
 	computeNoteType(type, noteType){
@@ -80,8 +78,7 @@ class CalendarClab{
 	}
 
 	_dashify(label){
-		var str = label.replace(' ', '-');
-		return str.toLowerCase();
+		return label.toLowerCase().replace(' ', '-');
 	}
 
 	_viewLabel(label){
@@ -92,22 +89,22 @@ class CalendarClab{
 	}
 
 	setValue(userValue){
-		this.querySelector('input').value = moment(userValue).format(this._getFormat());
+		this.$$('input').value = moment(userValue).format(this._getFormat());
 	}
 
 	getValue(){
-		let elem = this.querySelector('input').value;
+		let elem = this.$$('input').value;
 		let formatted = moment(elem, this._getFormat()).format();
 		return formatted;
 	}
 
 	getRomeInstance(){
-		return rome.find(this.querySelector('input'));
+		return rome.find(this.$$('input'));
 	}
 
 	clear(){
 		this.value = '';
-		this.querySelector('input').value = '';
+		this.$$('input').value = '';
 		let rome  = this.getRomeInstance();
 		rome.setValue(moment().format());
 	}

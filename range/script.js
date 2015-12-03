@@ -60,21 +60,19 @@ var RangeClab = (function () {
 	}, {
 		key: 'computeRangeWrapperClasses',
 		value: function computeRangeWrapperClasses(show) {
-			var name = '';
+			var name = undefined;
 			if (show) name = 'details';
 			return ['range-wrapper', name].join(' ');
 		}
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {
-			this.value = this.querySelector('input').value;
-			console.log(this.value);
+			this.value = this.$$('input').value;
 		}
 	}, {
 		key: '_dashify',
 		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
+			return label.toLowerCase().replace(' ', '-');
 		}
 	}, {
 		key: '_viewLabel',

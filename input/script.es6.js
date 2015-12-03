@@ -43,7 +43,7 @@ class InputClab{
 	}
 
 	_updateCompValue(evt){
-		this.value = this.querySelector('input').value;
+		this.value = this.$$('input').value;
 	}
 
 	_dashify(label){

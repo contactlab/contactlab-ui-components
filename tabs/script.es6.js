@@ -28,9 +28,6 @@ class TabsClab{
 
 	attached(){
 		this.tabContent = this.querySelectorAll('.tab-content');
-		/*for(let content of Array.from(this.tabContent)){
-			content.style.display = 'none';
-		}*/
 		Array.from(this.tabContent).forEach(function(content){
 			content.style.display = 'none';
 		});
@@ -47,7 +44,7 @@ class TabsClab{
 				}
 			}
 		} else {
-			console.error("There are labels without content" );
+			console.error("Some of the labels need a content");
 		}
 
 		return newLabels;
@@ -62,10 +59,9 @@ class TabsClab{
 	_changeTab(evt,index){
 		evt ? evt.preventDefault() : null;
 		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		
-		for(let content of Array.from(this.tabContent)){
-			content.style.display = 'none';
-		}
+		Array.from(this.tabContent).forEach((e){
+			e.style.display = 'none';
+		});
 		this.tabContent[this.active].style.display = 'block';
 	}
 

@@ -41,7 +41,6 @@ class ToasterClab {
 	computeIds(isRight){
 		this.name = 'right';
 		if(!isRight) this.name = 'left';
-
 		return {
 			btn: "toast-"+ this.name +"-btn",
 			toast: "toast-"+ this.name
@@ -56,9 +55,9 @@ class ToasterClab {
 
 	_toggleToast(evt){
 		if(evt.target.id){
-			this.querySelector('#toast-'+this.name).classList.add('visible');
+			this.$$('#toast-'+this.name).classList.add('visible');
 		} else {
-			this.querySelector('#toast-'+this.name).classList.remove('visible');
+			this.$$('#toast-'+this.name).classList.remove('visible');
 		}
 	}
 

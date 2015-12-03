@@ -48,19 +48,17 @@ class RangeClab{
 	}*/
 
 	computeRangeWrapperClasses(show){
-		let name = '';
+		let name;
 		if(show) name = 'details';
 		return ['range-wrapper',name].join(' ');
 	}
 
 	_updateCompValue(evt){
-		this.value = this.querySelector('input').value;
-		console.log(this.value);
+		this.value = this.$$('input').value;
 	}
 
 	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
+		return label.toLowerCase().replace(' ','-');
 	}
 
 	_viewLabel(label) {

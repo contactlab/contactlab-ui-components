@@ -37,15 +37,12 @@ var RadioClab = (function () {
 	}, {
 		key: '_dashify',
 		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
+			return label.toLowerCase().replace(' ', '-');
 		}
 	}, {
 		key: '_computeType',
 		value: function _computeType(wt) {
-			var arr = ['row'];
-			arr.push(wt);
-			return arr.join(' ');
+			return ['row', wt].join(' ');
 		}
 	}, {
 		key: '_checkIfTrue',

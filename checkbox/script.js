@@ -40,9 +40,7 @@ var CheckboxClab = (function () {
 	}, {
 		key: '_computeType',
 		value: function _computeType(type) {
-			var arr = ['row'];
-			arr.push(type);
-			return arr.join(' ');
+			return ['row', type].join(' ');
 		}
 	}, {
 		key: '_checkIfTrue',

@@ -57,7 +57,7 @@ class PaginationClab{
 
 	updateSelectedPage(e){
 		var i = e.detail.index;
-		this.querySelector('.active').classList.remove('active');
+		this.$$('.active').classList.remove('active');
 		this.querySelectorAll('.page')[i].classList.add('active');
 		this.currentPage = Number(i)+1;
 	}
