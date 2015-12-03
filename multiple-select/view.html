@@ -1,0 +1,20 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="multi-sel-clab">
+	<style></style>
+	
+	<template>
+
+		<template is="dom-if" if="[[label]]">
+			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+		</template>
+		<select id$="[[_dashify(name)]]" class$="[[type]]" name$="[[_dashify(name)]]" multiple disabled="[[disabled]]">
+			<template is="dom-repeat" items="[[options]]">
+				<option value$="[[item.value]]">[[item.label]]</option>
+			</template>
+		</select>
+
+	</template>
+	
+	<script src="script.js"></script>
+</dom-module>
