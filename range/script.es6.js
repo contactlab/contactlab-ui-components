@@ -10,10 +10,10 @@ class RangeClab{
 				type: String,
 				value: 'rangeinput'
 			},
-			/*type: {
+			type: {
 				type: String,
-				value: ''
-			},*/
+				value: 'primary'
+			},
 			value: {
 				type: Number,
 				notify: true,

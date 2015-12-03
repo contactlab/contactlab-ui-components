@@ -7,11 +7,11 @@
 		<template is="dom-if" if="[[!inline]]">
 			<div class$="[[_computeType(type)]]">
 				<template is="dom-if" if="[[_viewLabel(label)]]">
-					<label for$="[[_dashify(name)]]">[[label]]</label>
+					<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 				</template>
 				<div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
-				<input on-keyup="_checkClear" type="text" disabled="[[disabled]]]" placeholder="[[placeholder]]">
-				<note-clab type="[[noteType]]">
+				<input class$="[[type]]" on-keyup="_checkClear" type="text" disabled="[[disabled]]]" placeholder="[[placeholder]]">
+				<note-clab type="[[compNoteType]]">
 					<content></content>
 				</note-clab>
 			</div>

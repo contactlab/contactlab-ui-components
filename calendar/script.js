@@ -40,6 +40,11 @@ var CalendarClab = (function () {
 				noteType: {
 					type: String,
 					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -91,6 +96,11 @@ var CalendarClab = (function () {
 			var arr = ['calendar'];
 			arr.push(type);
 			return arr.join(' ');
+		}
+	}, {
+		key: "computeNoteType",
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
 		}
 	}, {
 		key: "_dashify",

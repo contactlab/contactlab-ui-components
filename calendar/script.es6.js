@@ -24,9 +24,14 @@ class CalendarClab{
 				type: String,
 				value: ""
 			},
-			noteType:{
+			noteType: {
 				type: String,
 				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -68,6 +73,10 @@ class CalendarClab{
 		var arr = ['calendar'];
 		arr.push(type);
 		return arr.join(' ');
+	}
+
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 	_dashify(label){

@@ -21,10 +21,10 @@ var RangeClab = (function () {
 					type: String,
 					value: 'rangeinput'
 				},
-				/*type: {
-    	type: String,
-    	value: ''
-    },*/
+				type: {
+					type: String,
+					value: 'primary'
+				},
 				value: {
 					type: Number,
 					notify: true,

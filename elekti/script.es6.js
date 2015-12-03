@@ -10,6 +10,10 @@ class ElektiMer{
 				type: String,
 				value: 'elekti'
 			},
+			type: {
+				type: String,
+				value: 'primary'
+			}
 			options: {
 				type: Array,
 				value: [
