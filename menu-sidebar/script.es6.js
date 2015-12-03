@@ -34,7 +34,7 @@ class MenuClab{
 		this._iosMenu();
 
 		setTimeout(() => {
-			Array.from(document.querySelectorAll('menu-clab .first-level-menu>li>a')).forEach( (e,i) => {				
+			Array.from(this.querySelectorAll('.first-level-menu>li>a')).forEach( (e,i) => {				
 				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
 				}else{
@@ -43,7 +43,7 @@ class MenuClab{
 			});
 
 
-			Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach((e,i) => {				
+			Array.from(this.querySelectorAll('.second-level-menu>li>a')).forEach((e,i) => {				
 				if(location.hash.search(e.getAttribute('href')) > -1){
 					e.parentNode.classList.add('active');
 				}else{
@@ -54,7 +54,7 @@ class MenuClab{
 	}
 
 	_openItem(evt){
-		let selector = document.querySelectorAll('menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a');
+		let selector = this.querySelectorAll('.first-level-menu>li>a, menu-clab .second-level-menu>li>a');
 		Array.from(selector).forEach((e,i ) => {					
 			if(location.hash.search(e.getAttribute('href')) > -1){
 				e.parentNode.classList.add('active');
@@ -62,7 +62,7 @@ class MenuClab{
 				e.parentNode.classList.remove('active');
 			}
 		});
-		Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach((e,i ) => {
+		Array.from(this.querySelectorAll('.first-level-menu>li')).forEach((e,i ) => {
 			e.classList.remove('open');
 		});
 		if(evt.currentTarget.nextElementSibling.tagName === 'UL'){
@@ -76,7 +76,7 @@ class MenuClab{
 	}
 
 	_activeItem(evt){
-		Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach((e,i ) => {
+		Array.from(this.querySelectorAll('.second-level-menu>li>a')).forEach((e,i ) => {
 			e.parentNode.classList.remove('active');
 		});
 		evt.currentTarget.parentNode.classList.add('active')
@@ -93,8 +93,8 @@ class MenuClab{
 					return true;
 					break;
 				default:
-					document.$$('#logo a').focus();
-					Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach((e, i) => {
+					this.$$('#logo a').focus();
+					Array.from(this.querySelectorAll('.first-level-menu>li')).forEach((e, i) => {
 						e.classList.remove('open');
 					});
 					break;

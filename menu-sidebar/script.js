@@ -43,10 +43,12 @@ var MenuClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
+			var _this = this;
+
 			this._iosMenu();
 
 			setTimeout(function () {
-				Array.from(document.querySelectorAll('menu-clab .first-level-menu>li>a')).forEach(function (e, i) {
+				Array.from(_this.querySelectorAll('.first-level-menu>li>a')).forEach(function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -54,7 +56,7 @@ var MenuClab = (function () {
 					}
 				});
 
-				Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach(function (e, i) {
+				Array.from(_this.querySelectorAll('.second-level-menu>li>a')).forEach(function (e, i) {
 					if (location.hash.search(e.getAttribute('href')) > -1) {
 						e.parentNode.classList.add('active');
 					} else {
@@ -66,7 +68,7 @@ var MenuClab = (function () {
 	}, {
 		key: '_openItem',
 		value: function _openItem(evt) {
-			var selector = document.querySelectorAll('menu-clab .first-level-menu>li>a, menu-clab .second-level-menu>li>a');
+			var selector = this.querySelectorAll('.first-level-menu>li>a, menu-clab .second-level-menu>li>a');
 			Array.from(selector).forEach(function (e, i) {
 				if (location.hash.search(e.getAttribute('href')) > -1) {
 					e.parentNode.classList.add('active');
@@ -74,7 +76,7 @@ var MenuClab = (function () {
 					e.parentNode.classList.remove('active');
 				}
 			});
-			Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach(function (e, i) {
+			Array.from(this.querySelectorAll('.first-level-menu>li')).forEach(function (e, i) {
 				e.classList.remove('open');
 			});
 			if (evt.currentTarget.nextElementSibling.tagName === 'UL') {
@@ -89,7 +91,7 @@ var MenuClab = (function () {
 	}, {
 		key: '_activeItem',
 		value: function _activeItem(evt) {
-			Array.from(document.querySelectorAll('menu-clab .second-level-menu>li>a')).forEach(function (e, i) {
+			Array.from(this.querySelectorAll('.second-level-menu>li>a')).forEach(function (e, i) {
 				e.parentNode.classList.remove('active');
 			});
 			evt.currentTarget.parentNode.classList.add('active');
@@ -97,6 +99,8 @@ var MenuClab = (function () {
 	}, {
 		key: '_iosMenu',
 		value: function _iosMenu() {
+			var _this2 = this;
+
 			document.querySelector('body main').addEventListener('click', function (evt) {
 				switch (evt.target.nodeName) {
 					case 'INPUT':
@@ -107,8 +111,8 @@ var MenuClab = (function () {
 						return true;
 						break;
 					default:
-						document.$$('#logo a').focus();
-						Array.from(document.querySelectorAll('menu-clab .first-level-menu>li')).forEach(function (e, i) {
+						_this2.$$('#logo a').focus();
+						Array.from(_this2.querySelectorAll('.first-level-menu>li')).forEach(function (e, i) {
 							e.classList.remove('open');
 						});
 						break;
