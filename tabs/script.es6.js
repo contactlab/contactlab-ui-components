@@ -28,9 +28,12 @@ class TabsClab{
 
 	attached(){
 		this.tabContent = this.querySelectorAll('.tab-content');
-		for(let content of Array.from(this.tabContent)){
+		/*for(let content of Array.from(this.tabContent)){
 			content.style.display = 'none';
-		}
+		}*/
+		Array.from(this.tabContent).forEach(function(content){
+			content.style.display = 'none';
+		});
 		this.tabContent[this.active].style.display = 'block';
 	}
 

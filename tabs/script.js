@@ -40,31 +40,12 @@ var TabsClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			this.tabContent = this.querySelectorAll('.tab-content');
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = Array.from(this.tabContent)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var content = _step.value;
-
-					content.style.display = 'none';
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
-
+			/*for(let content of Array.from(this.tabContent)){
+   	content.style.display = 'none';
+   }*/
+			Array.from(this.tabContent).forEach(function (content) {
+				content.style.display = 'none';
+			});
 			this.tabContent[this.active].style.display = 'block';
 		}
 	}, {
@@ -97,27 +78,27 @@ var TabsClab = (function () {
 			evt ? evt.preventDefault() : null;
 			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
 
-			var _iteratorNormalCompletion2 = true;
-			var _didIteratorError2 = false;
-			var _iteratorError2 = undefined;
+			var _iteratorNormalCompletion = true;
+			var _didIteratorError = false;
+			var _iteratorError = undefined;
 
 			try {
-				for (var _iterator2 = Array.from(this.tabContent)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-					var content = _step2.value;
+				for (var _iterator = Array.from(this.tabContent)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+					var content = _step.value;
 
 					content.style.display = 'none';
 				}
 			} catch (err) {
-				_didIteratorError2 = true;
-				_iteratorError2 = err;
+				_didIteratorError = true;
+				_iteratorError = err;
 			} finally {
 				try {
-					if (!_iteratorNormalCompletion2 && _iterator2.return) {
-						_iterator2.return();
+					if (!_iteratorNormalCompletion && _iterator.return) {
+						_iterator.return();
 					}
 				} finally {
-					if (_didIteratorError2) {
-						throw _iteratorError2;
+					if (_didIteratorError) {
+						throw _iteratorError;
 					}
 				}
 			}
