@@ -108,9 +108,11 @@ var ElektiMer = (function () {
 	}, {
 		key: '_updateValue',
 		value: function _updateValue() {
+			var old = this.value;
 			if (_typeof(this.value) == 'object') {
 				this.input.value = this.value.label;
 				this.highlightedElement();
+				this.fire('change', { 'newValue': this.value, 'oldValue': old });
 			}
 		}
 

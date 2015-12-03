@@ -91,9 +91,11 @@ class ElektiMer{
 	}
 
 	_updateValue(){
+		let old = this.value;
 		if(typeof this.value == 'object'){
 			this.input.value = this.value.label;
 			this.highlightedElement();
+			this.fire('change', { 'newValue': this.value, 'oldValue': old});
 		}
 	}
 
