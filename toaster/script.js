@@ -62,7 +62,6 @@ var ToasterClab = (function () {
 	}, {
 		key: 'computeType',
 		value: function computeType(def, type) {
-			console.log(def, type);
 			return [def, type].join(' ');
 		}
 	}, {

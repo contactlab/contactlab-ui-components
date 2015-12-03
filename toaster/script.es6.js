@@ -49,7 +49,6 @@ class ToasterClab {
 	}
 
 	computeType(def,type){
-		console.log(def,type);
 		return [def,type].join(' ');
 	}
 
