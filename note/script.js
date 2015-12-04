@@ -28,7 +28,7 @@ var NoteClab = (function () {
 	}, {
 		key: 'computeClasses',
 		value: function computeClasses(type) {
-			return ['note', type].join(' ');
+			return ['input-note', type].join(' ');
 		}
 	}]);
 

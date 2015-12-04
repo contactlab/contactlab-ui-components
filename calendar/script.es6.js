@@ -6,9 +6,10 @@ class CalendarClab{
 			label: {
 				type: String
 			},
-			disable: {
+			disabled: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: 'disabledChanged'
 			},
 			inline: {
 				type: Boolean,
@@ -75,6 +76,10 @@ class CalendarClab{
 
 	computeNoteType(type, noteType){
 		return [type, noteType].join(' ');
+	}
+
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
 	_dashify(label){

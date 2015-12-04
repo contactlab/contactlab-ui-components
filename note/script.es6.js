@@ -16,7 +16,7 @@ class NoteClab{
 	}
 
 	computeClasses(type){
-		return ['note', type].join(' ');
+		return ['input-note', type].join(' ');
 	}
 }
 

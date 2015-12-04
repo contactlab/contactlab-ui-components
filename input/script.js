@@ -32,7 +32,8 @@ var InputClab = (function () {
 				},
 				disabled: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: 'disabledChanged'
 				},
 				placeholder: {
 					type: String
@@ -52,6 +53,11 @@ var InputClab = (function () {
 		key: 'computeNoteType',
 		value: function computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
+		}
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
 		}
 	}, {
 		key: '_updateCompValue',

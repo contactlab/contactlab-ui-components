@@ -37,6 +37,10 @@ var MenuClab = (function () {
 				menu: {
 					type: Array,
 					value: []
+				},
+				link: {
+					type: String,
+					value: '/'
 				}
 			};
 		}

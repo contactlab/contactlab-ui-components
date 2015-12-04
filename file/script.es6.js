@@ -8,7 +8,7 @@ class FileClab{
 			},
 			name: {
 				type: String,
-				value: 'textinput'
+				value: 'fileinput'
 			},
 			type: {
 				type: String,
@@ -17,6 +17,13 @@ class FileClab{
 			value: {
 				type: String,
 				value: null
+			},
+			disabled: {
+				type: Boolean,
+				value: false,
+				notify: true,
+				reflectToAttribute: true,
+				observer: 'disabledChanged'
 			},
 			multiple: {
 				type: Boolean,
@@ -47,6 +54,10 @@ class FileClab{
 			textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 			this.value = textInput.value;
 		});
+	}
+
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
 	computeNoteType(type, noteType){

@@ -21,7 +21,8 @@ class InputClab{
 			},
 			disabled: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: 'disabledChanged'
 			},
 			placeholder: {
 				type: String
@@ -40,6 +41,10 @@ class InputClab{
 
 	computeNoteType(type, noteType){
 		return [type, noteType].join(' ');
+	}
+
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
 	_updateCompValue(evt){

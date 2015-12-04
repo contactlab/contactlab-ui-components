@@ -17,8 +17,8 @@
             <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
         </template>
         <div class$="[[ _computeWrapperClass(open) ]]">
-            <input id$="[[_dashify(name)]]" class$="[[type]]" disabled=[[disabled]] name$="[[_dashify(name)]]" type="text" class="js-users-list-filter" 
-            on-focus="_handleListVisibility" on-blur="_handleListVisibility" disabled="[[noSearch]]"
+            <input id$="[[_dashify(name)]]" class$="[[_computeInputClass(type)]]" disabled=[[disabled]] readonly$="[[noSearch]]" name$="[[_dashify(name)]]" type="text"
+            on-focus="_handleListVisibility" on-blur="_handleListVisibility"
             on-keyup="_searchElement" on-change="_updateValue" placeholder="[[placeholder]]">
             <ol class="js-users-list" id="list">
                 <template is="dom-repeat" items="[[options]]">
@@ -27,6 +27,9 @@
                 <div class="noResults hide" id="noRes">[[noResults]]</div>
             </ol>
         </div>
+        <note-clab type="[[compNoteType]]">
+            <content></content>
+        </note-clab>
     </template>
 
 	<script src="script.js"></script>

@@ -26,6 +26,10 @@ class MenuClab{
 			menu: {
 				type: Array,
 				value: []
+			},
+			link: {
+				type:String,
+				value: '/'
 			}
 		}
 	}

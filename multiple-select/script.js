@@ -32,7 +32,8 @@ var MultiSelClab = (function () {
 				},
 				disabled: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: 'disabledChanged'
 				}
 				/*optionsFn: {
     	type: Function,
@@ -55,12 +56,11 @@ var MultiSelClab = (function () {
   OBSERVERS
   ----------*/
 
-		/*_setOptions(promise){
-  	promise().then((resp) => {
-  		this.options = resp;
-  	});
-  }*/
-
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
 	}]);
 
 	return MultiSelClab;

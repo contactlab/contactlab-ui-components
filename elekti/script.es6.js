@@ -12,7 +12,7 @@ class ElektiMer{
 			},
 			type: {
 				type: String,
-				value: 'primary'
+				value: null
 			},
 			options: {
 				type: Array,
@@ -43,7 +43,8 @@ class ElektiMer{
 				type: Boolean,
 				value: false,
 				notify: true,
-				reflectToAttribute: true
+				reflectToAttribute: true,
+				observer: 'disabledChanged'
 			},
 			noSearch: {
 				type: Boolean,
@@ -56,6 +57,15 @@ class ElektiMer{
 			optionsFn: {
 				type: Function,
 				observer: '_setOptions'
+			},
+			noteType: {
+				type: String,
+				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -73,7 +83,6 @@ class ElektiMer{
 	attached(){
 		this.liHeight = this.$.list.children[0].clientHeight;
 		this.addEventListener('mousedown', (evt)=>{
-		console.log(evt.target.localName);
 			if(evt.target.localName=='ol') this.dontHide=true; else this.dontHide=false;
 		});
 		this.addEventListener('mouseup', (evt)=>{
@@ -101,6 +110,10 @@ class ElektiMer{
 		}
 	}
 
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
+	}
+
 
 
 	/*---------- 
@@ -119,6 +132,14 @@ class ElektiMer{
 		let arr = ['elekti-wrapper',''];
 		open ? arr[1] = 'active' : arr[1] = '';
 		return arr.join(' ');
+	}
+
+	_computeInputClass(type){
+		return ['js-users-list-filter',type].join(' ');
+	}
+
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 	_dashify(str){

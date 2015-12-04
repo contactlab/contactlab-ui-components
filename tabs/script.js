@@ -74,32 +74,9 @@ var TabsClab = (function () {
 		value: function _changeTab(evt, index) {
 			evt ? evt.preventDefault() : null;
 			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = Array.from(this.tabContent)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var content = _step.value;
-
-					content.style.display = 'none';
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
-
+			Array.from(this.tabContent).forEach(function (e) {
+				e.style.display = 'none';
+			});
 			this.tabContent[this.active].style.display = 'block';
 		}
 	}, {

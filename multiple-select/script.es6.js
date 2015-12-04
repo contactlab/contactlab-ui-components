@@ -27,7 +27,8 @@ class MultiSelClab {
 			},
 			disabled:{
 				type: Boolean,
-				value: false
+				value: false,
+				observer: 'disabledChanged'
 			}
 			/*optionsFn: {
 				type: Function,
@@ -51,11 +52,9 @@ class MultiSelClab {
 	OBSERVERS
 	----------*/
 
-	/*_setOptions(promise){
-		promise().then((resp) => {
-			this.options = resp;
-		});
-	}*/
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
+	}
 
 }
 

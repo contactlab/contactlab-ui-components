@@ -28,7 +28,7 @@ class TabsClab{
 
 	attached(){
 		this.tabContent = this.querySelectorAll('.tab-content');
-		Array.from(this.tabContent).forEach(function(content){
+		Array.from(this.tabContent).forEach((content)=>{
 			content.style.display = 'none';
 		});
 		this.tabContent[this.active].style.display = 'block';
@@ -59,7 +59,7 @@ class TabsClab{
 	_changeTab(evt,index){
 		evt ? evt.preventDefault() : null;
 		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		Array.from(this.tabContent).forEach((e){
+		Array.from(this.tabContent).forEach((e)=>{
 			e.style.display = 'none';
 		});
 		this.tabContent[this.active].style.display = 'block';

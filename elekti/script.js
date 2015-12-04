@@ -25,7 +25,7 @@ var ElektiMer = (function () {
 				},
 				type: {
 					type: String,
-					value: 'primary'
+					value: null
 				},
 				options: {
 					type: Array,
@@ -53,7 +53,8 @@ var ElektiMer = (function () {
 					type: Boolean,
 					value: false,
 					notify: true,
-					reflectToAttribute: true
+					reflectToAttribute: true,
+					observer: 'disabledChanged'
 				},
 				noSearch: {
 					type: Boolean,
@@ -66,6 +67,15 @@ var ElektiMer = (function () {
 				optionsFn: {
 					type: Function,
 					observer: '_setOptions'
+				},
+				noteType: {
+					type: String,
+					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -87,7 +97,6 @@ var ElektiMer = (function () {
 
 			this.liHeight = this.$.list.children[0].clientHeight;
 			this.addEventListener('mousedown', function (evt) {
-				console.log(evt.target.localName);
 				if (evt.target.localName == 'ol') _this.dontHide = true;else _this.dontHide = false;
 			});
 			this.addEventListener('mouseup', function (evt) {
@@ -117,6 +126,11 @@ var ElektiMer = (function () {
 				this.highlightedElement();
 			}
 		}
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
 
 		/*---------- 
   UTILS & COMPUTED VALUES
@@ -139,6 +153,16 @@ var ElektiMer = (function () {
 			var arr = ['elekti-wrapper', ''];
 			open ? arr[1] = 'active' : arr[1] = '';
 			return arr.join(' ');
+		}
+	}, {
+		key: '_computeInputClass',
+		value: function _computeInputClass(type) {
+			return ['js-users-list-filter', type].join(' ');
+		}
+	}, {
+		key: 'computeNoteType',
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
 		}
 	}, {
 		key: '_dashify',
