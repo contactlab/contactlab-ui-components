@@ -33,7 +33,7 @@ class CardClab {
 			},
 			effect: {
 				type: String,
-				value: ''
+				value: null
 			}
 		}
 	}

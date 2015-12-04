@@ -23,7 +23,7 @@ var RangeClab = (function () {
 				},
 				type: {
 					type: String,
-					value: 'primary'
+					value: null
 				},
 				value: {
 					type: Number,
@@ -39,6 +39,11 @@ var RangeClab = (function () {
 				step: {
 					type: Number
 				},
+				disabled: {
+					type: Boolean,
+					value: false,
+					observer: 'disabledChanged'
+				},
 				showDetails: {
 					type: Boolean,
 					value: false
@@ -50,19 +55,17 @@ var RangeClab = (function () {
 				}
 			};
 		}
-
-		/*_computeType(type){
-  	let arr = ['input-wrapper'];
-  	arr.push(type);
-  	return arr.join(' ');
-  }*/
-
 	}, {
 		key: 'computeRangeWrapperClasses',
 		value: function computeRangeWrapperClasses(show) {
 			var name = undefined;
 			if (show) name = 'details';
 			return ['range-wrapper', name].join(' ');
+		}
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
 		}
 	}, {
 		key: '_updateCompValue',

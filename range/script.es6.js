@@ -12,7 +12,7 @@ class RangeClab{
 			},
 			type: {
 				type: String,
-				value: 'primary'
+				value: null
 			},
 			value: {
 				type: Number,
@@ -28,6 +28,11 @@ class RangeClab{
 			step: {
 				type: Number
 			},
+			disabled:{
+				type: Boolean,
+				value: false,
+				observer: 'disabledChanged'
+			},
 			showDetails: {
 				type: Boolean,
 				value: false
@@ -40,17 +45,14 @@ class RangeClab{
 		}
 	}
 
-
-	/*_computeType(type){
-		let arr = ['input-wrapper'];
-		arr.push(type);
-		return arr.join(' ');
-	}*/
-
 	computeRangeWrapperClasses(show){
 		let name;
 		if(show) name = 'details';
 		return ['range-wrapper',name].join(' ');
+	}
+
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
 	_updateCompValue(evt){

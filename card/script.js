@@ -44,7 +44,7 @@ var CardClab = (function () {
 				},
 				effect: {
 					type: String,
-					value: ''
+					value: null
 				}
 			};
 		}
