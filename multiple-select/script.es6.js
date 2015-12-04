@@ -19,7 +19,7 @@ class MultiSelClab {
 			},
 			type:{
 				type: String,
-				value: 'primary'
+				value: null
 			},
 			label:{
 				type: String,
@@ -29,12 +29,25 @@ class MultiSelClab {
 				type: Boolean,
 				value: false,
 				observer: 'disabledChanged'
+			},
+			noteType: {
+				type: String,
+				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 			/*optionsFn: {
 				type: Function,
 				observer: '_setOptions'
 			}*/
 		}
+	}
+
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 	/*---------- 
@@ -44,8 +57,6 @@ class MultiSelClab {
 	_dashify(str){
 		return str.replace(/ /g,'-');
 	}
-
-
 
 
 	/*---------- 
