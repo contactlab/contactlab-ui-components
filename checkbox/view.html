@@ -8,7 +8,7 @@
 	<template>		
 		<template is="dom-repeat" items="[[labels]]">
 			<div class$="[[_computeType(wrapperType)]]">
-				<input id$="[[_dashify(item)]]" type="checkbox" value$="[[_dashify(item)]]" checked$="[[_checkIfTrue(index, active)]]" disabled$="[[_checkIfTrue(index, disabled)]]">
+				<input id$="[[_dashify(item)]]" type="checkbox" value="[[_dashify(item)]]" checked$="[[_checkIfTrue(index, active)]]" disabled$="[[_checkIfTrue(index, disabled)]]">
 				<label for$="[[_dashify(item)]]">[[item]]</label>
 			</div>
 		</template>
