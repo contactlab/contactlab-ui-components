@@ -5,7 +5,7 @@ class CardClab {
 		this.properties = {
 			title: {
 				type: String,
-				value: 'Title'
+				value: null
 			},
 			primaryLabel: {
 				type: String,
@@ -34,6 +34,14 @@ class CardClab {
 			effect: {
 				type: String,
 				value: null
+			},
+			noActions: {
+				type:Boolean,
+				value:false
+			},
+			link: {
+				type:Object,
+				value:null
 			}
 		}
 	}
@@ -51,6 +59,15 @@ class CardClab {
 
 	_computeEffectClass(effect){
 		return ['card', effect].join(' ');
+	}
+
+	_showActions(noactions, link){
+		if(link) return false;
+		return !!!noactions;
+	}
+
+	_showTitle(title){
+		title==null? false :  true;
 	}
 
 

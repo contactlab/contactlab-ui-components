@@ -16,7 +16,7 @@ var CardClab = (function () {
 			this.properties = {
 				title: {
 					type: String,
-					value: 'Title'
+					value: null
 				},
 				primaryLabel: {
 					type: String,
@@ -45,6 +45,14 @@ var CardClab = (function () {
 				effect: {
 					type: String,
 					value: null
+				},
+				noActions: {
+					type: Boolean,
+					value: false
+				},
+				link: {
+					type: Object,
+					value: null
 				}
 			};
 		}
@@ -64,6 +72,17 @@ var CardClab = (function () {
 		key: '_computeEffectClass',
 		value: function _computeEffectClass(effect) {
 			return ['card', effect].join(' ');
+		}
+	}, {
+		key: '_showActions',
+		value: function _showActions(noactions, link) {
+			if (link) return false;
+			return !!!noactions;
+		}
+	}, {
+		key: '_showTitle',
+		value: function _showTitle(title) {
+			title == null ? false : true;
 		}
 	}]);
 
