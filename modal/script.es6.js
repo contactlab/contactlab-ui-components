@@ -9,14 +9,27 @@ class ModalClab{
 			},
 			visible: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: '_openModal'
 			},
 			primary: {
 				type: String
 			},
 			secondary: {
 				type: String
+			},
+			content: {
+				type: String
 			}
+		}
+	}
+
+	_openModal(newVal, oldVal){
+		if(newVal){
+			this.async(()=>{
+				if(this.querySelector('.modal-body').innerHTML=='')
+					this.querySelector('.modal-body').innerHTML=this.content;
+			},50);
 		}
 	}
 
@@ -35,10 +48,6 @@ class ModalClab{
 
 	_secondary(evt){
 		this.fire('modal-secondary');
-	}
-
-	setContent(content){
-		this.$$('.modal-body').innerHTML = '<p>' + content + '</p>';
 	}
 
 }

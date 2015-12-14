@@ -20,15 +20,30 @@ var ModalClab = (function () {
 				},
 				visible: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: '_openModal'
 				},
 				primary: {
 					type: String
 				},
 				secondary: {
 					type: String
+				},
+				content: {
+					type: String
 				}
 			};
+		}
+	}, {
+		key: '_openModal',
+		value: function _openModal(newVal, oldVal) {
+			var _this = this;
+
+			if (newVal) {
+				this.async(function () {
+					if (_this.querySelector('.modal-body').innerHTML == '') _this.querySelector('.modal-body').innerHTML = _this.content;
+				}, 50);
+			}
 		}
 	}, {
 		key: '_closeModal',
@@ -50,11 +65,6 @@ var ModalClab = (function () {
 		key: '_secondary',
 		value: function _secondary(evt) {
 			this.fire('modal-secondary');
-		}
-	}, {
-		key: 'setContent',
-		value: function setContent(content) {
-			this.$$('.modal-body').innerHTML = '<p>' + content + '</p>';
 		}
 	}]);
 

@@ -1,7 +1,8 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="modal-clab">
-	<style></style>
+	<style>
+	</style>
 	
 	<template>
 		<template is="dom-if" if="[[visible]]">
@@ -9,9 +10,7 @@
 				<div class="modal-wrapper">
 					<div class="modal" on-click="_block">
 						<div class="modal-title">[[title]]</div>
-						<div class="modal-body">
-							<content></content>
-						</div>
+						<div class="modal-body"></div>
 						<div class="modal-actions">
 							<template is="dom-if" if="[[secondary]]">
 								<button on-click="_secondary" class="btn flat">[[secondary]]</button>
@@ -21,7 +20,7 @@
 							</template>
 						</div>
 					</div>
-				</div
+				</div>
 			</div>
 		</template>
 	</template>

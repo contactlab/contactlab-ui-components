@@ -7,9 +7,15 @@ var gulp = require('gulp'),
   	rename = require("gulp-rename"),
     plumber = require('gulp-plumber');
 
-var currentPath = './';
+var conf = {
+  scssSourcePath: './app/assets/scss/**/*.{scss,sass}',
+  jsSourcePath: './app/**/*.{js,jsx}',
+  es6SourcePath: './app/**/*es6.js',
+  cssOutputPath: './app/assets/css/',
+  distCSS: './dist/css/'
+}
 
-function getFolders(dir) {
+/*function getFolders(dir) {
     return fs.readdirSync(dir)
       .filter(function(file) {
         return fs.statSync(path.join(dir, file)).isDirectory();
@@ -29,27 +35,38 @@ gulp.task('babel', function () {
     };
     console.log(folders);
     var tasks = folders.map(function(folder) {
-      return gulp.src(path.join(ctx, folder, '/**/*.es6.js'))
+      return gulp.src(path.join(ctx, folder, '/**\/*.es6.js'))
         .pipe(babel())
         .pipe(rename('script.js'))
         .pipe(gulp.dest(ctx + "/" + folder));
     });
   }
+});*/
+
+
+// Server
+gulp.task('connect', function (port) {
+  !port ? port = 3000 : port;
+  console.log(port);
+  connect.server({
+    root: '../../ui-components/',
+    port: port,
+    livereload: true
+  });
 });
 
-
-
 gulp.task('watch-es6', function() {
-  return gulp.src('**/*.es6.js')
+  return gulp.src(conf.es6SourcePath)
     .pipe(plumber())
-    .pipe(watch('**/*es6.js'))
+    .pipe(watch(conf.es6SourcePath))
     .pipe(babel())
     .pipe(rename(function(path){
         path.basename = path.basename.replace(/.es6$/, '');
-        console.log('updated: ' + path.basename + ' in ' + path.dirname);
+        console.log('updated: '+path.basename);
     }))
-    .pipe(gulp.dest(''));
+    .pipe(gulp.dest('./app'));
 });
 
 
-gulp.task('default', ['watch-es6']);
+gulp.task('default', ['connect']); 
+gulp.task('dev', ['connect', 'watch-es6']);
