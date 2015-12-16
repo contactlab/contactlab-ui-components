@@ -3,9 +3,15 @@ class CalendarClab{
 	beforeRegister(){
 		this.is = "calendar-clab";
 		this.properties = {
+			/**
+	       * Add a label to the calendar input
+	       */
 			label: {
 				type: String
 			},
+			/**
+	       * Whether the input is disabled or not
+	       */
 			disabled: {
 				type: Boolean,
 				value: false,

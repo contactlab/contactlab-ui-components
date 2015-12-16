@@ -1,0 +1,22 @@
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../button/view.html">
+<!--
+Example:
+
+    <group-clab></group-clab> 
+
+A group of 3 buttons, their function is similar to the radio buttons
+
+@demo
+-->
+<dom-module id="group-clab">
+	<style></style>
+	
+	<template>		
+		<div class$="[[_computeGroupClass(type,small)]]">
+			<content></content>
+		</div>
+	</template>
+
+	<script src="script.es6.js"></script>
+</dom-module>

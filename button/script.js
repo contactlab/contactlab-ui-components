@@ -14,22 +14,42 @@ var ButtonClab = (function () {
 		value: function beforeRegister() {
 			this.is = 'button-clab';
 			this.properties = {
+				/**
+         * `type` additional class for the type of btn
+         * @type string
+         */
 				type: {
 					type: String,
 					value: ""
 				},
+				/**
+         * `appearance` additional class for the appearence of btn
+         * @type string
+         */
 				appearance: {
 					type: String,
 					value: ""
 				},
+				/**
+         * `size` additional class for the size of btn
+         * @type string
+         */
 				size: {
 					type: String,
 					value: ""
 				},
+				/**
+         * `type` additional class for the icon of btn
+         * @type string
+         */
 				icon: {
 					type: String,
 					value: ""
 				},
+				/**
+         * Whether is disabled or not
+         * @type boolean
+         */
 				disabled: {
 					type: Boolean,
 					value: false

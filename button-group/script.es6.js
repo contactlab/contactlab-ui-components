@@ -3,19 +3,31 @@ class GroupClab{
 	beforeRegister(){
 		this.is = 'group-clab';
 		this.properties = {
+			/**
+	       * Whether the buttons are small
+	       */
 			small: {
 				type: Boolean,
 				value: false
 			},
+			/**
+	       * Whether the buttons are disabled
+	       */
 			disabled: {
 				type: Boolean,
 				value: false,
 				observer: '_updateDisabled'
 			},
+			/**
+	       * Additional class
+	       */
 			type: {
 				type: String,
 				value: ""
 			},
+			/**
+	       * Index of the button active at init
+	       */
 			value: {
 				type: Number,
 				value: 0,
@@ -33,7 +45,9 @@ class GroupClab{
 		this._initialize();
 	}
 
-
+	/**
+	* observer function of the 'disabled' prop
+	*/
 	_updateDisabled(){
 		let btns = this.querySelectorAll('button');
 		Array.from(btns).forEach(btn => {

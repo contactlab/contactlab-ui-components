@@ -8,10 +8,10 @@ var gulp = require('gulp'),
     plumber = require('gulp-plumber');
 
 var conf = {
-  scssSourcePath: './app/assets/scss/**/*.{scss,sass}',
-  jsSourcePath: './app/**/*.{js,jsx}',
-  es6SourcePath: './app/**/*es6.js',
-  cssOutputPath: './app/assets/css/',
+  scssSourcePath: './assets/scss/**/*.{scss,sass}',
+  jsSourcePath: '**/*.{js,jsx}',
+  es6SourcePath: '**/*es6.js',
+  cssOutputPath: './assets/css/',
   distCSS: './dist/css/'
 }
 
@@ -64,7 +64,7 @@ gulp.task('watch-es6', function() {
         path.basename = path.basename.replace(/.es6$/, '');
         console.log('updated: '+path.basename);
     }))
-    .pipe(gulp.dest('./app'));
+    .pipe(gulp.dest(''));
 });
 
 
