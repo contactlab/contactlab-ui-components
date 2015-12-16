@@ -17,8 +17,8 @@ class ElektiMer{
 			options: {
 				type: Array,
 				value: [
-				{value: 'A', label: 'Option 1'},
-				{value: 'B', label: 'Option 2'}
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'}
 				]
 			},
 			default: {
@@ -58,6 +58,10 @@ class ElektiMer{
 				type: String,
 				value: 'No results found'
 			},
+			multiSelect: {
+				type: Boolean,
+				value: false
+			},
 			optionsFn: {
 				type: Function,
 				observer: '_setOptions'
@@ -80,13 +84,12 @@ class ElektiMer{
 		if((this.default || this.default === 0) && (typeof i == 'number')){
 			this.input.value = this.options[i].label;
 			this.value = this.options[i];
+			//this.activeInput('blur');
 		}
 	}
 
 	attached(){
 		this.liHeight = this.$.list.children[0].clientHeight;
-		this.exists;
-
 		this.addEventListener('mousedown', (evt)=>{
 			if(evt.target.localName=='ol' || evt.target.localName=='li') this.dontHide=true; else this.dontHide=false;
 		});
@@ -111,6 +114,13 @@ class ElektiMer{
 	_disabledChanged(newVal, oldVal){
 		if(newVal) this.type='disabled';
 	}
+
+	/*_updateValue(evt){
+		if(typeof this.value == 'object'){
+			this.input.value = this.value.label;
+			this.highlightedElement();
+		}
+	}*/
 
 
 
@@ -143,6 +153,13 @@ class ElektiMer{
 		return str.replace(/ /g,'-');
 	}
 
+	/*activeInput(type){
+		if(type === 'blur' && this.input.value !== "")
+			this.input.classList.add('active');
+		else
+			this.input.classList.remove('active');
+	}*/
+
 	getIndex(value){
 		let n;
 		this.options.forEach(opt => {
@@ -151,22 +168,18 @@ class ElektiMer{
 		return n;
 	}
 
-	highlightedElement(input, els){
-		let search = (input)? input : this.input.value.toLowerCase();
-		let elems = (els)? els : this.$.list.querySelectorAll('li');
-		let exists=false;
-
+	highlightedElement(){
+		let search;
+		if(this.multiSelect){
+			search = this.input.value.toLowerCase().split(', ').pop();
+		} else {
+			search = this.input.value.toLowerCase();
+		}
+		let elems = this.$.list.querySelectorAll('li');
 		Array.from(elems).forEach(el => {
 			let str = el.innerHTML;
-			if((search !== '') && (str.toLowerCase() === search) ) {
-				el.classList.add('selected');
-				exists=true;
-			} else {
-				el.classList.remove('selected');
-			} 
+			((search !== '') && (str.toLowerCase() === search) ) ? el.classList.add('selected') : el.classList.remove('selected');
 		});
-
-		return exists;
 	}
 
 	slideToggle(action){
@@ -174,17 +187,30 @@ class ElektiMer{
 			this.liHeight = this.$.list.children[0].clientHeight;
 		}
 		if(action==='open'){
-			console.log(this.$);
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
 			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
 		} else {
 			this.$.list.classList.remove('visible');
 			this.$.list.style.height = "0px";
-			Array.from(this.$.list.querySelectorAll('li')).forEach((el)=>{
-				el.classList.remove('hide');
-			});
 		}
+	}
+
+	stampValues(){
+		let values=[];
+		for(let i=0; i<this.valuesArr.length; i++){
+			values.push(this.valuesArr[i].label);
+		}
+		this.input.value = values.join(', ')+', ';
+	}
+
+	searchInArr(arr, key){
+		for(let i=0; i<arr.length; i++){
+			if(arr[i].label===key){
+				return {is: true, arr: arr[i]};
+			}
+		}
+		return {is: false};
 	}
 
 
@@ -194,14 +220,12 @@ class ElektiMer{
 
 	_handleFocusAndBlur(evt){
 		if(evt.type=='focus'){
-			if(!this.open){
-				this.input.classList.add('active');
-				setTimeout(() => {
-					this.slideToggle('open');
-					this.open = true;
-					this.highlightedElement();
-				},150);
-			}
+			this.input.classList.add('active');
+			setTimeout(() => {
+				this.slideToggle('open');
+				this.open = true;
+				this.highlightedElement();
+			},150);
 		} else if(this.dontHide && evt.type=='blur'){
 			this.input.focus();
 		} else if(!this.dontHide && evt.type=='blur') {
@@ -215,24 +239,57 @@ class ElektiMer{
 
 	_selectElement(evt, value){
 		let i = this.getIndex(evt.target.getAttribute('data-value'));
-		let old = this.value;
-		this.input.value = this.options[i].label;
-		this.value = this.options[i];
-		this.highlightedElement();
+		
+		if(this.multiSelect){
+			let old = this.valuesArr;
+			this.valuesArr.push(this.options[i]);
+			this.stampValues();
 
-		this.fire('change', { 'newValue': this.value, 'oldValue': old});
+			this.fire('change', { 'newValue': this.valuesArr, 'oldValue': old});
+		} else {
+			let old = this.value;
+			this.input.value = this.options[i].label;
+			this.value = this.options[i];
+
+			this.fire('change', { 'newValue': this.value, 'oldValue': old});
+		}
+
 		this.input.blur();
 	}
 
 	_searchElement(evt){
-		if(evt.keyCode==13 && this.exists){
-			this.input.blur();
-			return;
-		}
-
+		let input;
 		let elems = this.$.list.querySelectorAll('li');
 		this.$.list.style.height = (this.liHeight*elems.length) + 'px';
-		let input = this.input.value.toLowerCase();
+
+		if(this.multiSelect){
+			input = this.input.value.toLowerCase().split(', ').pop();
+
+			//let lastOfInput= this.input.value.toLowerCase().split(', ').pop();
+			/*console.log(input);
+			if(input!=""){
+				let existsInOptions=this.searchInArr(this.options, input);
+
+				if(existsInOptions.is){
+					let existsInValues=this.searchInArr(this.valuesArr, input);
+					if(existsInValues.is){
+						this.stampValues();
+					} else {
+						this.valuesArr.push(existsInOptions.arr);
+						this.stampValues();
+					}
+				} else {
+					this.valuesArr.pop();
+					this.stampValues();
+				}
+				
+			} else if(input==="" && this.input.value.split(', ').length>this.valuesArr.length) {
+				
+			}*/
+		} else {
+			input = this.input.value.toLowerCase();
+
+		}
 
 		Array.from(elems).forEach(el => {
 			let str = el.innerHTML;
@@ -252,8 +309,7 @@ class ElektiMer{
 		} else {
 			this.$.noRes.classList.add('hide');
 		}
-
-		this.exists=this.highlightedElement(input, elems);
+		this.highlightedElement();
 	}
 }
 

@@ -10,7 +10,7 @@ var gulp = require('gulp'),
 var conf = {
   scssSourcePath: './assets/scss/**/*.{scss,sass}',
   jsSourcePath: '**/*.{js,jsx}',
-  es6SourcePath: '**/*es6.js',
+  es6SourcePath: '**/*.es6.js',
   cssOutputPath: './assets/css/',
   distCSS: './dist/css/'
 }
@@ -49,7 +49,7 @@ gulp.task('connect', function (port) {
   !port ? port = 3000 : port;
   console.log(port);
   connect.server({
-    root: '../../ui-components/',
+    root: '',
     port: port,
     livereload: true
   });
@@ -62,11 +62,10 @@ gulp.task('watch-es6', function() {
     .pipe(babel())
     .pipe(rename(function(path){
         path.basename = path.basename.replace(/.es6$/, '');
-        console.log('updated: '+path.basename);
+        console.log('updated: '+path.basename+' in '+path.dirname);
     }))
     .pipe(gulp.dest(''));
 });
 
 
-gulp.task('default', ['connect']); 
-gulp.task('dev', ['connect', 'watch-es6']);
+gulp.task('default', ['watch-es6']); 

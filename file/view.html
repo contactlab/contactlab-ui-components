@@ -1,7 +1,11 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="file-clab">
-	<style></style>
+	<style>
+		input[type=file]{
+			display: none;
+		}
+	</style>
 	
 	<template>		
 		<template is="dom-if" if="[[_viewLabel(label)]]">

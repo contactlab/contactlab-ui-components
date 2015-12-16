@@ -16,31 +16,27 @@ var ButtonClab = (function () {
 			this.properties = {
 				/**
          * `type` additional class for the type of btn
-         * @type string
          */
 				type: {
 					type: String,
 					value: ""
 				},
 				/**
-         * `appearance` additional class for the appearence of btn
-         * @type string
+         * `appearance` additional class for the type
          */
 				appearance: {
 					type: String,
 					value: ""
 				},
 				/**
-         * `size` additional class for the size of btn
-         * @type string
+         * `size` additional class for the size
          */
 				size: {
 					type: String,
 					value: ""
 				},
 				/**
-         * `type` additional class for the icon of btn
-         * @type string
+         * `type` insert a valid icon class to add an icon
          */
 				icon: {
 					type: String,
@@ -48,7 +44,6 @@ var ButtonClab = (function () {
 				},
 				/**
          * Whether is disabled or not
-         * @type boolean
          */
 				disabled: {
 					type: Boolean,
@@ -56,11 +51,21 @@ var ButtonClab = (function () {
 				}
 			};
 		}
+
+		/**
+  * Computes the class of the button joining the values of 'type', 'appearence' and 'size'
+  */
+
 	}, {
 		key: "_computeClass",
 		value: function _computeClass(type, appearance, size) {
 			return ['btn', type, appearance, size].join(' ');
 		}
+
+		/**
+  * Computes the class of the icon if 'icon' has a value
+  */
+
 	}, {
 		key: "_computeIconClass",
 		value: function _computeIconClass(icon) {

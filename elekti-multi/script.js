@@ -66,6 +66,10 @@ var ElektiMer = (function () {
 					type: String,
 					value: 'No results found'
 				},
+				multiSelect: {
+					type: Boolean,
+					value: false
+				},
 				optionsFn: {
 					type: Function,
 					observer: '_setOptions'
@@ -89,6 +93,7 @@ var ElektiMer = (function () {
 			if ((this.default || this.default === 0) && typeof i == 'number') {
 				this.input.value = this.options[i].label;
 				this.value = this.options[i];
+				//this.activeInput('blur');
 			}
 		}
 	}, {
@@ -97,8 +102,6 @@ var ElektiMer = (function () {
 			var _this = this;
 
 			this.liHeight = this.$.list.children[0].clientHeight;
-			this.exists;
-
 			this.addEventListener('mousedown', function (evt) {
 				if (evt.target.localName == 'ol' || evt.target.localName == 'li') _this.dontHide = true;else _this.dontHide = false;
 			});
@@ -126,6 +129,13 @@ var ElektiMer = (function () {
 		value: function _disabledChanged(newVal, oldVal) {
 			if (newVal) this.type = 'disabled';
 		}
+
+		/*_updateValue(evt){
+  	if(typeof this.value == 'object'){
+  		this.input.value = this.value.label;
+  		this.highlightedElement();
+  	}
+  }*/
 
 		/*---------- 
   UTILS & COMPUTED VALUES
@@ -158,6 +168,14 @@ var ElektiMer = (function () {
 		value: function _dashify(str) {
 			return str.replace(/ /g, '-');
 		}
+
+		/*activeInput(type){
+  	if(type === 'blur' && this.input.value !== "")
+  		this.input.classList.add('active');
+  	else
+  		this.input.classList.remove('active');
+  }*/
+
 	}, {
 		key: 'getIndex',
 		value: function getIndex(value) {
@@ -171,22 +189,18 @@ var ElektiMer = (function () {
 		}
 	}, {
 		key: 'highlightedElement',
-		value: function highlightedElement(input, els) {
-			var search = input ? input : this.input.value.toLowerCase();
-			var elems = els ? els : this.$.list.querySelectorAll('li');
-			var exists = false;
-
+		value: function highlightedElement() {
+			var search = undefined;
+			if (this.multiSelect) {
+				search = this.input.value.toLowerCase().split(', ').pop();
+			} else {
+				search = this.input.value.toLowerCase();
+			}
+			var elems = this.$.list.querySelectorAll('li');
 			Array.from(elems).forEach(function (el) {
 				var str = el.innerHTML;
-				if (search !== '' && str.toLowerCase() === search) {
-					el.classList.add('selected');
-					exists = true;
-				} else {
-					el.classList.remove('selected');
-				}
+				search !== '' && str.toLowerCase() === search ? el.classList.add('selected') : el.classList.remove('selected');
 			});
-
-			return exists;
 		}
 	}, {
 		key: 'slideToggle',
@@ -195,17 +209,32 @@ var ElektiMer = (function () {
 				this.liHeight = this.$.list.children[0].clientHeight;
 			}
 			if (action === 'open') {
-				console.log(this.$);
 				this.$.list.classList.add('visible');
 				var n = this.$.list.querySelectorAll('li.hide').length;
 				this.$.list.style.height = this.liHeight * (this.options.length - n) + "px";
 			} else {
 				this.$.list.classList.remove('visible');
 				this.$.list.style.height = "0px";
-				Array.from(this.$.list.querySelectorAll('li')).forEach(function (el) {
-					el.classList.remove('hide');
-				});
 			}
+		}
+	}, {
+		key: 'stampValues',
+		value: function stampValues() {
+			var values = [];
+			for (var i = 0; i < this.valuesArr.length; i++) {
+				values.push(this.valuesArr[i].label);
+			}
+			this.input.value = values.join(', ') + ', ';
+		}
+	}, {
+		key: 'searchInArr',
+		value: function searchInArr(arr, key) {
+			for (var i = 0; i < arr.length; i++) {
+				if (arr[i].label === key) {
+					return { is: true, arr: arr[i] };
+				}
+			}
+			return { is: false };
 		}
 
 		/*---------- 
@@ -218,14 +247,12 @@ var ElektiMer = (function () {
 			var _this4 = this;
 
 			if (evt.type == 'focus') {
-				if (!this.open) {
-					this.input.classList.add('active');
-					setTimeout(function () {
-						_this4.slideToggle('open');
-						_this4.open = true;
-						_this4.highlightedElement();
-					}, 150);
-				}
+				this.input.classList.add('active');
+				setTimeout(function () {
+					_this4.slideToggle('open');
+					_this4.open = true;
+					_this4.highlightedElement();
+				}, 150);
 			} else if (this.dontHide && evt.type == 'blur') {
 				this.input.focus();
 			} else if (!this.dontHide && evt.type == 'blur') {
@@ -240,25 +267,56 @@ var ElektiMer = (function () {
 		key: '_selectElement',
 		value: function _selectElement(evt, value) {
 			var i = this.getIndex(evt.target.getAttribute('data-value'));
-			var old = this.value;
-			this.input.value = this.options[i].label;
-			this.value = this.options[i];
-			this.highlightedElement();
 
-			this.fire('change', { 'newValue': this.value, 'oldValue': old });
+			if (this.multiSelect) {
+				var old = this.valuesArr;
+				this.valuesArr.push(this.options[i]);
+				this.stampValues();
+
+				this.fire('change', { 'newValue': this.valuesArr, 'oldValue': old });
+			} else {
+				var old = this.value;
+				this.input.value = this.options[i].label;
+				this.value = this.options[i];
+
+				this.fire('change', { 'newValue': this.value, 'oldValue': old });
+			}
+
 			this.input.blur();
 		}
 	}, {
 		key: '_searchElement',
 		value: function _searchElement(evt) {
-			if (evt.keyCode == 13 && this.exists) {
-				this.input.blur();
-				return;
-			}
-
+			var input = undefined;
 			var elems = this.$.list.querySelectorAll('li');
 			this.$.list.style.height = this.liHeight * elems.length + 'px';
-			var input = this.input.value.toLowerCase();
+
+			if (this.multiSelect) {
+				input = this.input.value.toLowerCase().split(', ').pop();
+
+				//let lastOfInput= this.input.value.toLowerCase().split(', ').pop();
+				/*console.log(input);
+    if(input!=""){
+    	let existsInOptions=this.searchInArr(this.options, input);
+    			if(existsInOptions.is){
+    		let existsInValues=this.searchInArr(this.valuesArr, input);
+    		if(existsInValues.is){
+    			this.stampValues();
+    		} else {
+    			this.valuesArr.push(existsInOptions.arr);
+    			this.stampValues();
+    		}
+    	} else {
+    		this.valuesArr.pop();
+    		this.stampValues();
+    	}
+    	
+    } else if(input==="" && this.input.value.split(', ').length>this.valuesArr.length) {
+    	
+    }*/
+			} else {
+					input = this.input.value.toLowerCase();
+				}
 
 			Array.from(elems).forEach(function (el) {
 				var str = el.innerHTML;
@@ -278,8 +336,7 @@ var ElektiMer = (function () {
 			} else {
 				this.$.noRes.classList.add('hide');
 			}
-
-			this.exists = this.highlightedElement(input, elems);
+			this.highlightedElement();
 		}
 	}]);
 
