@@ -2,6 +2,8 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ElektiMer = (function () {
@@ -38,8 +40,8 @@ var ElektiMer = (function () {
 				},
 				value: {
 					type: Object,
-					reflectToAttribute: true,
-					notify: true
+					notify: true,
+					observer: '_updateValue'
 				},
 				valuesArr: {
 					type: Array,
@@ -55,7 +57,6 @@ var ElektiMer = (function () {
 					type: Boolean,
 					value: false,
 					notify: true,
-					reflectToAttribute: true,
 					observer: '_disabledChanged'
 				},
 				noSearch: {
@@ -70,11 +71,11 @@ var ElektiMer = (function () {
 					type: Function,
 					observer: '_setOptions'
 				},
+
 				noteType: {
 					type: String,
 					value: ''
 				},
-
 				compNoteType: {
 					type: String,
 					computed: '_computeNoteType(type, noteType)'
@@ -82,19 +83,16 @@ var ElektiMer = (function () {
 			};
 		}
 	}, {
-		key: 'ready',
-		value: function ready() {
+		key: 'attached',
+		value: function attached() {
+			var _this = this;
+
 			this.input = this.$$('#' + this._dashify(this.name));
 			var i = this.getIndex(this.default);
 			if ((this.default || this.default === 0) && typeof i == 'number') {
 				this.input.value = this.options[i].label;
 				this.value = this.options[i];
 			}
-		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			var _this = this;
 
 			this.liHeight = this.$.list.children[0].clientHeight;
 			this.exists;
@@ -105,6 +103,13 @@ var ElektiMer = (function () {
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
+		}
+	}, {
+		key: '_updateValue',
+		value: function _updateValue(evt) {
+			if (_typeof(this.value) == 'object') {
+				this.highlightedElement();
+			}
 		}
 
 		/*---------- 
@@ -172,7 +177,7 @@ var ElektiMer = (function () {
 	}, {
 		key: 'highlightedElement',
 		value: function highlightedElement(input, els) {
-			var search = input ? input : this.input.value.toLowerCase();
+			var search = input ? input : this.value.label.toLowerCase();
 			var elems = els ? els : this.$.list.querySelectorAll('li');
 			var exists = false;
 

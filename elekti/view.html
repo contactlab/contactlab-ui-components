@@ -17,9 +17,9 @@
             <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
         </template>
         <div class$="[[ _computeWrapperClass(open) ]]">
-            <input id$="[[_dashify(name)]]" class$="[[_computeInputClass(type)]]" disabled=[[disabled]] readonly$="[[noSearch]]" name$="[[_dashify(name)]]" type="text"
+            <input id$="[[_dashify(name)]]" class$="[[_computeInputClass(type)]]" disabled="[[disabled]]" readonly$="[[noSearch]]" name$="[[_dashify(name)]]" type="text"
             on-focus="_handleFocusAndBlur" on-blur="_handleFocusAndBlur"
-            on-keyup="_searchElement" placeholder="[[placeholder]]">
+            on-keyup="_searchElement" placeholder="[[placeholder]]" value="{{value.label}}">
 
             <ol class="js-users-list" id="list">
                 <template is="dom-repeat" items="[[options]]">

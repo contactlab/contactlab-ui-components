@@ -30,8 +30,8 @@ class ElektiMer{
 			},
 			value: {
 				type: Object,
-				reflectToAttribute: true,
-				notify: true
+				notify: true,
+				observer: '_updateValue'
 			},
 			valuesArr: {
 				type: Array,
@@ -47,7 +47,6 @@ class ElektiMer{
 				type: Boolean,
 				value: false,
 				notify: true,
-				reflectToAttribute: true,
 				observer: '_disabledChanged'
 			},
 			noSearch: {
@@ -62,11 +61,11 @@ class ElektiMer{
 				type: Function,
 				observer: '_setOptions'
 			},
+
 			noteType: {
 				type: String,
 				value: ''
 			},
-
 			compNoteType: {
 				type: String,
 				computed: '_computeNoteType(type, noteType)'
@@ -74,16 +73,14 @@ class ElektiMer{
 		}
 	}
 
-	ready(){
+	attached(){
 		this.input = this.$$('#' + this._dashify(this.name));
 		let i = this.getIndex(this.default);
 		if((this.default || this.default === 0) && (typeof i == 'number')){
 			this.input.value = this.options[i].label;
 			this.value = this.options[i];
 		}
-	}
 
-	attached(){
 		this.liHeight = this.$.list.children[0].clientHeight;
 		this.exists;
 
@@ -95,6 +92,12 @@ class ElektiMer{
 		});
 	}
 
+
+	_updateValue(evt){
+		if(typeof this.value == 'object'){
+			this.highlightedElement();
+		}
+	}
 
 
 	/*---------- 
@@ -152,7 +155,7 @@ class ElektiMer{
 	}
 
 	highlightedElement(input, els){
-		let search = (input)? input : this.input.value.toLowerCase();
+		let search = (input)? input : this.value.label.toLowerCase();
 		let elems = (els)? els : this.$.list.querySelectorAll('li');
 		let exists=false;
 
