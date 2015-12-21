@@ -5,7 +5,7 @@
 	<title>CLAB UI Components | Demo page</title>
 	
 	<link rel="stylesheet" href="_css/style.css">
-	<!-- <link rel="stylesheet" href="_css/icons.css"> -->
+	<link rel="stylesheet" href="_css/icons.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<style>
 	.content.dark{
@@ -50,14 +50,25 @@
 	<link rel="import" href="accordion/view.html">
 	<link rel="import" href="toaster/view.html">
 	<link rel="import" href="multiple-select/view.html">
+	<link rel="import" href="autocomplete/view.html">
 	
 
 </head>
 <body>
 
 	<div class="content">
+		<template id="t" is="dom-bind">
 		<h2>Enhanced select</h2>
-		<elekti-mer label="This is a label" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'></elekti-mer>
+
+		<elekti-mer no-search label="This is a label" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' value='{"label":"ciccio", "value":"ciccio"}'></elekti-mer>
+
+		<!-- <elekti-mer label="This is a label" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' value="[[test]]"></elekti-mer>
+		</template> -->
+	</div>
+
+	<div class="content">
+		<h2>Auto Complete</h2>
+		<autocomplete-clab label="Enhanced auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1"></autocomplete-clab>
 	</div>
 	
 	<div class="content">
@@ -242,49 +253,30 @@
 <script>
 
 	
-// MODAL
-var modal = document.querySelector('modal-clab');
+document.addEventListener('WebComponentsReady',function(){
+	// MODAL
+	var modal = document.querySelector('modal-clab');
 
-document.querySelector('#openModal').addEventListener('click',function(){
-	modal.visible = true;
+	document.querySelector('#openModal').addEventListener('click',function(){
+		modal.visible = true;
+	});
+
+	modal.addEventListener('modal-primary',function(){
+		alert('Clicked');
+	});
+
+	modal.addEventListener('modal-secondary',function(){
+		modal.visible = false;
+	})
+
+	// Calendar
+	document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
+
+	document.querySelector('autocomplete-clab').addEventListener('valueChange',function(evt){
+		console.log(evt.detail)
+	});
 });
 
-modal.addEventListener('modal-primary',function(){
-	alert('Clicked');
-});
-
-modal.addEventListener('modal-secondary',function(){
-	modal.visible = false;
-})
-
-// Calendar
-document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
-
-// Advanced select
-var elekti = document.querySelector('elekti-mer');
-
-/*elekti.addEventListener('change', function(evt){
-	console.log(evt.detail);
-});*/
-
-function chiamata(){
-	return window.fetch('http://jsonplaceholder.typicode.com/users')
-	  .then(function(data){
-	    return data.json();
-	  })
-	  .then(function(data){
-	    data.push('yo');
-	    return window.fetch('http://jsonplaceholder.typicode.com/posts')
-	      .then(function(data2){
-	        return data2.json();
-	      })
-	      .then(function(resp){
-	        return data.concat(resp)
-	      })
-	  })
-}
-
-//elekti._setOptions(chiamata());
 
 </script>
 

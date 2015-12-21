@@ -27,6 +27,11 @@ var ElektiMer = (function () {
 					type: String,
 					value: null
 				},
+				disabled: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
+				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
@@ -61,7 +66,8 @@ var ElektiMer = (function () {
 				},
 				noSearch: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: '_setDisabled'
 				},
 				noResults: {
 					type: String,
@@ -130,9 +136,14 @@ var ElektiMer = (function () {
 			});
 		}
 	}, {
-		key: '_disabledChanged',
-		value: function _disabledChanged(newVal, oldVal) {
-			if (newVal) this.type = 'disabled';
+		key: '_updateValue',
+		value: function _updateValue() {
+			var old = this.value;
+			if (_typeof(this.value) == 'object') {
+				this.input.value = this.value.label;
+				this.highlightedElement();
+				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
+			}
 		}
 
 		/*---------- 
@@ -143,6 +154,11 @@ var ElektiMer = (function () {
 		key: '_viewLabel',
 		value: function _viewLabel(label) {
 			if (label.length > 0) return true;else return false;
+		}
+	}, {
+		key: '_setDisabled',
+		value: function _setDisabled() {
+			this.disabled = this.noSearch;
 		}
 	}, {
 		key: '_computeWrapperClass',
