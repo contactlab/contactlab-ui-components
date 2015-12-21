@@ -1,0 +1,34 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="auto-complete-clab">
+	<style>
+    	ol{
+    		display: block !important;
+    		height: 0;
+    		overflow: hidden;
+    	}
+    	.active ol{
+    		overflow: auto;
+    	}
+	</style>
+
+	<template>        
+        <template is="dom-if" if="[[_viewLabel(label)]]">
+            <label for$="[[_dashify(name)]]">[[label]]</label>
+        </template>
+        <div class="elekti-wrapper">
+            <input-clab value="{{inputString}}" type="success" disabled="[[disabled]]" placeholder="Type..." name="[[name]]" on-keyup="_handleHints">
+                Type here to get hints
+            </input-clab>
+            <ol class="options-list js-users-list">
+                <template is="dom-repeat" items="[[options]]">
+                    <template is="dom-if" if="[[item.show]]">
+                        <li data-index$="[[_getIndex(item, options)]]">[[item.label]]</li>
+                    </template>
+                </template>
+            </ol>
+        </div>
+    </template>
+
+	<script src="script.js"></script>
+</dom-module>
