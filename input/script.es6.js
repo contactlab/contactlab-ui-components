@@ -27,6 +27,9 @@ class InputClab{
 			placeholder: {
 				type: String
 			},
+			note: {
+				type: String
+			},
 			noteType: {
 				type: String,
 				value: ''

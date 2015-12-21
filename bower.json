@@ -21,7 +21,7 @@
     "starter"
   ],
   "dependencies": {
-    "polymer": "#^1.2.0",
+    "polymer": "~1.2.3",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "~2.10.6",
     "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",

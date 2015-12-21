@@ -22,9 +22,6 @@ var CalendarClab = (function () {
 				label: {
 					type: String
 				},
-				/**
-         * Whether the input is disabled or not
-         */
 				disabled: {
 					type: Boolean,
 					value: false

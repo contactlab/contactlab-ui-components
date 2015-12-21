@@ -14,6 +14,11 @@ class ElektiMer{
 				type: String,
 				value: null
 			},
+			disabled: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true
+			},
 			options: {
 				type: Array,
 				value: [
@@ -51,7 +56,8 @@ class ElektiMer{
 			},
 			noSearch: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: '_setDisabled'
 			},
 			noResults: {
 				type: String,
@@ -111,8 +117,14 @@ class ElektiMer{
 		});
 	}
 
-	_disabledChanged(newVal, oldVal){
-		if(newVal) this.type='disabled';
+
+	_updateValue(){
+		let old = this.value;
+		if(typeof this.value == 'object'){
+			this.input.value = this.value.label;
+			this.highlightedElement();
+			this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
+		}
 	}
 
 
@@ -126,6 +138,10 @@ class ElektiMer{
 			return true;
 		else 
 			return false;
+	}
+
+	_setDisabled(){
+		this.disabled = this.noSearch;
 	}
 
 	_computeWrapperClass(open){
