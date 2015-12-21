@@ -65,7 +65,6 @@ class AutoCompleteClab{
 		this.currentHint=undefined;
 		this.currentRes=[];
 
-
 		this.options.forEach((opt,i)=>{
 			opt.show=false;
 		});
