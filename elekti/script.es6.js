@@ -14,11 +14,6 @@ class ElektiMer{
 				type: String,
 				value: null
 			},
-			disabled: {
-				type: Boolean,
-				value: false,
-				reflectToAttribute: true
-			},
 			options: {
 				type: Array,
 				value: [
@@ -35,6 +30,7 @@ class ElektiMer{
 			},
 			value: {
 				type: Object,
+				reflectToAttribute: true,
 				notify: true,
 				observer: '_updateValue'
 			},
@@ -50,9 +46,7 @@ class ElektiMer{
 			},
 			disabled: {
 				type: Boolean,
-				value: false,
-				notify: true,
-				observer: '_disabledChanged'
+				value: false
 			},
 			noSearch: {
 				type: Boolean,
@@ -98,17 +92,6 @@ class ElektiMer{
 		});
 	}
 
-
-	_updateValue(evt){
-		let old = this.value;
-		if(typeof this.value == 'object'){
-			this.input.value = this.value.label;
-			this.highlightedElement();
-			this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
-		}
-	}
-
-
 	/*---------- 
 	OBSERVERS
 	----------*/
@@ -124,7 +107,7 @@ class ElektiMer{
 	_updateValue(){
 		let old = this.value;
 		if(typeof this.value == 'object'){
-			this.input.value = this.value.label;
+			// this.input.value = this.value.label;
 			this.highlightedElement();
 			this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
 		}

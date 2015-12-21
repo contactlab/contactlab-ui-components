@@ -27,11 +27,6 @@ var ElektiMer = (function () {
 					type: String,
 					value: null
 				},
-				disabled: {
-					type: Boolean,
-					value: false,
-					reflectToAttribute: true
-				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
@@ -45,6 +40,7 @@ var ElektiMer = (function () {
 				},
 				value: {
 					type: Object,
+					reflectToAttribute: true,
 					notify: true,
 					observer: '_updateValue'
 				},
@@ -60,9 +56,7 @@ var ElektiMer = (function () {
 				},
 				disabled: {
 					type: Boolean,
-					value: false,
-					notify: true,
-					observer: '_disabledChanged'
+					value: false
 				},
 				noSearch: {
 					type: Boolean,
@@ -110,16 +104,6 @@ var ElektiMer = (function () {
 				_this.dontHide = false;
 			});
 		}
-	}, {
-		key: '_updateValue',
-		value: function _updateValue(evt) {
-			var old = this.value;
-			if (_typeof(this.value) == 'object') {
-				this.input.value = this.value.label;
-				this.highlightedElement();
-				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
-			}
-		}
 
 		/*---------- 
   OBSERVERS
@@ -140,7 +124,7 @@ var ElektiMer = (function () {
 		value: function _updateValue() {
 			var old = this.value;
 			if (_typeof(this.value) == 'object') {
-				this.input.value = this.value.label;
+				// this.input.value = this.value.label;
 				this.highlightedElement();
 				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
 			}
