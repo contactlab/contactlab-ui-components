@@ -5,7 +5,7 @@
 	<title>CLAB UI Components | Demo page</title>
 	
 	<link rel="stylesheet" href="_css/style.css">
-	<!-- <link rel="stylesheet" href="_css/icons.css"> -->
+	<link rel="stylesheet" href="_css/icons.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 	<style>
 	.content.dark{
@@ -50,7 +50,7 @@
 	<link rel="import" href="accordion/view.html">
 	<link rel="import" href="toaster/view.html">
 	<link rel="import" href="multiple-select/view.html">
-	<link rel="import" href="auto-complete/view.html">
+	<link rel="import" href="autocomplete/view.html">
 	
 
 </head>
@@ -68,7 +68,7 @@
 
 	<div class="content">
 		<h2>Auto Complete</h2>
-		<auto-complete-clab label="Enhanced auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1"></auto-complete-clab>
+		<autocomplete-clab label="Enhanced auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1"></autocomplete-clab>
 	</div>
 	
 	<div class="content">
@@ -272,7 +272,7 @@ document.addEventListener('WebComponentsReady',function(){
 	// Calendar
 	document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
 
-	document.querySelector('auto-complete-clab').addEventListener('valueChange',function(evt){
+	document.querySelector('autocomplete-clab').addEventListener('valueChange',function(evt){
 		console.log(evt.detail)
 	});
 });

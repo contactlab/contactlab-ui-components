@@ -14,7 +14,7 @@ var AutoCompleteClab = (function () {
 	_createClass(AutoCompleteClab, [{
 		key: 'beforeRegister',
 		value: function beforeRegister() {
-			this.is = "auto-complete-clab";
+			this.is = "autocomplete-clab";
 			this.properties = {
 				label: {
 					type: String,

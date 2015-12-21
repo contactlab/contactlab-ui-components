@@ -1,7 +1,7 @@
 class AutoCompleteClab{
 
 	beforeRegister(){
-		this.is = "auto-complete-clab";
+		this.is = "autocomplete-clab";
 		this.properties = {
 			label:{
 				type:String,
