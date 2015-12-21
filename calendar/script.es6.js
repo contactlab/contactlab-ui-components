@@ -14,8 +14,12 @@ class CalendarClab{
 	       */
 			disabled: {
 				type: Boolean,
-				value: false,
-				observer: 'disabledChanged'
+				value: false
+			},
+			valueStr: {
+				type: String,
+				value: null,
+				notify: true
 			},
 			inline: {
 				type: Boolean,
@@ -23,6 +27,7 @@ class CalendarClab{
 			},
 			options: {
 				type: Object,
+				value: {}
 			},
 			placeholder: {
 				type: String
@@ -35,10 +40,9 @@ class CalendarClab{
 				type: String,
 				value: ''
 			},
-
 			compNoteType: {
 				type: String,
-				computed: 'computeNoteType(type, noteType)'
+				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -50,13 +54,14 @@ class CalendarClab{
 	}
 
 	_checkClear(evt){
-		this.$$('input').value == "" ? this.clear() : null;
+		this.valueStr == "" ? this.clear() : null;
 	}
 
 	_focusElement(evt){
-		setTimeout(() => {
+		if(!this.disabled){
+			evt.stopPropagation();
 			this.getRomeInstance().show();
-		},50);
+		}
 	}
 
 	_createInstance(selector){
@@ -73,6 +78,7 @@ class CalendarClab{
 	}
 
 	_changeDate(evt){
+		this.valueStr = evt;
 		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 	}
 
@@ -80,12 +86,8 @@ class CalendarClab{
 		return ['calendar',type].join(' ');
 	}
 
-	computeNoteType(type, noteType){
+	_computeNoteType(type, noteType){
 		return [type, noteType].join(' ');
-	}
-
-	disabledChanged(newVal, oldVal){
-		if(newVal) this.type='disabled';
 	}
 
 	_dashify(label){
@@ -93,19 +95,20 @@ class CalendarClab{
 	}
 
 	_viewLabel(label){
-		if(label.length > 0)
+		if(label.length > 0){
 			return true; 
-		else
+		} else {
 			return false;
+		}
 	}
 
+	/* PUBLIC METHODS */
 	setValue(userValue){
-		this.$$('input').value = moment(userValue).format(this._getFormat());
+		this.valueStr = moment(userValue).format(this._getFormat());
 	}
 
 	getValue(){
-		let elem = this.$$('input').value;
-		let formatted = moment(elem, this._getFormat()).format();
+		let formatted = moment(this.valueStr, this._getFormat()).format();
 		return formatted;
 	}
 
@@ -115,7 +118,7 @@ class CalendarClab{
 
 	clear(){
 		this.value = '';
-		this.$$('input').value = '';
+		this.valueStr = null;
 		let rome  = this.getRomeInstance();
 		rome.setValue(moment().format());
 	}

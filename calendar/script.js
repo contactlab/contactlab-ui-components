@@ -27,15 +27,20 @@ var CalendarClab = (function () {
          */
 				disabled: {
 					type: Boolean,
-					value: false,
-					observer: 'disabledChanged'
+					value: false
+				},
+				valueStr: {
+					type: String,
+					value: null,
+					notify: true
 				},
 				inline: {
 					type: Boolean,
 					value: false
 				},
 				options: {
-					type: Object
+					type: Object,
+					value: {}
 				},
 				placeholder: {
 					type: String
@@ -48,10 +53,9 @@ var CalendarClab = (function () {
 					type: String,
 					value: ''
 				},
-
 				compNoteType: {
 					type: String,
-					computed: 'computeNoteType(type, noteType)'
+					computed: '_computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -67,16 +71,15 @@ var CalendarClab = (function () {
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
-			this.$$('input').value == "" ? this.clear() : null;
+			this.valueStr == "" ? this.clear() : null;
 		}
 	}, {
 		key: "_focusElement",
 		value: function _focusElement(evt) {
-			var _this2 = this;
-
-			setTimeout(function () {
-				_this2.getRomeInstance().show();
-			}, 50);
+			if (!this.disabled) {
+				evt.stopPropagation();
+				this.getRomeInstance().show();
+			}
 		}
 	}, {
 		key: "_createInstance",
@@ -95,6 +98,7 @@ var CalendarClab = (function () {
 	}, {
 		key: "_changeDate",
 		value: function _changeDate(evt) {
+			this.valueStr = evt;
 			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 		}
 	}, {
@@ -103,14 +107,9 @@ var CalendarClab = (function () {
 			return ['calendar', type].join(' ');
 		}
 	}, {
-		key: "computeNoteType",
-		value: function computeNoteType(type, noteType) {
+		key: "_computeNoteType",
+		value: function _computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
-		}
-	}, {
-		key: "disabledChanged",
-		value: function disabledChanged(newVal, oldVal) {
-			if (newVal) this.type = 'disabled';
 		}
 	}, {
 		key: "_dashify",
@@ -120,18 +119,24 @@ var CalendarClab = (function () {
 	}, {
 		key: "_viewLabel",
 		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+			if (label.length > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		}
+
+		/* PUBLIC METHODS */
+
 	}, {
 		key: "setValue",
 		value: function setValue(userValue) {
-			this.$$('input').value = moment(userValue).format(this._getFormat());
+			this.valueStr = moment(userValue).format(this._getFormat());
 		}
 	}, {
 		key: "getValue",
 		value: function getValue() {
-			var elem = this.$$('input').value;
-			var formatted = moment(elem, this._getFormat()).format();
+			var formatted = moment(this.valueStr, this._getFormat()).format();
 			return formatted;
 		}
 	}, {
@@ -143,7 +148,7 @@ var CalendarClab = (function () {
 		key: "clear",
 		value: function clear() {
 			this.value = '';
-			this.$$('input').value = '';
+			this.valueStr = null;
 			var rome = this.getRomeInstance();
 			rome.setValue(moment().format());
 		}
