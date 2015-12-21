@@ -10,7 +10,7 @@ class ModalClab{
 			visible: {
 				type: Boolean,
 				value: false,
-				observer: '_openModal'
+				// observer: '_openModal'
 			},
 			primary: {
 				type: String
@@ -21,15 +21,6 @@ class ModalClab{
 			content: {
 				type: String
 			}
-		}
-	}
-
-	_openModal(newVal, oldVal){
-		if(newVal){
-			this.async(()=>{
-				if(this.querySelector('.modal-body').innerHTML=='')
-					this.querySelector('.modal-body').innerHTML=this.content;
-			},50);
 		}
 	}
 

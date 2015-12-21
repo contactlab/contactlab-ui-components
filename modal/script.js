@@ -20,9 +20,9 @@ var ModalClab = (function () {
 				},
 				visible: {
 					type: Boolean,
-					value: false,
-					observer: '_openModal'
+					value: false
 				},
+				// observer: '_openModal'
 				primary: {
 					type: String
 				},
@@ -33,17 +33,6 @@ var ModalClab = (function () {
 					type: String
 				}
 			};
-		}
-	}, {
-		key: '_openModal',
-		value: function _openModal(newVal, oldVal) {
-			var _this = this;
-
-			if (newVal) {
-				this.async(function () {
-					if (_this.querySelector('.modal-body').innerHTML == '') _this.querySelector('.modal-body').innerHTML = _this.content;
-				}, 50);
-			}
 		}
 	}, {
 		key: '_closeModal',
