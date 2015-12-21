@@ -25,7 +25,6 @@
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "~2.10.6",
     "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",
-    "iron-component-page": "PolymerElements/iron-component-page#^1.0.0",
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git"
   }
 }
