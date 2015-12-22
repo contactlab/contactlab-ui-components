@@ -22,7 +22,6 @@ var ModalClab = (function () {
 					type: Boolean,
 					value: false
 				},
-				// observer: '_openModal'
 				primary: {
 					type: String
 				},
@@ -30,9 +29,19 @@ var ModalClab = (function () {
 					type: String
 				},
 				content: {
-					type: String
+					type: String,
+					value: null
+				},
+				width: {
+					type: String,
+					value: '500px'
 				}
 			};
+		}
+	}, {
+		key: '_computeWidth',
+		value: function _computeWidth(width) {
+			return 'max-width:' + width;
 		}
 	}, {
 		key: '_closeModal',

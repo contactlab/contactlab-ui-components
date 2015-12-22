@@ -176,10 +176,24 @@
 
 	<div class="content">
 		<h2>Modal</h2>
-		<button-clab id="openModal">
-			Open modal
+		<button-clab id="openModal1">
+			Open modal (content via attribute)
 		</button-clab>
-		<modal-clab title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?">
+		<button-clab id="openModal2">
+			Open modal (content via HTML)
+		</button-clab>
+		<modal-clab id="modal-one" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
+		</modal-clab>
+
+		<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" secondary="Cancel">
+			<h2>Some HTML...</h2>
+			<hr>
+			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
+			<ul>
+				<li>ksbdfkbsdf</li>
+				<li>sdfbgsdfgsdfg</li>
+				<li>sdfgsdfgsdfg</li>
+			</ul>
 		</modal-clab>
 	</div>
 
@@ -255,18 +269,23 @@
 	
 document.addEventListener('WebComponentsReady',function(){
 	// MODAL
-	var modal = document.querySelector('modal-clab');
+	var modal1 = document.querySelector('#modal-one');
+	var modal2 = document.querySelector('#modal-two');
 
-	document.querySelector('#openModal').addEventListener('click',function(){
-		modal.visible = true;
+	document.querySelector('#openModal1').addEventListener('click',function(){
+		modal1.visible = true;
 	});
 
-	modal.addEventListener('modal-primary',function(){
+	document.querySelector('#openModal2').addEventListener('click',function(){
+		modal2.visible = true;
+	});
+
+	modal1.addEventListener('modal-primary',function(){
 		alert('Clicked');
 	});
 
-	modal.addEventListener('modal-secondary',function(){
-		modal.visible = false;
+	modal1.addEventListener('modal-secondary',function(){
+		modal1.visible = false;
 	})
 
 	// Calendar
