@@ -309,11 +309,10 @@ class AutoCompleteClab{
 	_setListHeight(elemsShown){
 		if(this.liHeight===null) {
 			this.list.classList.add('hidden');
-			this.liHeight = this._getHeight(this.querySelectorAll('.options-list li')[0]);
+			this.liHeight = this._getHeight(this.querySelectorAll('.options-list li.show')[0]);
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}
-		console.log(this.liHeight);
 		this.list.style.height=(this.liHeight*elemsShown)+'px';
 		this.list.classList.add('active');
 	}
