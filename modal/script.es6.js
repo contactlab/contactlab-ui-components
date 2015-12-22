@@ -10,7 +10,6 @@ class ModalClab{
 			visible: {
 				type: Boolean,
 				value: false,
-				// observer: '_openModal'
 			},
 			primary: {
 				type: String
@@ -19,9 +18,18 @@ class ModalClab{
 				type: String
 			},
 			content: {
-				type: String
+				type: String,
+				value: null
+			},
+			width:{
+				type: String,
+				value: '500px'
 			}
 		}
+	}
+
+	_computeWidth(width){
+		return 'max-width:' + width;
 	}
 
 	_closeModal(evt){
