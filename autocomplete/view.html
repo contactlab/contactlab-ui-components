@@ -2,14 +2,24 @@
 
 <dom-module id="autocomplete-clab">
 	<style>
-    	ol{
-    		display: block !important;
-    		height: 0;
-    		overflow: hidden;
-    	}
-    	.active ol{
+    	.options-list{
+    		display: none;
     		overflow: auto;
     	}
+        .options-list.hidden{
+            display: block;
+            opacity: 0;
+        }
+        .options-list.active{
+            display: block;
+            opacity: 1;
+        }
+        .options-list li{
+            display: none;
+        }
+        .options-list li.show{
+            display: block;
+        }
 	</style>
 
 	<template>        
@@ -22,9 +32,9 @@
             </input-clab>
             <ol class="options-list js-users-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <template is="dom-if" if="[[item.show]]">
+                    <!-- <template is="dom-if" if="[[item.show]]"> -->
                         <li data-index$="[[_getIndex(item, options)]]">[[item.label]]</li>
-                    </template>
+                   <!--  </template> -->
                 </template>
             </ol>
         </div>

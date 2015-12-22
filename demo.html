@@ -69,12 +69,12 @@
 
 	<div class="content">
 		<h2>Auto Complete</h2>
-		<autocomplete-clab label="Enhanced auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">Type here to get hints</autocomplete-clab>
+		<autocomplete-clab label="Enhanced auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">Type here to get hints</autocomplete-clab>
 	</div>
 
 	<div class="content">
 		<h2>Dropdown</h2>
-		<dropdown-clab label="Awesome Dropdown" default="1" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'>
+		<dropdown-clab max-in-view="5" label="Awesome Dropdown" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'>
 		This is my note</dropdown-clab>
 	</div>
 	
@@ -279,8 +279,15 @@ document.addEventListener('WebComponentsReady',function(){
 	// Calendar
 	document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
 
-	document.querySelector('autocomplete-clab').addEventListener('valueChange',function(evt){
-		console.log(evt.detail)
+	document.querySelector('autocomplete-clab').addEventListener('change',function(evt){
+		console.log('autocomplete-clab ', evt.detail)
+	});
+	document.querySelector('autocomplete-clab').addEventListener('sendRes',function(evt){
+		console.log('autocomplete-clab ', evt.detail)
+	});
+
+	document.querySelector('dropdown-clab').addEventListener('change',function(evt){
+		console.log('dropdown-clab ', evt.detail)
 	});
 });
 

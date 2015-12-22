@@ -7,6 +7,9 @@ class DropdownClab{
 				type:String,
 				value:null
 			},
+			type:{
+				type:String
+			},
 			value:{
 				type:Object,
 				value:{}
@@ -18,10 +21,6 @@ class DropdownClab{
 					{value: 'B', label: 'Option 2'}
 				]
 			},
-			default:{
-				type:Number,
-				observer: '_setDefault'
-			},
 			optionsFn: {
 				type: Function,
 				observer: '_setOptions'
@@ -30,9 +29,17 @@ class DropdownClab{
 				type:Boolean,
 				value:false
 			},
+			resultAsObj:{
+				type:Boolean,
+				value:false
+			},
+			// How many LIs are visible without scrolling (=> sets max-height of OL)
+			maxInView:{
+				type:Number,
+				value:4
+			},
 			noteType: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 
@@ -42,6 +49,11 @@ class DropdownClab{
 			compNoteType: {
 				type: String,
 				computed: '_computeNoteType(type, noteType)'
+			},
+			liHeight:{
+				type:String,
+				value:null,
+				readonly: true
 			}
 		};
 	}
@@ -58,7 +70,18 @@ class DropdownClab{
 	EVENT HANDLERS
 	----------*/
 	_toggleList(evt){
-		this.querySelector('.options-list').classList.toggle('active');
+		if(!this.disabled){
+			if(this.liHeight==null){
+				this.querySelector('.options-list').classList.add('hidden');
+				this._setMaxHeight();
+				setTimeout(()=>{
+					this.querySelector('.options-list').classList.remove('hidden');
+					this.querySelector('.options-list').classList.add('active');
+				},50);
+				return;
+			} 
+			this.querySelector('.options-list').classList.toggle('active');
+		}
 	}
 
 	_handleBlur(evt){
@@ -79,6 +102,12 @@ class DropdownClab{
 	----------*/
 	_setValue(item){
 		this.set('value',item);
+
+		if(this.resultAsObj)
+			this.fire('change', {'newValue':this.value});
+		else
+			this.fire('change', {'newValue':this.value.label});
+		
 	}
 
 	_highlightEl(i){
@@ -99,12 +128,8 @@ class DropdownClab{
 	_setOptions(promise){
 		promise().then((resp) => {
 			this.options = resp;
-			this.liHeight = this.$.list.children[0].clientHeight;
+			//this.liHeight = this.$.list.children[0].clientHeight;
 		});
-	}
-
-	_setDefault(newval, oldval){
-		this._setValue(this.options[newval]);
 	}
 
 
@@ -114,7 +139,17 @@ class DropdownClab{
 	COMPUTED
 	----------*/
 	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
+		var arr=[];
+		if(type!=undefined) arr.push(type);
+		if(noteType!=undefined) arr.push(noteType);
+		
+		if(arr.length>0) return arr.join(' ');
+	}
+
+	_compValueWrapper(disabled){
+		let arr=['value_wrapper'];
+		if(disabled) arr.push('disabled');
+		return arr.join(' ');
 	}
 
 
@@ -132,6 +167,11 @@ class DropdownClab{
 
 	_viewLabel(label) {
 		if(label.length>0) return true; else return false;
+	}
+
+	_setMaxHeight(){
+		this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
 
 }

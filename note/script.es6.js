@@ -4,8 +4,7 @@ class NoteClab{
 		this.is = "note-clab";
 		this.properties = {
 			type: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 			classes: {
@@ -16,7 +15,9 @@ class NoteClab{
 	}
 
 	computeClasses(type){
-		return ['input-note', type].join(' ');
+		var arr=['input-note'];
+		if(type!=undefined) arr.push(type);
+		return arr.join(' ');
 	}
 }
 

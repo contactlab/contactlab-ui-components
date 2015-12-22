@@ -2,16 +2,18 @@
 
 <dom-module id="dropdown-clab">
 	<style>
-    	ol{
-    		overflow: hidden;
-            display:none;
-    	}
+    	.options-list{
+            display: none;
+            overflow: auto;
+        }
+        .options-list.hidden{
+            display: block;
+            opacity: 0;
+        }
         .options-list.active{
             display: block;
+            opacity: 1;
         }
-    	.active ol{
-    		overflow: auto;
-    	}
 	</style>
 
 	<template>        
@@ -19,7 +21,7 @@
             <label>[[label]]</label>
         </template>
         <div class="elekti-wrapper">
-            <div class="value_wrapper" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
+            <div class$="[[_compValueWrapper(disabled)]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
                 <template is="dom-if" if="[[_viewValue(value)]]">
                     <span class="value">[[value.label]]</span>
                 </template>

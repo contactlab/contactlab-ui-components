@@ -20,7 +20,8 @@
     "elekti-multi",
     "toaster",
     "panel",
-    "starter"
+    "starter",
+    "demo-server"
   ],
   "dependencies": {
     "polymer": "~1.2.3",

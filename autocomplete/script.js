@@ -32,10 +32,20 @@ var AutoCompleteClab = (function () {
 					value: false
 				},
 				options: {
-					type: Array,
-					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
+					type: Array
 				},
-				noHints: {
+				url: {
+					type: String
+				},
+				results: {
+					type: Array,
+					notify: true
+				},
+				optionsFn: {
+					type: Function,
+					observer: '_setOptions'
+				},
+				hideHints: {
 					type: Boolean,
 					value: false
 				},
@@ -68,18 +78,23 @@ var AutoCompleteClab = (function () {
 				}
 			};
 		}
+
+		// http://jsonplaceholder.typicode.com/todos
+
 	}, {
 		key: 'attached',
 		value: function attached() {
 			var _this = this;
 
 			this.list = this.querySelector('.options-list');
+			this.results = [];
 			this.currentHint = undefined;
-			this.currentRes = [];
 
-			this.options.forEach(function (opt, i) {
-				opt.show = false;
-			});
+			/*if(this.options!=undefined){
+   	this.options.forEach((opt,i)=>{
+   		opt.show=false;
+   	});
+   }*/
 			if (this.value != undefined) {
 				this._setValue(this.value, true);
 			}
@@ -105,50 +120,71 @@ var AutoCompleteClab = (function () {
 				var i = this._getIndex(this.currentHint, this.options);
 				this._setValue(this.options[i]);
 				this.querySelector('input-clab input').blur();
+				this.results = [];
 				return;
 			}
 
 			//If Arrows
-			if (this.currentRes.length > 0 && evt.keyCode == 38 && this.currentHint != undefined) {
+			if (this.results.length > 0 && evt.keyCode == 38 && this.currentHint != undefined) {
 				evt.preventDefault();
 				this._handleArrows('up');
 				return;
 			}
-			if (this.currentRes.length > 0 && evt.keyCode == 40 && this.currentHint != undefined) {
+			if (this.results.length > 0 && evt.keyCode == 40 && this.currentHint != undefined) {
 				evt.preventDefault();
 				this._handleArrows('down');
 				return;
 			}
 
 			// If typing
-			if (this.inputString.length > this.minChar && !this.noHints) {
-				(function () {
-					var search = _this2.inputString;
-					_this2.currentRes = [];
+			if (this.inputString.length > this.minChar) {
 
-					_this2.options.forEach(function (opt, i) {
-						if (opt.label.search(search) > -1) {
-							_this2.set('options.' + i + '.show', true);
-							_this2.currentRes.push(_this2.options[i]);
-						} else {
-							_this2.set('options.' + i + '.show', false);
-						}
+				if (this.url != undefined && this.options == undefined) {
+					fetch(this.url).then(function (res) {
+						return res.json();
+					}).then(function (obj) {
+						_this2.set('options', obj);
+						//console.log(this.options);
+						_this2._searchForHints();
 					});
-
-					if (_this2.currentRes.length > 0) {
-						_this2.async(function () {
-							_this2._setListHeight(_this2.currentRes.length);
-						}, 100);
-
-						_this2._highlightEl(_this2.currentRes, search);
-					} else {
-						_this2.list.style.height = '0';
-						_this2.currentHint = undefined;
-					}
-				})();
+				} else {
+					this._searchForHints();
+				}
 			} else {
-				this.list.style.height = '0';
+				if (this.list.classList.contains('active')) this.list.classList.remove('active');
 			}
+		}
+	}, {
+		key: '_searchForHints',
+		value: function _searchForHints() {
+			var _this3 = this;
+
+			var search = this.inputString;
+			this.results = [];
+
+			this.options.forEach(function (opt, i) {
+				if (opt.label.search(search) > -1) {
+					//this.set('options.'+i+'.show', true);
+					_this3.querySelectorAll('.options-list li')[i].classList.add('show');
+					_this3.results.push(_this3.options[i]);
+				} else {
+					//this.set('options.'+i+'.show', false);
+					_this3.querySelectorAll('.options-list li')[i].classList.remove('show');
+				}
+			});
+
+			if (this.results.length > 0) {
+				if (!this.hideHints) {
+					this.async(function () {
+						_this3._setListHeight(_this3.results.length);
+					}, 100);
+				}
+				this._highlightEl(this._getIdxForHighlight(this.results, search));
+				//this.fire('sendRes',this.results);
+			} else {
+					if (this.list.classList.contains('active')) this.list.classList.remove('active');
+					this.currentHint = undefined;
+				}
 		}
 	}, {
 		key: '_handleBlur',
@@ -185,35 +221,21 @@ var AutoCompleteClab = (function () {
 
 	}, {
 		key: '_setValue',
-		value: function _setValue(obj, init) {
-			if (init) {
-				this.inputString = this.value.label;
-				if (this.resultAsObj) this.fire('valueChange', { value: this.value });else this.fire('valueChange', { value: this.inputString });
-
-				return;
-			}
-
-			this.value = obj;
+		value: function _setValue(obj) {
+			this.set('value', obj);
 			this.inputString = this.value.label;
 			this.currentHint = undefined;
 
-			if (this.resultAsObj) this.fire('valueChange', { value: this.value });else this.fire('valueChange', { value: this.inputString });
+			if (this.resultAsObj) this.fire('change', this.value);else this.fire('change', { 'value': this.inputString });
 		}
 	}, {
 		key: '_highlightEl',
-		value: function _highlightEl(res, search) {
-			var _this3 = this;
+		value: function _highlightEl(idx) {
+			var _this4 = this;
 
-			var i = undefined;
-			if ((typeof res === 'undefined' ? 'undefined' : _typeof(res)) == 'object') {
-				i = this._getIdxForHighlight(res, search);
-			} else {
-				i = res;
-			}
-
+			var i = idx;
 			this.async(function () {
-				Array.from(_this3.querySelectorAll('.options-list li')).forEach(function (el) {
-					//console.log(el.getAttribute('data-index'),i);
+				Array.from(_this4.querySelectorAll('.options-list li')).forEach(function (el) {
 					if (el.getAttribute('data-index') == i) {
 						el.classList.add('selected');
 					} else {
@@ -225,34 +247,31 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_getIdxForHighlight',
 		value: function _getIdxForHighlight(res, search) {
-			var _this4 = this;
+			var _this5 = this;
 
 			var exists = false;
 			var idx = undefined;
-
 			res.forEach(function (item, i) {
 				if (item.label === search) {
 					exists = true;
-					idx = _this4._getIndex(item, _this4.options);
-					_this4.currentHint = item;
+					idx = _this5._getIndex(item, _this5.options);
+					_this5.currentHint = item;
 				}
 			});
-
 			if (!exists) {
 				idx = this._getIndex(res[0], this.options);
 				this.currentHint = res[0];
 			}
-
 			return idx;
 		}
 	}, {
 		key: '_handleArrows',
 		value: function _handleArrows(type) {
-			var HIdx = this._getIndex(this.currentHint, this.currentRes);
+			var HIdx = this._getIndex(this.currentHint, this.results);
 			var toSel = undefined;
 
 			if (type === 'up') {
-				toSel = this.currentRes[HIdx - 1];
+				toSel = this.results[HIdx - 1];
 				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
 					this.currentHint = toSel;
 					this._highlightEl(this._getIndex(toSel, this.options));
@@ -261,7 +280,7 @@ var AutoCompleteClab = (function () {
 					return;
 				}
 			} else if (type === 'down') {
-				toSel = this.currentRes[HIdx + 1];
+				toSel = this.results[HIdx + 1];
 				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
 					this.currentHint = toSel;
 					this._highlightEl(this._getIndex(toSel, this.options));
@@ -274,15 +293,37 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_closeList',
 		value: function _closeList() {
-			this.list.style.height = '0';
+			this.list.classList.remove('active');
 			Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
 				el.classList.remove('selected');
 			});
 		}
+	}, {
+		key: '_fetchJSON',
+		value: function _fetchJSON(url) {
+			var _this6 = this;
+
+			fetch(url).then(function (res) {
+				return res.json();
+			}).then(function (obj) {
+				_this6.set('options', obj);
+			});
+		}
 
 		/*---------- 
-  COMPUTED VALUES
+  OBSERVERS
   ----------*/
+
+	}, {
+		key: '_setOptions',
+		value: function _setOptions(promise) {
+			var _this7 = this;
+
+			promise().then(function (resp) {
+				_this7.options = resp;
+				//this.liHeight = this.$.list.children[0].clientHeight;
+			});
+		}
 
 		/*---------- 
   UTILS
@@ -301,9 +342,14 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_setListHeight',
 		value: function _setListHeight(elemsShown) {
-			if (this.liHeight === null) this.liHeight = this._getHeight(this.querySelectorAll('.options-list li')[0]);
-			this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
+			if (this.liHeight === null) {
+				this.list.classList.add('hidden');
+				this.liHeight = this._getHeight(this.querySelectorAll('.options-list li')[0]);
+				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
+				this.list.classList.remove('hidden');
+			}
 			this.list.style.height = this.liHeight * elemsShown + 'px';
+			this.list.classList.add('active');
 		}
 	}, {
 		key: '_dashify',

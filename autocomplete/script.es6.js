@@ -19,13 +19,20 @@ class AutoCompleteClab{
 				value:false
 			},
 			options:{
-				type: Array,
-				value: [
-					{value: 'A', label: 'Option 1'},
-					{value: 'B', label: 'Option 2'}
-				]
+				type: Array
 			},
-			noHints:{
+			url:{
+				type:String
+			},
+			results:{
+				type:Array,
+				notify:true
+			},
+			optionsFn: {
+				type: Function,
+				observer: '_setOptions'
+			},
+			hideHints:{
 				type:Boolean,
 				value:false
 			},
@@ -60,14 +67,18 @@ class AutoCompleteClab{
 		};
 	}
 
+	// http://jsonplaceholder.typicode.com/todos
+
 	attached(){
 		this.list=this.querySelector('.options-list');
+		this.results=[];
 		this.currentHint=undefined;
-		this.currentRes=[];
 
-		this.options.forEach((opt,i)=>{
-			opt.show=false;
-		});
+		/*if(this.options!=undefined){
+			this.options.forEach((opt,i)=>{
+				opt.show=false;
+			});
+		}*/
 		if(this.value!=undefined){ this._setValue(this.value, true); }
 
 		this.querySelector('input-clab input').addEventListener('blur',this._handleBlur.bind(this));
@@ -87,49 +98,69 @@ class AutoCompleteClab{
 			let i=this._getIndex(this.currentHint, this.options);
 			this._setValue(this.options[i]);
 			this.querySelector('input-clab input').blur();
+			this.results=[];
 			return;
 		}
 
 		//If Arrows
-		if(this.currentRes.length>0 && evt.keyCode==38 && this.currentHint!=undefined){
+		if(this.results.length>0 && evt.keyCode==38 && this.currentHint!=undefined){
 			evt.preventDefault(); 
 			this._handleArrows('up'); 
 			return; 
 		}
-		if(this.currentRes.length>0 && evt.keyCode==40 && this.currentHint!=undefined){
+		if(this.results.length>0 && evt.keyCode==40 && this.currentHint!=undefined){
 			evt.preventDefault(); 
 			this._handleArrows('down'); 
 			return; 
 		}
 
 		// If typing
-		if(this.inputString.length>this.minChar && !this.noHints){
-			let search=this.inputString;
-			this.currentRes=[];
+		if(this.inputString.length>this.minChar){
 
-			this.options.forEach((opt, i)=>{
-				if(opt.label.search(search)>-1){
-					this.set('options.'+i+'.show', true);
-					this.currentRes.push(this.options[i]);
-				} else {
-					this.set('options.'+i+'.show', false);
-				}
-			});
-
-			if(this.currentRes.length>0){
-				this.async(()=>{
-					this._setListHeight(this.currentRes.length);
-				},100);
-
-				this._highlightEl(this.currentRes, search);
-
+			if(this.url!=undefined && this.options==undefined){
+				fetch(this.url).then(res=>{
+					return res.json();
+				}).then(obj=>{
+					this.set('options',obj);
+					//console.log(this.options);
+					this._searchForHints();
+				});
 			} else {
-				this.list.style.height='0';
-				this.currentHint=undefined;
+				this._searchForHints();
 			}
 			
 		} else {
-			this.list.style.height='0';
+			if(this.list.classList.contains('active')) this.list.classList.remove('active');
+		}
+	}
+
+	_searchForHints(){
+		let search=this.inputString;
+		this.results=[];
+
+		this.options.forEach((opt, i)=>{
+			if(opt.label.search(search)>-1){
+				//this.set('options.'+i+'.show', true);
+				this.querySelectorAll('.options-list li')[i].classList.add('show');
+				this.results.push(this.options[i]);
+			} else {
+				//this.set('options.'+i+'.show', false);
+				this.querySelectorAll('.options-list li')[i].classList.remove('show');
+			}
+		});
+
+		if(this.results.length>0){
+			if(!this.hideHints){
+				this.async(()=>{
+					this._setListHeight(this.results.length);
+				},100);
+			}
+			this._highlightEl(this._getIdxForHighlight(this.results, search));
+			//this.fire('sendRes',this.results);
+
+		} else {
+			if(this.list.classList.contains('active')) this.list.classList.remove('active');
+			this.currentHint=undefined;
 		}
 	}
 
@@ -168,38 +199,21 @@ class AutoCompleteClab{
 	/*---------- 
 	FUNCTIONS
 	----------*/
-	_setValue(obj, init){
-		if(init){
-			this.inputString=this.value.label;
-			if(this.resultAsObj)
-				this.fire('valueChange', {value:this.value});
-			else
-				this.fire('valueChange', {value:this.inputString});
-
-			return;
-		}
-
-		this.value=obj;
+	_setValue(obj){
+		this.set('value', obj);
 		this.inputString=this.value.label;
 		this.currentHint=undefined;
 
 		if(this.resultAsObj)
-			this.fire('valueChange', {value:this.value});
+			this.fire('change', this.value);
 		else
-			this.fire('valueChange', {value:this.inputString});
+			this.fire('change', {'value':this.inputString});
 	}
 
-	_highlightEl(res, search){
-		let i;
-		if(typeof res == 'object'){
-			i=this._getIdxForHighlight(res, search);
-		} else {
-			i=res;
-		}
-
+	_highlightEl(idx){
+		let i = idx;
 		this.async(()=>{
 			Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
-				//console.log(el.getAttribute('data-index'),i);
 				if(el.getAttribute('data-index')==i){
 					el.classList.add('selected');
 				} else {
@@ -212,7 +226,6 @@ class AutoCompleteClab{
 	_getIdxForHighlight(res, search){
 		let exists=false;
 		let idx;
-
 		res.forEach((item,i)=>{
 			if(item.label===search){
 				exists=true;
@@ -220,21 +233,19 @@ class AutoCompleteClab{
 				this.currentHint=item;
 			}
 		});
-		
 		if(!exists){
 			idx = this._getIndex(res[0], this.options);
 			this.currentHint=res[0];
 		}
-
 		return idx;
 	}
 
 	_handleArrows(type){
-		let HIdx=this._getIndex(this.currentHint, this.currentRes);
+		let HIdx=this._getIndex(this.currentHint, this.results);
 		let toSel;
 
 		if(type==='up'){
-			toSel=this.currentRes[HIdx-1];
+			toSel=this.results[HIdx-1];
 			if(typeof toSel == 'object'){
 				this.currentHint=toSel;
 				this._highlightEl(this._getIndex(toSel, this.options));
@@ -243,7 +254,7 @@ class AutoCompleteClab{
 			} else { return; }
 			
 		} else if(type==='down'){ 
-			toSel=this.currentRes[HIdx+1]; 
+			toSel=this.results[HIdx+1]; 
 			if(typeof toSel == 'object'){
 				this.currentHint=toSel;
 				this._highlightEl(this._getIndex(toSel, this.options));
@@ -254,9 +265,17 @@ class AutoCompleteClab{
 	}
 
 	_closeList(){
-		this.list.style.height='0';
+		this.list.classList.remove('active');
 		Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
 			el.classList.remove('selected');
+		});
+	}
+
+	_fetchJSON(url){
+		fetch(url).then(res=>{
+			return res.json();
+		}).then(obj=>{
+			this.set('options',obj);
 		});
 	}
 
@@ -264,8 +283,14 @@ class AutoCompleteClab{
 
 
 	/*---------- 
-	COMPUTED VALUES
+	OBSERVERS
 	----------*/
+	_setOptions(promise){
+		promise().then((resp) => {
+			this.options = resp;
+			//this.liHeight = this.$.list.children[0].clientHeight;
+		});
+	}
 
 
 
@@ -282,9 +307,14 @@ class AutoCompleteClab{
 	}
 
 	_setListHeight(elemsShown){
-		if(this.liHeight===null) this.liHeight = this._getHeight(this.querySelectorAll('.options-list li')[0]);
-		this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
+		if(this.liHeight===null) {
+			this.list.classList.add('hidden');
+			this.liHeight = this._getHeight(this.querySelectorAll('.options-list li')[0]);
+			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
+			this.list.classList.remove('hidden');
+		}
 		this.list.style.height=(this.liHeight*elemsShown)+'px';
+		this.list.classList.add('active');
 	}
 
 	_dashify(str){
