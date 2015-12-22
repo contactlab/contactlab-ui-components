@@ -18,7 +18,7 @@
         </template>
         <div class="elekti-wrapper">
             <input-clab value="{{inputString}}" type="success" disabled="[[disabled]]" placeholder="Type..." name="[[name]]" on-keyup="_handleHints">
-                Type here to get hints
+                <content></content>
             </input-clab>
             <ol class="options-list js-users-list">
                 <template is="dom-repeat" items="[[options]]">
