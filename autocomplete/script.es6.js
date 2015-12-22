@@ -313,6 +313,7 @@ class AutoCompleteClab{
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}
+		console.log(this.liHeight);
 		this.list.style.height=(this.liHeight*elemsShown)+'px';
 		this.list.classList.add('active');
 	}
