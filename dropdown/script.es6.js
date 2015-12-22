@@ -18,6 +18,10 @@ class DropdownClab{
 					{value: 'B', label: 'Option 2'}
 				]
 			},
+			default:{
+				type:Number,
+				observer: '_setDefault'
+			},
 			optionsFn: {
 				type: Function,
 				observer: '_setOptions'
@@ -26,11 +30,15 @@ class DropdownClab{
 				type:Boolean,
 				value:false
 			},
-
 			noteType: {
 				type: String,
 				value: ''
 			},
+
+
+			/*---------- 
+			PRIVATE
+			----------*/
 			compNoteType: {
 				type: String,
 				computed: '_computeNoteType(type, noteType)'
@@ -94,6 +102,11 @@ class DropdownClab{
 			this.liHeight = this.$.list.children[0].clientHeight;
 		});
 	}
+
+	_setDefault(newval, oldval){
+		this._setValue(this.options[newval]);
+	}
+
 
 
 

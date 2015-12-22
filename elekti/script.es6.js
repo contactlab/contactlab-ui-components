@@ -17,12 +17,13 @@ class ElektiMer{
 			options: {
 				type: Array,
 				value: [
-				{value: 'A', label: 'Option 1'},
-				{value: 'B', label: 'Option 2'}
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'}
 				]
 			},
 			default: {
-				type: String
+				type:Number,
+				observer: '_setDefault'
 			},
 			placeholder: {
 				type: String,
@@ -75,11 +76,6 @@ class ElektiMer{
 
 	attached(){
 		this.input = this.$$('#' + this._dashify(this.name));
-		let i = this.getIndex(this.default);
-		if((this.default || this.default === 0) && (typeof i == 'number')){
-			this.input.value = this.options[i].label;
-			this.value = this.options[i];
-		}
 
 		this.liHeight = this.$.list.children[0].clientHeight;
 		this.exists;
@@ -103,6 +99,9 @@ class ElektiMer{
 		});
 	}
 
+	_setDefault(newval, oldval){
+		this.set('value',this.options[newval]);
+	}
 
 	_updateValue(){
 		let old = this.value;

@@ -26,6 +26,10 @@ var DropdownClab = (function () {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
 				},
+				default: {
+					type: Number,
+					observer: '_setDefault'
+				},
 				optionsFn: {
 					type: Function,
 					observer: '_setOptions'
@@ -34,11 +38,14 @@ var DropdownClab = (function () {
 					type: Boolean,
 					value: false
 				},
-
 				noteType: {
 					type: String,
 					value: ''
 				},
+
+				/*---------- 
+    PRIVATE
+    ----------*/
 				compNoteType: {
 					type: String,
 					computed: '_computeNoteType(type, noteType)'
@@ -115,6 +122,11 @@ var DropdownClab = (function () {
 				_this2.options = resp;
 				_this2.liHeight = _this2.$.list.children[0].clientHeight;
 			});
+		}
+	}, {
+		key: '_setDefault',
+		value: function _setDefault(newval, oldval) {
+			this._setValue(this.options[newval]);
 		}
 
 		/*---------- 
