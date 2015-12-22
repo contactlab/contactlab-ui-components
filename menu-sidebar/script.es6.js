@@ -25,65 +25,48 @@ class MenuClab{
 			},
 			menu: {
 				type: Array,
-				value: []
+				value: [],
+				observer: '_addOpenAttr'
 			},
 			link: {
 				type:String,
 				value: '/'
+			},
+			_url: {
+				type: String
 			}
 		}
 	}
 
 	attached(){
+		this._url = location.hash;
+
+		window.addEventListener('hashchange', (evt) => {
+			this._url = location.hash;
+		});
+
 		this._iosMenu();
+	}
 
-		setTimeout(() => {
-			Array.from(this.querySelectorAll('.first-level-menu>li>a')).forEach( (e,i) => {				
-				if(location.hash.search(e.getAttribute('href')) > -1){
-					e.parentNode.classList.add('active');
-				}else{
-					e.parentNode.classList.remove('active');
-				}
-			});
-
-
-			Array.from(this.querySelectorAll('.second-level-menu>li>a')).forEach((e,i) => {				
-				if(location.hash.search(e.getAttribute('href')) > -1){
-					e.parentNode.classList.add('active');
-				}else{
-					e.parentNode.classList.remove('active');
-				}
-			});
-		},10)
+	_addOpenAttr(){
+		this.menu.forEach((e,i) => {
+			this.set('menu.' + i + '.open', false);
+		});
 	}
 
 	_openItem(evt){
-		let selector = this.querySelectorAll('.first-level-menu>li>a, menu-clab .second-level-menu>li>a');
-		Array.from(selector).forEach((e,i ) => {					
-			if(location.hash.search(e.getAttribute('href')) > -1){
-				e.parentNode.classList.add('active');
-			}else{
-				e.parentNode.classList.remove('active');
-			}
-		});
-		Array.from(this.querySelectorAll('.first-level-menu>li')).forEach((e,i ) => {
-			e.classList.remove('open');
-		});
-		if(evt.currentTarget.nextElementSibling.tagName === 'UL'){
+		let i = parseInt(evt.currentTarget.dataset.index);
+		let str = 'menu.' + i + '.open';
+		if(this.menu[i].submenu) {
+			this._url = this.menu[i].url;
 			evt.preventDefault();
-			evt.currentTarget.parentNode.classList.add('open');
-			Array.from(selector).forEach((e,i ) => {
-				e.parentNode.classList.remove('active');
-			});
-			evt.currentTarget.parentNode.classList.add('active');
+			this.set(str,true);
+		} else {
+			this._url = location.hash;
+			this._addOpenAttr();
+			this.set(str,false);
 		}
-	}
 
-	_activeItem(evt){
-		Array.from(this.querySelectorAll('.second-level-menu>li>a')).forEach((e,i ) => {
-			e.parentNode.classList.remove('active');
-		});
-		evt.currentTarget.parentNode.classList.add('active')
 	}
 
 	_iosMenu(){
@@ -98,12 +81,16 @@ class MenuClab{
 					break;
 				default:
 					this.$$('#logo a').focus();
-					Array.from(this.querySelectorAll('.first-level-menu>li')).forEach((e, i) => {
-						e.classList.remove('open');
-					});
 					break;
 			}
 		});
+	}
+
+	_computeActive(url,link,open){
+		let arr = [];
+		open ? arr.push('open','active') : null;
+		url.search(link) > -1 ? arr.push('active') : null;
+		return arr.join(' ');
 	}
 
 	_reduce(){

@@ -1,0 +1,71 @@
+ <!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>CLAB UI Components | Demo page</title>
+	
+	<link rel="stylesheet" href="_css/style.css">
+	<link rel="stylesheet" href="_css/icons.css">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+
+	<!-- Polyfills -->
+	<script src="../webcomponentsjs/webcomponents.min.js"></script>
+	<script src="array-from-polyfill.js"></script>
+	
+	<!-- Components -->
+	<link rel="import" href="menu-sidebar/view.html">
+	
+</head>
+<body>
+	
+	<main>
+		<aside id="main-sidebar">
+			<menu-clab title-icon="clab-icon-sign" link="#/plans">
+				<span class="name">menu-<b>clab</b></span>
+			</menu-clab>
+		</aside>
+	</main>
+
+<script>
+
+	
+document.addEventListener('WebComponentsReady',function(){
+	var menu = document.querySelector('menu-clab');
+
+	menu.menu = [{
+            "label": "Plans",
+            "url": "#/plans",
+            "icon": "clab clab-icon-dashboard icon"
+        }, {
+            "label": "Segments",
+            "url": "#/segments",
+            "icon": "clab clab-icon-segment icon"
+        }, {
+            "label": "Reports",
+            "url": "#/reports",
+            "icon": "clab clab-icon-analytics icon"
+        }, {
+            "label": "Settings",
+            "url": "#/settings",
+            "icon": "clab clab-icon-settings icon",
+            "submenu": [{
+                "label": "Showed fields",
+                "url": "#/settings/fields"
+            }, {
+                "label": "Time zones & week",
+                "url": "#/settings/timezones"
+            }, {
+                "label": "Do Not Disturb Policy",
+                "url": "#/settings/dnd"
+            }, {
+                "label": "Users",
+                "url": "#/settings/users"
+            }]
+    }];
+});
+
+
+</script>
+
+</body>
+</html>
