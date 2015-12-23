@@ -61,7 +61,11 @@ var AutoCompleteClab = (function () {
 				// How many LIs are visible without scrolling (=> sets max-height of OL)
 				maxInView: {
 					type: Number,
-					value: 2
+					value: 6
+				},
+				inputType: {
+					type: String,
+					value: 'success'
 				},
 
 				/*---------- 
@@ -89,6 +93,7 @@ var AutoCompleteClab = (function () {
 			this.list = this.querySelector('.options-list');
 			this.results = [];
 			this.currentHint = undefined;
+			this.spinner = false;
 
 			/*if(this.options!=undefined){
    	this.options.forEach((opt,i)=>{
@@ -111,8 +116,8 @@ var AutoCompleteClab = (function () {
   ----------*/
 
 	}, {
-		key: '_handleHints',
-		value: function _handleHints(evt) {
+		key: '_handleKeyboardInputs',
+		value: function _handleKeyboardInputs(evt) {
 			var _this2 = this;
 
 			// If Enter
@@ -138,53 +143,38 @@ var AutoCompleteClab = (function () {
 
 			// If typing
 			if (this.inputString.length > this.minChar) {
+				this.fire('typing');
 
-				if (this.url != undefined && this.options == undefined) {
-					fetch(this.url).then(function (res) {
-						return res.json();
-					}).then(function (obj) {
-						_this2.set('options', obj);
-						//console.log(this.options);
-						_this2._searchForHints();
+				if (this.url != undefined) {
+					this.spinner = true;
+
+					fetch(this.url, {
+						method: 'GET'
+					}).then(function (res) {
+						if (res.status !== 200) {
+							console.log('Looks like there was a problem. Status Code: ' + res.status);
+							_this2.spinner = false;
+							_this2.inputType = 'error';
+							return;
+						}
+
+						res.json().then(function (data) {
+							_this2.set('options', data);
+							_this2.async(function () {
+								_this2._handleHints(true);
+							}, 50);
+						});
+					}).catch(function (err) {
+						console.error("Fetch Error ==> ", err);
+						_this2.spinner = false;
+						_this2.inputType = 'error';
 					});
 				} else {
-					this._searchForHints();
+					this._handleHints(false);
 				}
 			} else {
-				if (this.list.classList.contains('active')) this.list.classList.remove('active');
+				this._closeList();
 			}
-		}
-	}, {
-		key: '_searchForHints',
-		value: function _searchForHints() {
-			var _this3 = this;
-
-			var search = this.inputString;
-			this.results = [];
-
-			this.options.forEach(function (opt, i) {
-				if (opt.label.search(search) > -1) {
-					//this.set('options.'+i+'.show', true);
-					_this3.querySelectorAll('.options-list li')[i].classList.add('show');
-					_this3.results.push(_this3.options[i]);
-				} else {
-					//this.set('options.'+i+'.show', false);
-					_this3.querySelectorAll('.options-list li')[i].classList.remove('show');
-				}
-			});
-
-			if (this.results.length > 0) {
-				if (!this.hideHints) {
-					this.async(function () {
-						_this3._setListHeight(_this3.results.length);
-					}, 100);
-				}
-				this._highlightEl(this._getIdxForHighlight(this.results, search));
-				//this.fire('sendRes',this.results);
-			} else {
-					if (this.list.classList.contains('active')) this.list.classList.remove('active');
-					this.currentHint = undefined;
-				}
 		}
 	}, {
 		key: '_handleBlur',
@@ -193,17 +183,16 @@ var AutoCompleteClab = (function () {
 				evt.preventDefault();
 				return;
 			}
-			if (evt) {
-				this._closeList();
-				if (this.value == undefined || this.value.label != this.inputString) {
-					this.inputString = '';
-				}
+
+			this._closeList();
+			if (this.value == undefined || this.value.label != this.inputString) {
+				this.inputString = '';
+				this.currentHint = undefined;
 			}
 		}
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
-			//console.log(evt.target);
 			if (evt.target.localName == 'ol') {
 				this.dontHide = true;
 			} else if (evt.target.localName == 'li') {
@@ -214,11 +203,71 @@ var AutoCompleteClab = (function () {
 				this.dontHide = false;
 			}
 		}
+	}, {
+		key: '_highlightThis',
+		value: function _highlightThis(evt) {
+			var i = evt.target.getAttribute('data-index');
+			this._highlightEl(i);
+			this.currentHint = this.options[i];
+		}
 
 		/*---------- 
   FUNCTIONS
   ----------*/
 
+	}, {
+		key: '_handleHints',
+		value: function _handleHints(fetched) {
+			var _this3 = this;
+
+			var searchVal = this.inputString.toLowerCase();
+
+			if (fetched) {
+				this.results = this.options;
+				Array.from(this.list.children).forEach(function (el) {
+					el.classList.add('show');
+				});
+			} else {
+				(function () {
+					var start = new Date().getTime();
+					_this3.results = [];
+
+					_this3.options.forEach(function (opt, i) {
+						if (opt.label.toLowerCase().search(searchVal) > -1) {
+							if (!_this3.spinner && new Date().getTime() - start > 400) _this3.spinner = true;
+							_this3.querySelectorAll('.options-list li')[i].classList.add('show');
+							_this3.results.push(_this3.options[i]);
+						} else {
+							if (!_this3.spinner && new Date().getTime() - start > 400) _this3.spinner = true;
+							_this3.querySelectorAll('.options-list li')[i].classList.remove('show');
+						}
+					});
+				})();
+			}
+
+			this._handleListVisual(searchVal);
+		}
+	}, {
+		key: '_handleListVisual',
+		value: function _handleListVisual(searchVal) {
+			var _this4 = this;
+
+			if (this.results.length > 0) {
+				if (!this.hideHints) {
+					this.async(function () {
+						_this4._setListHeight(_this4.results.length);
+					}, 100);
+				}
+				this.spinner = false;
+				this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
+				//this.fire('sendRes',this.results);
+			} else {
+					this._closeList();
+					this.spinner = false;
+					this.currentHint = undefined;
+					console.info('No hint was found');
+				}
+		}
 	}, {
 		key: '_setValue',
 		value: function _setValue(obj) {
@@ -229,14 +278,22 @@ var AutoCompleteClab = (function () {
 			if (this.resultAsObj) this.fire('change', this.value);else this.fire('change', { 'value': this.inputString });
 		}
 	}, {
+		key: '_closeList',
+		value: function _closeList() {
+			this.list.scrollTop = 0;
+			this.list.classList.remove('active');
+			Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
+				el.classList.remove('selected');
+			});
+		}
+	}, {
 		key: '_highlightEl',
 		value: function _highlightEl(idx) {
-			var _this4 = this;
+			var _this5 = this;
 
-			var i = idx;
 			this.async(function () {
-				Array.from(_this4.querySelectorAll('.options-list li')).forEach(function (el) {
-					if (el.getAttribute('data-index') == i) {
+				Array.from(_this5.querySelectorAll('.options-list li')).forEach(function (el) {
+					if (el.getAttribute('data-index') == idx) {
 						el.classList.add('selected');
 					} else {
 						el.classList.remove('selected');
@@ -245,20 +302,20 @@ var AutoCompleteClab = (function () {
 			}, 100);
 		}
 	}, {
-		key: '_getIdxForHighlight',
-		value: function _getIdxForHighlight(res, search) {
-			var _this5 = this;
+		key: '_getMoreAccurateIdxMatch',
+		value: function _getMoreAccurateIdxMatch(res, search) {
+			var _this6 = this;
 
-			var exists = false;
+			var isSame = false;
 			var idx = undefined;
 			res.forEach(function (item, i) {
 				if (item.label === search) {
-					exists = true;
-					idx = _this5._getIndex(item, _this5.options);
-					_this5.currentHint = item;
+					isSame = true;
+					idx = _this6._getIndex(item, _this6.options);
+					_this6.currentHint = item;
 				}
 			});
-			if (!exists) {
+			if (!isSame) {
 				idx = this._getIndex(res[0], this.options);
 				this.currentHint = res[0];
 			}
@@ -273,41 +330,26 @@ var AutoCompleteClab = (function () {
 			if (type === 'up') {
 				toSel = this.results[HIdx - 1];
 				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
-					this.currentHint = toSel;
-					this._highlightEl(this._getIndex(toSel, this.options));
-					this.querySelector('.options-list').scrollTop -= this.liHeight;
+					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
 				} else {
 					return;
 				}
 			} else if (type === 'down') {
 				toSel = this.results[HIdx + 1];
 				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
-					this.currentHint = toSel;
-					this._highlightEl(this._getIndex(toSel, this.options));
-					this.querySelector('.options-list').scrollTop += this.liHeight;
+					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
 				} else {
 					return;
 				}
 			}
 		}
 	}, {
-		key: '_closeList',
-		value: function _closeList() {
-			this.list.classList.remove('active');
-			Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
-				el.classList.remove('selected');
-			});
-		}
-	}, {
-		key: '_fetchJSON',
-		value: function _fetchJSON(url) {
-			var _this6 = this;
-
-			fetch(url).then(function (res) {
-				return res.json();
-			}).then(function (obj) {
-				_this6.set('options', obj);
-			});
+		key: '_scrollToHighlight',
+		value: function _scrollToHighlight(item, i, goesUp) {
+			this.currentHint = item;
+			this._highlightEl(i);
+			var visible = this._isElemVisible(i);
+			if (!visible && !goesUp) this.list.scrollTop += this.list.clientHeight;else if (!visible && goesUp) this.list.scrollTop -= this.list.clientHeight;
 		}
 
 		/*---------- 
@@ -320,8 +362,7 @@ var AutoCompleteClab = (function () {
 			var _this7 = this;
 
 			promise().then(function (resp) {
-				_this7.options = resp;
-				//this.liHeight = this.$.list.children[0].clientHeight;
+				_this7.set('options', resp);
 			});
 		}
 
@@ -349,7 +390,16 @@ var AutoCompleteClab = (function () {
 				this.list.classList.remove('hidden');
 			}
 			this.list.style.height = this.liHeight * elemsShown + 'px';
-			this.list.classList.add('active');
+			this.list.scrollTop = 0;
+			if (!this.list.classList.contains('active')) this.list.classList.add('active');
+		}
+	}, {
+		key: '_isElemVisible',
+		value: function _isElemVisible(i) {
+			var offsetTop = this.list.children[i].offsetTop,
+			    scrollTop = this.list.scrollTop,
+			    h = this.list.clientHeight;
+			if (offsetTop < scrollTop || offsetTop >= scrollTop + h) return false;else return true;
 		}
 	}, {
 		key: '_dashify',

@@ -48,7 +48,11 @@ class AutoCompleteClab{
 			// How many LIs are visible without scrolling (=> sets max-height of OL)
 			maxInView:{
 				type:Number,
-				value:2
+				value:6
+			},
+			inputType:{
+				type:String,
+				value:'success'
 			},
 
 
@@ -73,6 +77,7 @@ class AutoCompleteClab{
 		this.list=this.querySelector('.options-list');
 		this.results=[];
 		this.currentHint=undefined;
+		this.spinner=false;
 
 		/*if(this.options!=undefined){
 			this.options.forEach((opt,i)=>{
@@ -92,7 +97,7 @@ class AutoCompleteClab{
 	/*---------- 
 	EVENT HANDLERS
 	----------*/
-	_handleHints(evt){
+	_handleKeyboardInputs(evt){
 		// If Enter
 		if(evt.keyCode==13 && this.currentHint!=undefined){
 			let i=this._getIndex(this.currentHint, this.options);
@@ -116,51 +121,40 @@ class AutoCompleteClab{
 
 		// If typing
 		if(this.inputString.length>this.minChar){
+			this.fire('typing');
 
-			if(this.url!=undefined && this.options==undefined){
-				fetch(this.url).then(res=>{
-					return res.json();
-				}).then(obj=>{
-					this.set('options',obj);
-					//console.log(this.options);
-					this._searchForHints();
+			if(this.url!=undefined){
+				this.spinner=true;
+
+				fetch(this.url, {
+					method: 'GET'
+				}).then(res=>{
+					if (res.status !== 200) {  
+						console.log('Looks like there was a problem. Status Code: '+res.status);  
+						this.spinner=false;
+						this.inputType='error';
+						return;
+					}
+
+					res.json().then((data)=>{
+						this.set('options',data);
+						this.async(()=>{
+							this._handleHints(true);
+						},50);
+					});
+
+				}).catch(err=>{
+					console.error("Fetch Error ==> ", err);
+					this.spinner=false;
+					this.inputType='error';
+
 				});
 			} else {
-				this._searchForHints();
+				this._handleHints(false);
 			}
 			
 		} else {
-			if(this.list.classList.contains('active')) this.list.classList.remove('active');
-		}
-	}
-
-	_searchForHints(){
-		let search=this.inputString;
-		this.results=[];
-
-		this.options.forEach((opt, i)=>{
-			if(opt.label.search(search)>-1){
-				//this.set('options.'+i+'.show', true);
-				this.querySelectorAll('.options-list li')[i].classList.add('show');
-				this.results.push(this.options[i]);
-			} else {
-				//this.set('options.'+i+'.show', false);
-				this.querySelectorAll('.options-list li')[i].classList.remove('show');
-			}
-		});
-
-		if(this.results.length>0){
-			if(!this.hideHints){
-				this.async(()=>{
-					this._setListHeight(this.results.length);
-				},100);
-			}
-			this._highlightEl(this._getIdxForHighlight(this.results, search));
-			//this.fire('sendRes',this.results);
-
-		} else {
-			if(this.list.classList.contains('active')) this.list.classList.remove('active');
-			this.currentHint=undefined;
+			this._closeList();
 		}
 	}
 
@@ -168,18 +162,16 @@ class AutoCompleteClab{
 		if(this.dontHide){
 			evt.preventDefault();
 			return;
-
 		}
-		if(evt){
-			this._closeList();
-			if(this.value==undefined || this.value.label!=this.inputString){
-				this.inputString='';
-			}
+
+		this._closeList();
+		if(this.value==undefined || this.value.label!=this.inputString){
+			this.inputString='';
+			this.currentHint=undefined;
 		}
 	}
 
 	_handleClick(evt){
-		//console.log(evt.target);
 		if(evt.target.localName=='ol'){
 			this.dontHide=true;
 
@@ -193,12 +185,66 @@ class AutoCompleteClab{
 		}
 	}
 
+	_highlightThis(evt){
+		let i=evt.target.getAttribute('data-index');
+		this._highlightEl(i);
+		this.currentHint=this.options[i];
+	}
+
 
 
 
 	/*---------- 
 	FUNCTIONS
 	----------*/
+	_handleHints(fetched){
+		let searchVal=this.inputString.toLowerCase();
+
+		if(fetched){
+			this.results=this.options;
+			Array.from(this.list.children).forEach(el=>{
+				el.classList.add('show');
+			});
+
+		} else {
+			let start=new Date().getTime();
+			this.results=[];
+
+			this.options.forEach((opt, i)=>{
+				if(opt.label.toLowerCase().search(searchVal)>-1){
+					if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
+					this.querySelectorAll('.options-list li')[i].classList.add('show');
+					this.results.push(this.options[i]);
+
+				} else {
+					if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
+					this.querySelectorAll('.options-list li')[i].classList.remove('show');
+				}
+			});
+		}
+
+		this._handleListVisual(searchVal);
+	}
+
+	_handleListVisual(searchVal){
+		if(this.results.length>0){
+			if(!this.hideHints){
+				this.async(()=>{
+					this._setListHeight(this.results.length);
+				},100);
+			}
+			this.spinner=false;
+			this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
+			//this.fire('sendRes',this.results);
+
+		} else {
+			this._closeList();
+			this.spinner=false;
+			this.currentHint=undefined;
+			console.info('No hint was found');
+		}
+	}
+
 	_setValue(obj){
 		this.set('value', obj);
 		this.inputString=this.value.label;
@@ -210,11 +256,18 @@ class AutoCompleteClab{
 			this.fire('change', {'value':this.inputString});
 	}
 
+	_closeList(){
+		this.list.scrollTop=0;
+		this.list.classList.remove('active');
+		Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
+			el.classList.remove('selected');
+		});
+	}
+
 	_highlightEl(idx){
-		let i = idx;
 		this.async(()=>{
 			Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
-				if(el.getAttribute('data-index')==i){
+				if(el.getAttribute('data-index')==idx){
 					el.classList.add('selected');
 				} else {
 					el.classList.remove('selected');
@@ -223,17 +276,17 @@ class AutoCompleteClab{
 		},100);
 	}
 
-	_getIdxForHighlight(res, search){
-		let exists=false;
+	_getMoreAccurateIdxMatch(res, search){
+		let isSame=false;
 		let idx;
 		res.forEach((item,i)=>{
 			if(item.label===search){
-				exists=true;
+				isSame=true;
 				idx = this._getIndex(item, this.options);
 				this.currentHint=item;
 			}
 		});
-		if(!exists){
+		if(!isSame){
 			idx = this._getIndex(res[0], this.options);
 			this.currentHint=res[0];
 		}
@@ -247,36 +300,25 @@ class AutoCompleteClab{
 		if(type==='up'){
 			toSel=this.results[HIdx-1];
 			if(typeof toSel == 'object'){
-				this.currentHint=toSel;
-				this._highlightEl(this._getIndex(toSel, this.options));
-				this.querySelector('.options-list').scrollTop-=this.liHeight;
-
+				this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
 			} else { return; }
 			
 		} else if(type==='down'){ 
 			toSel=this.results[HIdx+1]; 
 			if(typeof toSel == 'object'){
-				this.currentHint=toSel;
-				this._highlightEl(this._getIndex(toSel, this.options));
-				this.querySelector('.options-list').scrollTop+=this.liHeight;
-
+				this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
 			} else { return; }
 		}
 	}
 
-	_closeList(){
-		this.list.classList.remove('active');
-		Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
-			el.classList.remove('selected');
-		});
-	}
-
-	_fetchJSON(url){
-		fetch(url).then(res=>{
-			return res.json();
-		}).then(obj=>{
-			this.set('options',obj);
-		});
+	_scrollToHighlight(item, i, goesUp){
+		this.currentHint=item;
+		this._highlightEl(i);
+		let visible=this._isElemVisible(i);
+		if(!visible && !goesUp)
+			this.list.scrollTop+=this.list.clientHeight;
+		else if(!visible && goesUp)
+			this.list.scrollTop-=this.list.clientHeight;
 	}
 
 
@@ -287,8 +329,7 @@ class AutoCompleteClab{
 	----------*/
 	_setOptions(promise){
 		promise().then((resp) => {
-			this.options = resp;
-			//this.liHeight = this.$.list.children[0].clientHeight;
+			this.set('options', resp);
 		});
 	}
 
@@ -314,7 +355,15 @@ class AutoCompleteClab{
 			this.list.classList.remove('hidden');
 		}
 		this.list.style.height=(this.liHeight*elemsShown)+'px';
-		this.list.classList.add('active');
+		this.list.scrollTop=0;
+		if(!this.list.classList.contains('active')) this.list.classList.add('active');
+	}
+
+	_isElemVisible(i){
+		let offsetTop=this.list.children[i].offsetTop,
+			scrollTop=this.list.scrollTop,
+			h=this.list.clientHeight;
+		if(offsetTop<scrollTop || offsetTop>=(scrollTop+h)) return false; else return true;
 	}
 
 	_dashify(str){

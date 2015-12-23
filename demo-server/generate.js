@@ -2,10 +2,11 @@ module.exports= function(){
 	var faker = require("faker");
 	var _ = require("lodash");
 	return {
-		options: _.times(100, function(n){
+		options: _.times(500, function(n){
+			var prod=faker.commerce.productName();
 			return {
-				label: faker.name.findName(),
-				value: faker.name.findName()
+				label: prod,
+				value: prod
 			}
 		})
 	}

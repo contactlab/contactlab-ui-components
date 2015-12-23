@@ -27,17 +27,20 @@
             <label for$="[[_dashify(name)]]">[[label]]</label>
         </template>
         <div class="elekti-wrapper">
-            <input-clab value="{{inputString}}" type="success" disabled="[[disabled]]" placeholder="Type..." name="[[name]]" on-keyup="_handleHints">
+            <input-clab value="{{inputString}}" type="[[inputType]]" disabled="[[disabled]]" placeholder="Type..." name="[[name]]" on-keyup="_handleKeyboardInputs">
                 <content></content>
             </input-clab>
             <ol class="options-list js-users-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <!-- <template is="dom-if" if="[[item.show]]"> -->
-                        <li data-index$="[[_getIndex(item, options)]]">[[item.label]]</li>
-                   <!--  </template> -->
+                    <li data-index$="[[_getIndex(item, options)]]" on-mouseover="_highlightThis">[[item.label]]</li>
                 </template>
             </ol>
+
+            <template is="dom-if" if="[[spinner]]">
+                <spinner-clab></spinner-clab>
+            </template>
         </div>
+
     </template>
 
 	<script src="script.js"></script>
