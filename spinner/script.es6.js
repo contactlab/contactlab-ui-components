@@ -10,8 +10,16 @@ class SpinnerClab{
 			big: {
 				type: Boolean,
 				value: false
+			},
+			background: {
+				type:String,
+				value: '255, 255, 255, 0.9'
 			}
 		}
+	}
+
+	ready(){
+		this.querySelector('.spinner-overlay').style.backgroundColor='rgba('+this.background+')';
 	}
 
 	computeClass(big,dark){
