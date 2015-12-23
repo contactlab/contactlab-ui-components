@@ -21,7 +21,7 @@ var DropdownClab = (function () {
 				type: {
 					type: String
 				},
-				value: {
+				selected: {
 					type: Object,
 					value: {}
 				},
@@ -120,9 +120,10 @@ var DropdownClab = (function () {
 	}, {
 		key: '_setValue',
 		value: function _setValue(item) {
-			this.set('value', item);
+			this.set('selected', item);
+			this._highlightEl(this._getIndex(item, this.options));
 
-			if (this.resultAsObj) this.fire('change', { 'newValue': this.value });else this.fire('change', { 'newValue': this.value.label });
+			if (this.resultAsObj) this.fire('change', { 'newValue': this.selected });else this.fire('change', { 'newValue': this.selected.label });
 		}
 	}, {
 		key: '_highlightEl',
@@ -146,8 +147,7 @@ var DropdownClab = (function () {
 			var _this3 = this;
 
 			promise().then(function (resp) {
-				_this3.options = resp;
-				//this.liHeight = this.$.list.children[0].clientHeight;
+				_this3.set('options', resp);
 			});
 		}
 
@@ -196,6 +196,43 @@ var DropdownClab = (function () {
 		value: function _setMaxHeight() {
 			this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
 			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
+		}
+
+		/*---------- 
+  PUBLIC
+  ----------*/
+
+	}, {
+		key: 'getSelectedLabel',
+		value: function getSelectedLabel() {
+			return this.selected.label;
+		}
+	}, {
+		key: 'getSelectedValue',
+		value: function getSelectedValue() {
+			return this.selected.value;
+		}
+	}, {
+		key: 'setByLabel',
+		value: function setByLabel(str) {
+			var _this4 = this;
+
+			this.options.forEach(function (opt) {
+				if (opt.label === str) {
+					_this4._setValue(opt);
+				}
+			});
+		}
+	}, {
+		key: 'setByValue',
+		value: function setByValue(str) {
+			var _this5 = this;
+
+			this.options.forEach(function (opt) {
+				if (opt.value === str) {
+					_this5._setValue(opt);
+				}
+			});
 		}
 	}]);
 

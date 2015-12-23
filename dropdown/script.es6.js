@@ -10,7 +10,7 @@ class DropdownClab{
 			type:{
 				type:String
 			},
-			value:{
+			selected:{
 				type:Object,
 				value:{}
 			},
@@ -101,12 +101,13 @@ class DropdownClab{
 	FUNCTIONS
 	----------*/
 	_setValue(item){
-		this.set('value',item);
+		this.set('selected',item);
+		this._highlightEl(this._getIndex(item, this.options));
 
 		if(this.resultAsObj)
-			this.fire('change', {'newValue':this.value});
+			this.fire('change', {'newValue':this.selected});
 		else
-			this.fire('change', {'newValue':this.value.label});
+			this.fire('change', {'newValue':this.selected.label});
 		
 	}
 
@@ -127,8 +128,7 @@ class DropdownClab{
 	----------*/
 	_setOptions(promise){
 		promise().then((resp) => {
-			this.options = resp;
-			//this.liHeight = this.$.list.children[0].clientHeight;
+			this.set('options', resp);
 		});
 	}
 
@@ -173,6 +173,36 @@ class DropdownClab{
 		this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
+
+
+
+
+	/*---------- 
+	PUBLIC
+	----------*/
+	getSelectedLabel(){
+		return this.selected.label;
+	}
+
+	getSelectedValue(){
+		return this.selected.value;
+	}
+
+	setByLabel(str){
+		this.options.forEach(opt=>{
+			if(opt.label===str){
+				this._setValue(opt);
+			}
+		});
+	} 
+
+	setByValue(str){
+		this.options.forEach(opt=>{
+			if(opt.value===str){
+				this._setValue(opt);
+			}
+		});
+	} 
 
 }
 

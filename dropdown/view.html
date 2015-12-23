@@ -22,10 +22,10 @@
         </template>
         <div class="elekti-wrapper">
             <div class$="[[_compValueWrapper(disabled)]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
-                <template is="dom-if" if="[[_viewValue(value)]]">
-                    <span class="value">[[value.label]]</span>
+                <template is="dom-if" if="[[_viewValue(selected)]]">
+                    <span class="selected">[[selected.label]]</span>
                 </template>
-                <template is="dom-if" if="[[!_viewValue(value)]]">
+                <template is="dom-if" if="[[!_viewValue(selected)]]">
                     <span class="placeholder">Select..</span>
                 </template>
             </div>
