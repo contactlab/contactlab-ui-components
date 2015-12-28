@@ -24,7 +24,7 @@ var MultipleClab = (function () {
 				},
 				options: {
 					type: Array,
-					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }, { value: 'C', label: 'Option 3' }, { value: 'D', label: 'Option 4' }, { value: 'E', label: 'Option 5' }]
+					value: []
 				},
 				optionsFn: {
 					type: Function,
@@ -84,11 +84,15 @@ var MultipleClab = (function () {
 					}).then(function (res) {
 						if (res.status !== 200) {
 							console.log('Looks like there was a problem. Status Code: ' + res.status);
+							if (typeof timeoutID == 'number') {
+								window.clearTimeout(timeoutID);
+								timeoutID = undefined;
+								_this.spinner = false;
+							}
 							return;
 						}
 						res.json().then(function (data) {
 							_this.set('options', data);
-
 							if (typeof timeoutID == 'number') {
 								window.clearTimeout(timeoutID);
 								timeoutID = undefined;
@@ -182,6 +186,11 @@ var MultipleClab = (function () {
 						}).then(function (res) {
 							if (res.status !== 200) {
 								console.log('Looks like there was a problem. Status Code: ' + res.status);
+								if (typeof timeoutID == 'number') {
+									window.clearTimeout(timeoutID);
+									timeoutID = undefined;
+									_this3.spinner = false;
+								}
 								return;
 							}
 							res.json().then(function (data) {
