@@ -8,7 +8,8 @@ class DropdownClab{
 				value:null
 			},
 			type:{
-				type:String
+				type:String,
+				value:'success'
 			},
 			selected:{
 				type:Object,

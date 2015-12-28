@@ -17,7 +17,7 @@ var PaginationClab = (function () {
 				pages: {
 					type: Array,
 					notify: true,
-					value: null
+					value: []
 				},
 				currentPage: {
 					type: Number,

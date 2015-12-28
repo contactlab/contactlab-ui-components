@@ -53,10 +53,16 @@
 	<link rel="import" href="autocomplete/view.html">
 	<link rel="import" href="dropdown/view.html">
 	<link rel="import" href="tags/view.html">
+	<link rel="import" href="multiple/view.html">
 	
 
 </head>
 <body>
+
+	<div class="content">
+		<h2>Tags</h2>
+		<multiple-clab label="Select multiple options" url="http://localhost:3000/options" max-in-view="10">This is a note</multiple-clab>
+	</div>
 
 	<div class="content">
 		<h2>Tags</h2>
@@ -316,6 +322,10 @@ document.addEventListener('WebComponentsReady',function(){
 
 	document.querySelector('dropdown-clab').addEventListener('change',function(evt){
 		console.log('dropdown-clab ', evt.detail)
+	});
+
+	document.querySelector('multiple-clab').addEventListener('change',function(evt){
+		console.log('multiple-clab ', evt.detail.selected)
 	});
 });
 

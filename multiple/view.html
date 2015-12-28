@@ -1,0 +1,52 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="multiple-clab">
+	<style>
+		li{
+			-webkit-user-select: none; 
+			-moz-user-select: none;   
+			-ms-user-select: none;    
+			user-select: none;   
+			margin: 0;
+		}
+		li.selected{
+			color:red;
+		}
+
+		.multiple-wrapper{
+			height: auto;
+			width: 100%;
+			overflow:hidden;
+			position: relative;
+		}
+		.options-list{
+			max-height:0;
+			position: relative;
+			width: 100%;
+			overflow-y:auto;
+		}
+	</style>
+	
+	<template>
+
+		<template is="dom-if" if="[[label]]">
+			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+		</template>
+		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
+			<ol class="options-list" on-scroll="_loadContent">
+				<template is="dom-repeat" items="[[options]]">
+                    <li data-index$="[[_getIndex(item, options)]]" tabindex="0" on-click="_handleSelection">[[item.label]]</li>
+                </template>
+			</ol>
+			<template is="dom-if" if="[[spinner]]">
+                <spinner-clab></spinner-clab>
+            </template>
+		</div>
+		<note-clab type="[[compNoteType]]">
+			<content></content>
+		</note-clab>
+
+	</template>
+	
+	<script src="script.js"></script>
+</dom-module>
