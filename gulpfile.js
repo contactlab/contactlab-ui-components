@@ -1,4 +1,5 @@
-var gulp = require('gulp'),
+var gulp = require('gulp-param')(require('gulp'), process.argv),
+    runSequence = require('run-sequence'),
   	fs = require("fs"),
   	path = require("path"),
   	babel = require("gulp-babel"),
@@ -6,48 +7,24 @@ var gulp = require('gulp'),
   	watch = require('gulp-watch'),
   	rename = require("gulp-rename"),
     plumber = require('gulp-plumber');
+    vulcanize = require('gulp-vulcanize'),
+    minifyHTML = require('gulp-minify-html'),
+    minifyInline = require('gulp-minify-inline');
 
 var conf = {
   scssSourcePath: './assets/scss/**/*.{scss,sass}',
   jsSourcePath: '**/*.{js,jsx}',
   es6SourcePath: '**/*.es6.js',
   cssOutputPath: './assets/css/',
-  distCSS: './dist/css/'
+  distCSS: './dist/css/',
+  comps: './**/view.html',
+  compsV: './**/view.vulcanized.html'
 }
-
-/*function getFolders(dir) {
-    return fs.readdirSync(dir)
-      .filter(function(file) {
-        return fs.statSync(path.join(dir, file)).isDirectory();
-      });
-}
-
-// Transpile ES6 to ES5 for every file in components folders
-gulp.task('babel', function () {
-  var arr = [currentPath];
-  for (var i = 0; i < arr.length; i++){
-    var ctx = arr[i];
-    var folders = getFolders(ctx);
-    for(var i = 0; i < folders.length; i++) {
-      if(folders[i] == '.git' || folders[i] == '_css' || folders[i] == 'node_modules'){
-        folders.splice(i,1);
-      }
-    };
-    console.log(folders);
-    var tasks = folders.map(function(folder) {
-      return gulp.src(path.join(ctx, folder, '/**\/*.es6.js'))
-        .pipe(babel())
-        .pipe(rename('script.js'))
-        .pipe(gulp.dest(ctx + "/" + folder));
-    });
-  }
-});*/
 
 
 // Server
 gulp.task('connect', function (port) {
-  !port ? port = 3000 : port;
-  console.log(port);
+  !port ? port = 3005 : port;
   connect.server({
     root: '',
     port: port,
@@ -55,6 +32,7 @@ gulp.task('connect', function (port) {
   });
 });
 
+// Watch ES5
 gulp.task('watch-es6', function() {
   return gulp.src(conf.es6SourcePath)
     .pipe(plumber())
@@ -68,4 +46,95 @@ gulp.task('watch-es6', function() {
 });
 
 
-gulp.task('default', ['watch-es6']); 
+
+
+// Vulcanize Components separatly
+/*gulp.task('single-vulcanize', function () {
+    return gulp.src(conf.comps)
+        .pipe(vulcanize({
+            abspath: '',
+            stripExcludes:false,
+            stripComments: true,
+            inlineCSS:false,
+            inlineScripts:true
+          }))
+        .pipe(rename(function(path){
+            path.basename = path.basename+'.vulcanized';
+            console.log('build: '+path.basename+' in '+path.dirname);
+          }))
+        .pipe(gulp.dest(''));
+});
+gulp.task('single-minHtml', function() {
+  return gulp.src(conf.compsV)
+    .pipe(minifyHTML({ empty: true }))
+    .pipe(gulp.dest(''))
+});
+gulp.task('single-minInline', function() {
+  return gulp.src(conf.compsV)
+    .pipe(minifyInline())
+    .pipe(gulp.dest(''))
+});*/
+
+
+// Vulcanize components in one file
+gulp.task('vulcanize', function () {
+    return gulp.src('clab-components.html')
+        .pipe(vulcanize({
+            abspath: '',
+            stripExcludes:false,
+            stripComments: true,
+            inlineCSS:false,
+            inlineScripts:true
+          }))
+        .pipe(rename(function(path){
+            path.basename = path.basename+'.build';
+          }))
+        .pipe(gulp.dest(''));
+});
+gulp.task('minHtml', function() {
+  return gulp.src('clab-components.build.html')
+    .pipe(minifyHTML({ empty: true }))
+    .pipe(gulp.dest(''))
+});
+gulp.task('minInline', function() {
+  return gulp.src('clab-components.build.html')
+    .pipe(minifyInline())
+    .pipe(gulp.dest(''))
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+gulp.task('default', ['connect', 'watch-es6']); 
+
+/*gulp.task('single-build', function(cb){
+  runSequence(
+    'single-vulcanize',
+    'single-minHtml',
+    'single-minInline'
+  );
+});*/
+
+gulp.task('build', function(cb){
+  runSequence(
+    'vulcanize',
+    'minHtml',
+    'minInline'
+  );
+});
+
+
+
+
+
+
+

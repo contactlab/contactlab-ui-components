@@ -57,7 +57,9 @@ class MultipleClab {
 
 	ready(){
 		if(this.disabled) this.type='disabled';
+	}
 
+	attached(){
 		// Fetch options
 		if(this.url!=undefined){
 			let timeoutID=window.setTimeout(()=>{
@@ -69,30 +71,35 @@ class MultipleClab {
 			}).then(res=>{
 				if (res.status !== 200) {  
 					console.log('Looks like there was a problem. Status Code: '+res.status);
-					if(typeof timeoutID == 'number'){
-						window.clearTimeout(timeoutID);
-						timeoutID=undefined;
-						this.spinner=false;
-					}
+
+					window.clearTimeout(timeoutID);
+					timeoutID=undefined;
+					if(this.spinner) this.spinner=false;
 					return;
 				}
 				res.json().then((data)=>{
 					this.set('options',data);
-					if(typeof timeoutID == 'number'){
-						window.clearTimeout(timeoutID);
-						timeoutID=undefined;
-						this.spinner=false;
-					}
-				});
-			});
-		}
-	}
+					window.clearTimeout(timeoutID);
+					timeoutID=undefined;
+					if(this.spinner) this.spinner=false;
 
-	attached(){
-		// Set wrapper height
-		this.async(()=>{
-			this._setWrapperHeights();
-		},100);
+					this.async(()=>{
+						this._setWrapperHeights();
+					},100);
+				});
+			}).catch(err=>{
+				console.error("Fetch Error ==> ", err);
+				
+				this.type='error';
+				window.clearTimeout(timeoutID);
+				timeoutID=undefined;
+				if(this.spinner) this.spinner=false;
+			});
+		} else {
+			this.async(()=>{
+				this._setWrapperHeights();
+			},100);
+		}
 
 		// Global vars
 		this.lastSelected=undefined;

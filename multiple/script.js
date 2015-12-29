@@ -68,9 +68,12 @@ var MultipleClab = (function () {
 	}, {
 		key: 'ready',
 		value: function ready() {
-			var _this = this;
-
 			if (this.disabled) this.type = 'disabled';
+		}
+	}, {
+		key: 'attached',
+		value: function attached() {
+			var _this = this;
 
 			// Fetch options
 			if (this.url != undefined) {
@@ -84,34 +87,36 @@ var MultipleClab = (function () {
 					}).then(function (res) {
 						if (res.status !== 200) {
 							console.log('Looks like there was a problem. Status Code: ' + res.status);
-							if (typeof timeoutID == 'number') {
-								window.clearTimeout(timeoutID);
-								timeoutID = undefined;
-								_this.spinner = false;
-							}
+
+							window.clearTimeout(timeoutID);
+							timeoutID = undefined;
+							if (_this.spinner) _this.spinner = false;
 							return;
 						}
 						res.json().then(function (data) {
 							_this.set('options', data);
-							if (typeof timeoutID == 'number') {
-								window.clearTimeout(timeoutID);
-								timeoutID = undefined;
-								_this.spinner = false;
-							}
+							window.clearTimeout(timeoutID);
+							timeoutID = undefined;
+							if (_this.spinner) _this.spinner = false;
+
+							_this.async(function () {
+								_this._setWrapperHeights();
+							}, 100);
 						});
+					}).catch(function (err) {
+						console.error("Fetch Error ==> ", err);
+
+						_this.type = 'error';
+						window.clearTimeout(timeoutID);
+						timeoutID = undefined;
+						if (_this.spinner) _this.spinner = false;
 					});
 				})();
+			} else {
+				this.async(function () {
+					_this._setWrapperHeights();
+				}, 100);
 			}
-		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			var _this2 = this;
-
-			// Set wrapper height
-			this.async(function () {
-				_this2._setWrapperHeights();
-			}, 100);
 
 			// Global vars
 			this.lastSelected = undefined;
@@ -166,7 +171,7 @@ var MultipleClab = (function () {
 	}, {
 		key: '_loadContent',
 		value: function _loadContent(evt) {
-			var _this3 = this;
+			var _this2 = this;
 
 			if (this.disabled) return;
 
@@ -178,10 +183,10 @@ var MultipleClab = (function () {
 					(function () {
 						//load more content
 						var timeoutID = window.setTimeout(function () {
-							_this3.spinner = true;
+							_this2.spinner = true;
 						}, 400);
 
-						fetch(_this3.url, {
+						fetch(_this2.url, {
 							method: 'GET'
 						}).then(function (res) {
 							if (res.status !== 200) {
@@ -189,18 +194,18 @@ var MultipleClab = (function () {
 								if (typeof timeoutID == 'number') {
 									window.clearTimeout(timeoutID);
 									timeoutID = undefined;
-									_this3.spinner = false;
+									_this2.spinner = false;
 								}
 								return;
 							}
 							res.json().then(function (data) {
-								var newData = _this3.options.concat(data);
-								_this3.set('options', newData);
+								var newData = _this2.options.concat(data);
+								_this2.set('options', newData);
 
 								if (typeof timeoutID == 'number') {
 									window.clearTimeout(timeoutID);
 									timeoutID = undefined;
-									_this3.spinner = false;
+									_this2.spinner = false;
 								}
 							});
 						});
@@ -257,11 +262,11 @@ var MultipleClab = (function () {
 	}, {
 		key: '_highlightElems',
 		value: function _highlightElems(idx) {
-			var _this4 = this;
+			var _this3 = this;
 
 			this.async(function () {
 				idx.forEach(function (i) {
-					Array.from(_this4.querySelectorAll('.options-list li')).forEach(function (el) {
+					Array.from(_this3.querySelectorAll('.options-list li')).forEach(function (el) {
 						if (el.getAttribute('data-index') == i) {
 							el.classList.add('selected');
 						}
@@ -277,10 +282,10 @@ var MultipleClab = (function () {
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
-			var _this5 = this;
+			var _this4 = this;
 
 			promise().then(function (resp) {
-				_this5.set('options', resp);
+				_this4.set('options', resp);
 			});
 		}
 
