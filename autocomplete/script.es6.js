@@ -78,12 +78,8 @@ class AutoCompleteClab{
 		this.results=[];
 		this.currentHint=undefined;
 		this.spinner=false;
+		this.interval;
 
-		/*if(this.options!=undefined){
-			this.options.forEach((opt,i)=>{
-				opt.show=false;
-			});
-		}*/
 		if(this.value!=undefined){ this._setValue(this.value, true); }
 
 		this.querySelector('input-clab input').addEventListener('blur',this._handleBlur.bind(this));
@@ -122,33 +118,16 @@ class AutoCompleteClab{
 		// If typing
 		if(this.inputString.length>this.minChar){
 			this.fire('typing');
+			if(typeof this.interval == 'number'){
+				window.clearTimeout(this.interval);
+				this.interval=undefined;
+			}
 
 			if(this.url!=undefined){
-				this.spinner=true;
-
-				fetch(this.url, {
-					method: 'GET'
-				}).then(res=>{
-					if (res.status !== 200) {  
-						console.log('Looks like there was a problem. Status Code: '+res.status);  
-						this.spinner=false;
-						this.inputType='error';
-						return;
-					}
-
-					res.json().then((data)=>{
-						this.set('options',data);
-						this.async(()=>{
-							this._handleHints(true);
-						},50);
-					});
-
-				}).catch(err=>{
-					console.error("Fetch Error ==> ", err);
-					this.spinner=false;
-					this.inputType='error';
-
-				});
+				this.interval=window.setTimeout(()=>{
+					this._fetchOptions();
+				},400);
+				
 			} else {
 				this._handleHints(false);
 			}
@@ -197,6 +176,36 @@ class AutoCompleteClab{
 	/*---------- 
 	FUNCTIONS
 	----------*/
+	_fetchOptions(){
+		window.clearTimeout(this.interval);
+		this.interval=undefined;
+		this._startSpinnerTimeout();
+
+		fetch(this.url, {
+			method: 'GET'
+		}).then(res=>{
+			if (res.status !== 200) {  
+				console.log('Looks like there was a problem. Status Code: '+res.status);  
+				this.inputType='error';
+				this._resetSpinnerTimeout();
+				return;
+			}
+
+			res.json().then((data)=>{
+				this.set('options',data);
+				this.async(()=>{
+					this._handleHints(true);
+					this._resetSpinnerTimeout();
+				},50);
+			});
+
+		}).catch(err=>{
+			console.error("Fetch Error ==> ", err);
+			this.inputType='error';
+			this._resetSpinnerTimeout();
+		});
+	}
+
 	_handleHints(fetched){
 		let searchVal=this.inputString.toLowerCase();
 
@@ -207,17 +216,16 @@ class AutoCompleteClab{
 			});
 
 		} else {
-			let start=new Date().getTime();
 			this.results=[];
 
 			this.options.forEach((opt, i)=>{
 				if(opt.label.toLowerCase().search(searchVal)>-1){
-					if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
+					//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 					this.querySelectorAll('.options-list li')[i].classList.add('show');
 					this.results.push(this.options[i]);
 
 				} else {
-					if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
+					//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 					this.querySelectorAll('.options-list li')[i].classList.remove('show');
 				}
 			});
@@ -233,13 +241,11 @@ class AutoCompleteClab{
 					this._setListHeight(this.results.length);
 				},100);
 			}
-			this.spinner=false;
 			this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
 			//this.fire('sendRes',this.results);
 
 		} else {
 			this._closeList();
-			this.spinner=false;
 			this.currentHint=undefined;
 			console.info('No hint was found');
 		}
@@ -372,6 +378,20 @@ class AutoCompleteClab{
 
 	_viewLabel(label) {
 		if(label.length>0) return true; else return false;
+	}
+
+	_startSpinnerTimeout(){
+		this.interval=window.setTimeout(()=>{
+			if(!this.spinner) this.spinner=true;
+		},400);
+	}
+
+	_resetSpinnerTimeout(){
+		/*if(typeof this.interval == 'number'){*/
+			window.clearTimeout(this.interval);
+			this.interval=undefined;
+			if(this.spinner) this.spinner=false;
+		/*}*/
 	}
 
 	
