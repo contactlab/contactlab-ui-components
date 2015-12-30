@@ -18,8 +18,10 @@ var conf = {
   cssOutputPath: './assets/css/',
   distCSS: './dist/css/',
   comps: './**/view.html',
-  compsV: './**/view.vulcanized.html'
+  compsBuilt: './**/view.build.html'
 }
+
+
 
 
 // Server
@@ -31,6 +33,8 @@ gulp.task('connect', function (port) {
     livereload: true
   });
 });
+
+
 
 // Watch ES5
 gulp.task('watch-es6', function() {
@@ -48,58 +52,70 @@ gulp.task('watch-es6', function() {
 
 
 
-// Vulcanize Components separatly
-/*gulp.task('single-vulcanize', function () {
-    return gulp.src(conf.comps)
-        .pipe(vulcanize({
-            abspath: '',
-            stripExcludes:false,
-            stripComments: true,
-            inlineCSS:false,
-            inlineScripts:true
-          }))
-        .pipe(rename(function(path){
-            path.basename = path.basename+'.vulcanized';
-            console.log('build: '+path.basename+' in '+path.dirname);
-          }))
-        .pipe(gulp.dest(''));
+
+
+
+
+// Vulcanize Components
+gulp.task('vulcanize', function (s, f) {
+  var files;
+  var dest;
+
+  if(s!=null){ // only one or all but separately
+    files= f? './'+f+'/view.html' : conf.comps;
+    dest= f? './'+f+'/' : ''; 
+  } else if(s==null) { // all in one file
+    files= './clab-components.html';
+    dest= '';
+  }
+  
+  return gulp.src(files)
+    .pipe(vulcanize({
+      abspath: '',
+      stripExcludes:false,
+      stripComments: true,
+      inlineCSS:false,
+      inlineScripts:true
+    }))
+    .pipe(rename(function(path){
+      path.basename = path.basename+'.build';
+      console.log('BUILT: '+path.basename+' in '+(dest==='' ? (path.dirname.length>1 ? path.dirname : 'root') : dest));
+    }))
+    .pipe(gulp.dest(dest));
 });
-gulp.task('single-minHtml', function() {
-  return gulp.src(conf.compsV)
+
+gulp.task('minHtml', function(s, f) {
+  var files;
+  var dest;
+
+  if(s!=null){
+    files= f? './'+f+'/view.build.html' : conf.compsBuilt;
+    dest= f? './'+f+'/' : ''; 
+  } else if(s==null) {
+    files= './clab-components.build.html';
+    dest= '';
+  }
+
+  return gulp.src(files)
     .pipe(minifyHTML({ empty: true }))
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest(dest))
 });
-gulp.task('single-minInline', function() {
-  return gulp.src(conf.compsV)
+
+gulp.task('minInline', function(s, f) {
+  var files;
+  var dest;
+
+  if(s!=null){
+    files= f? './'+f+'/view.build.html' : conf.compsBuilt;
+    dest= f? './'+f+'/' : ''; 
+  } else if(s==null) {
+    files= './clab-components.build.html';
+    dest= '';
+  }
+
+  return gulp.src(files)
     .pipe(minifyInline())
-    .pipe(gulp.dest(''))
-});*/
-
-
-// Vulcanize components in one file
-gulp.task('vulcanize', function () {
-    return gulp.src('clab-components.html')
-        .pipe(vulcanize({
-            abspath: '',
-            stripExcludes:false,
-            stripComments: true,
-            inlineCSS:false,
-            inlineScripts:true
-          }))
-        .pipe(rename(function(path){
-            path.basename = path.basename+'.build';
-          }))
-        .pipe(gulp.dest(''));
-});
-gulp.task('minHtml', function() {
-  return gulp.src('clab-components.build.html')
-    .pipe(minifyHTML({ empty: true }))
-    .pipe(gulp.dest(''))
-});
-gulp.task('minInline', function() {
-  return gulp.src('clab-components.build.html')
-    .pipe(minifyInline())
-    .pipe(gulp.dest(''))
+    .pipe(gulp.dest(dest))
 });
 
 
@@ -110,19 +126,7 @@ gulp.task('minInline', function() {
 
 
 
-
-
-
-
-gulp.task('default', ['connect', 'watch-es6']); 
-
-/*gulp.task('single-build', function(cb){
-  runSequence(
-    'single-vulcanize',
-    'single-minHtml',
-    'single-minInline'
-  );
-});*/
+gulp.task('default', ['watch-es6']); 
 
 gulp.task('build', function(cb){
   runSequence(
