@@ -32,5 +32,10 @@ Internet Explorer 11 does not support the .from() method in the Array object. In
 ### Testing
 Work in progress
 
+### Building
+* gulp build: 					creates a minified file containing all the components in the root folder.
+* gulp build -s: 				vulcanize every single component separately.
+* gulp build -s 'folder':		vulcanize specific component.
+
 ### License
 Apache 2.0 [http://www.apache.org/licenses/](http://www.apache.org/licenses/)

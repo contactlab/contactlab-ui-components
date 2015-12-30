@@ -61,10 +61,16 @@ gulp.task('vulcanize', function (s, f) {
   var files;
   var dest;
 
-  if(s!=null){ // only one or all but separately
-    files= f? './'+f+'/view.html' : conf.comps;
-    dest= f? './'+f+'/' : ''; 
-  } else if(s==null) { // all in one file
+  if(s!=null){ 
+    console.log(s);
+    if(s==true){ // all but separately
+      files= conf.comps;
+      dest= ''; 
+    } else { // only one
+      files= './'+s+'/view.html';
+      dest= './'+s+'/';
+    }
+  } else { // all in one file
     files= './clab-components.html';
     dest= '';
   }
@@ -88,10 +94,15 @@ gulp.task('minHtml', function(s, f) {
   var files;
   var dest;
 
-  if(s!=null){
-    files= f? './'+f+'/view.build.html' : conf.compsBuilt;
-    dest= f? './'+f+'/' : ''; 
-  } else if(s==null) {
+  if(s!=null){ 
+    if(s==true){ // all but separately
+      files= conf.compsBuilt;
+      dest= ''; 
+    } else { // only one
+      files= './'+s+'/view.build.html';
+      dest= './'+s+'/';
+    }
+  } else { // all in one file
     files= './clab-components.build.html';
     dest= '';
   }
@@ -105,10 +116,15 @@ gulp.task('minInline', function(s, f) {
   var files;
   var dest;
 
-  if(s!=null){
-    files= f? './'+f+'/view.build.html' : conf.compsBuilt;
-    dest= f? './'+f+'/' : ''; 
-  } else if(s==null) {
+  if(s!=null){ 
+    if(s==true){ // all but separately
+      files= conf.compsBuilt;
+      dest= ''; 
+    } else { // only one
+      files= './'+s+'/view.build.html';
+      dest= './'+s+'/';
+    }
+  } else { // all in one file
     files= './clab-components.build.html';
     dest= '';
   }
