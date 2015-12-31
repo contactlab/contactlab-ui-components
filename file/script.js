@@ -61,37 +61,47 @@ var FileClab = (function () {
 
 			fileInput.addEventListener('change', function (evt) {
 				var arr = [];
-				Array.from(fileInput.files).forEach(function (file) {
+				Array.prototype.map.call(fileInput.files, function (file) {
 					arr.push(file.name);
 				});
 				textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 				_this.value = textInput.value;
 			});
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_selection',
+		value: function _selection(evt) {
+			this.$$('input[type=file]').click();
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
 	}, {
 		key: 'disabledChanged',
 		value: function disabledChanged(newVal, oldVal) {
 			if (newVal) this.type = 'disabled';
 		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: 'computeNoteType',
 		value: function computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
 		}
 	}, {
-		key: '_selection',
-		value: function _selection(evt) {
-			this.$$('input[type=file]').click();
-		}
-	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			return label.toLowerCase().replace(' ', '-');
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

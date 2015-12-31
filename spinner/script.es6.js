@@ -22,6 +22,11 @@ class SpinnerClab{
 		this.querySelector('.spinner-overlay').style.backgroundColor='rgba('+this.background+')';
 	}
 
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	computeClass(big,dark){
 		let str = 'spinner-overlay ';
 		this.dark ? str += ' dark ' : null;

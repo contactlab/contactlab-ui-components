@@ -1,5 +1,9 @@
 class DropdownClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "dropdown-clab";
 		this.properties = {
@@ -113,7 +117,7 @@ class DropdownClab{
 	}
 
 	_highlightEl(i){
-		Array.from(this.querySelectorAll('.options-list li')).forEach((el)=>{
+		Array.prototype.map.call(this.querySelectorAll('.options-list li'), (el)=>{
 			if(el.getAttribute('data-index')==i){
 				el.classList.add('selected');
 			} else {
@@ -158,16 +162,8 @@ class DropdownClab{
 	/*---------- 
 	UTILS
 	----------*/
-	_getIndex(item, items){
-		return items.indexOf(item);
-	}
-
 	_viewValue(val){
 		if(val.hasOwnProperty('label')) return true; else return false;
-	}
-
-	_viewLabel(label) {
-		if(label.length>0) return true; else return false;
 	}
 
 	_setMaxHeight(){
@@ -190,7 +186,7 @@ class DropdownClab{
 	}
 
 	setByLabel(str){
-		this.options.forEach(opt=>{
+		this.options.map(opt=>{
 			if(opt.label===str){
 				this._setValue(opt);
 			}
@@ -198,7 +194,7 @@ class DropdownClab{
 	} 
 
 	setByValue(str){
-		this.options.forEach(opt=>{
+		this.options.map(opt=>{
 			if(opt.value===str){
 				this._setValue(opt);
 			}

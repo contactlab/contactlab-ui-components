@@ -61,15 +61,11 @@ var MenuClab = (function () {
 
 			this._iosMenu();
 		}
-	}, {
-		key: '_addOpenAttr',
-		value: function _addOpenAttr() {
-			var _this2 = this;
 
-			this.menu.forEach(function (e, i) {
-				_this2.set('menu.' + i + '.open', false);
-			});
-		}
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_openItem',
 		value: function _openItem(evt) {
@@ -86,9 +82,19 @@ var MenuClab = (function () {
 			}
 		}
 	}, {
+		key: '_reduce',
+		value: function _reduce(evt) {
+			document.body.classList.toggle('main-sidebar-small');
+		}
+
+		/*---------- 
+  METHODS
+  ----------*/
+
+	}, {
 		key: '_iosMenu',
 		value: function _iosMenu() {
-			var _this3 = this;
+			var _this2 = this;
 
 			document.querySelector('body main').addEventListener('click', function (evt) {
 				switch (evt.target.nodeName) {
@@ -100,11 +106,30 @@ var MenuClab = (function () {
 						return true;
 						break;
 					default:
-						_this3.$$('#logo a').focus();
+						_this2.$$('#logo a').focus();
 						break;
 				}
 			});
 		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: '_addOpenAttr',
+		value: function _addOpenAttr() {
+			var _this3 = this;
+
+			this.menu.map(function (e, i) {
+				_this3.set('menu.' + i + '.open', false);
+			});
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: '_computeActive',
 		value: function _computeActive(url, link, open) {
@@ -112,11 +137,6 @@ var MenuClab = (function () {
 			open ? arr.push('open', 'active') : null;
 			url.search(link) > -1 ? arr.push('active') : null;
 			return arr.join(' ');
-		}
-	}, {
-		key: '_reduce',
-		value: function _reduce() {
-			document.body.classList.toggle('main-sidebar-small');
 		}
 	}, {
 		key: '_computeTitleIcon',

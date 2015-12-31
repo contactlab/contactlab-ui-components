@@ -16,9 +16,6 @@ var CalendarClab = (function () {
 		value: function beforeRegister() {
 			this.is = "calendar-clab";
 			this.properties = {
-				/**
-         * Add a label to the calendar input
-         */
 				label: {
 					type: String
 				},
@@ -65,6 +62,11 @@ var CalendarClab = (function () {
 				_this.inline ? _this._createInstance('div.inline-cal') : _this._createInstance("input");
 			}, 50);
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
@@ -78,6 +80,11 @@ var CalendarClab = (function () {
 				this.getRomeInstance().show();
 			}
 		}
+
+		/*---------- 
+  METHODS
+  ----------*/
+
 	}, {
 		key: "_createInstance",
 		value: function _createInstance(selector) {
@@ -86,18 +93,16 @@ var CalendarClab = (function () {
 			rome(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 		}
 	}, {
-		key: "_getFormat",
-		value: function _getFormat() {
-			var thisFormat = undefined;
-			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
-			return thisFormat;
-		}
-	}, {
 		key: "_changeDate",
 		value: function _changeDate(evt) {
 			this.valueStr = evt;
 			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: "_computeType",
 		value: function _computeType(type) {
@@ -108,22 +113,22 @@ var CalendarClab = (function () {
 		value: function _computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
 		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
-		key: "_dashify",
-		value: function _dashify(label) {
-			return label.toLowerCase().replace(' ', '-');
-		}
-	}, {
-		key: "_viewLabel",
-		value: function _viewLabel(label) {
-			if (label.length > 0) {
-				return true;
-			} else {
-				return false;
-			}
+		key: "_getFormat",
+		value: function _getFormat() {
+			var thisFormat = undefined;
+			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
+			return thisFormat;
 		}
 
-		/* PUBLIC METHODS */
+		/*---------- 
+  PUBLIC METHODS	
+  ----------*/
 
 	}, {
 		key: "setValue",
@@ -148,6 +153,11 @@ var CalendarClab = (function () {
 			this.valueStr = null;
 			var rome = this.getRomeInstance();
 			rome.setValue(moment().format());
+		}
+	}, {
+		key: "behaviors",
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

@@ -87,7 +87,7 @@ var TagsClab = (function () {
 		value: function _removeTag(evt) {
 			var value = evt.target.getAttribute('value');
 			var i = undefined;
-			this.tags.forEach(function (tag, idx) {
+			this.tags.map(function (tag, idx) {
 				if (tag.value === value) {
 					i = idx;
 					return;
@@ -96,16 +96,6 @@ var TagsClab = (function () {
 			if (i != undefined) this.splice('tags', i, 1);
 
 			this.fire('remove');
-		}
-
-		/*---------- 
-  UTILS
-  ----------*/
-
-	}, {
-		key: '_getIndex',
-		value: function _getIndex(item, items) {
-			return items.indexOf(item);
 		}
 
 		/*---------- 
@@ -120,13 +110,18 @@ var TagsClab = (function () {
 			if (this.tags.length < 0) {
 				this.set('tags', array);
 			} else {
-				array.forEach(function (item) {
+				array.map(function (item) {
 					_this.push('tags', item);
 				});
 			}
 			this.fire('change');
 
 			return this.tags;
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

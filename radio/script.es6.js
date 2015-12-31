@@ -1,5 +1,9 @@
 class RadioClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "radio-clab";
 		this.properties = {
@@ -22,14 +26,20 @@ class RadioClab{
 		}
 	}
 
-	_dashify(label){
-		return label.toLowerCase().replace(' ','-');
-	}
 
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeType(wt){
 		return ['row',wt].join(' ');
 	}
 
+
+
+	/*---------- 
+	UTILS
+	----------*/
 	_checkIfTrue(i, n){
 		if(typeof n === 'number'){
 			return i == n;

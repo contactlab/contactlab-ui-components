@@ -1,5 +1,9 @@
 class MultipleClab {
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "multiple-clab";
 		this.properties = {
@@ -124,7 +128,7 @@ class MultipleClab {
 		if(!this.shift && !this.ctrl){
 			// starting the select
 			this.set('selected', []);
-			Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
 				el.classList.remove('selected');
 			});
 			this._selectThis(evt.target);
@@ -246,8 +250,8 @@ class MultipleClab {
 
 	_highlightElems(idx){
 		this.async(()=>{
-			idx.forEach(i=>{
-				Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
+			idx.map(i=>{
+				Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
 					if(el.getAttribute('data-index')==i){
 						el.classList.add('selected');
 					}
@@ -293,14 +297,6 @@ class MultipleClab {
 	/*---------- 
 	UTILITIES	
 	----------*/
-	_dashify(str){
-		return str.replace(/ /g,'-');
-	}
-
-	_getIndex(item, array){
-		return array.indexOf(item);
-	}
-
 	_setWrapperHeights(){
 		this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';

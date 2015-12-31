@@ -28,12 +28,31 @@ class TabsClab{
 
 	attached(){
 		this.tabContent = this.querySelectorAll('.tab-content');
-		Array.from(this.tabContent).forEach((content)=>{
+		Array.prototype.map.call(this.tabContent, (content)=>{
 			content.style.display = 'none';
 		});
 		this.tabContent[this.active].style.display = 'block';
 	}
 
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_changeTab(evt,index){
+		evt ? evt.preventDefault() : null;
+		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+		Array.prototype.map.call(this.tabContent, (e)=>{
+			e.style.display = 'none';
+		});
+		this.tabContent[this.active].style.display = 'block';
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computedLabels(tabContent, labels){
 		var newLabels = labels;
 
@@ -54,15 +73,6 @@ class TabsClab{
 		let arr = [];
 		pills ? arr.push('pills') : arr.push('tabs');
 		return arr.join(' ');
-	}
-
-	_changeTab(evt,index){
-		evt ? evt.preventDefault() : null;
-		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		Array.from(this.tabContent).forEach((e)=>{
-			e.style.display = 'none';
-		});
-		this.tabContent[this.active].style.display = 'block';
 	}
 
 	_computeActive(active,index){

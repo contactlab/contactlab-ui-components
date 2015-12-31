@@ -28,10 +28,11 @@ class ModalClab{
 		}
 	}
 
-	_computeWidth(width){
-		return 'max-width:' + width;
-	}
 
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
 		this.visible = false;
@@ -48,6 +49,16 @@ class ModalClab{
 	_secondary(evt){
 		this.fire('modal-secondary');
 	}
+
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
+	_computeWidth(width){
+		return 'max-width:' + width;
+	}
+
 
 }
 

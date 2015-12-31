@@ -24,6 +24,11 @@ var PanelClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computeType',
 		value: function _computeType(type) {

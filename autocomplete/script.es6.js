@@ -1,5 +1,9 @@
 class AutoCompleteClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "autocomplete-clab";
 		this.properties = {
@@ -15,7 +19,7 @@ class AutoCompleteClab{
 				type:Object
 			},
 			disabled:{
-				type:Boolean,
+				type:Boolean, 
 				value:false
 			},
 			options:{
@@ -70,8 +74,6 @@ class AutoCompleteClab{
 			}
 		};
 	}
-
-	// http://jsonplaceholder.typicode.com/todos
 
 	attached(){
 		this.list=this.querySelector('.options-list');
@@ -211,14 +213,14 @@ class AutoCompleteClab{
 
 		if(fetched){
 			this.results=this.options;
-			Array.from(this.list.children).forEach(el=>{
+			Array.prototype.map.call(this.list.children, (el)=>{
 				el.classList.add('show');
 			});
 
 		} else {
 			this.results=[];
 
-			this.options.forEach((opt, i)=>{
+			this.options.map((opt, i)=>{
 				if(opt.label.toLowerCase().search(searchVal)>-1){
 					//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 					this.querySelectorAll('.options-list li')[i].classList.add('show');
@@ -265,14 +267,14 @@ class AutoCompleteClab{
 	_closeList(){
 		this.list.scrollTop=0;
 		this.list.classList.remove('active');
-		Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
+		Array.prototype.map.call(this.querySelectorAll('.options-list li') ,el=>{
 			el.classList.remove('selected');
 		});
 	}
 
 	_highlightEl(idx){
 		this.async(()=>{
-			Array.from(this.querySelectorAll('.options-list li')).forEach(el=>{
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
 				if(el.getAttribute('data-index')==idx){
 					el.classList.add('selected');
 				} else {
@@ -285,7 +287,7 @@ class AutoCompleteClab{
 	_getMoreAccurateIdxMatch(res, search){
 		let isSame=false;
 		let idx;
-		res.forEach((item,i)=>{
+		res.map((item,i)=>{
 			if(item.label===search){
 				isSame=true;
 				idx = this._getIndex(item, this.options);
@@ -345,18 +347,10 @@ class AutoCompleteClab{
 	/*---------- 
 	UTILS
 	----------*/
-	_getHeight(el){
-		return el.clientHeight;
-	}
-
-	_getIndex(item, items){
-		return items.indexOf(item);
-	}
-
 	_setListHeight(elemsShown){
 		if(this.liHeight===null) {
 			this.list.classList.add('hidden');
-			this.liHeight = this._getHeight(this.querySelectorAll('.options-list li.show')[0]);
+			this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}
@@ -372,14 +366,6 @@ class AutoCompleteClab{
 		if(offsetTop<scrollTop || offsetTop>=(scrollTop+h)) return false; else return true;
 	}
 
-	_dashify(str){
-		return str.replace(/ /g,'-');
-	}
-
-	_viewLabel(label) {
-		if(label.length>0) return true; else return false;
-	}
-
 	_startSpinnerTimeout(){
 		this.interval=window.setTimeout(()=>{
 			if(!this.spinner) this.spinner=true;
@@ -387,11 +373,9 @@ class AutoCompleteClab{
 	}
 
 	_resetSpinnerTimeout(){
-		/*if(typeof this.interval == 'number'){*/
-			window.clearTimeout(this.interval);
-			this.interval=undefined;
-			if(this.spinner) this.spinner=false;
-		/*}*/
+		window.clearTimeout(this.interval);
+		this.interval=undefined;
+		if(this.spinner) this.spinner=false;
 	}
 
 	

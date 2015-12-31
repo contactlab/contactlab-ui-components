@@ -140,7 +140,7 @@ var MultipleClab = (function () {
 			if (!this.shift && !this.ctrl) {
 				// starting the select
 				this.set('selected', []);
-				Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
+				Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el) {
 					el.classList.remove('selected');
 				});
 				this._selectThis(evt.target);
@@ -265,8 +265,8 @@ var MultipleClab = (function () {
 			var _this3 = this;
 
 			this.async(function () {
-				idx.forEach(function (i) {
-					Array.from(_this3.querySelectorAll('.options-list li')).forEach(function (el) {
+				idx.map(function (i) {
+					Array.prototype.map.call(_this3.querySelectorAll('.options-list li'), function (el) {
 						if (el.getAttribute('data-index') == i) {
 							el.classList.add('selected');
 						}
@@ -311,20 +311,15 @@ var MultipleClab = (function () {
   ----------*/
 
 	}, {
-		key: '_dashify',
-		value: function _dashify(str) {
-			return str.replace(/ /g, '-');
-		}
-	}, {
-		key: '_getIndex',
-		value: function _getIndex(item, array) {
-			return array.indexOf(item);
-		}
-	}, {
 		key: '_setWrapperHeights',
 		value: function _setWrapperHeights() {
 			this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
 			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

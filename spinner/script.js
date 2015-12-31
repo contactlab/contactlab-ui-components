@@ -33,6 +33,11 @@ var SpinnerClab = (function () {
 		value: function ready() {
 			this.querySelector('.spinner-overlay').style.backgroundColor = 'rgba(' + this.background + ')';
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: 'computeClass',
 		value: function computeClass(big, dark) {

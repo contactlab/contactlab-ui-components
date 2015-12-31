@@ -38,11 +38,11 @@ var ModalClab = (function () {
 				}
 			};
 		}
-	}, {
-		key: '_computeWidth',
-		value: function _computeWidth(width) {
-			return 'max-width:' + width;
-		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_closeModal',
 		value: function _closeModal(evt) {
@@ -63,6 +63,16 @@ var ModalClab = (function () {
 		key: '_secondary',
 		value: function _secondary(evt) {
 			this.fire('modal-secondary');
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
+	}, {
+		key: '_computeWidth',
+		value: function _computeWidth(width) {
+			return 'max-width:' + width;
 		}
 	}]);
 

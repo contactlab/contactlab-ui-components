@@ -34,16 +34,21 @@ var RadioClab = (function () {
 				}
 			};
 		}
-	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			return label.toLowerCase().replace(' ', '-');
-		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computeType',
 		value: function _computeType(wt) {
 			return ['row', wt].join(' ');
 		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
 		key: '_checkIfTrue',
 		value: function _checkIfTrue(i, n) {
@@ -54,6 +59,11 @@ var RadioClab = (function () {
 					if (i == n[x]) return true;
 				}
 			}
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

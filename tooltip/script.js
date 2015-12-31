@@ -28,9 +28,14 @@ var TooltipClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
-		key: "_onHover",
-		value: function _onHover() {
+		key: "_handleHover",
+		value: function _handleHover(evt) {
 			document.querySelector('.kawo-tooltip').className = 'kawo-tooltip';
 			document.querySelector('.kawo-tooltip-arrow').className = 'kawo-tooltip-arrow';
 			if (this.ttType) {
@@ -38,6 +43,11 @@ var TooltipClab = (function () {
 				document.querySelector('.kawo-tooltip-arrow').classList.add(this.ttType);
 			}
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: "_computeBtnClass",
 		value: function _computeBtnClass(type) {

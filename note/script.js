@@ -24,6 +24,11 @@ var NoteClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: 'computeClasses',
 		value: function computeClasses(type) {

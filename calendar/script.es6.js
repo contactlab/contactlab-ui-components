@@ -1,11 +1,12 @@
 class CalendarClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "calendar-clab";
 		this.properties = {
-			/**
-	       * Add a label to the calendar input
-	       */
 			label: {
 				type: String
 			},
@@ -50,6 +51,12 @@ class CalendarClab{
 		},50 );
 	}
 
+
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_checkClear(evt){
 		this.valueStr == "" ? this.clear() : null;
 	}
@@ -61,6 +68,11 @@ class CalendarClab{
 		}
 	}
 
+
+
+	/*---------- 
+	METHODS
+	----------*/
 	_createInstance(selector){
 		let obj;
 		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
@@ -68,17 +80,16 @@ class CalendarClab{
 			.on('data', this._changeDate.bind(this));
 	}
 
-	_getFormat(){
-		let thisFormat; 
-		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
-		return thisFormat;
-	}
-
 	_changeDate(evt){
 		this.valueStr = evt;
 		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 	}
 
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeType(type){
 		return ['calendar',type].join(' ');
 	}
@@ -87,19 +98,25 @@ class CalendarClab{
 		return [type, noteType].join(' ');
 	}
 
-	_dashify(label){
-		return label.toLowerCase().replace(' ', '-');
+
+
+
+	/*---------- 
+	UTILS
+	----------*/
+	_getFormat(){
+		let thisFormat; 
+		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
+		return thisFormat;
 	}
 
-	_viewLabel(label){
-		if(label.length > 0){
-			return true; 
-		} else {
-			return false;
-		}
-	}
+	
 
-	/* PUBLIC METHODS */
+
+
+	/*---------- 
+	PUBLIC METHODS	
+	----------*/
 	setValue(userValue){
 		this.valueStr = moment(userValue).format(this._getFormat());
 	}

@@ -1,5 +1,9 @@
 class PaginationClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "pagination-clab";
 		this.properties = {
@@ -55,20 +59,25 @@ class PaginationClab{
 		},500);
 	}
 
-	updateSelectedPage(e){
-		var i = e.detail.index;
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	updateSelectedPage(evt){
+		var i = evt.detail.index;
 		this.$$('.active').classList.remove('active');
 		this.querySelectorAll('.page')[i].classList.add('active');
 		this.currentPage = Number(i)+1;
 	}
 
-	setThisAsCurrent(e){
-		e.preventDefault(); // forse da togliere
+	setThisAsCurrent(evt){
+		evt.preventDefault(); // forse da togliere
 
-		if(e.path[0].getAttribute('data-index') != null)
-			var i = e.path[0].getAttribute('data-index');
+		if(evt.path[0].getAttribute('data-index') != null)
+			var i = evt.path[0].getAttribute('data-index');
 		else
-			var i = e.target.children[0].getAttribute('data-index');
+			var i = evt.target.children[0].getAttribute('data-index');
 
 		if(i >= 0){
 			this.fire('pageChanged', {index: i});
@@ -77,7 +86,26 @@ class PaginationClab{
 	}
 
 
-	// computed values
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	_updateAvailablePages(){ 
+		for(let idx in Array.from(this.querySelectorAll('.page'))){
+			let pagesEl = this.querySelectorAll('.page');
+			if(idx >= this.availableStart && idx <= this.availableEnd){
+				pagesEl[idx].classList.remove('invisible');
+			} else {
+				pagesEl[idx].classList.add('invisible');
+			}
+		}
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_getFirstPage(pages){
 		return pages[0];
 	}
@@ -113,24 +141,13 @@ class PaginationClab{
 		}
 	}
 
-	// functions to retrieve values
+
+
+	/*---------- 
+	UTILS
+	----------*/
 	_pageNumber(i){
 		return i+1;
-	}
-	_getIndex(content){
-		return this.pages.indexOf(content);
-	}
-
-	// observers
-	_updateAvailablePages(){ 
-		for(let idx in Array.from(this.querySelectorAll('.page'))){
-			let pagesEl = this.querySelectorAll('.page');
-			if(idx >= this.availableStart && idx <= this.availableEnd){
-				pagesEl[idx].classList.remove('invisible');
-			} else {
-				pagesEl[idx].classList.add('invisible');
-			}
-		}
 	}
 
 }

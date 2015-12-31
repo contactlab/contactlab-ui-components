@@ -52,31 +52,40 @@ var InputClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_updateCompValue',
+		value: function _updateCompValue(evt) {
+			this.value = this.$$('input').value;
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: 'computeNoteType',
 		value: function computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
 		}
 	}, {
-		key: 'disabledChanged',
-		value: function disabledChanged(newVal, oldVal) {
-			if (newVal) this.type = 'disabled';
-		}
-	}, {
-		key: '_updateCompValue',
-		value: function _updateCompValue(evt) {
-			this.value = this.$$('input').value;
-		}
-	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

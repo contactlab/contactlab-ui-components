@@ -28,6 +28,11 @@ var ProgressClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computeProp',
 		/*primary: {
@@ -75,6 +80,11 @@ var ProgressClab = (function () {
 			if (type != null) arr.push(type);
 			return arr.join(' ');
 		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
 		key: '_percent',
 		value: function _percent(value) {

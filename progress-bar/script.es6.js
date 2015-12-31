@@ -42,6 +42,11 @@ class ProgressClab{
 		}
 	}
 
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeProp(value){
 		return 'width:' + this.value + '%;';
 	}
@@ -61,6 +66,11 @@ class ProgressClab{
 		return arr.join(' ');
 	}
 
+
+
+	/*---------- 
+	UTILS
+	----------*/
 	_percent(value){
 		return value + '%';
 	}

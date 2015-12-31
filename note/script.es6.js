@@ -14,6 +14,9 @@ class NoteClab{
 		}
 	}
 
+	/*---------- 
+	COMPUTED
+	----------*/
 	computeClasses(type){
 		var arr=['input-note'];
 		if(type!=undefined) arr.push(type);

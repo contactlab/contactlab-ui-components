@@ -48,6 +48,25 @@ var ToasterClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_toggleToast',
+		value: function _toggleToast(evt) {
+			if (evt.target.id) {
+				this.$$('#toast-' + this.name).classList.add('visible');
+			} else {
+				this.$$('#toast-' + this.name).classList.remove('visible');
+			}
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: 'computeIds',
 		value: function computeIds(isRight) {
@@ -62,15 +81,6 @@ var ToasterClab = (function () {
 		key: 'computeType',
 		value: function computeType(def, type) {
 			return [def, type].join(' ');
-		}
-	}, {
-		key: '_toggleToast',
-		value: function _toggleToast(evt) {
-			if (evt.target.id) {
-				this.$$('#toast-' + this.name).classList.add('visible');
-			} else {
-				this.$$('#toast-' + this.name).classList.remove('visible');
-			}
 		}
 	}, {
 		key: '_computeWrapperType',

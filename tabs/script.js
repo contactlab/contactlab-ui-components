@@ -40,11 +40,31 @@ var TabsClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			this.tabContent = this.querySelectorAll('.tab-content');
-			Array.from(this.tabContent).forEach(function (content) {
+			Array.prototype.map.call(this.tabContent, function (content) {
 				content.style.display = 'none';
 			});
 			this.tabContent[this.active].style.display = 'block';
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_changeTab',
+		value: function _changeTab(evt, index) {
+			evt ? evt.preventDefault() : null;
+			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+			Array.prototype.map.call(this.tabContent, function (e) {
+				e.style.display = 'none';
+			});
+			this.tabContent[this.active].style.display = 'block';
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computedLabels',
 		value: function _computedLabels(tabContent, labels) {
@@ -68,16 +88,6 @@ var TabsClab = (function () {
 			var arr = [];
 			pills ? arr.push('pills') : arr.push('tabs');
 			return arr.join(' ');
-		}
-	}, {
-		key: '_changeTab',
-		value: function _changeTab(evt, index) {
-			evt ? evt.preventDefault() : null;
-			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-			Array.from(this.tabContent).forEach(function (e) {
-				e.style.display = 'none';
-			});
-			this.tabContent[this.active].style.display = 'block';
 		}
 	}, {
 		key: '_computeActive',

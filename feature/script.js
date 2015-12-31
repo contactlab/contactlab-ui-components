@@ -36,6 +36,11 @@ var FeatureClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: '_computeFeatureClass',
 		value: function _computeFeatureClass(size, vertical) {

@@ -1,5 +1,9 @@
 class InputClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "input-clab";
 		this.properties = {
@@ -42,28 +46,31 @@ class InputClab{
 		}
 	}
 
-	computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
-	}
 
-	disabledChanged(newVal, oldVal){
-		if(newVal) this.type='disabled';
-	}
 
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_updateCompValue(evt){
 		this.value = this.$$('input').value;
 	}
 
-	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else
-			return false;
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 }

@@ -32,16 +32,26 @@ var LabelClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_removeClicked',
+		value: function _removeClicked(evt) {
+			this.fire('remove');
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: '_computeClass',
 		value: function _computeClass(badge, type) {
 			var str = badge ? 'badge' : 'label';
 			return [str, type].join(' ');
-		}
-	}, {
-		key: '_removeClicked',
-		value: function _removeClicked() {
-			this.fire('remove');
 		}
 	}]);
 

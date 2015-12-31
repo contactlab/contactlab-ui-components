@@ -76,7 +76,9 @@ class CardClab {
 		}
 	}
 
-
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeIconClass(icon){
 		return icon;
 	}
@@ -91,6 +93,11 @@ class CardClab {
 		return ['card', effect].join(' ');
 	}
 
+
+
+	/*---------- 
+	UTILS
+	----------*/
 	_showActions(noactions, link){
 		if(link) return false;
 		return !!!noactions;

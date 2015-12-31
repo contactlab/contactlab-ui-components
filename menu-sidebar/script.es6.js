@@ -48,12 +48,11 @@ class MenuClab{
 		this._iosMenu();
 	}
 
-	_addOpenAttr(){
-		this.menu.forEach((e,i) => {
-			this.set('menu.' + i + '.open', false);
-		});
-	}
 
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_openItem(evt){
 		let i = parseInt(evt.currentTarget.dataset.index);
 		let str = 'menu.' + i + '.open';
@@ -69,6 +68,15 @@ class MenuClab{
 
 	}
 
+	_reduce(evt){
+		document.body.classList.toggle('main-sidebar-small');
+	}
+
+
+
+	/*---------- 
+	METHODS
+	----------*/
 	_iosMenu(){
 		document.querySelector('body main').addEventListener('click', (evt) => {
 			switch(evt.target.nodeName){
@@ -86,15 +94,27 @@ class MenuClab{
 		});
 	}
 
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	_addOpenAttr(){
+		this.menu.map((e,i) => {
+			this.set('menu.' + i + '.open', false);
+		});
+	}
+
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
 	_computeActive(url,link,open){
 		let arr = [];
 		open ? arr.push('open','active') : null;
 		url.search(link) > -1 ? arr.push('active') : null;
 		return arr.join(' ');
-	}
-
-	_reduce(){
-		document.body.classList.toggle('main-sidebar-small');
 	}
 
 	_computeTitleIcon(icon){

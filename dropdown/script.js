@@ -129,7 +129,7 @@ var DropdownClab = (function () {
 	}, {
 		key: '_highlightEl',
 		value: function _highlightEl(i) {
-			Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el) {
 				if (el.getAttribute('data-index') == i) {
 					el.classList.add('selected');
 				} else {
@@ -178,19 +178,9 @@ var DropdownClab = (function () {
   ----------*/
 
 	}, {
-		key: '_getIndex',
-		value: function _getIndex(item, items) {
-			return items.indexOf(item);
-		}
-	}, {
 		key: '_viewValue',
 		value: function _viewValue(val) {
 			if (val.hasOwnProperty('label')) return true;else return false;
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
 		}
 	}, {
 		key: '_setMaxHeight',
@@ -218,7 +208,7 @@ var DropdownClab = (function () {
 		value: function setByLabel(str) {
 			var _this4 = this;
 
-			this.options.forEach(function (opt) {
+			this.options.map(function (opt) {
 				if (opt.label === str) {
 					_this4._setValue(opt);
 				}
@@ -229,11 +219,16 @@ var DropdownClab = (function () {
 		value: function setByValue(str) {
 			var _this5 = this;
 
-			this.options.forEach(function (opt) {
+			this.options.map(function (opt) {
 				if (opt.value === str) {
 					_this5._setValue(opt);
 				}
 			});
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

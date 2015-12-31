@@ -21,14 +21,22 @@ class LabelClab{
 			}
 		}
 	}
+	
 
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_removeClicked(evt){
+		this.fire('remove');
+	}
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
 	_computeClass(badge,type){
 		let str = badge ? 'badge' : 'label';
 		return [str,type].join(' ');
-	}
-	
-	_removeClicked(){
-		this.fire('remove');
 	}
 
 }

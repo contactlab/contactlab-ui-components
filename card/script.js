@@ -86,6 +86,11 @@ var CardClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computeIconClass',
 		value: function _computeIconClass(icon) {
@@ -103,6 +108,11 @@ var CardClab = (function () {
 		value: function _computeEffectClass(effect) {
 			return ['card', effect].join(' ');
 		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
 		key: '_showActions',
 		value: function _showActions(noactions, link) {

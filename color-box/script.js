@@ -25,9 +25,9 @@ var ColorBox = (function () {
 			};
 		}
 	}, {
-		key: "getClass",
-		value: function getClass(str) {
-			return str.toLowerCase().replace(' ', '-');
+		key: "behaviors",
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

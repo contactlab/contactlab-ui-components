@@ -51,15 +51,15 @@ var GroupClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			var btns = this.getContentChildren();
-			Array.from(btns).forEach(function (btn) {
+			Array.prototype.map.call(btns, function (btn) {
 				btn.classList.add('group-item');
 			});
 			this._initialize();
 		}
 
-		/**
-  * observer function of the 'disabled' prop
-  */
+		/*---------- 
+  OBSERVER
+  ----------*/
 
 	}, {
 		key: '_updateDisabled',
@@ -67,17 +67,22 @@ var GroupClab = (function () {
 			var _this = this;
 
 			var btns = this.querySelectorAll('button');
-			Array.from(btns).forEach(function (btn) {
+			Array.prototype.map.call(btns, function (btn) {
 				btn.disabled = _this.disabled;
 			});
 		}
+
+		/*---------- 
+  METHODS
+  ----------*/
+
 	}, {
 		key: '_initialize',
 		value: function _initialize() {
 			var _this2 = this;
 
 			var btns = this.getContentChildren();
-			Array.from(btns).forEach(function (btn) {
+			Array.prototype.map.call(btns, function (btn) {
 				typeof btn.appearance === 'string' ? btn.appearance = '' : null;
 				btn.setAttribute('data-i', btns.indexOf(btn));
 				btn.addEventListener('click', _this2._selectElement.bind(_this2));
@@ -86,22 +91,27 @@ var GroupClab = (function () {
 			this.fire('change', { value: this.value });
 		}
 	}, {
+		key: '_selectElement',
+		value: function _selectElement(evt) {
+			evt.preventDefault();
+			var btns = this.getContentChildren();
+			Array.prototype.map.call(btns, function (btn) {
+				btn.appearance = '';
+			});
+			this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
+			btns[this.value].appearance = 'full';
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
+	}, {
 		key: '_computeGroupClass',
 		value: function _computeGroupClass(type, small) {
 			var arr = ['buttons-group', type];
 			small ? arr.push('small') : null;
 			return arr.join(' ');
-		}
-	}, {
-		key: '_selectElement',
-		value: function _selectElement(evt) {
-			evt.preventDefault();
-			var btns = this.getContentChildren();
-			Array.from(btns).forEach(function (btn) {
-				btn.appearance = '';
-			});
-			this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
-			btns[this.value].appearance = 'full';
 		}
 	}]);
 

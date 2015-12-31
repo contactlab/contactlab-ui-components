@@ -1,5 +1,9 @@
 class RangeClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "range-clab";
 		this.properties = {
@@ -45,30 +49,34 @@ class RangeClab{
 		}
 	}
 
-	computeRangeWrapperClasses(show){
-		let name;
-		if(show) name = 'details';
-		return ['range-wrapper',name].join(' ');
-	}
 
-	disabledChanged(newVal, oldVal){
-		if(newVal) this.type='disabled';
-	}
 
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_updateCompValue(evt){
 		console.log(evt);
 		this.value = this.$$('input').value;
 	}
 
-	_dashify(label){
-		return label.toLowerCase().replace(' ','-');
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else
-			return false;
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
+	computeRangeWrapperClasses(show){
+		let name;
+		if(show) name = 'details';
+		return ['range-wrapper',name].join(' ');
 	}
 
 }

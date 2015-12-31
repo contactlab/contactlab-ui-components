@@ -39,25 +39,32 @@ class GroupClab{
 
 	attached(){
 		let btns = this.getContentChildren();
-		Array.from(btns).forEach(btn => {
+		Array.prototype.map.call(btns, btn => {
 			btn.classList.add('group-item');
 		});
 		this._initialize();
 	}
 
-	/**
-	* observer function of the 'disabled' prop
-	*/
+
+
+	/*---------- 
+	OBSERVER
+	----------*/
 	_updateDisabled(){
 		let btns = this.querySelectorAll('button');
-		Array.from(btns).forEach(btn => {
+		Array.prototype.map.call(btns, btn => {
 			btn.disabled = this.disabled;
 		});
 	}
 
+
+
+	/*---------- 
+	METHODS
+	----------*/
 	_initialize(){
 		let btns = this.getContentChildren();
-		Array.from(btns).forEach(btn => {
+		Array.prototype.map.call(btns, btn => {
 			(typeof btn.appearance === 'string') ? btn.appearance = '' : null;
 			btn.setAttribute('data-i', btns.indexOf(btn));
 			btn.addEventListener('click',this._selectElement.bind(this))
@@ -66,21 +73,28 @@ class GroupClab{
 		this.fire('change', {value: this.value});
 	}
 
+	_selectElement(evt){
+		evt.preventDefault();
+		let btns = this.getContentChildren();
+		Array.prototype.map.call(btns, btn => {
+			btn.appearance = '';
+		});
+		this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
+		btns[this.value].appearance = 'full';
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeGroupClass(type,small){
 		let arr = ['buttons-group',type];
 		small ? arr.push('small') : null;
 		return arr.join(' ');
 	}
 
-	_selectElement(evt){
-		evt.preventDefault();
-		let btns = this.getContentChildren();
-		Array.from(btns).forEach(btn => {
-			btn.appearance = '';
-		});
-		this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
-		btns[this.value].appearance = 'full';
-	}
+	
 }
 
 

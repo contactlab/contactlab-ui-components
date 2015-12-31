@@ -38,6 +38,24 @@ class ToasterClab {
 		}
 	}
 
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_toggleToast(evt){
+		if(evt.target.id){
+			this.$$('#toast-'+this.name).classList.add('visible');
+		} else {
+			this.$$('#toast-'+this.name).classList.remove('visible');
+		}
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	computeIds(isRight){
 		this.name = 'right';
 		if(!isRight) this.name = 'left';
@@ -49,16 +67,6 @@ class ToasterClab {
 
 	computeType(def,type){
 		return [def,type].join(' ');
-	}
-
-
-
-	_toggleToast(evt){
-		if(evt.target.id){
-			this.$$('#toast-'+this.name).classList.add('visible');
-		} else {
-			this.$$('#toast-'+this.name).classList.remove('visible');
-		}
 	}
 
 	_computeWrapperType(isRight){

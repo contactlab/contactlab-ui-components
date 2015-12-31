@@ -82,9 +82,6 @@ var AutoCompleteClab = (function () {
 				}
 			};
 		}
-
-		// http://jsonplaceholder.typicode.com/todos
-
 	}, {
 		key: 'attached',
 		value: function attached() {
@@ -236,13 +233,13 @@ var AutoCompleteClab = (function () {
 
 			if (fetched) {
 				this.results = this.options;
-				Array.from(this.list.children).forEach(function (el) {
+				Array.prototype.map.call(this.list.children, function (el) {
 					el.classList.add('show');
 				});
 			} else {
 				this.results = [];
 
-				this.options.forEach(function (opt, i) {
+				this.options.map(function (opt, i) {
 					if (opt.label.toLowerCase().search(searchVal) > -1) {
 						//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 						_this4.querySelectorAll('.options-list li')[i].classList.add('show');
@@ -289,7 +286,7 @@ var AutoCompleteClab = (function () {
 		value: function _closeList() {
 			this.list.scrollTop = 0;
 			this.list.classList.remove('active');
-			Array.from(this.querySelectorAll('.options-list li')).forEach(function (el) {
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el) {
 				el.classList.remove('selected');
 			});
 		}
@@ -299,7 +296,7 @@ var AutoCompleteClab = (function () {
 			var _this6 = this;
 
 			this.async(function () {
-				Array.from(_this6.querySelectorAll('.options-list li')).forEach(function (el) {
+				Array.prototype.map.call(_this6.querySelectorAll('.options-list li'), function (el) {
 					if (el.getAttribute('data-index') == idx) {
 						el.classList.add('selected');
 					} else {
@@ -315,7 +312,7 @@ var AutoCompleteClab = (function () {
 
 			var isSame = false;
 			var idx = undefined;
-			res.forEach(function (item, i) {
+			res.map(function (item, i) {
 				if (item.label === search) {
 					isSame = true;
 					idx = _this7._getIndex(item, _this7.options);
@@ -378,21 +375,11 @@ var AutoCompleteClab = (function () {
   ----------*/
 
 	}, {
-		key: '_getHeight',
-		value: function _getHeight(el) {
-			return el.clientHeight;
-		}
-	}, {
-		key: '_getIndex',
-		value: function _getIndex(item, items) {
-			return items.indexOf(item);
-		}
-	}, {
 		key: '_setListHeight',
 		value: function _setListHeight(elemsShown) {
 			if (this.liHeight === null) {
 				this.list.classList.add('hidden');
-				this.liHeight = this._getHeight(this.querySelectorAll('.options-list li.show')[0]);
+				this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
 				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
 				this.list.classList.remove('hidden');
 			}
@@ -409,16 +396,6 @@ var AutoCompleteClab = (function () {
 			if (offsetTop < scrollTop || offsetTop >= scrollTop + h) return false;else return true;
 		}
 	}, {
-		key: '_dashify',
-		value: function _dashify(str) {
-			return str.replace(/ /g, '-');
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
-		}
-	}, {
 		key: '_startSpinnerTimeout',
 		value: function _startSpinnerTimeout() {
 			var _this9 = this;
@@ -430,11 +407,14 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_resetSpinnerTimeout',
 		value: function _resetSpinnerTimeout() {
-			/*if(typeof this.interval == 'number'){*/
 			window.clearTimeout(this.interval);
 			this.interval = undefined;
 			if (this.spinner) this.spinner = false;
-			/*}*/
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

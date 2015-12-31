@@ -1,5 +1,9 @@
 class FileClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "file-clab";
 		this.properties = {
@@ -41,14 +45,13 @@ class FileClab{
 		}
 	}
 
-
 	attached(){
 		let fileInput = this.querySelector('input[type="file"]');
 		let textInput = this.querySelector('input[type="text"]');
 
 		fileInput.addEventListener('change',(evt) => {
 			let arr = [];
-			Array.from(fileInput.files).forEach(file => {
+			Array.prototype.map.call(fileInput.files, file => {
 				arr.push(file.name);
 			});
 			textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
@@ -56,31 +59,32 @@ class FileClab{
 		});
 	}
 
-	disabledChanged(newVal, oldVal){
-		if(newVal) this.type='disabled';
-	}
-
-	computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
-	}
 
 
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_selection(evt){
 		this.$$('input[type=file]').click();
 	}
 
-	_dashify(label){
-		return label.toLowerCase().replace(' ','-');
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else 
-			return false;
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
-
-
 }
 
 

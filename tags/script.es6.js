@@ -1,5 +1,9 @@
 class TagsClab {
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "tags-clab";
 		this.properties = {
@@ -75,7 +79,7 @@ class TagsClab {
 	_removeTag(evt){
 		let value=evt.target.getAttribute('value');
 		let i;
-		this.tags.forEach((tag, idx)=>{
+		this.tags.map((tag, idx)=>{
 			if(tag.value===value){
 				i=idx;
 				return;
@@ -87,14 +91,6 @@ class TagsClab {
 	}
 
 
-	/*---------- 
-	UTILS
-	----------*/
-	_getIndex(item, items){
-		return items.indexOf(item);
-	}
-
-
 
 	/*---------- 
 	PUBLIC
@@ -103,7 +99,7 @@ class TagsClab {
 		if(this.tags.length<0) {
 			this.set('tags', array);
 		} else {
-			array.forEach(item=>{
+			array.map(item=>{
 				this.push('tags', item);
 			});
 			
