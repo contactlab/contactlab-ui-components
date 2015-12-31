@@ -1,26 +1,8 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="autocomplete-clab">
-	<style>
-    	.options-list{
-    		display: none;
-    		overflow: auto;
-    	}
-        .options-list.hidden{
-            display: block;
-            opacity: 0;
-        }
-        .options-list.active{
-            display: block;
-            opacity: 1;
-        }
-        .options-list li{
-            display: none;
-        }
-        .options-list li.show{
-            display: block;
-        }
-	</style>
+    <!-- This CSS is local -->
+    <link rel="stylesheet" href="autocomplete.css">
 
 	<template>        
         <template is="dom-if" if="[[_viewLabel(label)]]">

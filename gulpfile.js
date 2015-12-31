@@ -9,7 +9,10 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     plumber = require('gulp-plumber');
     vulcanize = require('gulp-vulcanize'),
     minifyHTML = require('gulp-minify-html'),
-    minifyInline = require('gulp-minify-inline');
+    minifyInline = require('gulp-minify-inline'),
+    sass = require('gulp-sass'),
+    $ = require('gulp-load-plugins')(),
+    insert = require('gulp-insert');
 
 var conf = {
   scssSourcePath: './assets/scss/**/*.{scss,sass}',
@@ -138,6 +141,38 @@ gulp.task('minInline', function(s, f) {
 
 
 
+// Compile sass to css color variables
+gulp.task('sassVars', function(){
+  gulp.src('./_css/template-files/color-vars-body.scss')
+    .pipe(sass())
+    .pipe(gulp.dest('./_css/template-files/'));
+});
+
+gulp.task('copyVars', function(){
+  var colorVars=gulp.src('./_css/template-files/color-vars-body.css')
+    .pipe($.rename('color-vars.css'))
+    .pipe(gulp.dest('./_css/'));
+
+  return colorVars;
+});
+
+gulp.task('insert', function(){
+  gulp.src('./_css/color-vars.css')
+    .pipe(insert.append('</style>'))
+    .pipe(insert.prepend('<style is=\'custom-style\'>'))
+    .pipe(gulp.dest('./_css/'));
+});
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -149,6 +184,14 @@ gulp.task('build', function(cb){
     'vulcanize',
     'minHtml',
     'minInline'
+  );
+});
+
+gulp.task('vars-c', function(cb){
+  runSequence(
+    'sassVars',
+    'copyVars',
+    'insert'
   );
 });
 
