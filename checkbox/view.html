@@ -4,8 +4,8 @@
 	<style>
 
 	</style>
-	
-	<template>		
+
+	<template>
 		<template is="dom-repeat" items="[[labels]]">
 			<div class$="[[_computeType(wrapperType)]]">
 				<input id$="[[_dashify(item)]]" type="checkbox" value="[[_dashify(item)]]" checked$="[[_checkIfTrue(index, active)]]" disabled$="[[_checkIfTrue(index, disabled)]]">
@@ -15,5 +15,6 @@
 
 	</template>
 
+	<script src="./../behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

@@ -3,10 +3,10 @@
 <dom-module id="multiple-clab">
 	<style>
 		li{
-			-webkit-user-select: none; 
-			-moz-user-select: none;   
-			-ms-user-select: none;    
-			user-select: none;   
+			-webkit-user-select: none;
+			-moz-user-select: none;
+			-ms-user-select: none;
+			user-select: none;
 			margin: 0;
 		}
 		li.selected{
@@ -26,7 +26,7 @@
 			overflow-y:auto;
 		}
 	</style>
-	
+
 	<template>
 
 		<template is="dom-if" if="[[label]]">
@@ -47,6 +47,7 @@
 		</note-clab>
 
 	</template>
-	
+
+	<script src="./../behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

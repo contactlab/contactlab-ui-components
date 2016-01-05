@@ -4,7 +4,7 @@
     <!-- This CSS is local -->
     <link rel="stylesheet" href="autocomplete.css">
 
-	<template>        
+	<template>
         <template is="dom-if" if="[[_viewLabel(label)]]">
             <label for$="[[_dashify(name)]]">[[label]]</label>
         </template>
@@ -25,5 +25,6 @@
 
     </template>
 
+  <script src="./../behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

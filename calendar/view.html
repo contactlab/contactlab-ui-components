@@ -2,7 +2,7 @@
 
 <dom-module id="calendar-clab">
 	<style></style>
-	
+
 	<template>
 		<template is="dom-if" if="[[!inline]]">
 			<div class$="[[_computeType(type)]]">
@@ -20,7 +20,8 @@
 			<div class="inline-cal"></div>
 		</template>
 	</template>
-	
+
+	<script src="./../behaviors.js"></script>
 	<script src="../../moment/moment.js"></script>
 	<script src="../../rome/dist/rome.min.js"></script>
 	<script src="script.js"></script>

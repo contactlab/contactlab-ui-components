@@ -6,8 +6,8 @@
 			display: none;
 		}
 	</style>
-	
-	<template>		
+
+	<template>
 		<template is="dom-if" if="[[_viewLabel(label)]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 		</template>
@@ -20,5 +20,6 @@
 		<input type="file" multiple$="[[multiple]]" disabled="[[disabled]]">
 	</template>
 
+	<script src="./../behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

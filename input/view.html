@@ -2,17 +2,18 @@
 
 <dom-module id="input-clab">
 	<style></style>
-	
-	<template>		
+
+	<template>
 		<template is="dom-if" if="[[_viewLabel(label)]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 		</template>
-		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue" 
+		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue"
 			disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
 		<note-clab type="[[compNoteType]]">
 			<content></content>
 		</note-clab>
 	</template>
 
+	<script src="./../behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>
