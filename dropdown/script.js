@@ -51,7 +51,7 @@ var DropdownClab = (function () {
 					type: String
 				},
 
-				/*---------- 
+				/*----------
     PRIVATE
     ----------*/
 				compNoteType: {
@@ -78,7 +78,7 @@ var DropdownClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -114,17 +114,18 @@ var DropdownClab = (function () {
 			this._toggleList();
 		}
 
-		/*---------- 
+		/*----------
   FUNCTIONS
   ----------*/
 
 	}, {
 		key: '_setValue',
 		value: function _setValue(item) {
+			var old = this.selected;
 			this.set('selected', item);
 			this._highlightEl(this._getIndex(item, this.options));
 
-			if (this.resultAsObj) this.fire('change', { 'newValue': this.selected });else this.fire('change', { 'newValue': this.selected.label });
+			if (this.resultAsObj) this.fire('change', { 'oldValue': old, 'newValue': this.selected });else this.fire('change', { 'oldValue': old, 'newValue': this.selected.label });
 		}
 	}, {
 		key: '_highlightEl',
@@ -138,7 +139,7 @@ var DropdownClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -152,7 +153,7 @@ var DropdownClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
@@ -173,7 +174,7 @@ var DropdownClab = (function () {
 			return arr.join(' ');
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
@@ -189,7 +190,7 @@ var DropdownClab = (function () {
 			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
 		}
 
-		/*---------- 
+		/*----------
   PUBLIC
   ----------*/
 

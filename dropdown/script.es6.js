@@ -48,7 +48,7 @@ class DropdownClab{
 			},
 
 
-			/*---------- 
+			/*----------
 			PRIVATE
 			----------*/
 			compNoteType: {
@@ -71,7 +71,7 @@ class DropdownClab{
 	}
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_toggleList(evt){
@@ -84,7 +84,7 @@ class DropdownClab{
 					this.querySelector('.options-list').classList.add('active');
 				},50);
 				return;
-			} 
+			}
 			this.querySelector('.options-list').classList.toggle('active');
 		}
 	}
@@ -102,18 +102,19 @@ class DropdownClab{
 
 
 
-	/*---------- 
+	/*----------
 	FUNCTIONS
 	----------*/
 	_setValue(item){
+		let old = this.selected;
 		this.set('selected',item);
 		this._highlightEl(this._getIndex(item, this.options));
 
 		if(this.resultAsObj)
-			this.fire('change', {'newValue':this.selected});
+			this.fire('change', {'oldValue': old, 'newValue':this.selected});
 		else
-			this.fire('change', {'newValue':this.selected.label});
-		
+			this.fire('change', {'oldValue': old, 'newValue':this.selected.label});
+
 	}
 
 	_highlightEl(i){
@@ -128,7 +129,7 @@ class DropdownClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_setOptions(promise){
@@ -140,14 +141,14 @@ class DropdownClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeNoteType(type, noteType){
 		var arr=[];
 		if(type!=undefined) arr.push(type);
 		if(noteType!=undefined) arr.push(noteType);
-		
+
 		if(arr.length>0) return arr.join(' ');
 	}
 
@@ -159,7 +160,7 @@ class DropdownClab{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
 	_viewValue(val){
@@ -174,7 +175,7 @@ class DropdownClab{
 
 
 
-	/*---------- 
+	/*----------
 	PUBLIC
 	----------*/
 	getSelectedLabel(){
@@ -191,7 +192,7 @@ class DropdownClab{
 				this._setValue(opt);
 			}
 		});
-	} 
+	}
 
 	setByValue(str){
 		this.options.map(opt=>{
@@ -199,7 +200,7 @@ class DropdownClab{
 				this._setValue(opt);
 			}
 		});
-	} 
+	}
 
 }
 
