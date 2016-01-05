@@ -10,10 +10,9 @@ class ElektiMer{
 				type: String,
 				value: 'elekti'
 			},
-			disabled: {
-				type: Boolean,
-				value: false,
-				reflectToAttribute: true
+			type: {
+				type: String,
+				value: null
 			},
 			options: {
 				type: Array,
@@ -23,22 +22,32 @@ class ElektiMer{
 				]
 			},
 			default: {
-				type: String
+				type:Number,
+				observer: '_setDefault'
 			},
 			placeholder: {
 				type: String,
 				value: 'Select...'
 			},
 			value: {
-				type: 'Object',
+				type: Object,
 				reflectToAttribute: true,
 				notify: true,
 				observer: '_updateValue'
+			},
+			valuesArr: {
+				type: Array,
+				value: [],
+				notify: true
 			},
 			open: {
 				type: Boolean,
 				value: false,
 				readonly: true
+			},
+			disabled: {
+				type: Boolean,
+				value: false
 			},
 			noSearch: {
 				type: Boolean,
@@ -52,32 +61,32 @@ class ElektiMer{
 			optionsFn: {
 				type: Function,
 				observer: '_setOptions'
+			},
+
+			noteType: {
+				type: String,
+				value: ''
+			},
+			compNoteType: {
+				type: String,
+				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
 
-	ready(){
-		this.input = this.$$('#' + this._dashify(this.name));
-		let i = this.getIndex(this.default);
-		if((this.default || this.default === 0) && (typeof i == 'number')){
-			this.input.value = this.options[i].label;
-			this.value = this.options[i];
-			//this.activeInput('blur');
-		}
-	}
-
 	attached(){
-		this.liHeight = this.$.list.children[0].clientHeight;
+		this.input = this.$$('#' + this._dashify(this.name));
 
-		this.$$('.input-wrapper').addEventListener('mousedown', (evt)=>{
-			if(evt.target.localName=='ol') this.dontHide=true; else this.dontHide=false;
+		this.liHeight = this.$.list.children[0].clientHeight;
+		this.exists;
+
+		this.addEventListener('mousedown', (evt)=>{
+			if(evt.target.localName=='ol' || evt.target.localName=='li') this.dontHide=true; else this.dontHide=false;
 		});
-		this.$$('.input-wrapper').addEventListener('mouseup', (evt)=>{
+		this.addEventListener('mouseup', (evt)=>{
 			this.dontHide=false;
 		});
 	}
-
-
 
 	/*---------- 
 	OBSERVERS
@@ -90,10 +99,14 @@ class ElektiMer{
 		});
 	}
 
+	_setDefault(newval, oldval){
+		this.set('value',this.options[newval]);
+	}
+
 	_updateValue(){
 		let old = this.value;
 		if(typeof this.value == 'object'){
-			this.input.value = this.value.label;
+			// this.input.value = this.value.label;
 			this.highlightedElement();
 			this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
 		}
@@ -105,12 +118,11 @@ class ElektiMer{
 	UTILS & COMPUTED VALUES
 	----------*/
 
-	getIndex(value){
-		let n;
-		this.options.forEach(opt => {
-			opt.value == value ? n = this.options.indexOf(opt) : null;
-		});
-		return n;
+	_viewLabel(label) {
+		if(label.length > 0)
+			return true;
+		else 
+			return false;
 	}
 
 	_setDisabled(){
@@ -123,31 +135,42 @@ class ElektiMer{
 		return arr.join(' ');
 	}
 
+	_computeInputClass(type){
+		return ['js-users-list-filter',type].join(' ');
+	}
+
+	_computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
+	}
+
 	_dashify(str){
 		return str.replace(/ /g,'-');
 	}
 
-	activeInput(type){
-		if(type === 'blur' && this.input.value !== "")
-			this.input.classList.add('active');
-		else
-			this.input.classList.remove('active');
+	getIndex(value){
+		let n;
+		this.options.forEach(opt => {
+			opt.value == value ? n = this.options.indexOf(opt) : null;
+		});
+		return n;
 	}
 
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else 
-			return false;
-	}
+	highlightedElement(input, els){
+		let search = (input)? input : this.value.label.toLowerCase();
+		let elems = (els)? els : this.$.list.querySelectorAll('li');
+		let exists=false;
 
-	highlightedElement(){
-		let search = this.input.value.toLowerCase();
-		let elems = this.$.list.querySelectorAll('li');
 		Array.from(elems).forEach(el => {
 			let str = el.innerHTML;
-			((search !== '') && (str.toLowerCase() === search) ) ? el.classList.add('selected') : el.classList.remove('selected');
+			if((search !== '') && (str.toLowerCase() === search) ) {
+				el.classList.add('selected');
+				exists=true;
+			} else {
+				el.classList.remove('selected');
+			} 
 		});
+
+		return exists;
 	}
 
 	slideToggle(action){
@@ -155,62 +178,37 @@ class ElektiMer{
 			this.liHeight = this.$.list.children[0].clientHeight;
 		}
 		if(action==='open'){
+			console.log(this.$);
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
 			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
 		} else {
 			this.$.list.classList.remove('visible');
 			this.$.list.style.height = "0px";
+			Array.from(this.$.list.querySelectorAll('li')).forEach((el)=>{
+				el.classList.remove('hide');
+			});
 		}
-		/*this.$.list.classList.toggle('visible');
-		if(this.$.list.classList.contains('visible'))
-			this.$.list.style.height = (this.liHeight * this.options.length) + "px";
-		else
-			this.$.list.style.height = "0px";*/
 	}
-
-	/*_dropOnly(){
-		if(this.noSearch){
-			this.slideToggle();
-			this.highlightedElement();
-		}
-	}*/
-
-
 
 
 	/*---------- 
 	EVENT HANDLERS
 	----------*/
 
-	_selectElement(evt, value){
-		let old = this.value;
-		let i = this.getIndex(evt.target.getAttribute('data-value'));
-		this.input.value = evt.target.innerHTML;
-		/*if(!value){
-			i = this.getIndex(evt.target.getAttribute('data-value'));
-		}
-		else{
-			i = this.getIndex(value);
-		}*/
-		this.value = this.options[i];
-		console.log(this.value);
-		//this.activeInput('blur');
-		this.fire('change', { 'newValue': this.value, 'oldValue': old});
-		this._handleListVisibility(evt);
-	}
-
-	_handleListVisibility(evt){
+	_handleFocusAndBlur(evt){
 		if(evt.type=='focus'){
-			this.input.classList.add('active');
-			setTimeout(() => {
-				this.slideToggle('open');
-				this.open = true;
-				this.highlightedElement();
-			},150);
-		} else if(this.dontHide){
+			if(!this.open){
+				this.input.classList.add('active');
+				setTimeout(() => {
+					this.slideToggle('open');
+					this.open = true;
+					this.highlightedElement();
+				},150);
+			}
+		} else if(this.dontHide && evt.type=='blur'){
 			this.input.focus();
-		} else if(!this.dontHide) {
+		} else if(!this.dontHide && evt.type=='blur') {
 			this.input.classList.remove('active');
 			setTimeout(() => {
 				this.slideToggle('close');
@@ -219,12 +217,26 @@ class ElektiMer{
 		}
 	}
 
+	_selectElement(evt, value){
+		let i = this.getIndex(evt.target.getAttribute('data-value'));
+		let old = this.value;
+		this.input.value = this.options[i].label;
+		this.value = this.options[i];
+		this.highlightedElement();
+
+		this.fire('change', { 'newValue': this.value, 'oldValue': old});
+		this.input.blur();
+	}
+
 	_searchElement(evt){
-		let input = this.input.value.toLowerCase();
+		if(evt.keyCode==13 && this.exists){
+			this.input.blur();
+			return;
+		}
+
 		let elems = this.$.list.querySelectorAll('li');
 		this.$.list.style.height = (this.liHeight*elems.length) + 'px';
-
-		if(evt.keyCode==13) null;
+		let input = this.input.value.toLowerCase();
 
 		Array.from(elems).forEach(el => {
 			let str = el.innerHTML;
@@ -244,20 +256,8 @@ class ElektiMer{
 		} else {
 			this.$.noRes.classList.add('hide');
 		}
-		this.highlightedElement();
 
-		/*if(evt.keyCode==13){
-			() => {
-				Array.from(elems).forEach(el => {
-					let str = el.innerHTML;
-					console.log('searching: ',str.toLowerCase().search(input));
-					if(str.toLowerCase().search(input) != -1){
-						this._selectElement(evt, el.getAttribute('data-value'));
-						return;
-					}
-				});
-			}
-		}*/
+		this.exists=this.highlightedElement(input, elems);
 	}
 }
 

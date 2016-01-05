@@ -1,0 +1,23 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="tags-clab">
+	<style></style>
+
+	<template>
+		<div class="tags-wrapper">
+			<template is="dom-if" if="[[!hideInput]]">
+				<input-clab on-keyup="_handleKeyUp" type="[[inputType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]">
+					<content></content>
+				</input-clab>
+				<button-clab on-click="_addTag" type="[[inputType]]" appearence="[[btnAppearence]]" disabled="[[disabled]]" size="[[btnSize]]" icon="[[btnIcon]]">[[btn]]</button-clab>
+			</template>
+
+			<template is="dom-repeat" items="[[tags]]">
+				<label-clab remove on-remove="_removeTag" value$="[[item.value]]">[[item.label]]</label-clab>
+			</template>
+		</div>
+	</template>
+
+	<script src="./../behaviors.js"></script>
+	<script src="script.js"></script>
+</dom-module>

@@ -31,29 +31,36 @@ var CheckboxClab = (function () {
 				}
 			};
 		}
-	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
 		key: '_computeType',
 		value: function _computeType(type) {
-			var arr = ['row'];
-			arr.push(type);
-			return arr.join(' ');
+			return ['row', type].join(' ');
 		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
 		key: '_checkIfTrue',
 		value: function _checkIfTrue(i, n) {
-			if (typeof n === 'number') {
+			if (typeof n == 'number') {
 				return i == n;
-			} else if ((typeof n === 'undefined' ? 'undefined' : _typeof(n)) === 'object') {
+			} else if ((typeof n === 'undefined' ? 'undefined' : _typeof(n)) == 'object') {
 				for (var x = 0; x < n.length; x++) {
 					if (i == n[x]) return true;
 				}
 			}
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

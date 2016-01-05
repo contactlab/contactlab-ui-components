@@ -1,12 +1,41 @@
-# ContactLab UI Components
-
-## Polymer components from Pattern Library
+# ContactLab Pattern Library UI Components
 
 ### Installation
-	bower install https://bitbucket.org/product-team/ui-components.git
+To include the components in your project you first need Bower installed on your machine.
+
+Stable branch
+
+	bower install https://github.com/contactlab/contactlab-ui-components
+
+Development branch
+
+	bower install https://github.com/contactlab/contactlab-ui-components#develop
+
+### Dependencies
+The following required frameworks and libraries are resolved by Bower during the installation:
+
+- Polymer
+- MomentJS
+- Rome
+- Kawoo tooltip
+- Hydrolisis
 
 ### How to use
 Work in progress
 
-### License
+### Documentation
+Work in progress | Pattern Library website
+
+### IE issues
+Internet Explorer 11 does not support the .from() method in the Array object. In the root folder of the package there is a small polyfill.
+
+### Testing
 Work in progress
+
+### Building
+* gulp build: 					creates a minified file containing all the components in the root folder.
+* gulp build -s: 				vulcanize every single component separately.
+* gulp build -s 'folder':		vulcanize specific component.
+
+### License
+Apache 2.0 [http://www.apache.org/licenses/](http://www.apache.org/licenses/)

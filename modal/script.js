@@ -27,9 +27,22 @@ var ModalClab = (function () {
 				},
 				secondary: {
 					type: String
+				},
+				content: {
+					type: String,
+					value: null
+				},
+				width: {
+					type: String,
+					value: '500px'
 				}
 			};
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_closeModal',
 		value: function _closeModal(evt) {
@@ -51,10 +64,15 @@ var ModalClab = (function () {
 		value: function _secondary(evt) {
 			this.fire('modal-secondary');
 		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
 	}, {
-		key: 'setContent',
-		value: function setContent(content) {
-			this.querySelector('.modal-body').innerHTML = '<p>' + content + '</p>';
+		key: '_computeWidth',
+		value: function _computeWidth(width) {
+			return 'max-width:' + width;
 		}
 	}]);
 

@@ -12,13 +12,22 @@
   "ignore": [
     "**/.*",
     "node_modules",
+    "_css",
+    "_fonts",
     "bower_components",
     "test",
-    "tests"
+    "tests",
+    "elekti-multi",
+    "toaster",
+    "panel",
+    "starter",
+    "demo-server"
   ],
   "dependencies": {
     "polymer": "~1.2.3",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
-    "moment": "~2.10.6"
+    "moment": "~2.10.6",
+    "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",
+    "hydrolysis": "https://github.com/Arual90/hydrolysis.git"
   }
 }

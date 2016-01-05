@@ -1,5 +1,9 @@
 class CheckboxClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "checkbox-clab";
 		this.properties = {
@@ -19,21 +23,22 @@ class CheckboxClab{
 		}
 	}
 
-	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
-	}
-
+	/*---------- 
+	COMPUTE
+	----------*/
 	_computeType(type){
-		let arr = ['row'];
-		arr.push(type);
-		return arr.join(' ');
+		return ['row',type].join(' ');
 	}
+	
 
+
+	/*---------- 
+	UTILS
+	----------*/
 	_checkIfTrue(i, n){
-		if(typeof n === 'number'){
+		if(typeof n == 'number'){
 			return i == n;
-		} else if(typeof n === 'object'){
+		} else if(typeof n == 'object'){
 			for(let x=0; x<n.length; x++){
 				if(i == n[x]) return true;
 			}

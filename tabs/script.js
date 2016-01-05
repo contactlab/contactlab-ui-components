@@ -40,33 +40,31 @@ var TabsClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			this.tabContent = this.querySelectorAll('.tab-content');
-			var _iteratorNormalCompletion = true;
-			var _didIteratorError = false;
-			var _iteratorError = undefined;
-
-			try {
-				for (var _iterator = Array.from(this.tabContent)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-					var content = _step.value;
-
-					content.style.display = 'none';
-				}
-			} catch (err) {
-				_didIteratorError = true;
-				_iteratorError = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion && _iterator.return) {
-						_iterator.return();
-					}
-				} finally {
-					if (_didIteratorError) {
-						throw _iteratorError;
-					}
-				}
-			}
-
+			Array.prototype.map.call(this.tabContent, function (content) {
+				content.style.display = 'none';
+			});
 			this.tabContent[this.active].style.display = 'block';
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_changeTab',
+		value: function _changeTab(evt, index) {
+			evt ? evt.preventDefault() : null;
+			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+			Array.prototype.map.call(this.tabContent, function (e) {
+				e.style.display = 'none';
+			});
+			this.tabContent[this.active].style.display = 'block';
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computedLabels',
 		value: function _computedLabels(tabContent, labels) {
@@ -79,7 +77,7 @@ var TabsClab = (function () {
 					}
 				}
 			} else {
-				console.error("There are labels without content");
+				console.error("Some of the labels need a content");
 			}
 
 			return newLabels;
@@ -90,39 +88,6 @@ var TabsClab = (function () {
 			var arr = [];
 			pills ? arr.push('pills') : arr.push('tabs');
 			return arr.join(' ');
-		}
-	}, {
-		key: '_changeTab',
-		value: function _changeTab(evt, index) {
-			evt ? evt.preventDefault() : null;
-			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-
-			var _iteratorNormalCompletion2 = true;
-			var _didIteratorError2 = false;
-			var _iteratorError2 = undefined;
-
-			try {
-				for (var _iterator2 = Array.from(this.tabContent)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
-					var content = _step2.value;
-
-					content.style.display = 'none';
-				}
-			} catch (err) {
-				_didIteratorError2 = true;
-				_iteratorError2 = err;
-			} finally {
-				try {
-					if (!_iteratorNormalCompletion2 && _iterator2.return) {
-						_iterator2.return();
-					}
-				} finally {
-					if (_didIteratorError2) {
-						throw _iteratorError2;
-					}
-				}
-			}
-
-			this.tabContent[this.active].style.display = 'block';
 		}
 	}, {
 		key: '_computeActive',

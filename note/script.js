@@ -14,12 +14,8 @@ var NoteClab = (function () {
 		value: function beforeRegister() {
 			this.is = "note-clab";
 			this.properties = {
-				text: {
-					type: String
-				},
 				type: {
-					type: String,
-					value: ''
+					type: String
 				},
 
 				classes: {
@@ -28,11 +24,16 @@ var NoteClab = (function () {
 				}
 			};
 		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
 	}, {
 		key: 'computeClasses',
 		value: function computeClasses(type) {
-			var arr = ['note'];
-			arr.push(type);
+			var arr = ['input-note'];
+			if (type != undefined) arr.push(type);
 			return arr.join(' ');
 		}
 	}]);

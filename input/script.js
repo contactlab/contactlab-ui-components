@@ -32,7 +32,8 @@ var InputClab = (function () {
 				},
 				disabled: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: 'disabledChanged'
 				},
 				placeholder: {
 					type: String
@@ -43,31 +44,48 @@ var InputClab = (function () {
 				noteType: {
 					type: String,
 					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
-	}, {
-		key: '_computeType',
-		value: function _computeType(type) {
-			var arr = ['input-wrapper'];
-			arr.push(type);
-			return arr.join(' ');
-		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {
-			this.value = this.querySelector('input').value;
+			this.value = this.$$('input').value;
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
+	}, {
+		key: 'computeNoteType',
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
 		}
 	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

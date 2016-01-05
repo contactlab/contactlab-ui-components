@@ -9,17 +9,30 @@ class ModalClab{
 			},
 			visible: {
 				type: Boolean,
-				value: false
+				value: false,
 			},
 			primary: {
 				type: String
 			},
 			secondary: {
 				type: String
+			},
+			content: {
+				type: String,
+				value: null
+			},
+			width:{
+				type: String,
+				value: '500px'
 			}
 		}
 	}
 
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
 		this.visible = false;
@@ -37,9 +50,15 @@ class ModalClab{
 		this.fire('modal-secondary');
 	}
 
-	setContent(content){
-		this.querySelector('.modal-body').innerHTML = '<p>' + content + '</p>';
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
+	_computeWidth(width){
+		return 'max-width:' + width;
 	}
+
 
 }
 

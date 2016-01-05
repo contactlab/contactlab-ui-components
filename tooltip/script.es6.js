@@ -18,7 +18,12 @@ class TooltipClab{
 		}
 	}
 
-	_onHover(){
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_handleHover(evt){
 		document.querySelector('.kawo-tooltip').className = 'kawo-tooltip'; 
 		document.querySelector('.kawo-tooltip-arrow').className = 'kawo-tooltip-arrow';
 		if(this.ttType){
@@ -27,6 +32,11 @@ class TooltipClab{
 		} 
 	}
 
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeBtnClass(type){
 		return ['tooltip',type].join(' ');
 	}

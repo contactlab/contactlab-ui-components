@@ -14,6 +14,10 @@ class PanelClab{
 		}
 	}
 
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computeType(type){
 		return ['panel',type].join(' ');
 	}

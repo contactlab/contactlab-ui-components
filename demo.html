@@ -1,262 +1,302 @@
- <!DOCTYPE html>
-<html lang="en">
-<head>
-	<meta charset="UTF-8">
-	<title>CLAB UI Components | Demo page</title>
-	
+<link rel="import" href="../polymer/polymer.html">
+<link rel="import" href="clab-components.html">
+
+
+<dom-module id="demo-clab">
+
 	<link rel="stylesheet" href="_css/style.css">
-	<!-- <link rel="stylesheet" href="_css/icons.css"> -->
+	<link rel="stylesheet" href="_css/icons.css">
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <!-- Needs to have 'import' -->
+    <link rel="import" href="_css/color-vars.css">
+
 	<style>
-	.content.dark{
-		background-color: #eee;
-	}
-	.content:last-child{
-		margin-bottom: 100px;
-	}
-	
-	/* RECOMMENDED TOOLTIP STYLES */
-
-	
-
+		.content.dark{
+			background-color: var(--bg-color);
+		}
+		.content:last-child{
+			margin-bottom: 100px;
+		}
 	</style>
 
-	<!-- Polyfills -->
-	<script src="../webcomponentsjs/webcomponents.min.js"></script>
-	
-	<!-- Components -->
-	<link rel="import" href="alert/view.html">
-	<link rel="import" href="button/view.html">
-	<link rel="import" href="button-group/view.html">
-	<link rel="import" href="card/view.html">
-	<link rel="import" href="feature/view.html">
-	<link rel="import" href="elekti/view.html">
-	<link rel="import" href="label-badge/view.html">
-	<link rel="import" href="panel/view.html">
-	<link rel="import" href="progress-bar/view.html">
-	<link rel="import" href="spinner/view.html">
-	<link rel="import" href="input/view.html">
-	<link rel="import" href="tabs/view.html">
-	<link rel="import" href="modal/view.html">
-	<link rel="import" href="calendar/view.html">
-	<link rel="import" href="file/view.html">
-	<link rel="import" href="range/view.html">
-	<link rel="import" href="radio/view.html">
-	<link rel="import" href="checkbox/view.html">
-	<link rel="import" href="tooltip/view.html">
-	<link rel="import" href="pagination/view.html">
-	<link rel="import" href="note/view.html">
-	
+	<template>
+		<div class="content">
+			<h2>Tags</h2>
+			<multiple-clab label="Select multiple options" url="http://localhost:3000/options" max-in-view="10">This is a note</multiple-clab>
+		</div>
 
-</head>
-<body>
-	
-	<div class="content">
-		<h2>Alert</h2>
-		<alert-clab visible labels='{"primary": "ciccio", "secondary": "puzzo"}'>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</p>
-		</alert-clab>
-	</div>
+		<div class="content">
+			<h2>Tags</h2>
+			<tags-clab label="Add tag" btn="Add"></tags-clab>
+		</div>
 
-	<div class="content">
-		<h2>Button</h2>
-		<button-clab>
-			Just click me
-		</button-clab>
-	</div>
+		<div class="content">
+			<h2>Enhanced select</h2>
 
-	<div class="content">
-		<h2>Button group</h2>
-		<group-clab>
-			<button-clab>First</button-clab>
-			<button-clab>Second</button-clab>
-			<button-clab>Third</button-clab>
-		</group-clab>
-	</div>
+			<elekti-mer label="This is a label" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' default="0"></elekti-mer>
+		</div>
 
-	<div class="content dark">
-		<h2>Card</h2>
-		<card-clab>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
-		</card-clab>
-	</div>
+		<div class="content">
+			<h2>Auto Complete</h2>
+			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">Type here to get hints</autocomplete-clab>
+			&nbsp;
+			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1">Type here to get hints</autocomplete-clab>
+		</div>
 
-	<div class="content">
-		<h2>Feature</h2>
-		<feature-clab icon-class="fa fa-cloud-upload" size="big">
-			<h2>Title</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
-		</feature-clab>
+		<div class="content">
+			<h2>Dropdown</h2>
+			<dropdown-clab max-in-view="5" label="Awesome Dropdown" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'>
+			This is my note</dropdown-clab>
+		</div>
+		
+		<div class="content">
+			<h2>Alert</h2>
+			<alert-clab visible labels='{"primary": "ciccio", "secondary": "puzzo"}'>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</p>
+			</alert-clab>
+		</div>
 
-		<feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big">
-			<h2>Title</h2>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
-		</feature-clab>
-	</div>
+		<div class="content">
+			<h2>Button</h2>
+			<button-clab>
+				Just click me
+			</button-clab>
+		</div>
 
-	<div class="content">
-		<h2>Enhanced select</h2>
-		<elekti-mer></elekti-mer>
-		<!-- options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' -->
-	</div>
+		<div class="content">
+			<h2>Button group</h2>
+			<group-clab>
+				<button-clab>First</button-clab>
+				<button-clab>Second</button-clab>
+				<button-clab>Third</button-clab>
+			</group-clab>
+		</div>
 
-	<div class="content">
-		<h2>Label & badges</h2>
-		<label-clab>
-			Just a test
-		</label-clab>
+		<div class="content dark">
+			<h2>Card</h2>
+			<card-clab title="My Card">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+			</card-clab>
+			<card-clab link='{"text":"blabla", "href":"../../img.img"}'>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
+				With a link</p>
+			</card-clab>
+		</div>
 
-		<label-clab badge>
-			42
-		</label-clab>
-	</div>
+		<div class="content">
+			<h2>Feature</h2>
+			<feature-clab icon-class="fa fa-cloud-upload" size="big">
+				<h2>Title</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+			</feature-clab>
 
-	<div class="content">
-		<h2>Panel</h2>
-		<panel-clab>
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia maxime voluptatum odio dolor, beatae earum asperiores molestiae commodi nostrum ex repudiandae quos dolores ut quasi quod accusamus blanditiis itaque. Similique.</p>
-		</panel-clab>
-	</div>
+			<feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big">
+				<h2>Title</h2>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+			</feature-clab>
+		</div>
 
-	<div class="content">
-		<h2>Progress bar</h2>
-		<progress-clab value="42"></progress-clab>
-	</div>
+		<div class="content">
+			<h2>Accordion</h2>
+			<accordion-clab title="Accordion 1">
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
+			</accordion-clab>
+		</div>
 
-	<div class="content">
-		<h2>Spinner</h2>
-		<spinner-clab></spinner-clab>
-	</div>
+		<div class="content">
+			<h2>Toaster</h2>
+			<toaster-clab message="this is my wonderful toast"></toaster-clab>
+			<toaster-clab message="this is my wonderful toast" right message="Mark as read" action-type="error" action-text="UNDO"></toaster-clab>
+		</div>
 
-	<div class="content">
-		<h2>Input</h2>
-		<input-clab value="ciao" label="My label" type="info" note="A simple input component"></input-clab>
-	</div>
+		<div class="content">
+			<h2>Label & badges</h2>
+			<label-clab>
+				Just a test
+			</label-clab>
 
-	<div class="content">
-		<h2>Tabs</h2>
-		<tabs-clab active="1">
-			<div class="tab-content">First tab Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit illo mollitia odio quam necessitatibus veritatis sed placeat.</div>
-			<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas. </div>
-		</tabs-clab>
-	</div>
+			<label-clab badge>
+				42
+			</label-clab>
+		</div>
 
-	<div class="content">
-		<h2>Modal</h2>
-		<button-clab id="openModal">
-			Open modal
-		</button-clab>
-		<modal-clab title="Dummy modal" primary="Confirm" secondary="Cancel">
-			<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
-		</modal-clab>
-	</div>
+		<div class="content">
+			<h2>Panel</h2>
+			<panel-clab>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia maxime voluptatum odio dolor, beatae earum asperiores molestiae commodi nostrum ex repudiandae quos dolores ut quasi quod accusamus blanditiis itaque. Similique.</p>
+			</panel-clab>
+		</div>
 
-	<div class="content">
-		<h2>Calendar | Rome script by bevacqua</h2>
-		<calendar-clab></calendar-clab>
-		<!-- <calendar-clab inline></calendar-clab> -->
-	</div>
+		<div class="content">
+			<h2>Progress bar</h2>
+			<progress-clab value="42" minimal></progress-clab>
+		</div>
 
-	<div class="content">
-		<h2>Input file</h2>
-		<file-clab label="My wonderful file input label"></file-clab>
-	</div>
+		<div class="content">
+			<h2>Spinner</h2>
+			<spinner-clab></spinner-clab>
+		</div>
 
-	<div class="content">
-		<h2>Input range</h2>
-		<range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1"></range-clab>
-	</div>
+		<div class="content">
+			<h2>Input</h2>
+			<input-clab value="ciao" label="My label">
+				A simple input component
+			</input-clab>
+		</div>
 
-	<div class="content">
-		<h2>Input radio</h2>
-		<radio-clab labels='["radio 1", "radio 2"]' name="group1" active="0" disabled='[1]'></radio-clab>
-	</div>
+		<div class="content">
+			<h2>Tabs</h2>
+			<tabs-clab active="1">
+				<div class="tab-content">First tab Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit illo mollitia odio quam necessitatibus veritatis sed placeat.</div>
+				<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas. </div>
+			</tabs-clab>
+		</div>
 
-	<div class="content">
-		<h2>Input checkbox</h2>
-		<checkbox-clab labels='["checkbox 1", "checkbox 2"]' active="0"></checkbox-clab>
-	</div>
+		<div class="content">
+			<h2>Modal</h2>
+			<button-clab id="openModal-one" on-click="_openModal1">
+				Open modal (content via attribute)
+			</button-clab>
+			<button-clab id="openModal-two" on-click="_openModal2">
+				Open modal (content via HTML)
+			</button-clab>
 
-	<div class="content">
-		<h2>Tooltip</h2>
-		<tooltip-clab content="Default">
-			Default tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Primary" tt-type="primary">
-			Primary tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Secondary" tt-type="secondary">
-			Secondary tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Info" tt-type="info">
-			Info tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Success" tt-type="success">
-			Success tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Warning" tt-type="warning">
-			Warning tooltip
-		</tooltip-clab>
-		<tooltip-clab content="Error" tt-type="error">
-			Error tooltip
-		</tooltip-clab>
-	</div>
+			<modal-clab id="modal-one" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
+			</modal-clab>
 
-	<div class="content">
-		<pagination-clab pages='["#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8"]'></pagination-clab>
-	</div>
+			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" secondary="Cancel">
+				<h2>Some HTML...</h2>
+				<hr>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
+				<ul>
+					<li>ksbdfkbsdf</li>
+					<li>sdfbgsdfgsdfg</li>
+					<li>sdfgsdfgsdfg</li>
+				</ul>
+			</modal-clab>
+		</div>
+
+		<div class="content">
+			<h2>Calendar | Rome script by bevacqua</h2>
+			<calendar-clab></calendar-clab>
+			<!-- <calendar-clab inline></calendar-clab> -->
+		</div>
+
+		<div class="content">
+			<h2>Input file</h2>
+			<file-clab label="My wonderful file input label" type="info">
+				A simple input component
+			</file-clab>
+		</div>
+
+		<div class="content">
+			<h2>Input range</h2>
+			<range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1" show-details disabled></range-clab>
+		</div>
+
+		<div class="content">
+			<h2>Input radio</h2>
+			<radio-clab labels='["radio 1", "radio 2"]' name="group1" active="0" disabled='[1]'></radio-clab>
+		</div>
+
+		<div class="content">
+			<h2>Input checkbox</h2>
+			<checkbox-clab labels='["checkbox 1", "checkbox 2"]' active="0"></checkbox-clab>
+		</div>
+
+		<div class="content">
+			<h2>Tooltip</h2>
+			<tooltip-clab content="Default">
+				Default tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Primary" tt-type="primary">
+				Primary tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Secondary" tt-type="secondary">
+				Secondary tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Info" tt-type="info">
+				Info tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Success" tt-type="success">
+				Success tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Warning" tt-type="warning">
+				Warning tooltip
+			</tooltip-clab>
+			<tooltip-clab content="Error" tt-type="error">
+				Error tooltip
+			</tooltip-clab>
+		</div>
+
+		<div class="content">
+			<pagination-clab pages='["#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8"]'></pagination-clab>
+		</div>
+
+		<div class="content">
+			<multi-sel-clab label="My wonderful multiple select">lorem ipsum dolor</multi-sel-clab>
+		</div>
+
+		<!-- <div class="content">
+			<h2>Enhanced Multi select</h2>
+			<elekti-mer-multi label="This is a label" multi-select options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'></elekti-mer>
+		</div> -->
+	</template>
+</dom-module>
 
 
 <script>
 
-	
-// MODAL
-var modal = document.querySelector('modal-clab');
+	Polymer({
+        is: "demo-clab",
 
-document.querySelector('#openModal').addEventListener('click',function(){
-	modal.visible = true;
-});
+        attached:function(){
 
-modal.addEventListener('modal-primary',function(){
-	alert('Clicked');
-});
+        	this.async(function(){
+        		// MODAL
+				this.modal1 = document.querySelector('#modal-one');
+				this.modal2 = document.querySelector('#modal-two');
 
-modal.addEventListener('modal-secondary',function(){
-	modal.visible = false;
-})
+				this.modal1.addEventListener('modal-primary',function(){
+					alert('Clicked');
+				});
 
-// Calendar
-document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
+				this.modal1.addEventListener('modal-secondary',function(){
+					this.modal1.visible = false;				})
 
-// Advanced select
-var elekti = document.querySelector('elekti-mer');
+				// Calendar
+				document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
 
-/*elekti.addEventListener('change', function(evt){
-	console.log(evt.detail);
-});*/
+				Array.from(document.querySelectorAll('autocomplete-clab')).forEach(function(el){
+					el.addEventListener('change',function(evt){
+						console.log('autocomplete-clab ', evt.detail)
+					});
+					el.addEventListener('sendRes',function(evt){
+						console.log('autocomplete-clab ', evt.detail)
+					});
+					el.addEventListener('typing',function(evt){
+						console.log('autocomplete-clab typing', evt)
+					});
+				});
 
-function chiamata(){
-	return window.fetch('http://jsonplaceholder.typicode.com/users')
-	  .then(function(data){
-	    return data.json();
-	  })
-	  .then(function(data){
-	    data.push('yo');
-	    return window.fetch('http://jsonplaceholder.typicode.com/posts')
-	      .then(function(data2){
-	        return data2.json();
-	      })
-	      .then(function(resp){
-	        return data.concat(resp)
-	      })
-	  })
-}
+				document.querySelector('dropdown-clab').addEventListener('change',function(evt){
+					console.log('dropdown-clab ', evt.detail)
+				});
 
-function sel(string){
-	return document.querySelector(string);
-}
+				document.querySelector('multiple-clab').addEventListener('change',function(evt){
+					console.log('multiple-clab ', evt.detail.selected)
+				});
+        	}.bind(this), 200);
+
+        },
+
+        _openModal1:function(){
+        	this.modal1.visible = true;
+        },
+        _openModal2:function(){
+        	this.modal2.visible = true;
+        }
+    });
+
 
 </script>
-
-</body>
-</html>

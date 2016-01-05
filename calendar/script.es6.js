@@ -1,5 +1,9 @@
 class CalendarClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "calendar-clab";
 		this.properties = {
@@ -10,12 +14,18 @@ class CalendarClab{
 				type: Boolean,
 				value: false
 			},
+			valueStr: {
+				type: String,
+				value: null,
+				notify: true
+			},
 			inline: {
 				type: Boolean,
 				value: false
 			},
 			options: {
 				type: Object,
+				value: {}
 			},
 			placeholder: {
 				type: String
@@ -23,6 +33,14 @@ class CalendarClab{
 			type: {
 				type: String,
 				value: ""
+			},
+			noteType: {
+				type: String,
+				value: ''
+			},
+			compNoteType: {
+				type: String,
+				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -33,68 +51,88 @@ class CalendarClab{
 		},50 );
 	}
 
+
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_checkClear(evt){
-		this.querySelector('input').value == "" ? this.clear() : null;
+		this.valueStr == "" ? this.clear() : null;
 	}
 
 	_focusElement(evt){
-		setTimeout(() => {
+		if(!this.disabled){
+			evt.stopPropagation();
 			this.getRomeInstance().show();
-		},50);
+		}
 	}
 
+
+
+	/*---------- 
+	METHODS
+	----------*/
 	_createInstance(selector){
 		let obj;
 		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
-		rome(this.querySelector(selector), obj)
+		rome(this.$$(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
 
+	_changeDate(evt){
+		this.valueStr = evt;
+		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
+	_computeType(type){
+		return ['calendar',type].join(' ');
+	}
+
+	_computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
+	}
+
+
+
+
+	/*---------- 
+	UTILS
+	----------*/
 	_getFormat(){
 		let thisFormat; 
 		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 		return thisFormat;
 	}
 
-	_changeDate(evt){
-		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
-	}
+	
 
-	_computeType(type){
-		var arr = ['input-wrapper', 'calendar'];
-		arr.push(type);
-		return arr.join(' ');
-	}
 
-	_dashify(label){
-		var str = label.replace(' ', '-');
-		return str.toLowerCase();
-	}
 
-	_viewLabel(label){
-		if(label.length > 0)
-			return true; 
-		else
-			return false;
-	}
-
+	/*---------- 
+	PUBLIC METHODS	
+	----------*/
 	setValue(userValue){
-		this.querySelector('input').value = moment(userValue).format(this._getFormat());
+		this.valueStr = moment(userValue).format(this._getFormat());
 	}
 
 	getValue(){
-		let elem = this.querySelector('input').value;
-		let formatted = moment(elem, this._getFormat()).format();
+		let formatted = moment(this.valueStr, this._getFormat()).format();
 		return formatted;
 	}
 
 	getRomeInstance(){
-		return rome.find(this.querySelector('input'));
+		return rome.find(this.$$('input'));
 	}
 
 	clear(){
 		this.value = '';
-		this.querySelector('input').value = '';
+		this.valueStr = null;
 		let rome  = this.getRomeInstance();
 		rome.setValue(moment().format());
 	}

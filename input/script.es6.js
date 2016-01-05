@@ -1,5 +1,9 @@
 class InputClab{
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "input-clab";
 		this.properties = {
@@ -21,7 +25,8 @@ class InputClab{
 			},
 			disabled: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: 'disabledChanged'
 			},
 			placeholder: {
 				type: String
@@ -32,30 +37,40 @@ class InputClab{
 			noteType: {
 				type: String,
 				value: ''
+			},
+
+			compNoteType: {
+				type: String,
+				computed: 'computeNoteType(type, noteType)'
 			}
 		}
 	}
 
-	_computeType(type){
-		let arr = ['input-wrapper'];
-		arr.push(type);
-		return arr.join(' ');
-	}
 
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
 	_updateCompValue(evt){
-		this.value = this.querySelector('input').value;
+		this.value = this.$$('input').value;
 	}
 
-	_dashify(label){
-		let str = label.replace(' ','-');
-		return str.toLowerCase();
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
 	}
 
-	_viewLabel(label) {
-		if(label.length > 0)
-			return true;
-		else
-			return false;
+
+
+	/*---------- 
+	COMPUTE
+	----------*/
+	computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
 
 }

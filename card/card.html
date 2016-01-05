@@ -1,0 +1,55 @@
+<link rel="import" href="../../polymer/polymer.html">
+<!--
+Example:
+
+    <card-clab></card-clab> 
+
+@demo
+-->
+<dom-module id="card-clab">
+	<style></style>
+	
+	<template>		
+		<div class$="[[_computeEffectClass(effect)]]">
+			<template is="dom-if" if="[[!figure]]">
+				<div class$="[[_computeCardClass(big)]]">
+					<template is="dom-if" if="[[!big]]">
+						<i class$="[[_computeIconClass(icon)]]"></i>
+					</template>
+					<span>[[title]]</span>
+					<template is="dom-if" if="[[big]]">
+						<div class="circle"><i class="fa fa-circle"></i></div>
+						<div class="icon"><i class$="[[_computeIconClass(icon)]]"></i></div>
+					</template>
+				</div>
+			</template>
+			<template is="dom-if" if="[[figure]]">
+				<figure>
+					<img src="[[figure]]">
+					<template is="dom-if" if="[[_showTitle(title)]]">
+						<h2>[[title]]</h2>
+					</template>
+				</figure>
+			</template>
+			<template is="dom-if" if="[[!table]]">
+				<div class="card-body">
+					<content></content>
+				</div>
+			</template>
+			<template is="dom-if" if="[[table]]">
+				<content></content>
+			</template>
+			<div class="card-actions">
+				<template is="dom-if" if="[[_showActions(noActions, link)]]">
+					<button class="btn flat">[[secondaryLabel]]</button>
+					<button class="btn primary flat">[[primaryLabel]]</button>
+				</template>
+				<template is="dom-if" if="[[!_showActions(noActions, link)]]">
+					<a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>
+				</template>
+			</div>
+		</div>
+	</template>
+
+	<script src="script.es6.js"></script>
+</dom-module>

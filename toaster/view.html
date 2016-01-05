@@ -1,0 +1,26 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="toaster-clab">
+	<style>
+
+		.toast-wrapper.visible{
+			display: block;
+		}
+
+	</style>
+	
+	<template>
+		<button class$="[[compCallerType]]" id$="[[id.btn]]" on-click="_toggleToast">[[id.toast]]</button>
+
+		<div class$="[[_computeWrapperType(right)]]" id$="[[id.toast]]">
+			<div class="toast">
+				<div class="toast-message">[[message]]</div>
+				<div class="actions">
+					<button class$="[[compActionType]]" on-click="_toggleToast">[[actionText]]</button>
+				</div>
+			</div>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>

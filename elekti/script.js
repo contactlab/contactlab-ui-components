@@ -23,32 +23,41 @@ var ElektiMer = (function () {
 					type: String,
 					value: 'elekti'
 				},
-				disabled: {
-					type: Boolean,
-					value: false,
-					reflectToAttribute: true
+				type: {
+					type: String,
+					value: null
 				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
 				},
 				default: {
-					type: String
+					type: Number,
+					observer: '_setDefault'
 				},
 				placeholder: {
 					type: String,
 					value: 'Select...'
 				},
 				value: {
-					type: 'Object',
+					type: Object,
 					reflectToAttribute: true,
 					notify: true,
 					observer: '_updateValue'
+				},
+				valuesArr: {
+					type: Array,
+					value: [],
+					notify: true
 				},
 				open: {
 					type: Boolean,
 					value: false,
 					readonly: true
+				},
+				disabled: {
+					type: Boolean,
+					value: false
 				},
 				noSearch: {
 					type: Boolean,
@@ -62,31 +71,32 @@ var ElektiMer = (function () {
 				optionsFn: {
 					type: Function,
 					observer: '_setOptions'
+				},
+
+				noteType: {
+					type: String,
+					value: ''
+				},
+				compNoteType: {
+					type: String,
+					computed: '_computeNoteType(type, noteType)'
 				}
 			};
-		}
-	}, {
-		key: 'ready',
-		value: function ready() {
-			this.input = this.$$('#' + this._dashify(this.name));
-			var i = this.getIndex(this.default);
-			if ((this.default || this.default === 0) && typeof i == 'number') {
-				this.input.value = this.options[i].label;
-				this.value = this.options[i];
-				//this.activeInput('blur');
-			}
 		}
 	}, {
 		key: 'attached',
 		value: function attached() {
 			var _this = this;
 
-			this.liHeight = this.$.list.children[0].clientHeight;
+			this.input = this.$$('#' + this._dashify(this.name));
 
-			this.$$('.input-wrapper').addEventListener('mousedown', function (evt) {
-				if (evt.target.localName == 'ol') _this.dontHide = true;else _this.dontHide = false;
+			this.liHeight = this.$.list.children[0].clientHeight;
+			this.exists;
+
+			this.addEventListener('mousedown', function (evt) {
+				if (evt.target.localName == 'ol' || evt.target.localName == 'li') _this.dontHide = true;else _this.dontHide = false;
 			});
-			this.$$('.input-wrapper').addEventListener('mouseup', function (evt) {
+			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
 		}
@@ -106,11 +116,16 @@ var ElektiMer = (function () {
 			});
 		}
 	}, {
+		key: '_setDefault',
+		value: function _setDefault(newval, oldval) {
+			this.set('value', this.options[newval]);
+		}
+	}, {
 		key: '_updateValue',
 		value: function _updateValue() {
 			var old = this.value;
 			if (_typeof(this.value) == 'object') {
-				this.input.value = this.value.label;
+				// this.input.value = this.value.label;
 				this.highlightedElement();
 				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
 			}
@@ -121,15 +136,9 @@ var ElektiMer = (function () {
   ----------*/
 
 	}, {
-		key: 'getIndex',
-		value: function getIndex(value) {
-			var _this3 = this;
-
-			var n = undefined;
-			this.options.forEach(function (opt) {
-				opt.value == value ? n = _this3.options.indexOf(opt) : null;
-			});
-			return n;
+		key: '_viewLabel',
+		value: function _viewLabel(label) {
+			if (label.length > 0) return true;else return false;
 		}
 	}, {
 		key: '_setDisabled',
@@ -144,29 +153,49 @@ var ElektiMer = (function () {
 			return arr.join(' ');
 		}
 	}, {
+		key: '_computeInputClass',
+		value: function _computeInputClass(type) {
+			return ['js-users-list-filter', type].join(' ');
+		}
+	}, {
+		key: '_computeNoteType',
+		value: function _computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
+		}
+	}, {
 		key: '_dashify',
 		value: function _dashify(str) {
 			return str.replace(/ /g, '-');
 		}
 	}, {
-		key: 'activeInput',
-		value: function activeInput(type) {
-			if (type === 'blur' && this.input.value !== "") this.input.classList.add('active');else this.input.classList.remove('active');
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'getIndex',
+		value: function getIndex(value) {
+			var _this3 = this;
+
+			var n = undefined;
+			this.options.forEach(function (opt) {
+				opt.value == value ? n = _this3.options.indexOf(opt) : null;
+			});
+			return n;
 		}
 	}, {
 		key: 'highlightedElement',
-		value: function highlightedElement() {
-			var search = this.input.value.toLowerCase();
-			var elems = this.$.list.querySelectorAll('li');
+		value: function highlightedElement(input, els) {
+			var search = input ? input : this.value.label.toLowerCase();
+			var elems = els ? els : this.$.list.querySelectorAll('li');
+			var exists = false;
+
 			Array.from(elems).forEach(function (el) {
 				var str = el.innerHTML;
-				search !== '' && str.toLowerCase() === search ? el.classList.add('selected') : el.classList.remove('selected');
+				if (search !== '' && str.toLowerCase() === search) {
+					el.classList.add('selected');
+					exists = true;
+				} else {
+					el.classList.remove('selected');
+				}
 			});
+
+			return exists;
 		}
 	}, {
 		key: 'slideToggle',
@@ -175,64 +204,40 @@ var ElektiMer = (function () {
 				this.liHeight = this.$.list.children[0].clientHeight;
 			}
 			if (action === 'open') {
+				console.log(this.$);
 				this.$.list.classList.add('visible');
 				var n = this.$.list.querySelectorAll('li.hide').length;
 				this.$.list.style.height = this.liHeight * (this.options.length - n) + "px";
 			} else {
 				this.$.list.classList.remove('visible');
 				this.$.list.style.height = "0px";
+				Array.from(this.$.list.querySelectorAll('li')).forEach(function (el) {
+					el.classList.remove('hide');
+				});
 			}
-			/*this.$.list.classList.toggle('visible');
-   if(this.$.list.classList.contains('visible'))
-   	this.$.list.style.height = (this.liHeight * this.options.length) + "px";
-   else
-   	this.$.list.style.height = "0px";*/
 		}
-
-		/*_dropOnly(){
-  	if(this.noSearch){
-  		this.slideToggle();
-  		this.highlightedElement();
-  	}
-  }*/
 
 		/*---------- 
   EVENT HANDLERS
   ----------*/
 
 	}, {
-		key: '_selectElement',
-		value: function _selectElement(evt, value) {
-			var old = this.value;
-			var i = this.getIndex(evt.target.getAttribute('data-value'));
-			this.input.value = evt.target.innerHTML;
-			/*if(!value){
-   	i = this.getIndex(evt.target.getAttribute('data-value'));
-   }
-   else{
-   	i = this.getIndex(value);
-   }*/
-			this.value = this.options[i];
-			console.log(this.value);
-			//this.activeInput('blur');
-			this.fire('change', { 'newValue': this.value, 'oldValue': old });
-			this._handleListVisibility(evt);
-		}
-	}, {
-		key: '_handleListVisibility',
-		value: function _handleListVisibility(evt) {
+		key: '_handleFocusAndBlur',
+		value: function _handleFocusAndBlur(evt) {
 			var _this4 = this;
 
 			if (evt.type == 'focus') {
-				this.input.classList.add('active');
-				setTimeout(function () {
-					_this4.slideToggle('open');
-					_this4.open = true;
-					_this4.highlightedElement();
-				}, 150);
-			} else if (this.dontHide) {
+				if (!this.open) {
+					this.input.classList.add('active');
+					setTimeout(function () {
+						_this4.slideToggle('open');
+						_this4.open = true;
+						_this4.highlightedElement();
+					}, 150);
+				}
+			} else if (this.dontHide && evt.type == 'blur') {
 				this.input.focus();
-			} else if (!this.dontHide) {
+			} else if (!this.dontHide && evt.type == 'blur') {
 				this.input.classList.remove('active');
 				setTimeout(function () {
 					_this4.slideToggle('close');
@@ -241,13 +246,28 @@ var ElektiMer = (function () {
 			}
 		}
 	}, {
+		key: '_selectElement',
+		value: function _selectElement(evt, value) {
+			var i = this.getIndex(evt.target.getAttribute('data-value'));
+			var old = this.value;
+			this.input.value = this.options[i].label;
+			this.value = this.options[i];
+			this.highlightedElement();
+
+			this.fire('change', { 'newValue': this.value, 'oldValue': old });
+			this.input.blur();
+		}
+	}, {
 		key: '_searchElement',
 		value: function _searchElement(evt) {
-			var input = this.input.value.toLowerCase();
+			if (evt.keyCode == 13 && this.exists) {
+				this.input.blur();
+				return;
+			}
+
 			var elems = this.$.list.querySelectorAll('li');
 			this.$.list.style.height = this.liHeight * elems.length + 'px';
-
-			if (evt.keyCode == 13) null;
+			var input = this.input.value.toLowerCase();
 
 			Array.from(elems).forEach(function (el) {
 				var str = el.innerHTML;
@@ -267,20 +287,8 @@ var ElektiMer = (function () {
 			} else {
 				this.$.noRes.classList.add('hide');
 			}
-			this.highlightedElement();
 
-			/*if(evt.keyCode==13){
-   	() => {
-   		Array.from(elems).forEach(el => {
-   			let str = el.innerHTML;
-   			console.log('searching: ',str.toLowerCase().search(input));
-   			if(str.toLowerCase().search(input) != -1){
-   				this._selectElement(evt, el.getAttribute('data-value'));
-   				return;
-   			}
-   		});
-   	}
-   }*/
+			this.exists = this.highlightedElement(input, elems);
 		}
 	}]);
 

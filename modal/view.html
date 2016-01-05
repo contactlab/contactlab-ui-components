@@ -1,17 +1,25 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="modal-clab">
-	<style></style>
+	<style>
+	</style>
 	
 	<template>
 		<template is="dom-if" if="[[visible]]">
 			<div class="modal-overlay" on-click="_closeModal">
 				<div class="modal-wrapper">
-					<div class="modal" on-click="_block">
+					<div class="modal" on-click="_block" style$="[[_computeWidth(width)]]">
 						<div class="modal-title">[[title]]</div>
-						<div class="modal-body">
-							<content></content>
-						</div>
+						<template is="dom-if" if="[[content]]">
+							<div class="modal-body">
+								<p>[[content]]</p>
+							</div>
+						</template>
+						<template is="dom-if" if="[[!content]]">
+							<div class="modal-body">
+								<content></content>
+							</div>
+						</template>
 						<div class="modal-actions">
 							<template is="dom-if" if="[[secondary]]">
 								<button on-click="_secondary" class="btn flat">[[secondary]]</button>
@@ -21,7 +29,7 @@
 							</template>
 						</div>
 					</div>
-				</div
+				</div>
 			</div>
 		</template>
 	</template>

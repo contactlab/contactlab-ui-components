@@ -28,12 +28,31 @@ class TabsClab{
 
 	attached(){
 		this.tabContent = this.querySelectorAll('.tab-content');
-		for(let content of Array.from(this.tabContent)){
+		Array.prototype.map.call(this.tabContent, (content)=>{
 			content.style.display = 'none';
-		}
+		});
 		this.tabContent[this.active].style.display = 'block';
 	}
 
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_changeTab(evt,index){
+		evt ? evt.preventDefault() : null;
+		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+		Array.prototype.map.call(this.tabContent, (e)=>{
+			e.style.display = 'none';
+		});
+		this.tabContent[this.active].style.display = 'block';
+	}
+
+
+
+	/*---------- 
+	COMPUTED
+	----------*/
 	_computedLabels(tabContent, labels){
 		var newLabels = labels;
 
@@ -44,7 +63,7 @@ class TabsClab{
 				}
 			}
 		} else {
-			console.error("There are labels without content" );
+			console.error("Some of the labels need a content");
 		}
 
 		return newLabels;
@@ -54,16 +73,6 @@ class TabsClab{
 		let arr = [];
 		pills ? arr.push('pills') : arr.push('tabs');
 		return arr.join(' ');
-	}
-
-	_changeTab(evt,index){
-		evt ? evt.preventDefault() : null;
-		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		
-		for(let content of Array.from(this.tabContent)){
-			content.style.display = 'none';
-		}
-		this.tabContent[this.active].style.display = 'block';
 	}
 
 	_computeActive(active,index){

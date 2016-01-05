@@ -26,6 +26,10 @@ class FeatureClab {
 		}
 	}
 
+
+	/*---------- 
+	COMPUTE
+	----------*/
 	_computeFeatureClass(size, vertical){
 		let arr = ['feature'];
 		if(size) arr.push(size+'-icon');

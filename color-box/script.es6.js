@@ -1,5 +1,9 @@
 class ColorBox {
 
+	get behaviors() {
+      return [UtilBehavior];
+    }
+
 	beforeRegister(){
 		this.is = "color-box";
 		this.properties = {
@@ -12,11 +16,6 @@ class ColorBox {
 				value: "000000"
 			}
 		}
-	}
-
-
-	getClass(str){
-		return str.toLowerCase().replace(' ','-');
 	}
 
 }

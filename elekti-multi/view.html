@@ -1,0 +1,38 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="elekti-mer">
+	<style>
+	ol{
+		display: block !important;
+		height: 0;
+		overflow: hidden;
+	}
+	.active ol{
+		overflow: auto;
+	}
+	</style>
+
+	<template>        
+        <template is="dom-if" if="[[_viewLabel(label)]]">
+            <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+        </template>
+        <div class$="[[ _computeWrapperClass(open) ]]">
+            <input id$="[[_dashify(name)]]" class$="[[_computeInputClass(type)]]" disabled=[[disabled]] readonly$="[[noSearch]]" name$="[[_dashify(name)]]" type="text"
+            on-focus="_handleFocusAndBlur" on-blur="_handleFocusAndBlur"
+            on-keyup="_searchElement" placeholder="[[placeholder]]">
+            <!-- on-change="_updateValue" ?? -->
+
+            <ol class="js-users-list" id="list">
+                <template is="dom-repeat" items="[[options]]">
+                    <li on-tap="_selectElement" data-value$="[[item.value]]">[[item.label]]</li>
+                </template>
+                <div class="noResults hide" id="noRes">[[noResults]]</div>
+            </ol>
+        </div>
+        <note-clab type="[[compNoteType]]">
+            <content></content>
+        </note-clab>
+    </template>
+
+	<script src="script.js"></script>
+</dom-module>

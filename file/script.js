@@ -19,14 +19,35 @@ var FileClab = (function () {
 				},
 				name: {
 					type: String,
-					value: 'textinput'
+					value: 'fileinput'
+				},
+				type: {
+					type: String,
+					value: ''
 				},
 				value: {
-					type: String
+					type: String,
+					value: null
+				},
+				disabled: {
+					type: Boolean,
+					value: false,
+					notify: true,
+					reflectToAttribute: true,
+					observer: 'disabledChanged'
 				},
 				multiple: {
 					type: Boolean,
 					value: false
+				},
+				noteType: {
+					type: String,
+					value: ''
+				},
+
+				compNoteType: {
+					type: String,
+					computed: 'computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -40,31 +61,47 @@ var FileClab = (function () {
 
 			fileInput.addEventListener('change', function (evt) {
 				var arr = [];
-				Array.from(fileInput.files).forEach(function (file) {
+				Array.prototype.map.call(fileInput.files, function (file) {
 					arr.push(file.name);
 				});
-				/*for (var i = 0; i < file.files.length; i++) {
-    	arr.push(file.files[i].name);
-    }*/
 				textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
 				_this.value = textInput.value;
 			});
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_selection',
 		value: function _selection(evt) {
-			this.querySelector('input[type="file"]').click();
+			this.$$('input[type=file]').click();
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
+
+		/*---------- 
+  COMPUTE
+  ----------*/
+
+	}, {
+		key: 'computeNoteType',
+		value: function computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
 		}
 	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

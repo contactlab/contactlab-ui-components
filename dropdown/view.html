@@ -1,0 +1,46 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="dropdown-clab">
+	<style>
+    	.options-list{
+            display: none;
+            overflow: auto;
+        }
+        .options-list.hidden{
+            display: block;
+            opacity: 0;
+        }
+        .options-list.active{
+            display: block;
+            opacity: 1;
+        }
+	</style>
+
+	<template>
+        <template is="dom-if" if="[[_viewLabel(label)]]">
+            <label>[[label]]</label>
+        </template>
+        <div class="elekti-wrapper">
+            <div class$="[[_compValueWrapper(disabled)]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
+                <template is="dom-if" if="[[_viewValue(selected)]]">
+                    <span class="selected">[[selected.label]]</span>
+                </template>
+                <template is="dom-if" if="[[!_viewValue(selected)]]">
+                    <span class="placeholder">Select..</span>
+                </template>
+            </div>
+            <ol class="options-list js-users-list">
+                <template is="dom-repeat" items="[[options]]">
+                    <li data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>
+                </template>
+            </ol>
+        </div>
+        <note-clab type="[[compNoteType]]">
+            <content></content>
+        </note-clab>
+
+    </template>
+
+	<script src="./../behaviors.js"></script>
+	<script src="script.js"></script>
+</dom-module>

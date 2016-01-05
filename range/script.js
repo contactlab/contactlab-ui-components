@@ -23,7 +23,7 @@ var RangeClab = (function () {
 				},
 				type: {
 					type: String,
-					value: ''
+					value: null
 				},
 				value: {
 					type: Number,
@@ -38,32 +38,60 @@ var RangeClab = (function () {
 				},
 				step: {
 					type: Number
+				},
+				disabled: {
+					type: Boolean,
+					value: false,
+					observer: 'disabledChanged'
+				},
+				showDetails: {
+					type: Boolean,
+					value: false
+				},
+
+				rangeWrapperClasses: {
+					type: String,
+					computed: 'computeRangeWrapperClasses(showDetails)'
 				}
 			};
 		}
-	}, {
-		key: '_computeType',
-		value: function _computeType(type) {
-			var arr = ['input-wrapper'];
-			arr.push(type);
-			return arr.join(' ');
-		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: '_updateCompValue',
 		value: function _updateCompValue(evt) {
-			this.value = this.querySelector('input').value;
-			console.log(this.value);
+			console.log(evt);
+			this.value = this.$$('input').value;
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: 'disabledChanged',
+		value: function disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
+	}, {
+		key: 'computeRangeWrapperClasses',
+		value: function computeRangeWrapperClasses(show) {
+			var name = undefined;
+			if (show) name = 'details';
+			return ['range-wrapper', name].join(' ');
 		}
 	}, {
-		key: '_dashify',
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: '_viewLabel',
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

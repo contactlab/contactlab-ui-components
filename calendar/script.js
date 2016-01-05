@@ -23,12 +23,18 @@ var CalendarClab = (function () {
 					type: Boolean,
 					value: false
 				},
+				valueStr: {
+					type: String,
+					value: null,
+					notify: true
+				},
 				inline: {
 					type: Boolean,
 					value: false
 				},
 				options: {
-					type: Object
+					type: Object,
+					value: {}
 				},
 				placeholder: {
 					type: String
@@ -36,6 +42,14 @@ var CalendarClab = (function () {
 				type: {
 					type: String,
 					value: ""
+				},
+				noteType: {
+					type: String,
+					value: ''
+				},
+				compNoteType: {
+					type: String,
+					computed: '_computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -48,27 +62,62 @@ var CalendarClab = (function () {
 				_this.inline ? _this._createInstance('div.inline-cal') : _this._createInstance("input");
 			}, 50);
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
-			this.querySelector('input').value == "" ? this.clear() : null;
+			this.valueStr == "" ? this.clear() : null;
 		}
 	}, {
 		key: "_focusElement",
 		value: function _focusElement(evt) {
-			var _this2 = this;
-
-			setTimeout(function () {
-				_this2.getRomeInstance().show();
-			}, 50);
+			if (!this.disabled) {
+				evt.stopPropagation();
+				this.getRomeInstance().show();
+			}
 		}
+
+		/*---------- 
+  METHODS
+  ----------*/
+
 	}, {
 		key: "_createInstance",
 		value: function _createInstance(selector) {
 			var obj = undefined;
 			_typeof(this.options) == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
-			rome(this.querySelector(selector), obj).on('data', this._changeDate.bind(this));
+			rome(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 		}
+	}, {
+		key: "_changeDate",
+		value: function _changeDate(evt) {
+			this.valueStr = evt;
+			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
+
+	}, {
+		key: "_computeType",
+		value: function _computeType(type) {
+			return ['calendar', type].join(' ');
+		}
+	}, {
+		key: "_computeNoteType",
+		value: function _computeNoteType(type, noteType) {
+			return [type, noteType].join(' ');
+		}
+
+		/*---------- 
+  UTILS
+  ----------*/
+
 	}, {
 		key: "_getFormat",
 		value: function _getFormat() {
@@ -76,53 +125,39 @@ var CalendarClab = (function () {
 			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 			return thisFormat;
 		}
-	}, {
-		key: "_changeDate",
-		value: function _changeDate(evt) {
-			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
-		}
-	}, {
-		key: "_computeType",
-		value: function _computeType(type) {
-			var arr = ['input-wrapper', 'calendar'];
-			arr.push(type);
-			return arr.join(' ');
-		}
-	}, {
-		key: "_dashify",
-		value: function _dashify(label) {
-			var str = label.replace(' ', '-');
-			return str.toLowerCase();
-		}
-	}, {
-		key: "_viewLabel",
-		value: function _viewLabel(label) {
-			if (label.length > 0) return true;else return false;
-		}
+
+		/*---------- 
+  PUBLIC METHODS	
+  ----------*/
+
 	}, {
 		key: "setValue",
 		value: function setValue(userValue) {
-			this.querySelector('input').value = moment(userValue).format(this._getFormat());
+			this.valueStr = moment(userValue).format(this._getFormat());
 		}
 	}, {
 		key: "getValue",
 		value: function getValue() {
-			var elem = this.querySelector('input').value;
-			var formatted = moment(elem, this._getFormat()).format();
+			var formatted = moment(this.valueStr, this._getFormat()).format();
 			return formatted;
 		}
 	}, {
 		key: "getRomeInstance",
 		value: function getRomeInstance() {
-			return rome.find(this.querySelector('input'));
+			return rome.find(this.$$('input'));
 		}
 	}, {
 		key: "clear",
 		value: function clear() {
 			this.value = '';
-			this.querySelector('input').value = '';
+			this.valueStr = null;
 			var rome = this.getRomeInstance();
 			rome.setValue(moment().format());
+		}
+	}, {
+		key: "behaviors",
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

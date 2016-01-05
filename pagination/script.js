@@ -17,7 +17,7 @@ var PaginationClab = (function () {
 				pages: {
 					type: Array,
 					notify: true,
-					value: null
+					value: []
 				},
 				currentPage: {
 					type: Number,
@@ -65,27 +65,51 @@ var PaginationClab = (function () {
 				this.addEventListener('pageChanged', this.updateSelectedPage);
 			}, 500);
 		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
 		key: 'updateSelectedPage',
-		value: function updateSelectedPage(e) {
-			var i = e.detail.index;
-			this.querySelector('.active').classList.remove('active');
+		value: function updateSelectedPage(evt) {
+			var i = evt.detail.index;
+			this.$$('.active').classList.remove('active');
 			this.querySelectorAll('.page')[i].classList.add('active');
 			this.currentPage = Number(i) + 1;
 		}
 	}, {
 		key: 'setThisAsCurrent',
-		value: function setThisAsCurrent(e) {
-			e.preventDefault(); // forse da togliere
+		value: function setThisAsCurrent(evt) {
+			evt.preventDefault(); // forse da togliere
 
-			if (e.path[0].getAttribute('data-index') != null) var i = e.path[0].getAttribute('data-index');else var i = e.target.children[0].getAttribute('data-index');
+			if (evt.path[0].getAttribute('data-index') != null) var i = evt.path[0].getAttribute('data-index');else var i = evt.target.children[0].getAttribute('data-index');
 
 			if (i >= 0) {
 				this.fire('pageChanged', { index: i });
 			}
 		}
 
-		// computed values
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: '_updateAvailablePages',
+		value: function _updateAvailablePages() {
+			for (var idx in Array.from(this.querySelectorAll('.page'))) {
+				var pagesEl = this.querySelectorAll('.page');
+				if (idx >= this.availableStart && idx <= this.availableEnd) {
+					pagesEl[idx].classList.remove('invisible');
+				} else {
+					pagesEl[idx].classList.add('invisible');
+				}
+			}
+		}
+
+		/*---------- 
+  COMPUTED
+  ----------*/
 
 	}, {
 		key: '_getFirstPage',
@@ -134,7 +158,9 @@ var PaginationClab = (function () {
 			}
 		}
 
-		// functions to retrieve values
+		/*---------- 
+  UTILS
+  ----------*/
 
 	}, {
 		key: '_pageNumber',
@@ -142,24 +168,9 @@ var PaginationClab = (function () {
 			return i + 1;
 		}
 	}, {
-		key: '_getIndex',
-		value: function _getIndex(content) {
-			return this.pages.indexOf(content);
-		}
-
-		// observers
-
-	}, {
-		key: '_updateAvailablePages',
-		value: function _updateAvailablePages() {
-			for (var idx in Array.from(this.querySelectorAll('.page'))) {
-				var pagesEl = this.querySelectorAll('.page');
-				if (idx >= this.availableStart && idx <= this.availableEnd) {
-					pagesEl[idx].classList.remove('invisible');
-				} else {
-					pagesEl[idx].classList.add('invisible');
-				}
-			}
+		key: 'behaviors',
+		get: function get() {
+			return [UtilBehavior];
 		}
 	}]);
 

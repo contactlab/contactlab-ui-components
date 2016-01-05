@@ -1,0 +1,24 @@
+<link rel="import" href="../../polymer/polymer.html">
+<!--
+Example:
+
+    <button-clab></button-clab>
+
+injects an easy to style button
+
+@demo
+-->
+<dom-module id="button-clab">
+	<style></style>
+	
+	<template>
+		<button class$="[[_computeClass(type,appearance,size)]]" disabled="[[disabled]]">
+			<template is="dom-if" if="[[icon]]">
+				<i class$="[[_computeIconClass(icon)]]"></i>
+			</template>
+			<content></content>
+		</button>
+	</template>	
+	
+	<script src="script.es6.js"></script>
+</dom-module>

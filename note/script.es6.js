@@ -3,12 +3,8 @@ class NoteClab{
 	beforeRegister(){
 		this.is = "note-clab";
 		this.properties = {
-			text: {
-				type: String
-			},
 			type: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 			classes: {
@@ -18,9 +14,12 @@ class NoteClab{
 		}
 	}
 
+	/*---------- 
+	COMPUTED
+	----------*/
 	computeClasses(type){
-		let arr = ['note'];
-		arr.push(type);
+		var arr=['input-note'];
+		if(type!=undefined) arr.push(type);
 		return arr.join(' ');
 	}
 }
