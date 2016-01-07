@@ -7,8 +7,8 @@
 		<template is="dom-if" if="[[_viewLabel(label)]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 		</template>
-		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" on-keyup="_updateCompValue"
-			disabled="[[disabled]]" value="{{value}}" placeholder="[[placeholder]]">
+		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]"
+			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]">
 		<note-clab type="[[compNoteType]]">
 			<content></content>
 		</note-clab>

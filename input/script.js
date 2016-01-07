@@ -53,17 +53,7 @@ var InputClab = (function () {
 			};
 		}
 
-		/*---------- 
-  EVENT HANDLERS
-  ----------*/
-
-	}, {
-		key: '_updateCompValue',
-		value: function _updateCompValue(evt) {
-			this.value = this.$$('input').value;
-		}
-
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -73,7 +63,7 @@ var InputClab = (function () {
 			if (newVal) this.type = 'disabled';
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 

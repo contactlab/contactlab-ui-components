@@ -47,17 +47,7 @@ class InputClab{
 	}
 
 
-
-	/*---------- 
-	EVENT HANDLERS
-	----------*/
-	_updateCompValue(evt){
-		this.value = this.$$('input').value;
-	}
-
-
-
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	disabledChanged(newVal, oldVal){
@@ -66,7 +56,7 @@ class InputClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	computeNoteType(type, noteType){
