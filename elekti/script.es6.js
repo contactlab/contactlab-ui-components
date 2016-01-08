@@ -49,6 +49,10 @@ class ElektiMer{
 				type: Boolean,
 				value: false
 			},
+			preventChange: {
+				type: Boolean,
+				value: false
+			},
 			noSearch: {
 				type: Boolean,
 				value: false,
@@ -88,6 +92,13 @@ class ElektiMer{
 		});
 	}
 
+	setValue(obj, prevent){
+		prevent = prevent ? true : false;
+		this.preventChange = prevent;
+		this.set('value', obj);
+		this.preventChange = false;
+	}
+
 	/*----------
 	OBSERVERS
 	----------*/
@@ -108,7 +119,9 @@ class ElektiMer{
 		if(typeof this.value == 'object'){
 			// this.input.value = this.value.label;
 			this.highlightedElement();
-			this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
+			if(!this.preventChange){
+				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
+			}
 		}
 	}
 
@@ -224,7 +237,9 @@ class ElektiMer{
 		this.value = this.options[i];
 		this.highlightedElement();
 
-		this.fire('change', { 'newValue': this.value, 'oldValue': old});
+		if(!this.preventChange){
+				this.fire('change', { 'newValue': this.value, 'oldValue': old});
+		}
 		this.input.blur();
 	}
 

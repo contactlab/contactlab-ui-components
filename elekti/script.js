@@ -59,6 +59,10 @@ var ElektiMer = (function () {
 					type: Boolean,
 					value: false
 				},
+				preventChange: {
+					type: Boolean,
+					value: false
+				},
 				noSearch: {
 					type: Boolean,
 					value: false,
@@ -100,6 +104,14 @@ var ElektiMer = (function () {
 				_this.dontHide = false;
 			});
 		}
+	}, {
+		key: 'setValue',
+		value: function setValue(obj, prevent) {
+			prevent = prevent ? true : false;
+			this.preventChange = prevent;
+			this.set('value', obj);
+			this.preventChange = false;
+		}
 
 		/*----------
   OBSERVERS
@@ -127,7 +139,9 @@ var ElektiMer = (function () {
 			if (_typeof(this.value) == 'object') {
 				// this.input.value = this.value.label;
 				this.highlightedElement();
-				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
+				if (!this.preventChange) {
+					this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
+				}
 			}
 		}
 
@@ -254,7 +268,9 @@ var ElektiMer = (function () {
 			this.value = this.options[i];
 			this.highlightedElement();
 
-			this.fire('change', { 'newValue': this.value, 'oldValue': old });
+			if (!this.preventChange) {
+				this.fire('change', { 'newValue': this.value, 'oldValue': old });
+			}
 			this.input.blur();
 		}
 	}, {
