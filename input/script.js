@@ -25,6 +25,10 @@ var InputClab = (function () {
 					type: String,
 					value: ''
 				},
+				password: {
+					type: Boolean,
+					value: false
+				},
 				value: {
 					type: String,
 					notify: true,
@@ -71,6 +75,15 @@ var InputClab = (function () {
 		key: 'computeNoteType',
 		value: function computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
+		}
+	}, {
+		key: '_computeDataType',
+		value: function _computeDataType(password) {
+			if (password) {
+				return 'password';
+			} else {
+				return 'text';
+			}
 		}
 	}, {
 		key: 'behaviors',
