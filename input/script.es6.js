@@ -18,6 +18,10 @@ class InputClab{
 				type: String,
 				value: ''
 			},
+			password: {
+				type: Boolean,
+				value: false
+			},
 			value: {
 				type: String,
 				notify: true,
@@ -61,6 +65,14 @@ class InputClab{
 	----------*/
 	computeNoteType(type, noteType){
 		return [type, noteType].join(' ');
+	}
+
+	_computeDataType(password){
+		if(password){
+			return 'password';
+		}else{
+			return 'text';
+		}
 	}
 
 }

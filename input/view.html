@@ -7,7 +7,7 @@
 		<template is="dom-if" if="[[_viewLabel(label)]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 		</template>
-		<input class$="[[type]]" type="text" name$="[[_dashify(name)]]"
+		<input class$="[[type]]" type$="[[_computeDataType(password)]]" name$="[[_dashify(name)]]"
 			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]">
 		<note-clab type="[[compNoteType]]">
 			<content></content>
