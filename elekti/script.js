@@ -32,9 +32,9 @@ var ElektiMer = (function () {
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
 				},
 				default: {
-					type: Number,
-					observer: '_setDefault'
+					type: Number
 				},
+				//observer: '_setDefault'
 				placeholder: {
 					type: String,
 					value: 'Select...'
@@ -101,7 +101,7 @@ var ElektiMer = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -131,7 +131,7 @@ var ElektiMer = (function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   UTILS & COMPUTED VALUES
   ----------*/
 
@@ -217,7 +217,7 @@ var ElektiMer = (function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 

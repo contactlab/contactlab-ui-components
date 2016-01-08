@@ -23,7 +23,7 @@ class ElektiMer{
 			},
 			default: {
 				type:Number,
-				observer: '_setDefault'
+				//observer: '_setDefault'
 			},
 			placeholder: {
 				type: String,
@@ -88,7 +88,7 @@ class ElektiMer{
 		});
 	}
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 
@@ -114,14 +114,14 @@ class ElektiMer{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS & COMPUTED VALUES
 	----------*/
 
 	_viewLabel(label) {
 		if(label.length > 0)
 			return true;
-		else 
+		else
 			return false;
 	}
 
@@ -167,7 +167,7 @@ class ElektiMer{
 				exists=true;
 			} else {
 				el.classList.remove('selected');
-			} 
+			}
 		});
 
 		return exists;
@@ -192,7 +192,7 @@ class ElektiMer{
 	}
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 
