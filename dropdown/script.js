@@ -34,6 +34,10 @@ var DropdownClab = (function () {
 					type: Function,
 					observer: '_setOptions'
 				},
+				placeholder: {
+					type: String,
+					value: 'Select..'
+				},
 				disabled: {
 					type: Boolean,
 					value: false
@@ -76,6 +80,8 @@ var DropdownClab = (function () {
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
+
+			if (this.selected != undefined) this._setValue(this.selected);
 		}
 
 		/*----------

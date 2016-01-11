@@ -9,6 +9,11 @@ let UtilBehavior={
 	},
 
 	_getIndex:(item, items)=>{
-		return items.indexOf(item);
+		for ( var i = 0; i < items.length; i++ ) {
+	        if ( JSON.stringify(items[i]) == JSON.stringify(item) ) {
+	            return i;
+	        }
+	    }
+	    return -1;
 	}
 }

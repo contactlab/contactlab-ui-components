@@ -30,6 +30,10 @@ class DropdownClab{
 				type: Function,
 				observer: '_setOptions'
 			},
+			placeholder:{
+				type:String,
+				value:'Select..'
+			},
 			disabled:{
 				type:Boolean,
 				value:false
@@ -68,6 +72,9 @@ class DropdownClab{
 			if(evt.target.localName=='ol' || evt.target.localName=='li') this.dontHide=true; else this.dontHide=false;
 		});
 		this.addEventListener('mouseup', (evt)=>{ this.dontHide=false; });
+
+		if(this.selected!=undefined) this._setValue(this.selected);
+		
 	}
 
 

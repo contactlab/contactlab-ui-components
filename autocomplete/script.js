@@ -380,6 +380,7 @@ var AutoCompleteClab = (function () {
 			if (this.liHeight === null) {
 				this.list.classList.add('hidden');
 				this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
+				console.log(this.querySelectorAll('.options-list li.show')[0].clientHeight);
 				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
 				this.list.classList.remove('hidden');
 			}
