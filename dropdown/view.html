@@ -20,18 +20,18 @@
         <template is="dom-if" if="[[_viewLabel(label)]]">
             <label>[[label]]</label>
         </template>
-        <div class="elekti-wrapper">
+        <div class="options-list-wrapper">
             <div class$="[[_compValueWrapper(disabled)]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
                 <template is="dom-if" if="[[_viewValue(selected)]]">
                     <span class="selected">[[selected.label]]</span>
                 </template>
                 <template is="dom-if" if="[[!_viewValue(selected)]]">
-                    <span class="placeholder">Select..</span>
+                    <span class="placeholder">[[placeholder]]</span>
                 </template>
             </div>
-            <ol class="options-list js-users-list">
+            <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>
+                    <li class="show" data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>
                 </template>
             </ol>
         </div>

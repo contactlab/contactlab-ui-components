@@ -21,9 +21,9 @@
             on-focus="_handleFocusAndBlur" on-blur="_handleFocusAndBlur"
             on-keyup="_searchElement" placeholder="[[placeholder]]" value="{{value.label}}">
 
-            <ol class="js-users-list" id="list">
+            <ol class="options-list" id="list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li on-tap="_selectElement" data-value$="[[item.value]]">[[item.label]]</li>
+                    <li class="show" on-tap="_selectElement" data-value$="[[item.value]]">[[item.label]]</li>
                 </template>
                 <div class="noResults hide" id="noRes">[[noResults]]</div>
             </ol>
