@@ -74,6 +74,7 @@ class DropdownClab{
 		this.addEventListener('mouseup', (evt)=>{ this.dontHide=false; });
 
 		if(this.selected!=undefined) this._setValue(this.selected);
+		
 	}
 
 
