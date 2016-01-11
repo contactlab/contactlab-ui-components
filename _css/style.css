@@ -67,7 +67,7 @@ table {
   box-sizing: border-box;
 }
 
-.faster-transition, .alert.primary .btn, .alert.secondary .btn, .alert.info .btn, .alert.success .btn, .alert.warning .btn, .alert.error .btn, .btn, .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .btn.flat, .btn.full, .btn:active, .btn.active, .btn.primary:active, .btn.primary.active, .btn.secondary:active, .btn.secondary.active, .btn.info:active, .btn.info.active, .btn.success:active, .btn.success.active, .btn.warning:active, .btn.warning.active, .btn.error:active, .btn.error.active, .floating-button, .floating-button.primary:active, .floating-button.secondary:active, .floating-button.info:active, .floating-button.success:active, .floating-button.warning:active, .floating-button.error:active, .action-bar-button, #main-sidebar #reduce a, #secondary-sidebar .user-actions .action, .back, .action-bar-button:active, .back:active, .user-bar .picture img {
+.faster-transition, .alert.primary .btn, .alert.secondary .btn, .alert.info .btn, .alert.success .btn, .alert.warning .btn, .alert.error .btn, .btn, .select-button .options-list-wrapper input[type="text"].options-list-filter, .btn.flat, .btn.full, .btn:active, .btn.active, .btn.primary:active, .btn.primary.active, .btn.secondary:active, .btn.secondary.active, .btn.info:active, .btn.info.active, .btn.success:active, .btn.success.active, .btn.warning:active, .btn.warning.active, .btn.error:active, .btn.error.active, .floating-button, .floating-button.primary:active, .floating-button.secondary:active, .floating-button.info:active, .floating-button.success:active, .floating-button.warning:active, .floating-button.error:active, .action-bar-button, #main-sidebar #reduce a, #secondary-sidebar .user-actions .action, .back, .action-bar-button:active, .back:active, .user-bar .picture img {
   -moz-transition: all 50ms ease-in-out;
   -o-transition: all 50ms ease-in-out;
   -webkit-transition: all 50ms ease-in-out;
@@ -102,7 +102,7 @@ input[type="text"]:focus,
 input[type="time"]:focus,
 input[type="url"]:focus,
 input[type="week"]:focus,
-textarea:focus, select[multiple], .elekti-wrapper:after, .elekti-wrapper.active:after, .elekti-wrapper .js-users-list {
+textarea:focus, select[multiple], .options-list-wrapper:after, .options-list-wrapper.active:after, .options-list-wrapper .options-list {
   -moz-transition: all 100ms ease-in-out;
   -o-transition: all 100ms ease-in-out;
   -webkit-transition: all 100ms ease-in-out;
@@ -130,7 +130,7 @@ textarea:focus, select[multiple], .elekti-wrapper:after, .elekti-wrapper.active:
   box-shadow: 0 0 0 0 transparent !important;
 }
 
-.depth-1, .card, .modal, .accordion .accordion-block.active, .elekti-wrapper .js-users-list, #secondary-sidebar, #filter-maker .rules-summary .rule-block.active {
+.depth-1, .card, .modal, .accordion .accordion-block.active, .options-list-wrapper .options-list, #secondary-sidebar, #filter-maker .rules-summary .rule-block.active {
   -moz-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
   -webkit-box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
   box-shadow: 0 2px 5px 0 rgba(0, 0, 0, 0.16) !important;
@@ -777,28 +777,28 @@ td {
 .alert.primary a:hover {
   color: #084d1f;
 }
-.alert.primary .btn, .alert.primary .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.primary input[type="text"].js-users-list-filter {
+.alert.primary .btn, .alert.primary .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.primary input[type="text"].options-list-filter {
   border: 1px solid #0e8636 !important;
   color: #0e8636 !important;
 }
-.alert.primary .btn:hover, .alert.primary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.primary input[type="text"].js-users-list-filter:hover {
+.alert.primary .btn:hover, .alert.primary .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.primary input[type="text"].options-list-filter:hover {
   border-color: #11a341 !important;
   color: #11a341 !important;
 }
-.alert.primary .btn:focus, .alert.primary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.primary input[type="text"].js-users-list-filter:focus {
+.alert.primary .btn:focus, .alert.primary .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.primary input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.primary .btn:active, .alert.primary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.primary input[type="text"].js-users-list-filter:active {
+.alert.primary .btn:active, .alert.primary .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.primary input[type="text"].options-list-filter:active {
   border-color: #14C04D !important;
   background: #14C04D !important;
   color: #FFFFFF !important;
 }
-.alert.primary .btn.flat, .alert.primary .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.primary input.flat[type="text"].js-users-list-filter {
+.alert.primary .btn.flat, .alert.primary .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.primary input.flat[type="text"].options-list-filter {
   color: #0e8636;
   background: transparent;
   border-color: transparent;
 }
-.alert.primary .btn.flat:active, .alert.primary .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.primary input.flat[type="text"].js-users-list-filter:active {
+.alert.primary .btn.flat:active, .alert.primary .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.primary input.flat[type="text"].options-list-filter:active {
   background: #14C04D;
   color: #FFFFFF;
 }
@@ -819,28 +819,28 @@ td {
 .alert.secondary a:hover {
   color: #384e1e;
 }
-.alert.secondary .btn, .alert.secondary .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.secondary input[type="text"].js-users-list-filter {
+.alert.secondary .btn, .alert.secondary .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.secondary input[type="text"].options-list-filter {
   border: 1px solid #618934 !important;
   color: #618934 !important;
 }
-.alert.secondary .btn:hover, .alert.secondary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.secondary input[type="text"].js-users-list-filter:hover {
+.alert.secondary .btn:hover, .alert.secondary .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.secondary input[type="text"].options-list-filter:hover {
   border-color: #76a63f !important;
   color: #76a63f !important;
 }
-.alert.secondary .btn:focus, .alert.secondary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.secondary input[type="text"].js-users-list-filter:focus {
+.alert.secondary .btn:focus, .alert.secondary .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.secondary input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.secondary .btn:active, .alert.secondary .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.secondary input[type="text"].js-users-list-filter:active {
+.alert.secondary .btn:active, .alert.secondary .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.secondary input[type="text"].options-list-filter:active {
   border-color: #8bc34a !important;
   background: #8bc34a !important;
   color: #FFFFFF !important;
 }
-.alert.secondary .btn.flat, .alert.secondary .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.secondary input.flat[type="text"].js-users-list-filter {
+.alert.secondary .btn.flat, .alert.secondary .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.secondary input.flat[type="text"].options-list-filter {
   color: #618934;
   background: transparent;
   border-color: transparent;
 }
-.alert.secondary .btn.flat:active, .alert.secondary .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.secondary input.flat[type="text"].js-users-list-filter:active {
+.alert.secondary .btn.flat:active, .alert.secondary .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.secondary input.flat[type="text"].options-list-filter:active {
   background: #8bc34a;
   color: #FFFFFF;
 }
@@ -861,28 +861,28 @@ td {
 .alert.info a:hover {
   color: #2a5060;
 }
-.alert.info .btn, .alert.info .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.info input[type="text"].js-users-list-filter {
+.alert.info .btn, .alert.info .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.info input[type="text"].options-list-filter {
   border: 1px solid #4a8ba9 !important;
   color: #4a8ba9 !important;
 }
-.alert.info .btn:hover, .alert.info .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.info input[type="text"].js-users-list-filter:hover {
+.alert.info .btn:hover, .alert.info .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.info input[type="text"].options-list-filter:hover {
   border-color: #5aa9cd !important;
   color: #5aa9cd !important;
 }
-.alert.info .btn:focus, .alert.info .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.info input[type="text"].js-users-list-filter:focus {
+.alert.info .btn:focus, .alert.info .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.info input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.info .btn:active, .alert.info .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.info input[type="text"].js-users-list-filter:active {
+.alert.info .btn:active, .alert.info .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.info input[type="text"].options-list-filter:active {
   border-color: #6ac7f1 !important;
   background: #6ac7f1 !important;
   color: #FFFFFF !important;
 }
-.alert.info .btn.flat, .alert.info .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.info input.flat[type="text"].js-users-list-filter {
+.alert.info .btn.flat, .alert.info .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.info input.flat[type="text"].options-list-filter {
   color: #4a8ba9;
   background: transparent;
   border-color: transparent;
 }
-.alert.info .btn.flat:active, .alert.info .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.info input.flat[type="text"].js-users-list-filter:active {
+.alert.info .btn.flat:active, .alert.info .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.info input.flat[type="text"].options-list-filter:active {
   background: #6ac7f1;
   color: #FFFFFF;
 }
@@ -903,28 +903,28 @@ td {
 .alert.success a:hover {
   color: #27492a;
 }
-.alert.success .btn, .alert.success .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.success input[type="text"].js-users-list-filter {
+.alert.success .btn, .alert.success .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.success input[type="text"].options-list-filter {
   border: 1px solid #44804a !important;
   color: #44804a !important;
 }
-.alert.success .btn:hover, .alert.success .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.success input[type="text"].js-users-list-filter:hover {
+.alert.success .btn:hover, .alert.success .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.success input[type="text"].options-list-filter:hover {
   border-color: #529c59 !important;
   color: #529c59 !important;
 }
-.alert.success .btn:focus, .alert.success .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.success input[type="text"].js-users-list-filter:focus {
+.alert.success .btn:focus, .alert.success .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.success input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.success .btn:active, .alert.success .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.success input[type="text"].js-users-list-filter:active {
+.alert.success .btn:active, .alert.success .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.success input[type="text"].options-list-filter:active {
   border-color: #61b769 !important;
   background: #61b769 !important;
   color: #FFFFFF !important;
 }
-.alert.success .btn.flat, .alert.success .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.success input.flat[type="text"].js-users-list-filter {
+.alert.success .btn.flat, .alert.success .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.success input.flat[type="text"].options-list-filter {
   color: #44804a;
   background: transparent;
   border-color: transparent;
 }
-.alert.success .btn.flat:active, .alert.success .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.success input.flat[type="text"].js-users-list-filter:active {
+.alert.success .btn.flat:active, .alert.success .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.success input.flat[type="text"].options-list-filter:active {
   background: #61b769;
   color: #FFFFFF;
 }
@@ -945,28 +945,28 @@ td {
 .alert.warning a:hover {
   color: #652b18;
 }
-.alert.warning .btn, .alert.warning .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.warning input[type="text"].js-users-list-filter {
+.alert.warning .btn, .alert.warning .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.warning input[type="text"].options-list-filter {
   border: 1px solid #b14b2a !important;
   color: #b14b2a !important;
 }
-.alert.warning .btn:hover, .alert.warning .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.warning input[type="text"].js-users-list-filter:hover {
+.alert.warning .btn:hover, .alert.warning .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.warning input[type="text"].options-list-filter:hover {
   border-color: #d75b33 !important;
   color: #d75b33 !important;
 }
-.alert.warning .btn:focus, .alert.warning .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.warning input[type="text"].js-users-list-filter:focus {
+.alert.warning .btn:focus, .alert.warning .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.warning input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.warning .btn:active, .alert.warning .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.warning input[type="text"].js-users-list-filter:active {
+.alert.warning .btn:active, .alert.warning .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.warning input[type="text"].options-list-filter:active {
   border-color: #fd6b3c !important;
   background: #fd6b3c !important;
   color: #FFFFFF !important;
 }
-.alert.warning .btn.flat, .alert.warning .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.warning input.flat[type="text"].js-users-list-filter {
+.alert.warning .btn.flat, .alert.warning .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.warning input.flat[type="text"].options-list-filter {
   color: #b14b2a;
   background: transparent;
   border-color: transparent;
 }
-.alert.warning .btn.flat:active, .alert.warning .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.warning input.flat[type="text"].js-users-list-filter:active {
+.alert.warning .btn.flat:active, .alert.warning .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.warning input.flat[type="text"].options-list-filter:active {
   background: #fd6b3c;
   color: #FFFFFF;
 }
@@ -987,28 +987,28 @@ td {
 .alert.error a:hover {
   color: #61241f;
 }
-.alert.error .btn, .alert.error .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.error input[type="text"].js-users-list-filter {
+.alert.error .btn, .alert.error .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.error input[type="text"].options-list-filter {
   border: 1px solid #aa3e37 !important;
   color: #aa3e37 !important;
 }
-.alert.error .btn:hover, .alert.error .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover, .select-button .elekti-wrapper .alert.error input[type="text"].js-users-list-filter:hover {
+.alert.error .btn:hover, .alert.error .select-button .options-list-wrapper input[type="text"].options-list-filter:hover, .select-button .options-list-wrapper .alert.error input[type="text"].options-list-filter:hover {
   border-color: #cf4c42 !important;
   color: #cf4c42 !important;
 }
-.alert.error .btn:focus, .alert.error .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus, .select-button .elekti-wrapper .alert.error input[type="text"].js-users-list-filter:focus {
+.alert.error .btn:focus, .alert.error .select-button .options-list-wrapper input[type="text"].options-list-filter:focus, .select-button .options-list-wrapper .alert.error input[type="text"].options-list-filter:focus {
   background: transparent;
 }
-.alert.error .btn:active, .alert.error .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.error input[type="text"].js-users-list-filter:active {
+.alert.error .btn:active, .alert.error .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.error input[type="text"].options-list-filter:active {
   border-color: #f3594e !important;
   background: #f3594e !important;
   color: #FFFFFF !important;
 }
-.alert.error .btn.flat, .alert.error .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter, .select-button .elekti-wrapper .alert.error input.flat[type="text"].js-users-list-filter {
+.alert.error .btn.flat, .alert.error .select-button .options-list-wrapper input.flat[type="text"].options-list-filter, .select-button .options-list-wrapper .alert.error input.flat[type="text"].options-list-filter {
   color: #aa3e37;
   background: transparent;
   border-color: transparent;
 }
-.alert.error .btn.flat:active, .alert.error .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .alert.error input.flat[type="text"].js-users-list-filter:active {
+.alert.error .btn.flat:active, .alert.error .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .select-button .options-list-wrapper .alert.error input.flat[type="text"].options-list-filter:active {
   background: #f3594e;
   color: #FFFFFF;
 }
@@ -1278,7 +1278,7 @@ td {
   padding: 10px;
   text-align: right;
 }
-.card .card-actions .btn, .modal .card-actions .btn, .modal .modal-actions .btn, .card .card-actions .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .card .card-actions input[type="text"].js-users-list-filter, .modal .card-actions .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .modal .card-actions input[type="text"].js-users-list-filter, .modal .modal-actions .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .modal .modal-actions input[type="text"].js-users-list-filter {
+.card .card-actions .btn, .modal .card-actions .btn, .modal .modal-actions .btn, .card .card-actions .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .card .card-actions input[type="text"].options-list-filter, .modal .card-actions .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .modal .card-actions input[type="text"].options-list-filter, .modal .modal-actions .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .modal .modal-actions input[type="text"].options-list-filter {
   margin: 0;
 }
 
@@ -3133,7 +3133,7 @@ select[multiple] {
   font-size: 14px;
 }
 
-.elekti-wrapper {
+.options-list-wrapper {
   clear: both;
   width: 100%;
   float: left;
@@ -3141,7 +3141,7 @@ select[multiple] {
   margin-right: 0;
   position: relative;
 }
-.elekti-wrapper:after {
+.options-list-wrapper:after {
   font-family: 'contactlab-icons';
   content: "\e60c";
   position: absolute;
@@ -3150,59 +3150,69 @@ select[multiple] {
   line-height: 1;
   font-size: 12px;
 }
-.elekti-wrapper.active:after {
+.options-list-wrapper.active:after {
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.elekti-wrapper input[type="text"].js-users-list-filter {
+.options-list-wrapper input[type="text"].options-list-filter {
   padding-right: 25px;
 }
-.elekti-wrapper .js-users-list-filter-message,
-.elekti-wrapper .js-users-list-filter-counter,
-.elekti-wrapper .js-users-list {
+.options-list-wrapper .options-list-filter-message,
+.options-list-wrapper .options-list-filter-counter{
   display: none;
 }
-.elekti-wrapper .filter-hidden {
+
+.options-list-wrapper .filter-hidden {
   opacity: .1;
 }
-.elekti-wrapper .js-users-list {
+
+.options-list-wrapper .options-list {
   position: absolute;
   z-index: 1;
   width: 100%;
   top: 37px;
   max-height: 200px;
+  display: none;
   overflow: auto;
   background-color: #FFFFFF;
 }
-.elekti-wrapper .js-users-list li,
-.elekti-wrapper .js-users-list .noResults {
-  background-color: white;
+.options-list-wrapper .options-list.hidden{
   display: block;
+  opacity: 0;
+}
+.options-list-wrapper .options-list.active{
+  display: block;
+  opacity: 1;
+}
+.options-list-wrapper .options-list li,
+.options-list-wrapper .options-list .noResults {
+  background-color: white;
+  display: none;
   padding: 10px;
   margin: 0;
   cursor: pointer;
 }
-.elekti-wrapper .js-users-list li.hide,
-.elekti-wrapper .js-users-list .noResults.hide {
-  display: none;
-}
-.elekti-wrapper .js-users-list li.selected,
-.elekti-wrapper .js-users-list .noResults.selected {
-  color: #0072bc;
-}
-.elekti-wrapper .js-users-list.visible {
+.options-list-wrapper .options-list li.show,
+.options-list-wrapper .options-list .noResults.show {
   display: block;
 }
-.elekti-wrapper .js-users-list .noResults {
+.options-list-wrapper .options-list li.selected,
+.options-list-wrapper .options-list .noResults.selected {
+  color: #0072bc;
+}
+.options-list-wrapper .options-list.visible {
+  display: block;
+}
+.options-list-wrapper .options-list .noResults {
   cursor: initial;
 }
 
-.select-button .elekti-wrapper {
+.select-button .options-list-wrapper {
   width: auto;
 }
-.select-button .elekti-wrapper input[type="text"].js-users-list-filter {
+.select-button .options-list-wrapper input[type="text"].options-list-filter {
   width: auto;
 }
 
@@ -3210,7 +3220,7 @@ button:disabled {
   cursor: not-allowed;
 }
 
-.alert.primary .btn, .alert.secondary .btn, .alert.info .btn, .alert.success .btn, .alert.warning .btn, .alert.error .btn, .btn, .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .btn.flat, .btn.full {
+.alert.primary .btn, .alert.secondary .btn, .alert.info .btn, .alert.success .btn, .alert.warning .btn, .alert.error .btn, .btn, .select-button .options-list-wrapper input[type="text"].options-list-filter, .btn.flat, .btn.full {
   margin: 0 3px;
   padding: 10px 20px;
   cursor: pointer;
@@ -3220,16 +3230,16 @@ button:disabled {
   font-size: 14px;
   font-family: "Open Sans", sans-serif;
 }
-.alert.primary .btn:first-of-type, .alert.secondary .btn:first-of-type, .alert.info .btn:first-of-type, .alert.success .btn:first-of-type, .alert.warning .btn:first-of-type, .alert.error .btn:first-of-type, .btn:first-of-type, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:first-of-type {
+.alert.primary .btn:first-of-type, .alert.secondary .btn:first-of-type, .alert.info .btn:first-of-type, .alert.success .btn:first-of-type, .alert.warning .btn:first-of-type, .alert.error .btn:first-of-type, .btn:first-of-type, .select-button .options-list-wrapper input[type="text"].options-list-filter:first-of-type {
   margin-left: 0;
 }
-.alert.primary .btn:last-of-type, .alert.secondary .btn:last-of-type, .alert.info .btn:last-of-type, .alert.success .btn:last-of-type, .alert.warning .btn:last-of-type, .alert.error .btn:last-of-type, .btn:last-of-type, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:last-of-type {
+.alert.primary .btn:last-of-type, .alert.secondary .btn:last-of-type, .alert.info .btn:last-of-type, .alert.success .btn:last-of-type, .alert.warning .btn:last-of-type, .alert.error .btn:last-of-type, .btn:last-of-type, .select-button .options-list-wrapper input[type="text"].options-list-filter:last-of-type {
   margin-right: 0;
 }
-.alert.primary .btn:focus, .alert.secondary .btn:focus, .alert.info .btn:focus, .alert.success .btn:focus, .alert.warning .btn:focus, .alert.error .btn:focus, .btn:focus, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:focus {
+.alert.primary .btn:focus, .alert.secondary .btn:focus, .alert.info .btn:focus, .alert.success .btn:focus, .alert.warning .btn:focus, .alert.error .btn:focus, .btn:focus, .select-button .options-list-wrapper input[type="text"].options-list-filter:focus {
   outline: none;
 }
-.alert.primary .btn .icon, .alert.secondary .btn .icon, .alert.info .btn .icon, .alert.success .btn .icon, .alert.warning .btn .icon, .alert.error .btn .icon, .btn .icon, .select-button .elekti-wrapper input[type="text"].js-users-list-filter .icon {
+.alert.primary .btn .icon, .alert.secondary .btn .icon, .alert.info .btn .icon, .alert.success .btn .icon, .alert.warning .btn .icon, .alert.error .btn .icon, .btn .icon, .select-button .options-list-wrapper input[type="text"].options-list-filter .icon {
   margin-right: 10px;
   display: inline-block;
   font-size: 10px;
@@ -3241,135 +3251,135 @@ button:disabled {
   -webkit-transform-origin: center;
   transform-origin: center;
 }
-.alert.primary .small.btn, .alert.secondary .small.btn, .alert.info .small.btn, .alert.success .small.btn, .alert.warning .small.btn, .alert.error .small.btn, .small.btn, .select-button .elekti-wrapper input.small[type="text"].js-users-list-filter, .buttons-group.small .btn, .buttons-group.small .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small input[type="text"].js-users-list-filter {
+.alert.primary .small.btn, .alert.secondary .small.btn, .alert.info .small.btn, .alert.success .small.btn, .alert.warning .small.btn, .alert.error .small.btn, .small.btn, .select-button .options-list-wrapper input.small[type="text"].options-list-filter, .buttons-group.small .btn, .buttons-group.small .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small input[type="text"].options-list-filter {
   padding: 6.66667px 10px;
 }
 
-.btn, .select-button .elekti-wrapper input[type="text"].js-users-list-filter {
+.btn, .select-button .options-list-wrapper input[type="text"].options-list-filter {
   line-height: 1;
   display: inline-block;
   vertical-align: middle;
   text-align: center;
 }
-.btn.block, .select-button .elekti-wrapper input.block[type="text"].js-users-list-filter {
+.btn.block, .select-button .options-list-wrapper input.block[type="text"].options-list-filter {
   clear: both;
   width: 100%;
   float: left;
   margin-left: 0;
   margin-right: 0;
 }
-.btn:hover, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:hover {
+.btn:hover, .select-button .options-list-wrapper input[type="text"].options-list-filter:hover {
   border-color: #4d5458;
   color: #4d5458;
 }
-.btn:disabled, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:disabled {
+.btn:disabled, .select-button .options-list-wrapper input[type="text"].options-list-filter:disabled {
   border-color: #E0E0E0 !important;
   color: #E0E0E0 !important;
   background-color: transparent;
 }
-.btn:active, .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .btn.active, .select-button .elekti-wrapper input.active[type="text"].js-users-list-filter {
+.btn:active, .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .btn.active, .select-button .options-list-wrapper input.active[type="text"].options-list-filter {
   border-color: #353A3D;
   color: #FFFFFF;
   background-color: #353A3D;
 }
-.btn.primary, .select-button .elekti-wrapper input.primary[type="text"].js-users-list-filter {
+.btn.primary, .select-button .options-list-wrapper input.primary[type="text"].options-list-filter {
   border-color: #14C04D;
   color: #14C04D;
 }
-.btn.primary:hover, .select-button .elekti-wrapper input.primary[type="text"].js-users-list-filter:hover {
+.btn.primary:hover, .select-button .options-list-wrapper input.primary[type="text"].options-list-filter:hover {
   border-color: #1fe862;
   color: #1fe862;
 }
-.btn.primary:focus, .select-button .elekti-wrapper input.primary[type="text"].js-users-list-filter:focus {
+.btn.primary:focus, .select-button .options-list-wrapper input.primary[type="text"].options-list-filter:focus {
   background-color: #14C04D, #FFFFFF;
 }
-.btn.primary:active, .select-button .elekti-wrapper input.primary[type="text"].js-users-list-filter:active, .btn.primary.active, .select-button .elekti-wrapper input.primary.active[type="text"].js-users-list-filter {
+.btn.primary:active, .select-button .options-list-wrapper input.primary[type="text"].options-list-filter:active, .btn.primary.active, .select-button .options-list-wrapper input.primary.active[type="text"].options-list-filter {
   border-color: #14C04D;
   color: #FFFFFF;
   background-color: #0072bc;
 }
-.btn.secondary, .select-button .elekti-wrapper input.secondary[type="text"].js-users-list-filter {
+.btn.secondary, .select-button .options-list-wrapper input.secondary[type="text"].options-list-filter {
   border-color: #8bc34a;
   color: #8bc34a;
 }
-.btn.secondary:hover, .select-button .elekti-wrapper input.secondary[type="text"].js-users-list-filter:hover {
+.btn.secondary:hover, .select-button .options-list-wrapper input.secondary[type="text"].options-list-filter:hover {
   border-color: #a4d070;
   color: #a4d070;
 }
-.btn.secondary:focus, .select-button .elekti-wrapper input.secondary[type="text"].js-users-list-filter:focus {
+.btn.secondary:focus, .select-button .options-list-wrapper input.secondary[type="text"].options-list-filter:focus {
   background-color: #8bc34a, #FFFFFF;
 }
-.btn.secondary:active, .select-button .elekti-wrapper input.secondary[type="text"].js-users-list-filter:active, .btn.secondary.active, .select-button .elekti-wrapper input.secondary.active[type="text"].js-users-list-filter {
+.btn.secondary:active, .select-button .options-list-wrapper input.secondary[type="text"].options-list-filter:active, .btn.secondary.active, .select-button .options-list-wrapper input.secondary.active[type="text"].options-list-filter {
   border-color: #8bc34a;
   color: #FFFFFF;
   background-color: #4d9cd0;
 }
-.btn.info, .select-button .elekti-wrapper input.info[type="text"].js-users-list-filter {
+.btn.info, .select-button .options-list-wrapper input.info[type="text"].options-list-filter {
   border-color: #6ac7f1;
   color: #6ac7f1;
 }
-.btn.info:hover, .select-button .elekti-wrapper input.info[type="text"].js-users-list-filter:hover {
+.btn.info:hover, .select-button .options-list-wrapper input.info[type="text"].options-list-filter:hover {
   border-color: #99d9f5;
   color: #99d9f5;
 }
-.btn.info:focus, .select-button .elekti-wrapper input.info[type="text"].js-users-list-filter:focus {
+.btn.info:focus, .select-button .options-list-wrapper input.info[type="text"].options-list-filter:focus {
   background-color: #6ac7f1, #FFFFFF;
 }
-.btn.info:active, .select-button .elekti-wrapper input.info[type="text"].js-users-list-filter:active, .btn.info.active, .select-button .elekti-wrapper input.info.active[type="text"].js-users-list-filter {
+.btn.info:active, .select-button .options-list-wrapper input.info[type="text"].options-list-filter:active, .btn.info.active, .select-button .options-list-wrapper input.info.active[type="text"].options-list-filter {
   border-color: #6ac7f1;
   color: #FFFFFF;
   background-color: #6ac7f1;
 }
-.btn.success, .select-button .elekti-wrapper input.success[type="text"].js-users-list-filter {
+.btn.success, .select-button .options-list-wrapper input.success[type="text"].options-list-filter {
   border-color: #61b769;
   color: #61b769;
 }
-.btn.success:hover, .select-button .elekti-wrapper input.success[type="text"].js-users-list-filter:hover {
+.btn.success:hover, .select-button .options-list-wrapper input.success[type="text"].options-list-filter:hover {
   border-color: #84c78a;
   color: #84c78a;
 }
-.btn.success:focus, .select-button .elekti-wrapper input.success[type="text"].js-users-list-filter:focus {
+.btn.success:focus, .select-button .options-list-wrapper input.success[type="text"].options-list-filter:focus {
   background-color: #61b769, #FFFFFF;
 }
-.btn.success:active, .select-button .elekti-wrapper input.success[type="text"].js-users-list-filter:active, .btn.success.active, .select-button .elekti-wrapper input.success.active[type="text"].js-users-list-filter {
+.btn.success:active, .select-button .options-list-wrapper input.success[type="text"].options-list-filter:active, .btn.success.active, .select-button .options-list-wrapper input.success.active[type="text"].options-list-filter {
   border-color: #61b769;
   color: #FFFFFF;
   background-color: #61b769;
 }
-.btn.warning, .select-button .elekti-wrapper input.warning[type="text"].js-users-list-filter {
+.btn.warning, .select-button .options-list-wrapper input.warning[type="text"].options-list-filter {
   border-color: #fd6b3c;
   color: #fd6b3c;
 }
-.btn.warning:hover, .select-button .elekti-wrapper input.warning[type="text"].js-users-list-filter:hover {
+.btn.warning:hover, .select-button .options-list-wrapper input.warning[type="text"].options-list-filter:hover {
   border-color: #fe916e;
   color: #fe916e;
 }
-.btn.warning:focus, .select-button .elekti-wrapper input.warning[type="text"].js-users-list-filter:focus {
+.btn.warning:focus, .select-button .options-list-wrapper input.warning[type="text"].options-list-filter:focus {
   background-color: #fd6b3c, #FFFFFF;
 }
-.btn.warning:active, .select-button .elekti-wrapper input.warning[type="text"].js-users-list-filter:active, .btn.warning.active, .select-button .elekti-wrapper input.warning.active[type="text"].js-users-list-filter {
+.btn.warning:active, .select-button .options-list-wrapper input.warning[type="text"].options-list-filter:active, .btn.warning.active, .select-button .options-list-wrapper input.warning.active[type="text"].options-list-filter {
   border-color: #fd6b3c;
   color: #FFFFFF;
   background-color: #fd6b3c;
 }
-.btn.error, .select-button .elekti-wrapper input.error[type="text"].js-users-list-filter {
+.btn.error, .select-button .options-list-wrapper input.error[type="text"].options-list-filter {
   border-color: #f3594e;
   color: #f3594e;
 }
-.btn.error:hover, .select-button .elekti-wrapper input.error[type="text"].js-users-list-filter:hover {
+.btn.error:hover, .select-button .options-list-wrapper input.error[type="text"].options-list-filter:hover {
   border-color: #f6867e;
   color: #f6867e;
 }
-.btn.error:focus, .select-button .elekti-wrapper input.error[type="text"].js-users-list-filter:focus {
+.btn.error:focus, .select-button .options-list-wrapper input.error[type="text"].options-list-filter:focus {
   background-color: #f3594e, #FFFFFF;
 }
-.btn.error:active, .select-button .elekti-wrapper input.error[type="text"].js-users-list-filter:active, .btn.error.active, .select-button .elekti-wrapper input.error.active[type="text"].js-users-list-filter {
+.btn.error:active, .select-button .options-list-wrapper input.error[type="text"].options-list-filter:active, .btn.error.active, .select-button .options-list-wrapper input.error.active[type="text"].options-list-filter {
   border-color: #f3594e;
   color: #FFFFFF;
   background-color: #f3594e;
 }
 
-.btn.flat, .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter {
+.btn.flat, .select-button .options-list-wrapper input.flat[type="text"].options-list-filter {
   border: 1px solid transparent;
   background: transparent;
   color: #353A3D;
@@ -3378,92 +3388,92 @@ button:disabled {
   vertical-align: middle;
   text-align: center;
 }
-.btn.flat:active, .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:active, .btn.flat.active, .select-button .elekti-wrapper input.flat.active[type="text"].js-users-list-filter {
+.btn.flat:active, .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:active, .btn.flat.active, .select-button .options-list-wrapper input.flat.active[type="text"].options-list-filter {
   background: #353A3D;
   color: #FFFFFF;
 }
-.btn.flat:disabled, .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:disabled {
+.btn.flat:disabled, .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:disabled {
   border-color: transparent !important;
 }
-.btn.flat.primary, .select-button .elekti-wrapper input.flat.primary[type="text"].js-users-list-filter {
+.btn.flat.primary, .select-button .options-list-wrapper input.flat.primary[type="text"].options-list-filter {
   background-color: transparent;
   color: #0072bc;
 }
-.btn.flat.primary:hover, .select-button .elekti-wrapper input.flat.primary[type="text"].js-users-list-filter:hover {
+.btn.flat.primary:hover, .select-button .options-list-wrapper input.flat.primary[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.primary:active, .select-button .elekti-wrapper input.flat.primary[type="text"].js-users-list-filter:active, .btn.flat.primary.active, .select-button .elekti-wrapper input.flat.primary.active[type="text"].js-users-list-filter {
+.btn.flat.primary:active, .select-button .options-list-wrapper input.flat.primary[type="text"].options-list-filter:active, .btn.flat.primary.active, .select-button .options-list-wrapper input.flat.primary.active[type="text"].options-list-filter {
   background-color: #14C04D;
   border-color: #14C04D;
   color: #FFFFFF;
 }
-.btn.flat.secondary, .select-button .elekti-wrapper input.flat.secondary[type="text"].js-users-list-filter {
+.btn.flat.secondary, .select-button .options-list-wrapper input.flat.secondary[type="text"].options-list-filter {
   background-color: transparent;
   color: #4d9cd0;
 }
-.btn.flat.secondary:hover, .select-button .elekti-wrapper input.flat.secondary[type="text"].js-users-list-filter:hover {
+.btn.flat.secondary:hover, .select-button .options-list-wrapper input.flat.secondary[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.secondary:active, .select-button .elekti-wrapper input.flat.secondary[type="text"].js-users-list-filter:active, .btn.flat.secondary.active, .select-button .elekti-wrapper input.flat.secondary.active[type="text"].js-users-list-filter {
+.btn.flat.secondary:active, .select-button .options-list-wrapper input.flat.secondary[type="text"].options-list-filter:active, .btn.flat.secondary.active, .select-button .options-list-wrapper input.flat.secondary.active[type="text"].options-list-filter {
   background-color: #8bc34a;
   border-color: #8bc34a;
   color: #FFFFFF;
 }
-.btn.flat.info, .select-button .elekti-wrapper input.flat.info[type="text"].js-users-list-filter {
+.btn.flat.info, .select-button .options-list-wrapper input.flat.info[type="text"].options-list-filter {
   background-color: transparent;
   color: #6ac7f1;
 }
-.btn.flat.info:hover, .select-button .elekti-wrapper input.flat.info[type="text"].js-users-list-filter:hover {
+.btn.flat.info:hover, .select-button .options-list-wrapper input.flat.info[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.info:active, .select-button .elekti-wrapper input.flat.info[type="text"].js-users-list-filter:active, .btn.flat.info.active, .select-button .elekti-wrapper input.flat.info.active[type="text"].js-users-list-filter {
+.btn.flat.info:active, .select-button .options-list-wrapper input.flat.info[type="text"].options-list-filter:active, .btn.flat.info.active, .select-button .options-list-wrapper input.flat.info.active[type="text"].options-list-filter {
   background-color: #6ac7f1;
   border-color: #6ac7f1;
   color: #FFFFFF;
 }
-.btn.flat.success, .select-button .elekti-wrapper input.flat.success[type="text"].js-users-list-filter {
+.btn.flat.success, .select-button .options-list-wrapper input.flat.success[type="text"].options-list-filter {
   background-color: transparent;
   color: #61b769;
 }
-.btn.flat.success:hover, .select-button .elekti-wrapper input.flat.success[type="text"].js-users-list-filter:hover {
+.btn.flat.success:hover, .select-button .options-list-wrapper input.flat.success[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.success:active, .select-button .elekti-wrapper input.flat.success[type="text"].js-users-list-filter:active, .btn.flat.success.active, .select-button .elekti-wrapper input.flat.success.active[type="text"].js-users-list-filter {
+.btn.flat.success:active, .select-button .options-list-wrapper input.flat.success[type="text"].options-list-filter:active, .btn.flat.success.active, .select-button .options-list-wrapper input.flat.success.active[type="text"].options-list-filter {
   background-color: #61b769;
   border-color: #61b769;
   color: #FFFFFF;
 }
-.btn.flat.warning, .select-button .elekti-wrapper input.flat.warning[type="text"].js-users-list-filter {
+.btn.flat.warning, .select-button .options-list-wrapper input.flat.warning[type="text"].options-list-filter {
   background-color: transparent;
   color: #fd6b3c;
 }
-.btn.flat.warning:hover, .select-button .elekti-wrapper input.flat.warning[type="text"].js-users-list-filter:hover {
+.btn.flat.warning:hover, .select-button .options-list-wrapper input.flat.warning[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.warning:active, .select-button .elekti-wrapper input.flat.warning[type="text"].js-users-list-filter:active, .btn.flat.warning.active, .select-button .elekti-wrapper input.flat.warning.active[type="text"].js-users-list-filter {
+.btn.flat.warning:active, .select-button .options-list-wrapper input.flat.warning[type="text"].options-list-filter:active, .btn.flat.warning.active, .select-button .options-list-wrapper input.flat.warning.active[type="text"].options-list-filter {
   background-color: #fd6b3c;
   border-color: #fd6b3c;
   color: #FFFFFF;
 }
-.btn.flat.error, .select-button .elekti-wrapper input.flat.error[type="text"].js-users-list-filter {
+.btn.flat.error, .select-button .options-list-wrapper input.flat.error[type="text"].options-list-filter {
   background-color: transparent;
   color: #f3594e;
 }
-.btn.flat.error:hover, .select-button .elekti-wrapper input.flat.error[type="text"].js-users-list-filter:hover {
+.btn.flat.error:hover, .select-button .options-list-wrapper input.flat.error[type="text"].options-list-filter:hover {
   border-color: transparent;
 }
-.btn.flat.error:active, .select-button .elekti-wrapper input.flat.error[type="text"].js-users-list-filter:active, .btn.flat.error.active, .select-button .elekti-wrapper input.flat.error.active[type="text"].js-users-list-filter {
+.btn.flat.error:active, .select-button .options-list-wrapper input.flat.error[type="text"].options-list-filter:active, .btn.flat.error.active, .select-button .options-list-wrapper input.flat.error.active[type="text"].options-list-filter {
   background-color: #f3594e;
   border-color: #f3594e;
   color: #FFFFFF;
 }
-.btn.flat:disabled, .select-button .elekti-wrapper input.flat[type="text"].js-users-list-filter:disabled {
+.btn.flat:disabled, .select-button .options-list-wrapper input.flat[type="text"].options-list-filter:disabled {
   background: transparent;
   color: #E0E0E0;
   cursor: not-allowed;
 }
 
-.btn.full, .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter {
+.btn.full, .select-button .options-list-wrapper input.full[type="text"].options-list-filter {
   line-height: 1;
   display: inline-block;
   vertical-align: middle;
@@ -3471,133 +3481,133 @@ button:disabled {
   background-color: #353A3D;
   color: #FFFFFF;
 }
-.btn.full.block, .select-button .elekti-wrapper input.full.block[type="text"].js-users-list-filter {
+.btn.full.block, .select-button .options-list-wrapper input.full.block[type="text"].options-list-filter {
   clear: both;
   width: 100%;
   float: left;
   margin-left: 0;
   margin-right: 0;
 }
-.btn.full:hover, .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter:hover {
+.btn.full:hover, .select-button .options-list-wrapper input.full[type="text"].options-list-filter:hover {
   border-color: #41474b;
   background-color: #41474b;
   color: #FFFFFF;
 }
-.btn.full:disabled, .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter:disabled {
+.btn.full:disabled, .select-button .options-list-wrapper input.full[type="text"].options-list-filter:disabled {
   border-color: #E0E0E0 !important;
   color: #FFFFFF !important;
   background-color: #E0E0E0 !important;
   cursor: not-allowed;
 }
-.btn.full:active, .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter:active, .btn.full.active, .select-button .elekti-wrapper input.full.active[type="text"].js-users-list-filter {
+.btn.full:active, .select-button .options-list-wrapper input.full[type="text"].options-list-filter:active, .btn.full.active, .select-button .options-list-wrapper input.full.active[type="text"].options-list-filter {
   border-color: #292d2f;
   color: #FFFFFF;
   background-color: #292d2f;
 }
-.btn.full.primary, .select-button .elekti-wrapper input.full.primary[type="text"].js-users-list-filter {
+.btn.full.primary, .select-button .options-list-wrapper input.full.primary[type="text"].options-list-filter {
   border-color: #14C04D;
   background-color: #14C04D;
   color: #FFFFFF;
 }
-.btn.full.primary:hover, .select-button .elekti-wrapper input.full.primary[type="text"].js-users-list-filter:hover {
+.btn.full.primary:hover, .select-button .options-list-wrapper input.full.primary[type="text"].options-list-filter:hover {
   border-color: #16d756;
   background-color: #16d756;
   color: #FFFFFF;
 }
-.btn.full.primary:focus, .select-button .elekti-wrapper input.full.primary[type="text"].js-users-list-filter:focus {
+.btn.full.primary:focus, .select-button .options-list-wrapper input.full.primary[type="text"].options-list-filter:focus {
   background-color: #14C04D;
 }
-.btn.full.primary:active, .select-button .elekti-wrapper input.full.primary[type="text"].js-users-list-filter:active, .btn.full.primary.active, .select-button .elekti-wrapper input.full.primary.active[type="text"].js-users-list-filter {
+.btn.full.primary:active, .select-button .options-list-wrapper input.full.primary[type="text"].options-list-filter:active, .btn.full.primary.active, .select-button .options-list-wrapper input.full.primary.active[type="text"].options-list-filter {
   border-color: #12a944;
   color: #FFFFFF;
   background-color: #0063a3;
 }
-.btn.full.secondary, .select-button .elekti-wrapper input.full.secondary[type="text"].js-users-list-filter {
+.btn.full.secondary, .select-button .options-list-wrapper input.full.secondary[type="text"].options-list-filter {
   border-color: #8bc34a;
   background-color: #8bc34a;
   color: #FFFFFF;
 }
-.btn.full.secondary:hover, .select-button .elekti-wrapper input.full.secondary[type="text"].js-users-list-filter:hover {
+.btn.full.secondary:hover, .select-button .options-list-wrapper input.full.secondary[type="text"].options-list-filter:hover {
   border-color: #97c95d;
   background-color: #97c95d;
   color: #FFFFFF;
 }
-.btn.full.secondary:focus, .select-button .elekti-wrapper input.full.secondary[type="text"].js-users-list-filter:focus {
+.btn.full.secondary:focus, .select-button .options-list-wrapper input.full.secondary[type="text"].options-list-filter:focus {
   background-color: #8bc34a;
 }
-.btn.full.secondary:active, .select-button .elekti-wrapper input.full.secondary[type="text"].js-users-list-filter:active, .btn.full.secondary.active, .select-button .elekti-wrapper input.full.secondary.active[type="text"].js-users-list-filter {
+.btn.full.secondary:active, .select-button .options-list-wrapper input.full.secondary[type="text"].options-list-filter:active, .btn.full.secondary.active, .select-button .options-list-wrapper input.full.secondary.active[type="text"].options-list-filter {
   border-color: #7eb73d;
   color: #FFFFFF;
   background-color: #3991cb;
 }
-.btn.full.info, .select-button .elekti-wrapper input.full.info[type="text"].js-users-list-filter {
+.btn.full.info, .select-button .options-list-wrapper input.full.info[type="text"].options-list-filter {
   border-color: #6ac7f1;
   background-color: #6ac7f1;
   color: #FFFFFF;
 }
-.btn.full.info:hover, .select-button .elekti-wrapper input.full.info[type="text"].js-users-list-filter:hover {
+.btn.full.info:hover, .select-button .options-list-wrapper input.full.info[type="text"].options-list-filter:hover {
   border-color: #81d0f3;
   background-color: #81d0f3;
   color: #FFFFFF;
 }
-.btn.full.info:focus, .select-button .elekti-wrapper input.full.info[type="text"].js-users-list-filter:focus {
+.btn.full.info:focus, .select-button .options-list-wrapper input.full.info[type="text"].options-list-filter:focus {
   background-color: #6ac7f1;
 }
-.btn.full.info:active, .select-button .elekti-wrapper input.full.info[type="text"].js-users-list-filter:active, .btn.full.info.active, .select-button .elekti-wrapper input.full.info.active[type="text"].js-users-list-filter {
+.btn.full.info:active, .select-button .options-list-wrapper input.full.info[type="text"].options-list-filter:active, .btn.full.info.active, .select-button .options-list-wrapper input.full.info.active[type="text"].options-list-filter {
   border-color: #53beef;
   color: #FFFFFF;
   background-color: #53beef;
 }
-.btn.full.success, .select-button .elekti-wrapper input.full.success[type="text"].js-users-list-filter {
+.btn.full.success, .select-button .options-list-wrapper input.full.success[type="text"].options-list-filter {
   border-color: #61b769;
   background-color: #61b769;
   color: #FFFFFF;
 }
-.btn.full.success:hover, .select-button .elekti-wrapper input.full.success[type="text"].js-users-list-filter:hover {
+.btn.full.success:hover, .select-button .options-list-wrapper input.full.success[type="text"].options-list-filter:hover {
   border-color: #73bf7a;
   background-color: #73bf7a;
   color: #FFFFFF;
 }
-.btn.full.success:focus, .select-button .elekti-wrapper input.full.success[type="text"].js-users-list-filter:focus {
+.btn.full.success:focus, .select-button .options-list-wrapper input.full.success[type="text"].options-list-filter:focus {
   background-color: #61b769;
 }
-.btn.full.success:active, .select-button .elekti-wrapper input.full.success[type="text"].js-users-list-filter:active, .btn.full.success.active, .select-button .elekti-wrapper input.full.success.active[type="text"].js-users-list-filter {
+.btn.full.success:active, .select-button .options-list-wrapper input.full.success[type="text"].options-list-filter:active, .btn.full.success.active, .select-button .options-list-wrapper input.full.success.active[type="text"].options-list-filter {
   border-color: #50af59;
   color: #FFFFFF;
   background-color: #50af59;
 }
-.btn.full.warning, .select-button .elekti-wrapper input.full.warning[type="text"].js-users-list-filter {
+.btn.full.warning, .select-button .options-list-wrapper input.full.warning[type="text"].options-list-filter {
   border-color: #fd6b3c;
   background-color: #fd6b3c;
   color: #FFFFFF;
 }
-.btn.full.warning:hover, .select-button .elekti-wrapper input.full.warning[type="text"].js-users-list-filter:hover {
+.btn.full.warning:hover, .select-button .options-list-wrapper input.full.warning[type="text"].options-list-filter:hover {
   border-color: #fd7e55;
   background-color: #fd7e55;
   color: #FFFFFF;
 }
-.btn.full.warning:focus, .select-button .elekti-wrapper input.full.warning[type="text"].js-users-list-filter:focus {
+.btn.full.warning:focus, .select-button .options-list-wrapper input.full.warning[type="text"].options-list-filter:focus {
   background-color: #fd6b3c;
 }
-.btn.full.warning:active, .select-button .elekti-wrapper input.full.warning[type="text"].js-users-list-filter:active, .btn.full.warning.active, .select-button .elekti-wrapper input.full.warning.active[type="text"].js-users-list-filter {
+.btn.full.warning:active, .select-button .options-list-wrapper input.full.warning[type="text"].options-list-filter:active, .btn.full.warning.active, .select-button .options-list-wrapper input.full.warning.active[type="text"].options-list-filter {
   border-color: #fd5823;
   color: #FFFFFF;
   background-color: #fd5823;
 }
-.btn.full.error, .select-button .elekti-wrapper input.full.error[type="text"].js-users-list-filter {
+.btn.full.error, .select-button .options-list-wrapper input.full.error[type="text"].options-list-filter {
   border-color: #f3594e;
   background-color: #f3594e;
   color: #FFFFFF;
 }
-.btn.full.error:hover, .select-button .elekti-wrapper input.full.error[type="text"].js-users-list-filter:hover {
+.btn.full.error:hover, .select-button .options-list-wrapper input.full.error[type="text"].options-list-filter:hover {
   border-color: #f56f66;
   background-color: #f56f66;
   color: #FFFFFF;
 }
-.btn.full.error:focus, .select-button .elekti-wrapper input.full.error[type="text"].js-users-list-filter:focus {
+.btn.full.error:focus, .select-button .options-list-wrapper input.full.error[type="text"].options-list-filter:focus {
   background-color: #f3594e;
 }
-.btn.full.error:active, .select-button .elekti-wrapper input.full.error[type="text"].js-users-list-filter:active, .btn.full.error.active, .select-button .elekti-wrapper input.full.error.active[type="text"].js-users-list-filter {
+.btn.full.error:active, .select-button .options-list-wrapper input.full.error[type="text"].options-list-filter:active, .btn.full.error.active, .select-button .options-list-wrapper input.full.error.active[type="text"].options-list-filter {
   border-color: #f14336;
   color: #FFFFFF;
   background-color: #f14336;
@@ -3728,114 +3738,114 @@ button:disabled {
   right: 20px;
   position: absolute;
 }
-.floating-button.small, .buttons-group.small .floating-button.btn, .buttons-group.small .select-button .elekti-wrapper input.floating-button[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small input.floating-button[type="text"].js-users-list-filter {
+.floating-button.small, .buttons-group.small .floating-button.btn, .buttons-group.small .select-button .options-list-wrapper input.floating-button[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small input.floating-button[type="text"].options-list-filter {
   width: 40px;
   height: 40px;
   line-height: 40px;
   font-size: 20px;
 }
-.floating-button.small i, .buttons-group.small .floating-button.btn i, .buttons-group.small .select-button .elekti-wrapper input.floating-button[type="text"].js-users-list-filter i, .select-button .elekti-wrapper .buttons-group.small input.floating-button[type="text"].js-users-list-filter i {
+.floating-button.small i, .buttons-group.small .floating-button.btn i, .buttons-group.small .select-button .options-list-wrapper input.floating-button[type="text"].options-list-filter i, .select-button .options-list-wrapper .buttons-group.small input.floating-button[type="text"].options-list-filter i {
   line-height: 40px;
   font-size: 20px;
 }
-.floating-button.small.top-right, .buttons-group.small .floating-button.top-right.btn, .buttons-group.small .select-button .elekti-wrapper input.floating-button.top-right[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small input.floating-button.top-right[type="text"].js-users-list-filter {
+.floating-button.small.top-right, .buttons-group.small .floating-button.top-right.btn, .buttons-group.small .select-button .options-list-wrapper input.floating-button.top-right[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small input.floating-button.top-right[type="text"].options-list-filter {
   top: -20px;
 }
-.floating-button.small.bottom-right, .buttons-group.small .floating-button.bottom-right.btn, .buttons-group.small .select-button .elekti-wrapper input.floating-button.bottom-right[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small input.floating-button.bottom-right[type="text"].js-users-list-filter {
+.floating-button.small.bottom-right, .buttons-group.small .floating-button.bottom-right.btn, .buttons-group.small .select-button .options-list-wrapper input.floating-button.bottom-right[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small input.floating-button.bottom-right[type="text"].options-list-filter {
   bottom: -20px;
 }
 
-.buttons-group .group-item:last-of-type .btn, .buttons-group .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group .group-item:last-of-type:active .btn, .buttons-group .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group .group-item:last-of-type .btn, .buttons-group .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group .group-item:last-of-type:active .btn, .buttons-group .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #a6adb2;
 }
-.buttons-group .group-item .btn, .buttons-group .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group .group-item input[type="text"].js-users-list-filter {
+.buttons-group .group-item .btn, .buttons-group .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group .group-item input[type="text"].options-list-filter {
   float: left;
   margin: 0;
   border-right: 0;
   border-color: #a6adb2;
 }
-.buttons-group .group-item .btn:active, .buttons-group .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group .group-item .btn:active, .buttons-group .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group .group-item input[type="text"].options-list-filter:active {
   background-color: #959ca0;
 }
-.buttons-group .group-item .btn.full, .buttons-group .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group .group-item .btn.full, .buttons-group .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group .group-item input.full[type="text"].options-list-filter {
   background-color: #a6adb2;
   border-color: #a6adb2;
 }
-.buttons-group.primary .group-item:last-of-type .btn, .buttons-group.primary .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.primary .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.primary .group-item:last-of-type:active .btn, .buttons-group.primary .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.primary .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.primary .group-item:last-of-type .btn, .buttons-group.primary .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.primary .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.primary .group-item:last-of-type:active .btn, .buttons-group.primary .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.primary .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #14C04D;
 }
-.buttons-group.primary .group-item .btn, .buttons-group.primary .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.primary .group-item input[type="text"].js-users-list-filter {
+.buttons-group.primary .group-item .btn, .buttons-group.primary .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.primary .group-item input[type="text"].options-list-filter {
   border-color: #14C04D;
 }
-.buttons-group.primary .group-item .btn:active, .buttons-group.primary .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.primary .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.primary .group-item .btn:active, .buttons-group.primary .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.primary .group-item input[type="text"].options-list-filter:active {
   background-color: #12ad45;
 }
-.buttons-group.primary .group-item .btn.full, .buttons-group.primary .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.primary .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.primary .group-item .btn.full, .buttons-group.primary .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.primary .group-item input.full[type="text"].options-list-filter {
   background-color: #14C04D;
   border-color: #14C04D;
 }
-.buttons-group.secondary .group-item:last-of-type .btn, .buttons-group.secondary .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.secondary .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.secondary .group-item:last-of-type:active .btn, .buttons-group.secondary .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.secondary .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.secondary .group-item:last-of-type .btn, .buttons-group.secondary .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.secondary .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.secondary .group-item:last-of-type:active .btn, .buttons-group.secondary .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.secondary .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #8bc34a;
 }
-.buttons-group.secondary .group-item .btn, .buttons-group.secondary .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.secondary .group-item input[type="text"].js-users-list-filter {
+.buttons-group.secondary .group-item .btn, .buttons-group.secondary .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.secondary .group-item input[type="text"].options-list-filter {
   border-color: #8bc34a;
 }
-.buttons-group.secondary .group-item .btn:active, .buttons-group.secondary .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.secondary .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.secondary .group-item .btn:active, .buttons-group.secondary .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.secondary .group-item input[type="text"].options-list-filter:active {
   background-color: #7db043;
 }
-.buttons-group.secondary .group-item .btn.full, .buttons-group.secondary .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.secondary .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.secondary .group-item .btn.full, .buttons-group.secondary .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.secondary .group-item input.full[type="text"].options-list-filter {
   background-color: #8bc34a;
   border-color: #8bc34a;
 }
-.buttons-group.info .group-item:last-of-type .btn, .buttons-group.info .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.info .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.info .group-item:last-of-type:active .btn, .buttons-group.info .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.info .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.info .group-item:last-of-type .btn, .buttons-group.info .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.info .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.info .group-item:last-of-type:active .btn, .buttons-group.info .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.info .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #6ac7f1;
 }
-.buttons-group.info .group-item .btn, .buttons-group.info .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.info .group-item input[type="text"].js-users-list-filter {
+.buttons-group.info .group-item .btn, .buttons-group.info .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.info .group-item input[type="text"].options-list-filter {
   border-color: #6ac7f1;
 }
-.buttons-group.info .group-item .btn:active, .buttons-group.info .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.info .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.info .group-item .btn:active, .buttons-group.info .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.info .group-item input[type="text"].options-list-filter:active {
   background-color: #5fb3d9;
 }
-.buttons-group.info .group-item .btn.full, .buttons-group.info .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.info .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.info .group-item .btn.full, .buttons-group.info .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.info .group-item input.full[type="text"].options-list-filter {
   background-color: #6ac7f1;
   border-color: #6ac7f1;
 }
-.buttons-group.success .group-item:last-of-type .btn, .buttons-group.success .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.success .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.success .group-item:last-of-type:active .btn, .buttons-group.success .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.success .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.success .group-item:last-of-type .btn, .buttons-group.success .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.success .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.success .group-item:last-of-type:active .btn, .buttons-group.success .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.success .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #61b769;
 }
-.buttons-group.success .group-item .btn, .buttons-group.success .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.success .group-item input[type="text"].js-users-list-filter {
+.buttons-group.success .group-item .btn, .buttons-group.success .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.success .group-item input[type="text"].options-list-filter {
   border-color: #61b769;
 }
-.buttons-group.success .group-item .btn:active, .buttons-group.success .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.success .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.success .group-item .btn:active, .buttons-group.success .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.success .group-item input[type="text"].options-list-filter:active {
   background-color: #57a55f;
 }
-.buttons-group.success .group-item .btn.full, .buttons-group.success .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.success .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.success .group-item .btn.full, .buttons-group.success .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.success .group-item input.full[type="text"].options-list-filter {
   background-color: #61b769;
   border-color: #61b769;
 }
-.buttons-group.warning .group-item:last-of-type .btn, .buttons-group.warning .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.warning .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.warning .group-item:last-of-type:active .btn, .buttons-group.warning .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.warning .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.warning .group-item:last-of-type .btn, .buttons-group.warning .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.warning .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.warning .group-item:last-of-type:active .btn, .buttons-group.warning .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.warning .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #fd6b3c;
 }
-.buttons-group.warning .group-item .btn, .buttons-group.warning .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.warning .group-item input[type="text"].js-users-list-filter {
+.buttons-group.warning .group-item .btn, .buttons-group.warning .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.warning .group-item input[type="text"].options-list-filter {
   border-color: #fd6b3c;
 }
-.buttons-group.warning .group-item .btn:active, .buttons-group.warning .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.warning .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.warning .group-item .btn:active, .buttons-group.warning .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.warning .group-item input[type="text"].options-list-filter:active {
   background-color: #e46036;
 }
-.buttons-group.warning .group-item .btn.full, .buttons-group.warning .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.warning .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.warning .group-item .btn.full, .buttons-group.warning .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.warning .group-item input.full[type="text"].options-list-filter {
   background-color: #fd6b3c;
   border-color: #fd6b3c;
 }
-.buttons-group.error .group-item:last-of-type .btn, .buttons-group.error .group-item:last-of-type .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.error .group-item:last-of-type input[type="text"].js-users-list-filter, .buttons-group.error .group-item:last-of-type:active .btn, .buttons-group.error .group-item:last-of-type:active .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.error .group-item:last-of-type:active input[type="text"].js-users-list-filter {
+.buttons-group.error .group-item:last-of-type .btn, .buttons-group.error .group-item:last-of-type .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.error .group-item:last-of-type input[type="text"].options-list-filter, .buttons-group.error .group-item:last-of-type:active .btn, .buttons-group.error .group-item:last-of-type:active .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.error .group-item:last-of-type:active input[type="text"].options-list-filter {
   border-right: 1px solid #f3594e;
 }
-.buttons-group.error .group-item .btn, .buttons-group.error .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.error .group-item input[type="text"].js-users-list-filter {
+.buttons-group.error .group-item .btn, .buttons-group.error .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.error .group-item input[type="text"].options-list-filter {
   border-color: #f3594e;
 }
-.buttons-group.error .group-item .btn:active, .buttons-group.error .group-item .select-button .elekti-wrapper input[type="text"].js-users-list-filter:active, .select-button .elekti-wrapper .buttons-group.error .group-item input[type="text"].js-users-list-filter:active {
+.buttons-group.error .group-item .btn:active, .buttons-group.error .group-item .select-button .options-list-wrapper input[type="text"].options-list-filter:active, .select-button .options-list-wrapper .buttons-group.error .group-item input[type="text"].options-list-filter:active {
   background-color: #db5046;
 }
-.buttons-group.error .group-item .btn.full, .buttons-group.error .group-item .select-button .elekti-wrapper input.full[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.error .group-item input.full[type="text"].js-users-list-filter {
+.buttons-group.error .group-item .btn.full, .buttons-group.error .group-item .select-button .options-list-wrapper input.full[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.error .group-item input.full[type="text"].options-list-filter {
   background-color: #f3594e;
   border-color: #f3594e;
 }
@@ -4123,10 +4133,10 @@ header {
   left: 0;
   top: 0;
 }
-.app-switch .btn, .app-switch .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .app-switch input[type="text"].js-users-list-filter {
+.app-switch .btn, .app-switch .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .app-switch input[type="text"].options-list-filter {
   border-left: 0;
 }
-.app-switch .btn .icon, .app-switch .select-button .elekti-wrapper input[type="text"].js-users-list-filter .icon, .select-button .elekti-wrapper .app-switch input[type="text"].js-users-list-filter .icon {
+.app-switch .btn .icon, .app-switch .select-button .options-list-wrapper input[type="text"].options-list-filter .icon, .select-button .options-list-wrapper .app-switch input[type="text"].options-list-filter .icon {
   margin-right: 0;
 }
 
@@ -4566,7 +4576,7 @@ body.main-sidebar-small header {
 .cover-content {
 
 }
-#filter-maker .rule .rule-operator .buttons-group.small .btn, .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn .btn, .buttons-group.small .select-button .elekti-wrapper #filter-maker .rule .rule-operator input.buttons-group[type="text"].js-users-list-filter .btn, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rule .rule-operator input.buttons-group[type="text"].js-users-list-filter .btn, #filter-maker .rule .rule-operator .buttons-group.small .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper #filter-maker .rule .rule-operator .buttons-group.small input[type="text"].js-users-list-filter, .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn input[type="text"].js-users-list-filter, .buttons-group.small .select-button .elekti-wrapper #filter-maker .rule .rule-operator input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter, #filter-maker .rule .rule-operator .select-button .elekti-wrapper .buttons-group.small input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rule .rule-operator input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter {
+#filter-maker .rule .rule-operator .buttons-group.small .btn, .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn .btn, .buttons-group.small .select-button .options-list-wrapper #filter-maker .rule .rule-operator input.buttons-group[type="text"].options-list-filter .btn, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rule .rule-operator input.buttons-group[type="text"].options-list-filter .btn, #filter-maker .rule .rule-operator .buttons-group.small .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper #filter-maker .rule .rule-operator .buttons-group.small input[type="text"].options-list-filter, .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rule .rule-operator .buttons-group.btn input[type="text"].options-list-filter, .buttons-group.small .select-button .options-list-wrapper #filter-maker .rule .rule-operator input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter, #filter-maker .rule .rule-operator .select-button .options-list-wrapper .buttons-group.small input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rule .rule-operator input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter {
   padding: 1px 5px;
 }
 #filter-maker .rule .rule-operator p {
@@ -4849,7 +4859,7 @@ main {
   background-color: #f8f8f9;
   z-index: 2;
 }
-#filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small .btn, .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn .btn, .buttons-group.small .select-button .elekti-wrapper #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].js-users-list-filter .btn, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].js-users-list-filter .btn, #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small input[type="text"].js-users-list-filter, .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn .select-button .elekti-wrapper input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn input[type="text"].js-users-list-filter, .buttons-group.small .select-button .elekti-wrapper #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter, #filter-maker .rules-summary .rule-block .rule-operator .select-button .elekti-wrapper .buttons-group.small input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter, .select-button .elekti-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].js-users-list-filter input[type="text"].js-users-list-filter {
+#filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small .btn, .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn .btn, .buttons-group.small .select-button .options-list-wrapper #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].options-list-filter .btn, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].options-list-filter .btn, #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.small input[type="text"].options-list-filter, .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn .select-button .options-list-wrapper input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator .buttons-group.btn input[type="text"].options-list-filter, .buttons-group.small .select-button .options-list-wrapper #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter, #filter-maker .rules-summary .rule-block .rule-operator .select-button .options-list-wrapper .buttons-group.small input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter, .select-button .options-list-wrapper .buttons-group.small #filter-maker .rules-summary .rule-block .rule-operator input.buttons-group[type="text"].options-list-filter input[type="text"].options-list-filter {
   padding: 1px 5px;
 }
 #filter-maker .rules-summary .rule-block .rule-operator p {
