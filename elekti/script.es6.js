@@ -143,7 +143,7 @@ class ElektiMer{
 	}
 
 	_computeWrapperClass(open){
-		let arr = ['options-list-wrapper',''];
+		let arr = ['elekti-wrapper',''];
 		open ? arr[1] = 'active' : arr[1] = '';
 		return arr.join(' ');
 	}

@@ -162,7 +162,7 @@ var ElektiMer = (function () {
 	}, {
 		key: '_computeWrapperClass',
 		value: function _computeWrapperClass(open) {
-			var arr = ['options-list-wrapper', ''];
+			var arr = ['elekti-wrapper', ''];
 			open ? arr[1] = 'active' : arr[1] = '';
 			return arr.join(' ');
 		}

@@ -12,7 +12,7 @@
 	}
 	</style>
 
-	<template>    
+	<template>
         <template is="dom-if" if="[[_viewLabel(label)]]">
             <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
         </template>
@@ -21,7 +21,7 @@
             on-focus="_handleFocusAndBlur" on-blur="_handleFocusAndBlur"
             on-keyup="_searchElement" placeholder="[[placeholder]]" value="{{value.label}}">
 
-            <ol class="options-list" id="list">
+            <ol class="options-list js-users-list" id="list">
                 <template is="dom-repeat" items="[[options]]">
                     <li class="show" on-tap="_selectElement" data-value$="[[item.value]]">[[item.label]]</li>
                 </template>
