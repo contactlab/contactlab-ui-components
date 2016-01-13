@@ -99,8 +99,11 @@ class CardClab {
 	UTILS
 	----------*/
 	_showActions(noactions, link){
-		if(link) return false;
-		return !!!noactions;
+		if(link!=null) return false; else return !noactions;
+	}
+
+	_showLink(link, noactions){
+		if (noactions) return false; else if(link!=null) return true; else return false;
 	}
 
 	_showTitle(title){

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../panel/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="panel">
+	<template>
+	  <panel-clab></panel-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<panel-clab>', function() {
+  var panel;
+
+  beforeEach(function() {
+	panel = fixture('panel');
+  });
+
+  context('Test Properties', function() {
+
+  	it('Default Properties', function(done) {
+		expect(panel.type).to.equal('');
+		expect(panel.title).to.equal('Title');
+
+		done();
+	});
+
+  });
+
+  context('Test DOM Bindings', function(done){
+
+  	it('Check title', function(done) {
+		var str = 'My new title';
+		panel.title = str;
+
+		setTimeout(function(){
+			expect(panel.querySelector('.panel-header').innerText).to.equal(str);
+
+			done();
+		},50);
+	});
+
+	it('Check type', function(done) {
+		var str = 'error';
+		panel.type = str;
+
+		setTimeout(function(){
+			expect(panel.querySelector('.panel').classList.contains(str)).to.equal(true);
+
+			done();
+		},50);
+	});
+
+  });
+
+});	
+
+</script>
+</body>
+</html>

@@ -32,7 +32,7 @@ var AccordionClab = (function () {
 	}, {
 		key: '_toggleActive',
 		value: function _toggleActive() {
-			this.$$('.accordion-block').classList.toggle('active');
+			this.querySelector('.accordion-block').classList.toggle('active');
 		}
 	}]);
 

@@ -19,7 +19,7 @@ class AccordionClab {
 	}
 
 	_toggleActive(){
-		this.$$('.accordion-block').classList.toggle('active');
+		this.querySelector('.accordion-block').classList.toggle('active');
 	}
 
 }

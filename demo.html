@@ -27,7 +27,7 @@
 
 		<div class="content">
 			<h2>Multiple</h2>
-			<multiple-clab label="Select multiple options" url="http://localhost:3000/options" max-in-view="10">This is a note</multiple-clab>
+			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
 		</div>
 
 		<div class="content">
@@ -70,7 +70,7 @@
 
 		<div class="content">
 			<h2>Button group</h2>
-			<group-clab>
+			<group-clab disabled>
 				<button-clab>First</button-clab>
 				<button-clab>Second</button-clab>
 				<button-clab>Third</button-clab>
@@ -79,7 +79,10 @@
 
 		<div class="content dark">
 			<h2>Card</h2>
-			<card-clab title="My Card">
+			<card-clab title="My Card" icon="icon-class">
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+			</card-clab>
+			<card-clab title="My Card 2" no-actions>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
 			</card-clab>
 			<card-clab link='{"text":"blabla", "href":"../../img.img"}'>
@@ -139,7 +142,7 @@
 
 		<div class="content">
 			<h2>Spinner</h2>
-			<spinner-clab></spinner-clab>
+			<spinner-clab background="200, 200, 200, 0.8"></spinner-clab>
 		</div>
 
 		<div class="content">

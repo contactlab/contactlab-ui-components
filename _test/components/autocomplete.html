@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../autocomplete/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="autocomplete">
+	<template>
+	  <autocomplete-clab></autocomplete-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<autocomplete-clab>', function() {
+  var autocomplete;
+
+  beforeEach(function() {
+	autocomplete = fixture('autocomplete');
+  });
+
+  context('props tests', function() {
+  	it('default properties', function() {
+		expect(autocomplete.label).to.be.equal(null);
+		expect(autocomplete.name).to.be.equal('auto complete');
+		expect(autocomplete.disabled).to.be.equal(false);
+		expect(autocomplete.hideHints).to.be.equal(false);
+		expect(autocomplete.resultAsObj).to.be.equal(false);
+		expect(autocomplete.minChar).to.be.equal(3);
+		expect(autocomplete.maxInView).to.be.equal(6);
+		expect(autocomplete.inputType).to.be.equal('success');
+		expect(autocomplete.value).to.be.equal(undefined);
+		expect(autocomplete.options).to.be.equal(undefined);
+		expect(autocomplete.url).to.be.equal(undefined);
+		expect(autocomplete.results).to.be.equal(undefined);
+		expect(autocomplete.optionsFn).to.be.equal(undefined);
+	});
+
+	it('change type class', function() {
+		var inputType = 'error';
+		autocomplete.inputType = inputType;
+		expect(autocomplete.inputType).to.be.equal(inputType);
+	});
+
+	it('change max rows in view', function() {
+		var maxInView = 2;
+		autocomplete.maxInView = maxInView;
+		expect(autocomplete.maxInView).to.be.equal(maxInView);
+	});
+
+	it('change min amount of characters to start searching for hints', function() {
+		var minChar = 2;
+		autocomplete.minChar = minChar;
+		expect(autocomplete.minChar).to.be.equal(minChar);
+	});
+
+	it('Return an obj as result', function() {
+		var bool = true;
+		autocomplete.resultAsObj = bool;
+		expect(autocomplete.resultAsObj).to.be.equal(bool);
+	});
+
+	it('Hide hints', function() {
+		var bool = true;
+		autocomplete.hideHints = bool;
+		expect(autocomplete.hideHints).to.be.equal(bool);
+	});
+
+	it('Valid url for fetching options', function() {
+		var url='http://localhost:3000/options';
+		autocomplete.url=url;
+		expect(autocomplete.url).to.be.equal(url);
+	});
+
+  });
+
+});	
+
+</script>
+</body>
+</html>

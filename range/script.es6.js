@@ -55,8 +55,7 @@ class RangeClab{
 	EVENT HANDLERS
 	----------*/
 	_updateCompValue(evt){
-		console.log(evt);
-		this.value = this.$$('input').value;
+		this.value = this.querySelector('input').value;
 	}
 
 

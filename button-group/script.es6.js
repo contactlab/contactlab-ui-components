@@ -51,7 +51,7 @@ class GroupClab{
 	OBSERVER
 	----------*/
 	_updateDisabled(){
-		let btns = this.querySelectorAll('button');
+		let btns = this.getContentChildren();
 		Array.prototype.map.call(btns, btn => {
 			btn.disabled = this.disabled;
 		});

@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../card/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="card">
+	<template>
+	  <card-clab></card-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<card-clab>', function() {
+  var card;
+
+	beforeEach(function() {
+		card = fixture('card');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(card.title).to.equal(null);
+			expect(card.primaryLabel).to.equal('OK');
+			expect(card.secondaryLabel).to.equal('Cancel');
+			expect(card.icon).to.equal('');
+			expect(card.big).to.equal(false);
+			expect(card.table).to.equal(false);
+			expect(card.figure).to.equal(null);
+			expect(card.effect).to.equal(null);
+			expect(card.noActions).to.equal(false);
+			expect(card.link).to.equal(null);
+
+			done();
+		});
+
+	});
+
+
+	context('Test DOM Bindings', function() {
+
+		it('Check title', function(done) {
+			var str = 'This is my title';
+			card.title = str;
+
+			setTimeout(function(){
+				expect(card.querySelector('.card-title span').innerText).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check primary label', function(done) {
+			var wrapper=card.querySelector('.card-actions');
+			var str = 'This is primary';
+			card.primaryLabel = str;
+
+			setTimeout(function(){
+				expect(wrapper.querySelectorAll('button')[1].innerText).to.equal(str);
+
+				done();
+			},500);
+		});
+
+		it('Check secondary label', function(done) {
+			var wrapper=card.querySelector('.card-actions');
+			var str = 'This is secondary';
+			card.secondaryLabel = str;
+
+			setTimeout(function(){
+				expect(wrapper.querySelectorAll('button')[0].innerText).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check icon', function(done) {
+			var str = 'icon-class';
+			card.icon = str;
+
+			setTimeout(function(){
+				expect(card.querySelector('.card-title i').classList.contains(str)).to.equal(true);
+				expect(card.querySelector('.card-title .circle')).to.equal(null);
+
+				done();
+			},50);
+		});
+
+		it('Check Big', function(done) {
+			var bool = true;
+			var str = 'icon-class';
+			card.big = bool;
+			card.icon = str;
+
+			setTimeout(function(){
+				expect(card.querySelector('.card-title .icon i')).to.not.be.undefined;
+
+				done();
+			},50);
+		});
+
+		it('Check Figure', function(done) {
+			card.figure = 'path/to/img.jpg';
+
+			setTimeout(function(){
+				expect(card.querySelector('figure')).to.not.be.undefined;
+
+				done();
+			},50);
+		});
+
+		it('Check Effect', function(done) {
+			var effect="blur";
+			card.effect = effect;
+
+			setTimeout(function(){
+				expect(card.querySelector('.card').classList.contains(effect)).to.equal(true);
+
+				done();
+			},50);
+		});
+
+		it('Check noActions', function(done) {
+			card.setAttribute('no-actions' ,true);
+
+			setTimeout(function(){
+				expect(card.querySelectorAll('.card-actions button').length).to.equal(0);
+
+				done();
+			},50);
+		});
+
+		it('Check Link', function(done) {
+			card.link = 'http://www.linktosomewhere.com';
+
+			setTimeout(function(){
+				expect(card.querySelector('.card-actions a')).to.not.be.undefined;
+				expect(card.querySelectorAll('.card-actions button').length).to.equal(0);
+
+				done();
+			},50);
+		});
+
+		it('Check Table', function(done) {
+			card.table = true;
+
+			setTimeout(function(){
+				expect(card.querySelector('content')).to.not.be.undefined;
+
+				done();
+			},150);
+		});
+
+	});
+
+});	
+
+</script>
+</body>
+</html>

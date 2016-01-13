@@ -28,23 +28,23 @@ var SpinnerClab = (function () {
 				}
 			};
 		}
-	}, {
-		key: 'ready',
-		value: function ready() {
-			this.querySelector('.spinner-overlay').style.backgroundColor = 'rgba(' + this.background + ')';
-		}
 
 		/*---------- 
   COMPUTED
   ----------*/
 
 	}, {
-		key: 'computeClass',
-		value: function computeClass(big, dark) {
+		key: '_computeClass',
+		value: function _computeClass(big, dark) {
 			var str = 'spinner-overlay ';
 			this.dark ? str += ' dark ' : null;
 			this.big ? str += ' big ' : null;
 			return str;
+		}
+	}, {
+		key: '_computeBgColor',
+		value: function _computeBgColor(color) {
+			return 'background-color: rgba(' + color + ')';
 		}
 	}]);
 

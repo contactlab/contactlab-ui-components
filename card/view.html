@@ -38,7 +38,7 @@
 					<button class="btn flat">[[secondaryLabel]]</button>
 					<button class="btn primary flat">[[primaryLabel]]</button>
 				</template>
-				<template is="dom-if" if="[[!_showActions(noActions, link)]]">
+				<template is="dom-if" if="[[_showLink(link, noActions)]]">
 					<a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>
 				</template>
 			</div>

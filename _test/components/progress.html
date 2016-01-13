@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../progress-bar/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="progress">
+	<template>
+	  <progress-clab></progress-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<progress-clab>', function() {
+  var progress;
+
+  beforeEach(function() {
+	progress = fixture('progress');
+  });
+
+  context('Test Properties', function() {
+
+  	it('Default Properties', function(done) {
+		expect(progress.value).to.equal(0);
+		expect(progress.minimal).to.equal(false);
+		expect(progress.type).to.equal(null);
+
+		done();
+	});
+
+  });
+
+  context('Test DOM Bindings', function(){
+
+	it('Check value', function(done) {
+		var num = Math.floor(Math.random() * 100);
+		var perc = progress._percent(num);
+		progress.value = num;
+
+		setTimeout(function(){
+			expect(progress.querySelector('article').style.width).to.equal(perc);
+	  		
+	  		done();
+		},50);
+	});
+
+	it('Check minimal', function(done) {
+		var bool = true;
+		progress.minimal = bool;
+
+		setTimeout(function(){
+			expect(progress.querySelector('.progress-bar').classList.contains('minimal')).to.equal(true);
+	  		
+	  		done();
+		},50);
+	});
+
+	it('Check type', function(done) {
+		var str = 'error';
+		progress.type = str;
+
+		setTimeout(function(){
+			expect(progress.querySelector('.progress-bar').classList.contains(str)).to.equal(true);
+	  		
+	  		done();
+		},50);
+	});
+
+  });
+
+  context('Test Methods', function() {
+
+  	it('Get % of value', function(done) {
+  		var num = Math.floor(Math.random() * 100);
+  		var perc = progress._percent(num);
+
+		setTimeout(function(){
+	  		expect(perc).to.equal(num + '%');
+
+	  		done();
+		},50);
+  	});
+
+  });
+
+});	
+
+</script>
+</body>
+</html>

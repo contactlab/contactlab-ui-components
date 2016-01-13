@@ -11,12 +11,12 @@
   "homepage": "",
   "ignore": [
     "**/.*",
-    "node_modules",
     "_css",
     "_fonts",
+    "_test",
+    "_tests",
+    "node_modules",
     "bower_components",
-    "test",
-    "tests",
     "toaster",
     "panel",
     "starter",
@@ -27,6 +27,7 @@
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "~2.10.6",
     "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",
-    "hydrolysis": "https://github.com/Arual90/hydrolysis.git"
+    "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
+    "web-component-tester": "Polymer/web-component-tester#~4.1.0"
   }
 }
