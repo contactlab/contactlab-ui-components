@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../dropdown/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="dropdown">
+	<template>
+	  <dropdown-clab></dropdown-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<dropdown-clab>', function() {
+  var dropdown;
+
+	beforeEach(function() {
+		dropdown = fixture('dropdown');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(dropdown.label).to.equal(null);
+			expect(dropdown.type).to.equal('success');
+			expect(dropdown.selected).to.equal({});
+			expect(dropdown.options).to.equal([
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'}
+				]);
+			expect(dropdown.optionsFn).to.be.undefined;
+			expect(dropdown.placeholder).to.equal('Select..');
+			expect(dropdown.disabled).to.equal(false);
+			expect(dropdown.resultAsObj).to.equal(false);
+			expect(dropdown.maxInView).to.equal(4);
+			expect(dropdown.noteType).to.be.undefined;
+
+			done();
+		});
+
+	});
+
+
+	context('Test DOM Bindings', function() {
+
+		/*it('Check labels', function(done) {
+			dropdown.labels=["dropdown 1", "dropdown 2"];
+
+			setTimeout(function(){
+				expect(dropdown.querySelectorAll('.row').length).to.equal(dropdown.labels.length);
+
+				done();
+			},50);
+		});*/
+
+	});
+
+});	
+
+</script>
+</body>
+</html>

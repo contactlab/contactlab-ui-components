@@ -25,10 +25,6 @@ var PaginationClab = (function () {
 					value: 1,
 					observer: '_updateAvailablePages'
 				},
-				/*range: {
-    	type: Number,
-    	value: 5
-    }, -------------> to implement later, maybe */
 
 				firstPage: {
 					type: String,
@@ -60,7 +56,6 @@ var PaginationClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			this.async(function () {
-				this.querySelectorAll('.page')[this.currentPage - 1].classList.add('active');
 				this._updateAvailablePages();
 				this.addEventListener('pageChanged', this.updateSelectedPage);
 			}, 500);
@@ -70,14 +65,6 @@ var PaginationClab = (function () {
   EVENT HANDLERS
   ----------*/
 
-	}, {
-		key: 'updateSelectedPage',
-		value: function updateSelectedPage(evt) {
-			var i = evt.detail.index;
-			this.$$('.active').classList.remove('active');
-			this.querySelectorAll('.page')[i].classList.add('active');
-			this.currentPage = Number(i) + 1;
-		}
 	}, {
 		key: 'setThisAsCurrent',
 		value: function setThisAsCurrent(evt) {
@@ -89,6 +76,14 @@ var PaginationClab = (function () {
 				this.fire('pageChanged', { index: i });
 			}
 		}
+	}, {
+		key: 'updateSelectedPage',
+		value: function updateSelectedPage(evt) {
+			var i = evt.detail.index;
+			this.$$('.active').classList.remove('active');
+			this.querySelectorAll('.page')[i].classList.add('active');
+			this.currentPage = Number(i) + 1;
+		}
 
 		/*---------- 
   OBSERVERS
@@ -97,20 +92,29 @@ var PaginationClab = (function () {
 	}, {
 		key: '_updateAvailablePages',
 		value: function _updateAvailablePages() {
-			for (var idx in Array.from(this.querySelectorAll('.page'))) {
-				var pagesEl = this.querySelectorAll('.page');
-				if (idx >= this.availableStart && idx <= this.availableEnd) {
-					pagesEl[idx].classList.remove('invisible');
+			var _this = this;
+
+			Array.prototype.map.call(this.querySelectorAll('.page'), function (el, idx) {
+				if (idx >= _this.availableStart && idx <= _this.availableEnd) {
+					el.classList.remove('invisible');
 				} else {
-					pagesEl[idx].classList.add('invisible');
+					el.classList.add('invisible');
 				}
-			}
+			});
 		}
 
 		/*---------- 
   COMPUTED
   ----------*/
 
+	}, {
+		key: '_computeLiPageClass',
+		value: function _computeLiPageClass(i) {
+			var arr = ['page'];
+			if (i == this.currentPage - 1) arr.push('active');
+
+			return arr.join(' ');
+		}
 	}, {
 		key: '_getFirstPage',
 		value: function _getFirstPage(pages) {

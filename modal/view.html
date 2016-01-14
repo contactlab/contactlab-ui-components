@@ -8,7 +8,7 @@
 		<template is="dom-if" if="[[visible]]">
 			<div class="modal-overlay" on-click="_closeModal">
 				<div class="modal-wrapper">
-					<div class="modal" on-click="_block" style$="[[_computeWidth(width)]]">
+					<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
 						<div class="modal-title">[[title]]</div>
 						<template is="dom-if" if="[[content]]">
 							<div class="modal-body">
@@ -22,7 +22,7 @@
 						</template>
 						<div class="modal-actions">
 							<template is="dom-if" if="[[secondary]]">
-								<button on-click="_secondary" class="btn flat">[[secondary]]</button>
+								<button on-click="_secondary" class="btn flat secondary">[[secondary]]</button>
 							</template>
 							<template is="dom-if" if="[[primary]]">
 								<button on-click="_primary" class="btn primary">[[primary]]</button>

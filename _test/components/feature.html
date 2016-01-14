@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../feature/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="feature">
+	<template>
+	  <feature-clab></feature-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<feature-clab>', function() {
+  var feature;
+
+	beforeEach(function() {
+		feature = fixture('feature');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(feature.link).to.equal('#');
+			expect(feature.iconClass).to.equal(null);
+			expect(feature.src).to.equal(null);
+			expect(feature.size).to.equal(null);
+			expect(feature.vertical).to.equal(false);
+
+			done();
+		});
+
+	});
+
+	context('Test DOM Bindings', function(){
+
+		it('Check link', function(done) {
+			var str = 'www.ansa.it';
+			feature.link = str;
+
+			setTimeout(function(){
+				expect(feature.querySelector('.description a').getAttribute('href')).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check iconClass', function(done) {
+			var str = 'icon-class';
+			feature.iconClass = str;
+
+			setTimeout(function(){
+				expect(feature.querySelector('.icon i').classList.contains(str)).to.equal(true);
+
+				done();
+			},50);
+		});
+
+		it('Check src', function(done) {
+			var str = 'path/to/img.jpg';
+			feature.src = str;
+
+			setTimeout(function(){
+				expect(feature.querySelector('.icon img')).to.not.be.undefined;
+				expect(feature.querySelector('.icon img').getAttribute('src')).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check size', function(done) {
+			var str = 'small';
+			feature.size = str;
+
+			setTimeout(function(){
+				expect(feature.querySelector('.feature').classList.contains(str+'-icon')).to.equal(true);
+
+				done();
+			},50);
+		});
+
+		it('Check vertical', function(done) {
+			feature.vertical = true;
+
+			setTimeout(function(){
+				expect(feature.querySelector('.feature').classList.contains('vertical')).to.equal(true);
+
+				done();
+			},50);
+		});
+
+	});
+
+});	
+
+</script>
+</body>
+</html>

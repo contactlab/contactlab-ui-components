@@ -44,7 +44,8 @@ var MultipleClab = (function () {
 				},
 				disabled: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: '_disabledChanged'
 				},
 				maxInView: {
 					type: Number,
@@ -55,8 +56,7 @@ var MultipleClab = (function () {
 					value: false
 				},
 				noteType: {
-					type: String,
-					value: ''
+					type: String
 				},
 
 				compNoteType: {
@@ -64,11 +64,6 @@ var MultipleClab = (function () {
 					computed: '_computeNoteType(type, noteType)'
 				}
 			};
-		}
-	}, {
-		key: 'ready',
-		value: function ready() {
-			if (this.disabled) this.type = 'disabled';
 		}
 	}, {
 		key: 'attached',
@@ -288,6 +283,11 @@ var MultipleClab = (function () {
 				_this4.set('options', resp);
 			});
 		}
+	}, {
+		key: '_disabledChanged',
+		value: function _disabledChanged(newVal, oldVal) {
+			if (newVal) this.type = 'disabled';
+		}
 
 		/*---------- 
   COMPUTED	
@@ -313,7 +313,7 @@ var MultipleClab = (function () {
 	}, {
 		key: '_setWrapperHeights',
 		value: function _setWrapperHeights() {
-			this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
+			if (this.liHeight == undefined) this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
 			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
 		}
 	}, {

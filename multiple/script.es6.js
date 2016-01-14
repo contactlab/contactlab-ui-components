@@ -37,7 +37,8 @@ class MultipleClab {
 			},
 			disabled: {
 				type:Boolean,
-				value:false
+				value:false,
+				observer:'_disabledChanged'
 			},
 			maxInView:{
 				type:Number,
@@ -48,8 +49,7 @@ class MultipleClab {
 				value:false
 			},
 			noteType: {
-				type: String,
-				value: ''
+				type: String
 			},
 
 			compNoteType: {
@@ -57,10 +57,6 @@ class MultipleClab {
 				computed: '_computeNoteType(type, noteType)'
 			}
 		}
-	}
-
-	ready(){
-		if(this.disabled) this.type='disabled';
 	}
 
 	attached(){
@@ -272,6 +268,10 @@ class MultipleClab {
 		});
 	}
 
+	_disabledChanged(newVal, oldVal){
+		if(newVal) this.type='disabled';
+	}
+
 
 
 
@@ -298,7 +298,7 @@ class MultipleClab {
 	UTILITIES	
 	----------*/
 	_setWrapperHeights(){
-		this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
 

@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../menu-sidebar/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="menu">
+	<template>
+	  <main>
+	  	<menu-clab></menu-clab>
+	  </main>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<menu-clab>', function() {
+  var menu;
+
+	beforeEach(function() {
+		menu = fixture('menu');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(menu.titleIcon).to.equal('fa-hand-peace-o');
+			expect(menu.reduceText).to.equal('Riduci menu');
+			expect(menu.reduceOpen).to.equal('clab clab-icon-expand expand');
+			expect(menu.reduceOpen).to.equal('clab clab-icon-resize compress');
+			expect(menu.menu).to.equal([]);
+			expect(menu.link).to.equal('/');
+
+			done();
+		});
+
+	});
+
+	context('Test DOM Bindings', function(){
+
+		it('Check titleIcon', function(done) {
+			var str = 'new-title-icon';
+			menu.titleIcon = str;
+
+			setTimeout(function(){
+				console.log(menu.querySelector('.clab'));
+				expect(menu.querySelector('.clab').classList.contains(str)).to.equal(true);
+
+				done();
+			},50);
+		});
+
+	});
+
+});	
+
+</script>
+</body>
+</html>

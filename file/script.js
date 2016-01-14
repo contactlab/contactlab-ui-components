@@ -76,7 +76,7 @@ var FileClab = (function () {
 	}, {
 		key: '_selection',
 		value: function _selection(evt) {
-			this.$$('input[type=file]').click();
+			this.querySelector('input[type=file]').click();
 		}
 
 		/*---------- 

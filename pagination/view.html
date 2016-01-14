@@ -19,7 +19,7 @@
 		    </li>
 
 			<template is="dom-repeat" items="[[pages]]">
-				<li class="page invisible"><a href$="[[item]]" on-click="setThisAsCurrent" data-index$="[[index]]">[[_pageNumber(index)]]</a></li>
+				<li class$="[[_computeLiPageClass(index)]]"><a href$="[[item]]" on-click="setThisAsCurrent" data-index$="[[index]]">[[_pageNumber(index)]]</a></li>
 			</template>
 
 			<li>

@@ -13,25 +13,18 @@ class TabsClab{
 			},
 			active: {
 				type: Number,
-				value: 0
-			},
-			tabs: {
-				type: Array,
-				value: [],
-				readonly: true
-			},
-			tabContent: {
-				type: Array
+				value: 0,
+				observer: '_changeTab'
 			}
 		}
 	}
 
 	attached(){
-		this.tabContent = this.querySelectorAll('.tab-content');
-		Array.prototype.map.call(this.tabContent, (content)=>{
+		this.tabContents = this.querySelectorAll('.tab-content');
+		Array.prototype.map.call(this.tabContents, (content)=>{
 			content.style.display = 'none';
 		});
-		this.tabContent[this.active].style.display = 'block';
+		this.tabContents[this.active].style.display = 'block';
 	}
 
 
@@ -39,13 +32,26 @@ class TabsClab{
 	/*---------- 
 	EVENT HANDLERS
 	----------*/
-	_changeTab(evt,index){
+	_activateThis(evt){
 		evt ? evt.preventDefault() : null;
 		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		Array.prototype.map.call(this.tabContent, (e)=>{
-			e.style.display = 'none';
-		});
-		this.tabContent[this.active].style.display = 'block';
+	}
+
+
+
+
+	/*---------- 
+	OBSERVERS
+	----------*/
+	_changeTab(newVal, oldVal){
+		if(this.tabContents!=undefined){
+			Array.prototype.map.call(this.tabContents, (el, i)=>{
+				if(i===newVal) 
+					el.style.display = 'block';
+				else
+					el.style.display = 'none';
+			});
+		}
 	}
 
 
@@ -53,11 +59,11 @@ class TabsClab{
 	/*---------- 
 	COMPUTED
 	----------*/
-	_computedLabels(tabContent, labels){
+	_computedLabels(tabContents, labels){
 		var newLabels = labels;
 
-		if(tabContent.length>=labels.length){
-			for(var i=0; i<tabContent.length; i++){
+		if(tabContents.length>=labels.length){
+			for(var i=0; i<tabContents.length; i++){
 				if(newLabels[i]===undefined){
 					newLabels.push('Tab '+(i+1));
 				}

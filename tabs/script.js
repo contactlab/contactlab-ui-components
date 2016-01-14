@@ -24,26 +24,19 @@ var TabsClab = (function () {
 				},
 				active: {
 					type: Number,
-					value: 0
-				},
-				tabs: {
-					type: Array,
-					value: [],
-					readonly: true
-				},
-				tabContent: {
-					type: Array
+					value: 0,
+					observer: '_changeTab'
 				}
 			};
 		}
 	}, {
 		key: 'attached',
 		value: function attached() {
-			this.tabContent = this.querySelectorAll('.tab-content');
-			Array.prototype.map.call(this.tabContent, function (content) {
+			this.tabContents = this.querySelectorAll('.tab-content');
+			Array.prototype.map.call(this.tabContents, function (content) {
 				content.style.display = 'none';
 			});
-			this.tabContent[this.active].style.display = 'block';
+			this.tabContents[this.active].style.display = 'block';
 		}
 
 		/*---------- 
@@ -51,14 +44,24 @@ var TabsClab = (function () {
   ----------*/
 
 	}, {
-		key: '_changeTab',
-		value: function _changeTab(evt, index) {
+		key: '_activateThis',
+		value: function _activateThis(evt) {
 			evt ? evt.preventDefault() : null;
 			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-			Array.prototype.map.call(this.tabContent, function (e) {
-				e.style.display = 'none';
-			});
-			this.tabContent[this.active].style.display = 'block';
+		}
+
+		/*---------- 
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: '_changeTab',
+		value: function _changeTab(newVal, oldVal) {
+			if (this.tabContents != undefined) {
+				Array.prototype.map.call(this.tabContents, function (el, i) {
+					if (i === newVal) el.style.display = 'block';else el.style.display = 'none';
+				});
+			}
 		}
 
 		/*---------- 
@@ -67,11 +70,11 @@ var TabsClab = (function () {
 
 	}, {
 		key: '_computedLabels',
-		value: function _computedLabels(tabContent, labels) {
+		value: function _computedLabels(tabContents, labels) {
 			var newLabels = labels;
 
-			if (tabContent.length >= labels.length) {
-				for (var i = 0; i < tabContent.length; i++) {
+			if (tabContents.length >= labels.length) {
+				for (var i = 0; i < tabContents.length; i++) {
 					if (newLabels[i] === undefined) {
 						newLabels.push('Tab ' + (i + 1));
 					}

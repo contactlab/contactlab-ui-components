@@ -43,13 +43,13 @@ describe('<range-clab>', function() {
 	context('Test DOM Bindings', function(){
 
 		it('Check type', function(done) {
-			var style = 'error';
+			var str = 'error';
 			range.label = 'I have a label';
-			range.type = style;
+			range.type = str;
 
 			setTimeout(function(){
-				expect(range.querySelector('label').classList.contains(style)).to.equal(true);
-				expect(range.querySelector('input').classList.contains(style)).to.equal(true);
+				expect(range.querySelector('label').classList.contains(str)).to.equal(true);
+				expect(range.querySelector('input').classList.contains(str)).to.equal(true);
 
 				done();
 			},50);

@@ -32,7 +32,7 @@ var ModalClab = (function () {
 					type: String,
 					value: null
 				},
-				width: {
+				maxWidth: {
 					type: String,
 					value: '500px'
 				}
