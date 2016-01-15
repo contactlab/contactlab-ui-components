@@ -29,6 +29,10 @@ var InputClab = (function () {
 					type: Boolean,
 					value: false
 				},
+				check: {
+					type: Boolean,
+					value: false
+				},
 				value: {
 					type: String,
 					notify: true,
@@ -37,7 +41,7 @@ var InputClab = (function () {
 				disabled: {
 					type: Boolean,
 					value: false,
-					observer: 'disabledChanged'
+					observer: '_disabledChanged'
 				},
 				placeholder: {
 					type: String
@@ -46,12 +50,45 @@ var InputClab = (function () {
 					type: String,
 					value: ''
 				},
+				btnConfig: {
+					type: Object,
+					value: {
+						show: {
+							icon: 'fa fa-eye',
+							label: 'Mostra password',
+							type: "primary",
+							appearance: "flat",
+							size: ""
+						},
+						hide: {
+							icon: 'fa fa-eye-slash',
+							label: 'Nascondi password',
+							type: "error",
+							appearance: "flat",
+							size: ""
+						}
+					}
+				},
 
+				btnProps: {
+					type: String,
+					computed: '_computeToggleBtnProps(password, btnConfig)'
+				},
 				compNoteType: {
 					type: String,
-					computed: 'computeNoteType(type, noteType)'
+					computed: '_computeNoteType(type, noteType)'
 				}
 			};
+		}
+
+		/*----------
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_toggleInputType',
+		value: function _toggleInputType(evt) {
+			this.password = !this.password;
 		}
 
 		/*----------
@@ -59,8 +96,8 @@ var InputClab = (function () {
   ----------*/
 
 	}, {
-		key: 'disabledChanged',
-		value: function disabledChanged(newVal, oldVal) {
+		key: '_disabledChanged',
+		value: function _disabledChanged(newVal, oldVal) {
 			if (newVal) this.type = 'disabled';
 		}
 
@@ -69,8 +106,8 @@ var InputClab = (function () {
   ----------*/
 
 	}, {
-		key: 'computeNoteType',
-		value: function computeNoteType(type, noteType) {
+		key: '_computeNoteType',
+		value: function _computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
 		}
 	}, {
@@ -81,6 +118,11 @@ var InputClab = (function () {
 			} else {
 				return 'text';
 			}
+		}
+	}, {
+		key: '_computeToggleBtnProps',
+		value: function _computeToggleBtnProps(pswd, btnConfig) {
+			if (pswd) return btnConfig.show;else return btnConfig.hide;
 		}
 	}, {
 		key: 'behaviors',

@@ -5,7 +5,7 @@
 	
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../node_modules/web-component-tester/browser.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
 
 	<link rel="import" href="./../../input/view.html">
 
@@ -35,10 +35,12 @@ describe('<input-clab>', function() {
 			expect(input.label).to.be.undefined;
 			expect(input.type).to.equal('');
 			expect(input.password).to.equal(false);
+			expect(input.check).to.equal(false);
 			expect(input.value).to.be.undefined;
 			expect(input.disabled).to.equal(false);
 			expect(input.placeholder).to.be.undefined;
 			expect(input.noteType).to.equal('');
+			expect(input.btnConfig).to.be.an('object');
 
 			done();
 		});
@@ -119,6 +121,16 @@ describe('<input-clab>', function() {
 			},50);
 		});
 
+		it('Check check', function(done) {
+			input.check = true;
+
+			setTimeout(function(){
+				expect(input.querySelector('button-clab')).to.not.equal(null);
+
+				done();
+			},50);
+		});
+
 		it('Check placeholder', function(done) {
 			var str='this is it';
 			input.placeholder = str;
@@ -127,6 +139,48 @@ describe('<input-clab>', function() {
 				expect(input.querySelector('input[type=text]').getAttribute('placeholder')).to.equal(str);
 
 				done();
+			},50);
+		});
+
+		it('Check btnConfig', function(done) {
+			var obj={
+					show:{
+						icon:'fa fa-eye',
+						label:'Mostra psw',
+						type:"primary", 
+						appearance:"flat", 
+						size:""
+					},
+					hide:{
+						icon:'fa fa-eye-slash',
+						label:'Nascondi psw',
+						type:"secondary",
+						appearance:"full",
+						size:"small"
+					}
+				};
+			input.btnConfig = obj;
+			input.check=true;
+			input.password=true;
+
+			setTimeout(function(){
+				expect(input.querySelector('button-clab i').classList.contains('fa-eye')).to.equal(true);
+				expect(input.querySelector('button-clab button').classList.contains('primary')).to.equal(true);
+				expect(input.querySelector('button-clab button').classList.contains('flat')).to.equal(true);
+				expect(input.querySelector('button-clab button').innerText).to.equal('Mostra psw');
+				expect(input.querySelector('button-clab').size).to.equal('');
+
+				input.password=false;
+
+				setTimeout(function(){
+					expect(input.querySelector('button-clab i').classList.contains('fa-eye-slash')).to.equal(true);
+					expect(input.querySelector('button-clab button').classList.contains('secondary')).to.equal(true);
+					expect(input.querySelector('button-clab button').classList.contains('full')).to.equal(true);
+					expect(input.querySelector('button-clab button').classList.contains('small')).to.equal(true);
+					expect(input.querySelector('button-clab button').innerText).to.equal('Nascondi psw');
+
+					done();
+				},50);
 			},50);
 		});
 
