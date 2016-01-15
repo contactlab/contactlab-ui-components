@@ -74,8 +74,8 @@ gulp.task('vulcanize', function (s, f) {
       dest= './'+s+'/';
     }
   } else { // all in one file
-    files= './clab-components.html';
-    dest= '';
+    files= './_components/clab-components.html';
+    dest= './_components/';
   }
   
   return gulp.src(files)
@@ -106,8 +106,8 @@ gulp.task('minHtml', function(s, f) {
       dest= './'+s+'/';
     }
   } else { // all in one file
-    files= './clab-components.build.html';
-    dest= '';
+    files= './_components/clab-components.build.html';
+    dest= './_components/';
   }
 
   return gulp.src(files)
@@ -128,8 +128,8 @@ gulp.task('minInline', function(s, f) {
       dest= './'+s+'/';
     }
   } else { // all in one file
-    files= './clab-components.build.html';
-    dest= '';
+    files= './_components/clab-components.build.html';
+    dest= './_components/';
   }
 
   return gulp.src(files)
