@@ -11,10 +11,6 @@ class MenuClab{
 				type: String,
 				value: 'fa-hand-peace-o'
 			},
-			reduceText:{
-				type: String,
-				value: 'Riduci menu'
-			},
 			reduceOpen:{
 				type: String,
 				value: 'clab clab-icon-expand expand'
@@ -78,7 +74,7 @@ class MenuClab{
 	METHODS
 	----------*/
 	_iosMenu(){
-		document.querySelector('body main').addEventListener('click', (evt) => {
+		document.querySelector('body').addEventListener('click', (evt) => {
 			switch(evt.target.nodeName){
 				case 'INPUT':
 				case 'BUTTON':

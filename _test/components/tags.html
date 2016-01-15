@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../tags/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="tags">
+	<template>
+	  <tags-clab>This is my note</tags-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<tags-clab>', function() {
+  var tags;
+
+	beforeEach(function() {
+		tags = fixture('tags');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(tags.name).to.equal('tags input');
+			expect(tags.label).to.be.undefined;
+			expect(tags.inputString).to.be.undefined;
+			expect(tags.inputType).to.equal('success');
+			expect(tags.tags).to.be.an('array');
+			expect(tags.disabled).to.equal(false);
+			expect(tags.btn).to.be.undefined;
+			expect(tags.btnAppearence).to.be.undefined;
+			expect(tags.btnSize).to.be.undefined;
+			expect(tags.btnIcon).to.be.undefined;
+			expect(tags.hideInput).to.equal(false);
+
+			done();
+		});
+
+	});
+
+	context('Test DOM Bindings', function(){
+
+		it('Check inputType', function(done) {
+			var str = 'error';
+			tags.inputType = str;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab').type).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check label', function(done) {
+			var str = 'This is my label';
+			tags.label=str;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab').label).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check name', function(done) {
+			var str = 'This is my name';
+			tags.name=str;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab').name).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check disabled', function(done) {
+			var bool = true;
+			tags.disabled=bool;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab').disabled).to.equal(bool);
+				expect(tags.querySelector('button-clab').disabled).to.equal(bool);
+
+				done();
+			},50);
+		});
+
+		it('Check inputString', function(done) {
+			var str = 'ciccio puzzo';
+			tags.inputString=str;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab').value).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check tags', function(done) {
+			var arr = ['ciccio puzzo', 'bella', 'raga'];
+			tags.tags=arr;
+
+			setTimeout(function(){
+				expect(tags.querySelectorAll('label-clab').length).to.equal(arr.length);
+
+				done();
+			},50);
+		});
+
+		it('Check hideInput', function(done) {
+			var bool = true;
+			tags.hideInput=bool;
+
+			setTimeout(function(){
+				expect(tags.querySelector('input-clab')).to.equal(null);
+
+				done();
+			},50);
+		});
+
+		it('Check btn attributes', function(done) {
+			var btnAppearence = 'appearance';
+			var btnSize = 'size';
+			var btnIcon = 'icon';
+			var str = 'ciccio puzzo';
+			tags.btn=str;
+			tags.btnAppearence=btnAppearence;
+			tags.btnSize=btnSize;
+			tags.btnIcon=btnIcon;
+
+			setTimeout(function(){
+				expect(tags.querySelector('button-clab').innerText).to.equal(str);
+				expect(tags.querySelector('button-clab').appearance).to.equal(btnAppearence);
+				expect(tags.querySelector('button-clab').size).to.equal(btnSize);
+				expect(tags.querySelector('button-clab').icon).to.equal(btnIcon);
+
+				done();
+			},50);
+		});
+	});
+
+});	
+
+</script>
+</body>
+</html>

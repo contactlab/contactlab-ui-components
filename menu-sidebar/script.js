@@ -22,10 +22,6 @@ var MenuClab = (function () {
 					type: String,
 					value: 'fa-hand-peace-o'
 				},
-				reduceText: {
-					type: String,
-					value: 'Riduci menu'
-				},
 				reduceOpen: {
 					type: String,
 					value: 'clab clab-icon-expand expand'
@@ -96,7 +92,7 @@ var MenuClab = (function () {
 		value: function _iosMenu() {
 			var _this2 = this;
 
-			document.querySelector('body main').addEventListener('click', function (evt) {
+			document.querySelector('body').addEventListener('click', function (evt) {
 				switch (evt.target.nodeName) {
 					case 'INPUT':
 					case 'BUTTON':

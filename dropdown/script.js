@@ -173,10 +173,12 @@ var DropdownClab = (function () {
 			if (arr.length > 0) return arr.join(' ');
 		}
 	}, {
-		key: '_compValueWrapper',
-		value: function _compValueWrapper(disabled) {
-			var arr = ['value_wrapper'];
+		key: '_compType',
+		value: function _compType(disabled, type, def) {
+			var arr = [];
+			if (def != undefined) arr.push(def);
 			if (disabled) arr.push('disabled');
+			if (type != undefined) arr.push(type);
 			return arr.join(' ');
 		}
 

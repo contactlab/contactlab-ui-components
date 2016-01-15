@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../input/view.html">
 
 <dom-module id="autocomplete-clab">
     <!-- This CSS is local -->
@@ -6,10 +7,10 @@
 
 	<template>
         <template is="dom-if" if="[[_viewLabel(label)]]">
-            <label for$="[[_dashify(name)]]">[[label]]</label>
+            <label class$="[[inputType]]" for$="[[_dashify(name)]]">[[label]]</label>
         </template>
         <div class="options-list-wrapper">
-            <input-clab value="{{inputString}}" type="[[inputType]]" disabled="[[disabled]]" placeholder="Type..." name="[[name]]" on-keyup="_handleKeyboardInputs">
+            <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs">
                 <content></content>
             </input-clab>
             <ol class="options-list">

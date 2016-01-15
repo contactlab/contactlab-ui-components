@@ -27,6 +27,10 @@ var AutoCompleteClab = (function () {
 				value: {
 					type: Object
 				},
+				placeholder: {
+					type: String,
+					value: 'Type..'
+				},
 				disabled: {
 					type: Boolean,
 					value: false
@@ -53,12 +57,10 @@ var AutoCompleteClab = (function () {
 					type: Boolean,
 					value: false
 				},
-				// Min amount of characters to start searching for hints
 				minChar: {
 					type: Number,
 					value: 3
 				},
-				// How many LIs are visible without scrolling (=> sets max-height of OL)
 				maxInView: {
 					type: Number,
 					value: 6
@@ -66,6 +68,9 @@ var AutoCompleteClab = (function () {
 				inputType: {
 					type: String,
 					value: 'success'
+				},
+				noteType: {
+					type: String
 				},
 
 				/*---------- 

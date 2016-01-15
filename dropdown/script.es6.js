@@ -159,9 +159,11 @@ class DropdownClab{
 		if(arr.length>0) return arr.join(' ');
 	}
 
-	_compValueWrapper(disabled){
-		let arr=['value_wrapper'];
+	_compType(disabled, type, def){
+		let arr=[];
+		if(def!=undefined) arr.push(def);
 		if(disabled) arr.push('disabled');
+		if(type!=undefined) arr.push(type);
 		return arr.join(' ');
 	}
 

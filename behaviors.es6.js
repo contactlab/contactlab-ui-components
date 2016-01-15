@@ -5,7 +5,7 @@ let UtilBehavior={
 	},
 
 	_viewLabel:(label)=>{
-		if(label.length>0) return true; else return false;
+		if(label!=undefined && label.length>0) return true; else return false;
 	},
 
 	_getIndex:(item, items)=>{

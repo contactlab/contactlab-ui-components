@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../note/view.html">
 
 <dom-module id="dropdown-clab">
 	<style>
@@ -18,10 +19,10 @@
 
 	<template>
         <template is="dom-if" if="[[_viewLabel(label)]]">
-            <label>[[label]]</label>
+            <label class$="[[_compType(disabled, type)]]">[[label]]</label>
         </template>
         <div class="options-list-wrapper">
-            <div class$="[[_compValueWrapper(disabled)]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
+            <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="1">
                 <template is="dom-if" if="[[_viewValue(selected)]]">
                     <span class="selected">[[selected.label]]</span>
                 </template>
