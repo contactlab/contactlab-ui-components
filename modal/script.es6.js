@@ -9,7 +9,7 @@ class ModalClab{
 			},
 			visible: {
 				type: Boolean,
-				value: false,
+				value: false
 			},
 			primary: {
 				type: String

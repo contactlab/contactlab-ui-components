@@ -1,5 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../input/view.html">
+<link rel="import" href="../spinner/view.html">
 
 <dom-module id="autocomplete-clab">
     <!-- This CSS is local -->
@@ -19,9 +20,7 @@
                 </template>
             </ol>
 
-            <template is="dom-if" if="[[spinner]]">
-                <spinner-clab></spinner-clab>
-            </template>
+            <spinner-clab visible="[[spinner]]"></spinner-clab>
         </div>
 
     </template>

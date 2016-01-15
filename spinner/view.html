@@ -3,16 +3,18 @@
 <dom-module id="spinner-clab">
 	<style></style>
 	
-	<template>		
-		<div class$="[[_computeClass(big,dark)]]" style$="[[_computeBgColor(background)]]">
-			<div class="spinner">
-				<div class="rect1"></div>
-				<div class="rect2"></div>
-				<div class="rect3"></div>
-				<div class="rect4"></div>
-				<div class="rect5"></div>
+	<template>
+		<template is="dom-if" if="[[visible]]">	
+			<div class$="[[_computeClass(big,dark)]]" style$="[[_computeBgColor(background)]]">
+				<div class="spinner">
+					<div class="rect1"></div>
+					<div class="rect2"></div>
+					<div class="rect3"></div>
+					<div class="rect4"></div>
+					<div class="rect5"></div>
+				</div>
 			</div>
-		</div>
+		</template>	
 	</template>
 
 	<script src="script.js"></script>

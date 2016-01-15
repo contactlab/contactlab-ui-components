@@ -14,6 +14,10 @@ class SpinnerClab{
 			background: {
 				type:String,
 				value: '255, 255, 255, 0.9'
+			},
+			visible: {
+				type: Boolean,
+				value: false,
 			}
 		}
 	}
