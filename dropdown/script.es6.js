@@ -13,7 +13,7 @@ class DropdownClab{
 			},
 			type:{
 				type:String,
-				value:'success'
+				value:''
 			},
 			selected:{
 				type:Object,
@@ -89,10 +89,12 @@ class DropdownClab{
 				setTimeout(()=>{
 					this.querySelector('.options-list').classList.remove('hidden');
 					this.querySelector('.options-list').classList.add('active');
+					this.querySelector('.value_wrapper > span').classList.add('active');
 				},50);
 				return;
 			}
 			this.querySelector('.options-list').classList.toggle('active');
+			this.querySelector('.value_wrapper > span').classList.toggle('active');
 		}
 	}
 

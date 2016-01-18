@@ -28,7 +28,7 @@ class TagsClab {
 			},
 			inputType:{
 				type:String,
-				value:'success'
+				value:''
 			},
 			btn:{
 				type:String

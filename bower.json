@@ -11,8 +11,6 @@
   "homepage": "",
   "ignore": [
     "**/.*",
-    "_css",
-    "_fonts",
     "_test",
     "_tests",
     "node_modules",

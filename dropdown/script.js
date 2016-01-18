@@ -20,7 +20,7 @@ var DropdownClab = (function () {
 				},
 				type: {
 					type: String,
-					value: 'success'
+					value: ''
 				},
 				selected: {
 					type: Object,
@@ -100,10 +100,12 @@ var DropdownClab = (function () {
 					setTimeout(function () {
 						_this2.querySelector('.options-list').classList.remove('hidden');
 						_this2.querySelector('.options-list').classList.add('active');
+						_this2.querySelector('.value_wrapper > span').classList.add('active');
 					}, 50);
 					return;
 				}
 				this.querySelector('.options-list').classList.toggle('active');
+				this.querySelector('.value_wrapper > span').classList.toggle('active');
 			}
 		}
 	}, {

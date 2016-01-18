@@ -13,7 +13,7 @@ class MultipleClab {
 			},
 			type:{
 				type: String,
-				value: 'success'
+				value: ''
 			},
 			options:{
 				type: Array,

@@ -67,7 +67,7 @@ var AutoCompleteClab = (function () {
 				},
 				inputType: {
 					type: String,
-					value: 'success'
+					value: ''
 				},
 				noteType: {
 					type: String
