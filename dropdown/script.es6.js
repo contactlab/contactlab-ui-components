@@ -118,9 +118,9 @@ class DropdownClab{
 		this._highlightEl(this._getIndex(item, this.options));
 
 		if(this.resultAsObj)
-			this.fire('change', {'oldValue': old, 'newValue':this.selected});
+			this.fire('change', {'selected':this.selected});
 		else
-			this.fire('change', {'oldValue': old, 'newValue':this.selected.label});
+			this.fire('change', {'selected':this.selected.label});
 
 	}
 

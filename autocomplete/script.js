@@ -284,7 +284,7 @@ var AutoCompleteClab = (function () {
 			this.inputString = this.value.label;
 			this.currentHint = undefined;
 
-			if (this.resultAsObj) this.fire('change', this.value);else this.fire('change', { 'value': this.inputString });
+			if (this.resultAsObj) this.fire('change', { 'selected': this.value });else this.fire('change', { 'selected': this.inputString });
 		}
 	}, {
 		key: '_closeList',

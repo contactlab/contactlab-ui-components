@@ -131,7 +131,7 @@ var DropdownClab = (function () {
 			this.set('selected', item);
 			this._highlightEl(this._getIndex(item, this.options));
 
-			if (this.resultAsObj) this.fire('change', { 'oldValue': old, 'newValue': this.selected });else this.fire('change', { 'oldValue': old, 'newValue': this.selected.label });
+			if (this.resultAsObj) this.fire('change', { 'selected': this.selected });else this.fire('change', { 'selected': this.selected.label });
 		}
 	}, {
 		key: '_highlightEl',

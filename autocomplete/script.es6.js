@@ -264,9 +264,9 @@ class AutoCompleteClab{
 		this.currentHint=undefined;
 
 		if(this.resultAsObj)
-			this.fire('change', this.value);
+			this.fire('change', {'selected':this.value});
 		else
-			this.fire('change', {'value':this.inputString});
+			this.fire('change', {'selected':this.inputString});
 	}
 
 	_closeList(){

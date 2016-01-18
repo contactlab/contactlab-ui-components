@@ -73,7 +73,7 @@ class TagsClab {
 		});
 		this.inputString='';
 
-		this.fire('change');
+		this.fire('change', {'tags': this.tags});
 	}
 
 	_removeTag(evt){
@@ -87,7 +87,7 @@ class TagsClab {
 		});
 		if(i!=undefined) this.splice('tags', i, 1);
 
-		this.fire('remove');
+		this.fire('change', {'tags': this.tags});
 	}
 
 
@@ -104,7 +104,7 @@ class TagsClab {
 			});
 			
 		}
-		this.fire('change');
+		this.fire('change', {'tags': this.tags});
 
 		return this.tags;
 	}
