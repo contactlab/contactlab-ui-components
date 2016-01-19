@@ -34,6 +34,10 @@ var MenuClab = (function () {
 					type: String,
 					value: null
 				},
+				firstChild: {
+					type: Boolean,
+					value: false
+				},
 				_url: {
 					type: String
 				}
@@ -60,12 +64,19 @@ var MenuClab = (function () {
 		key: '_openItem',
 		value: function _openItem(evt) {
 			var i = parseInt(evt.currentTarget.dataset.index);
-			if (this.menu[i].submenu) {
-				this._url = this.menu[i].url;
-				this.fire('enable-submenu', this.menu[i].submenu);
-			} else {
-				this._url = location.hash;
-			}
+
+			this._url = location.hash;
+			if (this.menu[i].submenu) this.fire('enable-submenu', this.menu[i].submenu);
+			/*if(this.menu[i].submenu){
+   	if(this.firstChild){
+   		this._url=this.menu[i].submenu[0].url;
+   	} else {
+   		this._url = this.menu[i].url;
+   	}
+   	this.fire('enable-submenu', this.menu[i].submenu);
+   } else {
+   	this._url = location.hash;
+   }*/
 		}
 	}, {
 		key: '_toggleMenu',
@@ -107,6 +118,15 @@ var MenuClab = (function () {
   COMPUTE
   ----------*/
 
+	}, {
+		key: '_computeUrl',
+		value: function _computeUrl(item) {
+			if (this.firstChild && item.submenu) {
+				return item.submenu[0].url;
+			} else {
+				return item.url;
+			}
+		}
 	}, {
 		key: '_computeActive',
 		value: function _computeActive(url, link, open) {

@@ -23,6 +23,10 @@ class MenuClab{
 				type:String,
 				value:null
 			},
+			firstChild:{
+				type:Boolean,
+				value:false
+			},
 			_url: {
 				type: String
 			}
@@ -45,12 +49,19 @@ class MenuClab{
 	----------*/
 	_openItem(evt){
 		let i = parseInt(evt.currentTarget.dataset.index);
-		if(this.menu[i].submenu){
-			this._url = this.menu[i].url;
+
+		this._url = location.hash;
+		if(this.menu[i].submenu) this.fire('enable-submenu', this.menu[i].submenu);
+		/*if(this.menu[i].submenu){
+			if(this.firstChild){
+				this._url=this.menu[i].submenu[0].url;
+			} else {
+				this._url = this.menu[i].url;
+			}
 			this.fire('enable-submenu', this.menu[i].submenu);
 		} else {
 			this._url = location.hash;
-		}
+		}*/
 
 	}
 
@@ -90,6 +101,14 @@ class MenuClab{
 	/*---------- 
 	COMPUTE
 	----------*/
+	_computeUrl(item){
+		if(this.firstChild && item.submenu){
+			return item.submenu[0].url;
+		} else {
+			return item.url;
+		}
+	}
+
 	_computeActive(url,link,open){
 		let arr = [];
 		url.search(link) > -1 ? arr.push('active') : null;
