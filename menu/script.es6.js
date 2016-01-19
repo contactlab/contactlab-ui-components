@@ -27,6 +27,9 @@ class MenuClab{
 				type:Boolean,
 				value:false
 			},
+			submenu:{
+				type:Object
+			},
 			_url: {
 				type: String
 			}
@@ -49,20 +52,7 @@ class MenuClab{
 	----------*/
 	_openItem(evt){
 		let i = parseInt(evt.currentTarget.dataset.index);
-
 		this._url = location.hash;
-		if(this.menu[i].submenu) this.fire('enable-submenu', this.menu[i].submenu);
-		/*if(this.menu[i].submenu){
-			if(this.firstChild){
-				this._url=this.menu[i].submenu[0].url;
-			} else {
-				this._url = this.menu[i].url;
-			}
-			this.fire('enable-submenu', this.menu[i].submenu);
-		} else {
-			this._url = location.hash;
-		}*/
-
 	}
 
 	_toggleMenu(evt){
@@ -79,6 +69,17 @@ class MenuClab{
 	/*---------- 
 	METHODS
 	----------*/
+	_setSubmenu(current){
+		if(current.submenu){
+			this.set('submenu', current.submenu);
+			this.fire('subchange', {links:current.submenu});
+		}
+		else {
+			this.set('submenu', undefined);
+			this.fire('subchange', {links:[]});
+		}
+	}
+
 	_iosMenu(){
 		document.querySelector('body').addEventListener('click', (evt) => {
 			switch(evt.target.nodeName){
@@ -103,15 +104,22 @@ class MenuClab{
 	----------*/
 	_computeUrl(item){
 		if(this.firstChild && item.submenu){
-			return item.submenu[0].url;
+			if(item.submenu[0].submenu){ // 3 levels
+				return item.submenu[0].submenu[0].url;
+			} else { // 2 levels
+				return item.submenu[0].url;
+			}
 		} else {
 			return item.url;
 		}
 	}
 
-	_computeActive(url,link,open){
+	_computeActive(url,link, i){
 		let arr = [];
-		url.search(link) > -1 ? arr.push('active') : null;
+		if(url.search(link) > -1) {
+			arr.push('active');
+			this._setSubmenu(this.menu[i]);
+		} 
 		return arr.join(' ');
 	}
 
