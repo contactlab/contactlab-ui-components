@@ -1,0 +1,33 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="menu-clab">
+	<style></style>
+	
+	<template>
+		<div id="main-logo" class="product-logo">
+			<a href$="[[link]]">
+				<span class="sign"><i class$="[[_computeTitleIcon(titleIcon)]]"></i></span>
+				<content select="span.product-name"></content>
+			</a>
+		</div>
+
+		<div class="open-menu menu-toggle" on-click="_toggleMenu"><i class="clab clab-icon-hamburger-menu"></i></div>
+
+		<nav class="main-menu">
+			<ul>
+				<template is="dom-repeat" items="[[menu]]">
+					<li class$="[[_computeActive(_url,item.url)]]">
+						<a on-click="_openItem" href$="[[item.url]]" data-index$="[[index]]">[[item.label]]</a>
+					</li>
+				</template>
+			</ul>
+			<div class="close-overlay menu-toggle" on-click="_toggleMenu"><i class="clab clab-icon-close"></i></div>
+		</nav>
+
+		<template is="dom-if" if="[[draft]]">
+			<div id="draft-ribbon">[[draft]]</div>
+		</template>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>

@@ -22,22 +22,17 @@ var MenuClab = (function () {
 					type: String,
 					value: 'fa-hand-peace-o'
 				},
-				reduceOpen: {
-					type: String,
-					value: 'clab clab-icon-expand expand'
-				},
-				reduceClose: {
-					type: String,
-					value: 'clab clab-icon-resize compress'
-				},
 				menu: {
 					type: Array,
-					value: [],
-					observer: '_addOpenAttr'
+					value: []
 				},
 				link: {
 					type: String,
 					value: '/'
+				},
+				draft: {
+					type: String,
+					value: null
 				},
 				_url: {
 					type: String
@@ -50,7 +45,6 @@ var MenuClab = (function () {
 			var _this = this;
 
 			this._url = location.hash;
-
 			window.addEventListener('hashchange', function (evt) {
 				_this._url = location.hash;
 			});
@@ -66,21 +60,22 @@ var MenuClab = (function () {
 		key: '_openItem',
 		value: function _openItem(evt) {
 			var i = parseInt(evt.currentTarget.dataset.index);
-			var str = 'menu.' + i + '.open';
 			if (this.menu[i].submenu) {
 				this._url = this.menu[i].url;
-				evt.preventDefault();
-				this.set(str, true);
+				this.fire('enable-submenu', this.menu[i].submenu);
 			} else {
 				this._url = location.hash;
-				this._addOpenAttr();
-				this.set(str, false);
 			}
 		}
 	}, {
-		key: '_reduce',
-		value: function _reduce(evt) {
-			document.body.classList.toggle('main-sidebar-small');
+		key: '_toggleMenu',
+		value: function _toggleMenu(evt) {
+			var open = evt.target.parentNode.classList.contains('open-menu');
+			if (open) {
+				this.querySelector('.main-menu').style.display = 'block';
+			} else {
+				this.querySelector('.main-menu').style.display = 'none';
+			}
 		}
 
 		/*---------- 
@@ -102,23 +97,9 @@ var MenuClab = (function () {
 						return true;
 						break;
 					default:
-						_this2.$$('#logo a').focus();
+						_this2.querySelector('#main-logo a').focus();
 						break;
 				}
-			});
-		}
-
-		/*---------- 
-  OBSERVERS
-  ----------*/
-
-	}, {
-		key: '_addOpenAttr',
-		value: function _addOpenAttr() {
-			var _this3 = this;
-
-			this.menu.map(function (e, i) {
-				_this3.set('menu.' + i + '.open', false);
 			});
 		}
 
@@ -130,7 +111,6 @@ var MenuClab = (function () {
 		key: '_computeActive',
 		value: function _computeActive(url, link, open) {
 			var arr = [];
-			open ? arr.push('open', 'active') : null;
 			url.search(link) > -1 ? arr.push('active') : null;
 			return arr.join(' ');
 		}
@@ -138,11 +118,6 @@ var MenuClab = (function () {
 		key: '_computeTitleIcon',
 		value: function _computeTitleIcon(icon) {
 			return ['clab', icon].join(' ');
-		}
-	}, {
-		key: '_computeReduceIcons',
-		value: function _computeReduceIcons(classes) {
-			return classes;
 		}
 	}]);
 
