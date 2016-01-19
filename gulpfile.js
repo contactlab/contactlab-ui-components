@@ -60,18 +60,26 @@ gulp.task('watch-es6', function() {
 
 
 // Vulcanize Components
-gulp.task('vulcanize', function (s, f) {
+gulp.task('vulcanize', function (c) {
   var files;
   var dest;
 
-  if(s!=null){ 
-    console.log(s);
-    if(s==true){ // all but separately
+  if(c!=null){ 
+    if(c==true){ // all but separately
       files= conf.comps;
       dest= ''; 
-    } else { // only one
-      files= './'+s+'/view.html';
-      dest= './'+s+'/';
+    } else if(c.split('_').length>1){ // only the files selected
+      var arr=c.split('_');
+      var data='';
+      for(var i=0; i<arr.length;i++){
+        data+='<link rel="import" href="../'+arr[i]+'/view.html">\n';
+      }
+      fs.writeFileSync('./_components/clab-components-custom.html', data);
+      files='./_components/clab-components-custom.html';
+      dest= './_components/';
+    } else { // only one file
+      files= './'+c+'/view.html';
+      dest= './'+c+'/';
     }
   } else { // all in one file
     files= './_components/clab-components.html';
@@ -93,17 +101,20 @@ gulp.task('vulcanize', function (s, f) {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('minHtml', function(s, f) {
+gulp.task('minHtml', function(c) {
   var files;
   var dest;
 
-  if(s!=null){ 
-    if(s==true){ // all but separately
+  if(c!=null){ 
+    if(c==true){ // all but separately
       files= conf.compsBuilt;
       dest= ''; 
+    } else if(c.split('_').length>1){ // only the files selected
+      files='./_components/clab-components-custom.build.html';
+      dest= './_components/';
     } else { // only one
-      files= './'+s+'/view.build.html';
-      dest= './'+s+'/';
+      files= './'+c+'/view.build.html';
+      dest= './'+c+'/';
     }
   } else { // all in one file
     files= './_components/clab-components.build.html';
@@ -115,17 +126,20 @@ gulp.task('minHtml', function(s, f) {
     .pipe(gulp.dest(dest))
 });
 
-gulp.task('minInline', function(s, f) {
+gulp.task('minInline', function(c) {
   var files;
   var dest;
 
-  if(s!=null){ 
-    if(s==true){ // all but separately
+  if(c!=null){ 
+    if(c==true){ // all but separately
       files= conf.compsBuilt;
       dest= ''; 
+    } else if(c.split('-').length>1){ // only the files selected
+      files='./_components/clab-components-custom.build.html';
+      dest= './_components/';
     } else { // only one
-      files= './'+s+'/view.build.html';
-      dest= './'+s+'/';
+      files= './'+c+'/view.build.html';
+      dest= './'+c+'/';
     }
   } else { // all in one file
     files= './_components/clab-components.build.html';
