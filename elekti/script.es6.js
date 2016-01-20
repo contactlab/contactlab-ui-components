@@ -21,6 +21,16 @@ class ElektiMer{
 					{value: 'B', label: 'Option 2'}
 				]
 			},
+			valueField: {
+				type: String,
+				value: 'value'
+			},
+
+			labelField: {
+				type: String,
+				value: 'label'
+			},
+
 			default: {
 				type:Number,
 				//observer: '_setDefault'
@@ -78,6 +88,65 @@ class ElektiMer{
 		}
 	}
 
+	// ==========================================================================================================================
+	// Public
+	// ==========================================================================================================================
+
+	isValorized() {
+		return !this.isNotValorized();
+	}
+
+	isNotValorized() {
+		return this.value === undefined || this.value === null;
+	}
+
+
+	setValue(obj, prevent){
+		prevent = prevent ? true : false;
+		this.preventChange = prevent;
+		this.set('value', obj);
+		this.preventChange = false;
+	}
+
+	getValue() {
+		var v;
+		if( this.isNotValorized() ) {
+			v = undefined;
+		} else if(typeof this.value === 'string' || this.value instanceof String) {
+			v = this.value;
+		} else if(typeof this.value === "object"){
+			v = this.value[this.valueField];
+		} else {
+			console.error(this.is + ": Invalid value type [" + (typeof this.value) + "]");
+		}
+		return v;
+	}
+
+	getValueObject() {
+		var v;
+		if( this.isNotValorized(this.value) ) {
+			v = undefined;
+		} else if(typeof this.value === 'string' || this.value instanceof String) {
+			for(var i = 0; i < options.length; i++) {
+				if(options[i][this.valueField] === this.value) {
+					v = options[i];
+				}
+				break;
+			}
+			if(v === undefined) {
+				console.warn(this.is + ": There is no options with value equals to [" + this.value + "]");
+			}
+		} else if(typeof this.value === "object"){
+			v = this.value;
+		} else {
+			console.warn(this.is + ": Invalid value type [" + (typeof this.value) + "]");
+		}
+		return v;
+	}
+
+	// ==========================================================================================================================
+	// Private
+	// ==========================================================================================================================
 	attached(){
 		this.input = this.$$('#' + this._dashify(this.name));
 
@@ -90,13 +159,6 @@ class ElektiMer{
 		this.addEventListener('mouseup', (evt)=>{
 			this.dontHide=false;
 		});
-	}
-
-	setValue(obj, prevent){
-		prevent = prevent ? true : false;
-		this.preventChange = prevent;
-		this.set('value', obj);
-		this.preventChange = false;
 	}
 
 	/*----------
@@ -117,7 +179,7 @@ class ElektiMer{
 	_updateValue(){
 		let old = this.value;
 		if(typeof this.value == 'object'){
-			// this.input.value = this.value.label;
+			// this.input.value = this.value[this.labelField];
 			this.highlightedElement();
 			if(!this.preventChange){
 				this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true});
@@ -169,7 +231,12 @@ class ElektiMer{
 	}
 
 	highlightedElement(input, els){
-		let search = (input)? input : this.value.label.toLowerCase();
+		console.log('highlightedElement: ', this.value);
+		console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);
+
+		if(!input && this.isNotValorized()) return false;
+
+		let search = (input)? input : this.value[this.labelField].toLowerCase();
 		let elems = (els)? els : this.$.list.querySelectorAll('li');
 		let exists=false;
 
@@ -231,9 +298,10 @@ class ElektiMer{
 	}
 
 	_selectElement(evt, value){
-		let i = this.getIndex(evt.target.getAttribute('data-value'));
+		// let i = this.getIndex(evt.target.getAttribute('data-value'));
+		let i = parseInt(evt.target.getAttribute('data-index'));
 		let old = this.value;
-		this.input.value = this.options[i].label;
+		this.input.value = this.options[i][this.labelField];
 		this.value = this.options[i];
 		this.highlightedElement();
 
@@ -273,6 +341,18 @@ class ElektiMer{
 		}
 
 		this.exists=this.highlightedElement(input, elems);
+	}
+
+	_computeValue(option) {
+		console.log('_computeValue', option);
+		console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);
+		return option[this.valueField];
+	}
+
+	_computeLabel(option) {
+		console.log('_computeLabel', option);
+		console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);
+		return option[this.labelField];
 	}
 }
 

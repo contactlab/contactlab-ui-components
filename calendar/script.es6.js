@@ -54,11 +54,12 @@ class CalendarClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_checkClear(evt){
-		this.valueStr == "" ? this.clear() : null;
+		console.log(this.valueStr,evt.target.value);
+		evt.target.value == "" ? this.clear() : null;
 	}
 
 	_focusElement(evt){
@@ -70,7 +71,7 @@ class CalendarClab{
 
 
 
-	/*---------- 
+	/*----------
 	METHODS
 	----------*/
 	_createInstance(selector){
@@ -87,7 +88,7 @@ class CalendarClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeType(type){
@@ -101,21 +102,21 @@ class CalendarClab{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
 	_getFormat(){
-		let thisFormat; 
+		let thisFormat;
 		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 		return thisFormat;
 	}
 
-	
 
 
 
-	/*---------- 
-	PUBLIC METHODS	
+
+	/*----------
+	PUBLIC METHODS
 	----------*/
 	setValue(userValue){
 		this.valueStr = moment(userValue).format(this._getFormat());

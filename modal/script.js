@@ -39,7 +39,7 @@ var ModalClab = (function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -48,6 +48,7 @@ var ModalClab = (function () {
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
 			this.visible = false;
+			this.fire('close');
 		}
 	}, {
 		key: '_block',
@@ -65,7 +66,7 @@ var ModalClab = (function () {
 			this.fire('modal-secondary');
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 
