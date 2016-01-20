@@ -30,12 +30,13 @@ class ModalClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
 		this.visible = false;
+		this.fire('close');
 	}
 
 	_block(evt){
@@ -52,7 +53,7 @@ class ModalClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeWidth(width){

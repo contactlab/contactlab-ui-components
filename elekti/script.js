@@ -31,6 +31,16 @@ var ElektiMer = (function () {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
 				},
+				valueField: {
+					type: String,
+					value: 'value'
+				},
+
+				labelField: {
+					type: String,
+					value: 'label'
+				},
+
 				default: {
 					type: Number
 				},
@@ -87,6 +97,72 @@ var ElektiMer = (function () {
 				}
 			};
 		}
+
+		// ==========================================================================================================================
+		// Public
+		// ==========================================================================================================================
+
+	}, {
+		key: 'isValorized',
+		value: function isValorized() {
+			return !this.isNotValorized();
+		}
+	}, {
+		key: 'isNotValorized',
+		value: function isNotValorized() {
+			return this.value === undefined || this.value === null;
+		}
+	}, {
+		key: 'setValue',
+		value: function setValue(obj, prevent) {
+			prevent = prevent ? true : false;
+			this.preventChange = prevent;
+			this.set('value', obj);
+			this.preventChange = false;
+		}
+	}, {
+		key: 'getValue',
+		value: function getValue() {
+			var v;
+			if (this.isNotValorized()) {
+				v = undefined;
+			} else if (typeof this.value === 'string' || this.value instanceof String) {
+				v = this.value;
+			} else if (_typeof(this.value) === "object") {
+				v = this.value[this.valueField];
+			} else {
+				console.error(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
+			}
+			return v;
+		}
+	}, {
+		key: 'getValueObject',
+		value: function getValueObject() {
+			var v;
+			if (this.isNotValorized(this.value)) {
+				v = undefined;
+			} else if (typeof this.value === 'string' || this.value instanceof String) {
+				for (var i = 0; i < options.length; i++) {
+					if (options[i][this.valueField] === this.value) {
+						v = options[i];
+					}
+					break;
+				}
+				if (v === undefined) {
+					console.warn(this.is + ": There is no options with value equals to [" + this.value + "]");
+				}
+			} else if (_typeof(this.value) === "object") {
+				v = this.value;
+			} else {
+				console.warn(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
+			}
+			return v;
+		}
+
+		// ==========================================================================================================================
+		// Private
+		// ==========================================================================================================================
+
 	}, {
 		key: 'attached',
 		value: function attached() {
@@ -103,14 +179,6 @@ var ElektiMer = (function () {
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
-		}
-	}, {
-		key: 'setValue',
-		value: function setValue(obj, prevent) {
-			prevent = prevent ? true : false;
-			this.preventChange = prevent;
-			this.set('value', obj);
-			this.preventChange = false;
 		}
 
 		/*----------
@@ -137,7 +205,7 @@ var ElektiMer = (function () {
 		value: function _updateValue() {
 			var old = this.value;
 			if (_typeof(this.value) == 'object') {
-				// this.input.value = this.value.label;
+				// this.input.value = this.value[this.labelField];
 				this.highlightedElement();
 				if (!this.preventChange) {
 					this.fire('change', { 'newValue': this.value, 'oldValue': old, 'externalChange': true });
@@ -195,7 +263,12 @@ var ElektiMer = (function () {
 	}, {
 		key: 'highlightedElement',
 		value: function highlightedElement(input, els) {
-			var search = input ? input : this.value.label.toLowerCase();
+			console.log('highlightedElement: ', this.value);
+			console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);
+
+			if (!input && this.isNotValorized()) return false;
+
+			var search = input ? input : this.value[this.labelField].toLowerCase();
 			var elems = els ? els : this.$.list.querySelectorAll('li');
 			var exists = false;
 
@@ -262,9 +335,10 @@ var ElektiMer = (function () {
 	}, {
 		key: '_selectElement',
 		value: function _selectElement(evt, value) {
-			var i = this.getIndex(evt.target.getAttribute('data-value'));
+			// let i = this.getIndex(evt.target.getAttribute('data-value'));
+			var i = parseInt(evt.target.getAttribute('data-index'));
 			var old = this.value;
-			this.input.value = this.options[i].label;
+			this.input.value = this.options[i][this.labelField];
 			this.value = this.options[i];
 			this.highlightedElement();
 
@@ -305,6 +379,20 @@ var ElektiMer = (function () {
 			}
 
 			this.exists = this.highlightedElement(input, elems);
+		}
+	}, {
+		key: '_computeValue',
+		value: function _computeValue(option) {
+			console.log('_computeValue', option);
+			console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);
+			return option[this.valueField];
+		}
+	}, {
+		key: '_computeLabel',
+		value: function _computeLabel(option) {
+			console.log('_computeLabel', option);
+			console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);
+			return option[this.labelField];
 		}
 	}]);
 

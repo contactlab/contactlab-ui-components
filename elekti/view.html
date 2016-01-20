@@ -19,11 +19,11 @@
         <div class$="[[ _computeWrapperClass(open) ]]">
             <input id$="[[_dashify(name)]]" class$="[[_computeInputClass(type)]]" disabled="[[disabled]]" readonly$="[[noSearch]]" name$="[[_dashify(name)]]" type="text"
             on-focus="_handleFocusAndBlur" on-blur="_handleFocusAndBlur"
-            on-keyup="_searchElement" placeholder="[[placeholder]]" value="{{value.label}}">
+            on-keyup="_searchElement" placeholder="[[placeholder]]" value="[[_computeLabel(value)]]">
 
             <ol class="options-list js-users-list" id="list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li class="show" on-tap="_selectElement" data-value$="[[item.value]]">[[item.label]]</li>
+                    <li class="show" on-tap="_selectElement" data-index$="[[index]]" data-value$="[[_computeValue(item)]]">[[_computeLabel(item)]]</li>
                 </template>
                 <div class="noResults hide" id="noRes">[[noResults]]</div>
             </ol>

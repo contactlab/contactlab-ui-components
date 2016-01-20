@@ -63,14 +63,15 @@ var CalendarClab = (function () {
 			}, 50);
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
-			this.valueStr == "" ? this.clear() : null;
+			console.log(this.valueStr, evt.target.value);
+			evt.target.value == "" ? this.clear() : null;
 		}
 	}, {
 		key: "_focusElement",
@@ -81,7 +82,7 @@ var CalendarClab = (function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   METHODS
   ----------*/
 
@@ -99,7 +100,7 @@ var CalendarClab = (function () {
 			this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
@@ -114,7 +115,7 @@ var CalendarClab = (function () {
 			return [type, noteType].join(' ');
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
@@ -126,8 +127,8 @@ var CalendarClab = (function () {
 			return thisFormat;
 		}
 
-		/*---------- 
-  PUBLIC METHODS	
+		/*----------
+  PUBLIC METHODS
   ----------*/
 
 	}, {
@@ -139,7 +140,12 @@ var CalendarClab = (function () {
 		key: "getValue",
 		value: function getValue() {
 			var formatted = moment(this.valueStr, this._getFormat()).format();
-			return formatted;
+			// console.log(this.valueStr);
+			if (this.valueStr) {
+				return formatted;
+			} else {
+				return undefined;
+			}
 		}
 	}, {
 		key: "getRomeInstance",
