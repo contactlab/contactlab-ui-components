@@ -35,7 +35,7 @@ var TagsClab = (function () {
 				},
 				inputType: {
 					type: String,
-					value: 'success'
+					value: ''
 				},
 				btn: {
 					type: String
@@ -80,7 +80,7 @@ var TagsClab = (function () {
 			});
 			this.inputString = '';
 
-			this.fire('change');
+			this.fire('change', { 'tags': this.tags });
 		}
 	}, {
 		key: '_removeTag',
@@ -95,7 +95,7 @@ var TagsClab = (function () {
 			});
 			if (i != undefined) this.splice('tags', i, 1);
 
-			this.fire('remove');
+			this.fire('change', { 'tags': this.tags });
 		}
 
 		/*---------- 
@@ -114,7 +114,7 @@ var TagsClab = (function () {
 					_this.push('tags', item);
 				});
 			}
-			this.fire('change');
+			this.fire('change', { 'tags': this.tags });
 
 			return this.tags;
 		}

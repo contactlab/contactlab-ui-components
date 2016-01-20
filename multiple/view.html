@@ -1,4 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../note/view.html">
+<link rel="import" href="../spinner/view.html">
 
 <dom-module id="multiple-clab">
 	<style>
@@ -38,9 +40,7 @@
                     <li data-index$="[[_getIndex(item, options)]]" tabindex="0" on-click="_handleSelection">[[item.label]]</li>
                 </template>
 			</ol>
-			<template is="dom-if" if="[[spinner]]">
-                <spinner-clab></spinner-clab>
-            </template>
+			<spinner-clab visible="[[spinner]]"></spinner-clab>
 		</div>
 		<note-clab type="[[compNoteType]]">
 			<content></content>
@@ -48,6 +48,6 @@
 
 	</template>
 
-	<script src="./../behaviors.js"></script>
+	<script src="./../_behaviors/behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

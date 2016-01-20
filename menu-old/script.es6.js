@@ -1,7 +1,7 @@
-class MenuClab{
+class MenuClabOld{
 
 	beforeRegister(){
-		this.is = 'menu-clab';
+		this.is = 'menu-clab-old';
 		this.properties = {
 			title: {
 				type: String,
@@ -128,4 +128,4 @@ class MenuClab{
 }
 
 
-Polymer(MenuClab);
+Polymer(MenuClabOld);

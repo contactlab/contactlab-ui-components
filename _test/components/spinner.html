@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../spinner/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="spinner">
+	<template>
+	  <spinner-clab></spinner-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<spinner-clab>', function() {
+  var spinner;
+
+  beforeEach(function() {
+	spinner = fixture('spinner');
+  });
+
+  context('Test Properties', function() {
+
+  	it('Default Properties', function(done) {
+		expect(spinner.dark).to.equal(false);
+		expect(spinner.big).to.equal(false);
+		expect(spinner.background).to.equal('255, 255, 255, 0.9');
+
+		done();
+	});
+
+  });
+
+  context('Test DOM Bindings', function() {
+
+	it('Check dark', function(done) {
+		spinner.dark = true;
+
+		setTimeout(function(){
+			expect(spinner.querySelector('.spinner-overlay').classList.contains('dark')).to.equal(true);
+
+			done();
+		},50);
+	});
+
+	it('Check big', function(done) {
+		spinner.big = true;
+
+		setTimeout(function(){
+			expect(spinner.querySelector('.spinner-overlay').classList.contains('big')).to.equal(true);
+
+			done();
+		},50);
+	});
+
+	it('Check background', function(done){
+		var color='200, 200, 200, 0.8';
+		spinner.background=color;
+
+		setTimeout(function(){
+			expect(spinner.querySelector('.spinner-overlay').style.backgroundColor).to.equal('rgba('+color+')');
+
+			done();
+		},50);
+	});
+
+  });
+
+});	
+
+</script>
+</body>
+</html>

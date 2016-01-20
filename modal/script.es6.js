@@ -9,7 +9,7 @@ class ModalClab{
 			},
 			visible: {
 				type: Boolean,
-				value: false,
+				value: false
 			},
 			primary: {
 				type: String
@@ -21,7 +21,7 @@ class ModalClab{
 				type: String,
 				value: null
 			},
-			width:{
+			maxWidth:{
 				type: String,
 				value: '500px'
 			}
@@ -30,12 +30,13 @@ class ModalClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
 		this.visible = false;
+		this.fire('close');
 	}
 
 	_block(evt){
@@ -52,7 +53,7 @@ class ModalClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeWidth(width){

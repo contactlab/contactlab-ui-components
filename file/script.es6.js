@@ -65,7 +65,7 @@ class FileClab{
 	EVENT HANDLERS
 	----------*/
 	_selection(evt){
-		this.$$('input[type=file]').click();
+		this.querySelector('input[type=file]').click();
 	}
 
 

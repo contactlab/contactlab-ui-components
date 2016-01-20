@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../tooltip/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="tooltip">
+	<template>
+	  <tooltip-clab></tooltip-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<tooltip-clab>', function() {
+  var tooltip;
+
+  beforeEach(function() {
+	tooltip = fixture('tooltip');
+  });
+
+  context('Test Properties', function() {
+
+  	it('default properties', function(done) {
+		expect(tooltip.content).to.equal('The content');
+		expect(tooltip.type).to.equal('');
+		expect(tooltip.ttType).to.equal('');
+
+		done();
+	});
+
+  });
+
+  context('Test DOM Bindings',function(){
+
+	it('Check type', function(done) {
+		var str = 'error';
+		tooltip.type = str;
+
+		setTimeout(function(){
+			expect(tooltip.querySelector('.tooltip').classList.contains(str)).to.equal(true);
+
+			done();
+		},50);
+	});
+
+	it('Check content', function(done) {
+		var str = 'A new tooltip';
+		tooltip.content = str;
+
+		setTimeout(function(){
+			expect(tooltip.querySelector('.tooltip').getAttribute('data-tooltip')).to.equal(str);
+
+			done();
+		},50);
+	});
+
+  });
+
+  context('Test Events', function() {
+
+	it('Tooltip on-hover', function(done) {
+		var evt=new Event('mouseover');
+		var str='error';
+		tooltip.ttType=str;
+		tooltip.querySelector('.tooltip').dispatchEvent(evt);
+
+	  	setTimeout(function(){
+	  		expect(document.querySelector('.kawo-tooltip').classList.contains(str)).to.equal(true);
+
+	  		done();
+		},250);
+	});
+
+  });
+});	
+
+</script>
+</body>
+</html>

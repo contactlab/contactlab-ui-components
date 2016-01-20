@@ -18,6 +18,10 @@ class AutoCompleteClab{
 			value:{
 				type:Object
 			},
+			placeholder:{
+				type:String,
+				value:'Type..'
+			},
 			disabled:{
 				type:Boolean, 
 				value:false
@@ -44,19 +48,20 @@ class AutoCompleteClab{
 				type:Boolean,
 				value:false
 			},
-			// Min amount of characters to start searching for hints
 			minChar:{
 				type:Number,
 				value:3
 			},
-			// How many LIs are visible without scrolling (=> sets max-height of OL)
 			maxInView:{
 				type:Number,
 				value:6
 			},
 			inputType:{
 				type:String,
-				value:'success'
+				value:''
+			},
+			noteType:{
+				type:String
 			},
 
 
@@ -259,9 +264,9 @@ class AutoCompleteClab{
 		this.currentHint=undefined;
 
 		if(this.resultAsObj)
-			this.fire('change', this.value);
+			this.fire('change', {'selected':this.value});
 		else
-			this.fire('change', {'value':this.inputString});
+			this.fire('change', {'selected':this.inputString});
 	}
 
 	_closeList(){

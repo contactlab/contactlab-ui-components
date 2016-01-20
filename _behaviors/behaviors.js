@@ -7,7 +7,7 @@ var UtilBehavior = {
 	},
 
 	_viewLabel: function _viewLabel(label) {
-		if (label.length > 0) return true;else return false;
+		if (label != undefined && label.length > 0) return true;else return false;
 	},
 
 	_getIndex: function _getIndex(item, items) {

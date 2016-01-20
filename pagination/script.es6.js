@@ -18,11 +18,6 @@ class PaginationClab{
 				value: 1,
 				observer: '_updateAvailablePages'
 			},
-			/*range: {
-				type: Number,
-				value: 5
-			}, -------------> to implement later, maybe */
-
 
 			firstPage: {
 				type: String,
@@ -53,7 +48,6 @@ class PaginationClab{
 
 	attached(){
 		this.async(function(){
-			this.querySelectorAll('.page')[this.currentPage-1].classList.add('active');
 			this._updateAvailablePages();
 			this.addEventListener('pageChanged', this.updateSelectedPage);
 		},500);
@@ -64,13 +58,6 @@ class PaginationClab{
 	/*---------- 
 	EVENT HANDLERS
 	----------*/
-	updateSelectedPage(evt){
-		var i = evt.detail.index;
-		this.$$('.active').classList.remove('active');
-		this.querySelectorAll('.page')[i].classList.add('active');
-		this.currentPage = Number(i)+1;
-	}
-
 	setThisAsCurrent(evt){
 		evt.preventDefault(); // forse da togliere
 
@@ -85,20 +72,26 @@ class PaginationClab{
 		
 	}
 
+	updateSelectedPage(evt){
+		var i = evt.detail.index;
+		this.$$('.active').classList.remove('active');
+		this.querySelectorAll('.page')[i].classList.add('active');
+		this.currentPage = Number(i)+1;
+	}
+
 
 
 	/*---------- 
 	OBSERVERS
 	----------*/
 	_updateAvailablePages(){ 
-		for(let idx in Array.from(this.querySelectorAll('.page'))){
-			let pagesEl = this.querySelectorAll('.page');
+		Array.prototype.map.call(this.querySelectorAll('.page'), (el, idx)=>{
 			if(idx >= this.availableStart && idx <= this.availableEnd){
-				pagesEl[idx].classList.remove('invisible');
+				el.classList.remove('invisible');
 			} else {
-				pagesEl[idx].classList.add('invisible');
+				el.classList.add('invisible');
 			}
-		}
+		});
 	}
 
 
@@ -106,6 +99,14 @@ class PaginationClab{
 	/*---------- 
 	COMPUTED
 	----------*/
+	_computeLiPageClass(i){
+		var arr=['page'];
+		if(i==this.currentPage-1) 
+			arr.push('active');
+
+		return arr.join(' ');
+	}
+
 	_getFirstPage(pages){
 		return pages[0];
 	}

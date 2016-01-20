@@ -25,13 +25,12 @@ var SpinnerClab = (function () {
 				background: {
 					type: String,
 					value: '255, 255, 255, 0.9'
+				},
+				visible: {
+					type: Boolean,
+					value: false
 				}
 			};
-		}
-	}, {
-		key: 'ready',
-		value: function ready() {
-			this.querySelector('.spinner-overlay').style.backgroundColor = 'rgba(' + this.background + ')';
 		}
 
 		/*---------- 
@@ -39,12 +38,17 @@ var SpinnerClab = (function () {
   ----------*/
 
 	}, {
-		key: 'computeClass',
-		value: function computeClass(big, dark) {
+		key: '_computeClass',
+		value: function _computeClass(big, dark) {
 			var str = 'spinner-overlay ';
 			this.dark ? str += ' dark ' : null;
 			this.big ? str += ' big ' : null;
 			return str;
+		}
+	}, {
+		key: '_computeBgColor',
+		value: function _computeBgColor(color) {
+			return 'background-color: rgba(' + color + ')';
 		}
 	}]);
 

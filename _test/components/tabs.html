@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../tabs/view.html">
+
+</head>
+<body>
+	
+<test-fixture id="tabs">
+	<template>
+		<tabs-clab active="0">
+		  	<div class="tab-content">First tab Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit illo mollitia odio quam necessitatibus veritatis sed placeat.</div>
+			<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas. </div>
+		</tabs-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+describe('<tabs-clab>', function() {
+  var tabs;
+
+	beforeEach(function() {
+		tabs = fixture('tabs');
+	});
+
+	context('Test Properties', function() {
+
+		it('Default Properties', function(done) {
+			expect(tabs.labels).to.be.an('array');
+			expect(tabs.pills).to.equal(false);
+			expect(tabs.active).to.equal(0);
+
+			done();
+		});
+
+	});
+
+	context('Test DOM Bindings', function(){
+
+		it('Check pills', function(done) {
+			tabs.pills=true;
+
+			setTimeout(function(){
+				expect(tabs.querySelector('.pills')).to.not.be.undefined;
+
+				done();
+			},50);
+		});
+
+		it('Check active', function(done) {
+			var n=1;
+			tabs.active=n;
+
+			setTimeout(function(){
+				expect(tabs.querySelectorAll('.tab')[n].classList.contains('active')).to.equal(true);
+				expect(tabs.querySelectorAll('.tab-content')[n].style.display).to.equal('block');
+
+				done();
+			},50);
+		});
+
+	});
+
+});	
+
+</script>
+</body>
+</html>

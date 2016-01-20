@@ -32,14 +32,14 @@ var ModalClab = (function () {
 					type: String,
 					value: null
 				},
-				width: {
+				maxWidth: {
 					type: String,
 					value: '500px'
 				}
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -48,6 +48,7 @@ var ModalClab = (function () {
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
 			this.visible = false;
+			this.fire('close');
 		}
 	}, {
 		key: '_block',
@@ -65,7 +66,7 @@ var ModalClab = (function () {
 			this.fire('modal-secondary');
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 

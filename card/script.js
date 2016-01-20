@@ -116,8 +116,12 @@ var CardClab = (function () {
 	}, {
 		key: '_showActions',
 		value: function _showActions(noactions, link) {
-			if (link) return false;
-			return !!!noactions;
+			if (link != null) return false;else return !noactions;
+		}
+	}, {
+		key: '_showLink',
+		value: function _showLink(link, noactions) {
+			if (noactions) return false;else if (link != null) return true;else return false;
 		}
 	}, {
 		key: '_showTitle',

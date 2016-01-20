@@ -13,7 +13,7 @@ class DropdownClab{
 			},
 			type:{
 				type:String,
-				value:'success'
+				value:''
 			},
 			selected:{
 				type:Object,
@@ -89,10 +89,12 @@ class DropdownClab{
 				setTimeout(()=>{
 					this.querySelector('.options-list').classList.remove('hidden');
 					this.querySelector('.options-list').classList.add('active');
+					this.querySelector('.value_wrapper > span').classList.add('active');
 				},50);
 				return;
 			}
 			this.querySelector('.options-list').classList.toggle('active');
+			this.querySelector('.value_wrapper > span').classList.toggle('active');
 		}
 	}
 
@@ -118,9 +120,9 @@ class DropdownClab{
 		this._highlightEl(this._getIndex(item, this.options));
 
 		if(this.resultAsObj)
-			this.fire('change', {'oldValue': old, 'newValue':this.selected});
+			this.fire('change', {'selected':this.selected});
 		else
-			this.fire('change', {'oldValue': old, 'newValue':this.selected.label});
+			this.fire('change', {'selected':this.selected.label});
 
 	}
 
@@ -159,9 +161,11 @@ class DropdownClab{
 		if(arr.length>0) return arr.join(' ');
 	}
 
-	_compValueWrapper(disabled){
-		let arr=['value_wrapper'];
+	_compType(disabled, type, def){
+		let arr=[];
+		if(def!=undefined) arr.push(def);
 		if(disabled) arr.push('disabled');
+		if(type!=undefined) arr.push(type);
 		return arr.join(' ');
 	}
 

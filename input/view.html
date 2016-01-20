@@ -1,4 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../note/view.html">
+<link rel="import" href="../button/view.html">
 
 <dom-module id="input-clab">
 	<style></style>
@@ -9,11 +11,16 @@
 		</template>
 		<input class$="[[type]]" type$="[[_computeDataType(password)]]" name$="[[_dashify(name)]]"
 			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]">
+
+		<template is="dom-if" if="[[check]]">
+			<button-clab type="[[btnProps.type]]" size="[[btnProps.size]]" appearance="[[btnProps.appearance]]" icon="[[btnProps.icon]]" disabled="[[disabled]]" on-click="_toggleInputType">[[btnProps.label]]</button-clab>
+		</template>
+
 		<note-clab type="[[compNoteType]]">
 			<content></content>
 		</note-clab>
 	</template>
 
-	<script src="./../behaviors.js"></script>
+	<script src="./../_behaviors/behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

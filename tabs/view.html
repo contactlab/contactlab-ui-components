@@ -6,8 +6,8 @@
 	<template>		
 		<div class$="[[_computeType(pills)]]">
 			<ul class="contextual-menu">
-				<template is="dom-repeat" items$="[[_computedLabels(tabContent, labels)]]">
-					<li class$="[[_computeActive(active,index)]]" data-index$="[[index]]"><a on-click="_changeTab" href="#">[[item]]</a></li>
+				<template is="dom-repeat" items$="[[_computedLabels(tabContents, labels)]]">
+					<li class$="[[_computeActive(active,index)]]" data-index$="[[index]]"><a on-click="_activateThis" href="#">[[item]]</a></li>
 				</template>
 			</ul>
 			<content></content>

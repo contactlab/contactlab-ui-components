@@ -38,6 +38,7 @@ var TooltipClab = (function () {
 		value: function _handleHover(evt) {
 			document.querySelector('.kawo-tooltip').className = 'kawo-tooltip';
 			document.querySelector('.kawo-tooltip-arrow').className = 'kawo-tooltip-arrow';
+
 			if (this.ttType) {
 				document.querySelector('.kawo-tooltip').classList.add(this.ttType);
 				document.querySelector('.kawo-tooltip-arrow').classList.add(this.ttType);

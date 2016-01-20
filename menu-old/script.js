@@ -4,15 +4,15 @@ var _createClass = (function () { function defineProperties(target, props) { for
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MenuClab = (function () {
-	function MenuClab() {
-		_classCallCheck(this, MenuClab);
+var MenuClabOld = (function () {
+	function MenuClabOld() {
+		_classCallCheck(this, MenuClabOld);
 	}
 
-	_createClass(MenuClab, [{
+	_createClass(MenuClabOld, [{
 		key: 'beforeRegister',
 		value: function beforeRegister() {
-			this.is = 'menu-clab';
+			this.is = 'menu-clab-old';
 			this.properties = {
 				title: {
 					type: String,
@@ -150,7 +150,7 @@ var MenuClab = (function () {
 		}
 	}]);
 
-	return MenuClab;
+	return MenuClabOld;
 })();
 
-Polymer(MenuClab);
+Polymer(MenuClabOld);

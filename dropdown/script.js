@@ -20,7 +20,7 @@ var DropdownClab = (function () {
 				},
 				type: {
 					type: String,
-					value: 'success'
+					value: ''
 				},
 				selected: {
 					type: Object,
@@ -100,10 +100,12 @@ var DropdownClab = (function () {
 					setTimeout(function () {
 						_this2.querySelector('.options-list').classList.remove('hidden');
 						_this2.querySelector('.options-list').classList.add('active');
+						_this2.querySelector('.value_wrapper > span').classList.add('active');
 					}, 50);
 					return;
 				}
 				this.querySelector('.options-list').classList.toggle('active');
+				this.querySelector('.value_wrapper > span').classList.toggle('active');
 			}
 		}
 	}, {
@@ -131,7 +133,7 @@ var DropdownClab = (function () {
 			this.set('selected', item);
 			this._highlightEl(this._getIndex(item, this.options));
 
-			if (this.resultAsObj) this.fire('change', { 'oldValue': old, 'newValue': this.selected });else this.fire('change', { 'oldValue': old, 'newValue': this.selected.label });
+			if (this.resultAsObj) this.fire('change', { 'selected': this.selected });else this.fire('change', { 'selected': this.selected.label });
 		}
 	}, {
 		key: '_highlightEl',
@@ -173,10 +175,12 @@ var DropdownClab = (function () {
 			if (arr.length > 0) return arr.join(' ');
 		}
 	}, {
-		key: '_compValueWrapper',
-		value: function _compValueWrapper(disabled) {
-			var arr = ['value_wrapper'];
+		key: '_compType',
+		value: function _compType(disabled, type, def) {
+			var arr = [];
+			if (def != undefined) arr.push(def);
 			if (disabled) arr.push('disabled');
+			if (type != undefined) arr.push(type);
 			return arr.join(' ');
 		}
 

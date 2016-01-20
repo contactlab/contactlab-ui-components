@@ -66,7 +66,7 @@ var GroupClab = (function () {
 		value: function _updateDisabled() {
 			var _this = this;
 
-			var btns = this.querySelectorAll('button');
+			var btns = this.getContentChildren();
 			Array.prototype.map.call(btns, function (btn) {
 				btn.disabled = _this.disabled;
 			});

@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../note/view.html">
 
 <dom-module id="calendar-clab">
 	<style></style>
@@ -10,8 +11,9 @@
 					<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 				</template>
 				<div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
-				<input on-keyup="_checkClear" type="text" disabled="[[disabled]]" placeholder="[[placeholder]]" value="[[valueStr]]">
-				<div class="note">
+				<input class$="[[type]]" on-keyup="_checkClear" type="text" disabled="[[disabled]]" placeholder="[[placeholder]]" value="[[valueStr]]">
+				
+				<note-clab type="[[compNoteType]]">
 					<content></content>
 				</note-clab>
 			</div>
@@ -21,7 +23,7 @@
 		</template>
 	</template>
 
-	<script src="./../behaviors.js"></script>
+	<script src="./../_behaviors/behaviors.js"></script>
 	<script src="../../moment/moment.js"></script>
 	<script src="../../rome/dist/rome.min.js"></script>
 	<script src="script.js"></script>

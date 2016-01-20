@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../label-badge/view.html">
 
 <dom-module id="tags-clab">
 	<style></style>
@@ -9,7 +10,7 @@
 				<input-clab on-keyup="_handleKeyUp" type="[[inputType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]">
 					<content></content>
 				</input-clab>
-				<button-clab on-click="_addTag" type="[[inputType]]" appearence="[[btnAppearence]]" disabled="[[disabled]]" size="[[btnSize]]" icon="[[btnIcon]]">[[btn]]</button-clab>
+				<button-clab on-click="_addTag" type="[[inputType]]" appearance="[[btnAppearence]]" disabled="[[disabled]]" size="[[btnSize]]" icon="[[btnIcon]]">[[btn]]</button-clab>
 			</template>
 
 			<template is="dom-repeat" items="[[tags]]">
@@ -18,6 +19,6 @@
 		</div>
 	</template>
 
-	<script src="./../behaviors.js"></script>
+	<script src="./../_behaviors/behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>
