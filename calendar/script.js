@@ -140,7 +140,12 @@ var CalendarClab = (function () {
 		key: "getValue",
 		value: function getValue() {
 			var formatted = moment(this.valueStr, this._getFormat()).format();
-			return formatted;
+			// console.log(this.valueStr);
+			if (this.valueStr) {
+				return formatted;
+			} else {
+				return undefined;
+			}
 		}
 	}, {
 		key: "getRomeInstance",
