@@ -1,0 +1,39 @@
+<link rel="import" href="../../polymer/polymer.html">
+
+<dom-module id="menu-clab-old">
+	<style></style>
+	
+	<template>
+		<div id="logo">
+			<a href$="[[link]]">
+				<span class="sign"><i class$="[[_computeTitleIcon(titleIcon)]]"></i></span>
+				<content select="span.name"></content>
+			</a>
+		</div>
+		<nav>
+			<ul class="first-level-menu">
+				<template is="dom-repeat" items="[[menu]]">
+					<li class$="[[_computeActive(_url,item.url,item.open)]]">
+						<a on-click="_openItem" href="[[item.url]]" data-index$="[[index]]"><i class$="[[item.icon]]"></i><span>[[item.label]]</span></a>
+						<template is="dom-if" if="[[item.submenu]]">
+							<ul class="second-level-menu">
+								<li class="menu-title">[[item.label]]</li>
+								<template is="dom-repeat" items="[[item.submenu]]">
+									<li class$="[[_computeActive(_url,item.url)]]"><a href="[[item.url]]">[[item.label]]</a></li>
+								</template>
+							</ul>
+						</template>
+					</li>
+				</template>
+			</ul>
+		</nav>
+		<div id="reduce" on-click="_reduce">
+			<a>
+				<i class$="[[_computeReduceIcons(reduceOpen)]]"></i>
+				<i class$="[[_computeReduceIcons(reduceClose)]]"></i>
+			</a>
+		</div>
+	</template>
+
+	<script src="script.js"></script>
+</dom-module>
