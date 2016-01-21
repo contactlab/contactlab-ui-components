@@ -154,13 +154,21 @@ var MultipleClab = (function () {
 		value: function _handleKeys(evt) {
 			if (this.disabled) return;
 
-			if (evt.type == 'keydown' && evt.keyCode == 16) {
-				this.shift = true;
-			} else if (evt.type == 'keydown' && evt.keyCode == 17) {
-				this.ctrl = true;
-			} else if (evt.type == 'keyup') {
-				this.shift = false;
-				this.ctrl = false;
+			switch (evt.type) {
+				case 'keydown':
+					switch (evt.keyCode) {
+						case 16:
+							this.shift = true;
+							break;
+						case 17:
+							this.ctrl = true;
+							break;
+					}
+					break;
+				case 'keyup':
+					this.shift = false;
+					this.ctrl = false;
+					break;
 			}
 		}
 	}, {

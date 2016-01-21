@@ -158,16 +158,17 @@ class AutoCompleteClab{
 	}
 
 	_handleClick(evt){
-		if(evt.target.localName=='ol'){
-			this.dontHide=true;
-
-		} else if(evt.target.localName=='li'){
-			this.dontHide=false;
-			let i=evt.target.getAttribute('data-index');
-			this._setValue(this.options[i]);
-
-		} else {
-			this.dontHide=false;
+		switch(evt.target.localName){
+			case 'ol':
+				this.dontHide=true;
+				break;
+			case 'li':
+				this.dontHide=false;
+				let i=evt.target.getAttribute('data-index');
+				this._setValue(this.options[i]);
+				break;
+			default:
+				this.dontHide=false;
 		}
 	}
 
@@ -227,12 +228,10 @@ class AutoCompleteClab{
 
 			this.options.map((opt, i)=>{
 				if(opt.label.toLowerCase().search(searchVal)>-1){
-					//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 					this.querySelectorAll('.options-list li')[i].classList.add('show');
 					this.results.push(this.options[i]);
 
 				} else {
-					//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 					this.querySelectorAll('.options-list li')[i].classList.remove('show');
 				}
 			});
@@ -249,7 +248,6 @@ class AutoCompleteClab{
 				},100);
 			}
 			this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
-			//this.fire('sendRes',this.results);
 
 		} else {
 			this._closeList();
@@ -310,17 +308,19 @@ class AutoCompleteClab{
 		let HIdx=this._getIndex(this.currentHint, this.results);
 		let toSel;
 
-		if(type==='up'){
-			toSel=this.results[HIdx-1];
-			if(typeof toSel == 'object'){
-				this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
-			} else { return; }
-			
-		} else if(type==='down'){ 
-			toSel=this.results[HIdx+1]; 
-			if(typeof toSel == 'object'){
-				this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
-			} else { return; }
+		switch(type){
+			case 'up':
+				toSel=this.results[HIdx-1];
+				if(typeof toSel == 'object'){
+					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
+				}
+				break;
+			case 'down':
+				toSel=this.results[HIdx+1]; 
+				if(typeof toSel == 'object'){
+					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
+				}
+
 		}
 	}
 

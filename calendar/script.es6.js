@@ -58,7 +58,6 @@ class CalendarClab{
 	EVENT HANDLERS
 	----------*/
 	_checkClear(evt){
-		console.log(this.valueStr,evt.target.value);
 		evt.target.value == "" ? this.clear() : null;
 	}
 
@@ -124,7 +123,6 @@ class CalendarClab{
 
 	getValue(){
 		let formatted = moment(this.valueStr, this._getFormat()).format();
-		// console.log(this.valueStr);
 		if(this.valueStr){
 			return formatted;
 		} else {

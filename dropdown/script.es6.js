@@ -69,7 +69,17 @@ class DropdownClab{
 
 	attached(){
 		this.addEventListener('mousedown', (evt)=>{
-			if(evt.target.localName=='ol' || evt.target.localName=='li') this.dontHide=true; else this.dontHide=false;
+			switch(evt.target.localName){
+				case 'ol':
+					this.dontHide=true;
+					break;
+				case 'li':
+					this.dontHide=true;
+					break;
+				default:
+					this.dontHide=false;
+					break;
+			}
 		});
 		this.addEventListener('mouseup', (evt)=>{ this.dontHide=false; });
 

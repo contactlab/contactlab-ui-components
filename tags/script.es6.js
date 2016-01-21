@@ -54,14 +54,16 @@ class TagsClab {
 	EVENT HANDLERS
 	----------*/
 	_handleKeyUp(evt){
-
-		// if comma
-		if(evt.keyCode===188)
-			this._addTag(evt);
-		
-		// if enter
-		if(evt.keyCode===13)
-			this.querySelector('button-clab').fire('click');
+		switch(evt.keyCode){
+			case 188:
+			// if comma
+				this._addTag(evt);
+				break;
+			case 13:
+			// if enter
+				this.querySelector('button-clab').fire('click');
+				break;
+		}
 		
 	}
 

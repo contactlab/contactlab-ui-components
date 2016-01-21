@@ -11,6 +11,15 @@ var ModalClab = (function () {
 
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
+
+		/*get behaviors() {
+  	return this._behaviors || (this._behaviors = [Polymer.NeonAnimationRunnerBehavior]);
+  }
+  
+  set behaviors(value) {
+  	this._behaviors = value;
+  }*/
+
 		value: function beforeRegister() {
 			this.is = 'modal-clab';
 			this.properties = {
@@ -28,6 +37,7 @@ var ModalClab = (function () {
 				secondary: {
 					type: String
 				},
+
 				content: {
 					type: String,
 					value: null
@@ -35,8 +45,25 @@ var ModalClab = (function () {
 				maxWidth: {
 					type: String,
 					value: '500px'
-				}
+				} /*,
+      animationConfig:{
+      value:()=>{
+      	return {
+      		'entry':{
+      			name: 'scale-up-animation',
+      			node: this
+      		},
+      		'exit':{
+      			name: 'fade-out-animation',
+      			node: this
+      		}
+      	}
+      }
+      }*/
 			};
+			/*this.listeners={
+   	'neon-animation-finish': '_onNeonAnimationFinish'
+   }*/
 		}
 
 		/*----------
@@ -47,7 +74,7 @@ var ModalClab = (function () {
 		key: '_closeModal',
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
-			this.visible = false;
+			this.hide();
 			this.fire('close');
 		}
 	}, {
@@ -65,6 +92,26 @@ var ModalClab = (function () {
 		value: function _secondary(evt) {
 			this.fire('modal-secondary');
 		}
+	}, {
+		key: 'show',
+		value: function show() {
+			this.visible = true;
+			this.style.display = 'block';
+			//this.playAnimation('entry');
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {
+			this.visible = false;
+			this.style.display = 'none'; // da commentare per provare i neon-elements
+			//this.playAnimation('exit');
+		}
+
+		/*_onNeonAnimationFinish(){
+  	if(!this.visible){
+  		this.style.display='none';
+  	}
+  }*/
 
 		/*----------
   COMPUTE

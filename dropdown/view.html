@@ -22,14 +22,14 @@
             <label class$="[[_compType(disabled, type)]]">[[label]]</label>
         </template>
         <div class="options-list-wrapper">
-            <button class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur">
+            <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="0">
                 <template is="dom-if" if="[[_viewValue(selected)]]">
                     <span class="selected">[[selected.label]]</span>
                 </template>
                 <template is="dom-if" if="[[!_viewValue(selected)]]">
                     <span class="placeholder">[[placeholder]]</span>
                 </template>
-            </button>
+            </div>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
                     <li class="show" data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>

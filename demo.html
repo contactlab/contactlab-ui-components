@@ -29,7 +29,7 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 
 		<div class="content">
 			<h2>Multiple</h2>
-			<multiple-clab disabled label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
+			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
 		</div>
 
 		<div class="content">
@@ -279,8 +279,17 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 					alert('Clicked');
 				});
 
-				this.modal1.addEventListener('modal-secondary',function(){
-					this.modal1.visible = false;				})
+				this.modal1.addEventListener('modal-secondary',function(evt){
+					evt.target.hide();				
+				})
+
+				this.modal2.addEventListener('modal-primary',function(){
+					alert('Clicked');
+				});
+
+				this.modal2.addEventListener('modal-secondary',function(evt){
+					evt.target.hide();				
+				})
 
 				// Calendar
 				document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
@@ -309,10 +318,10 @@ Anyone seems to work even if the components are not vulcanized but loaded before
         },
 
         _openModal1:function(){
-        	this.modal1.visible = true;
+        	this.modal1.show();
         },
         _openModal2:function(){
-        	this.modal2.visible = true;
+        	this.modal2.show();
         }
     });
 

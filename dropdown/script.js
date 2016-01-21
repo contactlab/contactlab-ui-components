@@ -75,7 +75,17 @@ var DropdownClab = (function () {
 			var _this = this;
 
 			this.addEventListener('mousedown', function (evt) {
-				if (evt.target.localName == 'ol' || evt.target.localName == 'li') _this.dontHide = true;else _this.dontHide = false;
+				switch (evt.target.localName) {
+					case 'ol':
+						_this.dontHide = true;
+						break;
+					case 'li':
+						_this.dontHide = true;
+						break;
+					default:
+						_this.dontHide = false;
+						break;
+				}
 			});
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;

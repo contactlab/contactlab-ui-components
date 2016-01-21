@@ -1,37 +1,41 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../../neon-animation/neon-animation-runner-behavior.html">
+<link rel="import" href="../../neon-animation/animations/scale-up-animation.html">
+<link rel="import" href="../../neon-animation/animations/fade-out-animation.html">
 
 <dom-module id="modal-clab">
 	<style>
+		:host{
+			display: none;
+		}
 	</style>
 	
 	<template>
-		<template is="dom-if" if="[[visible]]">
-			<div class="modal-overlay" on-click="_closeModal">
-				<div class="modal-wrapper">
-					<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
-						<div class="modal-title">[[title]]</div>
-						<template is="dom-if" if="[[content]]">
-							<div class="modal-body">
-								<p>[[content]]</p>
-							</div>
-						</template>
-						<template is="dom-if" if="[[!content]]">
-							<div class="modal-body">
-								<content></content>
-							</div>
-						</template>
-						<div class="modal-actions">
-							<template is="dom-if" if="[[secondary]]">
-								<button on-click="_secondary" class="btn flat secondary">[[secondary]]</button>
-							</template>
-							<template is="dom-if" if="[[primary]]">
-								<button on-click="_primary" class="btn primary">[[primary]]</button>
-							</template>
+		<div class="modal-overlay" on-click="_closeModal">
+			<div class="modal-wrapper">
+				<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
+					<div class="modal-title">[[title]]</div>
+					<template is="dom-if" if="[[content]]">
+						<div class="modal-body">
+							<p>[[content]]</p>
 						</div>
+					</template>
+					<template is="dom-if" if="[[!content]]">
+						<div class="modal-body">
+							<content></content>
+						</div>
+					</template>
+					<div class="modal-actions">
+						<template is="dom-if" if="[[secondary]]">
+							<button on-click="_secondary" class="btn flat secondary">[[secondary]]</button>
+						</template>
+						<template is="dom-if" if="[[primary]]">
+							<button on-click="_primary" class="btn primary">[[primary]]</button>
+						</template>
 					</div>
 				</div>
 			</div>
-		</template>
+		</div>
 	</template>
 
 	<script src="script.js"></script>

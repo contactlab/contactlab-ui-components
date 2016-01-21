@@ -41,12 +41,15 @@ class RadioClab{
 	UTILS
 	----------*/
 	_checkIfTrue(i, n){
-		if(typeof n === 'number'){
-			return i == n;
-		} else if(typeof n === 'object'){
-			for(let x=0; x<n.length; x++){
-				if(i == n[x]) return true;
-			}
+		switch(typeof n){
+			case 'number':
+				return i==n;
+				break;
+			case 'object':
+				for(let x=0; x<n.length; x++){
+					if(i == n[x]) return true;
+				}
+				break;
 		}
 	}
 
