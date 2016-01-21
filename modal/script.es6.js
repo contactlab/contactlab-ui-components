@@ -25,6 +25,9 @@ class ModalClab{
 			secondary: {
 				type: String
 			},
+			third: {
+				type: String
+			},
 			
 			content: {
 				type: String,
@@ -69,12 +72,16 @@ class ModalClab{
 		evt.stopPropagation();
 	}
 
-	_primary(evt){
+	_primaryAction(evt){
 		this.fire('modal-primary');
 	}
 
-	_secondary(evt){
+	_secondaryAction(evt){
 		this.fire('modal-secondary');
+	}
+
+	_thirdAction(evt){
+		this.fire('modal-third');
 	}
 
 
@@ -103,6 +110,14 @@ class ModalClab{
 	----------*/
 	_computeWidth(width){
 		return 'max-width:' + width;
+	}
+
+	_checkIfTrue(str){
+		if(str!=undefined && str.length>0){
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 

@@ -37,6 +37,9 @@ var ModalClab = (function () {
 				secondary: {
 					type: String
 				},
+				third: {
+					type: String
+				},
 
 				content: {
 					type: String,
@@ -83,14 +86,19 @@ var ModalClab = (function () {
 			evt.stopPropagation();
 		}
 	}, {
-		key: '_primary',
-		value: function _primary(evt) {
+		key: '_primaryAction',
+		value: function _primaryAction(evt) {
 			this.fire('modal-primary');
 		}
 	}, {
-		key: '_secondary',
-		value: function _secondary(evt) {
+		key: '_secondaryAction',
+		value: function _secondaryAction(evt) {
 			this.fire('modal-secondary');
+		}
+	}, {
+		key: '_thirdAction',
+		value: function _thirdAction(evt) {
+			this.fire('modal-third');
 		}
 	}, {
 		key: 'show',
@@ -121,6 +129,15 @@ var ModalClab = (function () {
 		key: '_computeWidth',
 		value: function _computeWidth(width) {
 			return 'max-width:' + width;
+		}
+	}, {
+		key: '_checkIfTrue',
+		value: function _checkIfTrue(str) {
+			if (str != undefined && str.length > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}]);
 
