@@ -118,7 +118,7 @@ var DropdownClab = (function () {
 					return;
 				}
 				this.querySelector('.options-list').classList.toggle('active');
-				this.querySelector('.value_wrapper > span').classList.toggle('active');
+				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
 		}
 	}, {

@@ -7,7 +7,7 @@
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../menu-sidebar/view.html">
+	<link rel="import" href="./../../menu/view.html">
 
 </head>
 <body>
@@ -34,10 +34,10 @@ describe('<menu-clab>', function() {
 
 		it('Default Properties', function(done) {
 			expect(menu.titleIcon).to.equal('fa-hand-peace-o');
-			expect(menu.reduceOpen).to.equal('clab clab-icon-expand expand');
-			expect(menu.reduceClose).to.equal('clab clab-icon-resize compress');
 			expect(menu.menu).to.be.an('array');
 			expect(menu.link).to.equal('/');
+			expect(menu.draft).to.equal(null);
+			expect(menu.submenu).to.be.undefined;
 
 			done();
 		});
@@ -52,28 +52,6 @@ describe('<menu-clab>', function() {
 
 			setTimeout(function(){
 				expect(menu.querySelector('.clab').classList.contains(str)).to.equal(true);
-
-				done();
-			},50);
-		});
-
-		it('Check reduceOpen', function(done) {
-			var str = 'reduce';
-			menu.reduceOpen = str;
-
-			setTimeout(function(){
-				expect(menu.querySelectorAll('#reduce i')[0].classList.contains(str)).to.equal(true);
-
-				done();
-			},50);
-		});
-
-		it('Check reduceClose', function(done) {
-			var str = 'reduce';
-			menu.reduceClose = str;
-
-			setTimeout(function(){
-				expect(menu.querySelectorAll('#reduce i')[1].classList.contains(str)).to.equal(true);
 
 				done();
 			},50);
@@ -110,10 +88,10 @@ describe('<menu-clab>', function() {
 					"url": "#/settings/users"
 				}]
 			}];
-			menu.menu = obj;
+			menu.menu=obj;
 
 			setTimeout(function(){
-				expect(menu.querySelectorAll('.first-level-menu > li').length).to.equal(obj.length);
+				expect(menu.querySelectorAll('.main-menu li').length).to.be.above(0);
 
 				done();
 			},50);
@@ -124,7 +102,17 @@ describe('<menu-clab>', function() {
 			menu.link = str;
 
 			setTimeout(function(){
-				expect(menu.querySelector('#logo a').getAttribute('href')).to.equal(str);
+				expect(menu.querySelector('#main-logo a').getAttribute('href')).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		it('Check draft', function(done) {
+			menu.draft = true;
+
+			setTimeout(function(){
+				expect(menu.querySelector('#draft-ribbon')).to.not.be.null;
 
 				done();
 			},50);
