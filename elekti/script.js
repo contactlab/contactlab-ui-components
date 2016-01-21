@@ -2,7 +2,7 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+function _typeof2(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -117,7 +117,18 @@ var ElektiMer = (function () {
 		value: function setValue(obj, prevent) {
 			prevent = prevent ? true : false;
 			this.preventChange = prevent;
-			this.set('value', obj);
+			if (_typeof(this.value) === "object") {
+				this.set('value', obj);
+			} else {
+				var realObj;
+				for (var i = 0; i < this.options.length; i++) {
+					if (this.options[i][this.valueField] === obj) {
+						realObj = this.options[i];
+						break;
+					}
+				}
+				if (realObj) this.set('value', realObj);
+			}
 			this.preventChange = false;
 		}
 	}, {
@@ -128,10 +139,10 @@ var ElektiMer = (function () {
 				v = undefined;
 			} else if (typeof this.value === 'string' || this.value instanceof String) {
 				v = this.value;
-			} else if (_typeof(this.value) === "object") {
+			} else if (_typeof2(this.value) === "object") {
 				v = this.value[this.valueField];
 			} else {
-				console.error(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
+				console.error(this.is + ": Invalid value type [" + _typeof2(this.value) + "]");
 			}
 			return v;
 		}
@@ -151,10 +162,10 @@ var ElektiMer = (function () {
 				if (v === undefined) {
 					console.warn(this.is + ": There is no options with value equals to [" + this.value + "]");
 				}
-			} else if (_typeof(this.value) === "object") {
+			} else if (_typeof2(this.value) === "object") {
 				v = this.value;
 			} else {
-				console.warn(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
+				console.warn(this.is + ": Invalid value type [" + _typeof2(this.value) + "]");
 			}
 			return v;
 		}
@@ -204,7 +215,7 @@ var ElektiMer = (function () {
 		key: '_updateValue',
 		value: function _updateValue() {
 			var old = this.value;
-			if (_typeof(this.value) == 'object') {
+			if (_typeof2(this.value) == 'object') {
 				// this.input.value = this.value[this.labelField];
 				this.highlightedElement();
 				if (!this.preventChange) {
