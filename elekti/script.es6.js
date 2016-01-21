@@ -104,7 +104,18 @@ class ElektiMer{
 	setValue(obj, prevent){
 		prevent = prevent ? true : false;
 		this.preventChange = prevent;
-		this.set('value', obj);
+		if((_typeof(this.value) === "object")) {
+				this.set('value', obj);
+		} else {
+			var realObj;
+			for (var i = 0; i < this.options.length; i++) {
+				if(this.options[i][this.valueField] === obj) {
+					realObj = this.options[i];
+					break;
+				}
+			}
+			if(realObj) this.set('value', realObj);
+		}
 		this.preventChange = false;
 	}
 
