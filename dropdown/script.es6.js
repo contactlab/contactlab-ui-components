@@ -76,6 +76,9 @@ class DropdownClab{
 				case 'li':
 					this.dontHide=true;
 					break;
+				/*case 'div':
+					if(evt.target.classList.contains('value_wrapper')) this.dontHide=true;
+					break;*/
 				default:
 					this.dontHide=false;
 					break;
@@ -109,7 +112,12 @@ class DropdownClab{
 	}
 
 	_handleBlur(evt){
-		if(!this.dontHide) this.querySelector('.options-list').classList.remove('active');
+		if(this.dontHide) {
+			evt.preventDefault();
+			return;
+		}
+		
+		this.querySelector('.options-list').classList.remove('active');
 	}
 
 	_setThis(evt){

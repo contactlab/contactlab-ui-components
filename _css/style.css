@@ -3531,6 +3531,7 @@ select[multiple] {
   font-size: 14px;
 }
 
+.elekti-wrapper,
 .options-list-wrapper {
   clear: both;
   width: 100%;
@@ -3539,6 +3540,11 @@ select[multiple] {
   margin-right: 0;
   position: relative;
 }
+.elekti-wrapper .value_wrapper,
+.options-list-wrapper .value_wrapper {
+  cursor: pointer;
+}
+.elekti-wrapper:after,
 .options-list-wrapper:after {
   font-family: 'contactlab-icons';
   content: "\e60c";
@@ -3548,42 +3554,53 @@ select[multiple] {
   line-height: 1;
   font-size: 12px;
 }
+.elekti-wrapper.active:after,
 .options-list-wrapper.active:after {
   -moz-transform: rotate(180deg);
   -ms-transform: rotate(180deg);
   -webkit-transform: rotate(180deg);
   transform: rotate(180deg);
 }
-.options-list-wrapper input[type="text"].options-list-filter {
+.elekti-wrapper input[type="text"].js-users-list-filter, .elekti-wrapper .js-users-list-filter.value_wrapper,
+.elekti-wrapper .options-list-wrapper .js-users-list-filter.value_wrapper,
+.options-list-wrapper .elekti-wrapper .js-users-list-filter.value_wrapper,
+.options-list-wrapper input[type="text"].js-users-list-filter,
+.options-list-wrapper .elekti-wrapper .js-users-list-filter.value_wrapper,
+.elekti-wrapper .options-list-wrapper .js-users-list-filter.value_wrapper,
+.options-list-wrapper .js-users-list-filter.value_wrapper {
   padding-right: 25px;
 }
-.options-list-wrapper .options-list-filter-message,
-.options-list-wrapper .options-list-filter-counter{
+.elekti-wrapper .js-users-list-filter-message,
+.elekti-wrapper .js-users-list-filter-counter,
+.elekti-wrapper .js-users-list,
+.options-list-wrapper .js-users-list-filter-message,
+.options-list-wrapper .js-users-list-filter-counter,
+.options-list-wrapper .js-users-list {
   display: none;
 }
-
+.elekti-wrapper .filter-hidden,
 .options-list-wrapper .filter-hidden {
   opacity: .1;
 }
-
+.elekti-wrapper .js-users-list,
+.elekti-wrapper .options-list,
+.options-list-wrapper .js-users-list,
 .options-list-wrapper .options-list {
   position: absolute;
   z-index: 1;
   width: 100%;
   top: 37px;
   max-height: 200px;
-  display: none;
   overflow: auto;
   background-color: #FFFFFF;
+  display: none;
 }
-.options-list-wrapper .options-list.hidden{
-  display: block;
-  opacity: 0;
-}
-.options-list-wrapper .options-list.active{
-  display: block;
-  opacity: 1;
-}
+.elekti-wrapper .js-users-list li,
+.elekti-wrapper .js-users-list .noResults,
+.elekti-wrapper .options-list li,
+.elekti-wrapper .options-list .noResults,
+.options-list-wrapper .js-users-list li,
+.options-list-wrapper .js-users-list .noResults,
 .options-list-wrapper .options-list li,
 .options-list-wrapper .options-list .noResults {
   background-color: white;
@@ -3592,17 +3609,59 @@ select[multiple] {
   margin: 0;
   cursor: pointer;
 }
+.elekti-wrapper .js-users-list li.hide,
+.elekti-wrapper .js-users-list .noResults.hide,
+.elekti-wrapper .options-list li.hide,
+.elekti-wrapper .options-list .noResults.hide,
+.options-list-wrapper .js-users-list li.hide,
+.options-list-wrapper .js-users-list .noResults.hide,
+.options-list-wrapper .options-list li.hide,
+.options-list-wrapper .options-list .noResults.hide {
+  display: none;
+}
+.elekti-wrapper .js-users-list li.show,
+.elekti-wrapper .js-users-list .noResults.show,
+.elekti-wrapper .options-list li.show,
+.elekti-wrapper .options-list .noResults.show,
+.options-list-wrapper .js-users-list li.show,
+.options-list-wrapper .js-users-list .noResults.show,
 .options-list-wrapper .options-list li.show,
 .options-list-wrapper .options-list .noResults.show {
   display: block;
 }
+.elekti-wrapper .js-users-list li.selected,
+.elekti-wrapper .js-users-list .noResults.selected,
+.elekti-wrapper .options-list li.selected,
+.elekti-wrapper .options-list .noResults.selected,
+.options-list-wrapper .js-users-list li.selected,
+.options-list-wrapper .js-users-list .noResults.selected,
 .options-list-wrapper .options-list li.selected,
 .options-list-wrapper .options-list .noResults.selected {
   color: #0072bc;
 }
+.elekti-wrapper .js-users-list.hidden,
+.elekti-wrapper .options-list.hidden,
+.options-list-wrapper .js-users-list.hidden,
+.options-list-wrapper .options-list.hidden {
+  display: block;
+  opacity: 0;
+}
+.elekti-wrapper .js-users-list.active,
+.elekti-wrapper .options-list.active,
+.options-list-wrapper .js-users-list.active,
+.options-list-wrapper .options-list.active {
+  display: block;
+  opacity: 1;
+}
+.elekti-wrapper .js-users-list.visible,
+.elekti-wrapper .options-list.visible,
+.options-list-wrapper .js-users-list.visible,
 .options-list-wrapper .options-list.visible {
   display: block;
 }
+.elekti-wrapper .js-users-list .noResults,
+.elekti-wrapper .options-list .noResults,
+.options-list-wrapper .js-users-list .noResults,
 .options-list-wrapper .options-list .noResults {
   cursor: initial;
 }

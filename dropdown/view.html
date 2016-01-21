@@ -2,34 +2,28 @@
 <link rel="import" href="../note/view.html">
 
 <dom-module id="dropdown-clab">
-	<style>
-    	.options-list{
-            display: none;
-            overflow: auto;
-        }
-        .options-list.hidden{
-            display: block;
-            opacity: 0;
-        }
-        .options-list.active{
-            display: block;
-            opacity: 1;
-        }
-	</style>
 
-	<template>
+    <template>
         <template is="dom-if" if="[[_viewLabel(label)]]">
             <label class$="[[_compType(disabled, type)]]">[[label]]</label>
         </template>
         <div class="options-list-wrapper">
-            <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="0">
+            <!-- <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur" tabindex="0">
                 <template is="dom-if" if="[[_viewValue(selected)]]">
                     <span class="selected">[[selected.label]]</span>
                 </template>
                 <template is="dom-if" if="[[!_viewValue(selected)]]">
                     <span class="placeholder">[[placeholder]]</span>
                 </template>
-            </div>
+            </div> -->
+            <button class$="[[_compType(disabled, type, 'value_wrapper')]]" on-click="_toggleList" on-blur="_handleBlur">
+                <template is="dom-if" if="[[_viewValue(selected)]]">
+                    <span class="selected">[[selected.label]]</span>
+                </template>
+                <template is="dom-if" if="[[!_viewValue(selected)]]">
+                    <span class="placeholder">[[placeholder]]</span>
+                </template>
+            </button>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
                     <li class="show" data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>
@@ -42,6 +36,6 @@
 
     </template>
 
-	<script src="./../_behaviors/behaviors.js"></script>
-	<script src="script.js"></script>
+    <script src="./../_behaviors/behaviors.js"></script>
+    <script src="script.js"></script>
 </dom-module>

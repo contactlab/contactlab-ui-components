@@ -82,6 +82,9 @@ var DropdownClab = (function () {
 					case 'li':
 						_this.dontHide = true;
 						break;
+					/*case 'div':
+     	if(evt.target.classList.contains('value_wrapper')) this.dontHide=true;
+     	break;*/
 					default:
 						_this.dontHide = false;
 						break;
@@ -121,7 +124,12 @@ var DropdownClab = (function () {
 	}, {
 		key: '_handleBlur',
 		value: function _handleBlur(evt) {
-			if (!this.dontHide) this.querySelector('.options-list').classList.remove('active');
+			if (this.dontHide) {
+				evt.preventDefault();
+				return;
+			}
+
+			this.querySelector('.options-list').classList.remove('active');
 		}
 	}, {
 		key: '_setThis',
