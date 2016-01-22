@@ -1,0 +1,10 @@
+.content {
+  clear: both;
+  width: 100%;
+  float: left;
+  margin-left: 0;
+  margin-right: 0;
+  padding: 30px;
+  position: relative;
+  max-width: 1420px;
+}

@@ -5,10 +5,6 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 
 
 <dom-module id="demo-clab">
-
-	<link rel="stylesheet" href="_css/style.css">
-	<link rel="stylesheet" href="_css/icons.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
     <!-- Needs to have 'import' -->
     <link rel="import" href="_css/color-vars.css">
 
@@ -22,25 +18,18 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 	</style>
 
 	<template>
-		<div class="content">
-			<h2>Elekti</h2>
-			<elekti-mer></elekti-mer>
-		</div>
 
-		<div class="content">
-			<h2>Multiple</h2>
-			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
-		</div>
+		<header>
+	        <menu-clab title-icon="clab-icon-sign-full" link="#/home">
+	            <span class="product-name">menu-<b>clab</b></span>
+	        </menu-clab>   
+	    </header>
 
+		<main class="main-content">
 		<div class="content">
-			<h2>Tags</h2>
-			<tags-clab label="Add tag" btn="Add"></tags-clab>
-		</div>
-
-		<div class="content">
-			<h2>Enhanced select</h2>
-
-			<elekti-mer label="This is a label" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' default="0"></elekti-mer>
+			<h2>Dropdown</h2>
+			<dropdown-clab max-in-view="5" label="Awesome Dropdown" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'>
+			This is my note</dropdown-clab>
 		</div>
 
 		<div class="content">
@@ -51,9 +40,13 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 		</div>
 
 		<div class="content">
-			<h2>Dropdown</h2>
-			<dropdown-clab max-in-view="5" label="Awesome Dropdown" options='[{"label":"ciccio", "value":"ciccio"},{"label":"ciaccio", "value":"ciaccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'>
-			This is my note</dropdown-clab>
+			<h2>Tags</h2>
+			<tags-clab label="Add tag" btn="Add"></tags-clab>
+		</div>
+		
+		<div class="content">
+			<h2>Multiple</h2>
+			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
 		</div>
 
 		<div class="content">
@@ -113,11 +106,11 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 			</accordion-clab>
 		</div>
 
-		<div class="content">
+		<!-- <div class="content">
 			<h2>Toaster</h2>
 			<toaster-clab message="this is my wonderful toast"></toaster-clab>
 			<toaster-clab message="this is my wonderful toast" right message="Mark as read" action-type="error" action-text="UNDO"></toaster-clab>
-		</div>
+		</div> -->
 
 		<div class="content">
 			<h2>Label & badges</h2>
@@ -209,7 +202,7 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 
 		<div class="content">
 			<h2>Input range</h2>
-			<range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1" show-details disabled></range-clab>
+			<range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1" show-details></range-clab>
 		</div>
 
 		<div class="content">
@@ -250,15 +243,8 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 		<div class="content">
 			<pagination-clab pages='["#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8"]'></pagination-clab>
 		</div>
+		</main>
 
-		<div class="content">
-			<multi-sel-clab label="My wonderful multiple select">lorem ipsum dolor</multi-sel-clab>
-		</div>
-
-		<!-- <div class="content">
-			<h2>Enhanced Multi select</h2>
-			<elekti-mer-multi label="This is a label" multi-select options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'></elekti-mer>
-		</div> -->
 	</template>
 </dom-module>
 
@@ -318,6 +304,39 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 					console.log('multiple-clab ', evt.detail.selected)
 				});
         	}.bind(this), 200);
+
+
+			var menu = document.querySelector('menu-clab');
+			menu.menu = [{
+		            "label": "Plans",
+		            "url": "#/plans",
+		            "icon": "clab clab-icon-dashboard icon"
+		        }, {
+		            "label": "Segments",
+		            "url": "#/segments",
+		            "icon": "clab clab-icon-segment icon"
+		        }, {
+		            "label": "Reports",
+		            "url": "#/reports",
+		            "icon": "clab clab-icon-analytics icon"
+		        }, {
+		            "label": "Settings",
+		            "url": "#/settings",
+		            "icon": "clab clab-icon-settings icon",
+		            "submenu": [{
+		                "label": "Showed fields",
+		                "url": "#/settings/fields"
+		            }, {
+		                "label": "Time zones & week",
+		                "url": "#/settings/timezones"
+		            }, {
+		                "label": "Do Not Disturb Policy",
+		                "url": "#/settings/dnd"
+		            }, {
+		                "label": "Users",
+		                "url": "#/settings/users"
+		            }]
+		    }];
 
         },
 
