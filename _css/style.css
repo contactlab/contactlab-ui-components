@@ -3518,7 +3518,8 @@ input[type="file"] {
   display: none;
 }
 
-select[multiple] {
+select[multiple],
+ol.multiple-clab {
   clear: both;
   width: 100%;
   float: left;
@@ -3526,9 +3527,20 @@ select[multiple] {
   margin-right: 0;
   background-color: rgba(255, 255, 255, 0.6);
   border: 0;
-  border-bottom: 1px solid #eaeced;
+  border-bottom: 1px solid #dcdfe1;
   padding: 6.66667px 0;
   font-size: 14px;
+  margin-bottom: 0;
+}
+select[multiple] li,
+ol.multiple-clab li {
+  padding: 6.66667px;
+  cursor: pointer;
+}
+select[multiple] li.selected,
+ol.multiple-clab li.selected {
+  background-color: #dcdfe1;
+  color: #0072bc;
 }
 
 .elekti-wrapper,

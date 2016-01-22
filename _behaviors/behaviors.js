@@ -3,7 +3,7 @@
 var UtilBehavior = {
 
 	_dashify: function _dashify(str) {
-		return str.replace(/ /g, '-');
+		return str.toLowerCase().replace(/ /g, '-');
 	},
 
 	_viewLabel: function _viewLabel(label) {
