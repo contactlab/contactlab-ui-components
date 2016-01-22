@@ -90,6 +90,16 @@ var InputClab = (function () {
 		value: function _toggleInputType(evt) {
 			this.password = !this.password;
 		}
+	}, {
+		key: '_blur',
+		value: function _blur(evt) {
+			this.fire('blur', { input: evt });
+		}
+	}, {
+		key: '_focus',
+		value: function _focus(evt) {
+			this.fire('focus', { input: evt });
+		}
 
 		/*----------
   OBSERVERS
