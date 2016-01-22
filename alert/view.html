@@ -5,15 +5,25 @@
 	
 	<template>
 		<template is="dom-if" if="[[visible]]">
-			<div class$="[[_computeType(type)]]">
-				<h3>[[title]]</h3>
-				<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
-				<p>
-					<content></content>
-				</p>
-				<button class="btn flat default primary" on-click="_handleClick">[[labels.primary]]</button>
-				<button class="btn default secondary" on-click="_handleClick">[[labels.secondary]]</button>
-			</div>
+			<template is="dom-if" if="[[!notify]]">
+				<div class$="[[_computeType('alert', type)]]">
+					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
+
+					<h3>[[title]]</h3>
+					<p>
+						<content></content>
+					</p>
+					<button class="btn flat default primary" on-click="_handleClick">[[labels.primary]]</button>
+					<button class="btn default secondary" on-click="_handleClick">[[labels.secondary]]</button>
+					
+				</div>
+			</template>
+			<template is="dom-if" if="[[notify]]">
+				<div class$="[[_computeType('alert', type)]]" on-click="_close">
+					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
+					<p><content></content></p>
+				</div>
+			</template>
 		</template>	
 	</template>
 

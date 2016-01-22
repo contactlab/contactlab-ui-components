@@ -37,7 +37,7 @@ var ModalClab = (function () {
 				secondary: {
 					type: String
 				},
-				third: {
+				warningBtn: {
 					type: String
 				},
 

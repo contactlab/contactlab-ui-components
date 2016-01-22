@@ -25,7 +25,7 @@ class ModalClab{
 			secondary: {
 				type: String
 			},
-			third: {
+			warningBtn: {
 				type: String
 			},
 			

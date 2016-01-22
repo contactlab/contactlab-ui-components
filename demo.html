@@ -22,6 +22,11 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 		<header>
 	        <menu-clab title-icon="clab-icon-sign-full" link="#/home">
 	            <span class="product-name">menu-<b>clab</b></span>
+	            <div class="alerts">
+	            	<alert-clab id="notify" notify>
+						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+					</alert-clab>
+	            </div>
 	        </menu-clab>   
 	    </header>
 
@@ -52,8 +57,10 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 		<div class="content">
 			<h2>Alert</h2>
 			<alert-clab visible labels='{"primary": "ciccio", "secondary": "puzzo"}'>
-				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</p>
+				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
+
+			<button-clab on-click="_notify">Show notification alert</button-clab>
 		</div>
 
 		<div class="content">
@@ -175,7 +182,7 @@ Anyone seems to work even if the components are not vulcanized but loaded before
 			<modal-clab id="modal-one" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
 			</modal-clab>
 
-			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" secondary="Cancel" third="Do something">
+			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" secondary="Cancel" warning-btn="Do something">
 				<h2>Some HTML...</h2>
 				<hr>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
@@ -345,6 +352,10 @@ Anyone seems to work even if the components are not vulcanized but loaded before
         },
         _openModal2:function(){
         	this.modal2.show();
+        },
+
+        _notify:function(evt){
+        	this.querySelector('#notify').visible=true;
         }
     });
 

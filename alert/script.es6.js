@@ -21,16 +21,21 @@ class AlertClab {
 					primary: 'Confirm',
 					secondary: 'Cancel'
 				}
+			},
+			notify:{
+				type:Boolean,
+				value:false
 			}
 		}
 	}
 
-	_computeType(type){
-		return ['alert',type].join(' ');
+	_computeType(str, type){
+		return [str,type].join(' ');
 	}
 
 	_close(){
 		this.visible = false;
+		this.fire('close');
 	}
 
 	_handleClick(evt){
