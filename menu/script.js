@@ -67,7 +67,9 @@ var MenuClab = (function () {
 		key: '_openItem',
 		value: function _openItem(evt) {
 			this._url = location.hash;
-			this.querySelector('.main-menu').style.display = 'none';
+			if (window.innerWidth < 961) {
+				this.querySelector('.main-menu').style.display = 'none';
+			}
 		}
 	}, {
 		key: '_toggleMenu',
@@ -155,7 +157,7 @@ var MenuClab = (function () {
 	}, {
 		key: '_computeTitleIcon',
 		value: function _computeTitleIcon(icon) {
-			return ['clab', icon].join(' ');
+			return ['clab-icon', icon].join(' ');
 		}
 	}]);
 
