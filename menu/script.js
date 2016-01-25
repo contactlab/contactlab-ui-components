@@ -66,13 +66,20 @@ var MenuClab = (function () {
 	}, {
 		key: '_openItem',
 		value: function _openItem(evt) {
-			var i = parseInt(evt.currentTarget.dataset.index);
 			this._url = location.hash;
+			this.querySelector('.main-menu').style.display = 'none';
 		}
 	}, {
 		key: '_toggleMenu',
 		value: function _toggleMenu(evt) {
-			var open = evt.target.parentNode.classList.contains('open-menu');
+			switch (evt.target.localName) {
+				case 'i':
+					var open = evt.target.parentNode.classList.contains('open-menu');
+					break;
+				case 'div':
+					var open = evt.target.classList.contains('open-menu');
+					break;
+			}
 			if (open) {
 				this.querySelector('.main-menu').style.display = 'block';
 			} else {
