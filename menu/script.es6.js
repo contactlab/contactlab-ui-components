@@ -52,7 +52,9 @@ class MenuClab{
 	----------*/
 	_openItem(evt){
 		this._url = location.hash;
-		this.querySelector('.main-menu').style.display='none';
+		if(window.innerWidth<961){
+			this.querySelector('.main-menu').style.display='none';
+		}
 	}
 
 	_toggleMenu(evt){
@@ -131,7 +133,7 @@ class MenuClab{
 	}
 
 	_computeTitleIcon(icon){
-		return ['clab',icon].join(' ');
+		return ['clab-icon',icon].join(' ');
 	}
 
 }
