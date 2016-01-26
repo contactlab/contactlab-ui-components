@@ -64,7 +64,7 @@ class ModalClab{
 	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
-		this.hide();
+		this.visible=false;
 		this.fire('close');
 	}
 
@@ -88,12 +88,12 @@ class ModalClab{
 
 	show(){
 		this.visible=true;
-		this.style.display='block';
+		//this.style.display='block';
 		//this.playAnimation('entry');
 	}
 	hide(){
 		this.visible=false;
-		this.style.display='none'; // da commentare per provare i neon-elements
+		//this.style.display='none'; // da commentare per provare i neon-elements
 		//this.playAnimation('exit');
 	}
 

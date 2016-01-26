@@ -5,9 +5,9 @@
 
 <dom-module id="modal-clab">
 	<style>
-		:host{
+		/*:host{
 			display: none;
-		}
+		}*/
 		.third{
 			float: left;
 			clear: none;
@@ -15,36 +15,38 @@
 	</style>
 	
 	<template>
-		<div class="modal-overlay">
-			<div class="modal-wrapper">
-				<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
-					<div class="modal-title">[[title]]</div>
-					<template is="dom-if" if="[[content]]">
-						<div class="modal-body">
-							<p>[[content]]</p>
+		<template is="dom-if" if="[[visible]]">
+			<div class="modal-overlay">
+				<div class="modal-wrapper">
+					<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
+						<div class="modal-title">[[title]]</div>
+						<template is="dom-if" if="[[content]]">
+							<div class="modal-body">
+								<p>[[content]]</p>
+							</div>
+						</template>
+						<template is="dom-if" if="[[!content]]">
+							<div class="modal-body">
+								<content></content>
+							</div>
+						</template>
+						<div class="modal-actions">
+							<template is="dom-if" if="[[_checkIfTrue(warningBtn)]]">
+								<button on-click="_thirdAction" class="btn error third">[[warningBtn]]</button>
+							</template>
+							<template is="dom-if" if="[[_checkIfTrue(secondary)]]">
+								<button on-click="_secondaryAction" class="btn flat secondary">[[secondary]]</button>
+							</template>
+							<template is="dom-if" if="[[_checkIfTrue(primary)]]">
+								<button on-click="_primaryAction" class="btn primary">[[primary]]</button>
+							</template>
 						</div>
-					</template>
-					<template is="dom-if" if="[[!content]]">
-						<div class="modal-body">
-							<content></content>
-						</div>
-					</template>
-					<div class="modal-actions">
-						<template is="dom-if" if="[[_checkIfTrue(warningBtn)]]">
-							<button on-click="_thirdAction" class="btn error third">[[warningBtn]]</button>
-						</template>
-						<template is="dom-if" if="[[_checkIfTrue(secondary)]]">
-							<button on-click="_secondaryAction" class="btn flat secondary">[[secondary]]</button>
-						</template>
-						<template is="dom-if" if="[[_checkIfTrue(primary)]]">
-							<button on-click="_primaryAction" class="btn primary">[[primary]]</button>
-						</template>
 					</div>
-				</div>
 
-				<div class="close" on-click="_closeModal"><i class="fa fa-times"></i></div>
+					<div class="close" on-click="_closeModal"><i class="fa fa-times"></i></div>
+				</div>
 			</div>
-		</div>
+		</template>
 	</template>
 
 	<script src="script.js"></script>

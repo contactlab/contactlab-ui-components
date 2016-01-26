@@ -77,7 +77,7 @@ var ModalClab = (function () {
 		key: '_closeModal',
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
-			this.hide();
+			this.visible = false;
 			this.fire('close');
 		}
 	}, {
@@ -104,14 +104,14 @@ var ModalClab = (function () {
 		key: 'show',
 		value: function show() {
 			this.visible = true;
-			this.style.display = 'block';
+			//this.style.display='block';
 			//this.playAnimation('entry');
 		}
 	}, {
 		key: 'hide',
 		value: function hide() {
 			this.visible = false;
-			this.style.display = 'none'; // da commentare per provare i neon-elements
+			//this.style.display='none'; // da commentare per provare i neon-elements
 			//this.playAnimation('exit');
 		}
 
