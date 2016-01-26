@@ -249,8 +249,8 @@ class ElektiMer{
 	}
 
 	highlightedElement(input, els){
-		console.log('highlightedElement: ', this.value);
-		console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);
+		/*console.log('highlightedElement: ', this.value);
+		console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);*/
 
 		if(!input && this.isNotValorized()) return false;
 
@@ -276,7 +276,7 @@ class ElektiMer{
 			this.liHeight = this.$.list.children[0].clientHeight;
 		}
 		if(action==='open'){
-			console.log(this.$);
+			/*console.log(this.$);*/
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
 			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
@@ -362,14 +362,14 @@ class ElektiMer{
 	}
 
 	_computeValue(option) {
-		console.log('_computeValue', option);
-		console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);
+		/*console.log('_computeValue', option);
+		console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);*/
 		return option[this.valueField];
 	}
 
 	_computeLabel(option) {
-		console.log('_computeLabel', option);
-		console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);
+		/*console.log('_computeLabel', option);
+		console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);*/
 		return option[this.labelField];
 	}
 }
