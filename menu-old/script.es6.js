@@ -17,11 +17,11 @@ class MenuClabOld{
 			},
 			reduceOpen:{
 				type: String,
-				value: 'clab clab-icon-expand expand'
+				value: 'clab-icon icon-expand expand'
 			},
 			reduceClose:{
 				type: String,
-				value: 'clab clab-icon-resize compress'
+				value: 'clab-icon icon-resize compress'
 			},
 			menu: {
 				type: Array,

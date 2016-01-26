@@ -60,7 +60,7 @@ class PaginationClab{
 	----------*/
 	setThisAsCurrent(evt){
 		evt.preventDefault(); // forse da togliere
-
+		
 		if(evt.path[0].getAttribute('data-index') != null)
 			var i = evt.path[0].getAttribute('data-index');
 		else
@@ -74,7 +74,7 @@ class PaginationClab{
 
 	updateSelectedPage(evt){
 		var i = evt.detail.index;
-		this.$$('.active').classList.remove('active');
+		this.querySelector('.active').classList.remove('active');
 		this.querySelectorAll('.page')[i].classList.add('active');
 		this.currentPage = Number(i)+1;
 	}
@@ -150,6 +150,10 @@ class PaginationClab{
 	_pageNumber(i){
 		return i+1;
 	}
+	/*_findIndex(item, items){
+		console.log(items.indexOf(item));
+		return items.indexOf(item);
+	}*/
 
 }
 
