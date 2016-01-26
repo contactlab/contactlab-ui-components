@@ -70,7 +70,6 @@ var CalendarClab = (function () {
 	}, {
 		key: "_checkClear",
 		value: function _checkClear(evt) {
-			console.log(this.valueStr, evt.target.value);
 			evt.target.value == "" ? this.clear() : null;
 		}
 	}, {
@@ -140,7 +139,6 @@ var CalendarClab = (function () {
 		key: "getValue",
 		value: function getValue() {
 			var formatted = moment(this.valueStr, this._getFormat()).format();
-			// console.log(this.valueStr);
 			if (this.valueStr) {
 				return formatted;
 			} else {

@@ -75,7 +75,20 @@ var DropdownClab = (function () {
 			var _this = this;
 
 			this.addEventListener('mousedown', function (evt) {
-				if (evt.target.localName == 'ol' || evt.target.localName == 'li') _this.dontHide = true;else _this.dontHide = false;
+				switch (evt.target.localName) {
+					case 'ol':
+						_this.dontHide = true;
+						break;
+					case 'li':
+						_this.dontHide = true;
+						break;
+					/*case 'div':
+     	if(evt.target.classList.contains('value_wrapper')) this.dontHide=true;
+     	break;*/
+					default:
+						_this.dontHide = false;
+						break;
+				}
 			});
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
@@ -105,13 +118,18 @@ var DropdownClab = (function () {
 					return;
 				}
 				this.querySelector('.options-list').classList.toggle('active');
-				this.querySelector('.value_wrapper > span').classList.toggle('active');
+				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
 		}
 	}, {
 		key: '_handleBlur',
 		value: function _handleBlur(evt) {
-			if (!this.dontHide) this.querySelector('.options-list').classList.remove('active');
+			if (this.dontHide) {
+				evt.preventDefault();
+				return;
+			}
+
+			this.querySelector('.options-list').classList.remove('active');
 		}
 	}, {
 		key: '_setThis',

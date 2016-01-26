@@ -175,14 +175,17 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
-			if (evt.target.localName == 'ol') {
-				this.dontHide = true;
-			} else if (evt.target.localName == 'li') {
-				this.dontHide = false;
-				var i = evt.target.getAttribute('data-index');
-				this._setValue(this.options[i]);
-			} else {
-				this.dontHide = false;
+			switch (evt.target.localName) {
+				case 'ol':
+					this.dontHide = true;
+					break;
+				case 'li':
+					this.dontHide = false;
+					var i = evt.target.getAttribute('data-index');
+					this._setValue(this.options[i]);
+					break;
+				default:
+					this.dontHide = false;
 			}
 		}
 	}, {
@@ -246,11 +249,9 @@ var AutoCompleteClab = (function () {
 
 				this.options.map(function (opt, i) {
 					if (opt.label.toLowerCase().search(searchVal) > -1) {
-						//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 						_this4.querySelectorAll('.options-list li')[i].classList.add('show');
 						_this4.results.push(_this4.options[i]);
 					} else {
-						//if(!this.spinner && (new Date().getTime())-start > 400) this.spinner=true;
 						_this4.querySelectorAll('.options-list li')[i].classList.remove('show');
 					}
 				});
@@ -270,12 +271,11 @@ var AutoCompleteClab = (function () {
 					}, 100);
 				}
 				this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
-				//this.fire('sendRes',this.results);
 			} else {
-					this._closeList();
-					this.currentHint = undefined;
-					console.info('No hint was found');
-				}
+				this._closeList();
+				this.currentHint = undefined;
+				console.info('No hint was found');
+			}
 		}
 	}, {
 		key: '_setValue',
@@ -336,20 +336,19 @@ var AutoCompleteClab = (function () {
 			var HIdx = this._getIndex(this.currentHint, this.results);
 			var toSel = undefined;
 
-			if (type === 'up') {
-				toSel = this.results[HIdx - 1];
-				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
-					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
-				} else {
-					return;
-				}
-			} else if (type === 'down') {
-				toSel = this.results[HIdx + 1];
-				if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
-					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
-				} else {
-					return;
-				}
+			switch (type) {
+				case 'up':
+					toSel = this.results[HIdx - 1];
+					if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
+						this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), true);
+					}
+					break;
+				case 'down':
+					toSel = this.results[HIdx + 1];
+					if ((typeof toSel === 'undefined' ? 'undefined' : _typeof(toSel)) == 'object') {
+						this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
+					}
+
 			}
 		}
 	}, {

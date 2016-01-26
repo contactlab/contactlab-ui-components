@@ -10,7 +10,7 @@
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 		</template>
 		<input class$="[[type]]" type$="[[_computeDataType(password)]]" name$="[[_dashify(name)]]"
-			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]">
+			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus">
 
 		<template is="dom-if" if="[[check]]">
 			<button-clab type="[[btnProps.type]]" size="[[btnProps.size]]" appearance="[[btnProps.appearance]]" icon="[[btnProps.icon]]" disabled="[[disabled]]" on-click="_toggleInputType">[[btnProps.label]]</button-clab>

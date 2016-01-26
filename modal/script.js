@@ -11,6 +11,15 @@ var ModalClab = (function () {
 
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
+
+		/*get behaviors() {
+  	return this._behaviors || (this._behaviors = [Polymer.NeonAnimationRunnerBehavior]);
+  }
+  
+  set behaviors(value) {
+  	this._behaviors = value;
+  }*/
+
 		value: function beforeRegister() {
 			this.is = 'modal-clab';
 			this.properties = {
@@ -28,6 +37,10 @@ var ModalClab = (function () {
 				secondary: {
 					type: String
 				},
+				warningBtn: {
+					type: String
+				},
+
 				content: {
 					type: String,
 					value: null
@@ -35,8 +48,25 @@ var ModalClab = (function () {
 				maxWidth: {
 					type: String,
 					value: '500px'
-				}
+				} /*,
+      animationConfig:{
+      value:()=>{
+      	return {
+      		'entry':{
+      			name: 'scale-up-animation',
+      			node: this
+      		},
+      		'exit':{
+      			name: 'fade-out-animation',
+      			node: this
+      		}
+      	}
+      }
+      }*/
 			};
+			/*this.listeners={
+   	'neon-animation-finish': '_onNeonAnimationFinish'
+   }*/
 		}
 
 		/*----------
@@ -56,15 +86,40 @@ var ModalClab = (function () {
 			evt.stopPropagation();
 		}
 	}, {
-		key: '_primary',
-		value: function _primary(evt) {
+		key: '_primaryAction',
+		value: function _primaryAction(evt) {
 			this.fire('modal-primary');
 		}
 	}, {
-		key: '_secondary',
-		value: function _secondary(evt) {
+		key: '_secondaryAction',
+		value: function _secondaryAction(evt) {
 			this.fire('modal-secondary');
 		}
+	}, {
+		key: '_thirdAction',
+		value: function _thirdAction(evt) {
+			this.fire('modal-third');
+		}
+	}, {
+		key: 'show',
+		value: function show() {
+			this.visible = true;
+			//this.style.display='block';
+			//this.playAnimation('entry');
+		}
+	}, {
+		key: 'hide',
+		value: function hide() {
+			this.visible = false;
+			//this.style.display='none'; // da commentare per provare i neon-elements
+			//this.playAnimation('exit');
+		}
+
+		/*_onNeonAnimationFinish(){
+  	if(!this.visible){
+  		this.style.display='none';
+  	}
+  }*/
 
 		/*----------
   COMPUTE
@@ -74,6 +129,15 @@ var ModalClab = (function () {
 		key: '_computeWidth',
 		value: function _computeWidth(width) {
 			return 'max-width:' + width;
+		}
+	}, {
+		key: '_checkIfTrue',
+		value: function _checkIfTrue(str) {
+			if (str != undefined && str.length > 0) {
+				return true;
+			} else {
+				return false;
+			}
 		}
 	}]);
 

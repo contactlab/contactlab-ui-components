@@ -16,7 +16,7 @@
             </input-clab>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li data-index$="[[_getIndex(item, options)]]" on-mouseover="_highlightThis">[[item.label]]</li>
+                    <li data-index$="[[index]]" on-mouseover="_highlightThis">[[item.label]]</li>
                 </template>
             </ol>
 

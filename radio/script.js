@@ -52,12 +52,15 @@ var RadioClab = (function () {
 	}, {
 		key: '_checkIfTrue',
 		value: function _checkIfTrue(i, n) {
-			if (typeof n === 'number') {
-				return i == n;
-			} else if ((typeof n === 'undefined' ? 'undefined' : _typeof(n)) === 'object') {
-				for (var x = 0; x < n.length; x++) {
-					if (i == n[x]) return true;
-				}
+			switch (typeof n === 'undefined' ? 'undefined' : _typeof(n)) {
+				case 'number':
+					return i == n;
+					break;
+				case 'object':
+					for (var x = 0; x < n.length; x++) {
+						if (i == n[x]) return true;
+					}
+					break;
 			}
 		}
 	}, {

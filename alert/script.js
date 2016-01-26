@@ -32,18 +32,23 @@ var AlertClab = (function () {
 						primary: 'Confirm',
 						secondary: 'Cancel'
 					}
+				},
+				notify: {
+					type: Boolean,
+					value: false
 				}
 			};
 		}
 	}, {
 		key: '_computeType',
-		value: function _computeType(type) {
-			return ['alert', type].join(' ');
+		value: function _computeType(str, type) {
+			return [str, type].join(' ');
 		}
 	}, {
 		key: '_close',
 		value: function _close() {
 			this.visible = false;
+			this.fire('close');
 		}
 	}, {
 		key: '_handleClick',

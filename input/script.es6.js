@@ -84,6 +84,13 @@ class InputClab{
 		this.password=!this.password;
 	}
 
+	_blur(evt){
+		this.fire('blur', {input:evt});
+	}
+	_focus(evt){
+		this.fire('focus', {input:evt});
+	}
+
 
 	/*----------
 	OBSERVERS

@@ -32,20 +32,21 @@ describe('<autocomplete-clab>', function() {
     context('Test Properties', function() {
 
 	  	it('Default Properties', function(done) {
-			expect(autocomplete.label).to.be.equal(null);
-			expect(autocomplete.name).to.be.equal('auto complete');
-			expect(autocomplete.disabled).to.be.equal(false);
-			expect(autocomplete.hideHints).to.be.equal(false);
-			expect(autocomplete.resultAsObj).to.be.equal(false);
-			expect(autocomplete.minChar).to.be.equal(3);
-			expect(autocomplete.maxInView).to.be.equal(6);
-			expect(autocomplete.inputType).to.be.equal('success');
+			expect(autocomplete.label).to.equal(null);
+			expect(autocomplete.name).to.equal('auto complete');
+			expect(autocomplete.disabled).to.equal(false);
+			expect(autocomplete.hideHints).to.equal(false);
+			expect(autocomplete.resultAsObj).to.equal(false);
+			expect(autocomplete.minChar).to.equal(3);
+			expect(autocomplete.maxInView).to.equal(6);
+			expect(autocomplete.inputType).to.equal('');
 			expect(autocomplete.noteType).to.be.undefined;
 			expect(autocomplete.value).to.be.undefined;
 			expect(autocomplete.options).to.be.undefined;
 			expect(autocomplete.url).to.be.undefined;
 			expect(autocomplete.results).to.be.an('array');
 			expect(autocomplete.optionsFn).to.be.undefined;
+			expect(autocomplete.placeholder).to.equal('Type..');
 
 			done();
 		});

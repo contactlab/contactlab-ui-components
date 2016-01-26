@@ -33,6 +33,7 @@ describe('<spinner-clab>', function() {
   	it('Default Properties', function(done) {
 		expect(spinner.dark).to.equal(false);
 		expect(spinner.big).to.equal(false);
+		expect(spinner.visible).to.equal(false);
 		expect(spinner.background).to.equal('255, 255, 255, 0.9');
 
 		done();
@@ -43,6 +44,7 @@ describe('<spinner-clab>', function() {
   context('Test DOM Bindings', function() {
 
 	it('Check dark', function(done) {
+		spinner.visible = true;
 		spinner.dark = true;
 
 		setTimeout(function(){
@@ -53,6 +55,7 @@ describe('<spinner-clab>', function() {
 	});
 
 	it('Check big', function(done) {
+		spinner.visible = true;
 		spinner.big = true;
 
 		setTimeout(function(){
@@ -64,6 +67,7 @@ describe('<spinner-clab>', function() {
 
 	it('Check background', function(done){
 		var color='200, 200, 200, 0.8';
+		spinner.visible = true;
 		spinner.background=color;
 
 		setTimeout(function(){

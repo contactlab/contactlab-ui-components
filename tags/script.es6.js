@@ -21,6 +21,10 @@ class TagsClab {
 				type:Boolean,
 				value:false
 			},
+			stacked:{
+				type:Boolean,
+				value:false
+			},
 			tags:{
 				type:Array,
 				value:[],
@@ -50,19 +54,21 @@ class TagsClab {
 	}
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_handleKeyUp(evt){
+		switch(evt.keyCode){
+			case 188:
+			// if comma
+				this._addTag(evt);
+				break;
+			case 13:
+			// if enter
+				this.querySelector('button-clab').fire('click');
+				break;
+		}
 
-		// if comma
-		if(evt.keyCode===188)
-			this._addTag(evt);
-		
-		// if enter
-		if(evt.keyCode===13)
-			this.querySelector('button-clab').fire('click');
-		
 	}
 
 	_addTag(evt){
@@ -90,9 +96,17 @@ class TagsClab {
 		this.fire('change', {'tags': this.tags});
 	}
 
+	_computeStacked(stacked){
+		if(stacked){
+			return 'selected-values';
+		} else {
+			return '';
+		}
+	}
 
 
-	/*---------- 
+
+	/*----------
 	PUBLIC
 	----------*/
 	setTags(array){
@@ -102,7 +116,7 @@ class TagsClab {
 			array.map(item=>{
 				this.push('tags', item);
 			});
-			
+
 		}
 		this.fire('change', {'tags': this.tags});
 
