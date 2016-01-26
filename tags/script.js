@@ -28,6 +28,10 @@ var TagsClab = (function () {
 					type: Boolean,
 					value: false
 				},
+				stacked: {
+					type: Boolean,
+					value: false
+				},
 				tags: {
 					type: Array,
 					value: [],
@@ -56,7 +60,7 @@ var TagsClab = (function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -101,8 +105,17 @@ var TagsClab = (function () {
 
 			this.fire('change', { 'tags': this.tags });
 		}
+	}, {
+		key: '_computeStacked',
+		value: function _computeStacked(stacked) {
+			if (stacked) {
+				return 'selected-values';
+			} else {
+				return '';
+			}
+		}
 
-		/*---------- 
+		/*----------
   PUBLIC
   ----------*/
 
