@@ -21,6 +21,10 @@ class TagsClab {
 				type:Boolean,
 				value:false
 			},
+			stacked:{
+				type:Boolean,
+				value:false
+			},
 			tags:{
 				type:Array,
 				value:[],
@@ -50,7 +54,7 @@ class TagsClab {
 	}
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_handleKeyUp(evt){
@@ -64,7 +68,7 @@ class TagsClab {
 				this.querySelector('button-clab').fire('click');
 				break;
 		}
-		
+
 	}
 
 	_addTag(evt){
@@ -92,9 +96,17 @@ class TagsClab {
 		this.fire('change', {'tags': this.tags});
 	}
 
+	_computeStacked(stacked){
+		if(stacked){
+			return 'selected-values';
+		} else {
+			return '';
+		}
+	}
 
 
-	/*---------- 
+
+	/*----------
 	PUBLIC
 	----------*/
 	setTags(array){
@@ -104,7 +116,7 @@ class TagsClab {
 			array.map(item=>{
 				this.push('tags', item);
 			});
-			
+
 		}
 		this.fire('change', {'tags': this.tags});
 
