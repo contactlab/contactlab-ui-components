@@ -37,7 +37,7 @@
 		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
 			<ol class="options-list" on-scroll="_loadContent">
 				<template is="dom-repeat" items="[[options]]">
-                    <li data-index$="[[_getIndex(item, options)]]" tabindex="0" on-click="_handleSelection">[[item.label]]</li>
+                    <li data-index$="[[index]]" tabindex="0" on-click="_handleSelection">[[item.label]]</li>
                 </template>
 			</ol>
 			<spinner-clab visible="[[spinner]]"></spinner-clab>

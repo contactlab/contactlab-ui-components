@@ -26,7 +26,7 @@
             </button>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li class="show" data-index$="[[_getIndex(item, options)]]" on-click="_setThis">[[item.label]]</li>
+                    <li class="show" data-index$="[[index]]" on-click="_setThis">[[item.label]]</li>
                 </template>
             </ol>
         </div>

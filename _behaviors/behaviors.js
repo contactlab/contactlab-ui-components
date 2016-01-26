@@ -11,11 +11,11 @@ var UtilBehavior = {
 	},
 
 	_getIndex: function _getIndex(item, items) {
-		for (var i = 0; i < items.length; i++) {
-			if (JSON.stringify(items[i]) == JSON.stringify(item)) {
+		items.map(function (el, i) {
+			if (JSON.stringify(el) == JSON.stringify(item)) {
 				return i;
 			}
-		}
+		});
 		return -1;
 	}
 };

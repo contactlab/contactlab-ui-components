@@ -16,7 +16,7 @@
 		<nav class="main-menu">
 			<ul>
 				<template is="dom-repeat" items="[[menu]]">
-					<li class$="[[_computeActive(_url,item.url, index)]]">
+					<li class$="[[_computeActive(_url, item.url, index)]]">
 						<a on-click="_openItem" href$="[[_computeUrl(item)]]" data-index$="[[index]]">[[item.label]]</a>
 					</li>
 				</template>
