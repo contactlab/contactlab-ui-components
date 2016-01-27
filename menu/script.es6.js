@@ -81,11 +81,11 @@ class MenuClab{
 	_setSubmenu(current){
 		if(current.submenu){
 			this.set('submenu', current.submenu);
-			this.fire('subchange', {links:current.submenu});
+			this.fire('subchange', {links:current.submenu, label:current.label});
 		}
 		else {
 			this.set('submenu', undefined);
-			this.fire('subchange', {links:[]});
+			this.fire('subchange', {links:[], label:''});
 		}
 	}
 
