@@ -46,7 +46,6 @@ var DropdownClab = (function () {
 					type: Boolean,
 					value: false
 				},
-				// How many LIs are visible without scrolling (=> sets max-height of OL)
 				maxInView: {
 					type: Number,
 					value: 4
@@ -72,29 +71,8 @@ var DropdownClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
-			var _this = this;
-
-			this.addEventListener('mousedown', function (evt) {
-				switch (evt.target.localName) {
-					case 'ol':
-						_this.dontHide = true;
-						break;
-					case 'li':
-						_this.dontHide = true;
-						break;
-					/*case 'div':
-     	if(evt.target.classList.contains('value_wrapper')) this.dontHide=true;
-     	break;*/
-					default:
-						_this.dontHide = false;
-						break;
-				}
-			});
-			this.addEventListener('mouseup', function (evt) {
-				_this.dontHide = false;
-			});
-
 			if (this.selected != undefined) this._setValue(this.selected);
+			this.identity = this._dashify(this.label);
 		}
 
 		/*----------
@@ -104,32 +82,40 @@ var DropdownClab = (function () {
 	}, {
 		key: '_toggleList',
 		value: function _toggleList(evt) {
-			var _this2 = this;
+			var _this = this;
 
 			if (!this.disabled) {
 				if (this.liHeight == null) {
 					this.querySelector('.options-list').classList.add('hidden');
 					this._setMaxHeight();
 					setTimeout(function () {
-						_this2.querySelector('.options-list').classList.remove('hidden');
-						_this2.querySelector('.options-list').classList.add('active');
-						_this2.querySelector('.value_wrapper > span').classList.add('active');
+						_this.querySelector('.options-list').classList.remove('hidden');
+						_this.querySelector('.options-list').classList.add('active');
+						_this.querySelector('.value_wrapper > span').classList.add('active');
 					}, 50);
-					return;
+				} else {
+					this.querySelector('.options-list').classList.toggle('active');
+					this.querySelector('.value_wrapper').classList.toggle('active');
 				}
-				this.querySelector('.options-list').classList.toggle('active');
-				this.querySelector('.value_wrapper').classList.toggle('active');
-			}
-		}
-	}, {
-		key: '_handleBlur',
-		value: function _handleBlur(evt) {
-			if (this.dontHide) {
-				evt.preventDefault();
-				return;
 			}
 
-			this.querySelector('.options-list').classList.remove('active');
+			var windowClick = function windowClick(evt) {
+				var name = evt.target.localName;
+				var hasClass = evt.target.classList.contains('dropdown-clab');
+				var hasIdentity = evt.target.classList.contains(_this.identity);
+
+				if (name == 'ol' && hasClass) {
+					return;
+				} else if (name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(_this.identity) || name == 'div' && hasIdentity) {
+					window.removeEventListener('mousedown', windowClick);
+					return;
+				} else {
+					_this.querySelector('.options-list').classList.remove('active');
+					_this.querySelector('.value_wrapper').classList.remove('active');
+					window.removeEventListener('mousedown', windowClick);
+				}
+			};
+			window.addEventListener('mousedown', windowClick);
 		}
 	}, {
 		key: '_setThis',
@@ -137,7 +123,8 @@ var DropdownClab = (function () {
 			var i = evt.target.getAttribute('data-index');
 			this._setValue(this.options[i]);
 			this._highlightEl(i);
-			this._toggleList();
+			this.querySelector('.options-list').classList.remove('active');
+			this.querySelector('.value_wrapper').classList.remove('active');
 		}
 
 		/*----------
@@ -172,10 +159,10 @@ var DropdownClab = (function () {
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
-			var _this3 = this;
+			var _this2 = this;
 
 			promise().then(function (resp) {
-				_this3.set('options', resp);
+				_this2.set('options', resp);
 			});
 		}
 
@@ -196,7 +183,10 @@ var DropdownClab = (function () {
 		key: '_compType',
 		value: function _compType(disabled, type, def) {
 			var arr = [];
-			if (def != undefined) arr.push(def);
+			if (def != undefined) {
+				arr.push(def);
+				arr.push(this._dashify(this.label));
+			}
 			if (disabled) arr.push('disabled');
 			if (type != undefined) arr.push(type);
 			return arr.join(' ');
@@ -235,22 +225,22 @@ var DropdownClab = (function () {
 	}, {
 		key: 'setByLabel',
 		value: function setByLabel(str) {
-			var _this4 = this;
+			var _this3 = this;
 
 			this.options.map(function (opt) {
 				if (opt.label === str) {
-					_this4._setValue(opt);
+					_this3._setValue(opt);
 				}
 			});
 		}
 	}, {
 		key: 'setByValue',
 		value: function setByValue(str) {
-			var _this5 = this;
+			var _this4 = this;
 
 			this.options.map(function (opt) {
 				if (opt.value === str) {
-					_this5._setValue(opt);
+					_this4._setValue(opt);
 				}
 			});
 		}

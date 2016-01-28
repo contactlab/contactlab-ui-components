@@ -42,7 +42,6 @@ class DropdownClab{
 				type:Boolean,
 				value:false
 			},
-			// How many LIs are visible without scrolling (=> sets max-height of OL)
 			maxInView:{
 				type:Number,
 				value:4
@@ -68,26 +67,8 @@ class DropdownClab{
 	}
 
 	attached(){
-		this.addEventListener('mousedown', (evt)=>{
-			switch(evt.target.localName){
-				case 'ol':
-					this.dontHide=true;
-					break;
-				case 'li':
-					this.dontHide=true;
-					break;
-				/*case 'div':
-					if(evt.target.classList.contains('value_wrapper')) this.dontHide=true;
-					break;*/
-				default:
-					this.dontHide=false;
-					break;
-			}
-		});
-		this.addEventListener('mouseup', (evt)=>{ this.dontHide=false; });
-
 		if(this.selected!=undefined) this._setValue(this.selected);
-		
+		this.identity=this._dashify(this.label);
 	}
 
 
@@ -104,27 +85,38 @@ class DropdownClab{
 					this.querySelector('.options-list').classList.add('active');
 					this.querySelector('.value_wrapper > span').classList.add('active');
 				},50);
-				return;
+			} else {
+				this.querySelector('.options-list').classList.toggle('active');
+				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
-			this.querySelector('.options-list').classList.toggle('active');
-			this.querySelector('.value_wrapper').classList.toggle('active');
 		}
-	}
 
-	_handleBlur(evt){
-		if(this.dontHide) {
-			evt.preventDefault();
-			return;
+
+		var windowClick=(evt)=>{
+			var name=evt.target.localName;
+			var hasClass=evt.target.classList.contains('dropdown-clab');
+			var hasIdentity=evt.target.classList.contains(this.identity);
+
+			if(name=='ol' && hasClass) {
+				return;
+			} else if(name=='li' && hasClass || name=='span' && evt.target.parentNode.classList.contains(this.identity) || name=='div' && hasIdentity){
+				window.removeEventListener('mousedown', windowClick);
+				return;
+			} else {
+				this.querySelector('.options-list').classList.remove('active');
+				this.querySelector('.value_wrapper').classList.remove('active');
+				window.removeEventListener('mousedown', windowClick);
+			}
 		}
-		
-		this.querySelector('.options-list').classList.remove('active');
+		window.addEventListener('mousedown', windowClick);
 	}
 
 	_setThis(evt){
 		let i=evt.target.getAttribute('data-index');
 		this._setValue(this.options[i]);
 		this._highlightEl(i);
-		this._toggleList();
+		this.querySelector('.options-list').classList.remove('active');
+		this.querySelector('.value_wrapper').classList.remove('active');
 	}
 
 
@@ -167,7 +159,6 @@ class DropdownClab{
 
 
 
-
 	/*----------
 	COMPUTED
 	----------*/
@@ -181,7 +172,10 @@ class DropdownClab{
 
 	_compType(disabled, type, def){
 		let arr=[];
-		if(def!=undefined) arr.push(def);
+		if(def!=undefined) {
+			arr.push(def);
+			arr.push(this._dashify(this.label));
+		}
 		if(disabled) arr.push('disabled');
 		if(type!=undefined) arr.push(type);
 		return arr.join(' ');
@@ -200,7 +194,6 @@ class DropdownClab{
 		this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
-
 
 
 
