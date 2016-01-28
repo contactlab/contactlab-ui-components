@@ -11,12 +11,12 @@
             <label class$="[[inputType]]" for$="[[_dashify(name)]]">[[label]]</label>
         </template>
         <div class="options-list-wrapper">
-            <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs">
+            <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
                 <content></content>
             </input-clab>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li data-index$="[[index]]" on-mouseover="_highlightThis">[[item.label]]</li>
+                    <li data-index$="[[index]]" on-mouseover="_handleHighlight">[[item.label]]</li>
                 </template>
             </ol>
 

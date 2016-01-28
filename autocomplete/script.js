@@ -102,8 +102,20 @@ var AutoCompleteClab = (function () {
 				this._setValue(this.value, true);
 			}
 
-			this.querySelector('input-clab input').addEventListener('blur', this._handleBlur.bind(this));
-			this.addEventListener('mousedown', this._handleClick);
+			this.addEventListener('mousedown', function (evt) {
+				switch (evt.target.localName) {
+					case 'ol':
+						_this.dontHide = true;
+						break;
+					case 'li':
+						_this.dontHide = false;
+						var i = evt.target.getAttribute('data-index');
+						_this._setValue(_this.options[i]);
+						break;
+					default:
+						_this.dontHide = false;
+				}
+			});
 			this.addEventListener('mouseup', function (evt) {
 				_this.dontHide = false;
 			});
@@ -152,11 +164,18 @@ var AutoCompleteClab = (function () {
 						_this2._fetchOptions();
 					}, 400);
 				} else {
-					this._handleHints(false);
+					this._showHints(false);
 				}
 			} else {
 				this._closeList();
 			}
+		}
+	}, {
+		key: '_handleHighlight',
+		value: function _handleHighlight(evt) {
+			var i = evt.target.getAttribute('data-index');
+			this._highlightEl(i);
+			this.currentHint = this.options[i];
 		}
 	}, {
 		key: '_handleBlur',
@@ -171,29 +190,6 @@ var AutoCompleteClab = (function () {
 				this.inputString = '';
 				this.currentHint = undefined;
 			}
-		}
-	}, {
-		key: '_handleClick',
-		value: function _handleClick(evt) {
-			switch (evt.target.localName) {
-				case 'ol':
-					this.dontHide = true;
-					break;
-				case 'li':
-					this.dontHide = false;
-					var i = evt.target.getAttribute('data-index');
-					this._setValue(this.options[i]);
-					break;
-				default:
-					this.dontHide = false;
-			}
-		}
-	}, {
-		key: '_highlightThis',
-		value: function _highlightThis(evt) {
-			var i = evt.target.getAttribute('data-index');
-			this._highlightEl(i);
-			this.currentHint = this.options[i];
 		}
 
 		/*---------- 
@@ -222,7 +218,7 @@ var AutoCompleteClab = (function () {
 				res.json().then(function (data) {
 					_this3.set('options', data);
 					_this3.async(function () {
-						_this3._handleHints(true);
+						_this3._showHints(true);
 						_this3._resetSpinnerTimeout();
 					}, 50);
 				});
@@ -233,8 +229,8 @@ var AutoCompleteClab = (function () {
 			});
 		}
 	}, {
-		key: '_handleHints',
-		value: function _handleHints(fetched) {
+		key: '_showHints',
+		value: function _showHints(fetched) {
 			var _this4 = this;
 
 			var searchVal = this.inputString.toLowerCase();
@@ -257,17 +253,11 @@ var AutoCompleteClab = (function () {
 				});
 			}
 
-			this._handleListVisual(searchVal);
-		}
-	}, {
-		key: '_handleListVisual',
-		value: function _handleListVisual(searchVal) {
-			var _this5 = this;
-
+			// handle list visual
 			if (this.results.length > 0) {
 				if (!this.hideHints) {
 					this.async(function () {
-						_this5._setListHeight(_this5.results.length);
+						_this4._setListHeight(_this4.results.length);
 					}, 100);
 				}
 				this._highlightEl(this._getMoreAccurateIdxMatch(this.results, searchVal));
@@ -298,10 +288,10 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_highlightEl',
 		value: function _highlightEl(idx) {
-			var _this6 = this;
+			var _this5 = this;
 
 			this.async(function () {
-				Array.prototype.map.call(_this6.querySelectorAll('.options-list li'), function (el) {
+				Array.prototype.map.call(_this5.querySelectorAll('.options-list li'), function (el) {
 					if (el.getAttribute('data-index') == idx) {
 						el.classList.add('selected');
 					} else {
@@ -313,15 +303,15 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_getMoreAccurateIdxMatch',
 		value: function _getMoreAccurateIdxMatch(res, search) {
-			var _this7 = this;
+			var _this6 = this;
 
 			var isSame = false;
 			var idx = undefined;
 			res.map(function (item, i) {
 				if (item.label === search) {
 					isSame = true;
-					idx = _this7._getIndex(item, _this7.options);
-					_this7.currentHint = item;
+					idx = _this6._getIndex(item, _this6.options);
+					_this6.currentHint = item;
 				}
 			});
 			if (!isSame) {
@@ -367,10 +357,10 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
-			var _this8 = this;
+			var _this7 = this;
 
 			promise().then(function (resp) {
-				_this8.set('options', resp);
+				_this7.set('options', resp);
 			});
 		}
 
@@ -384,7 +374,6 @@ var AutoCompleteClab = (function () {
 			if (this.liHeight === null) {
 				this.list.classList.add('hidden');
 				this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
-				console.log(this.querySelectorAll('.options-list li.show')[0].clientHeight);
 				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
 				this.list.classList.remove('hidden');
 			}
@@ -403,10 +392,10 @@ var AutoCompleteClab = (function () {
 	}, {
 		key: '_startSpinnerTimeout',
 		value: function _startSpinnerTimeout() {
-			var _this9 = this;
+			var _this8 = this;
 
 			this.interval = window.setTimeout(function () {
-				if (!_this9.spinner) _this9.spinner = true;
+				if (!_this8.spinner) _this8.spinner = true;
 			}, 400);
 		}
 	}, {

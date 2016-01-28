@@ -14,11 +14,23 @@
     "_test",
     "_tests",
     "node_modules",
-    "bower_components",
-    "toaster",
-    "panel",
-    "starter",
-    "demo-server"
+    "toaster_",
+    "panel_",
+    "starter_",
+    "_demo-server",
+    "../iron-*",
+    "../chai",
+    "../jquery",
+    "../neon-animation",
+    "../mocha",
+    "../paper-*",
+    "../prism*",
+    "../seed-element",
+    "../sinon-chai",
+    "../sinonjs",
+    "../stacky",
+    "../test-fixture",
+    "../web-animations-js"
   ],
   "dependencies": {
     "polymer": "~1.2.3",
@@ -26,7 +38,6 @@
     "moment": "~2.10.6",
     "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
-    "web-component-tester": "Polymer/web-component-tester#~4.1.0",
-    "neon-animation": "PolymerElements/neon-animation#~1.0.9"
+    "web-component-tester": "Polymer/web-component-tester#~4.1.0"
   }
 }

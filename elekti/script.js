@@ -1,10 +1,8 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _typeof2(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var ElektiMer = (function () {
 	function ElektiMer() {
@@ -41,7 +39,7 @@ var ElektiMer = (function () {
 					value: 'label'
 				},
 
-				default: {
+				'default': {
 					type: Number
 				},
 				//observer: '_setDefault'
@@ -110,7 +108,8 @@ var ElektiMer = (function () {
 	}, {
 		key: 'isNotValorized',
 		value: function isNotValorized() {
-			return this.value === undefined || this.value === null;
+			// return this.value === undefined || this.value === null;
+			return this.value === undefined || this.value === null || this.value[this.valueField] === undefined || this.value[this.valueField] === null;
 		}
 
 		// setValue(obj, prevent){
@@ -123,10 +122,12 @@ var ElektiMer = (function () {
 	}, {
 		key: 'setValue',
 		value: function setValue(obj, prevent) {
+			console.log('RULE-HEADER.setValue(' + typeof obj + '): ', obj);
 			prevent = prevent ? true : false;
 			this.preventChange = prevent;
-			if (_typeof(this.value) === "object") {
+			if (typeof obj === "object") {
 				this.set('value', obj);
+				console.log('RULE-HEADER.setValue(obj): ', obj);
 			} else {
 				var realObj;
 				for (var i = 0; i < this.options.length; i++) {
@@ -135,7 +136,10 @@ var ElektiMer = (function () {
 						break;
 					}
 				}
-				if (realObj) this.set('value', realObj);
+				if (realObj) {
+					this.set('value', realObj);
+					console.log('RULE-HEADER.setValue(str): ', realObj);
+				}
 			}
 			this.preventChange = false;
 		}
@@ -147,10 +151,10 @@ var ElektiMer = (function () {
 				v = undefined;
 			} else if (typeof this.value === 'string' || this.value instanceof String) {
 				v = this.value;
-			} else if (_typeof2(this.value) === "object") {
+			} else if (typeof this.value === "object") {
 				v = this.value[this.valueField];
 			} else {
-				console.error(this.is + ": Invalid value type [" + _typeof2(this.value) + "]");
+				console.error(this.is + ": Invalid value type [" + typeof this.value + "]");
 			}
 			return v;
 		}
@@ -170,10 +174,10 @@ var ElektiMer = (function () {
 				if (v === undefined) {
 					console.warn(this.is + ": There is no options with value equals to [" + this.value + "]");
 				}
-			} else if (_typeof2(this.value) === "object") {
+			} else if (typeof this.value === "object") {
 				v = this.value;
 			} else {
-				console.warn(this.is + ": Invalid value type [" + _typeof2(this.value) + "]");
+				console.warn(this.is + ": Invalid value type [" + typeof this.value + "]");
 			}
 			return v;
 		}
@@ -181,7 +185,6 @@ var ElektiMer = (function () {
 		// ==========================================================================================================================
 		// Private
 		// ==========================================================================================================================
-
 	}, {
 		key: 'attached',
 		value: function attached() {
@@ -223,7 +226,7 @@ var ElektiMer = (function () {
 		key: '_updateValue',
 		value: function _updateValue() {
 			var old = this.value;
-			if (_typeof2(this.value) == 'object') {
+			if (typeof this.value == 'object') {
 				// this.input.value = this.value[this.labelField];
 				this.highlightedElement();
 				if (!this.preventChange) {
@@ -282,12 +285,13 @@ var ElektiMer = (function () {
 	}, {
 		key: 'highlightedElement',
 		value: function highlightedElement(input, els) {
-			/*console.log('highlightedElement: ', this.value);
-   console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);*/
+			console.log('highlightedElement: ', this.value);
+			console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);
 
 			if (!input && this.isNotValorized()) return false;
 
-			var search = input ? input : this.value[this.labelField].toLowerCase();
+			// let search = (input)? input : this.value[this.labelField].toLowerCase();
+			var search = input ? input : this.getValue().toLowerCase();
 			var elems = els ? els : this.$.list.querySelectorAll('li');
 			var exists = false;
 
@@ -310,7 +314,7 @@ var ElektiMer = (function () {
 				this.liHeight = this.$.list.children[0].clientHeight;
 			}
 			if (action === 'open') {
-				/*console.log(this.$);*/
+				console.log(this.$);
 				this.$.list.classList.add('visible');
 				var n = this.$.list.querySelectorAll('li.hide').length;
 				this.$.list.style.height = this.liHeight * (this.options.length - n) + "px";
@@ -402,15 +406,15 @@ var ElektiMer = (function () {
 	}, {
 		key: '_computeValue',
 		value: function _computeValue(option) {
-			/*console.log('_computeValue', option);
-   console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);*/
+			//console.log('_computeValue', option);
+			//console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);
 			return option[this.valueField];
 		}
 	}, {
 		key: '_computeLabel',
 		value: function _computeLabel(option) {
-			/*console.log('_computeLabel', option);
-   console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);*/
+			//console.log('_computeLabel', option);
+			//console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);
 			return option[this.labelField];
 		}
 	}]);
