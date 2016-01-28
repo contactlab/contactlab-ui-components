@@ -31,7 +31,7 @@ var conf = {
 gulp.task('connect', function (port) {
   !port ? port = 3005 : port;
   connect.server({
-    root: '',
+    root: '../',
     port: port,
     livereload: true
   });
@@ -191,7 +191,8 @@ gulp.task('insert', function(){
 
 
 
-gulp.task('default', ['watch-es6']); 
+gulp.task('defautl', ['connect']); 
+gulp.task('dev', ['connect', 'watch-es6']); 
 
 gulp.task('build', function(cb){
   runSequence(
