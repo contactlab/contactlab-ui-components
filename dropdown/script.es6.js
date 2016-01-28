@@ -92,10 +92,10 @@ class DropdownClab{
 		}
 
 
-		var windowClick=(evt)=>{
-			var name=evt.target.localName;
-			var hasClass=evt.target.classList.contains('dropdown-clab');
-			var hasIdentity=evt.target.classList.contains(this.identity);
+		let windowClick=(evt)=>{
+			let name=evt.target.localName;
+			let hasClass=evt.target.classList.contains('dropdown-clab');
+			let hasIdentity=evt.target.classList.contains(this.identity);
 
 			if(name=='ol' && hasClass) {
 				return;

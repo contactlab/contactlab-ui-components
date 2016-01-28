@@ -89,9 +89,21 @@ class AutoCompleteClab{
 
 		if(this.value!=undefined){ this._setValue(this.value, true); }
 
-		this.querySelector('input-clab input').addEventListener('blur',this._handleBlur.bind(this));
-		this.addEventListener('mousedown', this._handleClick);
-		this.addEventListener('mouseup', (evt)=>{ this.dontHide=false; });
+		this.addEventListener('mousedown', evt=>{
+			switch(evt.target.localName){
+				case 'ol':
+					this.dontHide=true;
+					break;
+				case 'li':
+					this.dontHide=false;
+					let i=evt.target.getAttribute('data-index');
+					this._setValue(this.options[i]);
+					break;
+				default:
+					this.dontHide=false;
+			}
+		});
+		this.addEventListener('mouseup', evt=>{ this.dontHide=false; });
 	}
 
 
@@ -136,12 +148,18 @@ class AutoCompleteClab{
 				},400);
 				
 			} else {
-				this._handleHints(false);
+				this._showHints(false);
 			}
 			
 		} else {
 			this._closeList();
 		}
+	}
+
+	_handleHighlight(evt){
+		let i=evt.target.getAttribute('data-index');
+		this._highlightEl(i);
+		this.currentHint=this.options[i];
 	}
 
 	_handleBlur(evt){
@@ -156,28 +174,6 @@ class AutoCompleteClab{
 			this.currentHint=undefined;
 		}
 	}
-
-	_handleClick(evt){
-		switch(evt.target.localName){
-			case 'ol':
-				this.dontHide=true;
-				break;
-			case 'li':
-				this.dontHide=false;
-				let i=evt.target.getAttribute('data-index');
-				this._setValue(this.options[i]);
-				break;
-			default:
-				this.dontHide=false;
-		}
-	}
-
-	_highlightThis(evt){
-		let i=evt.target.getAttribute('data-index');
-		this._highlightEl(i);
-		this.currentHint=this.options[i];
-	}
-
 
 
 
@@ -202,7 +198,7 @@ class AutoCompleteClab{
 			res.json().then((data)=>{
 				this.set('options',data);
 				this.async(()=>{
-					this._handleHints(true);
+					this._showHints(true);
 					this._resetSpinnerTimeout();
 				},50);
 			});
@@ -214,7 +210,7 @@ class AutoCompleteClab{
 		});
 	}
 
-	_handleHints(fetched){
+	_showHints(fetched){
 		let searchVal=this.inputString.toLowerCase();
 
 		if(fetched){
@@ -237,10 +233,7 @@ class AutoCompleteClab{
 			});
 		}
 
-		this._handleListVisual(searchVal);
-	}
-
-	_handleListVisual(searchVal){
+		// handle list visual
 		if(this.results.length>0){
 			if(!this.hideHints){
 				this.async(()=>{
@@ -356,7 +349,6 @@ class AutoCompleteClab{
 		if(this.liHeight===null) {
 			this.list.classList.add('hidden');
 			this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
-			console.log(this.querySelectorAll('.options-list li.show')[0].clientHeight);
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}
