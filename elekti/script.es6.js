@@ -97,24 +97,30 @@ class ElektiMer{
 	}
 
 	isNotValorized() {
-		return this.value === undefined || this.value === null;
+		// return this.value === undefined || this.value === null;
+		return this.value === undefined || this.value === null
+            || this.value[this.valueField] === undefined || this.value[this.valueField] === null;
 	}
 
-
 	setValue(obj, prevent){
+		console.log('RULE-HEADER.setValue(' + (typeof obj) + '): ', obj);
 		prevent = prevent ? true : false;
 		this.preventChange = prevent;
-		if((_typeof(this.value) === "object")) {
-				this.set('value', obj);
+		if ((typeof obj) === "object") {
+			this.set('value', obj);
+			console.log('RULE-HEADER.setValue(obj): ', obj);
 		} else {
 			var realObj;
 			for (var i = 0; i < this.options.length; i++) {
-				if(this.options[i][this.valueField] === obj) {
+				if (this.options[i][this.valueField] === obj) {
 					realObj = this.options[i];
 					break;
 				}
 			}
-			if(realObj) this.set('value', realObj);
+			if (realObj) {
+				this.set('value', realObj);
+				console.log('RULE-HEADER.setValue(str): ', realObj);
+			}
 		}
 		this.preventChange = false;
 	}
@@ -242,12 +248,13 @@ class ElektiMer{
 	}
 
 	highlightedElement(input, els){
-		/*console.log('highlightedElement: ', this.value);
-		console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);*/
+		console.log('highlightedElement: ', this.value);
+		console.log('highlightedElement: ' + this.isNotValorized() + "; " + this.labelField);
 
 		if(!input && this.isNotValorized()) return false;
 
-		let search = (input)? input : this.value[this.labelField].toLowerCase();
+		// let search = (input)? input : this.value[this.labelField].toLowerCase();
+		let search = input ? input : this.getValue().toLowerCase();
 		let elems = (els)? els : this.$.list.querySelectorAll('li');
 		let exists=false;
 
@@ -269,7 +276,7 @@ class ElektiMer{
 			this.liHeight = this.$.list.children[0].clientHeight;
 		}
 		if(action==='open'){
-			/*console.log(this.$);*/
+			console.log(this.$);
 			this.$.list.classList.add('visible');
 			let n= this.$.list.querySelectorAll('li.hide').length;
 			this.$.list.style.height = (this.liHeight * (this.options.length-n)) + "px";
@@ -355,14 +362,14 @@ class ElektiMer{
 	}
 
 	_computeValue(option) {
-		/*console.log('_computeValue', option);
-		console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);*/
+		//console.log('_computeValue', option);
+		//console.log('_computeValue: ' + this.valueField + "; " + option[this.valueField]);
 		return option[this.valueField];
 	}
 
 	_computeLabel(option) {
-		/*console.log('_computeLabel', option);
-		console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);*/
+		//console.log('_computeLabel', option);
+		//console.log('_computeLabel: ' + this.labelField + "; " + option[this.labelField]);
 		return option[this.labelField];
 	}
 }
