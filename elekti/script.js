@@ -1,8 +1,10 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var ElektiMer = (function () {
 	function ElektiMer() {
@@ -39,7 +41,7 @@ var ElektiMer = (function () {
 					value: 'label'
 				},
 
-				'default': {
+				default: {
 					type: Number
 				},
 				//observer: '_setDefault'
@@ -114,10 +116,10 @@ var ElektiMer = (function () {
 	}, {
 		key: 'setValue',
 		value: function setValue(obj, prevent) {
-			console.log('RULE-HEADER.setValue(' + typeof obj + '): ', obj);
+			console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
 			prevent = prevent ? true : false;
 			this.preventChange = prevent;
-			if (typeof obj === "object") {
+			if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === "object") {
 				this.set('value', obj);
 				console.log('RULE-HEADER.setValue(obj): ', obj);
 			} else {
@@ -143,10 +145,10 @@ var ElektiMer = (function () {
 				v = undefined;
 			} else if (typeof this.value === 'string' || this.value instanceof String) {
 				v = this.value;
-			} else if (typeof this.value === "object") {
+			} else if (_typeof(this.value) === "object") {
 				v = this.value[this.valueField];
 			} else {
-				console.error(this.is + ": Invalid value type [" + typeof this.value + "]");
+				console.error(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
 			}
 			return v;
 		}
@@ -166,10 +168,10 @@ var ElektiMer = (function () {
 				if (v === undefined) {
 					console.warn(this.is + ": There is no options with value equals to [" + this.value + "]");
 				}
-			} else if (typeof this.value === "object") {
+			} else if (_typeof(this.value) === "object") {
 				v = this.value;
 			} else {
-				console.warn(this.is + ": Invalid value type [" + typeof this.value + "]");
+				console.warn(this.is + ": Invalid value type [" + _typeof(this.value) + "]");
 			}
 			return v;
 		}
@@ -177,6 +179,7 @@ var ElektiMer = (function () {
 		// ==========================================================================================================================
 		// Private
 		// ==========================================================================================================================
+
 	}, {
 		key: 'attached',
 		value: function attached() {
@@ -218,7 +221,7 @@ var ElektiMer = (function () {
 		key: '_updateValue',
 		value: function _updateValue() {
 			var old = this.value;
-			if (typeof this.value == 'object') {
+			if (_typeof(this.value) == 'object') {
 				// this.input.value = this.value[this.labelField];
 				this.highlightedElement();
 				if (!this.preventChange) {
