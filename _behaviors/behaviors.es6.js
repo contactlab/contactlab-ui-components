@@ -17,4 +17,15 @@ let UtilBehavior={
 		});
 	    return -1;*/
 	}
+};
+
+
+let AnimationsBehavior={
+	_onAnimationComplete:(elem, fn)=>{
+		if(elem.finished){
+			elem.finished.then(fn);
+		} else {
+			elem.onfinish = fn;
+		}
+	}
 }

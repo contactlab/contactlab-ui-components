@@ -20,3 +20,13 @@ var UtilBehavior = {
      return -1;*/
 	}
 };
+
+var AnimationsBehavior = {
+	_onAnimationComplete: function _onAnimationComplete(elem, fn) {
+		if (elem.finished) {
+			elem.finished.then(fn);
+		} else {
+			elem.onfinish = fn;
+		}
+	}
+};

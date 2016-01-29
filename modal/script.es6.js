@@ -1,10 +1,10 @@
 class ModalClab{
 
-	/*get behaviors() {
-		return this._behaviors || (this._behaviors = [Polymer.NeonAnimationRunnerBehavior]);
+	get behaviors() {
+		return [AnimationsBehavior];
 	}
 
-	set behaviors(value) {
+	/*set behaviors(value) {
 		this._behaviors = value;
 	}*/
 
@@ -17,7 +17,8 @@ class ModalClab{
 			},
 			visible: {
 				type: Boolean,
-				value: false
+				value: false,
+				observer: '_animateShowHide'
 			},
 			primary: {
 				type: String
@@ -28,7 +29,6 @@ class ModalClab{
 			warningBtn: {
 				type: String
 			},
-			
 			content: {
 				type: String,
 				value: null
@@ -36,31 +36,56 @@ class ModalClab{
 			maxWidth:{
 				type: String,
 				value: '500px'
-			}/*,
-			animationConfig:{
-				value:()=>{
-					return {
-						'entry':{
-							name: 'scale-up-animation',
-							node: this
-						},
-						'exit':{
-							name: 'fade-out-animation',
-							node: this
-						}
-					}
-				}
-			}*/
+			},
+			noAnimation:{
+				type:Boolean,
+				value:false
+			}
 		};
-		/*this.listeners={
-			'neon-animation-finish': '_onNeonAnimationFinish'
-		}*/
+	}
+
+	attached(){
+		// Preparing the animations
+		let target=this.querySelector('.modal-overlay');
+		let opacity=[
+			{opacity: 0},
+			{opacity: 1}
+		];
+		let scale=[
+			{transform: 'scale(.95)'},
+			{transform: 'scale(1)'}
+		];
+
+		this.modalEnter = new GroupEffect([
+			new KeyframeEffect(target, opacity, {
+				duration:190,
+				fill:'forwards',
+				direction: 'normal'
+			}),
+			new KeyframeEffect(this.querySelector('.modal'), scale, {
+				duration:190,
+				fill:'forwards',
+				direction: 'normal'
+			})
+		]);
+		this.modalExit = new GroupEffect([
+			new KeyframeEffect(target, opacity, {
+				duration:150,
+				fill:'forwards',
+				direction: 'reverse'
+			}),
+			new KeyframeEffect(this.querySelector('.modal'), scale, {
+				duration:150,
+				fill:'forwards',
+				direction: 'reverse'
+			})
+		]);
 	}
 
 
 
 	/*----------
-	EVENT HANDLERS
+		EVENT HANDLERS
 	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
@@ -86,27 +111,33 @@ class ModalClab{
 
 
 
-	show(){
-		this.visible=true;
-		//this.style.display='block';
-		//this.playAnimation('entry');
-	}
-	hide(){
-		this.visible=false;
-		//this.style.display='none'; // da commentare per provare i neon-elements
-		//this.playAnimation('exit');
-	}
+	/*----------
+		OBSERVERS
+	----------*/
+	_animateShowHide(val){
+		let target=this.querySelector('.modal-overlay');
 
-	/*_onNeonAnimationFinish(){
-		if(!this.visible){
-			this.style.display='none';
+		if(val){
+			target.style.display='table';
+			if(!this.noAnimation) {
+				let player = document.timeline.play(this.modalEnter);
+			}
+		} else {
+			if(!this.noAnimation){
+				let player = document.timeline.play(this.modalExit);
+				this._onAnimationComplete(player, ()=>{
+					target.style.display='none';
+				});
+			} else {
+				target.style.display='none';
+			}
 		}
-	}*/
+	}
 
 
 
 	/*----------
-	COMPUTE
+		COMPUTE
 	----------*/
 	_computeWidth(width){
 		return 'max-width:' + width;
@@ -121,6 +152,16 @@ class ModalClab{
 	}
 
 
+
+	/*----------
+		PUBLIC
+	----------*/
+	show(){
+		this.visible=true;
+	}
+	hide(){
+		this.visible=false;
+	}
 }
 
 

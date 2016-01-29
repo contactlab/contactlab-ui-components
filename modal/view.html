@@ -1,13 +1,14 @@
 <link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../../neon-animation/neon-animation-runner-behavior.html">
+<!-- <link rel="import" href="../../neon-animation/neon-animation-runner-behavior.html">
 <link rel="import" href="../../neon-animation/animations/scale-up-animation.html">
-<link rel="import" href="../../neon-animation/animations/fade-out-animation.html">
+<link rel="import" href="../../neon-animation/animations/fade-out-animation.html"> -->
 
 <dom-module id="modal-clab">
 	<style>
-		/*:host{
-			display: none;
-		}*/
+		.modal-overlay{
+			display:none;
+		}
+
 		.third{
 			float: left;
 			clear: none;
@@ -15,7 +16,7 @@
 	</style>
 	
 	<template>
-		<template is="dom-if" if="[[visible]]">
+		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
 				<div class="modal-wrapper">
 					<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
@@ -46,8 +47,9 @@
 					<div class="close-overlay" on-click="_closeModal"><i class="clab-icon icon-close"></i></div>
 				</div>
 			</div>
-		</template>
+		<!-- </template> -->
 	</template>
 
+	<script src="../../web-animations-js/web-animations-next.min.js"></script>
 	<script src="script.js"></script>
 </dom-module>
