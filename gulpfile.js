@@ -12,13 +12,16 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     minifyInline = require('gulp-minify-inline'),
     sass = require('gulp-sass'),
     $ = require('gulp-load-plugins')(),
-    insert = require('gulp-insert');
+    insert = require('gulp-insert'),
+    sass = require('gulp-sass'),
+    compass = require('gulp-compass'),
+    sourcemaps = require('gulp-sourcemaps');
 
 var conf = {
-  scssSourcePath: './assets/scss/**/*.{scss,sass}',
   jsSourcePath: '**/*.{js,jsx}',
   es6SourcePath: '**/*.es6.js',
-  cssOutputPath: './assets/css/',
+  scssSourcePath: './**/*.{scss,sass}',
+  cssOutputPath: '',
   distCSS: './dist/css/',
   comps: './**/view.html',
   compsBuilt: './**/view.build.html'
@@ -38,6 +41,25 @@ gulp.task('connect', function (port) {
 });
 
 
+
+
+
+
+// Watch SASS
+gulp.task('watch-sass', function() {
+  watch(conf.scssSourcePath, function(file){
+    var arr=JSON.stringify(file.dirname).split("\\");
+    var i=arr.length - 3;
+    var folder=arr[i];
+
+      gulp.src(folder+'/scss/*.scss')
+        .pipe(compass({
+            css:folder+'/css',
+            sass:folder+'/scss'
+          }))
+        .pipe(gulp.dest(folder+'/css'))
+    });
+});
 
 // Watch ES5
 gulp.task('watch-es6', function() {
@@ -155,6 +177,9 @@ gulp.task('minInline', function(c) {
 
 
 
+
+
+
 // Compile sass to css color variables
 gulp.task('sassVars', function(){
   gulp.src('./_css/template-files/color-vars-body.scss')
@@ -191,8 +216,9 @@ gulp.task('insert', function(){
 
 
 
-gulp.task('defautl', ['connect']); 
+gulp.task('default', ['connect']); 
 gulp.task('dev', ['connect', 'watch-es6']); 
+gulp.task('ux', ['connect', 'watch-sass']); 
 
 gulp.task('build', function(cb){
   runSequence(
