@@ -18,8 +18,8 @@
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
-				<div class="modal-wrapper">
-					<div class="modal" on-click="_block" style$="[[_computeWidth(maxWidth)]]">
+				<div class="modal">
+					<div class="small-wrapper">
 						<div class="modal-title">[[title]]</div>
 						<template is="dom-if" if="[[content]]">
 							<div class="modal-body">
