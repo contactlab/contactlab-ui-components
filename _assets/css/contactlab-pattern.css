@@ -2708,8 +2708,8 @@ table {
 
 @font-face {
   font-family: 'contactlab-icons';
-  src: url("/assets/fonts/contactlab-icons.eot?end7rf");
-  src: url("/assets/fonts/contactlab-icons.eot?end7rf#iefix") format("embedded-opentype"), url("/assets/fonts/contactlab-icons.ttf?end7rf") format("truetype"), url("/assets/fonts/contactlab-icons.woff?end7rf") format("woff"), url("/assets/fonts/contactlab-icons.svg?end7rf#contactlab-icons") format("svg");
+  src: url("../fonts/contactlab-icons.eot?end7rf");
+  src: url("../fonts/contactlab-icons.eot?end7rf#iefix") format("embedded-opentype"), url("../fonts/contactlab-icons.ttf?end7rf") format("truetype"), url("../fonts/contactlab-icons.woff?end7rf") format("woff"), url("../fonts/contactlab-icons.svg?end7rf#contactlab-icons") format("svg");
   font-weight: normal;
   font-style: normal;
 }
