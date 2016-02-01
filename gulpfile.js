@@ -53,6 +53,7 @@ gulp.task('watch-sass', function() {
     var folder=arr[i];
 
       gulp.src(folder+'/scss/*.scss')
+        .pipe(plumber())
         .pipe(compass({
             css:folder+'/css',
             sass:folder+'/scss'
