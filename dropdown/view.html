@@ -18,7 +18,7 @@
             </div>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li class="show" data-index$="[[index]]" on-click="_setThis">[[item.label]]</li>
+                    <li class="show" data-index$="[[index]]" data-value$="[[_computeValue(item)]]" on-click="_setThis">[[_computeLabel(item)]]</li>
                 </template>
             </ol>
         </div>

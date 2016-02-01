@@ -4,7 +4,7 @@ class ElektiMer{
 		this.is = "elekti-mer";
 		this.properties = {
 			label: {
-				type: String,
+				type: String
 			},
 			name: {
 				type: String,

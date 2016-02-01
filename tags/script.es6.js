@@ -35,7 +35,8 @@ class TagsClab {
 				value:''
 			},
 			btn:{
-				type:String
+				type:String,
+				value:'Add'
 			},
 			btnAppearence:{
 				type:String

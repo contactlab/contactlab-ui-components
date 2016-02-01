@@ -2,6 +2,8 @@
 
 var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var DropdownClab = (function () {
@@ -26,6 +28,14 @@ var DropdownClab = (function () {
 					type: Object,
 					value: {}
 				},
+				valueField: {
+					type: String,
+					value: 'value'
+				},
+				labelField: {
+					type: String,
+					value: 'label'
+				},
 				options: {
 					type: Array,
 					value: [{ value: 'A', label: 'Option 1' }, { value: 'B', label: 'Option 2' }]
@@ -39,6 +49,10 @@ var DropdownClab = (function () {
 					value: 'Select..'
 				},
 				disabled: {
+					type: Boolean,
+					value: false
+				},
+				preventChange: {
 					type: Boolean,
 					value: false
 				},
@@ -138,7 +152,9 @@ var DropdownClab = (function () {
 			this.set('selected', item);
 			this._highlightEl(this._getIndex(item, this.options));
 
-			if (this.resultAsObj) this.fire('change', { 'selected': this.selected });else this.fire('change', { 'selected': this.selected.label });
+			if (!this.preventChange) {
+				if (this.resultAsObj) this.fire('change', { 'selected': this.selected });else this.fire('change', { 'selected': this.selected[this.valueField] });
+			}
 		}
 	}, {
 		key: '_highlightEl',
@@ -191,6 +207,16 @@ var DropdownClab = (function () {
 			if (type != undefined) arr.push(type);
 			return arr.join(' ');
 		}
+	}, {
+		key: '_computeValue',
+		value: function _computeValue(option) {
+			return option[this.valueField];
+		}
+	}, {
+		key: '_computeLabel',
+		value: function _computeLabel(option) {
+			return option[this.labelField];
+		}
 
 		/*----------
   UTILS
@@ -215,12 +241,12 @@ var DropdownClab = (function () {
 	}, {
 		key: 'getSelectedLabel',
 		value: function getSelectedLabel() {
-			return this.selected.label;
+			return this.selected[this.labelField];
 		}
 	}, {
 		key: 'getSelectedValue',
 		value: function getSelectedValue() {
-			return this.selected.value;
+			return this.selected[this.valueField];
 		}
 	}, {
 		key: 'setByLabel',
@@ -228,8 +254,9 @@ var DropdownClab = (function () {
 			var _this3 = this;
 
 			this.options.map(function (opt) {
-				if (opt.label === str) {
+				if (opt[_this3.labelField] === str) {
 					_this3._setValue(opt);
+					return;
 				}
 			});
 		}
@@ -239,10 +266,85 @@ var DropdownClab = (function () {
 			var _this4 = this;
 
 			this.options.map(function (opt) {
-				if (opt.value === str) {
+				if (opt[_this4.valueField] === str) {
 					_this4._setValue(opt);
+					return;
 				}
 			});
+		}
+	}, {
+		key: 'isValorized',
+		value: function isValorized() {
+			return !this.isNotValorized();
+		}
+	}, {
+		key: 'isNotValorized',
+		value: function isNotValorized() {
+			return this.selected === undefined || this.selected === null || this.selected[this.valueField] === undefined || this.selected[this.valueField] === null;
+		}
+	}, {
+		key: 'setValue',
+		value: function setValue(obj, prevent) {
+			var _this5 = this;
+
+			console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
+			prevent = prevent ? true : false;
+			this.preventChange = prevent;
+
+			if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
+				this._setValue(obj);
+				console.log('RULE-HEADER.setValue(obj): ', obj);
+			} else {
+				var realObj;
+				this.options.map(function (opt) {
+					if (opt[_this5.valueField] === obj) {
+						_this5._setValue(opt);
+						return;
+					}
+				});
+			}
+
+			this.preventChange = false;
+		}
+	}, {
+		key: 'getValue',
+		value: function getValue() {
+			var v;
+			if (this.isNotValorized()) {
+				v = undefined;
+			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
+				v = this.selected;
+			} else if (_typeof(this.selected) === "object") {
+				v = this.selected[this.valueField];
+			} else {
+				console.error(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
+			}
+			return v;
+		}
+	}, {
+		key: 'getValueObject',
+		value: function getValueObject() {
+			var _this6 = this;
+
+			var v;
+			if (this.isNotValorized(this.selected)) {
+				v = undefined;
+			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
+				this.options.map(function (opt) {
+					if (opt[_this6.valueField] === _this6.selected) {
+						v = opt;
+						return;
+					}
+				});
+				if (v === undefined) {
+					console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
+				}
+			} else if (_typeof(this.selected) === "object") {
+				v = this.selected;
+			} else {
+				console.warn(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
+			}
+			return v;
 		}
 	}, {
 		key: 'behaviors',
