@@ -17,19 +17,7 @@
     "toaster_",
     "panel_",
     "starter_",
-    "_demo-server",
-    "../iron-*",
-    "../chai",
-    "../jquery",
-    "../neon-animation",
-    "../mocha",
-    "../paper-*",
-    "../prism*",
-    "../seed-element",
-    "../sinon-chai",
-    "../sinonjs",
-    "../stacky",
-    "../test-fixture"
+    "_demo-server"
   ],
   "dependencies": {
     "polymer": "~1.2.3",
