@@ -74,13 +74,14 @@ class TagsClab {
 
 	_addTag(evt){
 		let str=this.inputString.split(',')[0];
-		this.push('tags', {
+		let newTag={
 			label:str,
 			value:str
-		});
+		};
+		this.push('tags', newTag);
 		this.inputString='';
 
-		this.fire('change', {'tags': this.tags});
+		this.fire('change', {'tags': this.tags, 'new': newTag});
 	}
 
 	_removeTag(evt){
@@ -94,7 +95,7 @@ class TagsClab {
 		});
 		if(i!=undefined) this.splice('tags', i, 1);
 
-		this.fire('change', {'tags': this.tags});
+		this.fire('change', {'tags': this.tags, 'removed': i});
 	}
 
 	_computeStacked(stacked){
@@ -119,7 +120,7 @@ class TagsClab {
 			});
 
 		}
-		this.fire('change', {'tags': this.tags});
+		this.fire('change', {'tags': this.tags, 'new': array});
 
 		return this.tags;
 	}

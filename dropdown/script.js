@@ -52,6 +52,10 @@ var DropdownClab = (function () {
 					type: Boolean,
 					value: false
 				},
+				disableOption: {
+					type: Array,
+					value: []
+				},
 				preventChange: {
 					type: Boolean,
 					value: false
@@ -134,11 +138,14 @@ var DropdownClab = (function () {
 	}, {
 		key: '_setThis',
 		value: function _setThis(evt) {
-			var i = evt.target.getAttribute('data-index');
-			this._setValue(this.options[i]);
-			this._highlightEl(i);
-			this.querySelector('.options-list').classList.remove('active');
-			this.querySelector('.value_wrapper').classList.remove('active');
+			if (evt.target.getAttribute('disabled') === 'false') {
+				var i = evt.target.getAttribute('data-index');
+
+				this._setValue(this.options[i]);
+				this._highlightEl(i);
+				this.querySelector('.options-list').classList.remove('active');
+				this.querySelector('.value_wrapper').classList.remove('active');
+			}
 		}
 
 		/*----------
@@ -216,6 +223,18 @@ var DropdownClab = (function () {
 		key: '_computeLabel',
 		value: function _computeLabel(option) {
 			return option[this.labelField];
+		}
+	}, {
+		key: '_computeDisabledLis',
+		value: function _computeDisabledLis(arr, i) {
+			var disable = 'false';
+			arr.map(function (n) {
+				if (n === parseInt(i)) {
+					disable = 'true';
+					return;
+				}
+			});
+			return disable;
 		}
 
 		/*----------

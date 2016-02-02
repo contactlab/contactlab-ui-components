@@ -83,13 +83,14 @@ var TagsClab = (function () {
 		key: '_addTag',
 		value: function _addTag(evt) {
 			var str = this.inputString.split(',')[0];
-			this.push('tags', {
+			var newTag = {
 				label: str,
 				value: str
-			});
+			};
+			this.push('tags', newTag);
 			this.inputString = '';
 
-			this.fire('change', { 'tags': this.tags });
+			this.fire('change', { 'tags': this.tags, 'new': newTag });
 		}
 	}, {
 		key: '_removeTag',
@@ -104,7 +105,7 @@ var TagsClab = (function () {
 			});
 			if (i != undefined) this.splice('tags', i, 1);
 
-			this.fire('change', { 'tags': this.tags });
+			this.fire('change', { 'tags': this.tags, 'removed': i });
 		}
 	}, {
 		key: '_computeStacked',
@@ -132,7 +133,7 @@ var TagsClab = (function () {
 					_this.push('tags', item);
 				});
 			}
-			this.fire('change', { 'tags': this.tags });
+			this.fire('change', { 'tags': this.tags, 'new': array });
 
 			return this.tags;
 		}
