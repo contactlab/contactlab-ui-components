@@ -12,7 +12,7 @@ var AlertClab = (function () {
 	_createClass(AlertClab, [{
 		key: 'beforeRegister',
 		value: function beforeRegister() {
-			this.is = "alert-clab";
+			this.is = 'alert-clab';
 			this.properties = {
 				title: {
 					type: String,
@@ -24,7 +24,8 @@ var AlertClab = (function () {
 				},
 				visible: {
 					type: Boolean,
-					value: false
+					value: false,
+					observer: '_animateShowHide'
 				},
 				labels: {
 					type: Object,
@@ -36,20 +37,47 @@ var AlertClab = (function () {
 				notify: {
 					type: Boolean,
 					value: false
+				},
+				noAnimation: {
+					type: Boolean,
+					value: false
 				}
 			};
 		}
 	}, {
-		key: '_computeType',
-		value: function _computeType(str, type) {
-			return [str, type].join(' ');
+		key: 'attached',
+		value: function attached() {
+			if (this.visible) this.querySelector('.alert').style.display = 'block';
+
+			// Preparing the animations
+			var target = this.querySelector('.alert');
+			var opacity = [{ opacity: 0 }, { opacity: 1 }];
+			var translateY = [{ transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }];
+
+			this.alertEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
+				duration: 190,
+				fill: 'forwards',
+				direction: 'normal'
+			}), new KeyframeEffect(target, translateY, {
+				duration: 190,
+				fill: 'forwards',
+				direction: 'normal'
+			})]);
+			this.alertExit = new GroupEffect([new KeyframeEffect(target, opacity, {
+				duration: 150,
+				fill: 'forwards',
+				direction: 'reverse'
+			}), new KeyframeEffect(target, translateY, {
+				duration: 150,
+				fill: 'forwards',
+				direction: 'reverse'
+			})]);
 		}
-	}, {
-		key: '_close',
-		value: function _close() {
-			this.visible = false;
-			this.fire('close');
-		}
+
+		/*----------
+  	EVENT HANDLERS	
+  ----------*/
+
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
@@ -58,6 +86,54 @@ var AlertClab = (function () {
 			} else {
 				this.fire('secondary');
 			}
+		}
+	}, {
+		key: '_close',
+		value: function _close(evt) {
+			this.visible = false;
+			this.fire('close');
+		}
+
+		/*----------
+  	OBSERVERS
+  ----------*/
+
+	}, {
+		key: '_animateShowHide',
+		value: function _animateShowHide(val) {
+			if (this.querySelector('.alert') == undefined) return;
+			var target = this.querySelector('.alert');
+
+			if (val) {
+				target.style.display = 'block';
+				if (!this.noAnimation) {
+					var player = document.timeline.play(this.alertEnter);
+				}
+			} else {
+				if (!this.noAnimation) {
+					var player = document.timeline.play(this.alertExit);
+					this._onAnimationComplete(player, function () {
+						target.style.display = 'none';
+					});
+				} else {
+					target.style.display = 'none';
+				}
+			}
+		}
+
+		/*----------
+  	COMPUTED
+  ----------*/
+
+	}, {
+		key: '_computeType',
+		value: function _computeType(str, type) {
+			return [str, type].join(' ');
+		}
+	}, {
+		key: 'behaviors',
+		get: function get() {
+			return [AnimationsBehavior];
 		}
 	}]);
 

@@ -10,17 +10,12 @@ let UtilBehavior={
 
 	_getIndex:(item, items)=>{
 		return items.indexOf(item);
-		/*items.map((el, i)=>{
-			if ( JSON.stringify(el) == JSON.stringify(item) ) {
-	            return i;
-	        }
-		});
-	    return -1;*/
 	}
 };
 
 
 let AnimationsBehavior={
+
 	_onAnimationComplete:(elem, fn)=>{
 		if(elem.finished){
 			elem.finished.then(fn);
@@ -28,4 +23,4 @@ let AnimationsBehavior={
 			elem.onfinish = fn;
 		}
 	}
-}
+};

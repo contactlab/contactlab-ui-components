@@ -1,10 +1,14 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="alert-clab">
-	<style></style>
+	<style>
+		.alert{
+			display:none;
+		}
+	</style>
 	
 	<template>
-		<template is="dom-if" if="[[visible]]">
+		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<template is="dom-if" if="[[!notify]]">
 				<div class$="[[_computeType('alert', type)]]">
 					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
@@ -20,12 +24,13 @@
 			</template>
 			<template is="dom-if" if="[[notify]]">
 				<div class$="[[_computeType('alert', type)]]" on-click="_close">
-					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
+					<div class="close"><i class="fa fa-times"></i></div>
 					<p><content></content></p>
 				</div>
 			</template>
-		</template>	
+		<!-- </template>	 -->
 	</template>
 
+	<script src="../_behaviors/behaviors.js"></script>
 	<script src="script.js"></script>
 </dom-module>

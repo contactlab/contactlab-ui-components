@@ -6,7 +6,7 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     connect = require('gulp-connect'),
   	watch = require('gulp-watch'),
   	rename = require("gulp-rename"),
-    plumber = require('gulp-plumber');
+    plumber = require('gulp-plumber'),
     vulcanize = require('gulp-vulcanize'),
     minifyHTML = require('gulp-minify-html'),
     minifyInline = require('gulp-minify-inline'),
@@ -62,7 +62,7 @@ gulp.task('watch-sass', function() {
     });
 });
 
-// Watch ES5
+// Watch ES6
 gulp.task('watch-es6', function() {
   return gulp.src(conf.es6SourcePath)
     .pipe(plumber())

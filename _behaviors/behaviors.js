@@ -12,16 +12,11 @@ var UtilBehavior = {
 
 	_getIndex: function _getIndex(item, items) {
 		return items.indexOf(item);
-		/*items.map((el, i)=>{
-  	if ( JSON.stringify(el) == JSON.stringify(item) ) {
-             return i;
-         }
-  });
-     return -1;*/
 	}
 };
 
 var AnimationsBehavior = {
+
 	_onAnimationComplete: function _onAnimationComplete(elem, fn) {
 		if (elem.finished) {
 			elem.finished.then(fn);
