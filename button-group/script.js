@@ -86,7 +86,7 @@ var GroupClab = (function () {
 				btn.addEventListener('click', _this2._selectElement.bind(_this2));
 			});
 			typeof btns[this.value].appearance === 'string' ? btns[this.value].appearance = 'full' : null;
-			this.fire('change', { value: this.value });
+			// this.fire('change', {value: this.value});
 		}
 	}, {
 		key: '_selectElement',
