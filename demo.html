@@ -182,7 +182,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<modal-clab id="modal-one" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
 			</modal-clab>
 
-			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" secondary="Cancel" warning-btn="Do something" no-animation>
+			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning-btn="Do something" no-animation>
 				<h2>Some HTML...</h2>
 				<hr>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?</p>
@@ -285,8 +285,8 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				})
 
 				this.modal2.addEventListener('modal-third',function(evt){
-					console.log('third clicked');		
-				})
+					if(this.modal2.primaryDisabled) this.modal2.primaryDisabled=false;	
+				}.bind(this))
 
 				// Calendar
 				document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
