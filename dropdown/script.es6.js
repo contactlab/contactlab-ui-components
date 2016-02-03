@@ -46,6 +46,10 @@ class DropdownClab{
 				type:Boolean,
 				value:false
 			},
+			disableOption:{
+				type:Array,
+				value: []
+			},
 			preventChange: {
 				type: Boolean,
 				value: false
@@ -124,11 +128,14 @@ class DropdownClab{
 	}
 
 	_setThis(evt){
-		let i=evt.target.getAttribute('data-index');
-		this._setValue(this.options[i]);
-		this._highlightEl(i);
-		this.querySelector('.options-list').classList.remove('active');
-		this.querySelector('.value_wrapper').classList.remove('active');
+		if(evt.target.getAttribute('disabled') === 'false'){
+			let i=evt.target.getAttribute('data-index');
+
+			this._setValue(this.options[i]);
+			this._highlightEl(i);
+			this.querySelector('.options-list').classList.remove('active');
+			this.querySelector('.value_wrapper').classList.remove('active');
+		}
 	}
 
 
@@ -201,6 +208,17 @@ class DropdownClab{
 
 	_computeLabel(option) {
 		return option[this.labelField];
+	}
+
+	_computeDisabledLis(arr, i){
+		let disable='false';
+		arr.map((n)=>{
+			if(n===parseInt(i)) {
+				disable='true'; 
+				return;
+			}
+		});
+		return disable;
 	}
 
 
