@@ -84,7 +84,6 @@ class DropdownClab{
 
 	attached(){
 		if(this.selected!=undefined) this._setValue(this.selected);
-		this.identity=this._dashify(this.label);
 	}
 
 
@@ -111,11 +110,11 @@ class DropdownClab{
 		let windowClick=(evt)=>{
 			let name=evt.target.localName;
 			let hasClass=evt.target.classList.contains('dropdown-clab');
-			let hasIdentity=evt.target.classList.contains(this.identity);
+			let hasIdentity=evt.target.classList.contains(this.id);
 
 			if(name=='ol' && hasClass) {
 				return;
-			} else if(name=='li' && hasClass || name=='span' && evt.target.parentNode.classList.contains(this.identity) || name=='div' && hasIdentity){
+			} else if(name=='li' && hasClass || name=='span' && evt.target.parentNode.classList.contains(this.id) || name=='div' && hasIdentity){
 				window.removeEventListener('mousedown', windowClick);
 				return;
 			} else {
@@ -195,7 +194,7 @@ class DropdownClab{
 		let arr=[];
 		if(def!=undefined) {
 			arr.push(def);
-			arr.push(this._dashify(this.label));
+			arr.push(this.id));
 		}
 		if(disabled) arr.push('disabled');
 		if(type!=undefined) arr.push(type);

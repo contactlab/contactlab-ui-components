@@ -90,7 +90,7 @@ var DropdownClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			if (this.selected != undefined) this._setValue(this.selected);
-			this.identity = this._dashify(this.label);
+			this.identity = this.id;
 		}
 
 		/*----------
