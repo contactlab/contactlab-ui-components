@@ -38,6 +38,10 @@ class DropdownClab{
 				type: Function,
 				observer: '_setOptions'
 			},
+			url:{
+				type:String,
+				observer: '_observUrl'
+			},
 			placeholder:{
 				type:String,
 				value:'Select..'
@@ -80,6 +84,12 @@ class DropdownClab{
 				readonly: true
 			}
 		};
+	}
+
+	ready(){
+		if(this.url!=undefined && this.url!=null){
+			this._fetchOptions();
+		}
 	}
 
 	attached(){
@@ -141,8 +151,28 @@ class DropdownClab{
 
 
 	/*----------
-	FUNCTIONS
+	METHODS	
 	----------*/
+	_fetchOptions(){
+		fetch(this.url, {
+			method: 'GET'
+		}).then(res=>{
+			if (res.status !== 200) {  
+				console.log('Looks like there was a problem. Status Code: '+res.status); 
+				this.type='error'; 
+				return;
+			}
+
+			res.json().then((data)=>{
+				this.set('options',data);
+			});
+
+		}).catch(err=>{
+			console.error("Fetch Error ==> ", err);
+			this.type='error'; 
+		});
+	}
+
 	_setValue(item){
 		let old = this.selected;
 		this.set('selected',item);
@@ -177,6 +207,10 @@ class DropdownClab{
 		});
 	}
 
+	_observUrl(newv, oldv){
+		if(oldv!=undefined) this._fetchOptions();
+	}
+
 
 
 	/*----------
@@ -194,7 +228,7 @@ class DropdownClab{
 		let arr=[];
 		if(def!=undefined) {
 			arr.push(def);
-			arr.push(this.id));
+			arr.push(this.id);
 		}
 		if(disabled) arr.push('disabled');
 		if(type!=undefined) arr.push(type);
