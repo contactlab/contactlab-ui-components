@@ -1,8 +1,8 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var GroupClab = (function () {
 	function GroupClab() {
@@ -57,10 +57,9 @@ var GroupClab = (function () {
 			this._initialize();
 		}
 
-		/*---------- 
+		/*----------
   OBSERVER
   ----------*/
-
 	}, {
 		key: '_updateDisabled',
 		value: function _updateDisabled() {
@@ -72,10 +71,9 @@ var GroupClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   METHODS
   ----------*/
-
 	}, {
 		key: '_initialize',
 		value: function _initialize() {
@@ -94,18 +92,19 @@ var GroupClab = (function () {
 		key: '_selectElement',
 		value: function _selectElement(evt) {
 			evt.preventDefault();
+			var old = this.value;
 			var btns = this.getContentChildren();
 			Array.prototype.map.call(btns, function (btn) {
 				btn.appearance = '';
 			});
 			this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
 			btns[this.value].appearance = 'full';
+			old !== this.value ? this.fire('change', { value: this.value }) : null;
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
-
 	}, {
 		key: '_computeGroupClass',
 		value: function _computeGroupClass(type, small) {
