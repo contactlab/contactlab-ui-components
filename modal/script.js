@@ -31,6 +31,10 @@ var ModalClab = (function () {
 				primary: {
 					type: String
 				},
+				primaryDisabled: {
+					type: Boolean,
+					value: false
+				},
 				secondary: {
 					type: String
 				},

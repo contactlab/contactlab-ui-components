@@ -44,6 +44,10 @@ var DropdownClab = (function () {
 					type: Function,
 					observer: '_setOptions'
 				},
+				url: {
+					type: String,
+					observer: '_observUrl'
+				},
 				placeholder: {
 					type: String,
 					value: 'Select..'
@@ -87,10 +91,16 @@ var DropdownClab = (function () {
 			};
 		}
 	}, {
+		key: 'ready',
+		value: function ready() {
+			if (this.url != undefined && this.url != null) {
+				this._fetchOptions();
+			}
+		}
+	}, {
 		key: 'attached',
 		value: function attached() {
 			if (this.selected != undefined) this._setValue(this.selected);
-			this.identity = this._dashify(this.label);
 		}
 
 		/*----------
@@ -120,11 +130,11 @@ var DropdownClab = (function () {
 			var windowClick = function windowClick(evt) {
 				var name = evt.target.localName;
 				var hasClass = evt.target.classList.contains('dropdown-clab');
-				var hasIdentity = evt.target.classList.contains(_this.identity);
+				var hasIdentity = evt.target.classList.contains(_this.id);
 
 				if (name == 'ol' && hasClass) {
 					return;
-				} else if (name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(_this.identity) || name == 'div' && hasIdentity) {
+				} else if (name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(_this.id) || name == 'div' && hasIdentity) {
 					window.removeEventListener('mousedown', windowClick);
 					return;
 				} else {
@@ -149,9 +159,31 @@ var DropdownClab = (function () {
 		}
 
 		/*----------
-  FUNCTIONS
+  METHODS	
   ----------*/
 
+	}, {
+		key: '_fetchOptions',
+		value: function _fetchOptions() {
+			var _this2 = this;
+
+			fetch(this.url, {
+				method: 'GET'
+			}).then(function (res) {
+				if (res.status !== 200) {
+					console.log('Looks like there was a problem. Status Code: ' + res.status);
+					_this2.type = 'error';
+					return;
+				}
+
+				res.json().then(function (data) {
+					_this2.set('options', data);
+				});
+			}).catch(function (err) {
+				console.error("Fetch Error ==> ", err);
+				_this2.type = 'error';
+			});
+		}
 	}, {
 		key: '_setValue',
 		value: function _setValue(item) {
@@ -182,11 +214,16 @@ var DropdownClab = (function () {
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
-			var _this2 = this;
+			var _this3 = this;
 
 			promise().then(function (resp) {
-				_this2.set('options', resp);
+				_this3.set('options', resp);
 			});
+		}
+	}, {
+		key: '_observUrl',
+		value: function _observUrl(newv, oldv) {
+			if (oldv != undefined) this._fetchOptions();
 		}
 
 		/*----------
@@ -208,7 +245,7 @@ var DropdownClab = (function () {
 			var arr = [];
 			if (def != undefined) {
 				arr.push(def);
-				arr.push(this._dashify(this.label));
+				arr.push(this.id);
 			}
 			if (disabled) arr.push('disabled');
 			if (type != undefined) arr.push(type);
@@ -270,11 +307,11 @@ var DropdownClab = (function () {
 	}, {
 		key: 'setByLabel',
 		value: function setByLabel(str) {
-			var _this3 = this;
+			var _this4 = this;
 
 			this.options.map(function (opt) {
-				if (opt[_this3.labelField] === str) {
-					_this3._setValue(opt);
+				if (opt[_this4.labelField] === str) {
+					_this4._setValue(opt);
 					return;
 				}
 			});
@@ -282,11 +319,11 @@ var DropdownClab = (function () {
 	}, {
 		key: 'setByValue',
 		value: function setByValue(str) {
-			var _this4 = this;
+			var _this5 = this;
 
 			this.options.map(function (opt) {
-				if (opt[_this4.valueField] === str) {
-					_this4._setValue(opt);
+				if (opt[_this5.valueField] === str) {
+					_this5._setValue(opt);
 					return;
 				}
 			});
@@ -304,7 +341,7 @@ var DropdownClab = (function () {
 	}, {
 		key: 'setValue',
 		value: function setValue(obj, prevent) {
-			var _this5 = this;
+			var _this6 = this;
 
 			console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
 			prevent = prevent ? true : false;
@@ -316,8 +353,8 @@ var DropdownClab = (function () {
 			} else {
 				var realObj;
 				this.options.map(function (opt) {
-					if (opt[_this5.valueField] === obj) {
-						_this5._setValue(opt);
+					if (opt[_this6.valueField] === obj) {
+						_this6._setValue(opt);
 						return;
 					}
 				});
@@ -343,14 +380,14 @@ var DropdownClab = (function () {
 	}, {
 		key: 'getValueObject',
 		value: function getValueObject() {
-			var _this6 = this;
+			var _this7 = this;
 
 			var v;
 			if (this.isNotValorized(this.selected)) {
 				v = undefined;
 			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
 				this.options.map(function (opt) {
-					if (opt[_this6.valueField] === _this6.selected) {
+					if (opt[_this7.valueField] === _this7.selected) {
 						v = opt;
 						return;
 					}

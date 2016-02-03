@@ -3,7 +3,7 @@ module.exports= function(){
 	var _ = require("lodash");
 	return {
 		options: _.times(1000, function(n){
-			var prod=faker.Address.city();
+			var prod=faker.name.findName();
 			return {
 				label: prod,
 				value: prod

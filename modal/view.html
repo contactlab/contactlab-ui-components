@@ -36,7 +36,7 @@
 								<button on-click="_secondaryAction" class="btn flat secondary">[[secondary]]</button>
 							</template>
 							<template is="dom-if" if="[[_checkIfTrue(primary)]]">
-								<button on-click="_primaryAction" class="btn primary">[[primary]]</button>
+								<button on-click="_primaryAction" class="btn primary" disabled="[[primaryDisabled]]">[[primary]]</button>
 							</template>
 						</div>
 					</div>

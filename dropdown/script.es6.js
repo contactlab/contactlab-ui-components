@@ -38,6 +38,10 @@ class DropdownClab{
 				type: Function,
 				observer: '_setOptions'
 			},
+			url:{
+				type:String,
+				observer: '_observUrl'
+			},
 			placeholder:{
 				type:String,
 				value:'Select..'
@@ -82,9 +86,14 @@ class DropdownClab{
 		};
 	}
 
+	ready(){
+		if(this.url!=undefined && this.url!=null){
+			this._fetchOptions();
+		}
+	}
+
 	attached(){
 		if(this.selected!=undefined) this._setValue(this.selected);
-		this.identity=this._dashify(this.label);
 	}
 
 
@@ -111,11 +120,11 @@ class DropdownClab{
 		let windowClick=(evt)=>{
 			let name=evt.target.localName;
 			let hasClass=evt.target.classList.contains('dropdown-clab');
-			let hasIdentity=evt.target.classList.contains(this.identity);
+			let hasIdentity=evt.target.classList.contains(this.id);
 
 			if(name=='ol' && hasClass) {
 				return;
-			} else if(name=='li' && hasClass || name=='span' && evt.target.parentNode.classList.contains(this.identity) || name=='div' && hasIdentity){
+			} else if(name=='li' && hasClass || name=='span' && evt.target.parentNode.classList.contains(this.id) || name=='div' && hasIdentity){
 				window.removeEventListener('mousedown', windowClick);
 				return;
 			} else {
@@ -142,8 +151,28 @@ class DropdownClab{
 
 
 	/*----------
-	FUNCTIONS
+	METHODS	
 	----------*/
+	_fetchOptions(){
+		fetch(this.url, {
+			method: 'GET'
+		}).then(res=>{
+			if (res.status !== 200) {  
+				console.log('Looks like there was a problem. Status Code: '+res.status); 
+				this.type='error'; 
+				return;
+			}
+
+			res.json().then((data)=>{
+				this.set('options',data);
+			});
+
+		}).catch(err=>{
+			console.error("Fetch Error ==> ", err);
+			this.type='error'; 
+		});
+	}
+
 	_setValue(item){
 		let old = this.selected;
 		this.set('selected',item);
@@ -178,6 +207,10 @@ class DropdownClab{
 		});
 	}
 
+	_observUrl(newv, oldv){
+		if(oldv!=undefined) this._fetchOptions();
+	}
+
 
 
 	/*----------
@@ -195,7 +228,7 @@ class DropdownClab{
 		let arr=[];
 		if(def!=undefined) {
 			arr.push(def);
-			arr.push(this._dashify(this.label));
+			arr.push(this.id);
 		}
 		if(disabled) arr.push('disabled');
 		if(type!=undefined) arr.push(type);

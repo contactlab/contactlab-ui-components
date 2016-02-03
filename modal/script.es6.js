@@ -23,6 +23,10 @@ class ModalClab{
 			primary: {
 				type: String
 			},
+			primaryDisabled:{
+				type:Boolean,
+				value:false
+			},
 			secondary: {
 				type: String
 			},
