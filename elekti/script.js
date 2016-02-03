@@ -113,6 +113,14 @@ var ElektiMer = (function () {
 			// return this.value === undefined || this.value === null;
 			return this.value === undefined || this.value === null || this.value[this.valueField] === undefined || this.value[this.valueField] === null;
 		}
+
+		// setValue(obj, prevent){
+		// 	prevent = prevent ? true : false;
+		// 	this.preventChange = prevent;
+		// 	this.set('value', obj);
+		// 	this.preventChange = false;
+		// }
+
 	}, {
 		key: 'setValue',
 		value: function setValue(obj, prevent) {
