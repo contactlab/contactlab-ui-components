@@ -47,7 +47,7 @@ class GroupClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVER
 	----------*/
 	_updateDisabled(){
@@ -59,7 +59,7 @@ class GroupClab{
 
 
 
-	/*---------- 
+	/*----------
 	METHODS
 	----------*/
 	_initialize(){
@@ -75,17 +75,19 @@ class GroupClab{
 
 	_selectElement(evt){
 		evt.preventDefault();
+		let old = this.value;
 		let btns = this.getContentChildren();
 		Array.prototype.map.call(btns, btn => {
 			btn.appearance = '';
 		});
 		this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
 		btns[this.value].appearance = 'full';
+		old !== this.value ? this.fire('change', { value: this.value }) : null;
 	}
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeGroupClass(type,small){
@@ -94,7 +96,7 @@ class GroupClab{
 		return arr.join(' ');
 	}
 
-	
+
 }
 
 
