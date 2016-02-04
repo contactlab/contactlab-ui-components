@@ -35,8 +35,8 @@
 			</template>
 			<div class="card-actions">
 				<template is="dom-if" if="[[_showActions(noActions, link)]]">
-					<button class="btn flat">[[secondaryLabel]]</button>
-					<button class="btn primary flat">[[primaryLabel]]</button>
+					<button class="btn flat" on-click="_secondaryClick">[[secondaryLabel]]</button>
+					<button class="btn primary flat" on-click="_primaryClick">[[primaryLabel]]</button>
 				</template>
 				<template is="dom-if" if="[[_showLink(link, noActions)]]">
 					<a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>

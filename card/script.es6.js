@@ -76,6 +76,21 @@ class CardClab {
 		}
 	}
 
+
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_primaryClick(){
+		this.fire('primaryclick');
+	}
+
+	_secondaryClick(){
+		this.fire('secondaryclick');
+	}
+
+
+
 	/*---------- 
 	COMPUTED
 	----------*/

@@ -88,6 +88,21 @@ var CardClab = (function () {
 		}
 
 		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_primaryClick',
+		value: function _primaryClick() {
+			this.fire('primaryclick');
+		}
+	}, {
+		key: '_secondaryClick',
+		value: function _secondaryClick() {
+			this.fire('secondaryclick');
+		}
+
+		/*---------- 
   COMPUTED
   ----------*/
 

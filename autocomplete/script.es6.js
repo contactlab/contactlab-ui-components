@@ -40,6 +40,10 @@ class AutoCompleteClab{
 				type: Function,
 				observer: '_setOptions'
 			},
+			filter:{
+				type:Boolean,
+				value:false
+			},
 			hideHints:{
 				type:Boolean,
 				value:false
@@ -148,7 +152,7 @@ class AutoCompleteClab{
 				},400);
 				
 			} else {
-				this._showHints(false);
+				this._showHints(true);
 			}
 			
 		} else {
@@ -198,7 +202,7 @@ class AutoCompleteClab{
 			res.json().then((data)=>{
 				this.set('options',data);
 				this.async(()=>{
-					this._showHints(true);
+					this._showHints(this.filter);
 					this._resetSpinnerTimeout();
 				},50);
 			});
@@ -210,10 +214,10 @@ class AutoCompleteClab{
 		});
 	}
 
-	_showHints(fetched){
+	_showHints(filter){
 		let searchVal=this.inputString.toLowerCase();
 
-		if(fetched){
+		if(!filter){
 			this.results=this.options;
 			Array.prototype.map.call(this.list.children, (el)=>{
 				el.classList.add('show');

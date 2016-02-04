@@ -49,6 +49,10 @@ var AutoCompleteClab = (function () {
 					type: Function,
 					observer: '_setOptions'
 				},
+				filter: {
+					type: Boolean,
+					value: false
+				},
 				hideHints: {
 					type: Boolean,
 					value: false
@@ -164,7 +168,7 @@ var AutoCompleteClab = (function () {
 						_this2._fetchOptions();
 					}, 400);
 				} else {
-					this._showHints(false);
+					this._showHints(true);
 				}
 			} else {
 				this._closeList();
@@ -218,7 +222,7 @@ var AutoCompleteClab = (function () {
 				res.json().then(function (data) {
 					_this3.set('options', data);
 					_this3.async(function () {
-						_this3._showHints(true);
+						_this3._showHints(_this3.filter);
 						_this3._resetSpinnerTimeout();
 					}, 50);
 				});
@@ -230,12 +234,12 @@ var AutoCompleteClab = (function () {
 		}
 	}, {
 		key: '_showHints',
-		value: function _showHints(fetched) {
+		value: function _showHints(filter) {
 			var _this4 = this;
 
 			var searchVal = this.inputString.toLowerCase();
 
-			if (fetched) {
+			if (!filter) {
 				this.results = this.options;
 				Array.prototype.map.call(this.list.children, function (el) {
 					el.classList.add('show');
