@@ -54,14 +54,14 @@ var InputClab = (function () {
 					type: Object,
 					value: {
 						show: {
-							icon: 'fa fa-eye',
+							icon: 'clab-icon icon-switch-off',
 							label: 'Mostra password',
 							type: "primary",
 							appearance: "flat",
 							size: ""
 						},
 						hide: {
-							icon: 'fa fa-eye-slash',
+							icon: 'clab-icon icon-switch-on',
 							label: 'Nascondi password',
 							type: "error",
 							appearance: "flat",

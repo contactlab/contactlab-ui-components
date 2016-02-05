@@ -81,12 +81,12 @@ class CardClab {
 	/*---------- 
 	EVENT HANDLERS
 	----------*/
-	_primaryClick(){
-		this.fire('primaryclick');
-	}
-
-	_secondaryClick(){
-		this.fire('secondaryclick');
+	_handleClick(evt){
+		if(evt.target.childNodes[1].classList.contains('primary')){
+			this.fire('primary');
+		} else {
+			this.fire('secondary');
+		}
 	}
 
 

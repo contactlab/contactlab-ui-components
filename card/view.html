@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../button/view.html">
 
 <dom-module id="card-clab">
 	<style></style>
@@ -35,8 +36,8 @@
 			</template>
 			<div class="card-actions">
 				<template is="dom-if" if="[[_showActions(noActions, link)]]">
-					<button class="btn flat" on-click="_secondaryClick">[[secondaryLabel]]</button>
-					<button class="btn primary flat" on-click="_primaryClick">[[primaryLabel]]</button>
+					<button-clab appearance="flat" on-btnclick="_handleClick">[[secondaryLabel]]</button-clab>
+					<button-clab type="primary" appearance="flat" on-btnclick="_handleClick">[[primaryLabel]]</button-clab>
 				</template>
 				<template is="dom-if" if="[[_showLink(link, noActions)]]">
 					<a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>

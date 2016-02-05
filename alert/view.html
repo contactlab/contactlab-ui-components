@@ -1,4 +1,5 @@
 <link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="../button/view.html">
 
 <dom-module id="alert-clab">
 	<style>
@@ -17,8 +18,10 @@
 					<p>
 						<content></content>
 					</p>
-					<button class="btn flat default primary" on-click="_handleClick">[[labels.primary]]</button>
-					<button class="btn default secondary" on-click="_handleClick">[[labels.secondary]]</button>
+					<button-clab type="primary default" appearance="flat" on-btnclick="_handleClick">[[labels.primary]]</button-clab>
+					<button-clab type="secondary default" on-btnclick="_handleClick">[[labels.secondary]]</button-clab>
+					<!-- <button class="btn flat default primary" on-click="_handleClick">[[labels.primary]]</button>
+					<button class="btn default secondary" on-click="_handleClick">[[labels.secondary]]</button> -->
 					
 				</div>
 			</template>
