@@ -92,14 +92,13 @@ var CardClab = (function () {
   ----------*/
 
 	}, {
-		key: '_primaryClick',
-		value: function _primaryClick() {
-			this.fire('primaryclick');
-		}
-	}, {
-		key: '_secondaryClick',
-		value: function _secondaryClick() {
-			this.fire('secondaryclick');
+		key: '_handleClick',
+		value: function _handleClick(evt) {
+			if (evt.target.childNodes[1].classList.contains('primary')) {
+				this.fire('primary');
+			} else {
+				this.fire('secondary');
+			}
 		}
 
 		/*---------- 

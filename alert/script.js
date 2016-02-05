@@ -81,7 +81,7 @@ var AlertClab = (function () {
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
-			if (evt.target.classList.contains('flat')) {
+			if (evt.target.childNodes[1].classList.contains('flat')) {
 				this.fire('primary');
 			} else {
 				this.fire('secondary');

@@ -56,7 +56,7 @@
 	</style>
 	
 	<template>
-		<button class$="[[_computeClass(type,appearance,size)]]" disabled="[[disabled]]">
+		<button class$="[[_computeClass(type,appearance,size)]]" disabled="[[disabled]]" on-click="_click">
 			<template is="dom-if" if="[[icon]]">
 				<i class$="[[_computeIconClass(icon)]]"></i>
 			</template>

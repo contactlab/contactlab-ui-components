@@ -41,6 +41,10 @@ class ButtonClab {
 		}
 	}
 
+	_click(evt){
+		this.fire('btnclick');
+	}
+
 	/**
 	* Computes the class of the button joining the values of 'type', 'appearence' and 'size'
 	*/

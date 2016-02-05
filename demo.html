@@ -110,7 +110,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<div class="content">
 			<h2>Feature</h2>
-			<feature-clab icon-class="fa fa-cloud-upload" size="big">
+			<feature-clab icon-class="clab-icon icon-heart-full">
 				<h2>Title</h2>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
 			</feature-clab>
@@ -371,6 +371,9 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
         _notify:function(evt){
         	this.querySelector('#notify').visible=true;
+        },
+        _fire:function(evt){
+        	console.log('primary');
         }
     });
 

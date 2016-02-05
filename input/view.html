@@ -13,7 +13,7 @@
 			disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus">
 
 		<template is="dom-if" if="[[check]]">
-			<button-clab type="[[btnProps.type]]" size="[[btnProps.size]]" appearance="[[btnProps.appearance]]" icon="[[btnProps.icon]]" disabled="[[disabled]]" on-click="_toggleInputType">[[btnProps.label]]</button-clab>
+			<button-clab type="[[btnProps.type]]" size="[[btnProps.size]]" appearance="[[btnProps.appearance]]" icon="[[btnProps.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[btnProps.label]]</button-clab>
 		</template>
 
 		<note-clab type="[[compNoteType]]">
