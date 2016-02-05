@@ -125,7 +125,7 @@ var ElektiMer = (function () {
 		value: function setValue(obj, prevent) {
 			prevent = prevent ? true : false;
 			this.preventChange = prevent;
-			if (_typeof(this.value) === "object") {
+			if (_typeof(obj) === "object") {
 				this.set('value', obj);
 			} else {
 				var realObj;
