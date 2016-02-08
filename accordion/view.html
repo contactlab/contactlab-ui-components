@@ -1,7 +1,19 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="accordion-clab">
-	<style></style>
+	<style>
+		/* @raoul -> mantieni questo css perchè gestisco l'apertura dell'accordion da js ;) */
+		.accordion-content{
+			opacity: 0;
+			height: auto;
+		}
+		.accordion-title.active{
+			font-weight:600;
+		}
+		.accordion-title.active::before{
+			content:"\e60f";
+		}
+	</style>
 	
 	<template>
 		<div class="accordion">
@@ -15,6 +27,6 @@
 			</div>
 		</div>
 	</template>
-	
+
 	<script src="script.js"></script>
 </dom-module>

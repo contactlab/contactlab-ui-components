@@ -3967,7 +3967,9 @@ ol.multiple-clab, .elekti-wrapper:after,
   box-shadow: 0 0 0 0 transparent !important;
 }
 
-.depth-1, .accordion .accordion-block.active, .elekti-wrapper .js-users-list,
+.depth-1, 
+.accordion .accordion-block.active, 
+.elekti-wrapper .js-users-list,
 .elekti-wrapper .options-list,
 .options-list-wrapper .js-users-list,
 .options-list-wrapper .options-list {
@@ -5209,7 +5211,7 @@ td {
   top: 0;
 }
 .accordion .accordion-content {
-  height: 0;
+  /*height: 0;*/
   padding-left: 30px;
   padding-top: 10px;
   overflow: hidden;
