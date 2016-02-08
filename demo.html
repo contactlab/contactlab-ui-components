@@ -41,7 +41,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<h2>Auto Complete</h2>
 			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">Type here to get hints</autocomplete-clab>
 			&nbsp;
-			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/cards" filter min-char="1">Type here to get hints</autocomplete-clab>
+			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1">Type here to get hints</autocomplete-clab>
 		</div>
 
 		<div class="content">
@@ -306,7 +306,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				// Calendar
 				document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
 
-				Array.from(document.querySelectorAll('autocomplete-clab')).forEach(function(el){
+				Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function(el){
 					el.addEventListener('change',function(evt){
 						console.log('autocomplete-clab ', evt.detail)
 					});

@@ -105,6 +105,7 @@ var AlertClab = (function () {
 			var target = this.querySelector('.alert');
 
 			if (val) {
+				target.style.opacity = 0;
 				target.style.display = 'block';
 				if (!this.noAnimation) {
 					var player = document.timeline.play(this.alertEnter);

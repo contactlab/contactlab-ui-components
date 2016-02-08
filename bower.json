@@ -28,7 +28,9 @@
     "web-component-tester": "Polymer/web-component-tester#~4.1.0",
     "web-animations-js": "~2.1.4",
     "compass": "~0.5.8",
-    "susy": "~2.2.6"
+    "susy": "~2.2.6",
+    "fetch": "~0.11.0",
+    "es6-promise": "~3.0.2"
   },
   "devDependencies": {
     "compass-breakpoint": "breakpoint-sass#~2.6.1"

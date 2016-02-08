@@ -75,7 +75,7 @@ var TagsClab = (function () {
 					break;
 				case 13:
 					// if enter
-					this.querySelector('button-clab').fire('click');
+					this.querySelector('button-clab').fire('btnclick');
 					break;
 			}
 		}

@@ -19,10 +19,10 @@
 	<template>
 		<ul class="pagination">
 			<li class="first">
-				<a href$="[[firstPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-double-left" data-index="0"></i></a>
+				<a href$="[[firstPage]]" on-click="setThisAsCurrent"><i class="clab-icon icon-double-arrow-left" data-index="0"></i></a>
 			</li>
 			<li>
-		      <a href$="[[prevPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-left" data-index$="[[_getIndex(prevPage, pages)]]"></i></a>
+		      <a href$="[[prevPage]]" on-click="setThisAsCurrent"><i class="clab-icon icon-arrow-left" data-index$="[[_getIndex(prevPage, pages)]]"></i></a>
 		    </li>
 
 			<template is="dom-repeat" items="[[pages]]">
@@ -30,10 +30,10 @@
 			</template>
 
 			<li>
-		      <a href$="[[nextPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-right" data-index$="[[_getIndex(nextPage, pages)]]"></i></a>
+		      <a href$="[[nextPage]]" on-click="setThisAsCurrent"><i class="clab-icon icon-arrow-right" data-index$="[[_getIndex(nextPage, pages)]]"></i></a>
 		    </li>
 			<li class="last">
-		      <a href$="[[lastPage]]" on-click="setThisAsCurrent"><i class="fa fa-angle-double-right" data-index$="[[_getIndex(lastPage, pages)]]"></i></a>
+		      <a href$="[[lastPage]]" on-click="setThisAsCurrent"><i class="clab-icon icon-double-arrow-right" data-index$="[[_getIndex(lastPage, pages)]]"></i></a>
 		    </li>
 		 </ul>
 	</template>

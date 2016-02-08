@@ -69,8 +69,7 @@ var PaginationClab = (function () {
 		key: 'setThisAsCurrent',
 		value: function setThisAsCurrent(evt) {
 			evt.preventDefault(); // forse da togliere
-
-			if (evt.path[0].getAttribute('data-index') != null) var i = evt.path[0].getAttribute('data-index');else var i = evt.target.children[0].getAttribute('data-index');
+			var i = evt.target.getAttribute('data-index');
 
 			if (i >= 0) {
 				this.fire('pageChanged', { index: i });
@@ -79,10 +78,10 @@ var PaginationClab = (function () {
 	}, {
 		key: 'updateSelectedPage',
 		value: function updateSelectedPage(evt) {
-			var i = evt.detail.index;
+			var i = Number(evt.detail.index);
 			this.querySelector('.active').classList.remove('active');
 			this.querySelectorAll('.page')[i].classList.add('active');
-			this.currentPage = Number(i) + 1;
+			this.currentPage = i + 1;
 		}
 
 		/*---------- 
@@ -171,11 +170,6 @@ var PaginationClab = (function () {
 		value: function _pageNumber(i) {
 			return i + 1;
 		}
-		/*_findIndex(item, items){
-  	console.log(items.indexOf(item));
-  	return items.indexOf(item);
-  }*/
-
 	}, {
 		key: 'behaviors',
 		get: function get() {

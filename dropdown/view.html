@@ -4,7 +4,7 @@
 <dom-module id="dropdown-clab">
 
     <style>
-        .options-list li[disabled=true]{
+        .options-list li[data-disabled=true]{
             opacity:.5;
         }
     </style>
@@ -24,7 +24,7 @@
             </div>
             <ol class="options-list">
                 <template is="dom-repeat" items="[[options]]">
-                    <li class="show" data-index$="[[index]]" data-value$="[[_computeValue(item)]]" disabled$="[[_computeDisabledLis(disableOption, index)]]" on-click="_setThis">[[_computeLabel(item)]]</li>
+                    <li class="show" data-index$="[[index]]" data-value$="[[_computeValue(item)]]" data-disabled$="[[_computeDisabledLis(disableOption, index)]]" on-click="_setThis">[[_computeLabel(item)]]</li>
                 </template>
             </ol>
         </div>
