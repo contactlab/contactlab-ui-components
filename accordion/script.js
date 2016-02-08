@@ -37,8 +37,12 @@ var AccordionClab = (function () {
 			// Preparing the animations
 			this.block = this.querySelector('.accordion-block');
 			this.content = this.querySelector('.accordion-content');
-			this.content.style.height = 0;
-			this.content.style.opacity = 1;
+			/*this.content.style.height=0;
+   this.content.style.opacity=1;*/
+			this.content.animate([{ 'height': 'auto', 'opacity': '0' }, { 'height': '0', 'opacity': '1' }], {
+				'duration': 0,
+				'fill': 'forwards'
+			});
 
 			var height = [{ height: '0' }, { height: this.height + 'px' }];
 			var bgColor = [{ 'background-color': 'rgba(255, 255, 255, 0)' }, { 'background-color': 'rgba(255, 255, 255, 1)' }];
@@ -47,7 +51,7 @@ var AccordionClab = (function () {
 			var shadow = [{ 'box-shadow': '0 0 0 0 rgba(0, 0, 0, 0)' }, { 'box-shadow': '0 2px 5px 0 rgba(0, 0, 0, 0.16)' }];
 
 			this.openAccordion = new GroupEffect([new KeyframeEffect(this.content, height, {
-				duration: 190,
+				duration: 100,
 				fill: 'forwards',
 				direction: 'normal'
 			}), new KeyframeEffect(this.block, bgColor, {

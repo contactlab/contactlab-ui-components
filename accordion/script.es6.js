@@ -25,8 +25,15 @@ class AccordionClab {
 		// Preparing the animations
 		this.block=this.querySelector('.accordion-block');
 		this.content=this.querySelector('.accordion-content');
-		this.content.style.height=0;
-		this.content.style.opacity=1;
+		/*this.content.style.height=0;
+		this.content.style.opacity=1;*/
+		this.content.animate([
+				{'height':'auto', 'opacity':'0'},
+				{'height':'0', 'opacity':'1'}
+			], {
+				'duration':0,
+				'fill':'forwards'
+			});
 
 		let height=[
 			{height: '0'},
@@ -51,7 +58,7 @@ class AccordionClab {
 
 		this.openAccordion = new GroupEffect([
 			new KeyframeEffect(this.content, height, {
-				duration:190,
+				duration:100,
 				fill:'forwards',
 				direction: 'normal'
 			}),
