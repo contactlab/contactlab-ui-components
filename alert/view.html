@@ -2,16 +2,12 @@
 <link rel="import" href="../button/view.html">
 
 <dom-module id="alert-clab">
-	<style>
-		.alert{
-			display:none;
-		}
-	</style>
+	<style></style>
 	
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<template is="dom-if" if="[[!notify]]">
-				<div class$="[[_computeType('alert', type)]]">
+				<div class$="[[_computeType('alert', type)]]" style$="[[alertDisplay]]">
 					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
 
 					<h3>[[title]]</h3>
@@ -26,7 +22,7 @@
 				</div>
 			</template>
 			<template is="dom-if" if="[[notify]]">
-				<div class$="[[_computeType('alert', type)]]" on-click="_close">
+				<div class$="[[_computeType('alert', type)]]" style$="[[alertDisplay]]" on-click="_close">
 					<div class="close"><i class="fa fa-times"></i></div>
 					<p><content></content></p>
 				</div>

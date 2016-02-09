@@ -45,33 +45,38 @@ var AlertClab = (function () {
 			};
 		}
 	}, {
+		key: 'ready',
+		value: function ready() {
+			if (this.visible) this.alertDisplay = 'display:block';else this.alertDisplay = 'display:none';
+		}
+	}, {
 		key: 'attached',
 		value: function attached() {
-			if (this.visible) this.querySelector('.alert').style.display = 'block';
+			if (!this.noAnimation) {
+				// Preparing the animations
+				var target = this.$$('.alert');
+				var opacity = [{ opacity: 0 }, { opacity: 1 }];
+				var translateY = [{ transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }];
 
-			// Preparing the animations
-			var target = this.querySelector('.alert');
-			var opacity = [{ opacity: 0 }, { opacity: 1 }];
-			var translateY = [{ transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }];
-
-			this.alertEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
-				duration: 190,
-				fill: 'forwards',
-				direction: 'normal'
-			}), new KeyframeEffect(target, translateY, {
-				duration: 190,
-				fill: 'forwards',
-				direction: 'normal'
-			})]);
-			this.alertExit = new GroupEffect([new KeyframeEffect(target, opacity, {
-				duration: 150,
-				fill: 'forwards',
-				direction: 'reverse'
-			}), new KeyframeEffect(target, translateY, {
-				duration: 150,
-				fill: 'forwards',
-				direction: 'reverse'
-			})]);
+				this.alertEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
+					duration: 190,
+					fill: 'forwards',
+					direction: 'normal'
+				}), new KeyframeEffect(target, translateY, {
+					duration: 190,
+					fill: 'forwards',
+					direction: 'normal'
+				})]);
+				this.alertExit = new GroupEffect([new KeyframeEffect(target, opacity, {
+					duration: 150,
+					fill: 'forwards',
+					direction: 'reverse'
+				}), new KeyframeEffect(target, translateY, {
+					duration: 150,
+					fill: 'forwards',
+					direction: 'reverse'
+				})]);
+			}
 		}
 
 		/*----------
@@ -100,8 +105,8 @@ var AlertClab = (function () {
 
 	}, {
 		key: '_animateShowHide',
-		value: function _animateShowHide(val) {
-			if (this.querySelector('.alert') == undefined) return;
+		value: function _animateShowHide(val, oldval) {
+			if (oldval == undefined) return;
 			var target = this.querySelector('.alert');
 
 			if (val) {
