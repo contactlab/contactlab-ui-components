@@ -10,7 +10,8 @@ class PaginationClab{
 			pages: {
 				type: Array,
 				notify: true,
-				value: []
+				value: [],
+				observer: '_observPages'
 			},
 			currentPage: {
 				type: Number,
@@ -47,32 +48,26 @@ class PaginationClab{
 	}
 
 	attached(){
-		this.async(function(){
-			this._updateAvailablePages();
-			this.addEventListener('pageChanged', this.updateSelectedPage);
-		},500);
+		this.async(this._updateAvailablePages, 100);
 	}
 
+	_setThisAsCurrent(evt){
+		let i;
+		if(typeof evt != 'number'){ // se è event handler
+			evt.preventDefault();
+			i = Number(evt.target.getAttribute('data-index'));
 
-
-	/*---------- 
-	EVENT HANDLERS
-	----------*/
-	setThisAsCurrent(evt){
-		evt.preventDefault(); // forse da togliere
-		var i = evt.target.getAttribute('data-index');
+		} else { // .. o metodo
+			i = Number(evt);
+		}
 
 		if(i >= 0){
+			this.querySelector('.active').classList.remove('active');
+			this.querySelectorAll('.page')[i].classList.add('active');
+			this.currentPage = i+1;
+
 			this.fire('change', {index: i});
 		}
-		
-	}
-
-	updateSelectedPage(evt){
-		var i = Number(evt.detail.index);
-		this.querySelector('.active').classList.remove('active');
-		this.querySelectorAll('.page')[i].classList.add('active');
-		this.currentPage = i+1;
 		
 	}
 
@@ -81,6 +76,18 @@ class PaginationClab{
 	/*---------- 
 	OBSERVERS
 	----------*/
+	_observPages(val, oldval){
+		if(oldval!=undefined){
+			if(this.currentPage>this._getIndex(this.lastPage, this.pages)){ // se la currentPage è un valore che ora non c'è più la setto all'ultima pagina di quelle nuove
+				this._setThisAsCurrent(this._getIndex(this.lastPage, this.pages));
+			} else {
+				this.async(this._updateAvailablePages, 100);
+			}
+
+			this.fire('update');
+		}
+	}
+
 	_updateAvailablePages(){ 
 		Array.prototype.map.call(this.querySelectorAll('.page'), (el, idx)=>{
 			if(idx >= this.availableStart && idx <= this.availableEnd){
@@ -100,7 +107,6 @@ class PaginationClab{
 		var arr=['page'];
 		if(i==this.currentPage-1) 
 			arr.push('active');
-
 		return arr.join(' ');
 	}
 
