@@ -5211,7 +5211,7 @@ td {
   top: 0;
 }
 .accordion .accordion-content {
-  /*height: 0;*/
+  height: 0;
   padding-left: 30px;
   padding-top: 10px;
   overflow: hidden;

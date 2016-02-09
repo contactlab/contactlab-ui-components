@@ -32,19 +32,11 @@ var AccordionClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
-			this.height = this.querySelector('.accordion-content').clientHeight;
-
-			// Preparing the animations
 			this.block = this.querySelector('.accordion-block');
 			this.content = this.querySelector('.accordion-content');
-			/*this.content.style.height=0;
-   this.content.style.opacity=1;*/
-			this.content.animate([{ 'height': 'auto', 'opacity': '0' }, { 'height': '0', 'opacity': '1' }], {
-				'duration': 0,
-				'fill': 'forwards'
-			});
 
-			var height = [{ height: '0' }, { height: this.height + 'px' }];
+			// Preparing the animations
+			var height = [{ height: '0' }, { height: 'auto' }];
 			var bgColor = [{ 'background-color': 'rgba(255, 255, 255, 0)' }, { 'background-color': 'rgba(255, 255, 255, 1)' }];
 			var margin = [{ 'margin-bottom': '0' }, { 'margin-bottom': '20px' }];
 			var padding = [{ 'padding': '0' }, { 'padding': '20px' }];
@@ -94,6 +86,11 @@ var AccordionClab = (function () {
 				direction: 'reverse'
 			})]);
 		}
+
+		/*---------- 
+  	OBSERVERS
+  ----------*/
+
 	}, {
 		key: '_animateOpenClose',
 		value: function _animateOpenClose(val, old) {
@@ -107,6 +104,11 @@ var AccordionClab = (function () {
 				}
 			}
 		}
+
+		/*---------- 
+  	COMPUTED
+  ----------*/
+
 	}, {
 		key: '_computeType',
 		value: function _computeType(type) {

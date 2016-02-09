@@ -21,10 +21,9 @@ class TabsClab{
 
 	attached(){
 		this.tabContents = this.querySelectorAll('.tab-content');
-		Array.prototype.map.call(this.tabContents, (content)=>{
-			content.style.display = 'none';
+		Array.prototype.map.call(this.tabContents, (content, i)=>{
+			if(i!=this.active) content.style.display = 'none';
 		});
-		this.tabContents[this.active].style.display = 'block';
 	}
 
 
@@ -35,6 +34,7 @@ class TabsClab{
 	_activateThis(evt){
 		evt ? evt.preventDefault() : null;
 		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+		this.fire('changed', {'active':this.active});
 	}
 
 

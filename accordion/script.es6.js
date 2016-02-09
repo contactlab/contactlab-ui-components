@@ -20,24 +20,13 @@ class AccordionClab {
 	}
 
 	attached(){
-		this.height = this.querySelector('.accordion-content').clientHeight;
-
-		// Preparing the animations
 		this.block=this.querySelector('.accordion-block');
 		this.content=this.querySelector('.accordion-content');
-		/*this.content.style.height=0;
-		this.content.style.opacity=1;*/
-		this.content.animate([
-				{'height':'auto', 'opacity':'0'},
-				{'height':'0', 'opacity':'1'}
-			], {
-				'duration':0,
-				'fill':'forwards'
-			});
 
+		// Preparing the animations
 		let height=[
 			{height: '0'},
-			{height: this.height+'px'}
+			{height: 'auto'}
 		];
 		let bgColor=[
 			{'background-color': 'rgba(255, 255, 255, 0)'},
@@ -115,6 +104,9 @@ class AccordionClab {
 
 
 
+	/*---------- 
+		OBSERVERS
+	----------*/
 	_animateOpenClose(val, old){
 		if(old!=undefined){
 			if(val){
@@ -129,6 +121,9 @@ class AccordionClab {
 
 
 
+	/*---------- 
+		COMPUTED
+	----------*/
 	_computeType(type){
 		return ['accordion-block',type].join(' ');
 	}

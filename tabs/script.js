@@ -32,11 +32,12 @@ var TabsClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
+			var _this = this;
+
 			this.tabContents = this.querySelectorAll('.tab-content');
-			Array.prototype.map.call(this.tabContents, function (content) {
-				content.style.display = 'none';
+			Array.prototype.map.call(this.tabContents, function (content, i) {
+				if (i != _this.active) content.style.display = 'none';
 			});
-			this.tabContents[this.active].style.display = 'block';
 		}
 
 		/*---------- 
@@ -48,6 +49,7 @@ var TabsClab = (function () {
 		value: function _activateThis(evt) {
 			evt ? evt.preventDefault() : null;
 			this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
+			this.fire('changed', { 'active': this.active });
 		}
 
 		/*---------- 
