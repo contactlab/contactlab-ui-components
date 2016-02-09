@@ -72,7 +72,7 @@ var PaginationClab = (function () {
 			var i = evt.target.getAttribute('data-index');
 
 			if (i >= 0) {
-				this.fire('pageChanged', { index: i });
+				this.fire('change', { index: i });
 			}
 		}
 	}, {
