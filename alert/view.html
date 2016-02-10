@@ -8,7 +8,7 @@
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<template is="dom-if" if="[[!notify]]">
 				<div class$="[[_computeType('alert', type)]]" style$="[[alertDisplay]]">
-					<div class="close" on-click="_close"><i class="fa fa-times"></i></div>
+					<div class="close" on-click="_close"><i class="clab-icon icon-close"></i></div>
 
 					<h3>[[title]]</h3>
 					<p>
@@ -16,14 +16,12 @@
 					</p>
 					<button-clab type="primary default" appearance="flat" on-btnclick="_handleClick">[[labels.primary]]</button-clab>
 					<button-clab type="secondary default" on-btnclick="_handleClick">[[labels.secondary]]</button-clab>
-					<!-- <button class="btn flat default primary" on-click="_handleClick">[[labels.primary]]</button>
-					<button class="btn default secondary" on-click="_handleClick">[[labels.secondary]]</button> -->
 					
 				</div>
 			</template>
 			<template is="dom-if" if="[[notify]]">
 				<div class$="[[_computeType('alert', type)]]" style$="[[alertDisplay]]" on-click="_close">
-					<div class="close"><i class="fa fa-times"></i></div>
+					<div class="close"><i class="clab-icon icon-close"></i></div>
 					<p><content></content></p>
 				</div>
 			</template>
