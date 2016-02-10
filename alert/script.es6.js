@@ -106,9 +106,9 @@ class AlertClab {
 		OBSERVERS
 	----------*/
 	_animateShowHide(val, oldval){
-		if(oldval==undefined) return;
-		let target=this.querySelector('.alert');
+		if(oldval==undefined || this.querySelector('.alert')==undefined) return;
 
+		let target=this.querySelector('.alert');
 		if(val){
 			target.style.opacity=0;
 			target.style.display='block';

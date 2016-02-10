@@ -5,6 +5,7 @@
 	
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
 
 	<link rel="import" href="./../../alert/view.html">
@@ -88,8 +89,8 @@ describe('<alert-clab>', function() {
 		};
 
 		setTimeout(function(){
-			expect(alert.querySelector('.alert button.primary').innerText).to.equal(pri);
-			expect(alert.querySelector('.alert button.secondary').innerText).to.equal(sec);
+			expect(alert.querySelectorAll('button-clab')[0].textContent.trim()).to.equal(pri);
+			expect(alert.querySelectorAll('button-clab')[1].textContent.trim()).to.equal(sec);
 
 			done();
 		},50);

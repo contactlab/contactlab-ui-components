@@ -37,10 +37,6 @@ class ModalClab{
 				type: String,
 				value: null
 			},
-			maxWidth:{
-				type: String,
-				value: '500px'
-			},
 			noAnimation:{
 				type:Boolean,
 				value:false
@@ -50,40 +46,42 @@ class ModalClab{
 
 	attached(){
 		// Preparing the animations
-		let target=this.querySelector('.modal-overlay');
-		let opacity=[
-			{opacity: 0},
-			{opacity: 1}
-		];
-		let scale=[
-			{transform: 'scale(.95)'},
-			{transform: 'scale(1)'}
-		];
+		if(!this.noAnimation){
+			let target=this.querySelector('.modal-overlay');
+			let opacity=[
+				{opacity: 0},
+				{opacity: 1}
+			];
+			let scale=[
+				{transform: 'scale(.95)'},
+				{transform: 'scale(1)'}
+			];
 
-		this.modalEnter = new GroupEffect([
-			new KeyframeEffect(target, opacity, {
-				duration:190,
-				fill:'forwards',
-				direction: 'normal'
-			}),
-			new KeyframeEffect(this.querySelector('.modal'), scale, {
-				duration:190,
-				fill:'forwards',
-				direction: 'normal'
-			})
-		]);
-		this.modalExit = new GroupEffect([
-			new KeyframeEffect(target, opacity, {
-				duration:150,
-				fill:'forwards',
-				direction: 'reverse'
-			}),
-			new KeyframeEffect(this.querySelector('.modal'), scale, {
-				duration:150,
-				fill:'forwards',
-				direction: 'reverse'
-			})
-		]);
+			this.modalEnter = new GroupEffect([
+				new KeyframeEffect(target, opacity, {
+					duration:190,
+					fill:'forwards',
+					direction: 'normal'
+				}),
+				new KeyframeEffect(this.querySelector('.modal'), scale, {
+					duration:190,
+					fill:'forwards',
+					direction: 'normal'
+				})
+			]);
+			this.modalExit = new GroupEffect([
+				new KeyframeEffect(target, opacity, {
+					duration:150,
+					fill:'forwards',
+					direction: 'reverse'
+				}),
+				new KeyframeEffect(this.querySelector('.modal'), scale, {
+					duration:150,
+					fill:'forwards',
+					direction: 'reverse'
+				})
+			]);
+		}
 	}
 
 
@@ -125,6 +123,8 @@ class ModalClab{
 			target.style.display='table';
 			if(!this.noAnimation) {
 				let player = document.timeline.play(this.modalEnter);
+			} else {
+				target.style.opacity=1;
 			}
 		} else {
 			if(!this.noAnimation){
@@ -134,6 +134,7 @@ class ModalClab{
 				});
 			} else {
 				target.style.display='none';
+				target.style.opacity=0;
 			}
 		}
 	}
@@ -143,10 +144,6 @@ class ModalClab{
 	/*----------
 		COMPUTE
 	----------*/
-	_computeWidth(width){
-		return 'max-width:' + width;
-	}
-
 	_checkIfTrue(str){
 		if(str!=undefined && str.length>0){
 			return true;

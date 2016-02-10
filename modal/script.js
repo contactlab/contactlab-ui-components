@@ -45,10 +45,6 @@ var ModalClab = (function () {
 					type: String,
 					value: null
 				},
-				maxWidth: {
-					type: String,
-					value: '500px'
-				},
 				noAnimation: {
 					type: Boolean,
 					value: false
@@ -59,28 +55,30 @@ var ModalClab = (function () {
 		key: 'attached',
 		value: function attached() {
 			// Preparing the animations
-			var target = this.querySelector('.modal-overlay');
-			var opacity = [{ opacity: 0 }, { opacity: 1 }];
-			var scale = [{ transform: 'scale(.95)' }, { transform: 'scale(1)' }];
+			if (!this.noAnimation) {
+				var target = this.querySelector('.modal-overlay');
+				var opacity = [{ opacity: 0 }, { opacity: 1 }];
+				var scale = [{ transform: 'scale(.95)' }, { transform: 'scale(1)' }];
 
-			this.modalEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
-				duration: 190,
-				fill: 'forwards',
-				direction: 'normal'
-			}), new KeyframeEffect(this.querySelector('.modal'), scale, {
-				duration: 190,
-				fill: 'forwards',
-				direction: 'normal'
-			})]);
-			this.modalExit = new GroupEffect([new KeyframeEffect(target, opacity, {
-				duration: 150,
-				fill: 'forwards',
-				direction: 'reverse'
-			}), new KeyframeEffect(this.querySelector('.modal'), scale, {
-				duration: 150,
-				fill: 'forwards',
-				direction: 'reverse'
-			})]);
+				this.modalEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
+					duration: 190,
+					fill: 'forwards',
+					direction: 'normal'
+				}), new KeyframeEffect(this.querySelector('.modal'), scale, {
+					duration: 190,
+					fill: 'forwards',
+					direction: 'normal'
+				})]);
+				this.modalExit = new GroupEffect([new KeyframeEffect(target, opacity, {
+					duration: 150,
+					fill: 'forwards',
+					direction: 'reverse'
+				}), new KeyframeEffect(this.querySelector('.modal'), scale, {
+					duration: 150,
+					fill: 'forwards',
+					direction: 'reverse'
+				})]);
+			}
 		}
 
 		/*----------
@@ -128,6 +126,8 @@ var ModalClab = (function () {
 				target.style.display = 'table';
 				if (!this.noAnimation) {
 					var player = document.timeline.play(this.modalEnter);
+				} else {
+					target.style.opacity = 1;
 				}
 			} else {
 				if (!this.noAnimation) {
@@ -137,6 +137,7 @@ var ModalClab = (function () {
 					});
 				} else {
 					target.style.display = 'none';
+					target.style.opacity = 0;
 				}
 			}
 		}
@@ -145,11 +146,6 @@ var ModalClab = (function () {
   	COMPUTE
   ----------*/
 
-	}, {
-		key: '_computeWidth',
-		value: function _computeWidth(width) {
-			return 'max-width:' + width;
-		}
 	}, {
 		key: '_checkIfTrue',
 		value: function _checkIfTrue(str) {

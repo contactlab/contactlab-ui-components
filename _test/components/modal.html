@@ -5,6 +5,7 @@
 	
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
 
 	<link rel="import" href="./../../modal/view.html">
@@ -36,7 +37,6 @@ describe('<modal-clab>', function() {
 		expect(modal.primary).to.be.undefined;
 		expect(modal.secondary).to.be.undefined;
 		expect(modal.content).to.equal(null);
-		expect(modal.maxWidth).to.equal('500px');
 
 		done();
 	});
@@ -70,13 +70,16 @@ describe('<modal-clab>', function() {
 	it('Check primary & secondary', function(done) {
 		var pri = 'this is first';
 		var sec = 'this is second';
+		var thi = 'this is third';
 		modal.visible = true;
 		modal.primary = pri;
 		modal.secondary = sec;
+		modal.warningBtn = thi;
 
 		setTimeout(function(){
-			expect(modal.querySelector('.modal button.primary').innerText).to.equal(pri);
-			expect(modal.querySelector('.modal button.secondary').innerText).to.equal(sec);
+			expect(modal.querySelector('.btn.primary').innerText.trim()).to.equal(pri);
+			expect(modal.querySelector('.btn.secondary').innerText.trim()).to.equal(sec);
+			expect(modal.querySelector('.btn.third').innerText.trim()).to.equal(thi);
 
 			done();
 		},50);
@@ -94,18 +97,6 @@ describe('<modal-clab>', function() {
 		},50);
 	});
 
-	it('Check maxWidth', function(done) {
-		var str = '200px';
-		modal.visible = true;
-		modal.maxWidth = str;
-
-		setTimeout(function(){
-			expect(modal.querySelector('.modal').style.maxWidth).to.equal(str);
-
-			done();
-		},50);
-	});
-
   });
 
   context('Test Events', function() {
@@ -115,7 +106,7 @@ describe('<modal-clab>', function() {
 
 	  	setTimeout(function(){
 	  		var evt=new Event('click');
-			modal.querySelector('.modal-overlay').dispatchEvent(evt);
+			modal.querySelector('.close-overlay').dispatchEvent(evt);
 	  		expect(modal.visible).to.equal(false);
 
 	  		done();

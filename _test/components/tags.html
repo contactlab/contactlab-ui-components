@@ -37,7 +37,7 @@ describe('<tags-clab>', function() {
 			expect(tags.inputType).to.equal('');
 			expect(tags.tags).to.be.an('array');
 			expect(tags.disabled).to.equal(false);
-			expect(tags.btn).to.be.undefined;
+			expect(tags.btn).to.equal('Add');
 			expect(tags.btnAppearence).to.be.undefined;
 			expect(tags.btnSize).to.be.undefined;
 			expect(tags.btnIcon).to.be.undefined;
@@ -139,7 +139,7 @@ describe('<tags-clab>', function() {
 			tags.btnIcon=btnIcon;
 
 			setTimeout(function(){
-				expect(tags.querySelector('button-clab').innerText).to.equal(str);
+				expect(tags.querySelector('button-clab').innerText.trim()).to.equal(str);
 				expect(tags.querySelector('button-clab').appearance).to.equal(btnAppearence);
 				expect(tags.querySelector('button-clab').size).to.equal(btnSize);
 				expect(tags.querySelector('button-clab').icon).to.equal(btnIcon);

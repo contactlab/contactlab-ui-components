@@ -33,13 +33,13 @@
 						<div class="main-actions-bar">
 							<div class="right">
 								<template is="dom-if" if="[[_checkIfTrue(warningBtn)]]">
-									<button on-click="_thirdAction" class="btn error third">[[warningBtn]]</button>
+									<button-clab type="error third" on-btnclick="_thirdAction">[[warningBtn]]</button-clab>
 								</template>
 								<template is="dom-if" if="[[_checkIfTrue(secondary)]]">
-									<button on-click="_secondaryAction" class="btn flat secondary">[[secondary]]</button>
+									<button-clab type="secondary" appearance="flat" on-btnclick="_secondaryAction">[[secondary]]</button-clab>
 								</template>
 								<template is="dom-if" if="[[_checkIfTrue(primary)]]">
-									<button on-click="_primaryAction" class="btn primary" disabled="[[primaryDisabled]]">[[primary]]</button>
+									<button-clab type="primary" disabled="[[primaryDisabled]]" on-btnclick="_primaryAction">[[primary]]</button-clab>
 								</template>
 							</div>
 						</div>

@@ -51,7 +51,7 @@ describe('<menu-clab>', function() {
 			menu.titleIcon = str;
 
 			setTimeout(function(){
-				expect(menu.querySelector('.clab').classList.contains(str)).to.equal(true);
+				expect(menu.querySelector('.clab-icon').classList.contains(str)).to.equal(true);
 
 				done();
 			},50);

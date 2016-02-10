@@ -5,6 +5,7 @@
 	
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
 
 	<link rel="import" href="./../../accordion/view.html">
@@ -57,11 +58,11 @@ describe('<accordion-clab>', function() {
   context('Test Events', function() {
 
 	it('Toggle the accordion on-click', function(done) {
-	  	var bool=accordion.querySelector('.accordion-block').classList.contains('active');
 	  	accordion._toggleActive();
 
 	  	setTimeout(function(){
-	  		expect(accordion.querySelector('.accordion-block').classList.contains('active')).to.equal(!bool);
+	  		expect(accordion.querySelector('.accordion-title').classList.contains('active')).to.equal(true);
+	  		expect(accordion.open).to.equal(true);
 
 	  		done();
 		},50);

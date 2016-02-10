@@ -106,9 +106,9 @@ var AlertClab = (function () {
 	}, {
 		key: '_animateShowHide',
 		value: function _animateShowHide(val, oldval) {
-			if (oldval == undefined) return;
-			var target = this.querySelector('.alert');
+			if (oldval == undefined || this.querySelector('.alert') == undefined) return;
 
+			var target = this.querySelector('.alert');
 			if (val) {
 				target.style.opacity = 0;
 				target.style.display = 'block';
