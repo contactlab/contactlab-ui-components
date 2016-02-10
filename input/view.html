@@ -3,7 +3,11 @@
 <link rel="import" href="../button/view.html">
 
 <dom-module id="input-clab">
-	<style></style>
+	<style>
+		input[type=text]::-ms-clear{
+			display: none;
+		}
+	</style>
 
 	<template>
 		<template is="dom-if" if="[[_viewLabel(label)]]">

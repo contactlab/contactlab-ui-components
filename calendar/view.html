@@ -2,7 +2,11 @@
 <link rel="import" href="../note/view.html">
 
 <dom-module id="calendar-clab">
-	<style></style>
+	<style>
+		input[type=text]::-ms-clear{
+			display: none;
+		}
+	</style>
 
 	<template>
 		<template is="dom-if" if="[[!inline]]">
