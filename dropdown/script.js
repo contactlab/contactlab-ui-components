@@ -148,7 +148,6 @@ var DropdownClab = (function () {
 	}, {
 		key: '_setThis',
 		value: function _setThis(evt) {
-			console.log(evt.target);
 			if (evt.target.getAttribute('data-disabled') === 'false') {
 				var i = evt.target.getAttribute('data-index');
 

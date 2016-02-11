@@ -118,7 +118,6 @@ class TagsClab {
 			array.map(item=>{
 				this.push('tags', item);
 			});
-
 		}
 		this.fire('change', {'tags': this.tags, 'new': array});
 

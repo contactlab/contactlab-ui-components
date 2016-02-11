@@ -137,7 +137,6 @@ class DropdownClab{
 	}
 
 	_setThis(evt){
-		console.log(evt.target);
 		if(evt.target.getAttribute('data-disabled') === 'false'){
 			let i=evt.target.getAttribute('data-index');
 
