@@ -101,7 +101,8 @@ class DropdownClab{
 
 			id+=n;
 			id+=time;
-			this.id=id;
+			this.id = id;
+			this.$$('.value_wrapper').classList.add(this.id);
 		}
 	}
 
@@ -121,7 +122,7 @@ class DropdownClab{
 				setTimeout(()=>{
 					this.querySelector('.options-list').classList.remove('hidden');
 					this.querySelector('.options-list').classList.add('active');
-					this.querySelector('.value_wrapper > span').classList.add('active');
+					this.querySelector('.value_wrapper').classList.add('active');
 				},50);
 			} else {
 				this.querySelector('.options-list').classList.toggle('active');
