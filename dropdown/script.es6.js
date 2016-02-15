@@ -87,8 +87,21 @@ class DropdownClab{
 	}
 
 	ready(){
-		if(this.url!=undefined && this.url!=null){
+		if(this.url!=undefined || this.url!=null){
 			this._fetchOptions();
+		}
+		if(this.id==''){
+			let id = '';
+			let possible = "abcdefghijklmnopqrstuvwxyz";
+			let n = Math.floor(Math.random() * (999 - 0) + 0);
+			let time = Date.now();
+
+			for( var i=0; i < 2; i++ )
+				id += possible.charAt(Math.floor(Math.random() * possible.length));
+
+			id+=n;
+			id+=time;
+			this.id=id;
 		}
 	}
 
