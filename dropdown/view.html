@@ -16,7 +16,8 @@
         <div class="options-list-wrapper">
             <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-tap="_toggleList">
                 <template is="dom-if" if="[[_viewValue(selected)]]">
-                    <span class="selected">[[selected.label]]</span>
+                    <!-- <span class="selected">[[selected.label]]</span> -->
+                    <span class="selected">[[_computeSelectedLabel(selected)]]</span>
                 </template>
                 <template is="dom-if" if="[[!_viewValue(selected)]]">
                     <span class="placeholder">[[placeholder]]</span>

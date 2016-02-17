@@ -101,8 +101,7 @@ class DropdownClab{
 
 			id+=n;
 			id+=time;
-			this.id = id;
-			this.$$('.value_wrapper').classList.add(this.id);
+			this.id=id;
 		}
 	}
 
@@ -110,6 +109,9 @@ class DropdownClab{
 		if(this.selected!=undefined) this._setValue(this.selected);
 	}
 
+	_computeSelectedLabel(selected){
+		return selected[this.labelField];
+	}
 
 	/*----------
 	EVENT HANDLERS
@@ -122,7 +124,7 @@ class DropdownClab{
 				setTimeout(()=>{
 					this.querySelector('.options-list').classList.remove('hidden');
 					this.querySelector('.options-list').classList.add('active');
-					this.querySelector('.value_wrapper').classList.add('active');
+					this.querySelector('.value_wrapper > span').classList.add('active');
 				},50);
 			} else {
 				this.querySelector('.options-list').classList.toggle('active');
@@ -165,15 +167,15 @@ class DropdownClab{
 
 
 	/*----------
-	METHODS	
+	METHODS
 	----------*/
 	_fetchOptions(){
 		fetch(this.url, {
 			method: 'GET'
 		}).then(res=>{
-			if (res.status !== 200) {  
-				console.log('Looks like there was a problem. Status Code: '+res.status); 
-				this.type='error'; 
+			if (res.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: '+res.status);
+				this.type='error';
 				return;
 			}
 
@@ -183,7 +185,7 @@ class DropdownClab{
 
 		}).catch(err=>{
 			console.error("Fetch Error ==> ", err);
-			this.type='error'; 
+			this.type='error';
 		});
 	}
 
@@ -261,7 +263,7 @@ class DropdownClab{
 		let disable='false';
 		arr.map((n)=>{
 			if(n===parseInt(i)) {
-				disable='true'; 
+				disable='true';
 				return;
 			}
 		});
@@ -274,7 +276,7 @@ class DropdownClab{
 	UTILS
 	----------*/
 	_viewValue(val){
-		if(val.hasOwnProperty('label')) return true; else return false;
+		if(val.hasOwnProperty(this.labelField)) return true; else return false;
 	}
 
 	_setMaxHeight(){
