@@ -69,7 +69,7 @@ class TabsClab{
 				}
 			}
 		} else {
-			console.warning("Some of the labels need a content");
+			console.warn("Some of the labels need a content");
 		}
 
 		return newLabels;

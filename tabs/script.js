@@ -82,7 +82,7 @@ var TabsClab = (function () {
 					}
 				}
 			} else {
-				console.warning("Some of the labels need a content");
+				console.warn("Some of the labels need a content");
 			}
 
 			return newLabels;
