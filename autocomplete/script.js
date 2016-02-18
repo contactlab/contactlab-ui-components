@@ -221,6 +221,7 @@ var AutoCompleteClab = (function () {
 
 				res.json().then(function (data) {
 					_this3.set('options', data);
+					if (_this3.inputType === 'error') _this3.inputType = '';
 					_this3.async(function () {
 						_this3._showHints(_this3.filter);
 						_this3._resetSpinnerTimeout();

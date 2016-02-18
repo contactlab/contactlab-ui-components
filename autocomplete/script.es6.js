@@ -201,6 +201,7 @@ class AutoCompleteClab{
 
 			res.json().then((data)=>{
 				this.set('options',data);
+				if(this.inputType==='error') this.inputType='';
 				this.async(()=>{
 					this._showHints(this.filter);
 					this._resetSpinnerTimeout();
