@@ -28,7 +28,7 @@ class TabsClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_activateThis(evt){
@@ -40,13 +40,13 @@ class TabsClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_changeTab(newVal, oldVal){
 		if(this.tabContents!=undefined){
 			Array.prototype.map.call(this.tabContents, (el, i)=>{
-				if(i===newVal) 
+				if(i===newVal)
 					el.style.display = 'block';
 				else
 					el.style.display = 'none';
@@ -56,7 +56,7 @@ class TabsClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computedLabels(tabContents, labels){
@@ -69,7 +69,7 @@ class TabsClab{
 				}
 			}
 		} else {
-			console.error("Some of the labels need a content");
+			console.warning("Some of the labels need a content");
 		}
 
 		return newLabels;

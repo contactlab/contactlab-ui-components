@@ -40,7 +40,7 @@ var TabsClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -52,7 +52,7 @@ var TabsClab = (function () {
 			this.fire('changed', { 'active': this.active });
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -66,7 +66,7 @@ var TabsClab = (function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
@@ -82,7 +82,7 @@ var TabsClab = (function () {
 					}
 				}
 			} else {
-				console.error("Some of the labels need a content");
+				console.warning("Some of the labels need a content");
 			}
 
 			return newLabels;
