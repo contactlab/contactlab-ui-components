@@ -1,8 +1,10 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 var DropdownClab = (function () {
 	function DropdownClab() {
@@ -100,9 +102,9 @@ var DropdownClab = (function () {
 				var n = Math.floor(Math.random() * (999 - 0) + 0);
 				var time = Date.now();
 
-				for (var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
-
-				id += n;
+				for (var i = 0; i < 2; i++) {
+					id += possible.charAt(Math.floor(Math.random() * possible.length));
+				}id += n;
 				id += time;
 				this.id = id;
 			}
@@ -121,6 +123,7 @@ var DropdownClab = (function () {
 		/*----------
   EVENT HANDLERS
   ----------*/
+
 	}, {
 		key: '_toggleList',
 		value: function _toggleList(evt) {
@@ -175,6 +178,7 @@ var DropdownClab = (function () {
 		/*----------
   METHODS
   ----------*/
+
 	}, {
 		key: '_fetchOptions',
 		value: function _fetchOptions() {
@@ -192,7 +196,7 @@ var DropdownClab = (function () {
 				res.json().then(function (data) {
 					_this2.set('options', data);
 				});
-			})['catch'](function (err) {
+			}).catch(function (err) {
 				console.error("Fetch Error ==> ", err);
 				_this2.type = 'error';
 			});
@@ -223,6 +227,7 @@ var DropdownClab = (function () {
 		/*----------
   OBSERVERS
   ----------*/
+
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
@@ -241,6 +246,7 @@ var DropdownClab = (function () {
 		/*----------
   COMPUTED
   ----------*/
+
 	}, {
 		key: '_computeNoteType',
 		value: function _computeNoteType(type, noteType) {
@@ -288,6 +294,7 @@ var DropdownClab = (function () {
 		/*----------
   UTILS
   ----------*/
+
 	}, {
 		key: '_viewValue',
 		value: function _viewValue(val) {
@@ -303,6 +310,7 @@ var DropdownClab = (function () {
 		/*----------
   PUBLIC
   ----------*/
+
 	}, {
 		key: 'getSelectedLabel',
 		value: function getSelectedLabel() {
@@ -352,11 +360,11 @@ var DropdownClab = (function () {
 		value: function setValue(obj, prevent) {
 			var _this6 = this;
 
-			console.log('RULE-HEADER.setValue(' + typeof obj + '): ', obj);
+			console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
 			prevent = prevent ? true : false;
 			this.preventChange = prevent;
 
-			if (typeof obj === 'object') {
+			if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
 				this._setValue(obj);
 				console.log('RULE-HEADER.setValue(obj): ', obj);
 			} else {
@@ -379,10 +387,10 @@ var DropdownClab = (function () {
 				v = undefined;
 			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
 				v = this.selected;
-			} else if (typeof this.selected === "object") {
+			} else if (_typeof(this.selected) === "object") {
 				v = this.selected[this.valueField];
 			} else {
-				console.error(this.is + ": Invalid value type [" + typeof this.selected + "]");
+				console.error(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
 			}
 			return v;
 		}
@@ -404,10 +412,10 @@ var DropdownClab = (function () {
 				if (v === undefined) {
 					console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
 				}
-			} else if (typeof this.selected === "object") {
+			} else if (_typeof(this.selected) === "object") {
 				v = this.selected;
 			} else {
-				console.warn(this.is + ": Invalid value type [" + typeof this.selected + "]");
+				console.warn(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
 			}
 			return v;
 		}

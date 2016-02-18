@@ -36,7 +36,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<dropdown-clab max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' disable-option='[0, 4]'>
 			This is my note</dropdown-clab>
 
-			<dropdown-clab id="dd10" max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' disable-option='[0, 4]'>
+			<dropdown-clab id="dd10" max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]' label-field="name" disable-option='[0, 4]'>
 			This is my note</dropdown-clab>
 		</div>
 
@@ -341,9 +341,12 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 					});
 				});
 
-				document.querySelector('dropdown-clab').addEventListener('change',function(evt){
-					console.log('dropdown-clab ', evt.detail)
+				Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function(dropdown){
+					dropdown.addEventListener('change',function(evt){
+						console.log('dropdown-clab ', evt.detail)
+					});
 				});
+				
 
 				document.querySelector('multiple-clab').addEventListener('change',function(evt){
 					console.log('multiple-clab ', evt.detail.selected)
