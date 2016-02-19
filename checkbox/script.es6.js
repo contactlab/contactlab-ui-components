@@ -15,7 +15,7 @@ class CheckboxClab{
 				value: ''
 			},
 			active: {
-				type: Number
+				type: Array
 			},
 			disabled: {
 				type: Array
