@@ -15,13 +15,33 @@ class CheckboxClab{
 				value: ''
 			},
 			active: {
-				type: Number
+				type: Array
 			},
 			disabled: {
 				type: Array
 			}
 		}
 	}
+
+	/*---------- 
+	EVENT HANDLERS
+	----------*/
+	_updateActive(evt){
+		let t=evt.target;
+		let index=Number(t.getAttribute('data-index'));
+		let active=this.active;
+
+		if(t.checked){
+			active.push(index);
+		} else {
+			let i=active.indexOf(index);
+			active.splice(i, 1);
+		}
+
+		this.set('active', active);
+	}
+
+
 
 	/*---------- 
 	COMPUTE

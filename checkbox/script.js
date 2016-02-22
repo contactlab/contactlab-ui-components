@@ -24,12 +24,33 @@ var CheckboxClab = (function () {
 					value: ''
 				},
 				active: {
-					type: Number
+					type: Array
 				},
 				disabled: {
 					type: Array
 				}
 			};
+		}
+
+		/*---------- 
+  EVENT HANDLERS
+  ----------*/
+
+	}, {
+		key: '_updateActive',
+		value: function _updateActive(evt) {
+			var t = evt.target;
+			var index = Number(t.getAttribute('data-index'));
+			var active = this.active;
+
+			if (t.checked) {
+				active.push(index);
+			} else {
+				var i = active.indexOf(index);
+				active.splice(i, 1);
+			}
+
+			this.set('active', active);
 		}
 
 		/*---------- 
