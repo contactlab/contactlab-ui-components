@@ -86,7 +86,7 @@ class TagsClab {
 
 	_removeTag(evt){
 		let value=evt.target.getAttribute('value');
-		let i;
+		let i = parseInt(evt.currentTarget.dataset.index);
 		this.tags.map((tag, idx)=>{
 			if(tag.value===value){
 				i=idx;

@@ -16,7 +16,7 @@
 
 			<div class$="[[_computeStacked(stacked)]]">
 				<template is="dom-repeat" items="[[tags]]">
-					<label-clab remove on-remove="_removeTag" value$="[[item.value]]">[[item.label]]</label-clab>
+					<label-clab remove on-remove="_removeTag" data-index$="[[index]]" value$="[[item.value]]">[[item.label]]</label-clab>
 				</template>
 			</div>
 		</div>

@@ -1,8 +1,8 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var TagsClab = (function () {
 	function TagsClab() {
@@ -64,7 +64,6 @@ var TagsClab = (function () {
 		/*----------
   EVENT HANDLERS
   ----------*/
-
 	}, {
 		key: '_handleKeyUp',
 		value: function _handleKeyUp(evt) {
@@ -96,7 +95,7 @@ var TagsClab = (function () {
 		key: '_removeTag',
 		value: function _removeTag(evt) {
 			var value = evt.target.getAttribute('value');
-			var i = undefined;
+			var i = parseInt(evt.currentTarget.dataset.index);
 			this.tags.map(function (tag, idx) {
 				if (tag.value === value) {
 					i = idx;
@@ -120,7 +119,6 @@ var TagsClab = (function () {
 		/*----------
   PUBLIC
   ----------*/
-
 	}, {
 		key: 'setTags',
 		value: function setTags(array) {
