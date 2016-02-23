@@ -196,9 +196,9 @@ class DropdownClab{
 
 		if(!this.preventChange){
 			if(this.resultAsObj)
-				this.fire('change', {'selected':this.selected});
+				this.fire('change', { 'selected':this.selected, 'newValue': this.selected, 'oldValue': old });
 			else
-				this.fire('change', {'selected':this.selected[this.valueField]});
+				this.fire('change', { 'selected':this.selected[this.valueField], 'newValue': this.selected, 'oldValue': old });
 		}
 	}
 
@@ -256,7 +256,7 @@ class DropdownClab{
 	}
 
 	_computeLabel(option) {
-		return option[this.labelField];
+		if (option) return option[this.labelField];
 	}
 
 	_computeDisabledLis(arr, i){
@@ -275,8 +275,12 @@ class DropdownClab{
 	/*----------
 	UTILS
 	----------*/
-	_viewValue(val){
-		if(val.hasOwnProperty(this.labelField)) return true; else return false;
+	_viewValue(val,label){
+		if(val && val[label]){
+			return true
+		} else {
+			return false
+		}
 	}
 
 	_setMaxHeight(){

@@ -15,10 +15,10 @@
         </template>
         <div class="options-list-wrapper">
             <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-tap="_toggleList">
-                <template is="dom-if" if="[[_viewValue(selected)]]">
+                <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
                     <span class="selected">[[_computeLabel(selected)]]</span>
                 </template>
-                <template is="dom-if" if="[[!_viewValue(selected)]]">
+                <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
                     <span class="placeholder">[[placeholder]]</span>
                 </template>
             </div>
