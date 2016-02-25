@@ -82,7 +82,7 @@ class CardClab {
 	EVENT HANDLERS
 	----------*/
 	_handleClick(evt){
-		if(evt.target.childNodes[1].classList.contains('primary')){
+		if(Polymer.dom(evt.target).node.children[0].classList.contains('primary')){
 			this.fire('primary');
 		} else {
 			this.fire('secondary');
