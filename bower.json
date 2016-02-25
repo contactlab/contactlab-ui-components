@@ -20,19 +20,16 @@
     "_demo-server"
   ],
   "dependencies": {
-    "polymer": "~1.2.3",
+    "polymer": "^1.3.0",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
-    "moment": "~2.10.6",
+    "moment": "^2.11.2",
     "kawo-tooltip": "https://github.com/contactlab/kawo-tooltip.git#feature-event-handling",
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
     "web-component-tester": "Polymer/web-component-tester#~4.1.0",
-    "web-animations-js": "~2.1.4",
+    "web-animations-js": "^2.1.4",
     "compass": "~0.5.8",
     "susy": "~2.2.6",
-    "fetch": "~0.11.0",
-    "es6-promise": "~3.0.2"
-  },
-  "devDependencies": {
-    "compass-breakpoint": "breakpoint-sass#~2.6.1"
+    "fetch": "^0.11.0",
+    "es6-promise": "^3.1.2"
   }
 }

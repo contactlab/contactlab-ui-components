@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	
+
 <test-fixture id="button">
 	<template>
 	  <button-clab></button-clab>
@@ -25,20 +25,20 @@ describe('<button-clab>', function() {
   var button;
 
   beforeEach(function() {
-	button = fixture('button');
+		button = fixture('button');
   });
 
   context('Test Properties', function() {
 
   	it('Default Properties', function(done) {
-		expect(button.type).to.equal('');
-		expect(button.appearance).to.equal('');
-		expect(button.size).to.equal('');
-		expect(button.icon).to.equal('');
-		expect(button.disabled).to.equal(false);
+			expect(button.type).to.equal('');
+			expect(button.appearance).to.equal('');
+			expect(button.size).to.equal('');
+			expect(button.icon).to.equal('');
+			expect(button.disabled).to.equal(false);
 
-		done();
-	});
+			done();
+		});
 
 	/*it('change a random property', function() {
 		var arr = ['type','size','appearance','icon'];
@@ -51,7 +51,7 @@ describe('<button-clab>', function() {
 
   context('Test DOM Bindings', function(){
 
-  		it('Check type', function(done) {
+  	it('Check type', function(done) {
 			var str = 'error';
 			button.type = str;
 
@@ -62,7 +62,7 @@ describe('<button-clab>', function() {
 			},50);
 		});
 
-  		it('Check appearance', function(done) {
+  	it('Check appearance', function(done) {
 			var str = 'full';
 			button.appearance = str;
 
@@ -73,7 +73,7 @@ describe('<button-clab>', function() {
 			},50);
 		});
 
-  		it('Check size', function(done) {
+  	it('Check size', function(done) {
 			var str = 'small';
 			button.size = str;
 
@@ -84,7 +84,7 @@ describe('<button-clab>', function() {
 			},50);
 		});
 
-  		it('Check icon', function(done) {
+  	it('Check icon', function(done) {
 			var str = 'fa-camion';
 			button.icon = str;
 
@@ -96,7 +96,7 @@ describe('<button-clab>', function() {
 			},50);
 		});
 
-  		it('Check disabled', function(done) {
+  	it('Check disabled', function(done) {
 			var bool = true;
 			button.disabled = bool;
 
@@ -109,7 +109,7 @@ describe('<button-clab>', function() {
 
   });
 
-});	
+});
 
 </script>
 </body>
