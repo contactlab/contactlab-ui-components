@@ -54,7 +54,7 @@
 		  color: var(--primary-text-color);
 		}*/
 	</style>
-	
+
 	<template>
 		<button class$="[[_computeClass(type,appearance,size)]]" disabled="[[disabled]]" on-click="_click">
 			<template is="dom-if" if="[[icon]]">
@@ -62,7 +62,7 @@
 			</template>
 			<content></content>
 		</button>
-	</template>	
-	
+	</template>
+
 	<script src="script.js"></script>
 </dom-module>

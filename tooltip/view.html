@@ -2,15 +2,32 @@
 
 <dom-module id="tooltip-clab">
 	<style>
-
+		.tooltip{
+			position:fixed;
+			opacity:0;
+			z-index:1000;
+		}
+		.tooltip .arrow{
+			position: absolute;
+			width: 0;
+			height: 0;
+		}
 	</style>
-	
+
 	<template>
-		<span class$="[[_computeBtnClass(type)]]" data-tooltip$="[[content]]" on-mouseover="_handleHover">
-			<content></content>
+
+		<span on-tap="_hideTooltip">
+			<content select=".tt-label"></content>
 		</span>
+
+		<template is="dom-if" if="[[visible]]">
+			<div class$="[[_computeBtnClass(type)]]">
+				<content select=".tt-content"></content>
+				<div class="arrow"></div>
+			</div>
+		</template>
+
 	</template>
 
-	<script src="../../kawo-tooltip/dist/kawo-tooltip.min.js"></script>
 	<script src="script.js"></script>
 </dom-module>
