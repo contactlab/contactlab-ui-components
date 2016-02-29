@@ -30,16 +30,7 @@ var TooltipClab = function () {
 				wait: {
 					type: Number,
 					value: 500
-				},
-
-				_dontHide: {
-					type: Boolean,
-					value: false
 				}
-			};
-			this.listeners = {
-				'mouseenter': '_handleMouseOnLabel',
-				'mouseout': '_handleMouseOnLabel'
 			};
 		}
 
@@ -53,7 +44,7 @@ var TooltipClab = function () {
 			var _this = this;
 
 			if (evt.type == 'mouseenter') {
-				console.log('mouseenter----------------->', evt);
+				console.log('mouseenter----------------->');
 				// let x=evt.clientX;
 				// let y=evt.clientY;
 				// let targetRect=Polymer.dom(evt.target).node.getBoundingClientRect();
@@ -64,10 +55,11 @@ var TooltipClab = function () {
 				// 	console.log('starting y: '+ y, this.curY, targetRect.top, targetRect.bottom);
 				// });
 
-				this._resetTimeout();
+				// This.async blocca il fire di 'mouseout'? Solo quando this.wait!=0 l'evento non viene lanciato subito
+
+				this._resetTimeout(this.hideInterval);
 				if (!this.visible) {
-					//console.log(evt.target, 'mouseenter');
-					this._startTimeout(function () {
+					this._startTimeout(this.showInterval, function () {
 						_this.targetPosition = window.getComputedStyle(_this).getPropertyValue('position');
 						if (!_this.visible) _this.show();
 						Polymer.dom.flush();
@@ -76,12 +68,13 @@ var TooltipClab = function () {
 						_this.querySelector('.tooltip').style.opacity = '1';
 					}, this.wait);
 				}
-			} else if (evt.type == 'mouseout' && this.visible) {
-				console.log(this, 'mouseout');
-				this._startTimeout(function () {
+			} else if (evt.type == 'mouseleave' && this.visible) {
+				console.log('mouseout----------------->');
+				this._resetTimeout(this.showInterval);
+				this._startTimeout(this.hideInterval, function () {
 					_this.querySelector('.tooltip').style.opacity = '0';
 					_this.hide();
-				}, 100);
+				}, this.wait);
 			}
 		}
 	}, {
@@ -103,17 +96,17 @@ var TooltipClab = function () {
 
 	}, {
 		key: "_startTimeout",
-		value: function _startTimeout(fn, time) {
-			if (this.interval) this._resetTimeout();
-			this.interval = window.setTimeout(function () {
+		value: function _startTimeout(type, fn, time) {
+			if (type) this._resetTimeout();
+			type = this.async(function () {
 				fn();
 			}, time);
 		}
 	}, {
 		key: "_resetTimeout",
-		value: function _resetTimeout() {
-			window.clearTimeout(this.interval);
-			this.interval = undefined;
+		value: function _resetTimeout(type) {
+			this.cancelAsync(type);
+			type = undefined;
 		}
 	}, {
 		key: "_positionHorizontal",
