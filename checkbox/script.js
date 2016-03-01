@@ -24,7 +24,8 @@ var CheckboxClab = function () {
 					value: ''
 				},
 				active: {
-					type: Array
+					type: Array,
+					notify: true
 				},
 				disabled: {
 					type: Array
@@ -32,7 +33,7 @@ var CheckboxClab = function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -53,7 +54,7 @@ var CheckboxClab = function () {
 			this.set('active', active);
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 
@@ -63,7 +64,7 @@ var CheckboxClab = function () {
 			return ['row', type].join(' ');
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 

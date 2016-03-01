@@ -15,7 +15,8 @@ class CheckboxClab{
 				value: ''
 			},
 			active: {
-				type: Array
+				type: Array,
+				notify: true
 			},
 			disabled: {
 				type: Array
@@ -23,7 +24,7 @@ class CheckboxClab{
 		}
 	}
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_updateActive(evt){
@@ -43,16 +44,16 @@ class CheckboxClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeType(type){
 		return ['row',type].join(' ');
 	}
-	
 
 
-	/*---------- 
+
+	/*----------
 	UTILS
 	----------*/
 	_checkIfTrue(i, n){

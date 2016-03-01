@@ -257,7 +257,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<div class="content">
 			<h2>Input checkbox</h2>
-			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]"></checkbox-clab>
+			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]" on-change="_checkboxChange"></checkbox-clab>
 		</div>
 
 		<div class="content">
@@ -397,6 +397,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         },
         _fire:function(evt){
         	console.log('primary');
+        },
+
+        _checkboxChange:function(evt){
+            console.log(evt.model);
         }
     });
 
