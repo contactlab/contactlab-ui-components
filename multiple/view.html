@@ -11,7 +11,7 @@
 			-khtml-user-select: none;    /* Konqueror */
 			-moz-user-select: none;      /* Firefox */
 			-ms-user-select: none;       /* IE/Edge */
-			user-select: none; 
+			user-select: none;
 			margin: 0;
 		}
 		li.selected{
@@ -40,8 +40,8 @@
 		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
 			<ol class="options-list" on-scroll="_loadContent">
 				<template is="dom-repeat" items="[[options]]">
-                    <li data-index$="[[index]]" tabindex="0" on-click="_handleSelection">[[item.label]]</li>
-                </template>
+            <li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>
+        </template>
 			</ol>
 			<spinner-clab visible="[[spinner]]"></spinner-clab>
 		</div>

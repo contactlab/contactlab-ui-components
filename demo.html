@@ -27,7 +27,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 						Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 					</alert-clab>
 	            </div>
-	        </menu-clab>   
+	        </menu-clab>
 	    </header>
 
 		<main class="main-content">
@@ -51,10 +51,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<h2>Tags</h2>
 			<tags-clab label="Add tag" btn="Add"></tags-clab>
 		</div>
-		
+
 		<div class="content">
 			<h2>Multiple</h2>
-			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
+			<multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga", "selected": true},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">This is a note</multiple-clab>
 		</div>
 
 		<div class="content">
@@ -197,7 +197,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
 			</accordion-clab>
 			</div>
-				<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas. 
+				<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas.
 				<accordion-clab title="Accordion 2">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
@@ -311,7 +311,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				});
 
 				this.modal1.addEventListener('modal-secondary',function(evt){
-					evt.target.hide();				
+					evt.target.hide();
 				})
 
 				this.modal2.addEventListener('modal-primary',function(){
@@ -319,11 +319,11 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				});
 
 				this.modal2.addEventListener('modal-secondary',function(evt){
-					evt.target.hide();				
+					evt.target.hide();
 				})
 
 				this.modal2.addEventListener('modal-third',function(evt){
-					if(this.modal2.primaryDisabled) this.modal2.primaryDisabled=false;	
+					if(this.modal2.primaryDisabled) this.modal2.primaryDisabled=false;
 				}.bind(this))
 
 				// Calendar
@@ -346,7 +346,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 						console.log('dropdown-clab ', evt.detail)
 					});
 				});
-				
+
 
 				document.querySelector('multiple-clab').addEventListener('change',function(evt){
 					console.log('multiple-clab ', evt.detail.selected)

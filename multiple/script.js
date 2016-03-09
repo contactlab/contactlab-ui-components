@@ -123,25 +123,31 @@ var MultipleClab = (function () {
 			document.querySelector('body').addEventListener('keyup', this._handleKeys.bind(this));
 		}
 
-		/*---------- 
-  EVENT HANDLERS	
+		/*----------
+  EVENT HANDLERS
   ----------*/
 
 	}, {
 		key: '_handleSelection',
 		value: function _handleSelection(evt) {
+			var _this2 = this;
+
 			if (this.disabled) return;
+
+			var i = parseInt(evt.target.getAttribute('data-index'));
 
 			if (!this.shift && !this.ctrl) {
 				// starting the select
 				this.set('selected', []);
-				Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el) {
-					el.classList.remove('selected');
+				Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el, i) {
+					// el.classList.remove('selected');
+					_this2.set('options.' + i + '.selected', false);
 				});
 				this._selectThis(evt.target);
 			} else if (this.ctrl) {
 				//adding or removing single select
-				if (evt.target.classList.contains('selected')) this._removeThis(evt.target);else {
+				// if(evt.target.classList.contains('selected'))
+				if (this.options[i].selected) this._removeThis(evt.target);else {
 					this._selectThis(evt.target);
 				}
 			} else if (this.shift) {
@@ -174,7 +180,7 @@ var MultipleClab = (function () {
 	}, {
 		key: '_loadContent',
 		value: function _loadContent(evt) {
-			var _this2 = this;
+			var _this3 = this;
 
 			if (this.disabled) return;
 
@@ -186,10 +192,10 @@ var MultipleClab = (function () {
 					(function () {
 						//load more content
 						var timeoutID = window.setTimeout(function () {
-							_this2.spinner = true;
+							_this3.spinner = true;
 						}, 400);
 
-						fetch(_this2.url, {
+						fetch(_this3.url, {
 							method: 'GET'
 						}).then(function (res) {
 							if (res.status !== 200) {
@@ -197,18 +203,18 @@ var MultipleClab = (function () {
 								if (typeof timeoutID == 'number') {
 									window.clearTimeout(timeoutID);
 									timeoutID = undefined;
-									_this2.spinner = false;
+									_this3.spinner = false;
 								}
 								return;
 							}
 							res.json().then(function (data) {
-								var newData = _this2.options.concat(data);
-								_this2.set('options', newData);
+								var newData = _this3.options.concat(data);
+								_this3.set('options', newData);
 
 								if (typeof timeoutID == 'number') {
 									window.clearTimeout(timeoutID);
 									timeoutID = undefined;
-									_this2.spinner = false;
+									_this3.spinner = false;
 								}
 							});
 						});
@@ -217,16 +223,17 @@ var MultipleClab = (function () {
 			}
 		}
 
-		/*---------- 
-  METHODS		
+		/*----------
+  METHODS
   ----------*/
 
 	}, {
 		key: '_selectThis',
 		value: function _selectThis(elem) {
 			var i = elem.getAttribute('data-index');
-			elem.classList.add('selected');
+			// elem.classList.add('selected');
 			this.push('selected', this.options[i]);
+			this.set('options.' + i + '.selected', true);
 			this.fire('change', { selected: this.selected });
 			this.lastSelected = i;
 		}
@@ -234,9 +241,10 @@ var MultipleClab = (function () {
 		key: '_removeThis',
 		value: function _removeThis(elem) {
 			var i = elem.getAttribute('data-index');
-			console.log(i);
-			elem.classList.remove('selected');
+			// console.log(i);
+			// elem.classList.remove('selected');
 			this.splice('selected', i, 1);
+			this.set('options.' + i + '.selected', false);
 			this.fire('change', { selected: this.selected });
 			this.lastSelected = undefined;
 		}
@@ -265,30 +273,31 @@ var MultipleClab = (function () {
 	}, {
 		key: '_highlightElems',
 		value: function _highlightElems(idx) {
-			var _this3 = this;
+			var _this4 = this;
 
 			this.async(function () {
 				idx.map(function (i) {
-					Array.prototype.map.call(_this3.querySelectorAll('.options-list li'), function (el) {
+					Array.prototype.map.call(_this4.querySelectorAll('.options-list li'), function (el) {
 						if (el.getAttribute('data-index') == i) {
-							el.classList.add('selected');
+							// el.classList.add('selected');
+							_this4.set('options.' + i + '.selected', true);
 						}
 					});
 				});
 			}, 100);
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
 	}, {
 		key: '_setOptions',
 		value: function _setOptions(promise) {
-			var _this4 = this;
+			var _this5 = this;
 
 			promise().then(function (resp) {
-				_this4.set('options', resp);
+				_this5.set('options', resp);
 			});
 		}
 	}, {
@@ -297,8 +306,8 @@ var MultipleClab = (function () {
 			if (newVal) this.type = 'disabled';
 		}
 
-		/*---------- 
-  COMPUTED	
+		/*----------
+  COMPUTED
   ----------*/
 
 	}, {
@@ -313,9 +322,16 @@ var MultipleClab = (function () {
 		value: function _computeNoteType(type, noteType) {
 			return [type, noteType].join(' ');
 		}
+	}, {
+		key: '_computeSelection',
+		value: function _computeSelection(selected) {
+			var str = '';
+			selected ? str = 'selected' : null;
+			return str;
+		}
 
-		/*---------- 
-  UTILITIES	
+		/*----------
+  UTILITIES
   ----------*/
 
 	}, {
