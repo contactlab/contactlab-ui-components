@@ -77,7 +77,7 @@ var AutoCompleteClab = (function () {
 					type: String
 				},
 
-				/*---------- 
+				/*----------
       PRIVATE
     ----------*/
 				inputString: {
@@ -125,7 +125,7 @@ var AutoCompleteClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -196,7 +196,7 @@ var AutoCompleteClab = (function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   FUNCTIONS
   ----------*/
 
@@ -250,10 +250,10 @@ var AutoCompleteClab = (function () {
 
 				this.options.map(function (opt, i) {
 					if (opt.label.toLowerCase().search(searchVal) > -1) {
-						_this4.querySelectorAll('.options-list li')[i].classList.add('show');
-						_this4.results.push(_this4.options[i]);
+						// this.querySelectorAll('.options-list li')[i].classList.add('show');
+						_this4.push('results', _this4.options[i]);
 					} else {
-						_this4.querySelectorAll('.options-list li')[i].classList.remove('show');
+						// this.querySelectorAll('.options-list li')[i].classList.remove('show');
 					}
 				});
 			}
@@ -355,7 +355,7 @@ var AutoCompleteClab = (function () {
 			if (!visible && !goesUp) this.list.scrollTop += this.list.clientHeight;else if (!visible && goesUp) this.list.scrollTop -= this.list.clientHeight;
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -369,7 +369,7 @@ var AutoCompleteClab = (function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
@@ -378,7 +378,8 @@ var AutoCompleteClab = (function () {
 		value: function _setListHeight(elemsShown) {
 			if (this.liHeight === null) {
 				this.list.classList.add('hidden');
-				this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
+				// this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
+				this.liHeight = 35;
 				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
 				this.list.classList.remove('hidden');
 			}

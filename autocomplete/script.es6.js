@@ -23,7 +23,7 @@ class AutoCompleteClab{
 				value:'Type..'
 			},
 			disabled:{
-				type:Boolean, 
+				type:Boolean,
 				value:false
 			},
 			options:{
@@ -69,7 +69,7 @@ class AutoCompleteClab{
 			},
 
 
-			/*---------- 
+			/*----------
 			  PRIVATE
 			----------*/
 			inputString:{
@@ -113,7 +113,7 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_handleKeyboardInputs(evt){
@@ -128,14 +128,14 @@ class AutoCompleteClab{
 
 		//If Arrows
 		if(this.results.length>0 && evt.keyCode==38 && this.currentHint!=undefined){
-			evt.preventDefault(); 
-			this._handleArrows('up'); 
-			return; 
+			evt.preventDefault();
+			this._handleArrows('up');
+			return;
 		}
 		if(this.results.length>0 && evt.keyCode==40 && this.currentHint!=undefined){
-			evt.preventDefault(); 
-			this._handleArrows('down'); 
-			return; 
+			evt.preventDefault();
+			this._handleArrows('down');
+			return;
 		}
 
 		// If typing
@@ -150,11 +150,11 @@ class AutoCompleteClab{
 				this.interval=window.setTimeout(()=>{
 					this._fetchOptions();
 				},400);
-				
+
 			} else {
 				this._showHints(true);
 			}
-			
+
 		} else {
 			this._closeList();
 		}
@@ -181,7 +181,7 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	FUNCTIONS
 	----------*/
 	_fetchOptions(){
@@ -192,8 +192,8 @@ class AutoCompleteClab{
 		fetch(this.url, {
 			method: 'GET'
 		}).then(res=>{
-			if (res.status !== 200) {  
-				console.log('Looks like there was a problem. Status Code: '+res.status);  
+			if (res.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: '+res.status);
 				this.inputType='error';
 				this._resetSpinnerTimeout();
 				return;
@@ -229,11 +229,11 @@ class AutoCompleteClab{
 
 			this.options.map((opt, i)=>{
 				if(opt.label.toLowerCase().search(searchVal)>-1){
-					this.querySelectorAll('.options-list li')[i].classList.add('show');
-					this.results.push(this.options[i]);
+					// this.querySelectorAll('.options-list li')[i].classList.add('show');
+					this.push('results', this.options[i]);
 
 				} else {
-					this.querySelectorAll('.options-list li')[i].classList.remove('show');
+					// this.querySelectorAll('.options-list li')[i].classList.remove('show');
 				}
 			});
 		}
@@ -314,7 +314,7 @@ class AutoCompleteClab{
 				}
 				break;
 			case 'down':
-				toSel=this.results[HIdx+1]; 
+				toSel=this.results[HIdx+1];
 				if(typeof toSel == 'object'){
 					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
 				}
@@ -335,7 +335,7 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_setOptions(promise){
@@ -347,13 +347,14 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
 	_setListHeight(elemsShown){
 		if(this.liHeight===null) {
 			this.list.classList.add('hidden');
-			this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
+			// this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
+			this.liHeight = 35;
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}
@@ -381,7 +382,7 @@ class AutoCompleteClab{
 		if(this.spinner) this.spinner=false;
 	}
 
-	
+
 }
 
 
