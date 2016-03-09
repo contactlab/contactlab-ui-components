@@ -1,12 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var AutoCompleteClab = function () {
+var AutoCompleteClab = (function () {
 	function AutoCompleteClab() {
 		_classCallCheck(this, AutoCompleteClab);
 	}
@@ -111,11 +111,11 @@ var AutoCompleteClab = function () {
 					case 'ol':
 						_this.dontHide = true;
 						break;
-					case 'li':
-						_this.dontHide = false;
-						var i = evt.target.getAttribute('data-index');
-						_this._setValue(_this.options[i]);
-						break;
+					// case 'li':
+					// 	this.dontHide=false;
+					// 	let i = evt.target.getAttribute('data-index');
+					// 	this._setValue(this.options[i]);
+					// 	break;
 					default:
 						_this.dontHide = false;
 				}
@@ -129,6 +129,18 @@ var AutoCompleteClab = function () {
   EVENT HANDLERS
   ----------*/
 
+	}, {
+		key: '_setItem',
+		value: function _setItem(evt) {
+			this.dontHide = false;
+			var i = evt.target.getAttribute('data-index');
+			var res = this.results[i];
+			this.options.forEach(function (obj, index) {
+				obj.label === res.label ? i = index : null;
+			});
+			// debugger;
+			this._setValue(this.options[i]);
+		}
 	}, {
 		key: '_handleKeyboardInputs',
 		value: function _handleKeyboardInputs(evt) {
@@ -419,6 +431,6 @@ var AutoCompleteClab = function () {
 	}]);
 
 	return AutoCompleteClab;
-}();
+})();
 
 Polymer(AutoCompleteClab);

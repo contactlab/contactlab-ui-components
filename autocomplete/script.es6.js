@@ -98,11 +98,11 @@ class AutoCompleteClab{
 				case 'ol':
 					this.dontHide=true;
 					break;
-				case 'li':
-					this.dontHide=false;
-					let i=evt.target.getAttribute('data-index');
-					this._setValue(this.options[i]);
-					break;
+				// case 'li':
+				// 	this.dontHide=false;
+				// 	let i = evt.target.getAttribute('data-index');
+				// 	this._setValue(this.options[i]);
+				// 	break;
 				default:
 					this.dontHide=false;
 			}
@@ -116,6 +116,18 @@ class AutoCompleteClab{
 	/*----------
 	EVENT HANDLERS
 	----------*/
+	_setItem(evt){
+		this.dontHide=false;
+		let i = evt.target.getAttribute('data-index');
+		let res = this.results[i];
+		this.options.forEach((obj,index) => {
+			obj.label === res.label ? i = index : null;
+		});
+		// debugger;
+		this._setValue(this.options[i]);
+	}
+
+
 	_handleKeyboardInputs(evt){
 		// If Enter
 		if(evt.keyCode==13 && this.currentHint!=undefined){
@@ -161,7 +173,7 @@ class AutoCompleteClab{
 	}
 
 	_handleHighlight(evt){
-		let i=evt.target.getAttribute('data-index');
+		let i = evt.target.getAttribute('data-index');
 		this._highlightEl(i);
 		this.currentHint=this.options[i];
 	}
