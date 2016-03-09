@@ -337,7 +337,8 @@ var MultipleClab = (function () {
 	}, {
 		key: '_setWrapperHeights',
 		value: function _setWrapperHeights() {
-			if (this.liHeight == undefined) this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
+			// if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+			if (this.liHeight == undefined) this.liHeight = 35;
 			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
 		}
 	}, {
