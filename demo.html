@@ -257,31 +257,28 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<div class="content">
 			<h2>Input checkbox</h2>
-			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]"></checkbox-clab>
+			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]" on-change="_checkboxChange"></checkbox-clab>
 		</div>
 
 		<div class="content">
 			<h2>Tooltip</h2>
-			<tooltip-clab content="Default">
-				Default tooltip
+			<tooltip-clab type="primary" wait="0">
+                <button-clab class="tt-label">Edit</button-clab>
+				<span class="tt-content">Click to edit this block</span>
 			</tooltip-clab>
-			<tooltip-clab content="Primary" tt-type="primary">
-				Primary tooltip
+			<tooltip-clab type="error" wait="0">
+                <button-clab class="tt-label">Cancel</button-clab>
+				<span class="tt-content">Click to cancel this block</span>
 			</tooltip-clab>
-			<tooltip-clab content="Secondary" tt-type="secondary">
-				Secondary tooltip
+              <br><br><br>
+			<tooltip-clab type="info" wait="0">
+                <accordion-clab class="tt-label">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi cumque.</accordion-clab>
+				<span class="tt-content">Click to read more</span>
 			</tooltip-clab>
-			<tooltip-clab content="Info" tt-type="info">
-				Info tooltip
-			</tooltip-clab>
-			<tooltip-clab content="Success" tt-type="success">
-				Success tooltip
-			</tooltip-clab>
-			<tooltip-clab content="Warning" tt-type="warning">
-				Warning tooltip
-			</tooltip-clab>
-			<tooltip-clab content="Error" tt-type="error">
-				Error tooltip
+            <br><br><br>
+			<tooltip-clab type="info" wait="0">
+                <span class="tt-label">My Tooltip</span>
+				<span class="tt-content">Click to read more</span>
 			</tooltip-clab>
 		</div>
 
@@ -400,6 +397,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         },
         _fire:function(evt){
         	console.log('primary');
+        },
+
+        _checkboxChange:function(evt){
+            console.log(evt.model);
         }
     });
 
