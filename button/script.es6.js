@@ -7,14 +7,14 @@ class ButtonClab {
 	       * `type` additional class for the type of btn
 	       */
 			type: {
-				type: String, 
+				type: String,
 				value: ""
 			},
 			/**
 	       * `appearance` additional class for the type
 	       */
 			appearance: {
-				type: String, 
+				type: String,
 				value: ""
 			},
 			/**
@@ -28,14 +28,14 @@ class ButtonClab {
 	       * `type` insert a valid icon class to add an icon
 	       */
 			icon: {
-				type: String, 
+				type: String,
 				value: ""
 			},
 			/**
 	       * Whether is disabled or not
 	       */
 			disabled: {
-				type: Boolean, 
+				type: Boolean,
 				value: false
 			}
 		}
