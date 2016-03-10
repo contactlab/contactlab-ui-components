@@ -1,0 +1,162 @@
+
+
+
+// TABLES
+
+
+.scrollable-table {
+  overflow: auto;
+}
+
+.sorting-arrow {
+  position: absolute;
+  right: $smaller-spacing;
+  font-size: 10px;
+  padding: 3px;
+  cursor: pointer;
+  color: $disabled-color;
+
+  &.top {
+    top: $smaller-spacing;
+  }
+
+  &.bottom {
+    bottom: $smaller-spacing;
+  }
+
+  &.active {
+    color: $text-color;
+  }
+}
+
+table {
+  width: 100%;
+  margin-bottom: $base-spacing;
+  font-family: $base-font;
+  border-spacing: 0px;
+  border-collapse: separate;
+
+  .operations {
+    text-align: center;
+    position: relative; 
+    min-width: 40px;
+  }
+
+  .menu-icon {
+    text-align: center;
+    @include user-selection(none);
+    cursor: pointer
+  }
+
+  + .pagination {
+    margin-top: 0;
+  }
+}
+
+hr, td, th {
+  padding-left: $smaller-spacing;
+  padding-right: $smaller-spacing;
+  position: relative;
+}
+
+th {
+  text-align: left;
+  border-bottom: 1px solid $dark-gray;
+  padding: $small-spacing;
+  font-weight: $bold-weight;
+}
+
+td {
+  border-bottom: 1px solid $gray;
+  padding: $small-spacing $small-spacing;
+  vertical-align: top;
+}
+
+
+// div table
+.table {
+  display: table;
+  @extend table;
+
+  .tr {
+    display: table-row;
+  }
+
+  .th,
+  .td {
+    display: table-cell; 
+    @extend td;
+  }
+
+  .th {
+    @extend th;
+  	border-bottom: 1px solid $dark-gray;
+  }
+
+  .td {
+    @extend td;
+  }
+}
+
+// end div table
+
+
+.striped-table {
+
+  hr,
+  td,
+  .td {
+    border: none;
+  }
+
+  tr:nth-child(odd) td,
+  .tr:nth-child(odd) .td {
+    background: set-stripe-color($background-color);
+  }
+}
+
+.hover-table {
+  tr:hover td,
+  .tr:hover .td {
+    background: darken(set-stripe-color($background-color), 10);
+    color: #FFFFFF;
+    cursor: pointer;
+  }
+}
+
+
+// full table component
+
+.table-tools {
+	display: flex;
+	flex-direction: row;
+	padding-bottom: $base-spacing;
+
+	.entries-number,
+	.table-search {
+		flex-grow: 1;
+	}
+
+  .entries-number {
+    display: flex;
+    align-items: center;
+  }
+
+	.table-search {
+		text-align: right;
+	}
+}
+
+.table-recap {
+	display: flex;
+	flex-direction: row;
+
+	.total-entries,
+	.pagination {
+		flex-grow: 1;
+	}
+}
+
+// end full table component
+
+/////////////////// END TABLES ///////////////////

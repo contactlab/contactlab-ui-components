@@ -12,16 +12,19 @@
 	</style>
 
 	<template>
-		<template is="dom-if" if="[[_viewLabel(label)]]">
-			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
-		</template>
-		<div class="input-icon-wrapper" on-click="_selection">
-			<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
+		<div class="input-wrapper">
+			<template is="dom-if" if="[[_viewLabel(label)]]">
+				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+			</template>
+			<div class="input" on-click="_selection">
+				<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
+				<button class="btn"><i class="clab-icon icon-folder"></i></button>
+			</div>
+			<note-clab type="[[compNoteType]]">
+				<content></content>
+			</note-clab>
+			<input type="file" multiple$="[[multiple]]" disabled="[[disabled]]">
 		</div>
-		<note-clab type="[[compNoteType]]">
-			<content></content>
-		</note-clab>
-		<input type="file" multiple$="[[multiple]]" disabled="[[disabled]]">
 	</template>
 
 	<script src="./../_behaviors/behaviors.js"></script>

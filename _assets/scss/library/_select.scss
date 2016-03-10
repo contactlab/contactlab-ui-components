@@ -1,0 +1,243 @@
+/////////////////// SELECT ///////////////////
+
+.autocomplete-clab,
+.dropdown-clab {
+
+
+
+  .value_wrapper.active {
+    border-bottom-color: $primary-color;
+  }
+  
+  .options-list {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 1;
+    background-color: #FFFFFF;
+    margin-bottom: 0;
+    @extend .depth-1;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    &.hidden{
+      display: block;
+      opacity: 0;
+    }
+
+    &.visible {
+      display: block;
+    }
+
+    .noResults {
+      cursor: initial;
+    }
+
+    li,
+    .noResults {
+      background-color: white;
+      display: none;
+      padding: $smaller-spacing $small-spacing;;
+      margin: 0;
+      cursor: pointer;
+
+      &.hide {
+        display: none;
+      }
+
+      &.show {
+        display: block;
+      }
+
+      &.selected {
+        color: $primary-color;
+      }
+    }
+
+    li[data-disabled=true] {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+  // AUTOCOMPLETE
+
+  input-clab.autocomplete-clab {
+    flex-grow: 1;
+  }
+
+  // DROPDOWN
+
+  .dropdown-clab {
+    .value_wrapper {
+      @extend input[type="text"];
+      cursor: pointer;
+      text-align:left;
+    }
+
+    .input {
+      &:after {
+        font-family: 'contactlab-icons';
+        content: "\e60c";
+        position: absolute;
+        top: 9px;
+        right: $smaller-spacing;
+        line-height: 1;
+        font-size: 12px;
+        @extend .fast-transition;
+        pointer-events: none;
+      }
+    }
+  } 
+
+
+
+
+
+
+
+
+
+
+
+
+// OLD  
+/* 
+.options-list-wrapper {
+  position: relative;
+
+  .value_wrapper {
+    @extend input[type="text"];
+    cursor: pointer;
+    text-align:left;
+  }
+
+  &:after {
+    font-family: 'contactlab-icons';
+    content: "\e60c";
+    position: absolute;
+    top: 9px;
+    right: $smaller-spacing;
+    line-height: 1;
+    font-size: 12px;
+    @extend .fast-transition;
+    pointer-events: none;
+  }
+
+  input[type="text"].js-users-list-filter {
+    padding-right: 25px;
+  }
+
+  .js-users-list-filter-message,
+  .js-users-list-filter-counter,
+  .js-users-list {
+    display: none;  
+  }
+
+  .filter-hidden {
+    opacity: .1;
+  }
+
+  .js-users-list,
+  .options-list{
+    position: absolute;
+    z-index: 1;
+    width: 100%;
+    top: 30px;
+    @extend .depth-1;
+    max-height: 200px;
+    overflow: auto;
+    @extend .fast-transition;
+    background-color: #FFFFFF;
+    display:none;
+
+    li,
+    .noResults {
+      background-color: white;
+      display: none;
+      padding: 10px;
+      margin: 0;
+      cursor: pointer;
+
+      &.hide {
+        display: none;
+      }
+      &.show {
+        display: block;
+      }
+
+      &.selected {
+        color: $primary-color;
+      }
+    }
+
+    &.hidden{
+      display: block;
+      opacity: 0;
+    }
+    
+    &.active{
+      display: block;
+      opacity: 1;
+    }
+
+    &.visible {
+      display: block;
+    }
+
+    .noResults {
+      cursor: initial;
+    }
+  }
+}
+ */
+
+/* 
+.select-button .elekti-wrapper {
+  width: auto;
+
+  input[type="text"].js-users-list-filter {
+    @extend .btn;
+    width: auto;
+  }
+}
+
+
+// AUTOCOMPLETE
+
+.autocomplete-clab .options-list-wrapper:after {
+  display: none;
+} */
+
+/////////////////// END SELECT ///////////////////
+
+/////////////////// MULTIPLE SELECT ///////////////////
+
+select[multiple],
+ol.multiple-clab {
+    background-color: rgba(255,255,255,0.6);
+    border: 0;
+    border-bottom: 1px solid $light-gray;
+    padding: $smaller-spacing 0;
+    font-size: $base-font-size;
+    @extend .fast-transition;
+    margin-bottom: 0;
+
+    li {
+      padding: $smaller-spacing;
+      cursor: pointer;
+
+      &.selected {
+        background-color: $light-gray;
+        color: $primary-color;
+      }
+    }
+}
+
+/////////////////// END MULTIPLE SELECT ///////////////////

@@ -1,0 +1,49 @@
+/////////////////// PAGINATION ///////////////////
+
+.pagination {
+  text-align: right;
+
+  .clab-icon {
+    font-size: 10px;
+  }
+
+  li {
+    color: $disabled-color;
+    display: inline;
+
+    a {
+      color: $text-color;
+      display: inline-block;
+      padding: $smaller-spacing $small-spacing;
+      line-height: 1;
+    }
+
+    span {
+      padding: $smaller-spacing $small-spacing;
+    }
+
+    a:hover {
+      color: $primary-color; 
+    }
+
+    &.first {
+      padding-right: 0;
+    }
+
+    &.last {
+      padding-left: 0;
+    }
+
+    &.active {
+
+      a {
+        background: $gray;
+        color: #FFFFFF;
+      }
+    }
+
+    
+  }
+}
+
+/////////////////// END PAGINATION ///////////////////

@@ -1,0 +1,120 @@
+/////////////////// TABS ///////////////////
+
+.tabs {
+  font-size: 0;
+  border: 0;
+  margin-bottom: 0;
+  font-family: $base-font;
+  @include user-selection;
+
+  ul {
+    border-top: 0;
+    border-bottom: 1px solid $gray;
+    margin-bottom: 0;
+    display: flex;
+    flex-flow: row nowrap;
+    justify-content: flex-start;
+  }
+
+  .tab {
+    line-height: 1;
+    margin-bottom: 0;
+    min-width: 50px;
+    text-align: center;
+
+    a {
+      padding: $small-spacing $small-spacing $small-spacing+2px;
+      display: block;
+      color: $text-color;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &.active a {
+      color: $primary-color;
+      padding-bottom: $small-spacing;
+      @include box-shadow(0, 3px, 0, 0, $primary-color);
+    }
+
+    &.disabled a {
+      color: $disabled-color;
+      cursor: not-allowed;
+
+      &:hover {
+        color: $disabled-color;
+      }
+    }
+
+  } 
+
+
+
+  >ul>li, {
+    display: inline-block;
+    font-size: $base-font-size;
+  }
+
+  .ui-widget-content,
+  .ui-widget-header,
+  .ui-state-default,
+  .ui-widget-content .ui-state-default,
+  .ui-widget-header .ui-state-default {
+    border: 0;
+    background: $background-color; 
+    color: $text-color;
+    @include border-radius(0);
+    font-family: $base-font;
+  }
+
+  .ui-widget-header {
+    border-bottom: 1px solid $light-gray;
+  }
+}
+
+.tab-content {
+  padding: $base-spacing 0;
+  font-size: $base-font-size;
+  border: 0;
+}
+
+
+
+/////////////////// END TABS ///////////////////
+  
+/////////////////// PILLS ///////////////////
+
+.pills {
+  @extend .tabs;
+
+  ul { 
+    border-bottom: 0;
+  }
+
+  .ui-widget-header {
+    border: 0;
+  }
+
+  .tab {
+    margin-right: 0;
+
+    a {
+      padding: $smaller-spacing $small-spacing;
+
+      &:hover {
+        color: $primary-color;
+      }
+    }
+
+    &.active a {
+      background: $primary-color;
+      color: set-text-color($primary-color);
+      @include box-shadow(0, 0, 0, 0, $primary-color);
+      padding: $smaller-spacing $small-spacing;
+    }
+  }
+}
+
+
+/////////////////// END PILLS ///////////////////

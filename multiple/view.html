@@ -33,7 +33,7 @@
 	</style>
 
 	<template>
-
+		<div class="input-wrapper">
 		<template is="dom-if" if="[[label]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 		</template>
@@ -48,7 +48,7 @@
 		<note-clab type="[[compNoteType]]">
 			<content></content>
 		</note-clab>
-
+</div>
 	</template>
 
 	<script src="./../_behaviors/behaviors.js"></script>

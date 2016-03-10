@@ -11,11 +11,11 @@
 		</template>
 		<div class$="[[rangeWrapperClasses]]">
 			<template is="dom-if" if="[[showDetails]]">
-				<span>[[min]]</span>
+				<span class="min">[[min]]</span>
 			</template>
 			<input class$="[[type]]" type="range" name$="[[_dashify(name)]]" min$="[[min]]" max$="[[max]]" step$="[[step]]" value="{{value}}" disabled$="[[disabled]]" on-input="_updateCompValue">
 			<template is="dom-if" if="[[showDetails]]">
-				<span>[[max]]</span>
+				<span class="max">[[max]]</span>
 			</template>
 		</div>
 		<template is="dom-if" if="[[showDetails]]">

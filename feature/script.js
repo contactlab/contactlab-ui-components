@@ -45,7 +45,7 @@ var FeatureClab = function () {
 		key: '_computeFeatureClass',
 		value: function _computeFeatureClass(size, vertical) {
 			var arr = ['feature'];
-			if (size) arr.push(size + '-icon');
+			if (size) arr.push(size);
 			if (vertical) arr.push('vertical');
 			return arr.join(' ');
 		}

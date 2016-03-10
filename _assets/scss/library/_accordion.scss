@@ -1,0 +1,55 @@
+/////////////////// ACCORDION ////////////////////
+
+.accordion {
+
+  .accordion-block {
+    padding-bottom: $smaller-spacing;
+    @extend .default-transition;
+
+    &.active {
+      @extend .depth-1;
+      background-color: #FFFFFF;
+      margin-bottom: $base-spacing;
+      padding: $base-spacing;
+      @extend .default-transition;
+
+      .accordion-title {
+        font-weight: $semibold-weight;
+      }
+
+      .accordion-content {
+        height: 100px;
+        @extend .default-transition;
+      }
+
+      .accordion-title:before {
+        content: "\e60f";
+      }
+    }
+  }
+
+  .accordion-title {
+    position: relative;
+    padding-left: $medium-spacing;
+    cursor: pointer;
+
+    &:before {
+      content: "\e60c";
+      font-family: 'contactlab-icons';
+      width: $medium-spacing;
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+
+  .accordion-content {
+    height: 0;
+    padding-left: $medium-spacing;
+    padding-top: $small-spacing;
+    overflow: hidden;
+    @extend .default-transition;
+  }
+}
+
+/////////////////// END ACCORDION ////////////////////

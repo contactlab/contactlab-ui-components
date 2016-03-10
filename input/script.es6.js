@@ -47,17 +47,17 @@ class InputClab{
 				type:Object,
 				value:{
 					show:{
-						icon:'clab-icon icon-switch-off',
-						label:'Mostra password',
-						type:"primary", 
-						appearance:"flat", 
+						icon:'',
+						label:'Show',
+						type:"", 
+						appearance:"", 
 						size:""
 					},
 					hide:{
-						icon:'clab-icon icon-switch-on',
-						label:'Nascondi password',
-						type:"error",
-						appearance:"flat", 
+						icon:'',
+						label:'Hide',
+						type:"",
+						appearance:"", 
 						size:""
 					}
 				}

@@ -5,7 +5,7 @@
 	
 	<template>		
 		<div class$="[[_computeType(pills)]]">
-			<ul class="contextual-menu">
+			<ul>
 				<template is="dom-repeat" items$="[[_computedLabels(tabContents, labels)]]">
 					<li class$="[[_computeActive(active,index)]]" data-index$="[[index]]"><a on-click="_activateThis" href="#">[[item]]</a></li>
 				</template>
