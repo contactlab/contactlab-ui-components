@@ -44,6 +44,33 @@ $larger-label-width: 250px;
 		&:active {
 			background-color: darken($gray, 3%);
 		}
+
+		/* &.success {
+			@extend .success;
+
+			&:hover {
+				@extend .success:hover;
+			}
+
+			&:active {
+				@extend .success:active;
+			}
+		} */
+
+		@each $type, $color in $default-status {
+			&.#{$type} {
+				@extend .#{$type};
+
+				&:hover {
+					@extend .#{$type}:hover;
+				}
+
+				&:active {
+					@extend .#{$type}:active;
+				}
+
+			}
+		}
 	}
 
 	.password-toggle .btn {
