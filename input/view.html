@@ -16,10 +16,14 @@
 				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label}}</label>
 			</template>
 			<div class="input">
-				<input class$="[[type]]" type$="[[_computeDataType(password)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus">
+				<input class$="[[type]]" type$="[[_computeInputType(password)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus">
 
 				<template is="dom-if" if="[[check]]">
-					<button-clab class="password-toggle" type="[[btnProps.type]]" size="[[btnProps.size]]" appearance="[[btnProps.appearance]]" icon="[[btnProps.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[btnProps.label]]</button-clab>
+					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
+				</template>
+
+				<template is="dom-if" if="[[_ifBtn(btnLabel)]]">
+					<button-clab type="[[btnType]]" size="[[btnSize]]" appearance="[[btnAppearance]]" icon="[[btnIcon]]" disabled="[[disabled]]" on-btnclick="_btnclick">[[btnLabel]]</button-clab>
 				</template>
 			</div>
 			<note-clab type="[[compNoteType]]">

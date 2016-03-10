@@ -7,25 +7,12 @@ class InputClab{
 	beforeRegister(){
 		this.is = "input-clab";
 		this.properties = {
-			label: {
-				type: String,
-			},
+			label: String,
 			name: {
 				type: String,
 				value: 'textinput'
 			},
-			type: {
-				type: String,
-				value: ''
-			},
-			password: {
-				type: Boolean,
-				value: false
-			},
-			check: {
-				type: Boolean,
-				value: false
-			},
+			type: String,
 			value: {
 				type: String,
 				notify: true,
@@ -36,38 +23,43 @@ class InputClab{
 				value: false,
 				observer: '_disabledChanged'
 			},
-			placeholder: {
-				type: String
+			placeholder: String,
+			noteType: String,
+			check: {
+				type: Boolean,
+				value: false
 			},
-			noteType: {
-				type: String,
-				value: ''
-			},
-			btnConfig:{
+			btnPswd:{
 				type:Object,
 				value:{
 					show:{
 						icon:'',
 						label:'Show',
-						type:"", 
-						appearance:"", 
+						type:"",
+						appearance:"",
 						size:""
 					},
 					hide:{
 						icon:'',
 						label:'Hide',
 						type:"",
-						appearance:"", 
+						appearance:"",
 						size:""
 					}
 				}
 			},
-
-
-			btnProps:{
-				type:String,
-				computed: '_computeToggleBtnProps(password, btnConfig)'
+			_btnPswd:Object,
+			password: {
+				type: Boolean,
+				value: false,
+				observer: '_computeBtnPswd'
 			},
+			btnType:String,
+			btnAppearence:String,
+			btnSize:String,
+			btnIcon:String,
+			btnLabel:String,
+
 			compNoteType: {
 				type: String,
 				computed: '_computeNoteType(type, noteType)'
@@ -82,6 +74,10 @@ class InputClab{
 	----------*/
 	_toggleInputType(evt){
 		this.password=!this.password;
+	}
+
+	_btnclick(evt){
+		this.fire('btnclick');
 	}
 
 	_blur(evt){
@@ -108,7 +104,7 @@ class InputClab{
 		return [type, noteType].join(' ');
 	}
 
-	_computeDataType(password){
+	_computeInputType(password){
 		if(password){
 			return 'password';
 		}else{
@@ -116,11 +112,15 @@ class InputClab{
 		}
 	}
 
-	_computeToggleBtnProps(pswd, btnConfig){
-		if(pswd) 
-			return btnConfig.show; 
-		else 
-			return btnConfig.hide; 
+	_ifBtn(label){
+		if(label!='' && label.length>0) return true; else return false;
+	}
+
+	_computeBtnPswd(val, old){
+		if(val)
+			this.set('_btnPswd', this.btnPswd.show);
+		else
+			this.set('_btnPswd', this.btnPswd.hide);
 	}
 
 }

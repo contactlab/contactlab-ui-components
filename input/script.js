@@ -14,25 +14,12 @@ var InputClab = function () {
 		value: function beforeRegister() {
 			this.is = "input-clab";
 			this.properties = {
-				label: {
-					type: String
-				},
+				label: String,
 				name: {
 					type: String,
 					value: 'textinput'
 				},
-				type: {
-					type: String,
-					value: ''
-				},
-				password: {
-					type: Boolean,
-					value: false
-				},
-				check: {
-					type: Boolean,
-					value: false
-				},
+				type: String,
 				value: {
 					type: String,
 					notify: true,
@@ -43,14 +30,13 @@ var InputClab = function () {
 					value: false,
 					observer: '_disabledChanged'
 				},
-				placeholder: {
-					type: String
+				placeholder: String,
+				noteType: String,
+				check: {
+					type: Boolean,
+					value: false
 				},
-				noteType: {
-					type: String,
-					value: ''
-				},
-				btnConfig: {
+				btnPswd: {
 					type: Object,
 					value: {
 						show: {
@@ -69,11 +55,18 @@ var InputClab = function () {
 						}
 					}
 				},
-
-				btnProps: {
-					type: String,
-					computed: '_computeToggleBtnProps(password, btnConfig)'
+				_btnPswd: Object,
+				password: {
+					type: Boolean,
+					value: false,
+					observer: '_computeBtnPswd'
 				},
+				btnType: String,
+				btnAppearence: String,
+				btnSize: String,
+				btnIcon: String,
+				btnLabel: String,
+
 				compNoteType: {
 					type: String,
 					computed: '_computeNoteType(type, noteType)'
@@ -89,6 +82,11 @@ var InputClab = function () {
 		key: '_toggleInputType',
 		value: function _toggleInputType(evt) {
 			this.password = !this.password;
+		}
+	}, {
+		key: '_btnclick',
+		value: function _btnclick(evt) {
+			this.fire('btnclick');
 		}
 	}, {
 		key: '_blur',
@@ -121,8 +119,8 @@ var InputClab = function () {
 			return [type, noteType].join(' ');
 		}
 	}, {
-		key: '_computeDataType',
-		value: function _computeDataType(password) {
+		key: '_computeInputType',
+		value: function _computeInputType(password) {
 			if (password) {
 				return 'password';
 			} else {
@@ -130,9 +128,14 @@ var InputClab = function () {
 			}
 		}
 	}, {
-		key: '_computeToggleBtnProps',
-		value: function _computeToggleBtnProps(pswd, btnConfig) {
-			if (pswd) return btnConfig.show;else return btnConfig.hide;
+		key: '_ifBtn',
+		value: function _ifBtn(label) {
+			if (label != '' && label.length > 0) return true;else return false;
+		}
+	}, {
+		key: '_computeBtnPswd',
+		value: function _computeBtnPswd(val, old) {
+			if (val) this.set('_btnPswd', this.btnPswd.show);else this.set('_btnPswd', this.btnPswd.hide);
 		}
 	}, {
 		key: 'behaviors',

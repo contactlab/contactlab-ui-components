@@ -41,7 +41,7 @@ var TagsClab = function () {
 					type: String,
 					value: ''
 				},
-				btn: {
+				btnLabel: {
 					type: String,
 					value: 'Add'
 				},
@@ -82,7 +82,8 @@ var TagsClab = function () {
 	}, {
 		key: '_addTag',
 		value: function _addTag(evt) {
-			var str = this.inputString.split(',')[0];
+			var str = this.inputString == undefined ? '' : this.inputString.split(',')[0];
+			if (!/\S/.test(str)) return;
 			var newTag = {
 				label: str,
 				value: str
