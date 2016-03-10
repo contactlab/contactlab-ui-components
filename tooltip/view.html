@@ -6,11 +6,15 @@
 			position:fixed;
 			opacity:0;
 			z-index:1000;
+			display: none;
 		}
 		.tooltip .arrow{
 			position: absolute;
 			width: 0;
 			height: 0;
+		}
+		.tooltip.visible{
+			display: block;
 		}
 	</style>
 
@@ -20,12 +24,11 @@
 			<content select=".tt-label"></content>
 		</span>
 
-		<template is="dom-if" if="[[visible]]">
-			<div class$="[[_computeBtnClass(type)]]">
-				<content select=".tt-content"></content>
-				<div class="arrow"></div>
-			</div>
-		</template>
+
+		<div class$="[[_computeBtnClass(type, visible)]]">
+			<span on-mouseenter="_handleMouseOnTT"  on-mouseleave="_handleMouseOnTT"><content select=".tt-content"></content></span>
+			<div class="arrow"></div>
+		</div>
 
 	</template>
 
