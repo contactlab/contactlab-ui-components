@@ -4,32 +4,58 @@
 	<style></style>
 	
 	<template>
-		<div id="main-logo" class="product-logo">
-			<a href$="[[link]]">
-				<span class="sign"><i class$="[[_computeTitleIcon(titleIcon)]]"></i></span>
-				<content select="span.product-name"></content>
-			</a>
+		<div class="layout-wrapper">
+			<div class="content">
+				<header>
+					<div class="logo">
+						<a href="#">
+							<i class$="[[_computeTitleIcon(titleIcon)]]"></i>
+							<content select="span.product-name"></content>
+						</a>
+					</div>
+
+					<div class="mobile-menu-icon menu-toggle">
+						<i class="clab-icon icon-hamburger-menu"></i>
+					</div>
+
+					<nav class="main-nav">
+						<ul>
+							<template is="dom-repeat" items="[[menu]]">
+								<li class$="[[_computeActive(_url, item.url, index)]]">
+									<a on-click="_openItem" href$="[[_computeUrl(item)]]" data-index$="[[index]]">[[item.label]]</a>
+								</li>
+							</template>
+						</ul>
+						<div class="close-overlay menu-toggle" on-click="_toggleMenu"><i class="clab-icon icon-close"></i></div>
+						<!-- <div class="user">
+							<div class="user-details">
+								<div class="username">Hilda Ryan</div>
+								<div class="company">contactlab</div>
+							</div>
+							<figure class="user-picture">
+								<span>HR</span>
+							</figure>
+							<div class="user-panel">
+								<a href="#">Settings</a>
+								<a href="#">Logout</a>
+							</div>
+						</div> -->
+					</nav>
+
+
+					<template is="dom-if" if="[[draft]]">
+						<div id="draft-ribbon">[[draft]]</div>
+					</template>
+
+					<div class="alerts-wrapper"><content select="div.alerts"></content></div>
+				</header>
+			</div>
 		</div>
-
-		<div class="open-menu menu-toggle" on-click="_toggleMenu"><i class="clab-icon icon-hamburger-menu"></i></div>
-
-		<nav class="main-menu">
-			<ul>
-				<template is="dom-repeat" items="[[menu]]">
-					<li class$="[[_computeActive(_url, item.url, index)]]">
-						<a on-click="_openItem" href$="[[_computeUrl(item)]]" data-index$="[[index]]">[[item.label]]</a>
-					</li>
-				</template>
-			</ul>
-			<div class="close-overlay menu-toggle" on-click="_toggleMenu"><i class="clab-icon icon-close"></i></div>
-		</nav>
-
-		<template is="dom-if" if="[[draft]]">
-			<div id="draft-ribbon">[[draft]]</div>
-		</template>
-
-		<div class="alerts-wrapper"><content select="div.alerts"></content></div>
+		
 	</template>
 
 	<script src="script.js"></script>
 </dom-module>
+
+
+

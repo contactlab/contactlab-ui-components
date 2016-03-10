@@ -918,27 +918,6 @@ footer {
   max-width: 960px;
   margin: 0 auto; }
 
-.main-actions-bar {
-  /* @include full;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 2;
-	height: $main-actions-height;
-	background-color: $dark-gray;
-	padding: $small-spacing $base-spacing 0; */
-  margin-top: 20px;
-  padding-top: 40px;
-  border-top: 1px solid #AAB2BD;
-  display: flex;
-  flex-flow: row wrap; }
-  .main-actions-bar .left,
-  .main-actions-bar .right {
-    flex-grow: 1; }
-  .main-actions-bar .right {
-    text-align: right; }
-
 .btn {
   border: 0;
   padding: 10px 20px;

@@ -445,7 +445,7 @@ footer {
 	width: 40px;
 	height: 40px;
 	text-align: center;
-	line-height: 40px; 
+	line-height: 40px;
 	z-index: 3;
 	font-size: 20px;
 	cursor: pointer;
@@ -469,36 +469,3 @@ footer {
 	max-width: 960px;
 	margin: 0 auto;
 }
-
-
-
-// MAIN ACTIONS BAR
-
-.main-actions-bar {
-	/* @include full;
-	position: fixed;
-	bottom: 0;
-	left: 0;
-	right: 0;
-	z-index: 2;
-	height: $main-actions-height;
-	background-color: $dark-gray;
-	padding: $small-spacing $base-spacing 0; */
-
-	margin-top: $base-spacing;
-	padding-top: $large-spacing;
-	border-top: 1px solid $medium-gray;
-	display: flex;
-	flex-flow: row wrap;
-
-	.left,
-	.right {
-		flex-grow: 1;
-	}
-
-	.right {
-		text-align: right;
-	}
-}
-
-// END MAIN ACTIONS BAR
