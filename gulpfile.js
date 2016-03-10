@@ -32,7 +32,7 @@ var conf = {
 
 // Server
 gulp.task('connect', function (port) {
-  !port ? port = 3005 : port;
+  !port ? port = 3006 : port;
   connect.server({
     root: '../',
     port: port,
@@ -87,10 +87,10 @@ gulp.task('vulcanize', function (c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.comps;
-      dest= ''; 
+      dest= '';
     } else if(c.split('_').length>1){ // only the files selected
       var arr=c.split('_');
       var data='';
@@ -108,7 +108,7 @@ gulp.task('vulcanize', function (c) {
     files= './_components/clab-components.html';
     dest= './_components/';
   }
-  
+
   return gulp.src(files)
     .pipe(vulcanize({
       abspath: '',
@@ -128,10 +128,10 @@ gulp.task('minHtml', function(c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.compsBuilt;
-      dest= ''; 
+      dest= '';
     } else if(c.split('_').length>1){ // only the files selected
       files='./_components/clab-components-custom.build.html';
       dest= './_components/';
@@ -153,10 +153,10 @@ gulp.task('minInline', function(c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.compsBuilt;
-      dest= ''; 
+      dest= '';
     } else if(c.split('-').length>1){ // only the files selected
       files='./_components/clab-components-custom.build.html';
       dest= './_components/';
@@ -217,9 +217,9 @@ gulp.task('insert', function(){
 
 
 
-gulp.task('default', ['connect']); 
-gulp.task('dev', ['connect', 'watch-es6']); 
-gulp.task('ux', ['connect', 'watch-sass']); 
+gulp.task('default', ['connect']);
+gulp.task('dev', ['connect', 'watch-es6']);
+gulp.task('ux', ['connect', 'watch-sass']);
 
 gulp.task('build', function(cb){
   runSequence(
@@ -236,10 +236,3 @@ gulp.task('vars-c', function(cb){
     'insert'
   );
 });
-
-
-
-
-
-
-
