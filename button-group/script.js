@@ -42,7 +42,7 @@ var GroupClab = function () {
 				value: {
 					type: Number,
 					value: 0,
-					observer: '_initialize',
+					observer: '_updateAppearance',
 					reflectToAttribute: true
 				}
 			};
@@ -50,11 +50,15 @@ var GroupClab = function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
+			var _this = this;
+
 			var btns = this.getContentChildren();
-			Array.prototype.map.call(btns, function (btn) {
+			Array.prototype.map.call(btns, function (btn, i) {
 				btn.classList.add('group-item');
+				btn.appearance = i == _this.value ? '' : 'empty';
+				btn.setAttribute('data-i', i);
+				btn.addEventListener('btnclick', _this._selectElement.bind(_this));
 			});
-			this._initialize();
 		}
 
 		/*----------
@@ -63,45 +67,35 @@ var GroupClab = function () {
 
 	}, {
 		key: '_updateDisabled',
-		value: function _updateDisabled() {
-			var _this = this;
-
+		value: function _updateDisabled(val, old) {
 			var btns = this.getContentChildren();
 			Array.prototype.map.call(btns, function (btn) {
-				btn.disabled = _this.disabled;
+				btn.disabled = val;
 			});
+		}
+	}, {
+		key: '_updateAppearance',
+		value: function _updateAppearance(val, old) {
+			var _this2 = this;
+
+			if (old !== undefined && old !== val) {
+				this.fire('change', { value: val });
+
+				var btns = this.getContentChildren();
+				Array.prototype.map.call(btns, function (btn, i) {
+					btn.appearance = i == _this2.value ? '' : 'empty';
+				});
+			}
 		}
 
 		/*----------
-  METHODS
+  EVENT HANDLERS
   ----------*/
 
 	}, {
-		key: '_initialize',
-		value: function _initialize() {
-			var _this2 = this;
-
-			var btns = this.getContentChildren();
-			Array.prototype.map.call(btns, function (btn) {
-				typeof btn.appearance === 'string' ? btn.appearance = '' : null;
-				btn.setAttribute('data-i', btns.indexOf(btn));
-				btn.addEventListener('click', _this2._selectElement.bind(_this2));
-			});
-			typeof btns[this.value].appearance === 'string' ? btns[this.value].appearance = 'full' : null;
-			// this.fire('change', {value: this.value});
-		}
-	}, {
 		key: '_selectElement',
 		value: function _selectElement(evt) {
-			evt.preventDefault();
-			var old = this.value;
-			var btns = this.getContentChildren();
-			Array.prototype.map.call(btns, function (btn) {
-				btn.appearance = '';
-			});
-			this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
-			btns[this.value].appearance = 'full';
-			old !== this.value ? this.fire('change', { value: this.value }) : null;
+			this.set('value', Number(evt.target.getAttribute('data-i')));
 		}
 
 		/*----------
