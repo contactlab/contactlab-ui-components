@@ -46,20 +46,29 @@ gulp.task('connect', function (port) {
 
 
 // Watch SASS
-gulp.task('watch-sass', function() {
-  watch(conf.scssSourcePath, function(file){
-    var arr=JSON.stringify(file.dirname).split("\\");
-    var i=arr.length - 3;
-    var folder=arr[i];
+// gulp.task('watch-sass', function() {
+//   watch(conf.scssSourcePath, function(file){
+//     var arr=JSON.stringify(file.dirname).split("\\");
+//     var i=arr.length - 3;
+//     var folder=arr[i];
+//
+//       gulp.src(folder+'/scss/*.scss')
+//         .pipe(plumber())
+//         .pipe(compass({
+//             css:folder+'/css',
+//             sass:folder+'/scss'
+//           }))
+//         .pipe(gulp.dest(folder+'/css'))
+//     });
+// });
+gulp.task('sass', function () {
+  return gulp.src('./_assets/scss/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('./_assets/css'));
+});
 
-      gulp.src(folder+'/scss/*.scss')
-        .pipe(plumber())
-        .pipe(compass({
-            css:folder+'/css',
-            sass:folder+'/scss'
-          }))
-        .pipe(gulp.dest(folder+'/css'))
-    });
+gulp.task('watch-sass', function() {
+  gulp.watch(conf.scssSourcePath, ['sass']);
 });
 
 // Watch ES6
@@ -87,10 +96,10 @@ gulp.task('vulcanize', function (c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.comps;
-      dest= ''; 
+      dest= '';
     } else if(c.split('_').length>1){ // only the files selected
       var arr=c.split('_');
       var data='';
@@ -108,7 +117,7 @@ gulp.task('vulcanize', function (c) {
     files= './_components/clab-components.html';
     dest= './_components/';
   }
-  
+
   return gulp.src(files)
     .pipe(vulcanize({
       abspath: '',
@@ -128,10 +137,10 @@ gulp.task('minHtml', function(c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.compsBuilt;
-      dest= ''; 
+      dest= '';
     } else if(c.split('_').length>1){ // only the files selected
       files='./_components/clab-components-custom.build.html';
       dest= './_components/';
@@ -153,10 +162,10 @@ gulp.task('minInline', function(c) {
   var files;
   var dest;
 
-  if(c!=null){ 
+  if(c!=null){
     if(c==true){ // all but separately
       files= conf.compsBuilt;
-      dest= ''; 
+      dest= '';
     } else if(c.split('-').length>1){ // only the files selected
       files='./_components/clab-components-custom.build.html';
       dest= './_components/';
@@ -217,9 +226,9 @@ gulp.task('insert', function(){
 
 
 
-gulp.task('default', ['connect']); 
-gulp.task('dev', ['connect', 'watch-es6']); 
-gulp.task('ux', ['connect', 'watch-sass']); 
+gulp.task('default', ['connect']);
+gulp.task('dev', ['connect', 'watch-es6']);
+gulp.task('ux', ['connect', 'watch-sass']);
 
 gulp.task('build', function(cb){
   runSequence(
@@ -236,10 +245,3 @@ gulp.task('vars-c', function(cb){
     'insert'
   );
 });
-
-
-
-
-
-
-

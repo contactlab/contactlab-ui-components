@@ -17,7 +17,7 @@ button:disabled {
   display: inline-block;
   vertical-align: bottom;
   text-align: center;
-  min-width: 100px; 
+  min-width: 100px;
 
   &:first-of-type {
     margin-left: 0;
@@ -62,7 +62,7 @@ button:disabled {
   }
 
   &:disabled {
-    color: #FFFFFF !important; 
+    color: #FFFFFF !important;
     background-color: $disabled-color !important;
     border-bottom-color: darken($disabled-color, 10%) !important;
     cursor: not-allowed;
@@ -140,7 +140,7 @@ button:disabled {
 
   &:disabled {
     background: transparent;
-    color: $disabled-color; 
+    color: $disabled-color;
     cursor: not-allowed;
   }
 }
@@ -165,7 +165,7 @@ button:disabled {
 
   &:disabled {
     background: transparent !important;
-    color: $disabled-color !important; 
+    color: $disabled-color !important;
     border-color: $disabled-color !important;
     cursor: not-allowed;
   }
@@ -200,4 +200,3 @@ button:disabled {
     }
   }
 }
-

@@ -12,6 +12,7 @@ var ModalClab = function () {
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
 
+
 		/*set behaviors(value) {
   	this._behaviors = value;
   }*/
