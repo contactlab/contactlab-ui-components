@@ -3031,7 +3031,7 @@ td, .table .th,
   overflow: hidden;
 }
 
-.kawo-tooltip {
+.tooltip {
   background-color: #656D78;
   font-size: 0.8571rem;
   padding: 5px;
@@ -3044,44 +3044,44 @@ td, .table .th,
   -o-border-radius: 2px;
   border-radius: 2px;
 }
-.kawo-tooltip a {
+.tooltip a {
   color: #FFFFFF;
   text-decoration: underline;
   cursor: pointer;
 }
-.kawo-tooltip.primary, .buttons-group.primary .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.primary {
+.tooltip.primary, .buttons-group.primary .tooltip.btn, .input-wrapper .tooltip.btn.primary {
   background-color: #0072bc;
   color: #FAFAFA;
 }
-.kawo-tooltip.primary a, .buttons-group.primary .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.primary a {
+.tooltip.primary a, .buttons-group.primary .tooltip.btn a, .input-wrapper .tooltip.btn.primary a {
   color: #FAFAFA;
 }
-.kawo-tooltip.info, .buttons-group.info .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.info {
+.tooltip.info, .buttons-group.info .tooltip.btn, .input-wrapper .tooltip.btn.info {
   background-color: #9edeeb;
   color: #31708f;
 }
-.kawo-tooltip.info a, .buttons-group.info .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.info a {
+.tooltip.info a, .buttons-group.info .tooltip.btn a, .input-wrapper .tooltip.btn.info a {
   color: #31708f;
 }
-.kawo-tooltip.success, .buttons-group.success .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.success {
+.tooltip.success, .buttons-group.success .tooltip.btn, .input-wrapper .tooltip.btn.success {
   background-color: #c3dfac;
   color: #3c763d;
 }
-.kawo-tooltip.success a, .buttons-group.success .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.success a {
+.tooltip.success a, .buttons-group.success .tooltip.btn a, .input-wrapper .tooltip.btn.success a {
   color: #3c763d;
 }
-.kawo-tooltip.warning, .buttons-group.warning .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.warning {
+.tooltip.warning, .buttons-group.warning .tooltip.btn, .input-wrapper .tooltip.btn.warning {
   background-color: #f7deab;
   color: #8a6d3b;
 }
-.kawo-tooltip.warning a, .buttons-group.warning .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.warning a {
+.tooltip.warning a, .buttons-group.warning .tooltip.btn a, .input-wrapper .tooltip.btn.warning a {
   color: #8a6d3b;
 }
-.kawo-tooltip.error, .buttons-group.error .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.error {
+.tooltip.error, .buttons-group.error .tooltip.btn, .input-wrapper .tooltip.btn.error {
   background-color: #e1b2ba;
   color: #a94442;
 }
-.kawo-tooltip.error a, .buttons-group.error .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.error a {
+.tooltip.error a, .buttons-group.error .tooltip.btn a, .input-wrapper .tooltip.btn.error a {
   color: #a94442;
 }
 
