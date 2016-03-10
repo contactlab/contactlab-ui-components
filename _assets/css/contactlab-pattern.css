@@ -1503,17 +1503,6 @@ footer {
   background-color: #CCD1D9;
   border-bottom-color: #AAB2BD;
   color: #434A5A;
-  		/* &.success {
-  			@extend .success;
-  
-  			&:hover {
-  				@extend .success:hover;
-  			}
-  
-  			&:active {
-  				@extend .success:active;
-  			}
-  		} */
 }
 .input-wrapper .btn:hover {
   background-color: #d5d9e0;
@@ -1738,7 +1727,9 @@ footer {
   flex-flow: row wrap;
   align-items: center;
 }
-.input-wrapper.inline .input-note {
+.input-wrapper.inline .input-note,
+.input-wrapper.inline note-clab.input-clab,
+.input-wrapper.inline .note-clab {
   padding-left: 150px;
 }
 .input-wrapper.inline.icon-label label {
@@ -1747,25 +1738,33 @@ footer {
 .input-wrapper.inline.smaller-label label {
   width: 75px;
 }
-.input-wrapper.inline.smaller-label .input-note {
+.input-wrapper.inline.smaller-label .input-note,
+.input-wrapper.inline.smaller-label note-clab.input-clab,
+.input-wrapper.inline.smaller-label .note-clab {
   padding-left: 75px;
 }
 .input-wrapper.inline.small-label label {
   width: 100px;
 }
-.input-wrapper.inline.small-label .input-note {
+.input-wrapper.inline.small-label .input-note,
+.input-wrapper.inline.small-label note-clab.input-clab,
+.input-wrapper.inline.small-label .note-clab {
   padding-left: 100px;
 }
 .input-wrapper.inline.large-label label {
   width: 200px;
 }
-.input-wrapper.inline.large-label .input-note {
+.input-wrapper.inline.large-label .input-note,
+.input-wrapper.inline.large-label note-clab.input-clab,
+.input-wrapper.inline.large-label .note-clab {
   padding-left: 200px;
 }
 .input-wrapper.inline.larger-label label {
   width: 250px;
 }
-.input-wrapper.inline.larger-label .input-note {
+.input-wrapper.inline.larger-label .input-note,
+.input-wrapper.inline.larger-label note-clab.input-clab,
+.input-wrapper.inline.larger-label .note-clab {
   padding-left: 250px;
 }
 .input-wrapper.inline label {

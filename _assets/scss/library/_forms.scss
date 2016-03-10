@@ -45,18 +45,6 @@ $larger-label-width: 250px;
 			background-color: darken($gray, 3%);
 		}
 
-		/* &.success {
-			@extend .success;
-
-			&:hover {
-				@extend .success:hover;
-			}
-
-			&:active {
-				@extend .success:active;
-			}
-		} */
-
 		@each $type, $color in $default-status {
 			&.#{$type} {
 				@extend .#{$type};
@@ -68,7 +56,6 @@ $larger-label-width: 250px;
 				&:active {
 					@extend .#{$type}:active;
 				}
-
 			}
 		}
 	}
@@ -108,7 +95,9 @@ $larger-label-width: 250px;
 		flex-flow: row wrap;
 		align-items: center;
 
-		.input-note {
+		.input-note,
+		note-clab.input-clab,
+		.note-clab	 {
 			padding-left: $default-label-width;
 		}
 
@@ -123,7 +112,9 @@ $larger-label-width: 250px;
 				width: $smaller-label-width;
 			}
 
-			.input-note {
+			.input-note,
+			note-clab.input-clab,
+			.note-clab {
 				padding-left: $smaller-label-width;
 			}
 		}
@@ -133,7 +124,9 @@ $larger-label-width: 250px;
 				width: $small-label-width;
 			}
 
-			.input-note {
+			.input-note,
+			note-clab.input-clab,
+			.note-clab {
 				padding-left: $small-label-width;
 			}
 		}
@@ -143,7 +136,9 @@ $larger-label-width: 250px;
 				width: $large-label-width;
 			}
 
-			.input-note {
+			.input-note,
+			note-clab.input-clab,
+			.note-clab {
 				padding-left: $large-label-width;
 			}
 		}
@@ -153,7 +148,9 @@ $larger-label-width: 250px;
 				width: $larger-label-width;
 			}
 
-			.input-note {
+			.input-note,
+			note-clab.input-clab,
+			.note-clab {
 				padding-left: $larger-label-width;
 			}
 		}
