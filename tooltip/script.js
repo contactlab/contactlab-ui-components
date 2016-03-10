@@ -44,49 +44,33 @@ var TooltipClab = function () {
 			var _this = this;
 
 			if (evt.type == 'mouseenter') {
-				console.log('mouseenter----------------->');
-				// let x=evt.clientX;
-				// let y=evt.clientY;
-				// let targetRect=Polymer.dom(evt.target).node.getBoundingClientRect();
-				// document.body.addEventListener('mousemove', (e)=>{
-				// 	this.curX=e.clientX;
-				// 	this.curY=e.clientY;
-				// 	console.log('x: ', x, this.curX, targetRect.left, targetRect.right);
-				// 	console.log('starting y: '+ y, this.curY, targetRect.top, targetRect.bottom);
-				// });
-
-				// This.async blocca il fire di 'mouseout'? Solo quando this.wait!=0 l'evento non viene lanciato subito
-
-				this._resetTimeout(this.hideInterval);
+				this._resetTimeout('hideInterval');
 				if (!this.visible) {
-					this._startTimeout(this.showInterval, function () {
-						_this.targetPosition = window.getComputedStyle(_this).getPropertyValue('position');
-						if (!_this.visible) _this.show();
-						Polymer.dom.flush();
-
-						_this._setTooltipPosition();
-						_this.querySelector('.tooltip').style.opacity = '1';
+					this._startTimeout('showInterval', function () {
+						_this.show();
 					}, this.wait);
 				}
 			} else if (evt.type == 'mouseleave' && this.visible) {
-				console.log('mouseout----------------->');
-				this._resetTimeout(this.showInterval);
-				this._startTimeout(this.hideInterval, function () {
-					_this.querySelector('.tooltip').style.opacity = '0';
+				this._resetTimeout('showInterval');
+				this._startTimeout('hideInterval', function () {
 					_this.hide();
-				}, this.wait);
+				}, 250);
 			}
 		}
 	}, {
-		key: "_hideTooltip",
-		value: function _hideTooltip(evt) {
-			if (this.visible) {
-				this.querySelector('.tooltip').style.opacity = '0';
-				this.hide();
-			}
+		key: "_handleMouseOnTT",
+		value: function _handleMouseOnTT(evt) {
+			var _this2 = this;
 
-			if (evt.type == 'wheel') {
-				document.body.removeEventListener('wheel', this._hideTooltip.bind(this));
+			switch (evt.type) {
+				case 'mouseenter':
+					this._resetTimeout('hideInterval');
+					break;
+				case 'mouseleave':
+					this._startTimeout('hideInterval', function () {
+						_this2.hide();
+					}, 250);
+					break;
 			}
 		}
 
@@ -97,16 +81,16 @@ var TooltipClab = function () {
 	}, {
 		key: "_startTimeout",
 		value: function _startTimeout(type, fn, time) {
-			if (type) this._resetTimeout();
-			type = this.async(function () {
+			if (this[type]) this._resetTimeout();
+			this[type] = this.async(function () {
 				fn();
 			}, time);
 		}
 	}, {
 		key: "_resetTimeout",
 		value: function _resetTimeout(type) {
-			this.cancelAsync(type);
-			type = undefined;
+			this.cancelAsync(this[type]);
+			this[type] = undefined;
 		}
 	}, {
 		key: "_positionHorizontal",
@@ -154,8 +138,14 @@ var TooltipClab = function () {
 	}, {
 		key: "_observVisibility",
 		value: function _observVisibility(newv, oldv) {
+			var _this3 = this;
+
+			var hideTooltip = function hideTooltip(evt) {
+				_this3.hide();
+				document.body.removeEventListener('wheel', hideTooltip.bind(_this3));
+			};
 			if (newv) {
-				document.body.addEventListener('wheel', this._hideTooltip.bind(this));
+				document.body.addEventListener('wheel', hideTooltip.bind(this));
 			}
 		}
 
@@ -165,9 +155,10 @@ var TooltipClab = function () {
 
 	}, {
 		key: "_computeBtnClass",
-		value: function _computeBtnClass(type) {
+		value: function _computeBtnClass(type, visible) {
 			var arr = ['tooltip'];
 			if (type) arr.push(type);
+			if (visible) arr.push('visible');
 			return arr.join(' ');
 		}
 
@@ -178,11 +169,17 @@ var TooltipClab = function () {
 	}, {
 		key: "show",
 		value: function show() {
+			this.targetPosition = window.getComputedStyle(this).getPropertyValue('position');
 			this.visible = true;
+			// Polymer.dom.flush();
+
+			this._setTooltipPosition();
+			this.querySelector('.tooltip').style.opacity = '1';
 		}
 	}, {
 		key: "hide",
 		value: function hide() {
+			this.querySelector('.tooltip').style.opacity = '0';
 			this.visible = false;
 		}
 	}]);

@@ -30,52 +30,36 @@ class TooltipClab{
 	----------*/
 	_handleMouseOnLabel(evt){
 		if(evt.type=='mouseenter'){
-			console.log('mouseenter----------------->');
-			// let x=evt.clientX;
-			// let y=evt.clientY;
-			// let targetRect=Polymer.dom(evt.target).node.getBoundingClientRect();
-			// document.body.addEventListener('mousemove', (e)=>{
-			// 	this.curX=e.clientX;
-			// 	this.curY=e.clientY;
-			// 	console.log('x: ', x, this.curX, targetRect.left, targetRect.right);
-			// 	console.log('starting y: '+ y, this.curY, targetRect.top, targetRect.bottom);
-			// });
-
-			// This.async blocca il fire di 'mouseout'? Solo quando this.wait!=0 l'evento non viene lanciato subito
-
-			this._resetTimeout(this.hideInterval);
+			this._resetTimeout('hideInterval');
 			if(!this.visible){
-				this._startTimeout(this.showInterval, ()=>{
-					this.targetPosition = window.getComputedStyle(this).getPropertyValue('position');
-					if(!this.visible) this.show();
-					Polymer.dom.flush();
-
-					this._setTooltipPosition();
-					this.querySelector('.tooltip').style.opacity='1';
+				this._startTimeout('showInterval', ()=>{
+					this.show();
 				}, this.wait);
 			}
 
 		} else if(evt.type=='mouseleave' && this.visible) {
-			console.log('mouseout----------------->');
-			this._resetTimeout(this.showInterval);
-			this._startTimeout(this.hideInterval, ()=>{
-				this.querySelector('.tooltip').style.opacity='0';
+			this._resetTimeout('showInterval');
+			this._startTimeout('hideInterval', ()=>{
 				this.hide();
-			}, this.wait);
+			}, 250);
 
 		}
 	}
 
-	_hideTooltip(evt){
-		if(this.visible){
-			this.querySelector('.tooltip').style.opacity='0';
-			this.hide();
-		}
-
-		if(evt.type=='wheel'){
-			document.body.removeEventListener('wheel', this._hideTooltip.bind(this));
+	_handleMouseOnTT(evt){
+		switch(evt.type){
+			case 'mouseenter':
+				this._resetTimeout('hideInterval');
+				break;
+			case 'mouseleave':
+				this._startTimeout('hideInterval', ()=>{
+					this.hide();
+				}, 250);
+				break;
 		}
 	}
+
+
 
 
 
@@ -83,13 +67,14 @@ class TooltipClab{
 	METHODS
 	----------*/
 	_startTimeout(type, fn, time){
-		if(type) this._resetTimeout();
-		type=this.async(()=>{ fn(); }, time);
+		if(this[type]) this._resetTimeout();
+		this[type] = this.async(()=>{ fn(); }, time);
 	}
 	_resetTimeout(type){
-		this.cancelAsync(type);
-		type=undefined;
+		this.cancelAsync(this[type]);
+		this[type]=undefined;
 	}
+
 
 	_positionHorizontal(left, right, arrowLeft){
 		let tooltip=this.querySelector('.tooltip');
@@ -99,7 +84,6 @@ class TooltipClab{
 		tooltip.style.right = right;
 		arrow.style.left = arrowLeft + 'px';
 	}
-
 	_positionVertical(tooltipTop, rotation, top, bottom){
 		let tooltip=this.querySelector('.tooltip');
 		let arrow=this.querySelector('.tooltip .arrow');
@@ -111,7 +95,6 @@ class TooltipClab{
 		arrow.style.top = top;
 		arrow.style.bottom = bottom;
 	}
-
 	_setTooltipPosition(){
 		let targetSize;
 		if(Polymer.dom(this.querySelector('.tt-label')).node.$) //if the content is a component or not
@@ -135,8 +118,12 @@ class TooltipClab{
 	OBSERVERS
 	----------*/
 	_observVisibility(newv, oldv){
+		let hideTooltip=(evt)=>{
+			this.hide();
+			document.body.removeEventListener('wheel', hideTooltip.bind(this));
+		}
 		if(newv){
-			document.body.addEventListener('wheel', this._hideTooltip.bind(this));
+			document.body.addEventListener('wheel', hideTooltip.bind(this));
 		}
 	}
 
@@ -145,9 +132,10 @@ class TooltipClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computeBtnClass(type){
+	_computeBtnClass(type, visible){
 		var arr = ['tooltip'];
 		if(type) arr.push(type);
+		if(visible) arr.push('visible');
 		return arr.join(' ');
 	}
 
@@ -157,10 +145,16 @@ class TooltipClab{
 	PUBLIC
 	----------*/
 	show(){
+		this.targetPosition = window.getComputedStyle(this).getPropertyValue('position');
 		this.visible=true;
+		// Polymer.dom.flush();
+
+		this._setTooltipPosition();
+		this.querySelector('.tooltip').style.opacity='1';
 	}
 
 	hide(){
+		this.querySelector('.tooltip').style.opacity='0';
 		this.visible=false;
 	}
 
