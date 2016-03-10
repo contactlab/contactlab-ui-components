@@ -96,12 +96,12 @@ var DropdownClab = function () {
 			if (this.url != undefined || this.url != null) {
 				this._fetchOptions();
 			}
-			if (this.id == '') {
+
+			if (this.id === undefined || this.id.length < 1) {
 				var id = '';
 				var possible = "abcdefghijklmnopqrstuvwxyz";
 				var n = Math.floor(Math.random() * (999 - 0) + 0);
 				var time = Date.now();
-
 				for (var i = 0; i < 2; i++) {
 					id += possible.charAt(Math.floor(Math.random() * possible.length));
 				}id += n;
@@ -258,14 +258,12 @@ var DropdownClab = function () {
 		}
 	}, {
 		key: '_compType',
-		value: function _compType(disabled, type, def) {
+		value: function _compType(disabled, type, id, def) {
 			var arr = [];
-			if (def != undefined) {
-				arr.push(def);
-				arr.push(this.id);
-			}
+			if (def != undefined && def.length > 0) arr.push(def);
+			if (id != undefined && id.length > 0) arr.push(id);
 			if (disabled) arr.push('disabled');
-			if (type != undefined) arr.push(type);
+			if (type != undefined && type.length > 0) arr.push(type);
 			return arr.join(' ');
 		}
 	}, {

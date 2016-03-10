@@ -13,7 +13,7 @@
                 <label class$="[[_compType(disabled, type)]]">[[label]]</label>
             </template>
             <div class="input">
-                <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-tap="_toggleList">
+                <div class$="[[_compType(disabled, type, id, 'value_wrapper')]]" on-tap="_toggleList">
                     <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
                         <span class="selected">[[_computeLabel(selected)]]</span>
                     </template>

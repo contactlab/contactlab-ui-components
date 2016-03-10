@@ -90,15 +90,13 @@ class DropdownClab{
 		if(this.url!=undefined || this.url!=null){
 			this._fetchOptions();
 		}
-		if(this.id==''){
+
+		if(this.id===undefined || this.id.length<1){
 			let id = '';
 			let possible = "abcdefghijklmnopqrstuvwxyz";
 			let n = Math.floor(Math.random() * (999 - 0) + 0);
 			let time = Date.now();
-
-			for( var i=0; i < 2; i++ )
-				id += possible.charAt(Math.floor(Math.random() * possible.length));
-
+			for( var i=0; i < 2; i++ ) id += possible.charAt(Math.floor(Math.random() * possible.length));
 			id+=n;
 			id+=time;
 			this.id=id;
@@ -240,14 +238,12 @@ class DropdownClab{
 		if(arr.length>0) return arr.join(' ');
 	}
 
-	_compType(disabled, type, def){
+	_compType(disabled, type, id, def){
 		let arr=[];
-		if(def!=undefined) {
-			arr.push(def);
-			arr.push(this.id);
-		}
+		if(def!=undefined && def.length>0) arr.push(def);
+		if(id!=undefined && id.length>0) arr.push(id);
 		if(disabled) arr.push('disabled');
-		if(type!=undefined) arr.push(type);
+		if(type!=undefined && type.length>0) arr.push(type);
 		return arr.join(' ');
 	}
 
