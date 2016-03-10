@@ -1176,83 +1176,83 @@ footer {
 .btn .icon + span {
   padding-left: 5px;
 }
-.btn.primary, .buttons-group.primary .btn {
+.btn.primary, .buttons-group.primary .btn, .input-wrapper .btn.primary {
   border-bottom-color: #004470;
   background-color: #0072bc;
   color: #FAFAFA;
 }
-.btn.primary:hover, .buttons-group.primary .btn:hover {
+.btn.primary:hover, .buttons-group.primary .btn:hover, .input-wrapper .btn.primary:hover {
   background-color: #007bcb;
   color: #FAFAFA;
 }
 .btn.primary:focus, .buttons-group.primary .btn:focus {
   background-color: #0072bc;
 }
-.btn.primary:active, .buttons-group.primary .btn:active, .btn.primary.active, .buttons-group.primary .btn.active {
+.btn.primary:active, .buttons-group.primary .btn:active, .input-wrapper .btn.primary:active, .btn.primary.active, .buttons-group.primary .btn.active {
   color: #FAFAFA;
   background-color: #0069ad;
 }
-.btn.info, .buttons-group.info .btn {
+.btn.info, .buttons-group.info .btn, .input-wrapper .btn.info {
   border-bottom-color: #5fc8de;
   background-color: #9edeeb;
   color: #31708f;
 }
-.btn.info:hover, .buttons-group.info .btn:hover {
+.btn.info:hover, .buttons-group.info .btn:hover, .input-wrapper .btn.info:hover {
   background-color: #abe2ee;
   color: #31708f;
 }
 .btn.info:focus, .buttons-group.info .btn:focus {
   background-color: #9edeeb;
 }
-.btn.info:active, .buttons-group.info .btn:active, .btn.info.active, .buttons-group.info .btn.active {
+.btn.info:active, .buttons-group.info .btn:active, .input-wrapper .btn.info:active, .btn.info.active, .buttons-group.info .btn.active {
   color: #31708f;
   background-color: #91dae8;
 }
-.btn.success, .buttons-group.success .btn {
+.btn.success, .buttons-group.success .btn, .input-wrapper .btn.success {
   border-bottom-color: #9bca75;
   background-color: #c3dfac;
   color: #3c763d;
 }
-.btn.success:hover, .buttons-group.success .btn:hover {
+.btn.success:hover, .buttons-group.success .btn:hover, .input-wrapper .btn.success:hover {
   background-color: #cbe3b7;
   color: #3c763d;
 }
 .btn.success:focus, .buttons-group.success .btn:focus {
   background-color: #c3dfac;
 }
-.btn.success:active, .buttons-group.success .btn:active, .btn.success.active, .buttons-group.success .btn.active {
+.btn.success:active, .buttons-group.success .btn:active, .input-wrapper .btn.success:active, .btn.success.active, .buttons-group.success .btn.active {
   color: #3c763d;
   background-color: #bbdba1;
 }
-.btn.warning, .buttons-group.warning .btn {
+.btn.warning, .buttons-group.warning .btn, .input-wrapper .btn.warning {
   border-bottom-color: #f0c365;
   background-color: #f7deab;
   color: #8a6d3b;
 }
-.btn.warning:hover, .buttons-group.warning .btn:hover {
+.btn.warning:hover, .buttons-group.warning .btn:hover, .input-wrapper .btn.warning:hover {
   background-color: #f8e3b9;
   color: #8a6d3b;
 }
 .btn.warning:focus, .buttons-group.warning .btn:focus {
   background-color: #f7deab;
 }
-.btn.warning:active, .buttons-group.warning .btn:active, .btn.warning.active, .buttons-group.warning .btn.active {
+.btn.warning:active, .buttons-group.warning .btn:active, .input-wrapper .btn.warning:active, .btn.warning.active, .buttons-group.warning .btn.active {
   color: #8a6d3b;
   background-color: #f6d99d;
 }
-.btn.error, .buttons-group.error .btn {
+.btn.error, .buttons-group.error .btn, .input-wrapper .btn.error {
   border-bottom-color: #cc7b89;
   background-color: #e1b2ba;
   color: #a94442;
 }
-.btn.error:hover, .buttons-group.error .btn:hover {
+.btn.error:hover, .buttons-group.error .btn:hover, .input-wrapper .btn.error:hover {
   background-color: #e5bdc4;
   color: #a94442;
 }
 .btn.error:focus, .buttons-group.error .btn:focus {
   background-color: #e1b2ba;
 }
-.btn.error:active, .buttons-group.error .btn:active, .btn.error.active, .buttons-group.error .btn.active {
+.btn.error:active, .buttons-group.error .btn:active, .input-wrapper .btn.error:active, .btn.error.active, .buttons-group.error .btn.active {
   color: #a94442;
   background-color: #dda7b0;
 }
@@ -1545,12 +1545,14 @@ footer {
 .input-wrapper.primary input[type="week"],
 .buttons-group.primary .input-wrapper.btn input[type="week"],
 .input-wrapper.primary textarea,
-.buttons-group.primary .input-wrapper.btn textarea {
+.buttons-group.primary .input-wrapper.btn textarea,
+.input-wrapper .input-wrapper.btn.primary textarea {
   border-bottom-color: #003456;
 }
 .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
 .input-wrapper.primary label,
-.buttons-group.primary .input-wrapper.btn label {
+.buttons-group.primary .input-wrapper.btn label,
+.input-wrapper .input-wrapper.btn.primary label {
   color: #003456;
 }
 .input-wrapper.info input[type="color"], .buttons-group.info .input-wrapper.btn input[type="color"],
@@ -1585,12 +1587,14 @@ footer {
 .input-wrapper.info input[type="week"],
 .buttons-group.info .input-wrapper.btn input[type="week"],
 .input-wrapper.info textarea,
-.buttons-group.info .input-wrapper.btn textarea {
+.buttons-group.info .input-wrapper.btn textarea,
+.input-wrapper .input-wrapper.btn.info textarea {
   border-bottom-color: #49c1da;
 }
 .input-wrapper.info .input-note, .buttons-group.info .input-wrapper.btn .input-note,
 .input-wrapper.info label,
-.buttons-group.info .input-wrapper.btn label {
+.buttons-group.info .input-wrapper.btn label,
+.input-wrapper .input-wrapper.btn.info label {
   color: #49c1da;
 }
 .input-wrapper.success input[type="color"], .buttons-group.success .input-wrapper.btn input[type="color"],
@@ -1625,12 +1629,14 @@ footer {
 .input-wrapper.success input[type="week"],
 .buttons-group.success .input-wrapper.btn input[type="week"],
 .input-wrapper.success textarea,
-.buttons-group.success .input-wrapper.btn textarea {
+.buttons-group.success .input-wrapper.btn textarea,
+.input-wrapper .input-wrapper.btn.success textarea {
   border-bottom-color: #8ec362;
 }
 .input-wrapper.success .input-note, .buttons-group.success .input-wrapper.btn .input-note,
 .input-wrapper.success label,
-.buttons-group.success .input-wrapper.btn label {
+.buttons-group.success .input-wrapper.btn label,
+.input-wrapper .input-wrapper.btn.success label {
   color: #8ec362;
 }
 .input-wrapper.warning input[type="color"], .buttons-group.warning .input-wrapper.btn input[type="color"],
@@ -1665,12 +1671,14 @@ footer {
 .input-wrapper.warning input[type="week"],
 .buttons-group.warning .input-wrapper.btn input[type="week"],
 .input-wrapper.warning textarea,
-.buttons-group.warning .input-wrapper.btn textarea {
+.buttons-group.warning .input-wrapper.btn textarea,
+.input-wrapper .input-wrapper.btn.warning textarea {
   border-bottom-color: #eeb94e;
 }
 .input-wrapper.warning .input-note, .buttons-group.warning .input-wrapper.btn .input-note,
 .input-wrapper.warning label,
-.buttons-group.warning .input-wrapper.btn label {
+.buttons-group.warning .input-wrapper.btn label,
+.input-wrapper .input-wrapper.btn.warning label {
   color: #eeb94e;
 }
 .input-wrapper.error input[type="color"], .buttons-group.error .input-wrapper.btn input[type="color"],
@@ -1705,19 +1713,23 @@ footer {
 .input-wrapper.error input[type="week"],
 .buttons-group.error .input-wrapper.btn input[type="week"],
 .input-wrapper.error textarea,
-.buttons-group.error .input-wrapper.btn textarea {
+.buttons-group.error .input-wrapper.btn textarea,
+.input-wrapper .input-wrapper.btn.error textarea {
   border-bottom-color: #c46978;
 }
 .input-wrapper.error .input-note, .buttons-group.error .input-wrapper.btn .input-note,
 .input-wrapper.error label,
-.buttons-group.error .input-wrapper.btn label {
+.buttons-group.error .input-wrapper.btn label,
+.input-wrapper .input-wrapper.btn.error label {
   color: #c46978;
 }
 .input-wrapper.inline {
   flex-flow: row wrap;
   align-items: center;
 }
-.input-wrapper.inline .input-note {
+.input-wrapper.inline .input-note,
+.input-wrapper.inline note-clab.input-clab,
+.input-wrapper.inline .note-clab {
   padding-left: 150px;
 }
 .input-wrapper.inline.icon-label label {
@@ -1726,25 +1738,33 @@ footer {
 .input-wrapper.inline.smaller-label label {
   width: 75px;
 }
-.input-wrapper.inline.smaller-label .input-note {
+.input-wrapper.inline.smaller-label .input-note,
+.input-wrapper.inline.smaller-label note-clab.input-clab,
+.input-wrapper.inline.smaller-label .note-clab {
   padding-left: 75px;
 }
 .input-wrapper.inline.small-label label {
   width: 100px;
 }
-.input-wrapper.inline.small-label .input-note {
+.input-wrapper.inline.small-label .input-note,
+.input-wrapper.inline.small-label note-clab.input-clab,
+.input-wrapper.inline.small-label .note-clab {
   padding-left: 100px;
 }
 .input-wrapper.inline.large-label label {
   width: 200px;
 }
-.input-wrapper.inline.large-label .input-note {
+.input-wrapper.inline.large-label .input-note,
+.input-wrapper.inline.large-label note-clab.input-clab,
+.input-wrapper.inline.large-label .note-clab {
   padding-left: 200px;
 }
 .input-wrapper.inline.larger-label label {
   width: 250px;
 }
-.input-wrapper.inline.larger-label .input-note {
+.input-wrapper.inline.larger-label .input-note,
+.input-wrapper.inline.larger-label note-clab.input-clab,
+.input-wrapper.inline.larger-label .note-clab {
   padding-left: 250px;
 }
 .input-wrapper.inline label {
@@ -2068,7 +2088,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert .close .icon-close {
   line-height: 25px;
 }
-.alert.primary, .buttons-group.primary .alert.btn {
+.alert.primary, .buttons-group.primary .alert.btn, .input-wrapper .alert.btn.primary {
   background: #0072bc;
   color: #FAFAFA;
 }
@@ -2078,7 +2098,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert.primary .close:hover, .buttons-group.primary .alert.btn .close:hover {
   color: #FAFAFA;
 }
-.alert.primary a, .buttons-group.primary .alert.btn a {
+.alert.primary a, .buttons-group.primary .alert.btn a, .input-wrapper .alert.btn.primary a {
   color: rgba(250, 250, 250, 0.9);
   text-decoration: underline;
 }
@@ -2124,7 +2144,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: #0072bc;
   color: #FAFAFA;
 }
-.alert.info, .buttons-group.info .alert.btn {
+.alert.info, .buttons-group.info .alert.btn, .input-wrapper .alert.btn.info {
   background: #9edeeb;
   color: #31708f;
 }
@@ -2134,7 +2154,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert.info .close:hover, .buttons-group.info .alert.btn .close:hover {
   color: #31708f;
 }
-.alert.info a, .buttons-group.info .alert.btn a {
+.alert.info a, .buttons-group.info .alert.btn a, .input-wrapper .alert.btn.info a {
   color: rgba(49, 112, 143, 0.9);
   text-decoration: underline;
 }
@@ -2180,7 +2200,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: #9edeeb;
   color: #31708f;
 }
-.alert.success, .buttons-group.success .alert.btn {
+.alert.success, .buttons-group.success .alert.btn, .input-wrapper .alert.btn.success {
   background: #c3dfac;
   color: #3c763d;
 }
@@ -2190,7 +2210,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert.success .close:hover, .buttons-group.success .alert.btn .close:hover {
   color: #3c763d;
 }
-.alert.success a, .buttons-group.success .alert.btn a {
+.alert.success a, .buttons-group.success .alert.btn a, .input-wrapper .alert.btn.success a {
   color: rgba(60, 118, 61, 0.9);
   text-decoration: underline;
 }
@@ -2236,7 +2256,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: #c3dfac;
   color: #3c763d;
 }
-.alert.warning, .buttons-group.warning .alert.btn {
+.alert.warning, .buttons-group.warning .alert.btn, .input-wrapper .alert.btn.warning {
   background: #f7deab;
   color: #8a6d3b;
 }
@@ -2246,7 +2266,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert.warning .close:hover, .buttons-group.warning .alert.btn .close:hover {
   color: #8a6d3b;
 }
-.alert.warning a, .buttons-group.warning .alert.btn a {
+.alert.warning a, .buttons-group.warning .alert.btn a, .input-wrapper .alert.btn.warning a {
   color: rgba(138, 109, 59, 0.9);
   text-decoration: underline;
 }
@@ -2292,7 +2312,7 @@ input[type=range]:focus::-ms-fill-upper {
   background: #f7deab;
   color: #8a6d3b;
 }
-.alert.error, .buttons-group.error .alert.btn {
+.alert.error, .buttons-group.error .alert.btn, .input-wrapper .alert.btn.error {
   background: #e1b2ba;
   color: #a94442;
 }
@@ -2302,7 +2322,7 @@ input[type=range]:focus::-ms-fill-upper {
 .alert.error .close:hover, .buttons-group.error .alert.btn .close:hover {
   color: #a94442;
 }
-.alert.error a, .buttons-group.error .alert.btn a {
+.alert.error a, .buttons-group.error .alert.btn a, .input-wrapper .alert.btn.error a {
   color: rgba(169, 68, 66, 0.9);
   text-decoration: underline;
 }
@@ -2550,7 +2570,7 @@ input[type=range]:focus::-ms-fill-upper {
   color: #FFFFFF;
   cursor: pointer;
 }
-.label.primary, .buttons-group.primary .label.btn, .buttons-group.primary .btn.badge, .primary.badge {
+.label.primary, .buttons-group.primary .label.btn, .buttons-group.primary .btn.badge, .input-wrapper .label.btn.primary, .input-wrapper .btn.primary.badge, .primary.badge {
   background-color: #0072bc;
   border-color: #0072bc;
   color: #FAFAFA;
@@ -2573,7 +2593,7 @@ input[type=range]:focus::-ms-fill-upper {
 .label.primary.empty .remove:hover, .buttons-group.primary .label.empty.btn .remove:hover, .buttons-group.primary .empty.btn.badge .remove:hover, .primary.empty.badge .remove:hover {
   color: #0072bc;
 }
-.label.info, .buttons-group.info .label.btn, .buttons-group.info .btn.badge, .info.badge {
+.label.info, .buttons-group.info .label.btn, .buttons-group.info .btn.badge, .input-wrapper .label.btn.info, .input-wrapper .btn.info.badge, .info.badge {
   background-color: #9edeeb;
   border-color: #9edeeb;
   color: #31708f;
@@ -2596,7 +2616,7 @@ input[type=range]:focus::-ms-fill-upper {
 .label.info.empty .remove:hover, .buttons-group.info .label.empty.btn .remove:hover, .buttons-group.info .empty.btn.badge .remove:hover, .info.empty.badge .remove:hover {
   color: #9edeeb;
 }
-.label.success, .buttons-group.success .label.btn, .buttons-group.success .btn.badge, .success.badge {
+.label.success, .buttons-group.success .label.btn, .buttons-group.success .btn.badge, .input-wrapper .label.btn.success, .input-wrapper .btn.success.badge, .success.badge {
   background-color: #c3dfac;
   border-color: #c3dfac;
   color: #3c763d;
@@ -2619,7 +2639,7 @@ input[type=range]:focus::-ms-fill-upper {
 .label.success.empty .remove:hover, .buttons-group.success .label.empty.btn .remove:hover, .buttons-group.success .empty.btn.badge .remove:hover, .success.empty.badge .remove:hover {
   color: #c3dfac;
 }
-.label.warning, .buttons-group.warning .label.btn, .buttons-group.warning .btn.badge, .warning.badge {
+.label.warning, .buttons-group.warning .label.btn, .buttons-group.warning .btn.badge, .input-wrapper .label.btn.warning, .input-wrapper .btn.warning.badge, .warning.badge {
   background-color: #f7deab;
   border-color: #f7deab;
   color: #8a6d3b;
@@ -2642,7 +2662,7 @@ input[type=range]:focus::-ms-fill-upper {
 .label.warning.empty .remove:hover, .buttons-group.warning .label.empty.btn .remove:hover, .buttons-group.warning .empty.btn.badge .remove:hover, .warning.empty.badge .remove:hover {
   color: #f7deab;
 }
-.label.error, .buttons-group.error .label.btn, .buttons-group.error .btn.badge, .error.badge {
+.label.error, .buttons-group.error .label.btn, .buttons-group.error .btn.badge, .input-wrapper .label.btn.error, .input-wrapper .btn.error.badge, .error.badge {
   background-color: #e1b2ba;
   border-color: #e1b2ba;
   color: #a94442;
@@ -2725,19 +2745,19 @@ input[type=range]:focus::-ms-fill-upper {
   padding-top: 20px;
   margin-bottom: 20px;
 }
-.progress-bar.primary section article, .buttons-group.primary .progress-bar.btn section article {
+.progress-bar.primary section article, .buttons-group.primary .progress-bar.btn section article, .input-wrapper .progress-bar.btn.primary section article {
   background-color: #0072bc;
 }
-.progress-bar.info section article, .buttons-group.info .progress-bar.btn section article {
+.progress-bar.info section article, .buttons-group.info .progress-bar.btn section article, .input-wrapper .progress-bar.btn.info section article {
   background-color: #9edeeb;
 }
-.progress-bar.success section article, .buttons-group.success .progress-bar.btn section article {
+.progress-bar.success section article, .buttons-group.success .progress-bar.btn section article, .input-wrapper .progress-bar.btn.success section article {
   background-color: #c3dfac;
 }
-.progress-bar.warning section article, .buttons-group.warning .progress-bar.btn section article {
+.progress-bar.warning section article, .buttons-group.warning .progress-bar.btn section article, .input-wrapper .progress-bar.btn.warning section article {
   background-color: #f7deab;
 }
-.progress-bar.error section article, .buttons-group.error .progress-bar.btn section article {
+.progress-bar.error section article, .buttons-group.error .progress-bar.btn section article, .input-wrapper .progress-bar.btn.error section article {
   background-color: #e1b2ba;
 }
 .progress-bar.minimal section {
@@ -3053,39 +3073,39 @@ td, .table .th,
   text-decoration: underline;
   cursor: pointer;
 }
-.kawo-tooltip.primary, .buttons-group.primary .kawo-tooltip.btn {
+.kawo-tooltip.primary, .buttons-group.primary .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.primary {
   background-color: #0072bc;
   color: #FAFAFA;
 }
-.kawo-tooltip.primary a, .buttons-group.primary .kawo-tooltip.btn a {
+.kawo-tooltip.primary a, .buttons-group.primary .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.primary a {
   color: #FAFAFA;
 }
-.kawo-tooltip.info, .buttons-group.info .kawo-tooltip.btn {
+.kawo-tooltip.info, .buttons-group.info .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.info {
   background-color: #9edeeb;
   color: #31708f;
 }
-.kawo-tooltip.info a, .buttons-group.info .kawo-tooltip.btn a {
+.kawo-tooltip.info a, .buttons-group.info .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.info a {
   color: #31708f;
 }
-.kawo-tooltip.success, .buttons-group.success .kawo-tooltip.btn {
+.kawo-tooltip.success, .buttons-group.success .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.success {
   background-color: #c3dfac;
   color: #3c763d;
 }
-.kawo-tooltip.success a, .buttons-group.success .kawo-tooltip.btn a {
+.kawo-tooltip.success a, .buttons-group.success .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.success a {
   color: #3c763d;
 }
-.kawo-tooltip.warning, .buttons-group.warning .kawo-tooltip.btn {
+.kawo-tooltip.warning, .buttons-group.warning .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.warning {
   background-color: #f7deab;
   color: #8a6d3b;
 }
-.kawo-tooltip.warning a, .buttons-group.warning .kawo-tooltip.btn a {
+.kawo-tooltip.warning a, .buttons-group.warning .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.warning a {
   color: #8a6d3b;
 }
-.kawo-tooltip.error, .buttons-group.error .kawo-tooltip.btn {
+.kawo-tooltip.error, .buttons-group.error .kawo-tooltip.btn, .input-wrapper .kawo-tooltip.btn.error {
   background-color: #e1b2ba;
   color: #a94442;
 }
-.kawo-tooltip.error a, .buttons-group.error .kawo-tooltip.btn a {
+.kawo-tooltip.error a, .buttons-group.error .kawo-tooltip.btn a, .input-wrapper .kawo-tooltip.btn.error a {
   color: #a94442;
 }
 
