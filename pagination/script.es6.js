@@ -16,7 +16,7 @@ class PaginationClab{
 			currentPage: {
 				type: Number,
 				notify: true,
-				value: 1,
+				value: 0,
 				observer: '_updateAvailablePages'
 			},
 
@@ -64,16 +64,16 @@ class PaginationClab{
 		if(i >= 0){
 			this.querySelector('.active').classList.remove('active');
 			this.querySelectorAll('.page')[i].classList.add('active');
-			this.currentPage = i+1;
+			this.currentPage = i;
 
-			this.fire('change', {index: i});
+			this.fire('change', {currentPage: i});
 		}
-		
+
 	}
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_observPages(val, oldval){
@@ -88,7 +88,7 @@ class PaginationClab{
 		}
 	}
 
-	_updateAvailablePages(){ 
+	_updateAvailablePages(){
 		Array.prototype.map.call(this.querySelectorAll('.page'), (el, idx)=>{
 			if(idx >= this.availableStart && idx <= this.availableEnd){
 				el.classList.remove('invisible');
@@ -100,12 +100,12 @@ class PaginationClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeLiPageClass(i){
 		var arr=['page'];
-		if(i==this.currentPage-1) 
+		if(i==this.currentPage)
 			arr.push('active');
 		return arr.join(' ');
 	}
@@ -117,13 +117,13 @@ class PaginationClab{
 		return pages[pages.length-1];
 	}
 	_getPrevPage(pages, cur){
-		return pages[cur-2];
+		return pages[cur-1];
 	}
 	_getNextPage(pages, cur){
-		return pages[cur];
+		return pages[cur+1];
 	}
 	_getStart(pages, cur){
-		let i = cur-1;
+		let i = cur;
 		let last = pages.length-1;
 		if(i >= last-3){
 			return last-4;
@@ -134,7 +134,7 @@ class PaginationClab{
 		}
 	}
 	_getEnd(pages, cur){
-		let i = cur-1;
+		let i = cur;
 		let last = pages.length-1;
 		if(i >= last-3){
 			return last;
@@ -147,7 +147,7 @@ class PaginationClab{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
 	_pageNumber(i){
@@ -157,4 +157,3 @@ class PaginationClab{
 }
 
 Polymer(PaginationClab);
-

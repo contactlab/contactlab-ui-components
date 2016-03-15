@@ -23,7 +23,7 @@ var PaginationClab = function () {
 				currentPage: {
 					type: Number,
 					notify: true,
-					value: 1,
+					value: 0,
 					observer: '_updateAvailablePages'
 				},
 
@@ -74,13 +74,13 @@ var PaginationClab = function () {
 			if (i >= 0) {
 				this.querySelector('.active').classList.remove('active');
 				this.querySelectorAll('.page')[i].classList.add('active');
-				this.currentPage = i + 1;
+				this.currentPage = i;
 
-				this.fire('change', { index: i });
+				this.fire('change', { currentPage: i });
 			}
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -112,7 +112,7 @@ var PaginationClab = function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
@@ -120,7 +120,7 @@ var PaginationClab = function () {
 		key: '_computeLiPageClass',
 		value: function _computeLiPageClass(i) {
 			var arr = ['page'];
-			if (i == this.currentPage - 1) arr.push('active');
+			if (i == this.currentPage) arr.push('active');
 			return arr.join(' ');
 		}
 	}, {
@@ -136,17 +136,17 @@ var PaginationClab = function () {
 	}, {
 		key: '_getPrevPage',
 		value: function _getPrevPage(pages, cur) {
-			return pages[cur - 2];
+			return pages[cur - 1];
 		}
 	}, {
 		key: '_getNextPage',
 		value: function _getNextPage(pages, cur) {
-			return pages[cur];
+			return pages[cur + 1];
 		}
 	}, {
 		key: '_getStart',
 		value: function _getStart(pages, cur) {
-			var i = cur - 1;
+			var i = cur;
 			var last = pages.length - 1;
 			if (i >= last - 3) {
 				return last - 4;
@@ -159,7 +159,7 @@ var PaginationClab = function () {
 	}, {
 		key: '_getEnd',
 		value: function _getEnd(pages, cur) {
-			var i = cur - 1;
+			var i = cur;
 			var last = pages.length - 1;
 			if (i >= last - 3) {
 				return last;
@@ -170,7 +170,7 @@ var PaginationClab = function () {
 			}
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
