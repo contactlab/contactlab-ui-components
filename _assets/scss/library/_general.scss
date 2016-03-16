@@ -93,6 +93,8 @@ strong {
 
 section {
   padding: 0 0 $large-spacing;
+  display: flex;
+  flex-flow: column wrap;
 
   &:last-of-type {
     padding-bottom: 0;
@@ -101,6 +103,8 @@ section {
 
 article {
   padding: 0 0 $base-spacing;
+  display: flex;
+  flex-flow: row wrap;
 
   &:last-of-type {
     padding-bottom: 0;
@@ -122,6 +126,7 @@ h6 {
   margin-bottom: $base-spacing;
   margin-top: 0;
   font-weight: $normal-weight;
+  width: 100%;
 
   &.no-spacing-title {
     margin-bottom: 0;

@@ -1,75 +1,97 @@
 /////////////////// TABS ///////////////////
 
-.tabs {
-  font-size: 0;
-  border: 0;
-  margin-bottom: 0;
-  font-family: $base-font;
-  @include user-selection;
 
-  ul {
-    border-top: 0;
-    border-bottom: 1px solid $gray;
-    margin-bottom: 0;
-    display: flex;
-    flex-flow: row nowrap;
-    justify-content: flex-start;
+
+.tabs {
+  display: flex;
+  flex-flow: column wrap;
+
+  &.centered {
+    ul {
+      justify-content: center;
+    }
   }
 
-  .tab {
-    line-height: 1;
+  &.full-width {
+    ul li {
+      flex-grow: 1;
+    }
+  }
+
+  &.vertical {
+    flex-flow: row nowrap;
+
+    ul {
+      border-bottom: 0;
+      border-right: 1px solid $gray;
+      flex-flow: column wrap;
+      flex-basis: 200px;
+      text-align: left;
+      flex-shrink: 0;
+
+      .tab {
+        border-bottom: 1px solid $gray;
+
+        &:last-of-type {
+          border-bottom: 0;
+        }
+
+        &.active a {
+          border-bottom-color: transparent;
+          border-right: 1px solid $primary-color;
+          @include box-shadow(1px, 0, 0, 0, $primary-color);
+        }
+
+        a {
+          padding: $small-spacing;
+          border-right: 1px solid tansparent;
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 0 0 0 $base-spacing;
+    }
+  }
+
+  ul {
+    display: flex;
+    flex-flow: row nowrap;
+    border-bottom: 1px solid $gray;
     margin-bottom: 0;
-    min-width: 50px;
     text-align: center;
 
     a {
-      padding: $small-spacing $small-spacing $small-spacing+2px;
+      padding: $small-spacing $base-spacing;
       display: block;
       color: $text-color;
+      border-bottom: 1px solid transparent;
 
-      &:hover {
+      &:active {
         color: $primary-color;
       }
     }
 
-    &.active a {
-      color: $primary-color;
-      padding-bottom: $small-spacing;
-      @include box-shadow(0, 3px, 0, 0, $primary-color);
-    }
+    .tab {
+      line-height: 1;
+      margin-bottom: 0;
+      min-width: 50px;
 
-    &.disabled a {
-      color: $disabled-color;
-      cursor: not-allowed;
+      &.active a {
+        color: $primary-color;
+        border-color: $primary-color;
+        @include box-shadow(0, 1px, 0, 0, $primary-color);
+      }
 
-      &:hover {
+      &.disabled a {
         color: $disabled-color;
+        cursor: not-allowed;
+
+        &:hover {
+          color: $disabled-color;
+        }
       }
     }
-
-  } 
-
-
-
-  >ul>li, {
-    display: inline-block;
-    font-size: $base-font-size;
-  }
-
-  .ui-widget-content,
-  .ui-widget-header,
-  .ui-state-default,
-  .ui-widget-content .ui-state-default,
-  .ui-widget-header .ui-state-default {
-    border: 0;
-    background: $background-color; 
-    color: $text-color;
-    @include border-radius(0);
-    font-family: $base-font;
-  }
-
-  .ui-widget-header {
-    border-bottom: 1px solid $light-gray;
   }
 }
 
@@ -77,6 +99,7 @@
   padding: $base-spacing 0;
   font-size: $base-font-size;
   border: 0;
+  flex-grow: 1;
 }
 
 
@@ -90,30 +113,27 @@
 
   ul { 
     border-bottom: 0;
+
+    .tab {
+      margin-right: 0;
+
+      a {
+        border: 0;
+      }
+
+      &.active a {
+        background: $primary-color;
+        color: set-text-color($primary-color);
+        @include box-shadow(0, 0, 0, 0, $primary-color);
+      }
+    }
   }
 
   .ui-widget-header {
     border: 0;
   }
 
-  .tab {
-    margin-right: 0;
-
-    a {
-      padding: $smaller-spacing $small-spacing;
-
-      &:hover {
-        color: $primary-color;
-      }
-    }
-
-    &.active a {
-      background: $primary-color;
-      color: set-text-color($primary-color);
-      @include box-shadow(0, 0, 0, 0, $primary-color);
-      padding: $smaller-spacing $small-spacing;
-    }
-  }
+  
 }
 
 

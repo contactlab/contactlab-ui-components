@@ -214,6 +214,11 @@ textarea {
 	&:focus {
 		border-bottom-color: $primary-color;
 	}
+
+	&:disabled {
+		cursor: not-allowed;
+		color: $disabled-color;
+	}
 }
 
 /////////////////// END TEXT INPUT ///////////////////
@@ -274,6 +279,23 @@ input[type=checkbox]:disabled + label,
 input[type=checkbox]:disabled + label:before {
   color: $disabled-color;
   cursor: not-allowed;
+}
+
+checkbox-clab,
+radio-clab {
+	&.inline {
+		display: flex;
+
+		input[type=checkbox],
+		input[type=radio] {
+
+			+ label {
+				margin-right: $base-spacing;
+			}
+		}
+	}
+
+	
 }
 
 /////////////////// END RADIO & CHECKBOX ///////////////////
@@ -402,3 +424,17 @@ input[type=range]:focus::-ms-fill-upper {
 }
 
 /////////////////// END CUSTOM RANGE ///////////////////
+
+
+
+/////////////////// TAGS ///////////////////
+
+.tags-wrapper {
+	padding-bottom: $base-spacing;
+
+	.input-wrapper {
+		padding-bottom: $smaller-spacing;
+	}
+}
+
+/////////////////// END TAGS ///////////////////
