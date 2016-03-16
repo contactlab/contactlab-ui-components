@@ -135,11 +135,21 @@ td {
 	.entries-number,
 	.table-search {
 		flex-grow: 1;
+
+    .input-wrapper {
+      padding: 0;
+    }
 	}
 
   .entries-number {
     display: flex;
     align-items: center;
+    flex-grow: 3;
+
+    .entries-select {
+      margin: 0 $small-spacing;
+      width: 50px;
+    }
   }
 
 	.table-search {
@@ -155,6 +165,10 @@ td {
 	.pagination {
 		flex-grow: 1;
 	}
+
+  .total-entries {
+    font-size: $small-font-size;
+  }
 }
 
 // end full table component

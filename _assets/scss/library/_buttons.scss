@@ -4,6 +4,14 @@ $btn-border-thickness: 1px;
 
 // DEFAULT BUTTONS
 
+button-clab {
+  margin-right: $smaller-spacing;
+
+  &:last-tof-type {
+    margin-right: 0;
+  }
+}
+
 .btn {
   border: 0;
   padding: $small-spacing $base-spacing;
@@ -14,7 +22,11 @@ $btn-border-thickness: 1px;
   line-height: 1.2;
   vertical-align: bottom;
   font-size: $base-font-size;
-  line-height: 1;
+  display: inline-block;
+
+  &.block {
+    width: 100%;
+  }
 
   &:disabled {
     cursor: not-allowed;
@@ -166,6 +178,10 @@ $btn-border-thickness: 1px;
 .buttons-group {
   display: flex;
 
+  button-clab {
+    margin: 0;
+  }
+
   &.small {
     .btn {
       @extend .small;
@@ -174,11 +190,9 @@ $btn-border-thickness: 1px;
 
   .btn {
     margin: 0;
-    border-right-width: 0;
-
-    &:last-of-type {
-      border-right-width: 1px;
-    }
+    border-left: 1px solid $default-color;
+    border-right: 1px solid $default-color;
+    margin-left: -1px;
   }
 
   @each $type, $color in $default-status {

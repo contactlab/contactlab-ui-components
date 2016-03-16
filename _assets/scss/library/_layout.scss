@@ -1,5 +1,6 @@
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,300,600,700);
 
+//////////////// HEADER ////////////////
 
 $header-height: 64px;
 
@@ -93,7 +94,7 @@ header {
 						width: 20%;
 						height: 3px;
 						background-color: $gray;
-						@extend .fast-transition;
+						@extend .slow-transition;
 					}
 				}
 			}
@@ -108,7 +109,7 @@ header {
 					width: 100%;
 					height: 3px;
 					background-color: $primary-color;
-					@extend .fast-transition;
+					@extend .slow-transition;
 				}
 			}
 		}
@@ -155,7 +156,7 @@ header {
 				width: 18px;
 				height: 18px;
 				background-color: $primary-color;
-				color: set-text-color($primary-color);
+				color: $primary-text-color;
 				line-height: 18px;
 				text-align: center;
 				@include border-radius(50%);
@@ -170,7 +171,7 @@ header {
 			@include user-selection(none);
 
 			.company {
-				font-size: $small-font-size;
+				font-size: $small-font-size; 
 			}
 		}
 
@@ -290,27 +291,30 @@ header {
 
 	// END MOBILE HEADER
 
-} // END HEADER
+}
+
+//////////////// END HEADER ////////////////
+
+//////////////// MAIN ////////////////
 
 main {
-	padding: $header-height+$base-spacing $base-spacing $base-spacing;
+	padding: $header-height+$base-spacing $base-spacing $large-spacing;
 	flex-grow: 1;
 }
 
-aside {
-	width: 250px;
-	padding: $base-spacing;
-	border-left: 3px solid $secondary-color;
-	flex-shrink: 0;
-	display: none;
-}
+//////////////// END MAIN ////////////////
+
+//////////////// FOOTER ////////////////
 
 footer {
 	padding: $base-spacing;
 	background-color: $secondary-color;
 }
 
-// CONTEXTUAL MENU
+//////////////// END FOOTER ////////////////
+
+
+//////////////// CONTEXTUAL MENU //////////////// 
 
 .contextual-menu {
 	width: 100%;
@@ -383,7 +387,7 @@ footer {
 			background-color: $background-color;
 			max-height: 450px;
 			overflow: auto;
-			z-index: 2;
+			z-index: 3;
 
 			> li a {
 				padding: $small-spacing $base-spacing;
@@ -434,9 +438,9 @@ footer {
 	}
 }
 
-// END CONTEXTUAL MENU
+//////////////// END CONTEXTUAL MENU //////////////// 
 
-// CLOSE OVERLAY
+//////////////// CLOSE OVERLAY //////////////// 
 
 .close-overlay {
 	position: fixed;
@@ -456,9 +460,10 @@ footer {
 	}
 }
 
+//////////////// CLOSE OVERLAY //////////////// 
 
 
-// WRAPPERS
+//////////////// WRAPPERS //////////////// 
 
 .wrapper {
 	max-width: 1320px;
@@ -469,3 +474,5 @@ footer {
 	max-width: 960px;
 	margin: 0 auto;
 }
+
+//////////////// END WRAPPERS //////////////// 

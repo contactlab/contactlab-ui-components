@@ -32,7 +32,7 @@ $darker-gray: #434A5A;
 $info-color: #9edeeb;
 $info-text-color: #31708f;
 $success-color: #c3dfac;
-$success-text-color: #3c763d;
+$success-text-color: #3c763d; 
 $warning-color: #f7deab;
 $warning-text-color: #8a6d3b;
 $error-color: #e1b2ba;
@@ -45,7 +45,9 @@ $background-color: #F0f0f0;
 $overlay-color: $background-color;
 $header-color: #FFFFFF;
 $primary-color: nth($palette, 1);
+$primary-text-color: set-text-color($primary-color);
 $secondary-color: nth($palette, 2);
+$secondary-text-color: set-text-color($secondary-color);
 
 
 
@@ -63,7 +65,8 @@ $small-font-size: 0.8571rem; // 12px
 $smaller-font-size: 0.7143rem; // 10px
 
 
-$normal-weight: normal;
+$light-weight: 300;
+$normal-weight: normal; 
 $semibold-weight: 600;
 $bold-weight: 700;
 
