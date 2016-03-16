@@ -14,7 +14,14 @@ var InputClab = function () {
 		value: function beforeRegister() {
 			this.is = "input-clab";
 			this.properties = {
-				label: String,
+				label: {
+					type: String,
+					value: ''
+				},
+				icon: {
+					type: String,
+					value: ''
+				},
 				name: {
 					type: String,
 					value: 'textinput'
@@ -30,8 +37,15 @@ var InputClab = function () {
 					value: false,
 					observer: '_disabledChanged'
 				},
+				inline: {
+					type: Boolean,
+					value: false
+				},
+				labelSize: {
+					type: String,
+					value: ''
+				},
 				placeholder: String,
-				noteType: String,
 				check: {
 					type: Boolean,
 					value: false
@@ -60,11 +74,6 @@ var InputClab = function () {
 					type: Boolean,
 					value: false,
 					observer: '_computeBtnPswd'
-				},
-
-				compNoteType: {
-					type: String,
-					computed: '_computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -109,9 +118,19 @@ var InputClab = function () {
   ----------*/
 
 	}, {
-		key: '_computeNoteType',
-		value: function _computeNoteType(type, noteType) {
-			return [type, noteType].join(' ');
+		key: '_compWrapperClass',
+		value: function _compWrapperClass(str, inline, labelSize) {
+			var arr = [str];
+			if (inline) {
+				arr.push('inline');
+				if (labelSize.length > 0) arr.push(labelSize + '-label');
+			}
+			return arr.join(' ');
+		}
+	}, {
+		key: '_compIcon',
+		value: function _compIcon(icon) {
+			if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
 		}
 	}, {
 		key: '_computeInputType',
@@ -121,11 +140,6 @@ var InputClab = function () {
 			} else {
 				return 'text';
 			}
-		}
-	}, {
-		key: '_ifBtn',
-		value: function _ifBtn(label) {
-			if (label != '' && label.length > 0) return true;else return false;
 		}
 	}, {
 		key: '_computeBtnPswd',

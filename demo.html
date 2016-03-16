@@ -221,9 +221,13 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Autocomplete</h2>
-			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">Type here to get hints</autocomplete-clab>
+			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1">
+			    <span class="note">Type here to get hints</span>
+			</autocomplete-clab>
 			&nbsp;
-			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1">Type here to get hints</autocomplete-clab>
+			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1">
+			    <span class="note">Type here to get hints</span>
+			</autocomplete-clab>
 		</section>
 
 		<section>
@@ -293,6 +297,9 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<input-clab value="ciao" label="My label">
 				A simple input component
 			</input-clab>
+			<input-clab value="ciao" icon="icon-edit">
+				A simple input component
+			</input-clab>
 
             <input-clab value="ciao" label="Input with buttons">
 				<span class="note">A simple note</span>
@@ -300,18 +307,28 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
                 <button-clab class="button" type="success">save</button-clab>
 			</input-clab>
 
-            <input-clab value="ciao" label="Input inline" inline>
+            <input-clab value="ciao" label="Input inline" inline label-size="small">
 				<span class="note">A simple note</span>
                 <button-clab class="button" type="success">ok</button-clab>
 			</input-clab>
+            <input-clab value="ciao" icon="icon-edit" inline>
+				<span class="note">A simple note</span>
+                <button-clab class="button" type="success">ok</button-clab>
+			</input-clab>
+            <input-clab value="ciao" label="Input inline" inline label-size="large" icon="icon-edit">
+				<span class="note">A simple note</span>
+                <button-clab class="button" type="success">ok</button-clab>
+			</input-clab>
+            <!-- TODO: Perchè la nota è così avanti =O ?
+            Ho un'idea! Nel css quando dai il padding punta al tag note-clab e non alla classe .note-clab ;) -->
 
-			<div class="input-wrapper inline">
+			<!-- <div class="input-wrapper inline">
 				<label for="">Label</label>
 				<div class="input">
 					<input type="text" placeholder="placeholder">
 				</div>
 				<div class="note-clab">Lorem ipsum dolor sit.</div>
-			</div>
+			</div> -->
 		</section>
 
 		<section>

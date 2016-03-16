@@ -6,8 +6,11 @@ var UtilBehavior = {
 		return str.toLowerCase().replace(/ /g, '-');
 	},
 
-	_viewLabel: function _viewLabel(label) {
-		if (label != undefined && label.length > 0) return true;else return false;
+	_viewLabel: function _viewLabel(label, icon) {
+		var bool = false;
+		if (label != undefined && label.length > 0) bool = true;else bool = false;
+		if (icon != undefined && icon.length > 0) bool = true;
+		return bool;
 	},
 
 	_getIndex: function _getIndex(item, items) {

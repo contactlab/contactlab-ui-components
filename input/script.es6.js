@@ -7,7 +7,14 @@ class InputClab{
 	beforeRegister(){
 		this.is = "input-clab";
 		this.properties = {
-			label: String,
+			label: {
+				type:String,
+				value:''
+			},
+			icon:{
+				type:String,
+				value:''
+			},
 			name: {
 				type: String,
 				value: 'textinput'
@@ -23,8 +30,15 @@ class InputClab{
 				value: false,
 				observer: '_disabledChanged'
 			},
+			inline: {
+				type: Boolean,
+				value: false
+			},
+			labelSize: {
+				type:String,
+				value:''
+			},
 			placeholder: String,
-			noteType: String,
 			check: {
 				type: Boolean,
 				value: false
@@ -53,11 +67,6 @@ class InputClab{
 				type: Boolean,
 				value: false,
 				observer: '_computeBtnPswd'
-			},
-			
-			compNoteType: {
-				type: String,
-				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -95,8 +104,17 @@ class InputClab{
 	/*----------
 	COMPUTE
 	----------*/
-	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
+	_compWrapperClass(str, inline, labelSize){
+		let arr=[str];
+		if(inline){
+			arr.push('inline');
+			if(labelSize.length>0) arr.push(labelSize+'-label');
+		}
+		return arr.join(' ');
+	}
+
+	_compIcon(icon){
+		if(icon!=undefined && icon.length>0) return 'clab-icon '+icon; else return '';
 	}
 
 	_computeInputType(password){
@@ -105,10 +123,6 @@ class InputClab{
 		}else{
 			return 'text';
 		}
-	}
-
-	_ifBtn(label){
-		if(label!='' && label.length>0) return true; else return false;
 	}
 
 	_computeBtnPswd(val, old){

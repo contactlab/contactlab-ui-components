@@ -14,7 +14,8 @@
             </template>
             <div class="input">
                 <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
-                    <content></content>
+                    <content select=".button"></content>
+                    <content select=".note"></content>
                 </input-clab>
                 <ol class="options-list">
                     <template is="dom-repeat" items="[[options]]">
@@ -43,7 +44,7 @@
 
                 <spinner-clab visible="[[spinner]]"></spinner-clab>
             </div>
-            
+
         </div> -->
 
     </template>
