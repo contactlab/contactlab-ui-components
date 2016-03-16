@@ -238,7 +238,9 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<section>
 			<h2>Tags</h2>
 			<article>
-				<tags-clab label="Add tag"></tags-clab>
+				<tags-clab label="Add tag" placeholder="rosso">
+				    <span class="note">Lorem ipsum dolor sit.</span>
+				</tags-clab>
 			</article>
 			<article>
 				<div class="input-wrapper">
@@ -291,6 +293,18 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<input-clab value="ciao" label="My label">
 				A simple input component
 			</input-clab>
+
+            <input-clab value="ciao" label="Input with buttons">
+				<span class="note">A simple note</span>
+                <button-clab class="button" type="error">cancel</button-clab>
+                <button-clab class="button" type="success">save</button-clab>
+			</input-clab>
+
+            <input-clab value="ciao" label="Input inline" inline>
+				<span class="note">A simple note</span>
+                <button-clab class="button" type="success">ok</button-clab>
+			</input-clab>
+
 			<div class="input-wrapper inline">
 				<label for="">Label</label>
 				<div class="input">
@@ -298,9 +312,6 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				</div>
 				<div class="note-clab">Lorem ipsum dolor sit.</div>
 			</div>
-            <input-clab value="ciao" label="My label" btn-label="prova" btn-type="success">
-				A simple input component
-			</input-clab>
 		</section>
 
 		<section>

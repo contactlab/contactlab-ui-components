@@ -22,12 +22,10 @@
 					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
 				</template>
 
-				<template is="dom-if" if="[[_ifBtn(btnLabel)]]">
-					<button-clab type="[[btnType]]" size="[[btnSize]]" appearance="[[btnAppearance]]" icon="[[btnIcon]]" disabled="[[disabled]]" on-btnclick="_btnclick">[[btnLabel]]</button-clab>
-				</template>
+				<content select=".button"></content>
 			</div>
-			<note-clab type="[[compNoteType]]">
-				<content></content>
+			<note-clab>
+				<content select=".note"></content>
 			</note-clab>
 		</div>
 	</template>

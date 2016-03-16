@@ -61,11 +61,6 @@ var InputClab = function () {
 					value: false,
 					observer: '_computeBtnPswd'
 				},
-				btnType: String,
-				btnAppearence: String,
-				btnSize: String,
-				btnIcon: String,
-				btnLabel: String,
 
 				compNoteType: {
 					type: String,

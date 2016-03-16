@@ -54,12 +54,7 @@ class InputClab{
 				value: false,
 				observer: '_computeBtnPswd'
 			},
-			btnType:String,
-			btnAppearence:String,
-			btnSize:String,
-			btnIcon:String,
-			btnLabel:String,
-
+			
 			compNoteType: {
 				type: String,
 				computed: '_computeNoteType(type, noteType)'

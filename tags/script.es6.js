@@ -21,6 +21,7 @@ class TagsClab {
 				type:Boolean,
 				value:false
 			},
+			placeholder:String,
 			stacked:{
 				type:Boolean,
 				value:false
