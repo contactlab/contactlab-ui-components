@@ -6,6 +6,10 @@ $default-label-width: 150px;
 $large-label-width: 200px;
 $larger-label-width: 250px;
 
+input-clab {
+	width: 100%;
+}
+
 .input-wrapper {
 	display: flex;
 	flex-flow: column wrap;
@@ -26,7 +30,7 @@ $larger-label-width: 250px;
 
 	.input-note,
 	note-clab.input-clab,
-	.note-clab {
+	.note-clab, {
 		font-size: $small-font-size;
 		width: 100%;
 	}
@@ -89,9 +93,36 @@ $larger-label-width: 250px;
 			}
 
 			.input-note,
-			label {
+			label,
+			.note-clab {
 				color: darken(nth($color, 1), 20);
 			}
+		}
+	}
+
+	&.primary {
+		input[type="color"],
+		input[type="date"],
+		input[type="datetime"],
+		input[type="datetime-local"],
+		input[type="email"],
+		input[type="month"],
+		input[type="number"],
+		input[type="password"],
+		input[type="search"],
+		input[type="tel"],
+		input[type="text"],
+		input[type="time"],
+		input[type="url"],
+		input[type="week"],
+		textarea {
+			border-bottom-color: $primary-color;
+		}
+
+		.input-note,
+		label,
+		.note-clab {
+			color: $primary-color;
 		}
 	}
 
@@ -186,6 +217,10 @@ label {
 	font-weight: $bold-weight;
 	padding-right: $small-spacing;
 	padding-bottom: $smaller-spacing;
+
+	&.disabled {
+		color: $disabled-color;
+	}
 }
 
 input[type="color"],
@@ -217,6 +252,14 @@ textarea {
 	&:disabled {
 		cursor: not-allowed;
 		color: $disabled-color;
+	}
+}
+
+.input-wrapper .input-note {
+	@each $type, $color in $default-status {
+		&.#{$type} {
+			color: darken(nth($color, 1), 20);
+		}
 	}
 }
 
