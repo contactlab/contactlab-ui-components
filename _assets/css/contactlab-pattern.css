@@ -909,6 +909,14 @@ footer {
     line-height: 40px; }
 
 .wrapper {
+  max-width: 1100px;
+  margin: 0 auto; }
+
+.full-wrapper {
+  max-width: 100%;
+  margin: 0 auto; }
+
+.large-wrapper {
   max-width: 1320px;
   margin: 0 auto; }
 
@@ -1177,6 +1185,9 @@ button-clab {
     .buttons-group.error .btn.empty {
       background-color: transparent; }
 
+input-clab {
+  width: 100%; }
+
 .input-wrapper {
   display: flex;
   flex-flow: column wrap;
@@ -1195,6 +1206,8 @@ button-clab {
   .input-wrapper .note-clab {
     font-size: 0.8571rem;
     width: 100%; }
+  .input-wrapper button-clab {
+    margin: 0; }
   .input-wrapper .btn {
     padding: 8px 10px 7px;
     background-color: #CCD1D9;
@@ -1225,7 +1238,8 @@ button-clab {
   .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea {
     border-bottom-color: #003456; }
   .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
-  .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label {
+  .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
+  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab {
     color: #003456; }
   .input-wrapper.info input[type="color"], .buttons-group.info .input-wrapper.btn input[type="color"],
   .input-wrapper.info input[type="date"], .buttons-group.info .input-wrapper.btn input[type="date"],
@@ -1246,7 +1260,8 @@ button-clab {
   .input-wrapper.info textarea, .buttons-group.info .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.info textarea {
     border-bottom-color: #49c1da; }
   .input-wrapper.info .input-note, .buttons-group.info .input-wrapper.btn .input-note,
-  .input-wrapper.info label, .buttons-group.info .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.info label {
+  .input-wrapper.info label, .buttons-group.info .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.info label,
+  .input-wrapper.info .note-clab, .buttons-group.info .input-wrapper.btn .note-clab {
     color: #49c1da; }
   .input-wrapper.success input[type="color"], .buttons-group.success .input-wrapper.btn input[type="color"],
   .input-wrapper.success input[type="date"], .buttons-group.success .input-wrapper.btn input[type="date"],
@@ -1267,7 +1282,8 @@ button-clab {
   .input-wrapper.success textarea, .buttons-group.success .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.success textarea {
     border-bottom-color: #8ec362; }
   .input-wrapper.success .input-note, .buttons-group.success .input-wrapper.btn .input-note,
-  .input-wrapper.success label, .buttons-group.success .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.success label {
+  .input-wrapper.success label, .buttons-group.success .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.success label,
+  .input-wrapper.success .note-clab, .buttons-group.success .input-wrapper.btn .note-clab {
     color: #8ec362; }
   .input-wrapper.warning input[type="color"], .buttons-group.warning .input-wrapper.btn input[type="color"],
   .input-wrapper.warning input[type="date"], .buttons-group.warning .input-wrapper.btn input[type="date"],
@@ -1288,7 +1304,8 @@ button-clab {
   .input-wrapper.warning textarea, .buttons-group.warning .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.warning textarea {
     border-bottom-color: #eeb94e; }
   .input-wrapper.warning .input-note, .buttons-group.warning .input-wrapper.btn .input-note,
-  .input-wrapper.warning label, .buttons-group.warning .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.warning label {
+  .input-wrapper.warning label, .buttons-group.warning .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.warning label,
+  .input-wrapper.warning .note-clab, .buttons-group.warning .input-wrapper.btn .note-clab {
     color: #eeb94e; }
   .input-wrapper.error input[type="color"], .buttons-group.error .input-wrapper.btn input[type="color"],
   .input-wrapper.error input[type="date"], .buttons-group.error .input-wrapper.btn input[type="date"],
@@ -1309,13 +1326,35 @@ button-clab {
   .input-wrapper.error textarea, .buttons-group.error .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.error textarea {
     border-bottom-color: #c46978; }
   .input-wrapper.error .input-note, .buttons-group.error .input-wrapper.btn .input-note,
-  .input-wrapper.error label, .buttons-group.error .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.error label {
+  .input-wrapper.error label, .buttons-group.error .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.error label,
+  .input-wrapper.error .note-clab, .buttons-group.error .input-wrapper.btn .note-clab {
     color: #c46978; }
+  .input-wrapper.primary input[type="color"], .buttons-group.primary .input-wrapper.btn input[type="color"],
+  .input-wrapper.primary input[type="date"], .buttons-group.primary .input-wrapper.btn input[type="date"],
+  .input-wrapper.primary input[type="datetime"], .buttons-group.primary .input-wrapper.btn input[type="datetime"],
+  .input-wrapper.primary input[type="datetime-local"], .buttons-group.primary .input-wrapper.btn input[type="datetime-local"],
+  .input-wrapper.primary input[type="email"], .buttons-group.primary .input-wrapper.btn input[type="email"],
+  .input-wrapper.primary input[type="month"], .buttons-group.primary .input-wrapper.btn input[type="month"],
+  .input-wrapper.primary input[type="number"], .buttons-group.primary .input-wrapper.btn input[type="number"],
+  .input-wrapper.primary input[type="password"], .buttons-group.primary .input-wrapper.btn input[type="password"],
+  .input-wrapper.primary input[type="search"], .buttons-group.primary .input-wrapper.btn input[type="search"],
+  .input-wrapper.primary input[type="tel"], .buttons-group.primary .input-wrapper.btn input[type="tel"],
+  .input-wrapper.primary input[type="text"], .buttons-group.primary .input-wrapper.btn input[type="text"],
+  .input-wrapper.primary .dropdown-clab .value_wrapper, .dropdown-clab
+  .input-wrapper.primary .value_wrapper, .buttons-group.primary .input-wrapper.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.primary .input-wrapper.btn .value_wrapper,
+  .input-wrapper.primary input[type="time"], .buttons-group.primary .input-wrapper.btn input[type="time"],
+  .input-wrapper.primary input[type="url"], .buttons-group.primary .input-wrapper.btn input[type="url"],
+  .input-wrapper.primary input[type="week"], .buttons-group.primary .input-wrapper.btn input[type="week"],
+  .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea {
+    border-bottom-color: #0072bc; }
+  .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
+  .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
+  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab {
+    color: #0072bc; }
   .input-wrapper.inline {
     flex-flow: row wrap;
     align-items: center; }
     .input-wrapper.inline .input-note,
-    .input-wrapper.inline note-clab.input-clab,
     .input-wrapper.inline .note-clab {
       padding-left: 150px; }
     .input-wrapper.inline.icon-label label {
@@ -1323,25 +1362,21 @@ button-clab {
     .input-wrapper.inline.smaller-label label {
       width: 75px; }
     .input-wrapper.inline.smaller-label .input-note,
-    .input-wrapper.inline.smaller-label note-clab.input-clab,
     .input-wrapper.inline.smaller-label .note-clab {
       padding-left: 75px; }
     .input-wrapper.inline.small-label label {
       width: 100px; }
     .input-wrapper.inline.small-label .input-note,
-    .input-wrapper.inline.small-label note-clab.input-clab,
     .input-wrapper.inline.small-label .note-clab {
       padding-left: 100px; }
     .input-wrapper.inline.large-label label {
       width: 200px; }
     .input-wrapper.inline.large-label .input-note,
-    .input-wrapper.inline.large-label note-clab.input-clab,
     .input-wrapper.inline.large-label .note-clab {
       padding-left: 200px; }
     .input-wrapper.inline.larger-label label {
       width: 250px; }
     .input-wrapper.inline.larger-label .input-note,
-    .input-wrapper.inline.larger-label note-clab.input-clab,
     .input-wrapper.inline.larger-label .note-clab {
       padding-left: 250px; }
     .input-wrapper.inline label {
@@ -1373,6 +1408,8 @@ label {
   font-weight: 700;
   padding-right: 10px;
   padding-bottom: 5px; }
+  label.disabled {
+    color: #C0C0C0; }
 
 input[type="color"],
 input[type="date"],
@@ -1430,6 +1467,21 @@ textarea {
   textarea:disabled {
     cursor: not-allowed;
     color: #C0C0C0; }
+
+.input-wrapper .input-note.primary, .input-wrapper .buttons-group.primary .input-note.btn, .buttons-group.primary .input-wrapper .input-note.btn {
+  color: #003456; }
+
+.input-wrapper .input-note.info, .input-wrapper .buttons-group.info .input-note.btn, .buttons-group.info .input-wrapper .input-note.btn {
+  color: #49c1da; }
+
+.input-wrapper .input-note.success, .input-wrapper .buttons-group.success .input-note.btn, .buttons-group.success .input-wrapper .input-note.btn {
+  color: #8ec362; }
+
+.input-wrapper .input-note.warning, .input-wrapper .buttons-group.warning .input-note.btn, .buttons-group.warning .input-wrapper .input-note.btn {
+  color: #eeb94e; }
+
+.input-wrapper .input-note.error, .input-wrapper .buttons-group.error .input-note.btn, .buttons-group.error .input-wrapper .input-note.btn {
+  color: #c46978; }
 
 input[type=checkbox],
 input[type=radio] {
