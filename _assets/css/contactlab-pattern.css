@@ -909,6 +909,14 @@ footer {
     line-height: 40px; }
 
 .wrapper {
+  max-width: 1100px;
+  margin: 0 auto; }
+
+.full-wrapper {
+  max-width: 100%;
+  margin: 0 auto; }
+
+.large-wrapper {
   max-width: 1320px;
   margin: 0 auto; }
 
@@ -1195,6 +1203,8 @@ button-clab {
   .input-wrapper .note-clab {
     font-size: 0.8571rem;
     width: 100%; }
+  .input-wrapper button-clab {
+    margin: 0; }
   .input-wrapper .btn {
     padding: 8px 10px 7px;
     background-color: #CCD1D9;
@@ -1315,7 +1325,6 @@ button-clab {
     flex-flow: row wrap;
     align-items: center; }
     .input-wrapper.inline .input-note,
-    .input-wrapper.inline note-clab.input-clab,
     .input-wrapper.inline .note-clab {
       padding-left: 150px; }
     .input-wrapper.inline.icon-label label {
@@ -1323,25 +1332,21 @@ button-clab {
     .input-wrapper.inline.smaller-label label {
       width: 75px; }
     .input-wrapper.inline.smaller-label .input-note,
-    .input-wrapper.inline.smaller-label note-clab.input-clab,
     .input-wrapper.inline.smaller-label .note-clab {
       padding-left: 75px; }
     .input-wrapper.inline.small-label label {
       width: 100px; }
     .input-wrapper.inline.small-label .input-note,
-    .input-wrapper.inline.small-label note-clab.input-clab,
     .input-wrapper.inline.small-label .note-clab {
       padding-left: 100px; }
     .input-wrapper.inline.large-label label {
       width: 200px; }
     .input-wrapper.inline.large-label .input-note,
-    .input-wrapper.inline.large-label note-clab.input-clab,
     .input-wrapper.inline.large-label .note-clab {
       padding-left: 200px; }
     .input-wrapper.inline.larger-label label {
       width: 250px; }
     .input-wrapper.inline.larger-label .input-note,
-    .input-wrapper.inline.larger-label note-clab.input-clab,
     .input-wrapper.inline.larger-label .note-clab {
       padding-left: 250px; }
     .input-wrapper.inline label {

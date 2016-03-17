@@ -31,6 +31,10 @@ $larger-label-width: 250px;
 		width: 100%;
 	}
 
+	button-clab {
+		margin: 0;
+	}
+
 	.btn {
 		padding: 8px $small-spacing 7px;
 		background-color: $gray;
@@ -96,7 +100,6 @@ $larger-label-width: 250px;
 		align-items: center;
 
 		.input-note,
-		note-clab.input-clab,
 		.note-clab	 {
 			padding-left: $default-label-width;
 		}
@@ -113,7 +116,6 @@ $larger-label-width: 250px;
 			}
 
 			.input-note,
-			note-clab.input-clab,
 			.note-clab {
 				padding-left: $smaller-label-width;
 			}
@@ -125,7 +127,6 @@ $larger-label-width: 250px;
 			}
 
 			.input-note,
-			note-clab.input-clab,
 			.note-clab {
 				padding-left: $small-label-width;
 			}
@@ -137,7 +138,6 @@ $larger-label-width: 250px;
 			}
 
 			.input-note,
-			note-clab.input-clab,
 			.note-clab {
 				padding-left: $large-label-width;
 			}
@@ -149,7 +149,6 @@ $larger-label-width: 250px;
 			}
 
 			.input-note,
-			note-clab.input-clab,
 			.note-clab {
 				padding-left: $larger-label-width;
 			}

@@ -466,6 +466,16 @@ footer {
 //////////////// WRAPPERS //////////////// 
 
 .wrapper {
+	max-width: 1100px;
+	margin: 0 auto;
+}
+
+.full-wrapper {
+	max-width: 100%;
+	margin: 0 auto;
+}
+
+.large-wrapper {
 	max-width: 1320px;
 	margin: 0 auto;
 }
