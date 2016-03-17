@@ -26,7 +26,11 @@ var InputClab = function () {
 					type: String,
 					value: 'textinput'
 				},
-				type: String,
+				type: {
+					type: String,
+					value: ''
+				},
+				noteType: String,
 				value: {
 					type: String,
 					notify: true,
@@ -119,8 +123,9 @@ var InputClab = function () {
 
 	}, {
 		key: '_compWrapperClass',
-		value: function _compWrapperClass(str, inline, labelSize) {
+		value: function _compWrapperClass(str, type, inline, labelSize) {
 			var arr = [str];
+			if (type != undefined && type.length > 0) arr.push(type);
 			if (inline) {
 				arr.push('inline');
 				if (labelSize.length > 0) arr.push(labelSize + '-label');

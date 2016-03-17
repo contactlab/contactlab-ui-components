@@ -10,7 +10,7 @@
 	</style>
 
 	<template>
-		<div class$="[[_compWrapperClass('input-wrapper', inline, labelSize)]]">
+		<div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
 			<template is="dom-if" if="[[_viewLabel(label, icon)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">
 					<template is="dom-if" if="[[_viewLabel(icon)]]">
@@ -28,7 +28,7 @@
 
 				<content select=".button"></content>
 			</div>
-			<note-clab>
+			<note-clab type="[[noteType]]">
 				<content select=".note"></content>
 			</note-clab>
 		</div>

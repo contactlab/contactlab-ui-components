@@ -19,7 +19,11 @@ class InputClab{
 				type: String,
 				value: 'textinput'
 			},
-			type: String,
+			type: {
+				type:String,
+				value:''
+			},
+			noteType: String,
 			value: {
 				type: String,
 				notify: true,
@@ -104,8 +108,9 @@ class InputClab{
 	/*----------
 	COMPUTE
 	----------*/
-	_compWrapperClass(str, inline, labelSize){
+	_compWrapperClass(str, type, inline, labelSize){
 		let arr=[str];
+		if(type!=undefined && type.length>0) arr.push(type);
 		if(inline){
 			arr.push('inline');
 			if(labelSize.length>0) arr.push(labelSize+'-label');

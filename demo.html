@@ -232,10 +232,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Dropdown</h2>
-			<dropdown-clab max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' disable-option='[0, 4]'>
+			<dropdown-clab max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' selected='{"label":"bella", "value":"bella"}'>
 			This is my note</dropdown-clab>
 
-			<dropdown-clab id="dd10" max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]' label-field="name" disable-option='[0, 4]'>
+			<dropdown-clab max-in-view="5" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]' label-field="name">
 			This is my note</dropdown-clab>
 		</section>
 
@@ -294,8 +294,8 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Input</h2>
-			<input-clab value="ciao" label="My label">
-				A simple input component
+			<input-clab value="ciao" label="My label" note-type="error" type="success">
+				<span class="note">A simple input component</span>
 			</input-clab>
 			<input-clab value="ciao" icon="icon-edit">
 				A simple input component
@@ -319,7 +319,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				<span class="note">A simple note</span>
                 <button-clab class="button" type="success">ok</button-clab>
 			</input-clab>
-            <!-- TODO: Perchè la nota è così avanti =O ?
+            <!-- TODO: La nota è andata avanti =O
             Ho un'idea! Nel css quando dai il padding punta al tag note-clab e non alla classe .note-clab ;) -->
 
 			<!-- <div class="input-wrapper inline">
