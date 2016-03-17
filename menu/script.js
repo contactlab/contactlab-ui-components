@@ -43,6 +43,10 @@ var MenuClab = function () {
 				},
 				_url: {
 					type: String
+				},
+				_mainNav: {
+					type: Boolean,
+					value: false
 				}
 			};
 		}
@@ -59,7 +63,7 @@ var MenuClab = function () {
 			this._iosMenu();
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -67,8 +71,8 @@ var MenuClab = function () {
 		key: '_openItem',
 		value: function _openItem(evt) {
 			this._url = location.hash;
-			if (window.innerWidth < 961) {
-				this.querySelector('.main-menu').style.display = 'none';
+			if (window.innerWidth > 960) {
+				this.set('_mainNav', true);
 			}
 		}
 	}, {
@@ -83,13 +87,13 @@ var MenuClab = function () {
 					break;
 			}
 			if (open) {
-				this.querySelector('.main-menu').style.display = 'block';
+				this.set('_mainNav', true);
 			} else {
-				this.querySelector('.main-menu').style.display = 'none';
+				this.set('_mainNav', false);
 			}
 		}
 
-		/*---------- 
+		/*----------
   METHODS
   ----------*/
 
@@ -119,13 +123,13 @@ var MenuClab = function () {
 						return true;
 						break;
 					default:
-						_this2.querySelector('#main-logo a').focus();
+						_this2.querySelector('.logo a').focus();
 						break;
 				}
 			});
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 
@@ -158,6 +162,13 @@ var MenuClab = function () {
 		key: '_computeTitleIcon',
 		value: function _computeTitleIcon(icon) {
 			return ['clab-icon', icon].join(' ');
+		}
+	}, {
+		key: '_compMainNav',
+		value: function _compMainNav(str, show) {
+			var arr = [str];
+			if (show) arr.push('show');
+			return arr.join(' ');
 		}
 	}]);
 

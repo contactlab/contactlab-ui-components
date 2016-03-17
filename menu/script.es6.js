@@ -32,6 +32,10 @@ class MenuClab{
 			},
 			_url: {
 				type: String
+			},
+			_mainNav:{
+				type:Boolean,
+				value:false
 			}
 		}
 	}
@@ -47,13 +51,13 @@ class MenuClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_openItem(evt){
 		this._url = location.hash;
-		if(window.innerWidth<961){
-			this.querySelector('.main-menu').style.display='none';
+		if(window.innerWidth>960){
+			this.set('_mainNav',true);
 		}
 	}
 
@@ -67,15 +71,15 @@ class MenuClab{
 				break;
 		}
 		if(open){
-			this.querySelector('.main-menu').style.display='block';
+			this.set('_mainNav',true);
 		} else {
-			this.querySelector('.main-menu').style.display='none';
+			this.set('_mainNav',false);
 		}
 	}
 
 
 
-	/*---------- 
+	/*----------
 	METHODS
 	----------*/
 	_setSubmenu(current){
@@ -100,7 +104,7 @@ class MenuClab{
 					return true;
 					break;
 				default:
-					this.querySelector('#main-logo a').focus();
+					this.querySelector('.logo a').focus();
 					break;
 			}
 		});
@@ -108,7 +112,7 @@ class MenuClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeUrl(item){
@@ -128,12 +132,18 @@ class MenuClab{
 		if(url.search(link) > -1) {
 			arr.push('active');
 			this._setSubmenu(this.menu[i]);
-		} 
+		}
 		return arr.join(' ');
 	}
 
 	_computeTitleIcon(icon){
 		return ['clab-icon',icon].join(' ');
+	}
+
+	_compMainNav(str, show){
+		let arr=[str];
+		if(show) arr.push('show');
+		return arr.join(' ');
 	}
 
 }

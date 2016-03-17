@@ -1,8 +1,12 @@
 <link rel="import" href="../../polymer/polymer.html">
 
 <dom-module id="menu-clab">
-	<style></style>
-	
+	<style>
+		.main-nav.show{
+			display:block;
+		}
+	</style>
+
 	<template>
 		<div class="layout-wrapper">
 			<div class="content">
@@ -14,34 +18,34 @@
 						</a>
 					</div>
 
-					<div class="mobile-menu-icon menu-toggle">
+					<div class="mobile-menu-icon menu-toggle open-menu" on-click="_toggleMenu">
 						<i class="clab-icon icon-hamburger-menu"></i>
 					</div>
 
-					<nav class="main-nav">
-						<ul>
-							<template is="dom-repeat" items="[[menu]]">
-								<li class$="[[_computeActive(_url, item.url, index)]]">
-									<a on-click="_openItem" href$="[[_computeUrl(item)]]" data-index$="[[index]]">[[item.label]]</a>
-								</li>
-							</template>
-						</ul>
-						<div class="close-overlay menu-toggle" on-click="_toggleMenu"><i class="clab-icon icon-close"></i></div>
-						<!-- <div class="user">
-							<div class="user-details">
-								<div class="username">Hilda Ryan</div>
-								<div class="company">contactlab</div>
-							</div>
-							<figure class="user-picture">
-								<span>HR</span>
-							</figure>
-							<div class="user-panel">
-								<a href="#">Settings</a>
-								<a href="#">Logout</a>
-							</div>
-						</div> -->
+					<nav class$="[[_compMainNav('main-nav', _mainNav)]]">
+							<ul>
+								<template is="dom-repeat" items="[[menu]]">
+									<li class$="[[_computeActive(_url, item.url, index)]]">
+										<a on-click="_openItem" href$="[[_computeUrl(item)]]" data-index$="[[index]]">[[item.label]]</a>
+									</li>
+								</template>
+							</ul>
+							<div class="close-overlay menu-toggle" on-click="_toggleMenu"><i class="clab-icon icon-close"></i></div>
+							<!-- <div class="user">
+								<div class="user-details">
+									<div class="username">Hilda Ryan</div>
+									<div class="company">contactlab</div>
+								</div>
+								<figure class="user-picture">
+									<span>HR</span>
+								</figure>
+								<div class="user-panel">
+									<a href="#">Settings</a>
+									<a href="#">Logout</a>
+								</div>
+							</div> -->
 					</nav>
-
+					<!-- </template> -->
 
 					<template is="dom-if" if="[[draft]]">
 						<div id="draft-ribbon">[[draft]]</div>
@@ -51,11 +55,8 @@
 				</header>
 			</div>
 		</div>
-		
+
 	</template>
 
 	<script src="script.js"></script>
 </dom-module>
-
-
-
