@@ -54,7 +54,7 @@ var TooltipClab = function () {
 				this._resetTimeout('showInterval');
 				this._startTimeout('hideInterval', function () {
 					_this.hide();
-				}, 250);
+				}, 100);
 			}
 		}
 	}, {
@@ -69,7 +69,7 @@ var TooltipClab = function () {
 				case 'mouseleave':
 					this._startTimeout('hideInterval', function () {
 						_this2.hide();
-					}, 250);
+					}, 100);
 					break;
 			}
 		}

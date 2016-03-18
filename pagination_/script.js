@@ -14,24 +14,22 @@ var PaginationClab = function () {
 		value: function beforeRegister() {
 			this.is = "pagination-clab";
 			this.properties = {
-				tot: {
-					type: Number,
-					observer: '_setPages'
-				},
-				links: Array,
 				pages: {
 					type: Array,
 					notify: true,
-					value: []
+					value: [],
+					observer: '_observPages'
 				},
 				currentPage: {
 					type: Number,
 					notify: true,
-					value: 0
+					value: 0,
+					observer: '_updateAvailablePages'
 				},
+
 				firstPage: {
 					type: String,
-					value: 0
+					computed: '_getFirstPage(pages)'
 				},
 				lastPage: {
 					type: String,
@@ -47,38 +45,37 @@ var PaginationClab = function () {
 				},
 				availableStart: {
 					type: Number,
-					computed: '_getStart(currentPage, pages)'
+					computed: '_getStart(pages, currentPage)'
 				},
 				availableEnd: {
 					type: Number,
-					computed: '_getEnd(currentPage, pages)'
+					computed: '_getEnd(pages, currentPage)'
 				}
 			};
 		}
-
-		/*----------
-  EVENT HANDLERS
-  ----------*/
-
 	}, {
-		key: '_setCurrent',
-		value: function _setCurrent(evt) {
+		key: 'attached',
+		value: function attached() {
+			this.async(this._updateAvailablePages, 100);
+		}
+	}, {
+		key: '_setThisAsCurrent',
+		value: function _setThisAsCurrent(evt) {
 			var i = undefined;
-			var type = undefined;
-			switch (evt.target.localName) {
-				case 'i':
-					i = Number(evt.target.parentNode.getAttribute('data-index'));
-					type = evt.target.parentNode.getAttribute('data-type');
-					break;
-				case 'li':
-					i = Number(evt.target.getAttribute('data-index'));
-					type = evt.target.getAttribute('data-type');
-					break;
+			if (typeof evt != 'number') {
+				// se è event handler
+				evt.preventDefault();
+				i = Number(evt.target.getAttribute('data-index'));
+			} else {
+				// .. o metodo
+				i = Number(evt);
 			}
 
-			if (type && this[type + 'Page'] == undefined || type && this[type + 'Page'] == this.currentPage) return;
-			if (i >= 0 && i <= this.lastPage) {
-				this.set('currentPage', i);
+			if (i >= 0) {
+				this.querySelector('.active').classList.remove('active');
+				this.querySelectorAll('.page')[i].classList.add('active');
+				this.currentPage = i;
+
 				this.fire('change', { currentPage: i });
 			}
 		}
@@ -88,43 +85,53 @@ var PaginationClab = function () {
   ----------*/
 
 	}, {
-		key: '_setPages',
-		value: function _setPages(val) {
-			if (val != undefined) {
-				var arr = [];
-				for (var i = 0; i < val; i++) {
-					arr.push(i);
+		key: '_observPages',
+		value: function _observPages(val, oldval) {
+			if (oldval != undefined) {
+				if (this.currentPage > this._getIndex(this.lastPage, this.pages)) {
+					// se la currentPage è un valore che ora non c'è più la setto all'ultima pagina di quelle nuove
+					this._setThisAsCurrent(this._getIndex(this.lastPage, this.pages));
+				} else {
+					this.async(this._updateAvailablePages, 100);
 				}
-				this.set('pages', arr);
+
+				this.fire('update');
 			}
+		}
+	}, {
+		key: '_updateAvailablePages',
+		value: function _updateAvailablePages() {
+			var _this = this;
+
+			Array.prototype.map.call(this.querySelectorAll('.page'), function (el, idx) {
+				if (idx >= _this.availableStart && idx <= _this.availableEnd) {
+					el.classList.remove('invisible');
+				} else {
+					el.classList.add('invisible');
+				}
+			});
 		}
 
 		/*----------
-  COMPUTERS
+  COMPUTED
   ----------*/
 
 	}, {
-		key: '_compVisiblePages',
-		value: function _compVisiblePages(start, end) {
-			var arr = [];
-			this.pages.map(function (page, idx) {
-				if (idx >= start && idx <= end) {
-					arr.push(page);
-				}
-			});
-			return arr;
+		key: '_computeLiPageClass',
+		value: function _computeLiPageClass(i) {
+			var arr = ['page'];
+			if (i == this.currentPage) arr.push('active');
+			return arr.join(' ');
 		}
 	}, {
-		key: '_computeActive',
-		value: function _computeActive(cur, i) {
-			var arr = ['page'];
-			if (i == cur) arr.push('active');
-			return arr.join(' ');
+		key: '_getFirstPage',
+		value: function _getFirstPage(pages) {
+			return pages[0];
 		}
 	}, {
 		key: '_getLastPage',
 		value: function _getLastPage(pages) {
-			return pages.length - 1;
+			return pages[pages.length - 1];
 		}
 	}, {
 		key: '_getPrevPage',
@@ -138,7 +145,7 @@ var PaginationClab = function () {
 		}
 	}, {
 		key: '_getStart',
-		value: function _getStart(cur, pages) {
+		value: function _getStart(pages, cur) {
 			var i = cur;
 			var last = pages.length - 1;
 			if (i >= last - 3) {
@@ -151,7 +158,7 @@ var PaginationClab = function () {
 		}
 	}, {
 		key: '_getEnd',
-		value: function _getEnd(cur, pages) {
+		value: function _getEnd(pages, cur) {
 			var i = cur;
 			var last = pages.length - 1;
 			if (i >= last - 3) {

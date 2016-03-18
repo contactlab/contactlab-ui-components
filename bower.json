@@ -17,6 +17,7 @@
     "toaster_",
     "panel_",
     "starter_",
+    "pagination_",
     "_demo-server"
   ],
   "dependencies": {
