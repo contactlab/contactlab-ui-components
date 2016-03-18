@@ -22,6 +22,13 @@ var GroupClab = function () {
 					value: false
 				},
 				/**
+         * Whether the buttons are smaller
+         */
+				smaller: {
+					type: Boolean,
+					value: false
+				},
+				/**
          * Whether the buttons are disabled
          */
 				disabled: {
@@ -104,9 +111,10 @@ var GroupClab = function () {
 
 	}, {
 		key: '_computeGroupClass',
-		value: function _computeGroupClass(type, small) {
+		value: function _computeGroupClass(type, small, smaller) {
 			var arr = ['buttons-group', type];
 			small ? arr.push('small') : null;
+			smaller ? arr.push('smaller') : null;
 			return arr.join(' ');
 		}
 	}]);

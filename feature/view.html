@@ -5,22 +5,22 @@
 	
 	<template>
 		<div class$="[[_computeFeatureClass(size, vertical)]]">
-			<template is="dom-if" if="[[iconClass]]">
-				<div class="image">
-	        		<i class$="[[iconClass]]"></i>
-	        	</div>
-			</template>
-			<template is="dom-if" if="[[src]]">
-				<div class="image">
-	        		<img src$="[[src]]" alt="">
-	        	</div>
-			</template>
+			<a href$="[[link]]">
+				<template is="dom-if" if="[[iconClass]]">
+					<div class="image">
+		        		<i class$="[[iconClass]]"></i>
+		        	</div>
+				</template>
+				<template is="dom-if" if="[[src]]">
+					<div class="image">
+		        		<img src$="[[src]]" alt="">
+		        	</div>
+				</template>
 
-	        <div class="description">
-	          <a href$="[[link]]">
-	            <content></content>
-	          </a>
-	        </div>
+		        <div class="description">
+		            <content></content>
+		        </div>
+			</a>
       	</div>
 	</template>
 
