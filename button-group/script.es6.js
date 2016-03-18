@@ -11,6 +11,13 @@ class GroupClab{
 				value: false
 			},
 			/**
+	       * Whether the buttons are smaller
+	       */
+			smaller: {
+				type: Boolean,
+				value: false
+			},
+			/**
 	       * Whether the buttons are disabled
 	       */
 			disabled: {
@@ -85,9 +92,10 @@ class GroupClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computeGroupClass(type,small){
+	_computeGroupClass(type,small,smaller){
 		let arr = ['buttons-group',type];
 		small ? arr.push('small') : null;
+		smaller ? arr.push('smaller') : null;
 		return arr.join(' ');
 	}
 

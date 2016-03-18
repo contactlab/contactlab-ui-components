@@ -193,6 +193,10 @@ button-clab {
     border-left: 1px solid $default-color;
     border-right: 1px solid $default-color;
     margin-left: -1px;
+
+    &:active {
+      border-bottom: 1px solid $default-color;
+    }
   }
 
   @each $type, $color in $default-status {
