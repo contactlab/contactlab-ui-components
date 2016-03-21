@@ -2,9 +2,9 @@
 
 <dom-module id="tabs-clab">
 	<style></style>
-	
-	<template>		
-		<div class$="[[_computeType(pills)]]">
+
+	<template>
+		<div class$="[[_computeType(pills, vertical, centered, fullWidth)]]">
 			<ul>
 				<template is="dom-repeat" items$="[[_computedLabels(tabContents, labels)]]">
 					<li class$="[[_computeActive(active,index)]]" data-index$="[[index]]"><a on-click="_activateThis" href="#">[[item]]</a></li>

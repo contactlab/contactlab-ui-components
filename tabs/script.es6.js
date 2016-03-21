@@ -11,6 +11,18 @@ class TabsClab{
 				type: Boolean,
 				value: false
 			},
+			vertical: {
+				type: Boolean,
+				value: false
+			},
+			centered: {
+				type: Boolean,
+				value: false
+			},
+			fullWidth: {
+				type: Boolean,
+				value: false
+			},
 			active: {
 				type: Number,
 				value: 0,
@@ -75,9 +87,12 @@ class TabsClab{
 		return newLabels;
 	}
 
-	_computeType(pills){
+	_computeType(pills, vertical, centered, fullWidth){
 		let arr = [];
 		pills ? arr.push('pills') : arr.push('tabs');
+		if(vertical) arr.push('vertical');
+		if(centered) arr.push('centered');
+		if(fullWidth) arr.push('full-width');
 		return arr.join(' ');
 	}
 

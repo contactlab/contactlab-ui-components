@@ -22,6 +22,18 @@ var TabsClab = function () {
 					type: Boolean,
 					value: false
 				},
+				vertical: {
+					type: Boolean,
+					value: false
+				},
+				centered: {
+					type: Boolean,
+					value: false
+				},
+				fullWidth: {
+					type: Boolean,
+					value: false
+				},
 				active: {
 					type: Number,
 					value: 0,
@@ -89,9 +101,12 @@ var TabsClab = function () {
 		}
 	}, {
 		key: '_computeType',
-		value: function _computeType(pills) {
+		value: function _computeType(pills, vertical, centered, fullWidth) {
 			var arr = [];
 			pills ? arr.push('pills') : arr.push('tabs');
+			if (vertical) arr.push('vertical');
+			if (centered) arr.push('centered');
+			if (fullWidth) arr.push('full-width');
 			return arr.join(' ');
 		}
 	}, {
