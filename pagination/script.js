@@ -29,6 +29,10 @@ var PaginationClab = function () {
 					notify: true,
 					value: 0
 				},
+				range: {
+					type: Number,
+					value: 8
+				},
 				firstPage: {
 					type: String,
 					value: 0
@@ -138,28 +142,26 @@ var PaginationClab = function () {
 		}
 	}, {
 		key: '_getStart',
-		value: function _getStart(cur, pages) {
-			var i = cur;
+		value: function _getStart(c, pages) {
 			var last = pages.length - 1;
-			if (i >= last - 3) {
-				return last - 4;
-			} else if (i <= 3) {
+			if (c >= last - this.range / 2) {
+				return last - this.range;
+			} else if (c <= this.range / 2) {
 				return 0;
 			} else {
-				return i - 2;
+				return c - this.range / 2;
 			}
 		}
 	}, {
 		key: '_getEnd',
-		value: function _getEnd(cur, pages) {
-			var i = cur;
+		value: function _getEnd(c, pages) {
 			var last = pages.length - 1;
-			if (i >= last - 3) {
+			if (c >= last - this.range / 2) {
 				return last;
-			} else if (i <= 3) {
-				return 4;
+			} else if (c <= this.range / 2) {
+				return this.range;
 			} else {
-				return i + 2;
+				return c + this.range / 2;
 			}
 		}
 

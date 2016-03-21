@@ -22,6 +22,10 @@ class PaginationClab{
 				notify: true,
 				value: 0
 			},
+			range:{
+				type:Number,
+				value:8
+			},
 			firstPage: {
 				type: String,
 				value: 0
@@ -121,26 +125,24 @@ class PaginationClab{
 	_getNextPage(pages, cur){
 		return pages[cur+1];
 	}
-	_getStart(cur, pages){
-		let i = cur;
+	_getStart(c, pages){
 		let last = pages.length-1;
-		if(i >= last-3){
-			return last-4;
-		} else if(i <= 3){
+		if(c >= last-(this.range/2)){
+			return last-this.range;
+		} else if(c <= (this.range/2)){
 			return 0;
 		} else {
-			return i-2;
+			return c-(this.range/2);
 		}
 	}
-	_getEnd(cur, pages){
-		let i = cur;
+	_getEnd(c, pages){
 		let last = pages.length-1;
-		if(i >= last-3){
+		if(c >= last-(this.range/2)){
 			return last;
-		} else if(i <= 3){
-			return 4;
+		} else if(c <= (this.range/2)){
+			return this.range;
 		} else {
-			return i+2;
+			return c+(this.range/2);
 		}
 	}
 

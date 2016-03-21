@@ -57,11 +57,6 @@ var MultipleClab = function () {
 				},
 				noteType: {
 					type: String
-				},
-
-				compNoteType: {
-					type: String,
-					computed: '_computeNoteType(type, noteType)'
 				}
 			};
 		}
@@ -123,8 +118,8 @@ var MultipleClab = function () {
 			document.querySelector('body').addEventListener('keyup', this._handleKeys.bind(this));
 		}
 
-		/*---------- 
-  EVENT HANDLERS	
+		/*----------
+  EVENT HANDLERS
   ----------*/
 
 	}, {
@@ -217,8 +212,8 @@ var MultipleClab = function () {
 			}
 		}
 
-		/*---------- 
-  METHODS		
+		/*----------
+  METHODS
   ----------*/
 
 	}, {
@@ -278,7 +273,7 @@ var MultipleClab = function () {
 			}, 100);
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -297,8 +292,8 @@ var MultipleClab = function () {
 			if (newVal) this.type = 'disabled';
 		}
 
-		/*---------- 
-  COMPUTED	
+		/*----------
+  COMPUTED
   ----------*/
 
 	}, {
@@ -308,14 +303,9 @@ var MultipleClab = function () {
 			if (type) arr.push(type);
 			return arr.join(' ');
 		}
-	}, {
-		key: '_computeNoteType',
-		value: function _computeNoteType(type, noteType) {
-			return [type, noteType].join(' ');
-		}
 
-		/*---------- 
-  UTILITIES	
+		/*----------
+  UTILITIES
   ----------*/
 
 	}, {

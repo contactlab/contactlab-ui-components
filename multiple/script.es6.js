@@ -50,11 +50,6 @@ class MultipleClab {
 			},
 			noteType: {
 				type: String
-			},
-
-			compNoteType: {
-				type: String,
-				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -69,7 +64,7 @@ class MultipleClab {
 			fetch(this.url, {
 				method: 'GET'
 			}).then(res=>{
-				if (res.status !== 200) {  
+				if (res.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: '+res.status);
 
 					window.clearTimeout(timeoutID);
@@ -89,7 +84,7 @@ class MultipleClab {
 				});
 			}).catch(err=>{
 				console.error("Fetch Error ==> ", err);
-				
+
 				this.type='error';
 				window.clearTimeout(timeoutID);
 				timeoutID=undefined;
@@ -115,8 +110,8 @@ class MultipleClab {
 
 
 
-	/*---------- 
-	EVENT HANDLERS	
+	/*----------
+	EVENT HANDLERS
 	----------*/
 	_handleSelection(evt){
 		if(this.disabled) return;
@@ -131,7 +126,7 @@ class MultipleClab {
 
 		} else if(this.ctrl){
 			//adding or removing single select
-			if(evt.target.classList.contains('selected')) 
+			if(evt.target.classList.contains('selected'))
 				this._removeThis(evt.target);
 			else {
 				this._selectThis(evt.target);
@@ -181,7 +176,7 @@ class MultipleClab {
 				fetch(this.url, {
 					method: 'GET'
 				}).then(res=>{
-					if (res.status !== 200) {  
+					if (res.status !== 200) {
 						console.log('Looks like there was a problem. Status Code: '+res.status);
 						if(typeof timeoutID == 'number'){
 							window.clearTimeout(timeoutID);
@@ -209,8 +204,8 @@ class MultipleClab {
 
 
 
-	/*---------- 
-	METHODS		
+	/*----------
+	METHODS
 	----------*/
 	_selectThis(elem){
 		let i=elem.getAttribute('data-index');
@@ -265,7 +260,7 @@ class MultipleClab {
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_setOptions(promise){
@@ -282,8 +277,8 @@ class MultipleClab {
 
 
 
-	/*---------- 
-	COMPUTED	
+	/*----------
+	COMPUTED
 	----------*/
 	_compWrapperType(type){
 		let arr = ['multiple-wrapper'];
@@ -291,17 +286,10 @@ class MultipleClab {
 		return arr.join(' ');
 	}
 
-	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
-	}
 
 
-
-
-
-
-	/*---------- 
-	UTILITIES	
+	/*----------
+	UTILITIES
 	----------*/
 	_setWrapperHeights(){
 		if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
