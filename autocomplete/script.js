@@ -76,8 +76,20 @@ var AutoCompleteClab = function () {
 				noteType: {
 					type: String
 				},
+				inline: {
+					type: Boolean,
+					value: false
+				},
+				labelSize: {
+					type: String,
+					value: ''
+				},
+				icon: {
+					type: String,
+					value: ''
+				},
 
-				/*---------- 
+				/*----------
       PRIVATE
     ----------*/
 				inputString: {
@@ -125,7 +137,7 @@ var AutoCompleteClab = function () {
 			});
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -196,8 +208,8 @@ var AutoCompleteClab = function () {
 			}
 		}
 
-		/*---------- 
-  FUNCTIONS
+		/*----------
+  METHODS
   ----------*/
 
 	}, {
@@ -355,7 +367,7 @@ var AutoCompleteClab = function () {
 			if (!visible && !goesUp) this.list.scrollTop += this.list.clientHeight;else if (!visible && goesUp) this.list.scrollTop -= this.list.clientHeight;
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -369,7 +381,16 @@ var AutoCompleteClab = function () {
 			});
 		}
 
-		/*---------- 
+		// _compWrapperClass(str, inline, labelSize){
+		// 	let arr=[str];
+		// 	if(inline){
+		// 		arr.push('inline');
+		// 		if(labelSize.length>0) arr.push(labelSize+'-label');
+		// 	}
+		// 	return arr.join(' ');
+		// }
+
+		/*----------
   UTILS
   ----------*/
 

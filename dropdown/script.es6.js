@@ -11,6 +11,10 @@ class DropdownClab{
 				type:String,
 				value:null
 			},
+			icon:{
+				type:String,
+				value:''
+			},
 			type:{
 				type:String,
 				value:''
@@ -41,6 +45,14 @@ class DropdownClab{
 			url:{
 				type:String,
 				observer: '_observUrl'
+			},
+			inline: {
+				type: Boolean,
+				value: false
+			},
+			labelSize: {
+				type:String,
+				value:''
 			},
 			placeholder:{
 				type:String,
@@ -205,6 +217,21 @@ class DropdownClab{
 		} else {
 			return false
 		}
+	}
+
+	_compIcon(icon){
+		if(icon!=undefined && icon.length>0) return 'clab-icon '+icon; else return '';
+	}
+
+	_compWrapperType(str, disabled, type, inline, labelSize){
+		let arr=[str];
+		if(disabled) arr.push('disabled');
+		if(type!=undefined && type.length>0) arr.push(type);
+		if(inline){
+			arr.push('inline');
+			if(labelSize.length>0) arr.push(labelSize+'-label');
+		}
+		return arr.join(' ');
 	}
 
 	_compType(str, disabled, type, id){

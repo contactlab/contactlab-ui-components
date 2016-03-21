@@ -10,10 +10,16 @@
     </style>
 
     <template>
-        <div class$="[[_compType('input-wrapper', disabled, type)]]">
-            <template is="dom-if" if="[[_viewLabel(label)]]">
-                <label class$="[[_compType('', disabled, type)]]">[[label]]</label>
-            </template>
+        <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
+            <template is="dom-if" if="[[_viewLabel(label, icon)]]">
+				<label class$="[[_compType('', disabled, type)]]" for$="[[_dashify(name)]]">
+					<template is="dom-if" if="[[_viewLabel(icon)]]">
+						<i class$="[[_compIcon(icon)]]"></i>
+					</template>
+					[[label]]
+				</label>
+			</template>
+
             <div class="input">
                 <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
                     <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
@@ -29,8 +35,9 @@
                     </template>
                 </ol>
             </div>
+            
             <note-clab type="[[noteType]]">
-                <content></content>
+                <content select=".note"></content>
             </note-clab>
         </div>
     </template>

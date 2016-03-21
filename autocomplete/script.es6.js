@@ -23,7 +23,7 @@ class AutoCompleteClab{
 				value:'Type..'
 			},
 			disabled:{
-				type:Boolean, 
+				type:Boolean,
 				value:false
 			},
 			options:{
@@ -67,9 +67,21 @@ class AutoCompleteClab{
 			noteType:{
 				type:String
 			},
+			inline:{
+				type:Boolean,
+				value:false
+			},
+			labelSize: {
+				type:String,
+				value:''
+			},
+			icon:{
+				type:String,
+				value:''
+			},
 
 
-			/*---------- 
+			/*----------
 			  PRIVATE
 			----------*/
 			inputString:{
@@ -113,7 +125,7 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_handleKeyboardInputs(evt){
@@ -128,14 +140,14 @@ class AutoCompleteClab{
 
 		//If Arrows
 		if(this.results.length>0 && evt.keyCode==38 && this.currentHint!=undefined){
-			evt.preventDefault(); 
-			this._handleArrows('up'); 
-			return; 
+			evt.preventDefault();
+			this._handleArrows('up');
+			return;
 		}
 		if(this.results.length>0 && evt.keyCode==40 && this.currentHint!=undefined){
-			evt.preventDefault(); 
-			this._handleArrows('down'); 
-			return; 
+			evt.preventDefault();
+			this._handleArrows('down');
+			return;
 		}
 
 		// If typing
@@ -150,11 +162,11 @@ class AutoCompleteClab{
 				this.interval=window.setTimeout(()=>{
 					this._fetchOptions();
 				},400);
-				
+
 			} else {
 				this._showHints(true);
 			}
-			
+
 		} else {
 			this._closeList();
 		}
@@ -181,8 +193,8 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
-	FUNCTIONS
+	/*----------
+	METHODS
 	----------*/
 	_fetchOptions(){
 		window.clearTimeout(this.interval);
@@ -192,8 +204,8 @@ class AutoCompleteClab{
 		fetch(this.url, {
 			method: 'GET'
 		}).then(res=>{
-			if (res.status !== 200) {  
-				console.log('Looks like there was a problem. Status Code: '+res.status);  
+			if (res.status !== 200) {
+				console.log('Looks like there was a problem. Status Code: '+res.status);
 				this.inputType='error';
 				this._resetSpinnerTimeout();
 				return;
@@ -314,7 +326,7 @@ class AutoCompleteClab{
 				}
 				break;
 			case 'down':
-				toSel=this.results[HIdx+1]; 
+				toSel=this.results[HIdx+1];
 				if(typeof toSel == 'object'){
 					this._scrollToHighlight(toSel, this._getIndex(toSel, this.options), false);
 				}
@@ -335,7 +347,7 @@ class AutoCompleteClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	_setOptions(promise){
@@ -346,8 +358,18 @@ class AutoCompleteClab{
 
 
 
+	// _compWrapperClass(str, inline, labelSize){
+	// 	let arr=[str];
+	// 	if(inline){
+	// 		arr.push('inline');
+	// 		if(labelSize.length>0) arr.push(labelSize+'-label');
+	// 	}
+	// 	return arr.join(' ');
+	// }
 
-	/*---------- 
+
+
+	/*----------
 	UTILS
 	----------*/
 	_setListHeight(elemsShown){
@@ -381,7 +403,7 @@ class AutoCompleteClab{
 		if(this.spinner) this.spinner=false;
 	}
 
-	
+
 }
 
 
