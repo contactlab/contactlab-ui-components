@@ -16,7 +16,7 @@ header {
 	z-index: 5;
 	min-height: $header-height;
 	line-height: 1;
-	
+
 	ul,
 	ol {
 		margin: 0;
@@ -126,7 +126,7 @@ header {
 
 		.user-picture {
 			margin: 0;
-			padding: 0; 
+			padding: 0;
 			width: 45px;
 			height: 45px;
 			position: relative;
@@ -171,7 +171,7 @@ header {
 			@include user-selection(none);
 
 			.company {
-				font-size: $small-font-size; 
+				font-size: $small-font-size;
 			}
 		}
 
@@ -205,7 +205,7 @@ header {
 			.user-panel{
 				display: block;
 			}
-		} 
+		}
 	} // END USERS
 
 	// MOBILE HEADER
@@ -248,7 +248,7 @@ header {
 				font-size: $big-font-size;
 			}
 		}
-		
+
 		.logo {
 			order: 2;
 			flex-grow: 1;
@@ -314,7 +314,7 @@ footer {
 //////////////// END FOOTER ////////////////
 
 
-//////////////// CONTEXTUAL MENU //////////////// 
+//////////////// CONTEXTUAL MENU ////////////////
 
 .contextual-menu {
 	width: 100%;
@@ -327,7 +327,7 @@ footer {
 
 	.mobile-nav-toggle {
 		padding: $small-spacing $small-spacing;
-		border-bottom: 1px solid $gray; 
+		border-bottom: 1px solid $gray;
 		font-weight: $bold-weight;
 		cursor: pointer;
 		display: none;
@@ -378,7 +378,7 @@ footer {
 		}
 
 		ul {
-			display: none; 
+			display: none;
 			position: absolute;
 			top: 100%;
 			left: -$base-spacing;
@@ -438,9 +438,33 @@ footer {
 	}
 }
 
-//////////////// END CONTEXTUAL MENU //////////////// 
+//////////////// END CONTEXTUAL MENU ////////////////
 
-//////////////// CLOSE OVERLAY //////////////// 
+//////////////// MAIN ACTIONS BAR ////////////////
+
+.main-actions {
+	border-top: 1px solid $gray;
+	margin-top: $base-spacing;
+	padding-top: $large-spacing;
+	display: flex;
+	flex-flow: row nowrap;
+	justify-content: flex-end;
+
+	.primary,
+	.secondary {
+		display: flex;
+		flex-grow: 1;
+	}
+
+	.primary {
+		justify-content: flex-end;
+	}
+}
+
+//////////////// END MAIN ACTIONS BAR ////////////////
+
+
+//////////////// CLOSE OVERLAY ////////////////
 
 .close-overlay {
 	position: fixed;
@@ -460,11 +484,11 @@ footer {
 	}
 }
 
-//////////////// CLOSE OVERLAY //////////////// 
+//////////////// CLOSE OVERLAY ////////////////
 
 
 
-//////////////// WRAPPERS //////////////// 
+//////////////// WRAPPERS ////////////////
 
 .wrapper {
 	max-width: 1100px;
@@ -486,4 +510,24 @@ footer {
 	margin: 0 auto;
 }
 
-//////////////// END WRAPPERS //////////////// 
+//////////////// END WRAPPERS ////////////////
+
+
+//////////////// DIVIDERS ////////////////
+
+hr {
+	margin: 0 0 $base-spacing;
+	border: 0;
+	border-top: 1px solid $gray;
+	width: 100%;
+
+	&.dotted {
+		border-style: dotted;
+	}
+
+	&.dashed {
+		border-style: dashed;
+	}
+}
+
+//////////////// END DIVIDERS ////////////////

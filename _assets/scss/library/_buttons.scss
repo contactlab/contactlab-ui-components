@@ -6,8 +6,9 @@ $btn-border-thickness: 1px;
 
 button-clab {
   margin-right: $smaller-spacing;
+  display: inline-block;
 
-  &:last-tof-type {
+  &:last-of-type {
     margin-right: 0;
   }
 }
@@ -180,12 +181,24 @@ button-clab {
 
   button-clab {
     margin: 0;
+
+    &:first-of-type .btn {
+        margin-left: 0;
+    }
   }
 
   &.small {
     .btn {
       @extend .small;
     }
+  }
+
+  &.smaller {
+      .btn {
+          padding: 3px 5px;
+          font-size: $small-font-size;
+          border-top: 1px solid $default-color;
+      }
   }
 
   .btn {

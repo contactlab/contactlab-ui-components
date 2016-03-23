@@ -893,6 +893,20 @@ footer {
             padding-left: 30px;
             padding-right: 10px; } }
 
+.main-actions {
+  border-top: 1px solid #CCD1D9;
+  margin-top: 20px;
+  padding-top: 40px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-end; }
+  .main-actions .primary, .main-actions .buttons-group.primary .btn, .buttons-group.primary .main-actions .btn, .main-actions .input-wrapper .btn.primary, .input-wrapper .main-actions .btn.primary,
+  .main-actions .secondary {
+    display: flex;
+    flex-grow: 1; }
+  .main-actions .primary, .main-actions .buttons-group.primary .btn, .buttons-group.primary .main-actions .btn, .main-actions .input-wrapper .btn.primary, .input-wrapper .main-actions .btn.primary {
+    justify-content: flex-end; }
+
 .close-overlay {
   position: fixed;
   top: 0;
@@ -924,9 +938,20 @@ footer {
   max-width: 960px;
   margin: 0 auto; }
 
+hr {
+  margin: 0 0 20px;
+  border: 0;
+  border-top: 1px solid #CCD1D9;
+  width: 100%; }
+  hr.dotted {
+    border-style: dotted; }
+  hr.dashed {
+    border-style: dashed; }
+
 button-clab {
-  margin-right: 5px; }
-  button-clab:last-tof-type {
+  margin-right: 5px;
+  display: inline-block; }
+  button-clab:last-of-type {
     margin-right: 0; }
 
 .btn {
@@ -1098,13 +1123,13 @@ button-clab {
       .btn.empty.error:active, .buttons-group.error .btn.empty:active, .btn.empty.error.active, .buttons-group.error .btn.empty.active {
         color: #a94442;
         background-color: #dda7b0; }
-  .btn.flat {
+  .btn.flat, .input-wrapper .btn.flat {
     border-color: transparent;
     background: transparent;
     color: #434A5A; }
     .btn.flat:disabled {
       background-color: transparent !important; }
-    .btn.flat:active, .btn.flat.active {
+    .btn.flat:active, .input-wrapper .btn.flat:active, .btn.flat.active {
       background: #434A5A;
       color: #FFFFFF; }
     .btn.flat:disabled {
@@ -1159,11 +1184,19 @@ button-clab {
   display: flex; }
   .buttons-group button-clab {
     margin: 0; }
+    .buttons-group button-clab:first-of-type .btn {
+      margin-left: 0; }
+  .buttons-group.smaller .btn {
+    padding: 3px 5px;
+    font-size: 0.8571rem;
+    border-top: 1px solid #434A5A; }
   .buttons-group .btn {
     margin: 0;
     border-left: 1px solid #434A5A;
     border-right: 1px solid #434A5A;
     margin-left: -1px; }
+    .buttons-group .btn:active {
+      border-bottom: 1px solid #434A5A; }
   .buttons-group.primary .btn {
     border-color: #0072bc; }
     .buttons-group.primary .btn.empty {
@@ -1188,36 +1221,51 @@ button-clab {
 input-clab {
   width: 100%; }
 
-.input-wrapper {
+textarea {
+  height: 150px !important;
+  resize: vertical; }
+
+.input-wrapper .btn {
+  padding: 7px 10px;
+  background-color: #CCD1D9;
+  border-bottom-color: #AAB2BD;
+  color: #434A5A;
+  line-height: 1; }
+  .input-wrapper .btn:hover {
+    background-color: #d5d9e0; }
+  .input-wrapper .btn:active {
+    background-color: #c3c9d2; }
+
+.input-wrapper,
+.misc-input {
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-end;
   padding-bottom: 20px;
   position: relative; }
-  .input-wrapper .input-wrapper {
+  .input-wrapper .input-wrapper,
+  .misc-input .input-wrapper {
     padding-bottom: 0; }
-  .input-wrapper .input {
+  .input-wrapper .input,
+  .misc-input .input {
     display: flex;
     flex-flow: row nowrap;
     position: relative;
-    flex-grow: 1; }
+    flex-grow: 1;
+    align-items: center; }
   .input-wrapper .input-note,
-  .input-wrapper note-clab.input-clab,
-  .input-wrapper .note-clab {
+  .input-wrapper note-clab,
+  .input-wrapper .note-clab,
+  .misc-input .input-note,
+  .misc-input note-clab,
+  .misc-input .note-clab {
     font-size: 0.8571rem;
     width: 100%; }
-  .input-wrapper button-clab {
+  .input-wrapper button-clab,
+  .misc-input button-clab {
     margin: 0; }
-  .input-wrapper .btn {
-    padding: 8px 10px 7px;
-    background-color: #CCD1D9;
-    border-bottom-color: #AAB2BD;
-    color: #434A5A; }
-    .input-wrapper .btn:hover {
-      background-color: #d5d9e0; }
-    .input-wrapper .btn:active {
-      background-color: #c3c9d2; }
-  .input-wrapper .password-toggle .btn {
+  .input-wrapper .password-toggle .btn,
+  .misc-input .password-toggle .btn {
     width: 70px; }
   .input-wrapper.primary input[type="color"], .buttons-group.primary .input-wrapper.btn input[type="color"],
   .input-wrapper.primary input[type="date"], .buttons-group.primary .input-wrapper.btn input[type="date"],
@@ -1235,11 +1283,31 @@ input-clab {
   .input-wrapper.primary input[type="time"], .buttons-group.primary .input-wrapper.btn input[type="time"],
   .input-wrapper.primary input[type="url"], .buttons-group.primary .input-wrapper.btn input[type="url"],
   .input-wrapper.primary input[type="week"], .buttons-group.primary .input-wrapper.btn input[type="week"],
-  .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea {
+  .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea,
+  .misc-input.primary input[type="color"], .buttons-group.primary .misc-input.btn input[type="color"],
+  .misc-input.primary input[type="date"], .buttons-group.primary .misc-input.btn input[type="date"],
+  .misc-input.primary input[type="datetime"], .buttons-group.primary .misc-input.btn input[type="datetime"],
+  .misc-input.primary input[type="datetime-local"], .buttons-group.primary .misc-input.btn input[type="datetime-local"],
+  .misc-input.primary input[type="email"], .buttons-group.primary .misc-input.btn input[type="email"],
+  .misc-input.primary input[type="month"], .buttons-group.primary .misc-input.btn input[type="month"],
+  .misc-input.primary input[type="number"], .buttons-group.primary .misc-input.btn input[type="number"],
+  .misc-input.primary input[type="password"], .buttons-group.primary .misc-input.btn input[type="password"],
+  .misc-input.primary input[type="search"], .buttons-group.primary .misc-input.btn input[type="search"],
+  .misc-input.primary input[type="tel"], .buttons-group.primary .misc-input.btn input[type="tel"],
+  .misc-input.primary input[type="text"], .buttons-group.primary .misc-input.btn input[type="text"],
+  .misc-input.primary .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.primary .value_wrapper, .buttons-group.primary .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.primary .misc-input.btn .value_wrapper,
+  .misc-input.primary input[type="time"], .buttons-group.primary .misc-input.btn input[type="time"],
+  .misc-input.primary input[type="url"], .buttons-group.primary .misc-input.btn input[type="url"],
+  .misc-input.primary input[type="week"], .buttons-group.primary .misc-input.btn input[type="week"],
+  .misc-input.primary textarea, .buttons-group.primary .misc-input.btn textarea, .input-wrapper .misc-input.btn.primary textarea {
     border-bottom-color: #003456; }
   .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
   .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
-  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab {
+  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab,
+  .misc-input.primary .input-note, .buttons-group.primary .misc-input.btn .input-note,
+  .misc-input.primary label, .buttons-group.primary .misc-input.btn label, .input-wrapper .misc-input.btn.primary label,
+  .misc-input.primary .note-clab, .buttons-group.primary .misc-input.btn .note-clab {
     color: #003456; }
   .input-wrapper.info input[type="color"], .buttons-group.info .input-wrapper.btn input[type="color"],
   .input-wrapper.info input[type="date"], .buttons-group.info .input-wrapper.btn input[type="date"],
@@ -1257,11 +1325,31 @@ input-clab {
   .input-wrapper.info input[type="time"], .buttons-group.info .input-wrapper.btn input[type="time"],
   .input-wrapper.info input[type="url"], .buttons-group.info .input-wrapper.btn input[type="url"],
   .input-wrapper.info input[type="week"], .buttons-group.info .input-wrapper.btn input[type="week"],
-  .input-wrapper.info textarea, .buttons-group.info .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.info textarea {
+  .input-wrapper.info textarea, .buttons-group.info .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.info textarea,
+  .misc-input.info input[type="color"], .buttons-group.info .misc-input.btn input[type="color"],
+  .misc-input.info input[type="date"], .buttons-group.info .misc-input.btn input[type="date"],
+  .misc-input.info input[type="datetime"], .buttons-group.info .misc-input.btn input[type="datetime"],
+  .misc-input.info input[type="datetime-local"], .buttons-group.info .misc-input.btn input[type="datetime-local"],
+  .misc-input.info input[type="email"], .buttons-group.info .misc-input.btn input[type="email"],
+  .misc-input.info input[type="month"], .buttons-group.info .misc-input.btn input[type="month"],
+  .misc-input.info input[type="number"], .buttons-group.info .misc-input.btn input[type="number"],
+  .misc-input.info input[type="password"], .buttons-group.info .misc-input.btn input[type="password"],
+  .misc-input.info input[type="search"], .buttons-group.info .misc-input.btn input[type="search"],
+  .misc-input.info input[type="tel"], .buttons-group.info .misc-input.btn input[type="tel"],
+  .misc-input.info input[type="text"], .buttons-group.info .misc-input.btn input[type="text"],
+  .misc-input.info .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.info .value_wrapper, .buttons-group.info .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.info .misc-input.btn .value_wrapper,
+  .misc-input.info input[type="time"], .buttons-group.info .misc-input.btn input[type="time"],
+  .misc-input.info input[type="url"], .buttons-group.info .misc-input.btn input[type="url"],
+  .misc-input.info input[type="week"], .buttons-group.info .misc-input.btn input[type="week"],
+  .misc-input.info textarea, .buttons-group.info .misc-input.btn textarea, .input-wrapper .misc-input.btn.info textarea {
     border-bottom-color: #49c1da; }
   .input-wrapper.info .input-note, .buttons-group.info .input-wrapper.btn .input-note,
   .input-wrapper.info label, .buttons-group.info .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.info label,
-  .input-wrapper.info .note-clab, .buttons-group.info .input-wrapper.btn .note-clab {
+  .input-wrapper.info .note-clab, .buttons-group.info .input-wrapper.btn .note-clab,
+  .misc-input.info .input-note, .buttons-group.info .misc-input.btn .input-note,
+  .misc-input.info label, .buttons-group.info .misc-input.btn label, .input-wrapper .misc-input.btn.info label,
+  .misc-input.info .note-clab, .buttons-group.info .misc-input.btn .note-clab {
     color: #49c1da; }
   .input-wrapper.success input[type="color"], .buttons-group.success .input-wrapper.btn input[type="color"],
   .input-wrapper.success input[type="date"], .buttons-group.success .input-wrapper.btn input[type="date"],
@@ -1279,11 +1367,31 @@ input-clab {
   .input-wrapper.success input[type="time"], .buttons-group.success .input-wrapper.btn input[type="time"],
   .input-wrapper.success input[type="url"], .buttons-group.success .input-wrapper.btn input[type="url"],
   .input-wrapper.success input[type="week"], .buttons-group.success .input-wrapper.btn input[type="week"],
-  .input-wrapper.success textarea, .buttons-group.success .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.success textarea {
+  .input-wrapper.success textarea, .buttons-group.success .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.success textarea,
+  .misc-input.success input[type="color"], .buttons-group.success .misc-input.btn input[type="color"],
+  .misc-input.success input[type="date"], .buttons-group.success .misc-input.btn input[type="date"],
+  .misc-input.success input[type="datetime"], .buttons-group.success .misc-input.btn input[type="datetime"],
+  .misc-input.success input[type="datetime-local"], .buttons-group.success .misc-input.btn input[type="datetime-local"],
+  .misc-input.success input[type="email"], .buttons-group.success .misc-input.btn input[type="email"],
+  .misc-input.success input[type="month"], .buttons-group.success .misc-input.btn input[type="month"],
+  .misc-input.success input[type="number"], .buttons-group.success .misc-input.btn input[type="number"],
+  .misc-input.success input[type="password"], .buttons-group.success .misc-input.btn input[type="password"],
+  .misc-input.success input[type="search"], .buttons-group.success .misc-input.btn input[type="search"],
+  .misc-input.success input[type="tel"], .buttons-group.success .misc-input.btn input[type="tel"],
+  .misc-input.success input[type="text"], .buttons-group.success .misc-input.btn input[type="text"],
+  .misc-input.success .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.success .value_wrapper, .buttons-group.success .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.success .misc-input.btn .value_wrapper,
+  .misc-input.success input[type="time"], .buttons-group.success .misc-input.btn input[type="time"],
+  .misc-input.success input[type="url"], .buttons-group.success .misc-input.btn input[type="url"],
+  .misc-input.success input[type="week"], .buttons-group.success .misc-input.btn input[type="week"],
+  .misc-input.success textarea, .buttons-group.success .misc-input.btn textarea, .input-wrapper .misc-input.btn.success textarea {
     border-bottom-color: #8ec362; }
   .input-wrapper.success .input-note, .buttons-group.success .input-wrapper.btn .input-note,
   .input-wrapper.success label, .buttons-group.success .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.success label,
-  .input-wrapper.success .note-clab, .buttons-group.success .input-wrapper.btn .note-clab {
+  .input-wrapper.success .note-clab, .buttons-group.success .input-wrapper.btn .note-clab,
+  .misc-input.success .input-note, .buttons-group.success .misc-input.btn .input-note,
+  .misc-input.success label, .buttons-group.success .misc-input.btn label, .input-wrapper .misc-input.btn.success label,
+  .misc-input.success .note-clab, .buttons-group.success .misc-input.btn .note-clab {
     color: #8ec362; }
   .input-wrapper.warning input[type="color"], .buttons-group.warning .input-wrapper.btn input[type="color"],
   .input-wrapper.warning input[type="date"], .buttons-group.warning .input-wrapper.btn input[type="date"],
@@ -1301,11 +1409,31 @@ input-clab {
   .input-wrapper.warning input[type="time"], .buttons-group.warning .input-wrapper.btn input[type="time"],
   .input-wrapper.warning input[type="url"], .buttons-group.warning .input-wrapper.btn input[type="url"],
   .input-wrapper.warning input[type="week"], .buttons-group.warning .input-wrapper.btn input[type="week"],
-  .input-wrapper.warning textarea, .buttons-group.warning .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.warning textarea {
+  .input-wrapper.warning textarea, .buttons-group.warning .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.warning textarea,
+  .misc-input.warning input[type="color"], .buttons-group.warning .misc-input.btn input[type="color"],
+  .misc-input.warning input[type="date"], .buttons-group.warning .misc-input.btn input[type="date"],
+  .misc-input.warning input[type="datetime"], .buttons-group.warning .misc-input.btn input[type="datetime"],
+  .misc-input.warning input[type="datetime-local"], .buttons-group.warning .misc-input.btn input[type="datetime-local"],
+  .misc-input.warning input[type="email"], .buttons-group.warning .misc-input.btn input[type="email"],
+  .misc-input.warning input[type="month"], .buttons-group.warning .misc-input.btn input[type="month"],
+  .misc-input.warning input[type="number"], .buttons-group.warning .misc-input.btn input[type="number"],
+  .misc-input.warning input[type="password"], .buttons-group.warning .misc-input.btn input[type="password"],
+  .misc-input.warning input[type="search"], .buttons-group.warning .misc-input.btn input[type="search"],
+  .misc-input.warning input[type="tel"], .buttons-group.warning .misc-input.btn input[type="tel"],
+  .misc-input.warning input[type="text"], .buttons-group.warning .misc-input.btn input[type="text"],
+  .misc-input.warning .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.warning .value_wrapper, .buttons-group.warning .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.warning .misc-input.btn .value_wrapper,
+  .misc-input.warning input[type="time"], .buttons-group.warning .misc-input.btn input[type="time"],
+  .misc-input.warning input[type="url"], .buttons-group.warning .misc-input.btn input[type="url"],
+  .misc-input.warning input[type="week"], .buttons-group.warning .misc-input.btn input[type="week"],
+  .misc-input.warning textarea, .buttons-group.warning .misc-input.btn textarea, .input-wrapper .misc-input.btn.warning textarea {
     border-bottom-color: #eeb94e; }
   .input-wrapper.warning .input-note, .buttons-group.warning .input-wrapper.btn .input-note,
   .input-wrapper.warning label, .buttons-group.warning .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.warning label,
-  .input-wrapper.warning .note-clab, .buttons-group.warning .input-wrapper.btn .note-clab {
+  .input-wrapper.warning .note-clab, .buttons-group.warning .input-wrapper.btn .note-clab,
+  .misc-input.warning .input-note, .buttons-group.warning .misc-input.btn .input-note,
+  .misc-input.warning label, .buttons-group.warning .misc-input.btn label, .input-wrapper .misc-input.btn.warning label,
+  .misc-input.warning .note-clab, .buttons-group.warning .misc-input.btn .note-clab {
     color: #eeb94e; }
   .input-wrapper.error input[type="color"], .buttons-group.error .input-wrapper.btn input[type="color"],
   .input-wrapper.error input[type="date"], .buttons-group.error .input-wrapper.btn input[type="date"],
@@ -1323,11 +1451,31 @@ input-clab {
   .input-wrapper.error input[type="time"], .buttons-group.error .input-wrapper.btn input[type="time"],
   .input-wrapper.error input[type="url"], .buttons-group.error .input-wrapper.btn input[type="url"],
   .input-wrapper.error input[type="week"], .buttons-group.error .input-wrapper.btn input[type="week"],
-  .input-wrapper.error textarea, .buttons-group.error .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.error textarea {
+  .input-wrapper.error textarea, .buttons-group.error .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.error textarea,
+  .misc-input.error input[type="color"], .buttons-group.error .misc-input.btn input[type="color"],
+  .misc-input.error input[type="date"], .buttons-group.error .misc-input.btn input[type="date"],
+  .misc-input.error input[type="datetime"], .buttons-group.error .misc-input.btn input[type="datetime"],
+  .misc-input.error input[type="datetime-local"], .buttons-group.error .misc-input.btn input[type="datetime-local"],
+  .misc-input.error input[type="email"], .buttons-group.error .misc-input.btn input[type="email"],
+  .misc-input.error input[type="month"], .buttons-group.error .misc-input.btn input[type="month"],
+  .misc-input.error input[type="number"], .buttons-group.error .misc-input.btn input[type="number"],
+  .misc-input.error input[type="password"], .buttons-group.error .misc-input.btn input[type="password"],
+  .misc-input.error input[type="search"], .buttons-group.error .misc-input.btn input[type="search"],
+  .misc-input.error input[type="tel"], .buttons-group.error .misc-input.btn input[type="tel"],
+  .misc-input.error input[type="text"], .buttons-group.error .misc-input.btn input[type="text"],
+  .misc-input.error .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.error .value_wrapper, .buttons-group.error .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.error .misc-input.btn .value_wrapper,
+  .misc-input.error input[type="time"], .buttons-group.error .misc-input.btn input[type="time"],
+  .misc-input.error input[type="url"], .buttons-group.error .misc-input.btn input[type="url"],
+  .misc-input.error input[type="week"], .buttons-group.error .misc-input.btn input[type="week"],
+  .misc-input.error textarea, .buttons-group.error .misc-input.btn textarea, .input-wrapper .misc-input.btn.error textarea {
     border-bottom-color: #c46978; }
   .input-wrapper.error .input-note, .buttons-group.error .input-wrapper.btn .input-note,
   .input-wrapper.error label, .buttons-group.error .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.error label,
-  .input-wrapper.error .note-clab, .buttons-group.error .input-wrapper.btn .note-clab {
+  .input-wrapper.error .note-clab, .buttons-group.error .input-wrapper.btn .note-clab,
+  .misc-input.error .input-note, .buttons-group.error .misc-input.btn .input-note,
+  .misc-input.error label, .buttons-group.error .misc-input.btn label, .input-wrapper .misc-input.btn.error label,
+  .misc-input.error .note-clab, .buttons-group.error .misc-input.btn .note-clab {
     color: #c46978; }
   .input-wrapper.primary input[type="color"], .buttons-group.primary .input-wrapper.btn input[type="color"],
   .input-wrapper.primary input[type="date"], .buttons-group.primary .input-wrapper.btn input[type="date"],
@@ -1345,44 +1493,85 @@ input-clab {
   .input-wrapper.primary input[type="time"], .buttons-group.primary .input-wrapper.btn input[type="time"],
   .input-wrapper.primary input[type="url"], .buttons-group.primary .input-wrapper.btn input[type="url"],
   .input-wrapper.primary input[type="week"], .buttons-group.primary .input-wrapper.btn input[type="week"],
-  .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea {
+  .input-wrapper.primary textarea, .buttons-group.primary .input-wrapper.btn textarea, .input-wrapper .input-wrapper.btn.primary textarea,
+  .misc-input.primary input[type="color"], .buttons-group.primary .misc-input.btn input[type="color"],
+  .misc-input.primary input[type="date"], .buttons-group.primary .misc-input.btn input[type="date"],
+  .misc-input.primary input[type="datetime"], .buttons-group.primary .misc-input.btn input[type="datetime"],
+  .misc-input.primary input[type="datetime-local"], .buttons-group.primary .misc-input.btn input[type="datetime-local"],
+  .misc-input.primary input[type="email"], .buttons-group.primary .misc-input.btn input[type="email"],
+  .misc-input.primary input[type="month"], .buttons-group.primary .misc-input.btn input[type="month"],
+  .misc-input.primary input[type="number"], .buttons-group.primary .misc-input.btn input[type="number"],
+  .misc-input.primary input[type="password"], .buttons-group.primary .misc-input.btn input[type="password"],
+  .misc-input.primary input[type="search"], .buttons-group.primary .misc-input.btn input[type="search"],
+  .misc-input.primary input[type="tel"], .buttons-group.primary .misc-input.btn input[type="tel"],
+  .misc-input.primary input[type="text"], .buttons-group.primary .misc-input.btn input[type="text"],
+  .misc-input.primary .dropdown-clab .value_wrapper, .dropdown-clab
+  .misc-input.primary .value_wrapper, .buttons-group.primary .misc-input.btn .dropdown-clab .value_wrapper, .dropdown-clab .buttons-group.primary .misc-input.btn .value_wrapper,
+  .misc-input.primary input[type="time"], .buttons-group.primary .misc-input.btn input[type="time"],
+  .misc-input.primary input[type="url"], .buttons-group.primary .misc-input.btn input[type="url"],
+  .misc-input.primary input[type="week"], .buttons-group.primary .misc-input.btn input[type="week"],
+  .misc-input.primary textarea, .buttons-group.primary .misc-input.btn textarea, .input-wrapper .misc-input.btn.primary textarea {
     border-bottom-color: #0072bc; }
   .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
   .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
-  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab {
+  .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab,
+  .misc-input.primary .input-note, .buttons-group.primary .misc-input.btn .input-note,
+  .misc-input.primary label, .buttons-group.primary .misc-input.btn label, .input-wrapper .misc-input.btn.primary label,
+  .misc-input.primary .note-clab, .buttons-group.primary .misc-input.btn .note-clab {
     color: #0072bc; }
-  .input-wrapper.inline {
+  .input-wrapper.inline,
+  .misc-input.inline {
     flex-flow: row wrap;
     align-items: center; }
+    .input-wrapper.inline.textarea,
+    .misc-input.inline.textarea {
+      align-items: flex-start; }
     .input-wrapper.inline .input-note,
-    .input-wrapper.inline .note-clab {
+    .input-wrapper.inline .note-clab,
+    .misc-input.inline .input-note,
+    .misc-input.inline .note-clab {
       padding-left: 150px; }
-    .input-wrapper.inline.icon-label label {
+    .input-wrapper.inline.icon-label label,
+    .misc-input.inline.icon-label label {
       font-size: 16px; }
-    .input-wrapper.inline.smaller-label label {
+    .input-wrapper.inline.smaller-label label,
+    .misc-input.inline.smaller-label label {
       width: 75px; }
     .input-wrapper.inline.smaller-label .input-note,
-    .input-wrapper.inline.smaller-label .note-clab {
+    .input-wrapper.inline.smaller-label .note-clab,
+    .misc-input.inline.smaller-label .input-note,
+    .misc-input.inline.smaller-label .note-clab {
       padding-left: 75px; }
-    .input-wrapper.inline.small-label label {
+    .input-wrapper.inline.small-label label,
+    .misc-input.inline.small-label label {
       width: 100px; }
     .input-wrapper.inline.small-label .input-note,
-    .input-wrapper.inline.small-label .note-clab {
+    .input-wrapper.inline.small-label .note-clab,
+    .misc-input.inline.small-label .input-note,
+    .misc-input.inline.small-label .note-clab {
       padding-left: 100px; }
-    .input-wrapper.inline.large-label label {
+    .input-wrapper.inline.large-label label,
+    .misc-input.inline.large-label label {
       width: 200px; }
     .input-wrapper.inline.large-label .input-note,
-    .input-wrapper.inline.large-label .note-clab {
+    .input-wrapper.inline.large-label .note-clab,
+    .misc-input.inline.large-label .input-note,
+    .misc-input.inline.large-label .note-clab {
       padding-left: 200px; }
-    .input-wrapper.inline.larger-label label {
+    .input-wrapper.inline.larger-label label,
+    .misc-input.inline.larger-label label {
       width: 250px; }
     .input-wrapper.inline.larger-label .input-note,
-    .input-wrapper.inline.larger-label .note-clab {
+    .input-wrapper.inline.larger-label .note-clab,
+    .misc-input.inline.larger-label .input-note,
+    .misc-input.inline.larger-label .note-clab {
       padding-left: 250px; }
-    .input-wrapper.inline label {
+    .input-wrapper.inline label,
+    .misc-input.inline label {
       padding-bottom: 0;
       text-align: right;
-      width: 150px; }
+      width: 150px;
+      flex-shrink: 0; }
     .input-wrapper.inline input[type="color"],
     .input-wrapper.inline input[type="date"],
     .input-wrapper.inline input[type="datetime"],
@@ -1399,8 +1588,24 @@ input-clab {
     .input-wrapper.inline input[type="time"],
     .input-wrapper.inline input[type="url"],
     .input-wrapper.inline input[type="week"],
-    .input-wrapper.inline textarea {
-      width: auto;
+    .input-wrapper.inline textarea,
+    .misc-input.inline input[type="color"],
+    .misc-input.inline input[type="date"],
+    .misc-input.inline input[type="datetime"],
+    .misc-input.inline input[type="datetime-local"],
+    .misc-input.inline input[type="email"],
+    .misc-input.inline input[type="month"],
+    .misc-input.inline input[type="number"],
+    .misc-input.inline input[type="password"],
+    .misc-input.inline input[type="search"],
+    .misc-input.inline input[type="tel"],
+    .misc-input.inline input[type="text"],
+    .misc-input.inline .dropdown-clab .value_wrapper, .dropdown-clab
+    .misc-input.inline .value_wrapper,
+    .misc-input.inline input[type="time"],
+    .misc-input.inline input[type="url"],
+    .misc-input.inline input[type="week"],
+    .misc-input.inline textarea {
       flex-grow: 1; }
 
 label {
@@ -1498,7 +1703,8 @@ input[type=radio] {
     -khtml-user-select: none;
     -moz-user-select: none;
     -o-user-select: none;
-    user-select: none; }
+    user-select: none;
+    width: auto !important; }
     input[type=checkbox] + label span,
     input[type=radio] + label span {
       flex-grow: 1; }
@@ -1537,6 +1743,25 @@ radio-clab.inline {
   radio-clab.inline input[type=checkbox] + label,
   radio-clab.inline input[type=radio] + label {
     margin-right: 20px; }
+
+.input-wrapper.multiple-inputs {
+  flex-wrap: nowrap; }
+  .input-wrapper.multiple-inputs .element {
+    flex-grow: 1;
+    width: 60px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center; }
+    .input-wrapper.multiple-inputs .element:last-of-type {
+      margin-right: 0; }
+    .input-wrapper.multiple-inputs .element calendar-clab,
+    .input-wrapper.multiple-inputs .element dropdown-clab {
+      flex-grow: 1;
+      width: 100%; }
+  .input-wrapper.multiple-inputs .input {
+    justify-content: space-around; }
+  .input-wrapper.multiple-inputs > .input-wrapper {
+    flex-wrap: nowrap; }
 
 .range-wrapper {
   position: relative;
@@ -1686,6 +1911,9 @@ input[type=range]:focus::-ms-fill-upper {
     .alerts-wrapper .alert.error, .alerts-wrapper .buttons-group.error .alert.btn, .buttons-group.error .alerts-wrapper .alert.btn {
       background: #e1b2ba;
       color: #a94442; }
+
+alert-clab {
+  width: 100%; }
 
 .alert {
   padding: 20px;
@@ -2007,6 +2235,8 @@ input[type=range]:focus::-ms-fill-upper {
   flex-flow: row nowrap;
   align-items: flex-start;
   margin-bottom: 20px; }
+  .feature a {
+    display: flex; }
   .feature .image {
     font-size: 50px;
     padding-right: 10px;
@@ -2014,7 +2244,8 @@ input[type=range]:focus::-ms-fill-upper {
     .feature .image img {
       height: 50px; }
   .feature .title {
-    font-weight: 700; }
+    font-weight: 700;
+    padding-bottom: 5px; }
   .feature .description {
     flex-grow: 1; }
   .feature a {
@@ -2031,6 +2262,9 @@ input[type=range]:focus::-ms-fill-upper {
     flex-flow: column wrap;
     align-items: center;
     text-align: center; }
+    .feature.vertical a {
+      display: flex;
+      flex-direction: column; }
     .feature.vertical .image {
       margin-bottom: 10px;
       padding-right: 0; }
@@ -2190,24 +2424,15 @@ input[type=range]:focus::-ms-fill-upper {
   .pagination .clab-icon {
     font-size: 10px; }
   .pagination li {
-    color: #C0C0C0;
-    display: inline; }
-    .pagination li a {
-      color: #434A5A;
-      display: inline-block;
-      padding: 5px 10px;
-      line-height: 1; }
-    .pagination li span {
-      padding: 5px 10px; }
-    .pagination li a:hover {
-      color: #0072bc; }
-    .pagination li.first {
-      padding-right: 0; }
-    .pagination li.last {
-      padding-left: 0; }
-    .pagination li.active a {
-      background: #CCD1D9;
-      color: #FFFFFF; }
+    color: #434A5A;
+    display: inline-block;
+    margin: 0;
+    width: 25px;
+    line-height: 25px;
+    text-align: center;
+    cursor: pointer; }
+    .pagination li.page.active {
+      background-color: #CCD1D9; }
 
 .progress-bar {
   position: relative;
@@ -2261,7 +2486,7 @@ input[type=range]:focus::-ms-fill-upper {
   right: 0;
   bottom: 0;
   z-index: 2;
-  background-color: rgba(255, 255, 255, 0.9);
+  background-color: rgba(240, 240, 240, 0.9);
   -webkit-user-select: none;
   -khtml-user-select: none;
   -moz-user-select: none;
@@ -2388,6 +2613,9 @@ td, .table .th,
 
 .table {
   display: table; }
+  .table .clab-icon {
+    font-size: 1.286rem;
+    vertical-align: middle; }
   .table .tr {
     display: table-row; }
   .table .th,
@@ -2420,6 +2648,11 @@ td, .table .th,
   background: #cacaca;
   color: #FFFFFF;
   cursor: pointer; }
+
+.full-table-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%; }
 
 .table-tools {
   display: flex;
@@ -2693,6 +2926,9 @@ ol.default {
 
 .modal-actions {
   text-align: right; }
+
+tabs-clab {
+  width: 100%; }
 
 .tabs, .pills {
   display: flex;

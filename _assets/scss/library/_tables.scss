@@ -38,7 +38,7 @@ table {
 
   .operations {
     text-align: center;
-    position: relative; 
+    position: relative;
     min-width: 40px;
   }
 
@@ -78,13 +78,18 @@ td {
   display: table;
   @extend table;
 
+  .clab-icon {
+      font-size: $big-font-size;
+      vertical-align: middle;
+  }
+
   .tr {
     display: table-row;
   }
 
   .th,
   .td {
-    display: table-cell; 
+    display: table-cell;
     @extend td;
   }
 
@@ -126,6 +131,12 @@ td {
 
 
 // full table component
+
+.full-table-wrapper {
+  display: flex;
+  flex-flow: column nowrap;
+  width: 100%;
+}
 
 .table-tools {
 	display: flex;

@@ -6,6 +6,10 @@
 	align-items: flex-start;
 	margin-bottom: $base-spacing;
 
+	a {
+		display: flex;
+	}
+
 	.image {
 		font-size: 50px;
 		padding-right: $small-spacing;
@@ -18,6 +22,7 @@
 
 	.title {
 		font-weight: $bold-weight;
+		padding-bottom: $smaller-spacing;
 	}
 
 	.description {
@@ -52,6 +57,11 @@
 		flex-flow: column wrap;
 		align-items: center;
 		text-align: center;
+
+		a {
+			display: flex;
+			flex-direction: column;
+		}
 
 		.image {
 			margin-bottom: $small-spacing;

@@ -13,39 +13,28 @@
 		.page.invisible{
 			display: none;
 		}
-		li{
-			color:black !important;
-			padding:5px;
-			cursor:pointer;
-		}
-		li:hover{
-			background-color: lightgrey;
-		}
-		li.active{
-			background-color:yellow
-		}
 
 	</style>
 
 	<template>
 		<ul class="pagination">
-				<li class="first" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
-					<i class="clab-icon icon-double-arrow-left"></i>
-				</li>
-				<li on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
-			    	<i class="clab-icon icon-arrow-left"></i>
-			    </li>
+			<li class="first" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
+				<i class="clab-icon icon-double-arrow-left"></i>
+			</li>
+			<li on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
+		    	<i class="clab-icon icon-arrow-left"></i>
+		    </li>
 
-				<template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd)]]" as="page">
-					<li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
-				</template>
+			<template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd)]]" as="page">
+				<li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
+			</template>
 
-				<li on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
-			    	<i class="clab-icon icon-arrow-right"></i>
-			    </li>
-				<li class="last" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
-			    	<i class="clab-icon icon-double-arrow-right"></i>
-			    </li>
+			<li on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
+		    	<i class="clab-icon icon-arrow-right"></i>
+		    </li>
+			<li class="last" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
+		    	<i class="clab-icon icon-double-arrow-right"></i>
+		    </li>
 		</ul>
 	</template>
 

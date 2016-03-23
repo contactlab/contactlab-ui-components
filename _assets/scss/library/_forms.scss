@@ -10,40 +10,18 @@ input-clab {
 	width: 100%;
 }
 
+textarea {
+	height: 150px !important;
+	resize: vertical;
+}
+
 .input-wrapper {
-	display: flex;
-	flex-flow: column wrap;
-	justify-content: flex-end;
-	padding-bottom: $base-spacing;
-	position: relative;
-
-	.input-wrapper {
-		padding-bottom: 0;
-	}
-
-	.input {
-		display: flex;
-		flex-flow: row nowrap;
-		position: relative;
-		flex-grow: 1;
-	}
-
-	.input-note,
-	note-clab.input-clab,
-	.note-clab, {
-		font-size: $small-font-size;
-		width: 100%;
-	}
-
-	button-clab {
-		margin: 0;
-	}
-
 	.btn {
-		padding: 8px $small-spacing 7px;
+		padding: 7px $small-spacing;
 		background-color: $gray;
 		border-bottom-color: $medium-gray;
 		color: $text-color;
+		line-height: 1;
 
 		&:hover {
 		    background-color: lighten($gray, 3%);
@@ -51,6 +29,18 @@ input-clab {
 
 		&:active {
 			background-color: darken($gray, 3%);
+		}
+
+		&.flat {
+			@extend .flat;
+
+			&:hover {
+				@extend .flat:hover;
+			}
+
+			&:active {
+				@extend .flat:active;
+			}
 		}
 
 		@each $type, $color in $default-status {
@@ -66,6 +56,38 @@ input-clab {
 				}
 			}
 		}
+	}
+}
+
+.input-wrapper,
+.misc-input {
+	display: flex;
+	flex-flow: column wrap;
+	justify-content: flex-end;
+	padding-bottom: $base-spacing;
+	position: relative;
+
+	.input-wrapper {
+		padding-bottom: 0;
+	}
+
+	.input {
+		display: flex;
+		flex-flow: row nowrap;
+		position: relative;
+		flex-grow: 1;
+		align-items: center;
+	}
+
+	.input-note,
+	note-clab,
+	.note-clab, {
+		font-size: $small-font-size;
+		width: 100%;
+	}
+
+	button-clab {
+		margin: 0;
 	}
 
 	.password-toggle .btn {
@@ -130,6 +152,10 @@ input-clab {
 		flex-flow: row wrap;
 		align-items: center;
 
+		&.textarea {
+			align-items: flex-start;
+		}
+
 		.input-note,
 		.note-clab	 {
 			padding-left: $default-label-width;
@@ -189,6 +215,7 @@ input-clab {
 			padding-bottom: 0;
 			text-align: right;
 			width: 150px;
+			flex-shrink: 0;
 		}
 
 		input[type="color"],
@@ -206,7 +233,6 @@ input-clab {
 		input[type="url"],
 		input[type="week"],
 		textarea {
-			width: auto;
 			flex-grow: 1;
 		}
 	}
@@ -280,6 +306,7 @@ input[type=radio] {
 	    display: flex;
 	    align-items: baseline;
 	    @include user-selection;
+		width: auto !important;
 
 	    span {
 	    	flex-grow: 1;
@@ -297,7 +324,7 @@ input[type=radio] {
 
 input[type=radio] {
 	+ label:before {
-		content: "\e62e"; 
+		content: "\e62e";
 	}
 
 	&:checked + label:before {
@@ -337,14 +364,41 @@ radio-clab {
 		}
 	}
 
-	
+
 }
 
 /////////////////// END RADIO & CHECKBOX ///////////////////
 
+/////////////////// MULIPLE INPUTS ///////////////////
+.input-wrapper.multiple-inputs {
+	flex-wrap: nowrap;
 
+	.element {
+		flex-grow: 1;
+		width: 60px;
+		margin-right: $small-spacing;
+		display: flex;
+		align-items: center;
 
+		&:last-of-type {
+			margin-right: 0;
+		}
 
+		calendar-clab,
+		dropdown-clab {
+			flex-grow: 1;
+			width: 100%;
+		}
+	}
+	.input {
+		justify-content: space-around;
+	}
+
+	> .input-wrapper {
+		flex-wrap: nowrap;
+	}
+}
+/////////////////// END MULIPLE INPUTS ///////////////////
 
 /////////////////// CUSTOM RANGE ///////////////////
 
