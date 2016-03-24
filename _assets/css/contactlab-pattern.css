@@ -594,6 +594,9 @@ header {
     header ol li {
       margin: 0;
       padding: 0; }
+  header current-user {
+    display: flex;
+    min-width: 250px; }
   header .logo {
     width: 250px;
     font-size: 20px;
