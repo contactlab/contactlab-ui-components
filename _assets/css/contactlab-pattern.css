@@ -657,6 +657,7 @@ header {
         background-color: #0072bc; }
   header .user {
     width: 250px;
+    height: 64px;
     text-align: right;
     display: flex;
     align-items: center;
