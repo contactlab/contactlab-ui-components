@@ -783,7 +783,7 @@ header {
         padding-right: 60px; }
       header .user {
         order: 3;
-        width: auto;
+        width: 100%;
         background-color: #434A5A;
         color: #FAFAFA;
         padding: 20px; }
