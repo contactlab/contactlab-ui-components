@@ -13,7 +13,7 @@
     cursor: not-allowed;
     color: $disabled-color;
   }
-  
+
   .options-list {
     position: absolute;
     top: 30px;
@@ -85,6 +85,9 @@
       @extend input[type="text"];
       cursor: pointer;
       text-align:left;
+      height: 30px;
+      padding-right: $base-spacing;
+      @extend .truncate;
     }
 
     .input {
@@ -100,7 +103,7 @@
         pointer-events: none;
       }
     }
-  } 
+  }
 
 /////////////////// END SELECT ///////////////////
 
