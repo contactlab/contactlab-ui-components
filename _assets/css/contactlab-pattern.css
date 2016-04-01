@@ -1785,6 +1785,9 @@ radio-clab.inline {
     .input-wrapper.multiple-inputs .element dropdown-clab {
       flex-grow: 1;
       width: 100%; }
+    .input-wrapper.multiple-inputs .element.connection-text {
+      flex-grow: 0;
+      width: auto; }
   .input-wrapper.multiple-inputs .input {
     justify-content: space-around; }
   .input-wrapper.multiple-inputs > .input-wrapper {

@@ -389,6 +389,11 @@ radio-clab {
 			flex-grow: 1;
 			width: 100%;
 		}
+
+		&.connection-text {
+			flex-grow: 0;
+			width: auto;
+		}
 	}
 	.input {
 		justify-content: space-around;
