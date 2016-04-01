@@ -13,7 +13,7 @@ del, dfn, em, img, ins, kbd, q, s, samp,
 small, strike, strong, sub, sup, tt, var,
 b, u, i, center,
 dl, dt, dd, ol, ul, li,
-fieldset, form, label, legend,
+fieldset, form, label, .key-value li span:first-of-type, legend,
 table,
 .table, caption, tbody, tfoot, thead, tr, th, .table .th, td, .table .th,
 .table .td,
@@ -371,7 +371,8 @@ body {
 
 a {
   text-decoration: none;
-  color: #0072bc; }
+  color: #0072bc;
+  cursor: pointer; }
 
 header .user .user-panel a, .contextual-menu > ul li a {
   color: #434A5A; }
@@ -573,6 +574,23 @@ textarea, .accordion .accordion-block, .accordion .accordion-block.active, .acco
 .blur:hover figure img {
   -webkit-filter: blur(0);
   filter: blur(0); }
+
+.key-value li {
+  display: flex;
+  align-items: flex-end;
+  flex-flow: row wrap;
+  margin-bottom: 15px; }
+  .key-value li span:first-of-type {
+    padding: 0; }
+
+.key-value hr.divider {
+  flex: 1 0;
+  margin: 0 10px 3px; }
+
+.key-value .multiple {
+  flex-basis: 100%;
+  padding-left: 20px;
+  padding-top: 10px; }
 
 header {
   padding: 0 20px;
@@ -946,7 +964,7 @@ hr {
   border: 0;
   border-top: 1px solid #CCD1D9;
   width: 100%; }
-  hr.dotted {
+  hr.dotted, .key-value hr.divider {
     border-style: dotted; }
   hr.dashed {
     border-style: dashed; }
@@ -1254,9 +1272,13 @@ textarea {
     border-bottom-color: #003456; }
   .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
   .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
+  .input-wrapper.primary .key-value li span:first-of-type, .key-value li
+  .input-wrapper.primary span:first-of-type, .buttons-group.primary .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.primary .input-wrapper.btn span:first-of-type,
   .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab,
   .misc-input.primary .input-note, .buttons-group.primary .misc-input.btn .input-note,
   .misc-input.primary label, .buttons-group.primary .misc-input.btn label, .input-wrapper .misc-input.btn.primary label,
+  .misc-input.primary .key-value li span:first-of-type, .key-value li
+  .misc-input.primary span:first-of-type, .buttons-group.primary .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.primary .misc-input.btn span:first-of-type,
   .misc-input.primary .note-clab, .buttons-group.primary .misc-input.btn .note-clab {
     color: #003456; }
   .input-wrapper.info input[type="color"], .buttons-group.info .input-wrapper.btn input[type="color"],
@@ -1296,9 +1318,13 @@ textarea {
     border-bottom-color: #49c1da; }
   .input-wrapper.info .input-note, .buttons-group.info .input-wrapper.btn .input-note,
   .input-wrapper.info label, .buttons-group.info .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.info label,
+  .input-wrapper.info .key-value li span:first-of-type, .key-value li
+  .input-wrapper.info span:first-of-type, .buttons-group.info .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.info .input-wrapper.btn span:first-of-type,
   .input-wrapper.info .note-clab, .buttons-group.info .input-wrapper.btn .note-clab,
   .misc-input.info .input-note, .buttons-group.info .misc-input.btn .input-note,
   .misc-input.info label, .buttons-group.info .misc-input.btn label, .input-wrapper .misc-input.btn.info label,
+  .misc-input.info .key-value li span:first-of-type, .key-value li
+  .misc-input.info span:first-of-type, .buttons-group.info .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.info .misc-input.btn span:first-of-type,
   .misc-input.info .note-clab, .buttons-group.info .misc-input.btn .note-clab {
     color: #49c1da; }
   .input-wrapper.success input[type="color"], .buttons-group.success .input-wrapper.btn input[type="color"],
@@ -1338,9 +1364,13 @@ textarea {
     border-bottom-color: #8ec362; }
   .input-wrapper.success .input-note, .buttons-group.success .input-wrapper.btn .input-note,
   .input-wrapper.success label, .buttons-group.success .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.success label,
+  .input-wrapper.success .key-value li span:first-of-type, .key-value li
+  .input-wrapper.success span:first-of-type, .buttons-group.success .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.success .input-wrapper.btn span:first-of-type,
   .input-wrapper.success .note-clab, .buttons-group.success .input-wrapper.btn .note-clab,
   .misc-input.success .input-note, .buttons-group.success .misc-input.btn .input-note,
   .misc-input.success label, .buttons-group.success .misc-input.btn label, .input-wrapper .misc-input.btn.success label,
+  .misc-input.success .key-value li span:first-of-type, .key-value li
+  .misc-input.success span:first-of-type, .buttons-group.success .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.success .misc-input.btn span:first-of-type,
   .misc-input.success .note-clab, .buttons-group.success .misc-input.btn .note-clab {
     color: #8ec362; }
   .input-wrapper.warning input[type="color"], .buttons-group.warning .input-wrapper.btn input[type="color"],
@@ -1380,9 +1410,13 @@ textarea {
     border-bottom-color: #eeb94e; }
   .input-wrapper.warning .input-note, .buttons-group.warning .input-wrapper.btn .input-note,
   .input-wrapper.warning label, .buttons-group.warning .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.warning label,
+  .input-wrapper.warning .key-value li span:first-of-type, .key-value li
+  .input-wrapper.warning span:first-of-type, .buttons-group.warning .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.warning .input-wrapper.btn span:first-of-type,
   .input-wrapper.warning .note-clab, .buttons-group.warning .input-wrapper.btn .note-clab,
   .misc-input.warning .input-note, .buttons-group.warning .misc-input.btn .input-note,
   .misc-input.warning label, .buttons-group.warning .misc-input.btn label, .input-wrapper .misc-input.btn.warning label,
+  .misc-input.warning .key-value li span:first-of-type, .key-value li
+  .misc-input.warning span:first-of-type, .buttons-group.warning .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.warning .misc-input.btn span:first-of-type,
   .misc-input.warning .note-clab, .buttons-group.warning .misc-input.btn .note-clab {
     color: #eeb94e; }
   .input-wrapper.error input[type="color"], .buttons-group.error .input-wrapper.btn input[type="color"],
@@ -1422,9 +1456,13 @@ textarea {
     border-bottom-color: #c46978; }
   .input-wrapper.error .input-note, .buttons-group.error .input-wrapper.btn .input-note,
   .input-wrapper.error label, .buttons-group.error .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.error label,
+  .input-wrapper.error .key-value li span:first-of-type, .key-value li
+  .input-wrapper.error span:first-of-type, .buttons-group.error .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.error .input-wrapper.btn span:first-of-type,
   .input-wrapper.error .note-clab, .buttons-group.error .input-wrapper.btn .note-clab,
   .misc-input.error .input-note, .buttons-group.error .misc-input.btn .input-note,
   .misc-input.error label, .buttons-group.error .misc-input.btn label, .input-wrapper .misc-input.btn.error label,
+  .misc-input.error .key-value li span:first-of-type, .key-value li
+  .misc-input.error span:first-of-type, .buttons-group.error .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.error .misc-input.btn span:first-of-type,
   .misc-input.error .note-clab, .buttons-group.error .misc-input.btn .note-clab {
     color: #c46978; }
   .input-wrapper.primary input[type="color"], .buttons-group.primary .input-wrapper.btn input[type="color"],
@@ -1464,9 +1502,13 @@ textarea {
     border-bottom-color: #0072bc; }
   .input-wrapper.primary .input-note, .buttons-group.primary .input-wrapper.btn .input-note,
   .input-wrapper.primary label, .buttons-group.primary .input-wrapper.btn label, .input-wrapper .input-wrapper.btn.primary label,
+  .input-wrapper.primary .key-value li span:first-of-type, .key-value li
+  .input-wrapper.primary span:first-of-type, .buttons-group.primary .input-wrapper.btn .key-value li span:first-of-type, .key-value li .buttons-group.primary .input-wrapper.btn span:first-of-type,
   .input-wrapper.primary .note-clab, .buttons-group.primary .input-wrapper.btn .note-clab,
   .misc-input.primary .input-note, .buttons-group.primary .misc-input.btn .input-note,
   .misc-input.primary label, .buttons-group.primary .misc-input.btn label, .input-wrapper .misc-input.btn.primary label,
+  .misc-input.primary .key-value li span:first-of-type, .key-value li
+  .misc-input.primary span:first-of-type, .buttons-group.primary .misc-input.btn .key-value li span:first-of-type, .key-value li .buttons-group.primary .misc-input.btn span:first-of-type,
   .misc-input.primary .note-clab, .buttons-group.primary .misc-input.btn .note-clab {
     color: #0072bc; }
   .input-wrapper.inline,
@@ -1481,43 +1523,55 @@ textarea {
     .misc-input.inline .input-note,
     .misc-input.inline .note-clab {
       padding-left: 150px; }
-    .input-wrapper.inline.icon-label label,
-    .misc-input.inline.icon-label label {
+    .input-wrapper.inline.icon-label label, .input-wrapper.inline.icon-label .key-value li span:first-of-type, .key-value li .input-wrapper.inline.icon-label span:first-of-type,
+    .misc-input.inline.icon-label label,
+    .misc-input.inline.icon-label .key-value li span:first-of-type, .key-value li
+    .misc-input.inline.icon-label span:first-of-type {
       font-size: 16px; }
-    .input-wrapper.inline.smaller-label label,
-    .misc-input.inline.smaller-label label {
+    .input-wrapper.inline.smaller-label label, .input-wrapper.inline.smaller-label .key-value li span:first-of-type, .key-value li .input-wrapper.inline.smaller-label span:first-of-type,
+    .misc-input.inline.smaller-label label,
+    .misc-input.inline.smaller-label .key-value li span:first-of-type, .key-value li
+    .misc-input.inline.smaller-label span:first-of-type {
       width: 75px; }
     .input-wrapper.inline.smaller-label .input-note,
     .input-wrapper.inline.smaller-label .note-clab,
     .misc-input.inline.smaller-label .input-note,
     .misc-input.inline.smaller-label .note-clab {
       padding-left: 75px; }
-    .input-wrapper.inline.small-label label,
-    .misc-input.inline.small-label label {
+    .input-wrapper.inline.small-label label, .input-wrapper.inline.small-label .key-value li span:first-of-type, .key-value li .input-wrapper.inline.small-label span:first-of-type,
+    .misc-input.inline.small-label label,
+    .misc-input.inline.small-label .key-value li span:first-of-type, .key-value li
+    .misc-input.inline.small-label span:first-of-type {
       width: 100px; }
     .input-wrapper.inline.small-label .input-note,
     .input-wrapper.inline.small-label .note-clab,
     .misc-input.inline.small-label .input-note,
     .misc-input.inline.small-label .note-clab {
       padding-left: 100px; }
-    .input-wrapper.inline.large-label label,
-    .misc-input.inline.large-label label {
+    .input-wrapper.inline.large-label label, .input-wrapper.inline.large-label .key-value li span:first-of-type, .key-value li .input-wrapper.inline.large-label span:first-of-type,
+    .misc-input.inline.large-label label,
+    .misc-input.inline.large-label .key-value li span:first-of-type, .key-value li
+    .misc-input.inline.large-label span:first-of-type {
       width: 200px; }
     .input-wrapper.inline.large-label .input-note,
     .input-wrapper.inline.large-label .note-clab,
     .misc-input.inline.large-label .input-note,
     .misc-input.inline.large-label .note-clab {
       padding-left: 200px; }
-    .input-wrapper.inline.larger-label label,
-    .misc-input.inline.larger-label label {
+    .input-wrapper.inline.larger-label label, .input-wrapper.inline.larger-label .key-value li span:first-of-type, .key-value li .input-wrapper.inline.larger-label span:first-of-type,
+    .misc-input.inline.larger-label label,
+    .misc-input.inline.larger-label .key-value li span:first-of-type, .key-value li
+    .misc-input.inline.larger-label span:first-of-type {
       width: 250px; }
     .input-wrapper.inline.larger-label .input-note,
     .input-wrapper.inline.larger-label .note-clab,
     .misc-input.inline.larger-label .input-note,
     .misc-input.inline.larger-label .note-clab {
       padding-left: 250px; }
-    .input-wrapper.inline label,
-    .misc-input.inline label {
+    .input-wrapper.inline label, .input-wrapper.inline .key-value li span:first-of-type, .key-value li .input-wrapper.inline span:first-of-type,
+    .misc-input.inline label,
+    .misc-input.inline .key-value li span:first-of-type, .key-value li
+    .misc-input.inline span:first-of-type {
       padding-bottom: 0;
       text-align: right;
       width: 150px;
@@ -1558,12 +1612,12 @@ textarea {
     .misc-input.inline textarea {
       flex-grow: 1; }
 
-label {
+label, .key-value li span:first-of-type {
   font-size: 0.8571rem;
   font-weight: 700;
   padding-right: 10px;
   padding-bottom: 5px; }
-  label.disabled {
+  label.disabled, .key-value li span.disabled:first-of-type {
     color: #C0C0C0; }
 
 input[type="color"],
@@ -1641,8 +1695,9 @@ textarea {
 input[type=checkbox],
 input[type=radio] {
   display: none; }
-  input[type=checkbox] + label,
-  input[type=radio] + label {
+  input[type=checkbox] + label, .key-value li input[type=checkbox] + span:first-of-type,
+  input[type=radio] + label, .key-value li
+  input[type=radio] + span:first-of-type {
     font-weight: normal;
     font-size: 0.8571rem;
     line-height: normal;
@@ -1655,43 +1710,54 @@ input[type=radio] {
     -o-user-select: none;
     user-select: none;
     width: auto !important; }
-    input[type=checkbox] + label span,
-    input[type=radio] + label span {
+    input[type=checkbox] + label span, .key-value li input[type=checkbox] + span:first-of-type span,
+    input[type=radio] + label span, .key-value li
+    input[type=radio] + span:first-of-type span {
       flex-grow: 1; }
-  input[type=checkbox] + label:before,
-  input[type=radio] + label:before {
+  input[type=checkbox] + label:before, .key-value li input[type=checkbox] + span:first-of-type:before,
+  input[type=radio] + label:before, .key-value li
+  input[type=radio] + span:first-of-type:before {
     font-family: 'contactlab-icons';
     color: #434A5A;
     font-size: 14px;
     cursor: pointer;
     margin-right: 5px; }
 
-input[type=radio] + label:before {
+input[type=radio] + label:before, .key-value li input[type=radio] + span:first-of-type:before {
   content: "\e62e"; }
 
-input[type=radio]:checked + label:before {
+input[type=radio]:checked + label:before, .key-value li input[type=radio]:checked + span:first-of-type:before {
   content: "\e62f"; }
 
-input[type=checkbox] + label:before {
+input[type=checkbox] + label:before, .key-value li input[type=checkbox] + span:first-of-type:before {
   content: "\e612"; }
 
-input[type=checkbox]:checked + label:before {
+input[type=checkbox]:checked + label:before, .key-value li input[type=checkbox]:checked + span:first-of-type:before {
   content: "\e613"; }
 
-input[type=radio]:disabled + label,
-input[type=radio]:disabled + label:before,
-input[type=checkbox]:disabled + label,
-input[type=checkbox]:disabled + label:before {
+input[type=radio]:disabled + label, .key-value li input[type=radio]:disabled + span:first-of-type,
+input[type=radio]:disabled + label:before, .key-value li
+input[type=radio]:disabled + span:first-of-type:before,
+input[type=checkbox]:disabled + label, .key-value li
+input[type=checkbox]:disabled + span:first-of-type,
+input[type=checkbox]:disabled + label:before, .key-value li
+input[type=checkbox]:disabled + span:first-of-type:before {
   color: #C0C0C0;
   cursor: not-allowed; }
 
 checkbox-clab.inline,
 radio-clab.inline {
   display: flex; }
-  checkbox-clab.inline input[type=checkbox] + label,
+  checkbox-clab.inline input[type=checkbox] + label, checkbox-clab.inline .key-value li input[type=checkbox] + span:first-of-type, .key-value li checkbox-clab.inline input[type=checkbox] + span:first-of-type,
   checkbox-clab.inline input[type=radio] + label,
+  checkbox-clab.inline .key-value li input[type=radio] + span:first-of-type, .key-value li
+  checkbox-clab.inline input[type=radio] + span:first-of-type,
   radio-clab.inline input[type=checkbox] + label,
-  radio-clab.inline input[type=radio] + label {
+  radio-clab.inline .key-value li input[type=checkbox] + span:first-of-type, .key-value li
+  radio-clab.inline input[type=checkbox] + span:first-of-type,
+  radio-clab.inline input[type=radio] + label,
+  radio-clab.inline .key-value li input[type=radio] + span:first-of-type, .key-value li
+  radio-clab.inline input[type=radio] + span:first-of-type {
     margin-right: 20px; }
 
 .input-wrapper.multiple-inputs {
@@ -2416,7 +2482,7 @@ alert-clab {
       height: 3px;
       text-align: center;
       padding: 0 !important; }
-    .progress-bar section label {
+    .progress-bar section label, .progress-bar section .key-value li span:first-of-type, .key-value li .progress-bar section span:first-of-type {
       text-align: right;
       -webkit-transform: translate(0, -20px);
       -khtml-transform: translate(0, -20px);

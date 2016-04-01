@@ -46,6 +46,7 @@ body {
 a {
   text-decoration: none;
   color: $primary-color;
+  cursor: pointer;
 }
 
 %default-link-effect {
@@ -152,7 +153,7 @@ h1 {
       bottom: 0px;
       width: 75px;
       height: 3px;
-      content: ''; 
+      content: '';
       background-color: $primary-color;
     }
   }
@@ -250,4 +251,35 @@ h5 {
     @include filter(blur, 0);
     @extend .default-transition;
   }
+}
+
+
+//KEY VALUE
+
+
+.key-value {
+
+	li {
+		display: flex;
+		align-items: flex-end;
+		flex-flow: row wrap;
+		margin-bottom: $small-spacing * 1.5;
+
+		span:first-of-type {
+			@extend label;
+			padding: 0;
+		}
+	}
+
+	hr.divider {
+		flex: 1 0;
+		margin: 0 $small-spacing 3px;
+		@extend .dotted;
+	}
+
+	.multiple {
+		flex-basis: 100%;
+		padding-left: $base-spacing;
+		padding-top: $small-spacing;
+	}
 }
