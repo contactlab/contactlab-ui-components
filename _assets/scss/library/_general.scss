@@ -267,7 +267,7 @@ h5 {
 
 		span:first-of-type {
 			@extend label;
-			padding: 0;
+			padding: 0 !important;
 		}
 	}
 

@@ -581,7 +581,7 @@ textarea, .accordion .accordion-block, .accordion .accordion-block.active, .acco
   flex-flow: row wrap;
   margin-bottom: 15px; }
   .key-value li span:first-of-type {
-    padding: 0; }
+    padding: 0 !important; }
 
 .key-value hr.divider {
   flex: 1 0;
