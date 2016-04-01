@@ -252,7 +252,7 @@ class DropdownClab{
 	}
 
 	_compHighlight(selected, option){
-		if(selected.value===option.value) return 'selected'; else return '';
+		// if(selected.value===option.value) return 'selected'; else return '';
 	}
 
 
