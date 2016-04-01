@@ -67,24 +67,38 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Buttons</h2>
-			<button-clab>
-				Just click me
-			</button-clab>
+            <article>
+                <button-clab>
+    				Just click me
+    			</button-clab>
 
 
-			<button-clab type="primary">
-				Just click me
-			</button-clab>
+    			<button-clab type="primary">
+    				Just click me
+    			</button-clab>
 
 
-			<button-clab type="primary empty">
-				Just click me
-			</button-clab>
+    			<button-clab type="primary empty">
+    				Just click me
+    			</button-clab>
+            </article>
+
+            <article>
+                <button-clab size="small">
+    				Just click me
+    			</button-clab>
 
 
-			<button-clab type="primary flat">
-				Just click me
-			</button-clab>
+    			<button-clab size="small" type="primary">
+    				Just click me
+    			</button-clab>
+
+
+    			<button-clab size="small" type="primary empty">
+    				Just click me
+    			</button-clab>
+            </article>
+
 		</section>
 
 		<section>
@@ -233,6 +247,11 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<section>
 			<h2>Dropdown</h2>
 			<dropdown-clab max-in-view="5" type="success" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' selected='{"label":"bella", "value":"bella"}' inline label-size="larger" icon="icon-edit">>
+			    <span class="note">This is my note</span>
+            </dropdown-clab>
+
+
+			<dropdown-clab max-in-view="5" result-as-obj options='[]' selected='{" ":" ", " ":" "}' inline label-size="larger" icon="icon-edit">>
 			    <span class="note">This is my note</span>
             </dropdown-clab>
 

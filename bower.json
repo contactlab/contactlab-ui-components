@@ -5,6 +5,7 @@
     "Salvatore Laisa <moebiusmania@gmail.com>"
   ],
   "description": "Polymer UI components of the CLAB Pattern Library",
+  "main": "",
   "moduleType": [],
   "license": "Apache-2.0",
   "homepage": "index.html",

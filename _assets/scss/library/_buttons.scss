@@ -47,7 +47,12 @@ button-clab {
   }
 
   &.small {
-    padding: $smaller-spacing $small-spacing;
+    padding: 6px $small-spacing;
+    min-height: 30px;
+
+    &:active {
+        min-height: 29px;
+    }
   }
 
   .icon {
@@ -94,10 +99,10 @@ button-clab {
     }
 
     &:active {
-      margin-top: 0;
       padding-top: $small-spacing - 1px;
       color: #FFFFFF;
       background-color: $default-color;
+      border-bottom: 0;
     }
 
     &.small {
@@ -131,43 +136,43 @@ button-clab {
 
   // FLAT BUTTONS
 
-  &.flat {
-    border-color: transparent;
-    background: transparent;
-    color: $default-color;
-
-    &:disabled {
-      background-color: transparent !important;
-    }
-
-    &:active,
-    &.active {
-      background: $default-color;
-      color: #FFFFFF;
-    }
-
-    &:disabled {
-      border-color: transparent !important;
-    }
-
-    @each $type, $color in $default-status {
-      &.#{$type} {
-        background-color: transparent;
-        color: nth($color, 1);
-
-        &:hover {
-          border-color: transparent;
-        }
-
-        &:active,
-        &.active {
-          background-color: nth($color, 1);
-          border-color: nth($color, 1);
-          color: nth($color, 2);
-        }
-      }
-    }
-  }
+  // &.flat {
+  //   border-color: transparent;
+  //   background: transparent;
+  //   color: $default-color;
+  //
+  //   &:disabled {
+  //     background-color: transparent !important;
+  //   }
+  //
+  //   &:active,
+  //   &.active {
+  //     background: $default-color;
+  //     color: #FFFFFF;
+  //   }
+  //
+  //   &:disabled {
+  //     border-color: transparent !important;
+  //   }
+  //
+  //   @each $type, $color in $default-status {
+  //     &.#{$type} {
+  //       background-color: transparent;
+  //       color: nth($color, 1);
+  //
+  //       &:hover {
+  //         border-color: transparent;
+  //       }
+  //
+  //       &:active,
+  //       &.active {
+  //         background-color: nth($color, 1);
+  //         border-color: nth($color, 1);
+  //         color: nth($color, 2);
+  //       }
+  //     }
+  //   }
+  // }
 }
 
 //////////////// END BUTTONS ////////////////

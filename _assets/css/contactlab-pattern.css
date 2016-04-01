@@ -982,7 +982,10 @@ button-clab {
     border-bottom: 0;
     margin-top: 1px; }
   .btn.small, .buttons-group.small .btn {
-    padding: 5px 10px; }
+    padding: 6px 10px;
+    min-height: 30px; }
+    .btn.small:active, .buttons-group.small .btn:active {
+      min-height: 29px; }
   .btn .icon {
     display: inline-block; }
     .btn .icon + span {
@@ -1055,10 +1058,10 @@ button-clab {
     .btn.empty:disabled {
       background-color: transparent !important; }
     .btn.empty:active {
-      margin-top: 0;
       padding-top: 9px;
       color: #FFFFFF;
-      background-color: #434A5A; }
+      background-color: #434A5A;
+      border-bottom: 0; }
     .btn.empty.small, .buttons-group.small .btn.empty {
       padding-top: 4px; }
     .btn.empty.primary, .buttons-group.primary .btn.empty {
@@ -1126,62 +1129,6 @@ button-clab {
       .btn.empty.error:active, .buttons-group.error .btn.empty:active, .btn.empty.error.active, .buttons-group.error .btn.empty.active {
         color: #a94442;
         background-color: #dda7b0; }
-  .btn.flat, .input-wrapper .btn.flat {
-    border-color: transparent;
-    background: transparent;
-    color: #434A5A; }
-    .btn.flat:disabled {
-      background-color: transparent !important; }
-    .btn.flat:active, .input-wrapper .btn.flat:active, .btn.flat.active {
-      background: #434A5A;
-      color: #FFFFFF; }
-    .btn.flat:disabled {
-      border-color: transparent !important; }
-    .btn.flat.primary, .buttons-group.primary .btn.flat {
-      background-color: transparent;
-      color: #0072bc; }
-      .btn.flat.primary:hover, .buttons-group.primary .btn.flat:hover {
-        border-color: transparent; }
-      .btn.flat.primary:active, .buttons-group.primary .btn.flat:active, .btn.flat.primary.active, .buttons-group.primary .btn.flat.active {
-        background-color: #0072bc;
-        border-color: #0072bc;
-        color: #FAFAFA; }
-    .btn.flat.info, .buttons-group.info .btn.flat {
-      background-color: transparent;
-      color: #9edeeb; }
-      .btn.flat.info:hover, .buttons-group.info .btn.flat:hover {
-        border-color: transparent; }
-      .btn.flat.info:active, .buttons-group.info .btn.flat:active, .btn.flat.info.active, .buttons-group.info .btn.flat.active {
-        background-color: #9edeeb;
-        border-color: #9edeeb;
-        color: #31708f; }
-    .btn.flat.success, .buttons-group.success .btn.flat {
-      background-color: transparent;
-      color: #c3dfac; }
-      .btn.flat.success:hover, .buttons-group.success .btn.flat:hover {
-        border-color: transparent; }
-      .btn.flat.success:active, .buttons-group.success .btn.flat:active, .btn.flat.success.active, .buttons-group.success .btn.flat.active {
-        background-color: #c3dfac;
-        border-color: #c3dfac;
-        color: #3c763d; }
-    .btn.flat.warning, .buttons-group.warning .btn.flat {
-      background-color: transparent;
-      color: #f7deab; }
-      .btn.flat.warning:hover, .buttons-group.warning .btn.flat:hover {
-        border-color: transparent; }
-      .btn.flat.warning:active, .buttons-group.warning .btn.flat:active, .btn.flat.warning.active, .buttons-group.warning .btn.flat.active {
-        background-color: #f7deab;
-        border-color: #f7deab;
-        color: #8a6d3b; }
-    .btn.flat.error, .buttons-group.error .btn.flat {
-      background-color: transparent;
-      color: #e1b2ba; }
-      .btn.flat.error:hover, .buttons-group.error .btn.flat:hover {
-        border-color: transparent; }
-      .btn.flat.error:active, .buttons-group.error .btn.flat:active, .btn.flat.error.active, .buttons-group.error .btn.flat.active {
-        background-color: #e1b2ba;
-        border-color: #e1b2ba;
-        color: #a94442; }
 
 .buttons-group {
   display: flex; }
