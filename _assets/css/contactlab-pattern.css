@@ -374,14 +374,21 @@ a {
   color: #0072bc;
   cursor: pointer; }
 
-header .user .user-panel a, .contextual-menu > ul li a {
+.row-action a, header .user .user-panel a, .contextual-menu > ul li a {
   color: #434A5A; }
-  header .user .user-panel a:active, .contextual-menu > ul li a:active {
+  .row-action a:active, header .user .user-panel a:active, .contextual-menu > ul li a:active {
     color: #0072bc; }
 
 b,
 strong {
   font-weight: 700; }
+
+.row-action {
+  display: flex; }
+  .row-action a {
+    display: flex;
+    padding: 0 10px;
+    align-items: center; }
 
 .truncate, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;

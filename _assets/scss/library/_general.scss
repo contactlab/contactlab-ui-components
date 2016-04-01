@@ -62,6 +62,19 @@ strong {
   font-weight: $bold-weight;
 }
 
+// row actions
+
+.row-action {
+	display: flex;
+
+	a {
+		display: flex;
+		@extend %default-link-effect;
+		padding: 0 $small-spacing;
+		align-items: center;
+	}
+}
+
 // Truncate
 
 .truncate {
