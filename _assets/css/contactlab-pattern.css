@@ -966,6 +966,10 @@ footer {
   max-width: 960px;
   margin: 0 auto; }
 
+.modal-wrapper {
+  max-width: 800px;
+  margin: 0 auto; }
+
 hr {
   margin: 0 0 20px;
   border: 0;

@@ -13,12 +13,12 @@
 			clear: none;
 		}
 	</style>
-	
+
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
 				<div class="modal">
-					<div class="small-wrapper">
+					<div class="modal-wrapper">
 						<div class="modal-title">[[title]]</div>
 						<template is="dom-if" if="[[content]]">
 							<div class="modal-body">
@@ -30,8 +30,8 @@
 								<content></content>
 							</div>
 						</template>
-						<div class="main-actions-bar">
-							<div class="right">
+						<div class="main-actions">
+							<div class="primary">
 								<template is="dom-if" if="[[_checkIfTrue(warningBtn)]]">
 									<button-clab type="error third" on-btnclick="_thirdAction">[[warningBtn]]</button-clab>
 								</template>
