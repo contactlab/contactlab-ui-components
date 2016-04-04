@@ -24,7 +24,7 @@ var SpinnerClab = function () {
 				},
 				background: {
 					type: String,
-					value: '255, 255, 255, 0.9'
+					value: '200, 200, 200, 0.9'
 				},
 				visible: {
 					type: Boolean,
@@ -33,7 +33,7 @@ var SpinnerClab = function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 

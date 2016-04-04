@@ -13,7 +13,7 @@ class SpinnerClab{
 			},
 			background: {
 				type:String,
-				value: '255, 255, 255, 0.9'
+				value: '200, 200, 200, 0.9'
 			},
 			visible: {
 				type: Boolean,
@@ -24,7 +24,7 @@ class SpinnerClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeClass(big,dark){
@@ -33,7 +33,7 @@ class SpinnerClab{
 		this.big ? str += ' big ' : null;
 		return str;
 	}
-	
+
 	_computeBgColor(color){
 		return 'background-color: rgba('+color+')';
 	}
