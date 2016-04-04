@@ -74,6 +74,19 @@ strong {
 		padding: 0 $small-spacing;
 		align-items: center;
 	}
+
+    @each $type, $color in $default-status {
+      &.#{$type} {
+
+          a {
+            color: darken(nth($color, 1), 20);
+
+            &:active {
+              color: darken(nth($color, 1), 35);
+            }
+          }
+      }
+    }
 }
 
 // Truncate

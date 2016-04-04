@@ -390,6 +390,26 @@ strong {
     display: flex;
     padding: 0 10px;
     align-items: center; }
+  .row-action.primary a, .buttons-group.primary .row-action.btn a, .input-wrapper .row-action.btn.primary a {
+    color: #003456; }
+    .row-action.primary a:active, .buttons-group.primary .row-action.btn a:active {
+      color: #00060a; }
+  .row-action.info a, .buttons-group.info .row-action.btn a, .input-wrapper .row-action.btn.info a {
+    color: #49c1da; }
+    .row-action.info a:active, .buttons-group.info .row-action.btn a:active {
+      color: #259ab2; }
+  .row-action.success a, .buttons-group.success .row-action.btn a, .input-wrapper .row-action.btn.success a {
+    color: #8ec362; }
+    .row-action.success a:active, .buttons-group.success .row-action.btn a:active {
+      color: #689c3c; }
+  .row-action.warning a, .buttons-group.warning .row-action.btn a, .input-wrapper .row-action.btn.warning a {
+    color: #eeb94e; }
+    .row-action.warning a:active, .buttons-group.warning .row-action.btn a:active {
+      color: #db9a15; }
+  .row-action.error a, .buttons-group.error .row-action.btn a, .input-wrapper .row-action.btn.error a {
+    color: #c46978; }
+    .row-action.error a:active, .buttons-group.error .row-action.btn a:active {
+      color: #a23f50; }
 
 .truncate, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;
