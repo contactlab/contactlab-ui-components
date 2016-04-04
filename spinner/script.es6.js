@@ -13,7 +13,7 @@ class SpinnerClab{
 			},
 			background: {
 				type:String,
-				value: '200, 200, 200, 0.9'
+				value: '240, 240, 240, 0.9'
 			},
 			visible: {
 				type: Boolean,
