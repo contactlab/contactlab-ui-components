@@ -384,7 +384,8 @@ strong {
   font-weight: 700; }
 
 .row-action {
-  display: flex; }
+  display: flex;
+  align-self: stretch; }
   .row-action a {
     display: flex;
     padding: 0 10px;
