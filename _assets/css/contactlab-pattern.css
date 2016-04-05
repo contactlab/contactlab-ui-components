@@ -505,8 +505,7 @@ h4 {
 h5 {
   font-size: 0.8571rem; }
 
-.fast-transition, .dropdown-clab .input:after, select[multiple],
-ol.multiple-clab {
+.fast-transition, .dropdown-clab .input:after {
   -webkit-transition: all 50ms ease-in-out;
   -khtml-transition: all 50ms ease-in-out;
   -moz-transition: all 50ms ease-in-out;
@@ -3167,14 +3166,17 @@ autocomplete-clab {
   font-size: 12px;
   pointer-events: none; }
 
+multiple-clab {
+  flex-grow: 1; }
+
 select[multiple],
 ol.multiple-clab {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: white;
   border: 0;
   border-bottom: 1px solid #E6E9ED;
-  padding: 5px 0;
   font-size: 14px;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  flex-grow: 1; }
   select[multiple] li,
   ol.multiple-clab li {
     padding: 5px;

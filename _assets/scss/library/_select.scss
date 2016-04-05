@@ -112,15 +112,20 @@
 
 /////////////////// MULTIPLE SELECT ///////////////////
 
+multiple-clab {
+    flex-grow: 1;
+}
+
 select[multiple],
 ol.multiple-clab {
-    background-color: rgba(255,255,255,0.6);
+    background-color: rgba(255,255,255,1);
     border: 0;
     border-bottom: 1px solid $light-gray;
-    padding: $smaller-spacing 0;
+    // padding: $smaller-spacing 0;
     font-size: $base-font-size;
-    @extend .fast-transition;
+    // @extend .fast-transition;
     margin-bottom: 0;
+    flex-grow: 1;
 
     li {
       padding: $smaller-spacing;
