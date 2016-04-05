@@ -1,3 +1,17 @@
+@font-face {
+    font-family: 'frutiger-light';
+    src: url('../fonts/frutiger_ce_45_light-webfont.eot');
+    src: url('../fonts/frutiger_ce_45_light-webfont.eot?#iefix') format('embedded-opentype'),
+         url('../fonts/frutiger_ce_45_light-webfont.woff2') format('woff2'),
+         url('../fonts/frutiger_ce_45_light-webfont.woff') format('woff'),
+         url('../fonts/frutiger_ce_45_light-webfont.ttf') format('truetype'),
+         url('../fonts/frutiger_ce_45_light-webfont.svg#frutiger_ce_45_lightregular') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+
 ::selection {
   background: $primary-color;
   color: set-text-color($primary-color);
@@ -66,6 +80,7 @@ strong {
 
 .row-action {
 	display: flex;
+    align-self: stretch;
 
 	a {
 		display: flex;
@@ -73,6 +88,19 @@ strong {
 		padding: 0 $small-spacing;
 		align-items: center;
 	}
+
+    @each $type, $color in $default-status {
+      &.#{$type} {
+
+          a {
+            color: darken(nth($color, 1), 20);
+
+            &:active {
+              color: darken(nth($color, 1), 35);
+            }
+          }
+      }
+    }
 }
 
 // Truncate

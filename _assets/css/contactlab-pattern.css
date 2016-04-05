@@ -71,6 +71,15 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-switch:before {
+  content: ""; }
+
+.icon-check-circle-full:before {
+  content: ""; }
+
+.icon-check-circle:before {
+  content: ""; }
+
 .icon-smartphone:before {
   content: ""; }
 
@@ -323,6 +332,13 @@ table, .table {
 .icon-contactlab:before {
   content: ""; }
 
+@font-face {
+  font-family: 'frutiger-light';
+  src: url("../fonts/frutiger_ce_45_light-webfont.eot");
+  src: url("../fonts/frutiger_ce_45_light-webfont.eot?#iefix") format("embedded-opentype"), url("../fonts/frutiger_ce_45_light-webfont.woff2") format("woff2"), url("../fonts/frutiger_ce_45_light-webfont.woff") format("woff"), url("../fonts/frutiger_ce_45_light-webfont.ttf") format("truetype"), url("../fonts/frutiger_ce_45_light-webfont.svg#frutiger_ce_45_lightregular") format("svg");
+  font-weight: normal;
+  font-style: normal; }
+
 ::selection {
   background: #0072bc;
   color: #FAFAFA; }
@@ -384,11 +400,32 @@ strong {
   font-weight: 700; }
 
 .row-action {
-  display: flex; }
+  display: flex;
+  align-self: stretch; }
   .row-action a {
     display: flex;
     padding: 0 10px;
     align-items: center; }
+  .row-action.primary a, .buttons-group.primary .row-action.btn a, .input-wrapper .row-action.btn.primary a {
+    color: #003456; }
+    .row-action.primary a:active, .buttons-group.primary .row-action.btn a:active {
+      color: #00060a; }
+  .row-action.info a, .buttons-group.info .row-action.btn a, .input-wrapper .row-action.btn.info a {
+    color: #49c1da; }
+    .row-action.info a:active, .buttons-group.info .row-action.btn a:active {
+      color: #259ab2; }
+  .row-action.success a, .buttons-group.success .row-action.btn a, .input-wrapper .row-action.btn.success a {
+    color: #8ec362; }
+    .row-action.success a:active, .buttons-group.success .row-action.btn a:active {
+      color: #689c3c; }
+  .row-action.warning a, .buttons-group.warning .row-action.btn a, .input-wrapper .row-action.btn.warning a {
+    color: #eeb94e; }
+    .row-action.warning a:active, .buttons-group.warning .row-action.btn a:active {
+      color: #db9a15; }
+  .row-action.error a, .buttons-group.error .row-action.btn a, .input-wrapper .row-action.btn.error a {
+    color: #c46978; }
+    .row-action.error a:active, .buttons-group.error .row-action.btn a:active {
+      color: #a23f50; }
 
 .truncate, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;
@@ -478,8 +515,7 @@ h4 {
 h5 {
   font-size: 0.8571rem; }
 
-.fast-transition, .dropdown-clab .input:after, select[multiple],
-ol.multiple-clab {
+.fast-transition, .dropdown-clab .input:after {
   -webkit-transition: all 50ms ease-in-out;
   -khtml-transition: all 50ms ease-in-out;
   -moz-transition: all 50ms ease-in-out;
@@ -624,14 +660,17 @@ header {
     min-width: 250px; }
   header .logo {
     width: 250px;
-    font-size: 20px;
-    color: #434A5A; }
+    font-size: 24px;
+    color: #434A5A;
+    font-family: 'frutiger-light'; }
     header .logo a {
-      color: #434A5A; }
+      color: #434A5A;
+      display: flex; }
     header .logo .sign {
       color: #0072bc;
-      font-size: 13px;
-      vertical-align: super; }
+      font-size: 11px;
+      vertical-align: super;
+      margin-right: 2px; }
     header .logo b {
       color: #0072bc;
       font-weight: normal; }
@@ -1214,6 +1253,12 @@ textarea {
     background-color: #d5d9e0; }
   .input-wrapper .btn:active {
     background-color: #c3c9d2; }
+
+.misc-input.inline input[type="radio"] + label, .misc-input.inline .key-value li input[type="radio"] + span:first-of-type, .key-value li .misc-input.inline input[type="radio"] + span:first-of-type,
+.misc-input.inline input[type="checkbox"] + label,
+.misc-input.inline .key-value li input[type="checkbox"] + span:first-of-type, .key-value li
+.misc-input.inline input[type="checkbox"] + span:first-of-type {
+  margin-right: 10px; }
 
 .input-wrapper,
 .misc-input {
@@ -2675,7 +2720,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #cacaca;
+  background: #dedede;
   color: #FFFFFF;
   cursor: pointer; }
 
@@ -3113,14 +3158,16 @@ tabs-clab {
     color: #C0C0C0;
     cursor: not-allowed; }
 
-input-clab.autocomplete-clab {
+autocomplete-clab {
   flex-grow: 1; }
 
 .dropdown-clab .value_wrapper {
   cursor: pointer;
   text-align: left;
   height: 30px;
-  padding-right: 20px; }
+  padding-right: 20px;
+  display: flex;
+  align-items: center; }
 
 .dropdown-clab .input:after {
   font-family: 'contactlab-icons';
@@ -3132,14 +3179,17 @@ input-clab.autocomplete-clab {
   font-size: 12px;
   pointer-events: none; }
 
+multiple-clab {
+  flex-grow: 1; }
+
 select[multiple],
 ol.multiple-clab {
-  background-color: rgba(255, 255, 255, 0.6);
+  background-color: white;
   border: 0;
   border-bottom: 1px solid #E6E9ED;
-  padding: 5px 0;
   font-size: 14px;
-  margin-bottom: 0; }
+  margin-bottom: 0;
+  flex-grow: 1; }
   select[multiple] li,
   ol.multiple-clab li {
     padding: 5px;
