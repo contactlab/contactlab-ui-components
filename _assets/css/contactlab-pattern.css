@@ -2708,7 +2708,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #cacaca;
+  background: #dedede;
   color: #FFFFFF;
   cursor: pointer; }
 
