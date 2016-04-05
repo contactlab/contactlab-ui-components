@@ -35,17 +35,20 @@ header {
 
 	.logo {
 		width: 250px;
-		font-size: 20px;
+		font-size: 24px;
 		color: $text-color;
+		font-family: 'frutiger-light';
 
 		a {
 			color: $text-color;
+			display: flex;
 		}
 
 		.sign {
 			color: $primary-color;
-			font-size: 13px;
+			font-size: 11px;
 			vertical-align: super;
+			margin-right: 2px;
 		}
 
 		b {
