@@ -71,6 +71,9 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-switch:before {
+  content: ""; }
+
 .icon-check-circle-full:before {
   content: ""; }
 
