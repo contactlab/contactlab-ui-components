@@ -74,35 +74,38 @@
 
   // AUTOCOMPLETE
 
-  input-clab.autocomplete-clab {
+  autocomplete-clab {
     flex-grow: 1;
   }
 
   // DROPDOWN
 
   .dropdown-clab {
-    .value_wrapper {
-      @extend input[type="text"];
-      cursor: pointer;
-      text-align:left;
-      height: 30px;
-      padding-right: $base-spacing;
-      @extend .truncate;
-    }
 
-    .input {
-      &:after {
-        font-family: 'contactlab-icons';
-        content: "\e60c";
-        position: absolute;
-        top: 9px;
-        right: $smaller-spacing;
-        line-height: 1;
-        font-size: 12px;
-        @extend .fast-transition;
-        pointer-events: none;
-      }
-    }
+        .value_wrapper {
+            @extend input[type="text"];
+            cursor: pointer;
+            text-align:left;
+            height: 30px;
+            padding-right: $base-spacing;
+            @extend .truncate;
+          display: flex;
+          align-items: center;
+        }
+
+        .input {
+            &:after {
+                font-family: 'contactlab-icons';
+                content: "\e60c";
+                position: absolute;
+                top: 9px;
+                right: $smaller-spacing;
+                line-height: 1;
+                font-size: 12px;
+                @extend .fast-transition;
+                pointer-events: none;
+            }
+        }
   }
 
 /////////////////// END SELECT ///////////////////

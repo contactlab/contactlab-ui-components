@@ -59,6 +59,15 @@ textarea {
 	}
 }
 
+.misc-input.inline {
+	input[type="radio"],
+	input[type="checkbox"] {
+		+ label {
+			margin-right: $small-spacing;
+		}
+	}
+}
+
 .input-wrapper,
 .misc-input {
 	display: flex;

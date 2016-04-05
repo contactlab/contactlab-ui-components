@@ -1242,6 +1242,12 @@ textarea {
   .input-wrapper .btn:active {
     background-color: #c3c9d2; }
 
+.misc-input.inline input[type="radio"] + label, .misc-input.inline .key-value li input[type="radio"] + span:first-of-type, .key-value li .misc-input.inline input[type="radio"] + span:first-of-type,
+.misc-input.inline input[type="checkbox"] + label,
+.misc-input.inline .key-value li input[type="checkbox"] + span:first-of-type, .key-value li
+.misc-input.inline input[type="checkbox"] + span:first-of-type {
+  margin-right: 10px; }
+
 .input-wrapper,
 .misc-input {
   display: flex;
@@ -3140,14 +3146,16 @@ tabs-clab {
     color: #C0C0C0;
     cursor: not-allowed; }
 
-input-clab.autocomplete-clab {
+autocomplete-clab {
   flex-grow: 1; }
 
 .dropdown-clab .value_wrapper {
   cursor: pointer;
   text-align: left;
   height: 30px;
-  padding-right: 20px; }
+  padding-right: 20px;
+  display: flex;
+  align-items: center; }
 
 .dropdown-clab .input:after {
   font-family: 'contactlab-icons';
