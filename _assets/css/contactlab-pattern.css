@@ -3040,24 +3040,24 @@ tabs-clab {
           border-right: 1px solid tansparent; }
     .tabs.vertical .tab-content, .vertical.pills .tab-content {
       padding: 0 0 0 20px; }
-  .tabs ul, .pills ul {
+  .tabs > ul, .pills > ul {
     display: flex;
     flex-flow: row nowrap;
     border-bottom: 1px solid #CCD1D9;
     margin-bottom: 0;
     text-align: center; }
-    .tabs ul a, .pills ul a {
+    .tabs > ul a, .pills > ul a {
       padding: 10px 20px;
       display: block;
       color: #434A5A;
       border-bottom: 1px solid transparent; }
-      .tabs ul a:active, .pills ul a:active {
+      .tabs > ul a:active, .pills > ul a:active {
         color: #0072bc; }
-    .tabs ul .tab, .pills ul .tab {
+    .tabs > ul .tab, .pills > ul .tab {
       line-height: 1;
       margin-bottom: 0;
       min-width: 50px; }
-      .tabs ul .tab.active a, .pills ul .tab.active a {
+      .tabs > ul .tab.active a, .pills > ul .tab.active a {
         color: #0072bc;
         border-color: #0072bc;
         -webkit-box-shadow: #0072bc 0 1px 0 0;
@@ -3066,10 +3066,10 @@ tabs-clab {
         -ms-box-shadow: #0072bc 0 1px 0 0;
         -o-box-shadow: #0072bc 0 1px 0 0;
         box-shadow: #0072bc 0 1px 0 0; }
-      .tabs ul .tab.disabled a, .pills ul .tab.disabled a {
+      .tabs > ul .tab.disabled a, .pills > ul .tab.disabled a {
         color: #C0C0C0;
         cursor: not-allowed; }
-        .tabs ul .tab.disabled a:hover, .pills ul .tab.disabled a:hover {
+        .tabs > ul .tab.disabled a:hover, .pills > ul .tab.disabled a:hover {
           color: #C0C0C0; }
 
 .tab-content {
