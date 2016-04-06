@@ -7,14 +7,15 @@ $large-label-width: 200px;
 $larger-label-width: 250px;
 
 input-clab {
-	width: 100%;
+	// width: 100%;
+	flex-grow: 1;
 }
 
 textarea {
 	height: 150px !important;
 	resize: vertical;
 }
-
+ 
 .input-wrapper {
 	.btn {
 		padding: 7px $small-spacing;

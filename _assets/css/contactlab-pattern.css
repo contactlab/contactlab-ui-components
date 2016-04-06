@@ -1237,7 +1237,7 @@ button-clab {
       background-color: transparent; }
 
 input-clab {
-  width: 100%; }
+  flex-grow: 1; }
 
 textarea {
   height: 150px !important;
