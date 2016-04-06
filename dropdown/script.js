@@ -272,7 +272,7 @@ var DropdownClab = function () {
 	}, {
 		key: '_compHighlight',
 		value: function _compHighlight(selected, option) {
-			// if(selected.value===option.value) return 'selected'; else return '';
+			if (selected.value === option.value) return 'selected';else return '';
 		}
 	}, {
 		key: 'behaviors',
