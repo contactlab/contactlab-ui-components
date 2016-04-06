@@ -23,7 +23,7 @@ tabs-clab {
   &.vertical {
     flex-flow: row nowrap;
 
-    ul {
+    > ul {
       border-bottom: 0;
       border-right: 1px solid $gray;
       flex-flow: column wrap;
