@@ -311,6 +311,10 @@ h5 {
 			@extend label;
 			padding: 0 !important;
 		}
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
 	}
 
 	hr.divider {

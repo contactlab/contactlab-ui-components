@@ -626,6 +626,8 @@ textarea, .accordion .accordion-block, .accordion .accordion-block.active, .acco
   margin-bottom: 15px; }
   .key-value li span:first-of-type {
     padding: 0 !important; }
+  .key-value li:last-of-type {
+    margin-bottom: 0; }
 
 .key-value hr.divider {
   flex: 1 0;
