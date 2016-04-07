@@ -211,6 +211,7 @@ class MultipleClab {
 		let i=elem.getAttribute('data-index');
 		// elem.classList.add('selected');
 		this.push('selected', this.options[i]);
+		this.set('options.' + i + '.selected', true);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=i;
 	}
@@ -220,6 +221,7 @@ class MultipleClab {
 		// console.log(i);
 		// elem.classList.remove('selected');
 		this.splice('selected', i, 1);
+		this.set('options.' + i + '.selected', false);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=undefined;
 	}
