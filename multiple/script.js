@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MultipleClab = function () {
+var MultipleClab = (function () {
 	function MultipleClab() {
 		_classCallCheck(this, MultipleClab);
 	}
@@ -220,7 +220,7 @@ var MultipleClab = function () {
 		key: '_selectThis',
 		value: function _selectThis(elem) {
 			var i = elem.getAttribute('data-index');
-			elem.classList.add('selected');
+			// elem.classList.add('selected');
 			this.push('selected', this.options[i]);
 			this.fire('change', { selected: this.selected });
 			this.lastSelected = i;
@@ -229,8 +229,8 @@ var MultipleClab = function () {
 		key: '_removeThis',
 		value: function _removeThis(elem) {
 			var i = elem.getAttribute('data-index');
-			console.log(i);
-			elem.classList.remove('selected');
+			// console.log(i);
+			// elem.classList.remove('selected');
 			this.splice('selected', i, 1);
 			this.fire('change', { selected: this.selected });
 			this.lastSelected = undefined;
@@ -266,7 +266,8 @@ var MultipleClab = function () {
 				idx.map(function (i) {
 					Array.prototype.map.call(_this3.querySelectorAll('.options-list li'), function (el) {
 						if (el.getAttribute('data-index') == i) {
-							el.classList.add('selected');
+							// el.classList.add('selected');
+							_this3.set('options.' + i + '.selected', true);
 						}
 					});
 				});
@@ -303,6 +304,13 @@ var MultipleClab = function () {
 			if (type) arr.push(type);
 			return arr.join(' ');
 		}
+	}, {
+		key: '_computeSelection',
+		value: function _computeSelection(selected) {
+			var str = '';
+			selected ? str = 'selected' : null;
+			return str;
+		}
 
 		/*----------
   UTILITIES
@@ -322,6 +330,6 @@ var MultipleClab = function () {
 	}]);
 
 	return MultipleClab;
-}();
+})();
 
 Polymer(MultipleClab);

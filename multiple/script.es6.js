@@ -209,7 +209,7 @@ class MultipleClab {
 	----------*/
 	_selectThis(elem){
 		let i=elem.getAttribute('data-index');
-		elem.classList.add('selected');
+		// elem.classList.add('selected');
 		this.push('selected', this.options[i]);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=i;
@@ -217,8 +217,8 @@ class MultipleClab {
 
 	_removeThis(elem){
 		let i=elem.getAttribute('data-index');
-		console.log(i);
-		elem.classList.remove('selected');
+		// console.log(i);
+		// elem.classList.remove('selected');
 		this.splice('selected', i, 1);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=undefined;
@@ -250,7 +250,8 @@ class MultipleClab {
 			idx.map(i=>{
 				Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
 					if(el.getAttribute('data-index')==i){
-						el.classList.add('selected');
+						// el.classList.add('selected');
+						this.set('options.' + i + '.selected', true);
 					}
 				});
 			});
@@ -284,6 +285,12 @@ class MultipleClab {
 		let arr = ['multiple-wrapper'];
 		if(type) arr.push(type);
 		return arr.join(' ');
+	}
+
+	_computeSelection(selected){
+	  let str = '';
+	  selected ? str = 'selected' : null;
+	  return str;
 	}
 
 
