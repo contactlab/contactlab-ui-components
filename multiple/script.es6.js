@@ -50,6 +50,11 @@ class MultipleClab {
 			},
 			noteType: {
 				type: String
+			},
+
+			compNoteType: {
+				type: String,
+				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -116,17 +121,21 @@ class MultipleClab {
 	_handleSelection(evt){
 		if(this.disabled) return;
 
+		let i = parseInt(evt.target.getAttribute('data-index'));
+
 		if(!this.shift && !this.ctrl){
 			// starting the select
 			this.set('selected', []);
-			Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
-				el.classList.remove('selected');
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), (el,i) => {
+				// el.classList.remove('selected');
+				this.set('options.' + i + '.selected', false);
 			});
 			this._selectThis(evt.target);
 
 		} else if(this.ctrl){
 			//adding or removing single select
-			if(evt.target.classList.contains('selected'))
+			// if(evt.target.classList.contains('selected'))
+			if(this.options[i].selected)
 				this._removeThis(evt.target);
 			else {
 				this._selectThis(evt.target);
@@ -289,11 +298,16 @@ class MultipleClab {
 		return arr.join(' ');
 	}
 
-	_computeSelection(selected){
-	  let str = '';
-	  selected ? str = 'selected' : null;
-	  return str;
+	_computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
 	}
+
+	_computeSelection(selected){
+		let str = '';
+		selected ? str = 'selected' : null;
+		return str;
+	}
+
 
 
 
@@ -301,7 +315,8 @@ class MultipleClab {
 	UTILITIES
 	----------*/
 	_setWrapperHeights(){
-		if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		// if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		if(this.liHeight==undefined) this.liHeight= 35;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
 
