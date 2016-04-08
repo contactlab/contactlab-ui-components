@@ -112,18 +112,20 @@ var MenuClab = (function () {
 	}, {
 		key: '_handleEventFire',
 		value: function _handleEventFire(current) {
-			if (current.submenu) {
-				this.set('submenu', current.submenu);
-				this.fire('menuchange', {
-					label: current.label,
-					links: current.submenu
-				});
-			} else {
-				this.set('submenu', undefined);
-				this.fire('menuchange', {
-					label: current.label,
-					links: []
-				});
+			if (current) {
+				if (current.submenu) {
+					this.set('submenu', current.submenu);
+					this.fire('menuchange', {
+						label: current.label,
+						links: current.submenu
+					});
+				} else {
+					this.set('submenu', undefined);
+					this.fire('menuchange', {
+						label: current.label,
+						links: []
+					});
+				}
 			}
 		}
 	}, {
