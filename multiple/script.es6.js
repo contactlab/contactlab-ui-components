@@ -135,12 +135,12 @@ class MultipleClab {
 		} else if(this.ctrl){
 			//adding or removing single select
 			// if(evt.target.classList.contains('selected'))
-			if(this.options[i].selected)
+			if(this.options[i].selected){
 				this._removeThis(evt.target);
-			else {
+			} else {
 				this._selectThis(evt.target);
 			}
-
+			console.log('##',this.selected);
 		} else if(this.shift){
 			//adding multiple select
 			if(this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -226,30 +226,34 @@ class MultipleClab {
 	}
 
 	_removeThis(elem){
-		let i=elem.getAttribute('data-index');
+		let i = elem.getAttribute('data-index');
 		// console.log(i);
 		// elem.classList.remove('selected');
-		this.splice('selected', i, 1);
+		// this.splice('selected', i, 1);
+		let temp = this.selected.filter(function(obj){
+			return obj.label !== elem.innerHTML;
+		});
+		this.set('selected', temp);
 		this.set('options.' + i + '.selected', false);
 		this.fire('change', {selected:this.selected});
-		this.lastSelected=undefined;
+		this.lastSelected = undefined;
 	}
 
 	_selectThese(lastClicked){
-		let arr=[],
+		let arr = [],
 			first,
 			last;
-		if(this.lastSelected>lastClicked){
-			first=lastClicked;
-			last=this.lastSelected;
+		if(this.lastSelected > lastClicked){
+			first = lastClicked;
+			last = this.lastSelected;
 		} else {
-			first=this.lastSelected;
-			last=lastClicked;
+			first = this.lastSelected;
+			last = lastClicked;
 		}
 
-		for(var i=first; i<=last; i++){
+		for(var i = first; i <= last; i++){
 			arr.push(i);
-			if(this.selected.indexOf(this.options[i])==-1) this.push('selected', this.options[i]);
+			if(this.selected.indexOf(this.options[i]) == -1) this.push('selected', this.options[i]);
 		}
 
 		this._highlightElems(arr);
