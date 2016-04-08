@@ -21,6 +21,7 @@ class TagsClab {
 				type:Boolean,
 				value:false
 			},
+			placeholder:String,
 			stacked:{
 				type:Boolean,
 				value:false
@@ -34,7 +35,7 @@ class TagsClab {
 				type:String,
 				value:''
 			},
-			btn:{
+			btnLabel:{
 				type:String,
 				value:'Add'
 			},
@@ -69,11 +70,11 @@ class TagsClab {
 				this.querySelector('button-clab').fire('btnclick');
 				break;
 		}
-
 	}
 
 	_addTag(evt){
-		let str=this.inputString.split(',')[0];
+		let str = this.inputString==undefined? '' : this.inputString.split(',')[0];
+		if(!/\S/.test(str)) return;
 		let newTag={
 			label:str,
 			value:str

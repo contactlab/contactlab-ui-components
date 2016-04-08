@@ -8,10 +8,10 @@
 	<template>
 		<div class="tags-wrapper">
 			<template is="dom-if" if="[[!hideInput]]">
-				<input-clab on-keyup="_handleKeyUp" type="[[inputType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]">
-					<content></content>
+				<input-clab type="[[inputType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyUp">
+					<button-clab class="button" type="[[inputType]]" appearance="[[btnAppearence]]" size="[[btnSize]]" icon="[[btnIcon]]" disabled="[[disabled]]" on-btnclick="_addTag">[[btnLabel]]</button-clab>
+					<content select=".note"></content>
 				</input-clab>
-				<button-clab on-btnclick="_addTag" type="[[inputType]]" appearance="[[btnAppearence]]" disabled="[[disabled]]" size="[[btnSize]]" icon="[[btnIcon]]">[[btn]]</button-clab>
 			</template>
 
 			<div class$="[[_computeStacked(stacked)]]">

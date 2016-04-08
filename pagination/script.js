@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var PaginationClab = function () {
+var PaginationClab = (function () {
 	function PaginationClab() {
 		_classCallCheck(this, PaginationClab);
 	}
@@ -14,22 +14,28 @@ var PaginationClab = function () {
 		value: function beforeRegister() {
 			this.is = "pagination-clab";
 			this.properties = {
+				tot: {
+					type: Number,
+					observer: '_setPages'
+				},
+				links: Array,
 				pages: {
 					type: Array,
 					notify: true,
-					value: [],
-					observer: '_observPages'
+					value: []
 				},
 				currentPage: {
 					type: Number,
 					notify: true,
-					value: 1,
-					observer: '_updateAvailablePages'
+					value: 0
 				},
-
+				range: {
+					type: Number,
+					value: 8
+				},
 				firstPage: {
 					type: String,
-					computed: '_getFirstPage(pages)'
+					value: 0
 				},
 				lastPage: {
 					type: String,
@@ -45,132 +51,121 @@ var PaginationClab = function () {
 				},
 				availableStart: {
 					type: Number,
-					computed: '_getStart(pages, currentPage)'
+					computed: '_getStart(currentPage, pages)'
 				},
 				availableEnd: {
 					type: Number,
-					computed: '_getEnd(pages, currentPage)'
+					computed: '_getEnd(currentPage, pages)'
 				}
 			};
 		}
+
+		/*----------
+  EVENT HANDLERS
+  ----------*/
+
 	}, {
-		key: 'attached',
-		value: function attached() {
-			this.async(this._updateAvailablePages, 100);
-		}
-	}, {
-		key: '_setThisAsCurrent',
-		value: function _setThisAsCurrent(evt) {
+		key: '_setCurrent',
+		value: function _setCurrent(evt) {
 			var i = undefined;
-			if (typeof evt != 'number') {
-				// se è event handler
-				evt.preventDefault();
-				i = Number(evt.target.getAttribute('data-index'));
-			} else {
-				// .. o metodo
-				i = Number(evt);
+			var type = undefined;
+			switch (evt.target.localName) {
+				case 'i':
+					i = Number(evt.target.parentNode.getAttribute('data-index'));
+					type = evt.target.parentNode.getAttribute('data-type');
+					break;
+				case 'li':
+					i = Number(evt.target.getAttribute('data-index'));
+					type = evt.target.getAttribute('data-type');
+					break;
 			}
 
-			if (i >= 0) {
-				this.querySelector('.active').classList.remove('active');
-				this.querySelectorAll('.page')[i].classList.add('active');
-				this.currentPage = i + 1;
-
-				this.fire('change', { index: i });
+			if (type && this[type + 'Page'] == undefined || type && this[type + 'Page'] == this.currentPage) return;
+			if (i >= 0 && i <= this.lastPage) {
+				this.set('currentPage', i);
+				this.fire('change', { currentPage: i });
 			}
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
 	}, {
-		key: '_observPages',
-		value: function _observPages(val, oldval) {
-			if (oldval != undefined) {
-				if (this.currentPage > this._getIndex(this.lastPage, this.pages)) {
-					// se la currentPage è un valore che ora non c'è più la setto all'ultima pagina di quelle nuove
-					this._setThisAsCurrent(this._getIndex(this.lastPage, this.pages));
-				} else {
-					this.async(this._updateAvailablePages, 100);
+		key: '_setPages',
+		value: function _setPages(val) {
+			if (val != undefined) {
+				var arr = [];
+				for (var i = 0; i < val; i++) {
+					arr.push(i);
 				}
-
-				this.fire('update');
+				this.set('pages', arr);
 			}
 		}
-	}, {
-		key: '_updateAvailablePages',
-		value: function _updateAvailablePages() {
-			var _this = this;
 
-			Array.prototype.map.call(this.querySelectorAll('.page'), function (el, idx) {
-				if (idx >= _this.availableStart && idx <= _this.availableEnd) {
-					el.classList.remove('invisible');
-				} else {
-					el.classList.add('invisible');
-				}
-			});
-		}
-
-		/*---------- 
-  COMPUTED
+		/*----------
+  COMPUTERS
   ----------*/
 
 	}, {
-		key: '_computeLiPageClass',
-		value: function _computeLiPageClass(i) {
-			var arr = ['page'];
-			if (i == this.currentPage - 1) arr.push('active');
-			return arr.join(' ');
+		key: '_compVisiblePages',
+		value: function _compVisiblePages(start, end) {
+			var arr = [];
+			this.pages.map(function (page, idx) {
+				if (idx >= start && idx <= end) {
+					arr.push(page);
+				}
+			});
+			return arr;
 		}
 	}, {
-		key: '_getFirstPage',
-		value: function _getFirstPage(pages) {
-			return pages[0];
+		key: '_computeActive',
+		value: function _computeActive(cur, i) {
+			var arr = ['page'];
+			if (i == cur) arr.push('active');
+			return arr.join(' ');
 		}
 	}, {
 		key: '_getLastPage',
 		value: function _getLastPage(pages) {
-			return pages[pages.length - 1];
+			return pages.length - 1;
 		}
 	}, {
 		key: '_getPrevPage',
 		value: function _getPrevPage(pages, cur) {
-			return pages[cur - 2];
+			return pages[cur - 1];
 		}
 	}, {
 		key: '_getNextPage',
 		value: function _getNextPage(pages, cur) {
-			return pages[cur];
+			return pages[cur + 1];
 		}
 	}, {
 		key: '_getStart',
-		value: function _getStart(pages, cur) {
-			var i = cur - 1;
+		value: function _getStart(c, pages) {
 			var last = pages.length - 1;
-			if (i >= last - 3) {
-				return last - 4;
-			} else if (i <= 3) {
+			if (c >= last - this.range / 2) {
+				return last - this.range;
+			} else if (c <= this.range / 2) {
 				return 0;
 			} else {
-				return i - 2;
+				return c - this.range / 2;
 			}
 		}
 	}, {
 		key: '_getEnd',
-		value: function _getEnd(pages, cur) {
-			var i = cur - 1;
+		value: function _getEnd(c, pages) {
 			var last = pages.length - 1;
-			if (i >= last - 3) {
+			if (c >= last - this.range / 2) {
 				return last;
-			} else if (i <= 3) {
-				return 4;
+			} else if (c <= this.range / 2) {
+				return this.range;
 			} else {
-				return i + 2;
+				return c + this.range / 2;
 			}
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
@@ -187,6 +182,6 @@ var PaginationClab = function () {
 	}]);
 
 	return PaginationClab;
-}();
+})();
 
 Polymer(PaginationClab);

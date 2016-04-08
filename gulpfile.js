@@ -46,20 +46,29 @@ gulp.task('connect', function (port) {
 
 
 // Watch SASS
-gulp.task('watch-sass', function() {
-  watch(conf.scssSourcePath, function(file){
-    var arr=JSON.stringify(file.dirname).split("\\");
-    var i=arr.length - 3;
-    var folder=arr[i];
+// gulp.task('watch-sass', function() {
+//   watch(conf.scssSourcePath, function(file){
+//     var arr=JSON.stringify(file.dirname).split("\\");
+//     var i=arr.length - 3;
+//     var folder=arr[i];
+//
+//       gulp.src(folder+'/scss/*.scss')
+//         .pipe(plumber())
+//         .pipe(compass({
+//             css:folder+'/css',
+//             sass:folder+'/scss'
+//           }))
+//         .pipe(gulp.dest(folder+'/css'))
+//     });
+// });
+gulp.task('sass', function () {
+  return gulp.src('./_assets/scss/*.scss')
+    .pipe(sass.sync().on('error', sass.logError))
+    .pipe(gulp.dest('./_assets/css'));
+});
 
-      gulp.src(folder+'/scss/*.scss')
-        .pipe(plumber())
-        .pipe(compass({
-            css:folder+'/css',
-            sass:folder+'/scss'
-          }))
-        .pipe(gulp.dest(folder+'/css'))
-    });
+gulp.task('watch-sass', function() {
+  gulp.watch(conf.scssSourcePath, ['sass']);
 });
 
 // Watch ES6

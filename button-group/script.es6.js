@@ -11,6 +11,13 @@ class GroupClab{
 				value: false
 			},
 			/**
+	       * Whether the buttons are smaller
+	       */
+			smaller: {
+				type: Boolean,
+				value: false
+			},
+			/**
 	       * Whether the buttons are disabled
 	       */
 			disabled: {
@@ -31,7 +38,7 @@ class GroupClab{
 			value: {
 				type: Number,
 				value: 0,
-				observer: '_initialize',
+				observer: '_updateAppearance',
 				reflectToAttribute: true
 			}
 		}
@@ -39,10 +46,12 @@ class GroupClab{
 
 	attached(){
 		let btns = this.getContentChildren();
-		Array.prototype.map.call(btns, btn => {
+		Array.prototype.map.call(btns, (btn, i) => {
 			btn.classList.add('group-item');
+			btn.appearance = (i==this.value) ? '' : 'empty';
+			btn.setAttribute('data-i', i);
+			btn.addEventListener('btnclick', this._selectElement.bind(this));
 		});
-		this._initialize();
 	}
 
 
@@ -50,49 +59,43 @@ class GroupClab{
 	/*----------
 	OBSERVER
 	----------*/
-	_updateDisabled(){
+	_updateDisabled(val, old){
 		let btns = this.getContentChildren();
 		Array.prototype.map.call(btns, btn => {
-			btn.disabled = this.disabled;
+			btn.disabled = val;
 		});
+	}
+
+	_updateAppearance(val, old){
+		if(old!==undefined && old !== val){
+			this.fire('change', { value: val });
+
+			let btns = this.getContentChildren();
+			Array.prototype.map.call(btns, (btn, i) => {
+				btn.appearance = (i==this.value) ? '' : 'empty';
+			});
+		}
 	}
 
 
 
 	/*----------
-	METHODS
+	EVENT HANDLERS
 	----------*/
-	_initialize(){
-		let btns = this.getContentChildren();
-		Array.prototype.map.call(btns, btn => {
-			(typeof btn.appearance === 'string') ? btn.appearance = '' : null;
-			btn.setAttribute('data-i', btns.indexOf(btn));
-			btn.addEventListener('click',this._selectElement.bind(this))
-		});
-		(typeof btns[this.value].appearance === 'string') ? btns[this.value].appearance = 'full' : null;
-		// this.fire('change', {value: this.value});
+	_selectElement(evt){
+		this.set('value', Number(evt.target.getAttribute('data-i')) );
 	}
 
-	_selectElement(evt){
-		evt.preventDefault();
-		let old = this.value;
-		let btns = this.getContentChildren();
-		Array.prototype.map.call(btns, btn => {
-			btn.appearance = '';
-		});
-		this.value = parseInt(evt.target.parentNode.getAttribute('data-i'));
-		btns[this.value].appearance = 'full';
-		old !== this.value ? this.fire('change', { value: this.value }) : null;
-	}
 
 
 
 	/*----------
 	COMPUTED
 	----------*/
-	_computeGroupClass(type,small){
+	_computeGroupClass(type,small,smaller){
 		let arr = ['buttons-group',type];
 		small ? arr.push('small') : null;
+		smaller ? arr.push('smaller') : null;
 		return arr.join(' ');
 	}
 

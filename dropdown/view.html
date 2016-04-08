@@ -4,34 +4,42 @@
 <dom-module id="dropdown-clab">
 
     <style>
-        .options-list li[data-disabled=true]{
-            opacity:.5;
+        .options-list li{
+            display: block !important;
         }
     </style>
 
     <template>
-        <template is="dom-if" if="[[_viewLabel(label)]]">
-            <label class$="[[_compType(disabled, type)]]">[[label]]</label>
-        </template>
-        <div class="options-list-wrapper">
-            <div class$="[[_compType(disabled, type, 'value_wrapper')]]" on-tap="_toggleList">
-                <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
-                    <span class="selected">[[_computeLabel(selected)]]</span>
-                </template>
-                <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
-                    <span class="placeholder">[[placeholder]]</span>
-                </template>
-            </div>
-            <ol class="options-list">
-                <template is="dom-repeat" items="[[options]]">
-                    <li class="show" data-index$="[[index]]" data-value$="[[_computeValue(item)]]" data-disabled$="[[_computeDisabledLis(disableOption, index)]]" on-click="_setThis">[[_computeLabel(item)]]</li>
-                </template>
-            </ol>
-        </div>
-        <note-clab type="[[compNoteType]]">
-            <content></content>
-        </note-clab>
+        <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
+            <template is="dom-if" if="[[_viewLabel(label, icon)]]">
+				<label class$="[[_compType('', disabled, type)]]" for$="[[_dashify(name)]]">
+					<template is="dom-if" if="[[_viewLabel(icon)]]">
+						<i class$="[[_compIcon(icon)]]"></i>
+					</template>
+					[[label]]
+				</label>
+			</template>
 
+            <div class="input">
+                <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
+                    <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
+                        <span class="selected">[[_compLabel(selected)]]</span>
+                    </template>
+                    <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
+                        <span class="placeholder">[[placeholder]]</span>
+                    </template>
+                </div>
+                <ol class="options-list">
+                    <template is="dom-repeat" items="[[options]]">
+                        <li class$="[[_compHighlight(selected, item)]]" data-index$="[[index]]" data-value$="[[_compValue(item)]]" on-click="_setThis">[[_compLabel(item)]]</li>
+                    </template>
+                </ol>
+            </div>
+            
+            <note-clab type="[[noteType]]">
+                <content select=".note"></content>
+            </note-clab>
+        </div>
     </template>
 
     <script src="./../_behaviors/behaviors.js"></script>

@@ -41,7 +41,7 @@ class TooltipClab{
 			this._resetTimeout('showInterval');
 			this._startTimeout('hideInterval', ()=>{
 				this.hide();
-			}, 250);
+			}, 100);
 
 		}
 	}
@@ -54,7 +54,7 @@ class TooltipClab{
 			case 'mouseleave':
 				this._startTimeout('hideInterval', ()=>{
 					this.hide();
-				}, 250);
+				}, 100);
 				break;
 		}
 	}

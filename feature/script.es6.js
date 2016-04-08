@@ -32,7 +32,7 @@ class FeatureClab {
 	----------*/
 	_computeFeatureClass(size, vertical){
 		let arr = ['feature'];
-		if(size) arr.push(size+'-icon');
+		if(size) arr.push(size);
 		if(vertical) arr.push('vertical');
 		return arr.join(' ');
 	}

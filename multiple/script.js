@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MultipleClab = function () {
+var MultipleClab = (function () {
 	function MultipleClab() {
 		_classCallCheck(this, MultipleClab);
 	}
@@ -147,9 +147,12 @@ var MultipleClab = function () {
 			} else if (this.ctrl) {
 				//adding or removing single select
 				// if(evt.target.classList.contains('selected'))
-				if (this.options[i].selected) this._removeThis(evt.target);else {
+				if (this.options[i].selected) {
+					this._removeThis(evt.target);
+				} else {
 					this._selectThis(evt.target);
 				}
+				console.log('##', this.selected);
 			} else if (this.shift) {
 				//adding multiple select
 				if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -243,7 +246,11 @@ var MultipleClab = function () {
 			var i = elem.getAttribute('data-index');
 			// console.log(i);
 			// elem.classList.remove('selected');
-			this.splice('selected', i, 1);
+			// this.splice('selected', i, 1);
+			var temp = this.selected.filter(function (obj) {
+				return obj.label !== elem.innerHTML;
+			});
+			this.set('selected', temp);
 			this.set('options.' + i + '.selected', false);
 			this.fire('change', { selected: this.selected });
 			this.lastSelected = undefined;
@@ -349,6 +356,6 @@ var MultipleClab = function () {
 	}]);
 
 	return MultipleClab;
-}();
+})();
 
 Polymer(MultipleClab);

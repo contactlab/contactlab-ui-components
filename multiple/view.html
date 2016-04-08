@@ -33,22 +33,22 @@
 	</style>
 
 	<template>
-
+		<div class="input-wrapper">
 		<template is="dom-if" if="[[label]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 		</template>
 		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
 			<ol class="options-list" on-scroll="_loadContent">
 				<template is="dom-repeat" items="[[options]]">
-            <li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>
+						<li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>
         </template>
 			</ol>
 			<spinner-clab visible="[[spinner]]"></spinner-clab>
 		</div>
-		<note-clab type="[[compNoteType]]">
-			<content></content>
+		<note-clab type="[[noteType]]">
+			<content select=".note"></content>
 		</note-clab>
-
+</div>
 	</template>
 
 	<script src="./../_behaviors/behaviors.js"></script>

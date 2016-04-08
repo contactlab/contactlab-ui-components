@@ -8,7 +8,7 @@
 			-khtml-user-select: none;    /* Konqueror */
 			-moz-user-select: none;      /* Firefox */
 			-ms-user-select: none;       /* IE/Edge */
-			user-select: none;  
+			user-select: none;
 		}
 		.page.invisible{
 			display: none;
@@ -18,24 +18,24 @@
 
 	<template>
 		<ul class="pagination">
-			<li class="first">
-				<a href$="[[firstPage]]" on-click="_setThisAsCurrent"><i class="clab-icon icon-double-arrow-left" data-index="0"></i></a>
+			<li class="first" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
+				<i class="clab-icon icon-double-arrow-left"></i>
 			</li>
-			<li>
-		      <a href$="[[prevPage]]" on-click="_setThisAsCurrent"><i class="clab-icon icon-arrow-left" data-index$="[[_getIndex(prevPage, pages)]]"></i></a>
+			<li on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
+		    	<i class="clab-icon icon-arrow-left"></i>
 		    </li>
 
-			<template is="dom-repeat" items="[[pages]]">
-				<li class$="[[_computeLiPageClass(index)]]"><a href$="[[item]]" on-click="_setThisAsCurrent" data-index$="[[index]]">[[_pageNumber(index)]]</a></li>
+			<template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd)]]" as="page">
+				<li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
 			</template>
 
-			<li>
-		      <a href$="[[nextPage]]" on-click="_setThisAsCurrent"><i class="clab-icon icon-arrow-right" data-index$="[[_getIndex(nextPage, pages)]]"></i></a>
+			<li on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
+		    	<i class="clab-icon icon-arrow-right"></i>
 		    </li>
-			<li class="last">
-		      <a href$="[[lastPage]]" on-click="_setThisAsCurrent"><i class="clab-icon icon-double-arrow-right" data-index$="[[_getIndex(lastPage, pages)]]"></i></a>
+			<li class="last" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
+		    	<i class="clab-icon icon-double-arrow-right"></i>
 		    </li>
-		 </ul>
+		</ul>
 	</template>
 
 	<script src="./../_behaviors/behaviors.js"></script>

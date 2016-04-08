@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var TabsClab = function () {
+var TabsClab = (function () {
 	function TabsClab() {
 		_classCallCheck(this, TabsClab);
 	}
@@ -19,6 +19,18 @@ var TabsClab = function () {
 					value: []
 				},
 				pills: {
+					type: Boolean,
+					value: false
+				},
+				vertical: {
+					type: Boolean,
+					value: false
+				},
+				centered: {
+					type: Boolean,
+					value: false
+				},
+				fullWidth: {
 					type: Boolean,
 					value: false
 				},
@@ -89,9 +101,12 @@ var TabsClab = function () {
 		}
 	}, {
 		key: '_computeType',
-		value: function _computeType(pills) {
+		value: function _computeType(pills, vertical, centered, fullWidth) {
 			var arr = [];
 			pills ? arr.push('pills') : arr.push('tabs');
+			if (vertical) arr.push('vertical');
+			if (centered) arr.push('centered');
+			if (fullWidth) arr.push('full-width');
 			return arr.join(' ');
 		}
 	}, {
@@ -104,6 +119,6 @@ var TabsClab = function () {
 	}]);
 
 	return TabsClab;
-}();
+})();
 
 Polymer(TabsClab);

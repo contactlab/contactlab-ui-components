@@ -1,0 +1,45 @@
+/////////////////// MODAL ///////////////////
+
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0; 
+  bottom: 0;
+  background: $overlay-color;
+  z-index: 10;
+  height: 100%;
+  width: 100%;
+
+  .close-overlay {
+    display: block;
+  }
+}
+
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow: auto;
+  padding: 0 $base-spacing;
+}
+
+.modal-title {
+  padding: 2.7em 0 0;
+  @extend h2;
+  margin: 0; 
+}
+
+.modal-body {
+  padding: $base-spacing 0;
+}
+
+.modal-actions {
+  text-align: right;
+}
+
+
+
+/////////////////// END MODAL ///////////////////

@@ -7,21 +7,45 @@
     <!-- <link rel="stylesheet" href="autocomplete.css"> -->
 
 	<template>
-        <template is="dom-if" if="[[_viewLabel(label)]]">
-            <label class$="[[inputType]]" for$="[[_dashify(name)]]">[[label]]</label>
-        </template>
-        <div class="options-list-wrapper">
-            <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
-                <content></content>
-            </input-clab>
-            <ol class="options-list">
-                <template is="dom-repeat" items="[[results]]">
-                    <li data-index$="[[index]]" on-mouseover="_handleHighlight" class="show" on-mousedown="_setItem">[[item.label]]</li>
-                </template>
-            </ol>
 
-            <spinner-clab visible="[[spinner]]"></spinner-clab>
+        <div class="input-wrapper">
+            <!-- <template is="dom-if" if="[[_viewLabel(label)]]">
+                <label class$="[[inputType]]" for$="[[_dashify(name)]]">[[label]]</label>
+            </template> -->
+            <div class="input">
+                <input-clab label="[[label]]" value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" inline="[[inline]]" label-size="[[labelSize]]" icon="[[icon]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
+                    <content select=".button"></content>
+                    <content select=".note"></content>
+                </input-clab>
+                <ol class="options-list">
+                    <template is="dom-repeat" items="[[options]]">
+                        <li data-index$="[[index]]" on-mouseover="_handleHighlight">[[item.label]]</li>
+                    </template>
+                </ol>
+                <spinner-clab visible="[[spinner]]"></spinner-clab>
+            </div>
         </div>
+
+
+
+        <!-- <div class="input-wrapper">
+            <template is="dom-if" if="[[_viewLabel(label)]]">
+                <label class$="[[inputType]]" for$="[[_dashify(name)]]">[[label]]</label>
+            </template>
+            <div class="options-list-wrapper">
+                <input-clab value="{{inputString}}" name="[[name]]" type="[[inputType]]" note-type="[[noteType]]" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
+                    <content></content>
+                </input-clab>
+                <ol class="options-list">
+                    <template is="dom-repeat" items="[[options]]">
+                        <li data-index$="[[index]]" on-mouseover="_handleHighlight">[[item.label]]</li>
+                    </template>
+                </ol>
+
+                <spinner-clab visible="[[spinner]]"></spinner-clab>
+            </div>
+
+        </div> -->
 
     </template>
 

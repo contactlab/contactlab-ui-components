@@ -1,0 +1,141 @@
+/////////////////// SELECT ///////////////////
+
+.autocomplete-clab,
+.dropdown-clab {
+
+
+
+  .value_wrapper.active {
+    border-bottom-color: $primary-color;
+  }
+
+  .value_wrapper.disabled {
+    cursor: not-allowed;
+    color: $disabled-color;
+  }
+
+  .options-list {
+    position: absolute;
+    top: 30px;
+    left: 0;
+    right: 0;
+    z-index: 3;
+    background-color: #FFFFFF;
+    margin-bottom: 0;
+    overflow: auto;
+    @extend .depth-1;
+    display: none;
+
+    &.active {
+      display: block;
+    }
+
+    &.hidden{
+      display: block;
+      opacity: 0;
+    }
+
+    &.visible {
+      display: block;
+    }
+
+    .noResults {
+      cursor: initial;
+    }
+
+    li,
+    .noResults {
+      background-color: white;
+      display: none;
+      padding: $smaller-spacing $small-spacing;;
+      margin: 0;
+      cursor: pointer;
+
+      &.hide {
+        display: none;
+      }
+
+      &.show {
+        display: block;
+      }
+
+      &.selected {
+        color: $primary-color;
+      }
+    }
+
+    li[data-disabled=true] {
+      color: $disabled-color;
+      cursor: not-allowed;
+    }
+  }
+}
+
+
+  // AUTOCOMPLETE
+
+  autocomplete-clab {
+    flex-grow: 1;
+  }
+
+  // DROPDOWN
+
+  .dropdown-clab {
+
+        .value_wrapper {
+            @extend input[type="text"];
+            cursor: pointer;
+            text-align:left;
+            height: 30px;
+            padding-right: $base-spacing;
+            @extend .truncate;
+          display: flex;
+          align-items: center;
+        }
+
+        .input {
+            &:after {
+                font-family: 'contactlab-icons';
+                content: "\e60c";
+                position: absolute;
+                top: 9px;
+                right: $smaller-spacing;
+                line-height: 1;
+                font-size: 12px;
+                @extend .fast-transition;
+                pointer-events: none;
+            }
+        }
+  }
+
+/////////////////// END SELECT ///////////////////
+
+/////////////////// MULTIPLE SELECT ///////////////////
+
+multiple-clab {
+    flex-grow: 1;
+}
+
+select[multiple],
+ol.multiple-clab {
+    background-color: rgba(255,255,255,1);
+    border: 0;
+    border-bottom: 1px solid $light-gray;
+    // padding: $smaller-spacing 0;
+    font-size: $base-font-size;
+    // @extend .fast-transition;
+    margin-bottom: 0;
+    flex-grow: 1;
+
+    li {
+      padding: $smaller-spacing;
+      cursor: pointer;
+
+      &.selected {
+        background-color: $light-gray;
+        color: $primary-color;
+      }
+    }
+}
+
+/////////////////// END MULTIPLE SELECT ///////////////////

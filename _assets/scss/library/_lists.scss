@@ -1,0 +1,28 @@
+
+/////////////////// LISTS ///////////////////
+
+ul,
+ol {
+  list-style: none;
+  padding-left: 0;
+  margin: 0 0 $base-spacing;
+
+  li {
+    margin-bottom: $smaller-spacing;
+  }
+}
+
+ul.default,
+ol.default {
+  padding-left: 25px;
+}
+
+ul.default {
+  list-style: disc;
+}
+
+ol.default {
+  list-style: decimal;
+}
+
+/////////////////// END LISTS ///////////////////

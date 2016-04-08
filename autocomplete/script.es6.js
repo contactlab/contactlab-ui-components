@@ -67,6 +67,18 @@ class AutoCompleteClab{
 			noteType:{
 				type:String
 			},
+			inline:{
+				type:Boolean,
+				value:false
+			},
+			labelSize: {
+				type:String,
+				value:''
+			},
+			icon:{
+				type:String,
+				value:''
+			},
 
 
 			/*----------
@@ -98,11 +110,11 @@ class AutoCompleteClab{
 				case 'ol':
 					this.dontHide=true;
 					break;
-				// case 'li':
-				// 	this.dontHide=false;
-				// 	let i = evt.target.getAttribute('data-index');
-				// 	this._setValue(this.options[i]);
-				// 	break;
+				case 'li':
+					this.dontHide=false;
+					let i=evt.target.getAttribute('data-index');
+					this._setValue(this.options[i]);
+					break;
 				default:
 					this.dontHide=false;
 			}
@@ -116,18 +128,6 @@ class AutoCompleteClab{
 	/*----------
 	EVENT HANDLERS
 	----------*/
-	_setItem(evt){
-		this.dontHide=false;
-		let i = evt.target.getAttribute('data-index');
-		let res = this.results[i];
-		this.options.forEach((obj,index) => {
-			obj.label === res.label ? i = index : null;
-		});
-		// debugger;
-		this._setValue(this.options[i]);
-	}
-
-
 	_handleKeyboardInputs(evt){
 		// If Enter
 		if(evt.keyCode==13 && this.currentHint!=undefined){
@@ -173,7 +173,7 @@ class AutoCompleteClab{
 	}
 
 	_handleHighlight(evt){
-		let i = evt.target.getAttribute('data-index');
+		let i=evt.target.getAttribute('data-index');
 		this._highlightEl(i);
 		this.currentHint=this.options[i];
 	}
@@ -194,7 +194,7 @@ class AutoCompleteClab{
 
 
 	/*----------
-	FUNCTIONS
+	METHODS
 	----------*/
 	_fetchOptions(){
 		window.clearTimeout(this.interval);
@@ -241,11 +241,11 @@ class AutoCompleteClab{
 
 			this.options.map((opt, i)=>{
 				if(opt.label.toLowerCase().search(searchVal)>-1){
-					// this.querySelectorAll('.options-list li')[i].classList.add('show');
-					this.push('results', this.options[i]);
+					this.querySelectorAll('.options-list li')[i].classList.add('show');
+					this.results.push(this.options[i]);
 
 				} else {
-					// this.querySelectorAll('.options-list li')[i].classList.remove('show');
+					this.querySelectorAll('.options-list li')[i].classList.remove('show');
 				}
 			});
 		}
@@ -358,6 +358,16 @@ class AutoCompleteClab{
 
 
 
+	// _compWrapperClass(str, inline, labelSize){
+	// 	let arr=[str];
+	// 	if(inline){
+	// 		arr.push('inline');
+	// 		if(labelSize.length>0) arr.push(labelSize+'-label');
+	// 	}
+	// 	return arr.join(' ');
+	// }
+
+
 
 	/*----------
 	UTILS
@@ -365,8 +375,7 @@ class AutoCompleteClab{
 	_setListHeight(elemsShown){
 		if(this.liHeight===null) {
 			this.list.classList.add('hidden');
-			// this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
-			this.liHeight = 35;
+			this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
 			this.list.style.maxHeight=(this.liHeight*this.maxInView)+'px';
 			this.list.classList.remove('hidden');
 		}

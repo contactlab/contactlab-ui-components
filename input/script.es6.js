@@ -8,24 +8,22 @@ class InputClab{
 		this.is = "input-clab";
 		this.properties = {
 			label: {
-				type: String,
+				type:String,
+				value:''
+			},
+			icon:{
+				type:String,
+				value:''
 			},
 			name: {
 				type: String,
 				value: 'textinput'
 			},
 			type: {
-				type: String,
-				value: ''
+				type:String,
+				value:''
 			},
-			password: {
-				type: Boolean,
-				value: false
-			},
-			check: {
-				type: Boolean,
-				value: false
-			},
+			noteType: String,
 			value: {
 				type: String,
 				notify: true,
@@ -36,41 +34,43 @@ class InputClab{
 				value: false,
 				observer: '_disabledChanged'
 			},
-			placeholder: {
-				type: String
+			inline: {
+				type: Boolean,
+				value: false
 			},
-			noteType: {
-				type: String,
-				value: ''
+			labelSize: {
+				type:String,
+				value:''
 			},
-			btnConfig:{
+			placeholder: String,
+			check: {
+				type: Boolean,
+				value: false
+			},
+			btnPswd:{
 				type:Object,
 				value:{
 					show:{
-						icon:'clab-icon icon-switch-off',
-						label:'Mostra password',
-						type:"primary", 
-						appearance:"flat", 
+						icon:'',
+						label:'Show',
+						type:"",
+						appearance:"",
 						size:""
 					},
 					hide:{
-						icon:'clab-icon icon-switch-on',
-						label:'Nascondi password',
-						type:"error",
-						appearance:"flat", 
+						icon:'',
+						label:'Hide',
+						type:"",
+						appearance:"",
 						size:""
 					}
 				}
 			},
-
-
-			btnProps:{
-				type:String,
-				computed: '_computeToggleBtnProps(password, btnConfig)'
-			},
-			compNoteType: {
-				type: String,
-				computed: '_computeNoteType(type, noteType)'
+			_btnPswd:Object,
+			password: {
+				type: Boolean,
+				value: false,
+				observer: '_computeBtnPswd'
 			}
 		}
 	}
@@ -82,6 +82,10 @@ class InputClab{
 	----------*/
 	_toggleInputType(evt){
 		this.password=!this.password;
+	}
+
+	_btnclick(evt){
+		this.fire('btnclick');
 	}
 
 	_blur(evt){
@@ -104,11 +108,21 @@ class InputClab{
 	/*----------
 	COMPUTE
 	----------*/
-	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
+	_compWrapperClass(str, type, inline, labelSize){
+		let arr=[str];
+		if(type!=undefined && type.length>0) arr.push(type);
+		if(inline){
+			arr.push('inline');
+			if(labelSize.length>0) arr.push(labelSize+'-label');
+		}
+		return arr.join(' ');
 	}
 
-	_computeDataType(password){
+	_compIcon(icon){
+		if(icon!=undefined && icon.length>0) return 'clab-icon '+icon; else return '';
+	}
+
+	_computeInputType(password){
 		if(password){
 			return 'password';
 		}else{
@@ -116,11 +130,11 @@ class InputClab{
 		}
 	}
 
-	_computeToggleBtnProps(pswd, btnConfig){
-		if(pswd) 
-			return btnConfig.show; 
-		else 
-			return btnConfig.hide; 
+	_computeBtnPswd(val, old){
+		if(val)
+			this.set('_btnPswd', this.btnPswd.show);
+		else
+			this.set('_btnPswd', this.btnPswd.hide);
 	}
 
 }

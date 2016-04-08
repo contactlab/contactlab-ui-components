@@ -1,12 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var AutoCompleteClab = function () {
+var AutoCompleteClab = (function () {
 	function AutoCompleteClab() {
 		_classCallCheck(this, AutoCompleteClab);
 	}
@@ -76,6 +76,18 @@ var AutoCompleteClab = function () {
 				noteType: {
 					type: String
 				},
+				inline: {
+					type: Boolean,
+					value: false
+				},
+				labelSize: {
+					type: String,
+					value: ''
+				},
+				icon: {
+					type: String,
+					value: ''
+				},
 
 				/*----------
       PRIVATE
@@ -111,11 +123,11 @@ var AutoCompleteClab = function () {
 					case 'ol':
 						_this.dontHide = true;
 						break;
-					// case 'li':
-					// 	this.dontHide=false;
-					// 	let i = evt.target.getAttribute('data-index');
-					// 	this._setValue(this.options[i]);
-					// 	break;
+					case 'li':
+						_this.dontHide = false;
+						var i = evt.target.getAttribute('data-index');
+						_this._setValue(_this.options[i]);
+						break;
 					default:
 						_this.dontHide = false;
 				}
@@ -129,18 +141,6 @@ var AutoCompleteClab = function () {
   EVENT HANDLERS
   ----------*/
 
-	}, {
-		key: '_setItem',
-		value: function _setItem(evt) {
-			this.dontHide = false;
-			var i = evt.target.getAttribute('data-index');
-			var res = this.results[i];
-			this.options.forEach(function (obj, index) {
-				obj.label === res.label ? i = index : null;
-			});
-			// debugger;
-			this._setValue(this.options[i]);
-		}
 	}, {
 		key: '_handleKeyboardInputs',
 		value: function _handleKeyboardInputs(evt) {
@@ -209,7 +209,7 @@ var AutoCompleteClab = function () {
 		}
 
 		/*----------
-  FUNCTIONS
+  METHODS
   ----------*/
 
 	}, {
@@ -262,10 +262,10 @@ var AutoCompleteClab = function () {
 
 				this.options.map(function (opt, i) {
 					if (opt.label.toLowerCase().search(searchVal) > -1) {
-						// this.querySelectorAll('.options-list li')[i].classList.add('show');
-						_this4.push('results', _this4.options[i]);
+						_this4.querySelectorAll('.options-list li')[i].classList.add('show');
+						_this4.results.push(_this4.options[i]);
 					} else {
-						// this.querySelectorAll('.options-list li')[i].classList.remove('show');
+						_this4.querySelectorAll('.options-list li')[i].classList.remove('show');
 					}
 				});
 			}
@@ -381,6 +381,15 @@ var AutoCompleteClab = function () {
 			});
 		}
 
+		// _compWrapperClass(str, inline, labelSize){
+		// 	let arr=[str];
+		// 	if(inline){
+		// 		arr.push('inline');
+		// 		if(labelSize.length>0) arr.push(labelSize+'-label');
+		// 	}
+		// 	return arr.join(' ');
+		// }
+
 		/*----------
   UTILS
   ----------*/
@@ -390,8 +399,7 @@ var AutoCompleteClab = function () {
 		value: function _setListHeight(elemsShown) {
 			if (this.liHeight === null) {
 				this.list.classList.add('hidden');
-				// this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
-				this.liHeight = 35;
+				this.liHeight = this.querySelectorAll('.options-list li.show')[0].clientHeight;
 				this.list.style.maxHeight = this.liHeight * this.maxInView + 'px';
 				this.list.classList.remove('hidden');
 			}
@@ -431,6 +439,6 @@ var AutoCompleteClab = function () {
 	}]);
 
 	return AutoCompleteClab;
-}();
+})();
 
 Polymer(AutoCompleteClab);

@@ -13,7 +13,8 @@ class MenuClab{
 			},
 			menu: {
 				type: Array,
-				value: []
+				value: [],
+				observer: '_init'
 			},
 			link: {
 				type:String,
@@ -27,33 +28,45 @@ class MenuClab{
 				type:Boolean,
 				value:false
 			},
-			submenu:{
-				type:Object
-			},
-			_url: {
-				type: String
+			submenu:Object,
+			_url: String,
+			_mainNav:{
+				type:Boolean,
+				value:false
 			}
 		}
 	}
 
 	attached(){
-		this._url = location.hash;
-		window.addEventListener('hashchange', (evt) => {
-			this._url = location.hash;
-		});
-
+		window.addEventListener('hashchange', this._updateUrl.bind(this));
 		this._iosMenu();
 	}
 
 
 
-	/*---------- 
+	/*----------
+	OBSERVERS
+	----------*/
+	_init(val, oldval){
+		if( val!=undefined && val.length>0 && (oldval==undefined || oldval.length==0) ){
+			this._updateUrl();
+		}
+	}
+
+
+
+	/*----------
 	EVENT HANDLERS
 	----------*/
-	_openItem(evt){
+	_updateUrl(evt){
 		this._url = location.hash;
-		if(window.innerWidth<961){
-			this.querySelector('.main-menu').style.display='none';
+		let current=this.menu.filter(item=>{
+			return item.url.split('/')[1]===this._url.split('/')[1];
+		})
+		this._handleEventFire(current[0]);
+
+		if(window.innerWidth>960){
+			this.set('_mainNav',true);
 		}
 	}
 
@@ -67,25 +80,33 @@ class MenuClab{
 				break;
 		}
 		if(open){
-			this.querySelector('.main-menu').style.display='block';
+			this.set('_mainNav',true);
 		} else {
-			this.querySelector('.main-menu').style.display='none';
+			this.set('_mainNav',false);
 		}
 	}
 
 
 
-	/*---------- 
+	/*----------
 	METHODS
 	----------*/
-	_setSubmenu(current){
-		if(current.submenu){
-			this.set('submenu', current.submenu);
-			this.fire('subchange', {links:current.submenu, label:current.label});
-		}
-		else {
-			this.set('submenu', undefined);
-			this.fire('subchange', {links:[], label:''});
+	_handleEventFire(current){
+		if(current){
+			if(current.submenu){
+				this.set('submenu', current.submenu);
+				this.fire('menuchange', {
+					label:current.label,
+					links:current.submenu
+				});
+			}
+			else {
+				this.set('submenu', undefined);
+				this.fire('menuchange', {
+					label:current.label,
+					links:[]
+				});
+			}
 		}
 	}
 
@@ -100,7 +121,7 @@ class MenuClab{
 					return true;
 					break;
 				default:
-					this.querySelector('#main-logo a').focus();
+					this.querySelector('.logo a').focus();
 					break;
 			}
 		});
@@ -108,32 +129,54 @@ class MenuClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
-	_computeUrl(item){
-		if(this.firstChild && item.submenu){
-			if(item.submenu[0].submenu){ // 3 levels
-				return item.submenu[0].submenu[0].url;
-			} else { // 2 levels
-				return item.submenu[0].url;
-			}
-		} else {
-			return item.url;
+	_visibleMenu(menu){
+		if(menu!=undefined){
+			let arr=[];
+			menu.map(obj=>{
+				if(obj.visible || obj.visible==undefined) arr.push(obj);
+			});
+			return arr;
 		}
 	}
 
-	_computeActive(url,link, i){
+	getIndex(item){
+		let i=-1;
+		this.menu.map((voce, n)=>{
+			if(voce.label === item.label) i=n;
+		});
+		return i;
+	}
+
+	_computeUrl(item){
+		let url;
+		if(this.firstChild && item.submenu){
+			if(item.submenu[0].submenu) // 3 levels
+				url = item.submenu[0].submenu[0].url;
+			else // 2 levels
+				url = item.submenu[0].url;
+		} else {
+			url = item.url;
+		}
+		return url;
+	}
+
+	_computeActive(url,link){
 		let arr = [];
-		if(url.search(link) > -1) {
-			arr.push('active');
-			this._setSubmenu(this.menu[i]);
-		} 
+		if(url.search(link) > -1) arr.push('active');
 		return arr.join(' ');
 	}
 
 	_computeTitleIcon(icon){
 		return ['clab-icon',icon].join(' ');
+	}
+
+	_compMainNav(str, show){
+		let arr=[str];
+		if(show) arr.push('show');
+		return arr.join(' ');
 	}
 
 }

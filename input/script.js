@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var InputClab = function () {
+var InputClab = (function () {
 	function InputClab() {
 		_classCallCheck(this, InputClab);
 	}
@@ -15,7 +15,12 @@ var InputClab = function () {
 			this.is = "input-clab";
 			this.properties = {
 				label: {
-					type: String
+					type: String,
+					value: ''
+				},
+				icon: {
+					type: String,
+					value: ''
 				},
 				name: {
 					type: String,
@@ -25,14 +30,7 @@ var InputClab = function () {
 					type: String,
 					value: ''
 				},
-				password: {
-					type: Boolean,
-					value: false
-				},
-				check: {
-					type: Boolean,
-					value: false
-				},
+				noteType: String,
 				value: {
 					type: String,
 					notify: true,
@@ -43,40 +41,43 @@ var InputClab = function () {
 					value: false,
 					observer: '_disabledChanged'
 				},
-				placeholder: {
-					type: String
+				inline: {
+					type: Boolean,
+					value: false
 				},
-				noteType: {
+				labelSize: {
 					type: String,
 					value: ''
 				},
-				btnConfig: {
+				placeholder: String,
+				check: {
+					type: Boolean,
+					value: false
+				},
+				btnPswd: {
 					type: Object,
 					value: {
 						show: {
-							icon: 'clab-icon icon-switch-off',
-							label: 'Mostra password',
-							type: "primary",
-							appearance: "flat",
+							icon: '',
+							label: 'Show',
+							type: "",
+							appearance: "",
 							size: ""
 						},
 						hide: {
-							icon: 'clab-icon icon-switch-on',
-							label: 'Nascondi password',
-							type: "error",
-							appearance: "flat",
+							icon: '',
+							label: 'Hide',
+							type: "",
+							appearance: "",
 							size: ""
 						}
 					}
 				},
-
-				btnProps: {
-					type: String,
-					computed: '_computeToggleBtnProps(password, btnConfig)'
-				},
-				compNoteType: {
-					type: String,
-					computed: '_computeNoteType(type, noteType)'
+				_btnPswd: Object,
+				password: {
+					type: Boolean,
+					value: false,
+					observer: '_computeBtnPswd'
 				}
 			};
 		}
@@ -89,6 +90,11 @@ var InputClab = function () {
 		key: '_toggleInputType',
 		value: function _toggleInputType(evt) {
 			this.password = !this.password;
+		}
+	}, {
+		key: '_btnclick',
+		value: function _btnclick(evt) {
+			this.fire('btnclick');
 		}
 	}, {
 		key: '_blur',
@@ -116,13 +122,24 @@ var InputClab = function () {
   ----------*/
 
 	}, {
-		key: '_computeNoteType',
-		value: function _computeNoteType(type, noteType) {
-			return [type, noteType].join(' ');
+		key: '_compWrapperClass',
+		value: function _compWrapperClass(str, type, inline, labelSize) {
+			var arr = [str];
+			if (type != undefined && type.length > 0) arr.push(type);
+			if (inline) {
+				arr.push('inline');
+				if (labelSize.length > 0) arr.push(labelSize + '-label');
+			}
+			return arr.join(' ');
 		}
 	}, {
-		key: '_computeDataType',
-		value: function _computeDataType(password) {
+		key: '_compIcon',
+		value: function _compIcon(icon) {
+			if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
+		}
+	}, {
+		key: '_computeInputType',
+		value: function _computeInputType(password) {
 			if (password) {
 				return 'password';
 			} else {
@@ -130,9 +147,9 @@ var InputClab = function () {
 			}
 		}
 	}, {
-		key: '_computeToggleBtnProps',
-		value: function _computeToggleBtnProps(pswd, btnConfig) {
-			if (pswd) return btnConfig.show;else return btnConfig.hide;
+		key: '_computeBtnPswd',
+		value: function _computeBtnPswd(val, old) {
+			if (val) this.set('_btnPswd', this.btnPswd.show);else this.set('_btnPswd', this.btnPswd.hide);
 		}
 	}, {
 		key: 'behaviors',
@@ -142,6 +159,6 @@ var InputClab = function () {
 	}]);
 
 	return InputClab;
-}();
+})();
 
 Polymer(InputClab);

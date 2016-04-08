@@ -1,12 +1,10 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DropdownClab = function () {
+var DropdownClab = (function () {
 	function DropdownClab() {
 		_classCallCheck(this, DropdownClab);
 	}
@@ -19,6 +17,10 @@ var DropdownClab = function () {
 				label: {
 					type: String,
 					value: null
+				},
+				icon: {
+					type: String,
+					value: ''
 				},
 				type: {
 					type: String,
@@ -48,6 +50,14 @@ var DropdownClab = function () {
 					type: String,
 					observer: '_observUrl'
 				},
+				inline: {
+					type: Boolean,
+					value: false
+				},
+				labelSize: {
+					type: String,
+					value: ''
+				},
 				placeholder: {
 					type: String,
 					value: 'Select..'
@@ -55,10 +65,6 @@ var DropdownClab = function () {
 				disabled: {
 					type: Boolean,
 					value: false
-				},
-				disableOption: {
-					type: Array,
-					value: []
 				},
 				preventChange: {
 					type: Boolean,
@@ -72,18 +78,8 @@ var DropdownClab = function () {
 					type: Number,
 					value: 4
 				},
-				noteType: {
-					type: String
-				},
-
-				/*----------
-    PRIVATE
-    ----------*/
-				compNoteType: {
-					type: String,
-					computed: '_computeNoteType(type, noteType)'
-				},
-				liHeight: {
+				noteType: String,
+				_liHeight: {
 					type: String,
 					value: null,
 					readonly: true
@@ -96,28 +92,18 @@ var DropdownClab = function () {
 			if (this.url != undefined || this.url != null) {
 				this._fetchOptions();
 			}
-			if (this.id == '') {
+
+			if (this.id === undefined || this.id.length < 1) {
 				var id = '';
 				var possible = "abcdefghijklmnopqrstuvwxyz";
 				var n = Math.floor(Math.random() * (999 - 0) + 0);
 				var time = Date.now();
-
 				for (var i = 0; i < 2; i++) {
 					id += possible.charAt(Math.floor(Math.random() * possible.length));
 				}id += n;
 				id += time;
 				this.id = id;
 			}
-		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			if (this.selected != undefined) this._setValue(this.selected);
-		}
-	}, {
-		key: '_computeSelectedLabel',
-		value: function _computeSelectedLabel(selected) {
-			return selected[this.labelField];
 		}
 
 		/*----------
@@ -130,7 +116,7 @@ var DropdownClab = function () {
 			var _this = this;
 
 			if (!this.disabled) {
-				if (this.liHeight == null) {
+				if (this._liHeight == null) {
 					this.querySelector('.options-list').classList.add('hidden');
 					this._setMaxHeight();
 					setTimeout(function () {
@@ -165,14 +151,10 @@ var DropdownClab = function () {
 	}, {
 		key: '_setThis',
 		value: function _setThis(evt) {
-			if (evt.target.getAttribute('data-disabled') === 'false') {
-				var i = evt.target.getAttribute('data-index');
-
-				this._setValue(this.options[i]);
-				this._highlightEl(i);
-				this.querySelector('.options-list').classList.remove('active');
-				this.querySelector('.value_wrapper').classList.remove('active');
-			}
+			var i = evt.target.getAttribute('data-index');
+			this._setSelected(this.options[i]);
+			this.querySelector('.options-list').classList.remove('active');
+			this.querySelector('.value_wrapper').classList.remove('active');
 		}
 
 		/*----------
@@ -202,26 +184,20 @@ var DropdownClab = function () {
 			});
 		}
 	}, {
-		key: '_setValue',
-		value: function _setValue(item) {
+		key: '_setSelected',
+		value: function _setSelected(item) {
 			var old = this.selected;
 			this.set('selected', item);
-			this._highlightEl(this._getIndex(item, this.options));
 
 			if (!this.preventChange) {
 				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'newValue': this.selected, 'oldValue': old });else this.fire('change', { 'selected': this.selected[this.valueField], 'newValue': this.selected, 'oldValue': old });
 			}
 		}
 	}, {
-		key: '_highlightEl',
-		value: function _highlightEl(i) {
-			Array.prototype.map.call(this.querySelectorAll('.options-list li'), function (el) {
-				if (el.getAttribute('data-index') == i) {
-					el.classList.add('selected');
-				} else {
-					el.classList.remove('selected');
-				}
-			});
+		key: '_setMaxHeight',
+		value: function _setMaxHeight() {
+			this._liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
+			this.querySelector('.options-list').style.maxHeight = this._liHeight * this.maxInView + 'px';
 		}
 
 		/*----------
@@ -248,54 +224,6 @@ var DropdownClab = function () {
   ----------*/
 
 	}, {
-		key: '_computeNoteType',
-		value: function _computeNoteType(type, noteType) {
-			var arr = [];
-			if (type != undefined) arr.push(type);
-			if (noteType != undefined) arr.push(noteType);
-
-			if (arr.length > 0) return arr.join(' ');
-		}
-	}, {
-		key: '_compType',
-		value: function _compType(disabled, type, def) {
-			var arr = [];
-			if (def != undefined) {
-				arr.push(def);
-				arr.push(this.id);
-			}
-			if (disabled) arr.push('disabled');
-			if (type != undefined) arr.push(type);
-			return arr.join(' ');
-		}
-	}, {
-		key: '_computeValue',
-		value: function _computeValue(option) {
-			return option[this.valueField];
-		}
-	}, {
-		key: '_computeLabel',
-		value: function _computeLabel(option) {
-			if (option) return option[this.labelField];
-		}
-	}, {
-		key: '_computeDisabledLis',
-		value: function _computeDisabledLis(arr, i) {
-			var disable = 'false';
-			arr.map(function (n) {
-				if (n === parseInt(i)) {
-					disable = 'true';
-					return;
-				}
-			});
-			return disable;
-		}
-
-		/*----------
-  UTILS
-  ----------*/
-
-	}, {
 		key: '_viewValue',
 		value: function _viewValue(val, label) {
 			if (val && val[label]) {
@@ -305,132 +233,55 @@ var DropdownClab = function () {
 			}
 		}
 	}, {
-		key: '_setMaxHeight',
-		value: function _setMaxHeight() {
-			this.liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
-			this.querySelector('.options-list').style.maxHeight = this.liHeight * this.maxInView + 'px';
-		}
-
-		/*----------
-  PUBLIC
-  ----------*/
-
-	}, {
-		key: 'getSelectedLabel',
-		value: function getSelectedLabel() {
-			return this.selected[this.labelField];
+		key: '_compIcon',
+		value: function _compIcon(icon) {
+			if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
 		}
 	}, {
-		key: 'getSelectedValue',
-		value: function getSelectedValue() {
-			return this.selected[this.valueField];
-		}
-	}, {
-		key: 'setByLabel',
-		value: function setByLabel(str) {
-			var _this4 = this;
-
-			this.options.map(function (opt) {
-				if (opt[_this4.labelField] === str) {
-					_this4._setValue(opt);
-					return;
-				}
-			});
-		}
-	}, {
-		key: 'setByValue',
-		value: function setByValue(str) {
-			var _this5 = this;
-
-			this.options.map(function (opt) {
-				if (opt[_this5.valueField] === str) {
-					_this5._setValue(opt);
-					return;
-				}
-			});
-		}
-	}, {
-		key: 'isValorized',
-		value: function isValorized() {
-			return !this.isNotValorized();
-		}
-	}, {
-		key: 'isNotValorized',
-		value: function isNotValorized() {
-			return this.selected === undefined || this.selected === null || this.selected[this.valueField] === undefined || this.selected[this.valueField] === null;
-		}
-	}, {
-		key: 'setValue',
-		value: function setValue(obj, prevent) {
-			var _this6 = this;
-
-			console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
-			prevent = prevent ? true : false;
-			this.preventChange = prevent;
-
-			if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
-				this._setValue(obj);
-				console.log('RULE-HEADER.setValue(obj): ', obj);
-			} else {
-				var realObj;
-				this.options.map(function (opt) {
-					if (opt[_this6.valueField] === obj) {
-						_this6._setValue(opt);
-						return;
-					}
-				});
+		key: '_compWrapperType',
+		value: function _compWrapperType(str, disabled, type, inline, labelSize) {
+			var arr = [str];
+			if (disabled) arr.push('disabled');
+			if (type != undefined && type.length > 0) arr.push(type);
+			if (inline) {
+				arr.push('inline');
+				if (labelSize.length > 0) arr.push(labelSize + '-label');
 			}
-
-			this.preventChange = false;
+			return arr.join(' ');
 		}
 	}, {
-		key: 'getValue',
-		value: function getValue() {
-			var v;
-			if (this.isNotValorized()) {
-				v = undefined;
-			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
-				v = this.selected;
-			} else if (_typeof(this.selected) === "object") {
-				v = this.selected[this.valueField];
-			} else {
-				console.error(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
-			}
-			return v;
+		key: '_compType',
+		value: function _compType(str, disabled, type, id) {
+			var arr = [];
+			if (str != undefined && str.length > 0) arr.push(str);
+			if (id != undefined && id.length > 0) arr.push(id);
+			if (disabled) arr.push('disabled');
+			if (type != undefined && type.length > 0) arr.push(type);
+			return arr.join(' ');
 		}
 	}, {
-		key: 'getValueObject',
-		value: function getValueObject() {
-			var _this7 = this;
-
-			var v;
-			if (this.isNotValorized(this.selected)) {
-				v = undefined;
-			} else if (typeof this.selected === 'string' || this.selected instanceof String) {
-				this.options.map(function (opt) {
-					if (opt[_this7.valueField] === _this7.selected) {
-						v = opt;
-						return;
-					}
-				});
-				if (v === undefined) {
-					console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
-				}
-			} else if (_typeof(this.selected) === "object") {
-				v = this.selected;
-			} else {
-				console.warn(this.is + ": Invalid value type [" + _typeof(this.selected) + "]");
-			}
-			return v;
+		key: '_compValue',
+		value: function _compValue(option) {
+			return option[this.valueField];
+		}
+	}, {
+		key: '_compLabel',
+		value: function _compLabel(option) {
+			return option[this.labelField];
+		}
+	}, {
+		key: '_compHighlight',
+		value: function _compHighlight(selected, option) {
+			if (selected.value === option.value) return 'selected';else return '';
 		}
 	}, {
 		key: 'behaviors',
 		get: function get() {
-			return [UtilBehavior];
+			return [UtilBehavior, DropdownBehavior];
 		}
 	}]);
 
 	return DropdownClab;
-}();
+})();
 
 Polymer(DropdownClab);

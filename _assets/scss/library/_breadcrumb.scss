@@ -1,0 +1,21 @@
+/////////////////// BREADCRUMBS ///////////////////
+
+.breadcrumb {
+  font-size: $small-font-size;
+
+  li {
+    display: inline;
+
+    &:after {
+      content: '/';
+      color: $gray;
+      margin: 0 $smaller-spacing;
+    }
+
+    &:last-child:after {
+      content: '';
+    }
+  }
+}
+
+/////////////////// END BREADCRUMB ///////////////////
