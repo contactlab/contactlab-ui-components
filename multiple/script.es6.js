@@ -50,6 +50,11 @@ class MultipleClab {
 			},
 			noteType: {
 				type: String
+			},
+
+			compNoteType: {
+				type: String,
+				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -116,17 +121,21 @@ class MultipleClab {
 	_handleSelection(evt){
 		if(this.disabled) return;
 
+		let i = parseInt(evt.target.getAttribute('data-index'));
+
 		if(!this.shift && !this.ctrl){
 			// starting the select
 			this.set('selected', []);
-			Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
-				el.classList.remove('selected');
+			Array.prototype.map.call(this.querySelectorAll('.options-list li'), (el,i) => {
+				// el.classList.remove('selected');
+				this.set('options.' + i + '.selected', false);
 			});
 			this._selectThis(evt.target);
 
 		} else if(this.ctrl){
 			//adding or removing single select
-			if(evt.target.classList.contains('selected'))
+			// if(evt.target.classList.contains('selected'))
+			if(this.options[i].selected)
 				this._removeThis(evt.target);
 			else {
 				this._selectThis(evt.target);
@@ -209,17 +218,19 @@ class MultipleClab {
 	----------*/
 	_selectThis(elem){
 		let i=elem.getAttribute('data-index');
-		elem.classList.add('selected');
+		// elem.classList.add('selected');
 		this.push('selected', this.options[i]);
+		this.set('options.' + i + '.selected', true);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=i;
 	}
 
 	_removeThis(elem){
 		let i=elem.getAttribute('data-index');
-		console.log(i);
-		elem.classList.remove('selected');
+		// console.log(i);
+		// elem.classList.remove('selected');
 		this.splice('selected', i, 1);
+		this.set('options.' + i + '.selected', false);
 		this.fire('change', {selected:this.selected});
 		this.lastSelected=undefined;
 	}
@@ -250,7 +261,8 @@ class MultipleClab {
 			idx.map(i=>{
 				Array.prototype.map.call(this.querySelectorAll('.options-list li'), el=>{
 					if(el.getAttribute('data-index')==i){
-						el.classList.add('selected');
+						// el.classList.add('selected');
+						this.set('options.' + i + '.selected', true);
 					}
 				});
 			});
@@ -286,13 +298,25 @@ class MultipleClab {
 		return arr.join(' ');
 	}
 
+	_computeNoteType(type, noteType){
+		return [type, noteType].join(' ');
+	}
+
+	_computeSelection(selected){
+		let str = '';
+		selected ? str = 'selected' : null;
+		return str;
+	}
+
+
 
 
 	/*----------
 	UTILITIES
 	----------*/
 	_setWrapperHeights(){
-		if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		// if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		if(this.liHeight==undefined) this.liHeight= 35;
 		this.querySelector('.options-list').style.maxHeight=(this.liHeight*this.maxInView)+'px';
 	}
 

@@ -1,12 +1,12 @@
 'use strict';
 
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol ? "symbol" : typeof obj; };
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+function _typeof(obj) { return obj && typeof Symbol !== "undefined" && obj.constructor === Symbol ? "symbol" : typeof obj; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var MenuClab = function () {
+var MenuClab = (function () {
 	function MenuClab() {
 		_classCallCheck(this, MenuClab);
 	}
@@ -157,7 +157,7 @@ var MenuClab = function () {
 		key: '_visibleMenu',
 		value: function _visibleMenu(menu) {
 			if (menu != undefined) {
-				var _ret = function () {
+				var _ret = (function () {
 					var arr = [];
 					menu.map(function (obj) {
 						if (obj.visible || obj.visible == undefined) arr.push(obj);
@@ -165,7 +165,7 @@ var MenuClab = function () {
 					return {
 						v: arr
 					};
-				}();
+				})();
 
 				if ((typeof _ret === 'undefined' ? 'undefined' : _typeof(_ret)) === "object") return _ret.v;
 			}
@@ -214,6 +214,6 @@ var MenuClab = function () {
 	}]);
 
 	return MenuClab;
-}();
+})();
 
 Polymer(MenuClab);

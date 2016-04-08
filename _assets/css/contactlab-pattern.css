@@ -622,9 +622,12 @@ textarea, .accordion .accordion-block, .accordion .accordion-block.active, .acco
   display: flex;
   align-items: flex-end;
   flex-flow: row wrap;
+  flex-grow: 1;
   margin-bottom: 15px; }
   .key-value li span:first-of-type {
     padding: 0 !important; }
+  .key-value li:last-of-type {
+    margin-bottom: 0; }
 
 .key-value hr.divider {
   flex: 1 0;
@@ -1237,7 +1240,7 @@ button-clab {
       background-color: transparent; }
 
 input-clab {
-  width: 100%; }
+  flex-grow: 1; }
 
 textarea {
   height: 150px !important;
@@ -3014,18 +3017,18 @@ tabs-clab {
     flex-grow: 1; }
   .tabs.vertical, .vertical.pills {
     flex-flow: row nowrap; }
-    .tabs.vertical ul, .vertical.pills ul {
+    .tabs.vertical > ul, .vertical.pills > ul {
       border-bottom: 0;
       border-right: 1px solid #CCD1D9;
       flex-flow: column wrap;
       flex-basis: 200px;
       text-align: left;
       flex-shrink: 0; }
-      .tabs.vertical ul .tab, .vertical.pills ul .tab {
+      .tabs.vertical > ul .tab, .vertical.pills > ul .tab {
         border-bottom: 1px solid #CCD1D9; }
-        .tabs.vertical ul .tab:last-of-type, .vertical.pills ul .tab:last-of-type {
+        .tabs.vertical > ul .tab:last-of-type, .vertical.pills > ul .tab:last-of-type {
           border-bottom: 0; }
-        .tabs.vertical ul .tab.active a, .vertical.pills ul .tab.active a {
+        .tabs.vertical > ul .tab.active a, .vertical.pills > ul .tab.active a {
           border-bottom-color: transparent;
           border-right: 1px solid #0072bc;
           -webkit-box-shadow: #0072bc 1px 0 0 0;
@@ -3034,29 +3037,29 @@ tabs-clab {
           -ms-box-shadow: #0072bc 1px 0 0 0;
           -o-box-shadow: #0072bc 1px 0 0 0;
           box-shadow: #0072bc 1px 0 0 0; }
-        .tabs.vertical ul .tab a, .vertical.pills ul .tab a {
+        .tabs.vertical > ul .tab a, .vertical.pills > ul .tab a {
           padding: 10px;
           border-right: 1px solid tansparent; }
     .tabs.vertical .tab-content, .vertical.pills .tab-content {
       padding: 0 0 0 20px; }
-  .tabs ul, .pills ul {
+  .tabs > ul, .pills > ul {
     display: flex;
     flex-flow: row nowrap;
     border-bottom: 1px solid #CCD1D9;
     margin-bottom: 0;
     text-align: center; }
-    .tabs ul a, .pills ul a {
+    .tabs > ul a, .pills > ul a {
       padding: 10px 20px;
       display: block;
       color: #434A5A;
       border-bottom: 1px solid transparent; }
-      .tabs ul a:active, .pills ul a:active {
+      .tabs > ul a:active, .pills > ul a:active {
         color: #0072bc; }
-    .tabs ul .tab, .pills ul .tab {
+    .tabs > ul .tab, .pills > ul .tab {
       line-height: 1;
       margin-bottom: 0;
       min-width: 50px; }
-      .tabs ul .tab.active a, .pills ul .tab.active a {
+      .tabs > ul .tab.active a, .pills > ul .tab.active a {
         color: #0072bc;
         border-color: #0072bc;
         -webkit-box-shadow: #0072bc 0 1px 0 0;
@@ -3065,10 +3068,10 @@ tabs-clab {
         -ms-box-shadow: #0072bc 0 1px 0 0;
         -o-box-shadow: #0072bc 0 1px 0 0;
         box-shadow: #0072bc 0 1px 0 0; }
-      .tabs ul .tab.disabled a, .pills ul .tab.disabled a {
+      .tabs > ul .tab.disabled a, .pills > ul .tab.disabled a {
         color: #C0C0C0;
         cursor: not-allowed; }
-        .tabs ul .tab.disabled a:hover, .pills ul .tab.disabled a:hover {
+        .tabs > ul .tab.disabled a:hover, .pills > ul .tab.disabled a:hover {
           color: #C0C0C0; }
 
 .tab-content {

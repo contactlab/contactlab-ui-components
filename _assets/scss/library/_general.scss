@@ -304,12 +304,17 @@ h5 {
 		display: flex;
 		align-items: flex-end;
 		flex-flow: row wrap;
+        flex-grow: 1;
 		margin-bottom: $small-spacing * 1.5;
 
 		span:first-of-type {
 			@extend label;
 			padding: 0 !important;
 		}
+
+        &:last-of-type {
+            margin-bottom: 0;
+        }
 	}
 
 	hr.divider {
