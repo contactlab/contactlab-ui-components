@@ -58,7 +58,11 @@ class CalendarClab{
 	EVENT HANDLERS
 	----------*/
 	_checkClear(evt){
-		evt.target.value == "" ? this.clear() : null;
+		if(evt.target.value == "" ){
+			this.clear();
+			this.fire('datechange', { date: undefined, dateISO: undefined });
+		}
+
 	}
 
 	_focusElement(evt){
@@ -82,7 +86,7 @@ class CalendarClab{
 
 	_changeDate(evt){
 		this.valueStr = evt;
-		this.fire('datechange', { date: evt, dateISO: moment(evt).format() });
+		this.fire('datechange', { date: evt, dateISO: moment(new Date(evt)).format() });
 	}
 
 
