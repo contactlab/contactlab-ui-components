@@ -395,8 +395,16 @@ radio-clab {
 		display: flex;
 		align-items: center;
 
-		input + label {
-			padding: $smaller-spacing $small-spacing 0 0;
+
+		&.check-boxes {
+			display: flex;
+			flex-wrap: wrap;
+			align-items: flex-start;
+
+			label {
+				padding: $smaller-spacing $small-spacing $smaller-spacing 0;
+				flex: 0 0 calc(100% / 3);
+			}
 		}
 
 		&:last-of-type {

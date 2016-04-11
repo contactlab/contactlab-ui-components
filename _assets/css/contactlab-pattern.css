@@ -1833,8 +1833,13 @@ radio-clab.inline {
     margin-right: 10px;
     display: flex;
     align-items: center; }
-    .input-wrapper.multiple-inputs .element input + label, .input-wrapper.multiple-inputs .element .key-value li input + span:first-of-type, .key-value li .input-wrapper.multiple-inputs .element input + span:first-of-type {
-      padding: 5px 10px 0 0; }
+    .input-wrapper.multiple-inputs .element.check-boxes {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: flex-start; }
+      .input-wrapper.multiple-inputs .element.check-boxes label, .input-wrapper.multiple-inputs .element.check-boxes .key-value li span:first-of-type, .key-value li .input-wrapper.multiple-inputs .element.check-boxes span:first-of-type {
+        padding: 5px 10px 5px 0;
+        flex: 0 0 calc(100% / 3); }
     .input-wrapper.multiple-inputs .element:last-of-type {
       margin-right: 0; }
     .input-wrapper.multiple-inputs .element calendar-clab,
