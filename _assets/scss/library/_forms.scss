@@ -374,7 +374,7 @@ radio-clab {
 		input[type=radio] {
 
 			+ label {
-				margin-right: $base-spacing;
+				padding-right: $base-spacing;
 			}
 		}
 	}
@@ -396,7 +396,7 @@ radio-clab {
 		align-items: center;
 
 		input + label {
-			margin: $smaller-spacing $small-spacing $smaller-spacing 0;
+			padding: $smaller-spacing $small-spacing 0 0;
 		}
 
 		&:last-of-type {

@@ -1823,7 +1823,7 @@ radio-clab.inline {
   radio-clab.inline input[type=radio] + label,
   radio-clab.inline .key-value li input[type=radio] + span:first-of-type, .key-value li
   radio-clab.inline input[type=radio] + span:first-of-type {
-    margin-right: 20px; }
+    padding-right: 20px; }
 
 .input-wrapper.multiple-inputs {
   flex-wrap: nowrap; }
@@ -1834,7 +1834,7 @@ radio-clab.inline {
     display: flex;
     align-items: center; }
     .input-wrapper.multiple-inputs .element input + label, .input-wrapper.multiple-inputs .element .key-value li input + span:first-of-type, .key-value li .input-wrapper.multiple-inputs .element input + span:first-of-type {
-      margin: 5px 10px 5px 0; }
+      padding: 5px 10px 0 0; }
     .input-wrapper.multiple-inputs .element:last-of-type {
       margin-right: 0; }
     .input-wrapper.multiple-inputs .element calendar-clab,
