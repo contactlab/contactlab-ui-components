@@ -15,7 +15,7 @@ textarea {
 	height: 150px !important;
 	resize: vertical;
 }
- 
+
 .input-wrapper {
 	.btn {
 		padding: 7px $small-spacing;
@@ -390,9 +390,13 @@ radio-clab {
 		display: flex;
 		align-items: center;
 
+		input + label {
+			margin: $smaller-spacing $small-spacing $smaller-spacing 0;
+		}
+
 		&:last-of-type {
 			margin-right: 0;
-		}
+		} 
 
 		calendar-clab,
 		dropdown-clab {

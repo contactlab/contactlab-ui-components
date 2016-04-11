@@ -1827,6 +1827,8 @@ radio-clab.inline {
     margin-right: 10px;
     display: flex;
     align-items: center; }
+    .input-wrapper.multiple-inputs .element input + label, .input-wrapper.multiple-inputs .element .key-value li input + span:first-of-type, .key-value li .input-wrapper.multiple-inputs .element input + span:first-of-type {
+      margin: 5px 10px 5px 0; }
     .input-wrapper.multiple-inputs .element:last-of-type {
       margin-right: 0; }
     .input-wrapper.multiple-inputs .element calendar-clab,
