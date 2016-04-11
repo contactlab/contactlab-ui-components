@@ -1751,6 +1751,12 @@ textarea {
 .input-wrapper .input-note.error, .input-wrapper .buttons-group.error .input-note.btn, .buttons-group.error .input-wrapper .input-note.btn {
   color: #c46978; }
 
+.input-wrapper.inline input[type=checkbox] + label, .input-wrapper.inline .key-value li input[type=checkbox] + span:first-of-type, .key-value li .input-wrapper.inline input[type=checkbox] + span:first-of-type,
+.input-wrapper.inline input[type=radio] + label,
+.input-wrapper.inline .key-value li input[type=radio] + span:first-of-type, .key-value li
+.input-wrapper.inline input[type=radio] + span:first-of-type {
+  text-align: left; }
+
 input[type=checkbox],
 input[type=radio] {
   display: none; }

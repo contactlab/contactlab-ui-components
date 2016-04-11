@@ -304,6 +304,11 @@ textarea {
 
 /////////////////// RADIO & CHECKBOX ///////////////////
 
+.input-wrapper.inline input[type=checkbox] + label,
+.input-wrapper.inline input[type=radio] + label {
+	text-align: left;
+}
+
 input[type=checkbox],
 input[type=radio] {
 	display:none;
@@ -396,7 +401,7 @@ radio-clab {
 
 		&:last-of-type {
 			margin-right: 0;
-		} 
+		}
 
 		calendar-clab,
 		dropdown-clab {
