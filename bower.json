@@ -27,7 +27,6 @@
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
     "web-component-tester": "Polymer/web-component-tester#~4.1.0",
     "web-animations-js": "^2.1.4",
-    "compass": "~0.5.8",
     "fetch": "^0.11.0",
     "es6-promise": "^3.1.2"
   }
