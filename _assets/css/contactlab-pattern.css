@@ -1243,7 +1243,7 @@ input-clab {
   flex-grow: 1; }
 
 textarea {
-  height: 150px !important;
+  min-height: 150px;
   resize: vertical; }
 
 .input-wrapper .btn {
