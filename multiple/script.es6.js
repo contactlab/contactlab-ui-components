@@ -50,11 +50,6 @@ class MultipleClab {
 			},
 			noteType: {
 				type: String
-			},
-
-			compNoteType: {
-				type: String,
-				computed: '_computeNoteType(type, noteType)'
 			}
 		}
 	}
@@ -300,10 +295,6 @@ class MultipleClab {
 		let arr = ['multiple-wrapper'];
 		if(type) arr.push(type);
 		return arr.join(' ');
-	}
-
-	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
 	}
 
 	_computeSelection(selected){
