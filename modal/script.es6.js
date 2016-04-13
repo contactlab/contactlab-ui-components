@@ -40,6 +40,10 @@ class ModalClab{
 			noAnimation:{
 				type:Boolean,
 				value:false
+			},
+			stopClose:{
+				type:Boolean,
+				value:false
 			}
 		};
 	}
@@ -91,7 +95,7 @@ class ModalClab{
 	----------*/
 	_closeModal(evt){
 		evt.stopPropagation();
-		this.visible=false;
+		if(!this.stopClose) this.visible=false;
 		this.fire('close');
 	}
 

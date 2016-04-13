@@ -49,6 +49,10 @@ var ModalClab = function () {
 				noAnimation: {
 					type: Boolean,
 					value: false
+				},
+				stopClose: {
+					type: Boolean,
+					value: false
 				}
 			};
 		}
@@ -90,7 +94,7 @@ var ModalClab = function () {
 		key: '_closeModal',
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
-			this.visible = false;
+			if (!this.stopClose) this.visible = false;
 			this.fire('close');
 		}
 	}, {
