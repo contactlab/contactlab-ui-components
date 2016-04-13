@@ -1,16 +1,17 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ModalClab = (function () {
+var ModalClab = function () {
 	function ModalClab() {
 		_classCallCheck(this, ModalClab);
 	}
 
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
+
 
 		/*set behaviors(value) {
   	this._behaviors = value;
@@ -119,12 +120,12 @@ var ModalClab = (function () {
 
 	}, {
 		key: '_animateShowHide',
-		value: function _animateShowHide(val) {
+		value: function _animateShowHide(val, oldval) {
 			var target = this.querySelector('.modal-overlay');
 
 			if (val) {
 				target.style.display = 'table';
-				if (!this.noAnimation) {
+				if (!this.noAnimation && oldval != undefined) {
 					var player = document.timeline.play(this.modalEnter);
 				} else {
 					target.style.opacity = 1;
@@ -178,6 +179,6 @@ var ModalClab = (function () {
 	}]);
 
 	return ModalClab;
-})();
+}();
 
 Polymer(ModalClab);

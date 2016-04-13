@@ -116,12 +116,12 @@ class ModalClab{
 	/*----------
 		OBSERVERS
 	----------*/
-	_animateShowHide(val){
+	_animateShowHide(val, oldval){
 		let target=this.querySelector('.modal-overlay');
 
 		if(val){
 			target.style.display='table';
-			if(!this.noAnimation) {
+			if(!this.noAnimation && oldval!=undefined) {
 				let player = document.timeline.play(this.modalEnter);
 			} else {
 				target.style.opacity=1;
