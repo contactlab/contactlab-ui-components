@@ -12,8 +12,8 @@ input-clab {
 }
 
 textarea {
-	height: 150px !important;
-	resize: vertical;
+	min-height: 150px;
+	resize: vertical;  
 }
 
 .input-wrapper {

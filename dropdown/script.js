@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var DropdownClab = function () {
+var DropdownClab = (function () {
 	function DropdownClab() {
 		_classCallCheck(this, DropdownClab);
 	}
@@ -196,7 +196,8 @@ var DropdownClab = function () {
 	}, {
 		key: '_setMaxHeight',
 		value: function _setMaxHeight() {
-			this._liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
+			// this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+			this._liHeight = 30;
 			this.querySelector('.options-list').style.maxHeight = this._liHeight * this.maxInView + 'px';
 		}
 
@@ -272,7 +273,7 @@ var DropdownClab = function () {
 	}, {
 		key: '_compHighlight',
 		value: function _compHighlight(selected, option) {
-			if (selected.value === option.value) return 'selected';else return '';
+			// if(selected.value===option.value) return 'selected'; else return '';
 		}
 	}, {
 		key: 'behaviors',
@@ -282,6 +283,6 @@ var DropdownClab = function () {
 	}]);
 
 	return DropdownClab;
-}();
+})();
 
 Polymer(DropdownClab);

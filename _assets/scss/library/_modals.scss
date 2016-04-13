@@ -4,7 +4,7 @@
   position: fixed;
   top: 0;
   left: 0;
-  right: 0; 
+  right: 0;
   bottom: 0;
   background: $overlay-color;
   z-index: 10;
@@ -14,6 +14,12 @@
   .close-overlay {
     display: block;
   }
+}
+
+.modal-wrapper {
+	max-width: 840px;
+	margin: 0 auto;
+    padding: 5rem $base-spacing $large-spacing;
 }
 
 .modal {
@@ -27,9 +33,9 @@
 }
 
 .modal-title {
-  padding: 2.7em 0 0;
+  padding: 0;
   @extend h2;
-  margin: 0; 
+  margin: 0;
 }
 
 .modal-body {
