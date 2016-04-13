@@ -187,7 +187,8 @@ class DropdownClab{
 	}
 
 	_setMaxHeight(){
-		this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		// this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		this._liHeight= 30;
 		this.querySelector('.options-list').style.maxHeight=(this._liHeight*this.maxInView)+'px';
 	}
 
@@ -252,7 +253,7 @@ class DropdownClab{
 	}
 
 	_compHighlight(selected, option){
-		if(selected.value===option.value) return 'selected'; else return '';
+		// if(selected.value===option.value) return 'selected'; else return '';
 	}
 
 
