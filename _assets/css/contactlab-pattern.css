@@ -2733,7 +2733,6 @@ td, .table .th,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
   background: #E6E9ED;
-  color: #FFFFFF;
   cursor: pointer; }
 
 .full-table-wrapper {
