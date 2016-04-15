@@ -2732,7 +2732,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #dedede;
+  background: #E6E9ED;
   color: #FFFFFF;
   cursor: pointer; }
 
@@ -2807,6 +2807,7 @@ td, .table .th,
   padding: 5px;
   line-height: 1;
   color: #FFFFFF;
+  font-weight: normal;
   -webkit-border-radius: 2px;
   -khtml-border-radius: 2px;
   -moz-border-radius: 2px;

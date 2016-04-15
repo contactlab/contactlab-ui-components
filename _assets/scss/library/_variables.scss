@@ -41,10 +41,10 @@ $disabled-color: #C0C0C0;
 
 // STRUCTURE COLORS
 $default-color: $darker-gray;
-$background-color: #F0f0f0;
+$background-color: #F0f0f0; 
 $overlay-color: $background-color;
 $header-color: #FFFFFF;
-$table-hover-color: darken($background-color, 7);
+$table-hover-color: $light-gray;
 $primary-color: nth($palette, 1);
 $primary-text-color: set-text-color($primary-color);
 $secondary-color: nth($palette, 2);
