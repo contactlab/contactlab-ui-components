@@ -2,7 +2,9 @@
   "name": "clab-ui-components",
   "version": "0.1.0",
   "authors": [
-    "Salvatore Laisa <moebiusmania@gmail.com>"
+    "Salvatore Laisa <moebiusmania@gmail.com>",
+    "Meroni Raoul <raoul.meroni@gmail.com>",
+    "Santalucia Laura <laura.dreamrain@gmail.com>"
   ],
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "",

@@ -18,6 +18,7 @@ class AlertClab {
 			visible: {
 				type: Boolean,
 				value: false,
+				notify: true,
 				observer: '_animateShowHide'
 			},
 			labels:{
@@ -38,13 +39,9 @@ class AlertClab {
 		}
 	}
 
-	ready(){
-		if(this.visible) this.alertDisplay='display:block'; else this.alertDisplay='display:none';
-	}
-
 	attached(){
-		if(!this.noAnimation){ // Preparing the animations
-			let target=this.$$('.alert');
+		// Preparing the animations
+		if(!this.noAnimation){
 			let opacity=[
 				{opacity: 0},
 				{opacity: 1}
@@ -54,42 +51,47 @@ class AlertClab {
 				{transform: 'translateY(0)'}
 			];
 
-			this.alertEnter = new GroupEffect([
-				new KeyframeEffect(target, opacity, {
-					duration:190,
-					fill:'forwards',
-					direction: 'normal'
-				}),
-				new KeyframeEffect(target, translateY, {
-					duration:190,
-					fill:'forwards',
-					direction: 'normal'
-				})
-			]);
-			this.alertExit = new GroupEffect([
-				new KeyframeEffect(target, opacity, {
-					duration:150,
-					fill:'forwards',
-					direction: 'reverse'
-				}),
-				new KeyframeEffect(target, translateY, {
-					duration:150,
-					fill:'forwards',
-					direction: 'reverse'
-				})
-			]);
+			this.alertEnter = (target)=>{
+				return new GroupEffect([
+					new KeyframeEffect(target, opacity, {
+						duration:190,
+						fill:'forwards',
+						direction: 'normal'
+					}),
+					new KeyframeEffect(target, translateY, {
+						duration:190,
+						fill:'forwards',
+						direction: 'normal'
+					})
+				]);
+			}
+			this.alertExit = (target)=>{
+				return new GroupEffect([
+					new KeyframeEffect(target, opacity, {
+						duration:150,
+						fill:'forwards',
+						direction: 'reverse'
+					}),
+					new KeyframeEffect(target, translateY, {
+						duration:150,
+						fill:'forwards',
+						direction: 'reverse'
+					})
+				]);
+			}
 		}
 	}
 
 
 
 	/*----------
-		EVENT HANDLERS	
+		EVENT HANDLERS
 	----------*/
 	_handleClick(evt){
-		if(evt.target.childNodes[1].classList.contains('flat')){
+		let primary=evt.target.childNodes[1].parentNode.getAttribute('data-primary');
+		if(primary=='true'){
 			this.fire('primary');
-		} else {
+		} else if(primary=='false') {
 			this.fire('secondary');
 		}
 	}
@@ -106,23 +108,27 @@ class AlertClab {
 		OBSERVERS
 	----------*/
 	_animateShowHide(val, oldval){
-		if(oldval==undefined || this.querySelector('.alert')==undefined) return;
+		let target=this.$$('.alert');
 
-		let target=this.querySelector('.alert');
 		if(val){
-			target.style.opacity=0;
 			target.style.display='block';
-			if(!this.noAnimation) {
-				let player = document.timeline.play(this.alertEnter);
+			if(!this.noAnimation && oldval!=undefined) {
+				let animation=this.alertEnter(target);
+				let player = document.timeline.play(animation);
+			} else {
+				target.style.opacity=1;
 			}
+
 		} else {
-			if(!this.noAnimation){
-				let player = document.timeline.play(this.alertExit);
+			if(!this.noAnimation && target!=null){
+				let animation = this.alertExit(target);
+				let player = document.timeline.play(animation);
 				this._onAnimationComplete(player, ()=>{
 					target.style.display='none';
 				});
-			} else {
+			} else if(target!=null) {
 				target.style.display='none';
+				target.style.opacity=0;
 			}
 		}
 	}

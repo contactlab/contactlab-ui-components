@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var AlertClab = (function () {
+var AlertClab = function () {
 	function AlertClab() {
 		_classCallCheck(this, AlertClab);
 	}
@@ -25,6 +25,7 @@ var AlertClab = (function () {
 				visible: {
 					type: Boolean,
 					value: false,
+					notify: true,
 					observer: '_animateShowHide'
 				},
 				labels: {
@@ -45,50 +46,53 @@ var AlertClab = (function () {
 			};
 		}
 	}, {
-		key: 'ready',
-		value: function ready() {
-			if (this.visible) this.alertDisplay = 'display:block';else this.alertDisplay = 'display:none';
-		}
-	}, {
 		key: 'attached',
 		value: function attached() {
-			if (!this.noAnimation) {
-				// Preparing the animations
-				var target = this.$$('.alert');
-				var opacity = [{ opacity: 0 }, { opacity: 1 }];
-				var translateY = [{ transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }];
+			var _this = this;
 
-				this.alertEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
-					duration: 190,
-					fill: 'forwards',
-					direction: 'normal'
-				}), new KeyframeEffect(target, translateY, {
-					duration: 190,
-					fill: 'forwards',
-					direction: 'normal'
-				})]);
-				this.alertExit = new GroupEffect([new KeyframeEffect(target, opacity, {
-					duration: 150,
-					fill: 'forwards',
-					direction: 'reverse'
-				}), new KeyframeEffect(target, translateY, {
-					duration: 150,
-					fill: 'forwards',
-					direction: 'reverse'
-				})]);
+			// Preparing the animations
+			if (!this.noAnimation) {
+				(function () {
+					var opacity = [{ opacity: 0 }, { opacity: 1 }];
+					var translateY = [{ transform: 'translateY(-5px)' }, { transform: 'translateY(0)' }];
+
+					_this.alertEnter = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						}), new KeyframeEffect(target, translateY, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						})]);
+					};
+					_this.alertExit = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						}), new KeyframeEffect(target, translateY, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						})]);
+					};
+				})();
 			}
 		}
 
 		/*----------
-  	EVENT HANDLERS	
+  	EVENT HANDLERS
   ----------*/
 
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
-			if (evt.target.childNodes[1].classList.contains('flat')) {
+			var primary = evt.target.childNodes[1].parentNode.getAttribute('data-primary');
+			if (primary == 'true') {
 				this.fire('primary');
-			} else {
+			} else if (primary == 'false') {
 				this.fire('secondary');
 			}
 		}
@@ -106,23 +110,26 @@ var AlertClab = (function () {
 	}, {
 		key: '_animateShowHide',
 		value: function _animateShowHide(val, oldval) {
-			if (oldval == undefined || this.querySelector('.alert') == undefined) return;
+			var target = this.$$('.alert');
 
-			var target = this.querySelector('.alert');
 			if (val) {
-				target.style.opacity = 0;
 				target.style.display = 'block';
-				if (!this.noAnimation) {
-					var player = document.timeline.play(this.alertEnter);
+				if (!this.noAnimation && oldval != undefined) {
+					var animation = this.alertEnter(target);
+					var player = document.timeline.play(animation);
+				} else {
+					target.style.opacity = 1;
 				}
 			} else {
-				if (!this.noAnimation) {
-					var player = document.timeline.play(this.alertExit);
+				if (!this.noAnimation && target != null) {
+					var animation = this.alertExit(target);
+					var player = document.timeline.play(animation);
 					this._onAnimationComplete(player, function () {
 						target.style.display = 'none';
 					});
-				} else {
+				} else if (target != null) {
 					target.style.display = 'none';
+					target.style.opacity = 0;
 				}
 			}
 		}
@@ -144,6 +151,6 @@ var AlertClab = (function () {
 	}]);
 
 	return AlertClab;
-})();
+}();
 
 Polymer(AlertClab);
