@@ -4,15 +4,15 @@
 <dom-module id="alert-clab">
 	<style>
 		.alert{
-			display:none;
-			opacity:0;
+			display: none;
+			opacity: 0;
 		}
 	</style>
 
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<template is="dom-if" if="[[!notify]]">
-				<div class$="[[_computeType('alert', type)]]">
+				<div class$="[[_computeType('alert', type)]]" style$="[[_alertStyle]]">
 					<div class="close" on-click="_close"><i class="clab-icon icon-close"></i></div>
 
 					<h3>[[title]]</h3>

@@ -111,6 +111,10 @@ var AlertClab = function () {
 		key: '_animateShowHide',
 		value: function _animateShowHide(val, oldval) {
 			var target = this.$$('.alert');
+			if (target == null) {
+				this.set('_alertStyle', 'display:block; opacity:1');
+				return;
+			}
 
 			if (val) {
 				target.style.display = 'block';

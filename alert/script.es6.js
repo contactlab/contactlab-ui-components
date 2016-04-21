@@ -109,6 +109,10 @@ class AlertClab {
 	----------*/
 	_animateShowHide(val, oldval){
 		let target=this.$$('.alert');
+		if(target==null){
+			this.set('_alertStyle', 'display:block; opacity:1');
+			return;
+		}
 
 		if(val){
 			target.style.display='block';
