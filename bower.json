@@ -23,7 +23,7 @@
     "_demo-server"
   ],
   "dependencies": {
-    "polymer": "^1.3.0",
+    "polymer": "^1.4.0",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "^2.11.2",
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",

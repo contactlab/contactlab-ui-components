@@ -1,78 +1,61 @@
+/**
+* Gulp & Node module requires
+*/
 var gulp = require('gulp-param')(require('gulp'), process.argv),
-    runSequence = require('run-sequence'),
   	fs = require("fs"),
   	path = require("path"),
   	babel = require("gulp-babel"),
     connect = require('gulp-connect'),
-  	watch = require('gulp-watch'),
   	rename = require("gulp-rename"),
     plumber = require('gulp-plumber'),
     vulcanize = require('gulp-vulcanize'),
     minifyHTML = require('gulp-minify-html'),
     minifyInline = require('gulp-minify-inline'),
     sass = require('gulp-sass'),
-    $ = require('gulp-load-plugins')(),
-    insert = require('gulp-insert'),
-    sass = require('gulp-sass'),
-    compass = require('gulp-compass'),
     sourcemaps = require('gulp-sourcemaps');
 
+
+/**
+* Configuration paths object
+*/
 var conf = {
-  jsSourcePath: '**/*.{js,jsx}',
-  es6SourcePath: '**/*.es6.js',
-  scssSourcePath: './**/*.{scss,sass}',
-  cssOutputPath: '',
-  distCSS: './dist/css/',
-  comps: './**/view.html',
-  compsBuilt: './**/view.build.html'
+    jsSourcePath: '**/*.{js,jsx}',
+    es6SourcePath: '**/*.es6.js',
+    scssSourcePath: './**/*.{scss,sass}',
+    cssOutputPath: '',
+    distCSS: './dist/css/',
+    comps: './**/view.html',
+    compsBuilt: './**/view.build.html'
 }
 
 
-
-
-// Server
+/**
+* Starts a webserver on current folder.
+* @param {number} port - Specific port to use, default 3006.
+*/
 gulp.task('connect', function (port) {
   !port ? port = 3006 : port;
   connect.server({
     root: '../',
     port: port,
-    livereload: true
   });
 });
 
 
-
-
-
-
-// Watch SASS
-// gulp.task('watch-sass', function() {
-//   watch(conf.scssSourcePath, function(file){
-//     var arr=JSON.stringify(file.dirname).split("\\");
-//     var i=arr.length - 3;
-//     var folder=arr[i];
-//
-//       gulp.src(folder+'/scss/*.scss')
-//         .pipe(plumber())
-//         .pipe(compass({
-//             css:folder+'/css',
-//             sass:folder+'/scss'
-//           }))
-//         .pipe(gulp.dest(folder+'/css'))
-//     });
-// });
+/**
+* Compile every .scss files in plain .css
+*/
 gulp.task('sass', function () {
   return gulp.src('./_assets/scss/*.scss')
     .pipe(sass.sync().on('error', sass.logError))
     .pipe(gulp.dest('./_assets/css'));
 });
 
-gulp.task('watch-sass', function() {
-  gulp.watch(conf.scssSourcePath, ['sass']);
-});
 
-// Watch ES6
-gulp.task('watch-es6', function() {
+/**
+* Compile every .es6.js files and transpiles in ES5 .js
+*/
+gulp.task('babel', function () {
   return gulp.src(conf.es6SourcePath)
     .pipe(plumber())
     .pipe(watch(conf.es6SourcePath))
@@ -85,13 +68,25 @@ gulp.task('watch-es6', function() {
 });
 
 
+/**
+* Watch changes in .scss files and runs 'sass' task
+*/
+gulp.task('watch-sass', function() {
+  gulp.watch(conf.scssSourcePath, ['sass']);
+});
 
 
+/**
+* Watch changes in .es6.js files and runs 'babel' task
+*/
+gulp.task('watch-es6', function() {
+  gulp.watch(conf.es6SourcePath, ['babel']);
+});
 
 
-
-
-// Vulcanize Components
+/**
+* Vulcanize components in a single file
+*/
 gulp.task('vulcanize', function (c) {
   var files;
   var dest;
@@ -133,7 +128,11 @@ gulp.task('vulcanize', function (c) {
     .pipe(gulp.dest(dest));
 });
 
-gulp.task('minHtml', function(c) {
+
+/**
+* Minify HTML code
+*/
+gulp.task('min-html', ['vulcanize'] , function(c) {
   var files;
   var dest;
 
@@ -158,7 +157,11 @@ gulp.task('minHtml', function(c) {
     .pipe(gulp.dest(dest))
 });
 
-gulp.task('minInline', function(c) {
+
+/**
+* Minify inline Javascript
+*/
+gulp.task('min-inline', ['min-html'], function(c) {
   var files;
   var dest;
 
@@ -183,65 +186,25 @@ gulp.task('minInline', function(c) {
     .pipe(gulp.dest(dest))
 });
 
-
-
-
-
-
-
-
-// Compile sass to css color variables
-gulp.task('sassVars', function(){
-  gulp.src('./_css/template-files/color-vars-body.scss')
-    .pipe(sass())
-    .pipe(gulp.dest('./_css/template-files/'));
-});
-
-gulp.task('copyVars', function(){
-  var colorVars=gulp.src('./_css/template-files/color-vars-body.css')
-    .pipe($.rename('color-vars.css'))
-    .pipe(gulp.dest('./_css/'));
-
-  return colorVars;
-});
-
-gulp.task('insert', function(){
-  gulp.src('./_css/color-vars.css')
-    .pipe(insert.append('</style>'))
-    .pipe(insert.prepend('<style is=\'custom-style\'>'))
-    .pipe(gulp.dest('./_css/'));
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+/**
+* Default action: webserver
+*/
 gulp.task('default', ['connect']);
+
+/**
+* JS development action: webserver + babel on save
+*/
 gulp.task('dev', ['connect', 'watch-es6']);
+
+/**
+* CSS development action: webserver + sass on save
+*/
 gulp.task('ux', ['connect', 'watch-sass']);
 
-gulp.task('build', function(cb){
-  runSequence(
-    'vulcanize',
-    'minHtml',
-    'minInline'
-  );
-});
-
-gulp.task('vars-c', function(cb){
-  runSequence(
-    'sassVars',
-    'copyVars',
-    'insert'
-  );
-});
+/**
+* Vulcanize Polymer components in one file
+*/
+gulp.task('build', ['min-inline']);
+// gulp.task('build', function(cb){
+//   runSequence('vulcanize','minHtml','minInline');
+// });
