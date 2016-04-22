@@ -51,7 +51,6 @@ class ModalClab{
 	attached(){
 		// Preparing the animations
 		if(!this.noAnimation){
-			let target=this.querySelector('.modal-overlay');
 			let opacity=[
 				{opacity: 0},
 				{opacity: 1}
@@ -61,30 +60,34 @@ class ModalClab{
 				{transform: 'scale(1)'}
 			];
 
-			this.modalEnter = new GroupEffect([
-				new KeyframeEffect(target, opacity, {
-					duration:190,
-					fill:'forwards',
-					direction: 'normal'
-				}),
-				new KeyframeEffect(this.querySelector('.modal'), scale, {
-					duration:190,
-					fill:'forwards',
-					direction: 'normal'
-				})
-			]);
-			this.modalExit = new GroupEffect([
-				new KeyframeEffect(target, opacity, {
-					duration:150,
-					fill:'forwards',
-					direction: 'reverse'
-				}),
-				new KeyframeEffect(this.querySelector('.modal'), scale, {
-					duration:150,
-					fill:'forwards',
-					direction: 'reverse'
-				})
-			]);
+			this.modalEnter = (target)=>{
+				return new GroupEffect([
+					new KeyframeEffect(target, opacity, {
+						duration:190,
+						fill:'forwards',
+						direction: 'normal'
+					}),
+					new KeyframeEffect(this.querySelector('.modal'), scale, {
+						duration:190,
+						fill:'forwards',
+						direction: 'normal'
+					})
+				]);
+			}
+			this.modalExit = (target)=>{
+				return new GroupEffect([
+					new KeyframeEffect(target, opacity, {
+						duration:150,
+						fill:'forwards',
+						direction: 'reverse'
+					}),
+					new KeyframeEffect(this.querySelector('.modal'), scale, {
+						duration:150,
+						fill:'forwards',
+						direction: 'reverse'
+					})
+				]);
+			}
 		}
 	}
 
@@ -123,22 +126,26 @@ class ModalClab{
 	_animateShowHide(val, oldval){
 		let target=this.querySelector('.modal-overlay');
 
-		if(val){
-			target.style.display='table';
-			if(!this.noAnimation && oldval!=undefined) {
-				let player = document.timeline.play(this.modalEnter);
+		if(oldval!=undefined){
+			if(val){
+				target.style.display='table';
+				if(!this.noAnimation) {
+					let animation= this.modalEnter(target);
+					let player = document.timeline.play(animation);
+				} else {
+					target.style.opacity=1;
+				}
 			} else {
-				target.style.opacity=1;
-			}
-		} else {
-			if(!this.noAnimation){
-				let player = document.timeline.play(this.modalExit);
-				this._onAnimationComplete(player, ()=>{
+				if(!this.noAnimation){
+					let animation= this.modalExit(target);
+					let player = document.timeline.play(animation);
+					this._onAnimationComplete(player, ()=>{
+						target.style.display='none';
+					});
+				} else {
 					target.style.display='none';
-				});
-			} else {
-				target.style.display='none';
-				target.style.opacity=0;
+					target.style.opacity=0;
+				}
 			}
 		}
 	}

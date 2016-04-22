@@ -1,16 +1,17 @@
 'use strict';
 
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var ModalClab = (function () {
+var ModalClab = function () {
 	function ModalClab() {
 		_classCallCheck(this, ModalClab);
 	}
 
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
+
 
 		/*set behaviors(value) {
   	this._behaviors = value;
@@ -58,30 +59,37 @@ var ModalClab = (function () {
 	}, {
 		key: 'attached',
 		value: function attached() {
+			var _this = this;
+
 			// Preparing the animations
 			if (!this.noAnimation) {
-				var target = this.querySelector('.modal-overlay');
-				var opacity = [{ opacity: 0 }, { opacity: 1 }];
-				var scale = [{ transform: 'scale(.95)' }, { transform: 'scale(1)' }];
+				(function () {
+					var opacity = [{ opacity: 0 }, { opacity: 1 }];
+					var scale = [{ transform: 'scale(.95)' }, { transform: 'scale(1)' }];
 
-				this.modalEnter = new GroupEffect([new KeyframeEffect(target, opacity, {
-					duration: 190,
-					fill: 'forwards',
-					direction: 'normal'
-				}), new KeyframeEffect(this.querySelector('.modal'), scale, {
-					duration: 190,
-					fill: 'forwards',
-					direction: 'normal'
-				})]);
-				this.modalExit = new GroupEffect([new KeyframeEffect(target, opacity, {
-					duration: 150,
-					fill: 'forwards',
-					direction: 'reverse'
-				}), new KeyframeEffect(this.querySelector('.modal'), scale, {
-					duration: 150,
-					fill: 'forwards',
-					direction: 'reverse'
-				})]);
+					_this.modalEnter = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						})]);
+					};
+					_this.modalExit = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						})]);
+					};
+				})();
 			}
 		}
 
@@ -126,22 +134,26 @@ var ModalClab = (function () {
 		value: function _animateShowHide(val, oldval) {
 			var target = this.querySelector('.modal-overlay');
 
-			if (val) {
-				target.style.display = 'table';
-				if (!this.noAnimation && oldval != undefined) {
-					var player = document.timeline.play(this.modalEnter);
+			if (oldval != undefined) {
+				if (val) {
+					target.style.display = 'table';
+					if (!this.noAnimation) {
+						var animation = this.modalEnter(target);
+						var player = document.timeline.play(animation);
+					} else {
+						target.style.opacity = 1;
+					}
 				} else {
-					target.style.opacity = 1;
-				}
-			} else {
-				if (!this.noAnimation) {
-					var player = document.timeline.play(this.modalExit);
-					this._onAnimationComplete(player, function () {
+					if (!this.noAnimation) {
+						var animation = this.modalExit(target);
+						var player = document.timeline.play(animation);
+						this._onAnimationComplete(player, function () {
+							target.style.display = 'none';
+						});
+					} else {
 						target.style.display = 'none';
-					});
-				} else {
-					target.style.display = 'none';
-					target.style.opacity = 0;
+						target.style.opacity = 0;
+					}
 				}
 			}
 		}
@@ -182,6 +194,6 @@ var ModalClab = (function () {
 	}]);
 
 	return ModalClab;
-})();
+}();
 
 Polymer(ModalClab);

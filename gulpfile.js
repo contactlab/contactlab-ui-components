@@ -12,7 +12,8 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     minifyHTML = require('gulp-minify-html'),
     minifyInline = require('gulp-minify-inline'),
     sass = require('gulp-sass'),
-    sourcemaps = require('gulp-sourcemaps');
+    sourcemaps = require('gulp-sourcemaps'),
+    watch = require('gulp-watch');
 
 
 /**
