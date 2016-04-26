@@ -29,20 +29,23 @@ class TooltipClab{
 	EVENT HANDLERS
 	----------*/
 	_handleMouseOnLabel(evt){
-		if(evt.type=='mouseenter'){
-			this._resetTimeout('hideInterval');
-			if(!this.visible){
-				this._startTimeout('showInterval', ()=>{
-					this.show();
-				}, this.wait);
-			}
-
-		} else if(evt.type=='mouseleave' && this.visible) {
-			this._resetTimeout('showInterval');
-			this._startTimeout('hideInterval', ()=>{
-				this.hide();
-			}, 100);
-
+		switch(evt.type){
+			case 'mouseenter':
+				this._resetTimeout('hideInterval');
+				if(!this.visible){
+					this._startTimeout('showInterval', ()=>{
+						this.show();
+					}, this.wait);
+				}
+				break;
+			case 'mouseleave':
+				this._resetTimeout('showInterval');
+				if(this.visible){
+					this._startTimeout('hideInterval', ()=>{
+						this.hide();
+					}, 100);
+				}
+				break;
 		}
 	}
 
@@ -67,7 +70,7 @@ class TooltipClab{
 	METHODS
 	----------*/
 	_startTimeout(type, fn, time){
-		if(this[type]) this._resetTimeout();
+		if(this[type]!=undefined) this._resetTimeout();
 		this[type] = this.async(()=>{ fn(); }, time);
 	}
 	_resetTimeout(type){

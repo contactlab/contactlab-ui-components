@@ -43,18 +43,23 @@ var TooltipClab = function () {
 		value: function _handleMouseOnLabel(evt) {
 			var _this = this;
 
-			if (evt.type == 'mouseenter') {
-				this._resetTimeout('hideInterval');
-				if (!this.visible) {
-					this._startTimeout('showInterval', function () {
-						_this.show();
-					}, this.wait);
-				}
-			} else if (evt.type == 'mouseleave' && this.visible) {
-				this._resetTimeout('showInterval');
-				this._startTimeout('hideInterval', function () {
-					_this.hide();
-				}, 100);
+			switch (evt.type) {
+				case 'mouseenter':
+					this._resetTimeout('hideInterval');
+					if (!this.visible) {
+						this._startTimeout('showInterval', function () {
+							_this.show();
+						}, this.wait);
+					}
+					break;
+				case 'mouseleave':
+					this._resetTimeout('showInterval');
+					if (this.visible) {
+						this._startTimeout('hideInterval', function () {
+							_this.hide();
+						}, 100);
+					}
+					break;
 			}
 		}
 	}, {
@@ -81,7 +86,7 @@ var TooltipClab = function () {
 	}, {
 		key: "_startTimeout",
 		value: function _startTimeout(type, fn, time) {
-			if (this[type]) this._resetTimeout();
+			if (this[type] != undefined) this._resetTimeout();
 			this[type] = this.async(function () {
 				fn();
 			}, time);
