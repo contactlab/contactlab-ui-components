@@ -17,13 +17,17 @@
 				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 			</template>
 			<div class="input" on-click="_selection">
-				<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}">
+				<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}" on-change="_checkIfResetPreview">
 				<button class="btn"><i class="clab-icon icon-folder"></i></button>
 			</div>
-			<note-clab type="[[compNoteType]]">
+
+			<note-clab type="[[noteType]]">
 				<content></content>
 			</note-clab>
-			<input type="file" multiple$="[[multiple]]" disabled="[[disabled]]">
+
+			<input id="input_file" type="file" multiple$="[[multiple]]" disabled="[[disabled]]" on-change="_updateValue">
+
+			<div id="preview"></div>
 		</div>
 	</template>
 

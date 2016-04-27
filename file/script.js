@@ -27,6 +27,7 @@ var FileClab = function () {
 				},
 				value: {
 					type: String,
+					notify: true,
 					value: null
 				},
 				disabled: {
@@ -40,36 +41,15 @@ var FileClab = function () {
 					type: Boolean,
 					value: false
 				},
-				noteType: {
-					type: String,
-					value: ''
+				noPreview: {
+					type: Boolean,
+					value: false
 				},
-
-				compNoteType: {
-					type: String,
-					computed: 'computeNoteType(type, noteType)'
-				}
+				noteType: String
 			};
 		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			var _this = this;
 
-			var fileInput = this.querySelector('input[type="file"]');
-			var textInput = this.querySelector('input[type="text"]');
-
-			fileInput.addEventListener('change', function (evt) {
-				var arr = [];
-				Array.prototype.map.call(fileInput.files, function (file) {
-					arr.push(file.name);
-				});
-				textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
-				_this.value = textInput.value;
-			});
-		}
-
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -78,8 +58,46 @@ var FileClab = function () {
 		value: function _selection(evt) {
 			this.querySelector('input[type=file]').click();
 		}
+	}, {
+		key: '_updateValue',
+		value: function _updateValue(evt) {
+			var _this = this;
 
-		/*---------- 
+			var files = evt.target.files;
+			var arr = [];
+
+			var readFiles = function readFiles(file) {
+				if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
+					(function () {
+						arr.push(file.name);
+
+						var reader = new FileReader();
+						reader.addEventListener("loadend", function () {
+							var image = new Image();
+							image.height = 100;
+							image.title = file.name;
+							image.src = reader.result;
+							// console.log(image);
+							if (!_this.noPreview) {
+								_this.$.preview.innerHTML = '';
+								_this.$.preview.appendChild(image);
+							}
+						}, false);
+						reader.readAsDataURL(file);
+					})();
+				}
+			};
+
+			Array.prototype.map.call(files, readFiles);
+			this.set('value', arr.join(', '));
+		}
+	}, {
+		key: '_checkIfResetPreview',
+		value: function _checkIfResetPreview(evt) {
+			if (evt.target.value == '') this.$.preview.innerHTML = '';
+		}
+
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -89,14 +107,14 @@ var FileClab = function () {
 			if (newVal) this.type = 'disabled';
 		}
 
-		/*---------- 
-  COMPUTE
+		/*----------
+  PUBLIC
   ----------*/
 
 	}, {
-		key: 'computeNoteType',
-		value: function computeNoteType(type, noteType) {
-			return [type, noteType].join(' ');
+		key: 'resetPreview',
+		value: function resetPreview() {
+			this.$.preview.innerHTML = '';
 		}
 	}, {
 		key: 'behaviors',

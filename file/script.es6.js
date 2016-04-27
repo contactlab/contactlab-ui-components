@@ -20,6 +20,7 @@ class FileClab{
 			},
 			value: {
 				type: String,
+				notify: true,
 				value: null
 			},
 			disabled: {
@@ -33,44 +34,58 @@ class FileClab{
 				type: Boolean,
 				value: false
 			},
-			noteType: {
-				type: String,
-				value: ''
+			noPreview:{
+				type:Boolean,
+				value:false
 			},
-
-			compNoteType: {
-				type: String,
-				computed: 'computeNoteType(type, noteType)'
-			}
+			noteType: String
 		}
 	}
 
-	attached(){
-		let fileInput = this.querySelector('input[type="file"]');
-		let textInput = this.querySelector('input[type="text"]');
-
-		fileInput.addEventListener('change',(evt) => {
-			let arr = [];
-			Array.prototype.map.call(fileInput.files, file => {
-				arr.push(file.name);
-			});
-			textInput.value = arr.join(', ').replace("C:\\fakepath\\", "");
-			this.value = textInput.value;
-		});
-	}
 
 
-
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_selection(evt){
 		this.querySelector('input[type=file]').click();
 	}
 
+	_updateValue(evt){
+		let files=evt.target.files;
+		let arr = [];
+
+		let readFiles=(file)=>{
+			if ( /\.(jpe?g|png|gif)$/i.test(file.name) ) {
+				arr.push(file.name);
+
+		     	let reader = new FileReader();
+		     	reader.addEventListener("loadend", ()=> {
+		    		var image = new Image();
+		        	image.height = 100;
+		        	image.title = file.name;
+		        	image.src = reader.result;
+					// console.log(image);
+		        	if(!this.noPreview) {
+						this.$.preview.innerHTML='';
+						this.$.preview.appendChild( image );
+					}
+		      	}, false);
+		    	reader.readAsDataURL(file);
+		    }
+		}
+
+		Array.prototype.map.call(files, readFiles);
+		this.set('value', arr.join(', '));
+	}
+
+	_checkIfResetPreview(evt){
+		if(evt.target.value=='') this.$.preview.innerHTML='';
+	}
 
 
-	/*---------- 
+
+	/*----------
 	OBSERVERS
 	----------*/
 	disabledChanged(newVal, oldVal){
@@ -79,12 +94,17 @@ class FileClab{
 
 
 
-	/*---------- 
-	COMPUTE
+
+
+	/*----------
+	PUBLIC
 	----------*/
-	computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
+	resetPreview(){
+		this.$.preview.innerHTML='';
 	}
+
+
+
 }
 
 
