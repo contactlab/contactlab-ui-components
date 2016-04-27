@@ -133,46 +133,6 @@ button-clab {
       }
     }
   }
-
-  // FLAT BUTTONS
-
-  // &.flat {
-  //   border-color: transparent;
-  //   background: transparent;
-  //   color: $default-color;
-  //
-  //   &:disabled {
-  //     background-color: transparent !important;
-  //   }
-  //
-  //   &:active,
-  //   &.active {
-  //     background: $default-color;
-  //     color: #FFFFFF;
-  //   }
-  //
-  //   &:disabled {
-  //     border-color: transparent !important;
-  //   }
-  //
-  //   @each $type, $color in $default-status {
-  //     &.#{$type} {
-  //       background-color: transparent;
-  //       color: nth($color, 1);
-  //
-  //       &:hover {
-  //         border-color: transparent;
-  //       }
-  //
-  //       &:active,
-  //       &.active {
-  //         background-color: nth($color, 1);
-  //         border-color: nth($color, 1);
-  //         color: nth($color, 2);
-  //       }
-  //     }
-  //   }
-  // }
 }
 
 //////////////// END BUTTONS ////////////////

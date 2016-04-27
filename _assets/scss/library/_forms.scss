@@ -13,7 +13,7 @@ input-clab {
 
 textarea {
 	min-height: 150px;
-	resize: vertical;  
+	resize: vertical;
 }
 
 .input-wrapper {
@@ -30,18 +30,6 @@ textarea {
 
 		&:active {
 			background-color: darken($gray, 3%);
-		}
-
-		&.flat {
-			@extend .flat;
-
-			&:hover {
-				@extend .flat:hover;
-			}
-
-			&:active {
-				@extend .flat:active;
-			}
 		}
 
 		@each $type, $color in $default-status {
