@@ -11,8 +11,9 @@
     color: $text-color;
     display: inline-block;
     margin: 0;
-    width: 25px;
+    min-width: 25px;
     line-height: 25px;
+    padding: 0 $smaller-spacing;
     text-align: center;
     cursor: pointer;
 

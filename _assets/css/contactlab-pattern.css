@@ -2516,8 +2516,9 @@ alert-clab {
     color: #434A5A;
     display: inline-block;
     margin: 0;
-    width: 25px;
+    min-width: 25px;
     line-height: 25px;
+    padding: 0 5px;
     text-align: center;
     cursor: pointer; }
     .pagination li.page.active {
