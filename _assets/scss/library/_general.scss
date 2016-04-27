@@ -32,6 +32,10 @@ body {
   font-size: $base-font-size;
   line-height: 1.3;
   @include box-sizing;
+
+  &.no-scroll {
+      overflow: hidden;
+  }
 }
 
 
