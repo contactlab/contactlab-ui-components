@@ -136,7 +136,8 @@ var ModalClab = function () {
 
 			if (oldval != undefined) {
 				if (val) {
-					target.style.display = 'table';
+					document.querySelector('body').classList.add('no-scroll');
+					target.style.display = 'block';
 					if (!this.noAnimation) {
 						var animation = this.modalEnter(target);
 						var player = document.timeline.play(animation);
@@ -144,6 +145,7 @@ var ModalClab = function () {
 						target.style.opacity = 1;
 					}
 				} else {
+					document.querySelector('body').classList.remove('no-scroll');
 					if (!this.noAnimation) {
 						var animation = this.modalExit(target);
 						var player = document.timeline.play(animation);

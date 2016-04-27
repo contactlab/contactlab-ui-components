@@ -128,7 +128,8 @@ class ModalClab{
 
 		if(oldval!=undefined){
 			if(val){
-				target.style.display='table';
+				document.querySelector('body').classList.add('no-scroll');
+				target.style.display='block';
 				if(!this.noAnimation) {
 					let animation= this.modalEnter(target);
 					let player = document.timeline.play(animation);
@@ -136,6 +137,7 @@ class ModalClab{
 					target.style.opacity=1;
 				}
 			} else {
+				document.querySelector('body').classList.remove('no-scroll');
 				if(!this.noAnimation){
 					let animation= this.modalExit(target);
 					let player = document.timeline.play(animation);
