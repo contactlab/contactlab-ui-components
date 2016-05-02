@@ -25,7 +25,7 @@
 					<nav class$="[[_compMainNav('main-nav', _mainNav)]]">
 							<ul>
 								<template is="dom-repeat" items="[[_visibleMenu(menu)]]">
-									<li class$="[[_computeActive(_url, item.url)]]">
+									<li class$="[[_computeActive(currentHash, item.url)]]">
 										<a href$="[[_computeUrl(item)]]">[[item.label]]</a>
 									</li>
 								</template>

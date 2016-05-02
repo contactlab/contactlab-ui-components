@@ -26,8 +26,7 @@ var MenuClab = function () {
 				},
 				menu: {
 					type: Array,
-					value: [],
-					observer: '_init'
+					value: []
 				},
 				link: {
 					type: String,
@@ -42,51 +41,26 @@ var MenuClab = function () {
 					value: false
 				},
 				submenu: Object,
-				_url: String,
+				currentHash: String,
+
 				_mainNav: {
 					type: Boolean,
 					value: false
 				}
 			};
+
+			this.observers = ['_updateCurrent(menu, currentHash)'];
 		}
 	}, {
 		key: 'attached',
 		value: function attached() {
-			window.addEventListener('hashchange', this._updateUrl.bind(this));
 			this._iosMenu();
-		}
-
-		/*----------
-  OBSERVERS
-  ----------*/
-
-	}, {
-		key: '_init',
-		value: function _init(val, oldval) {
-			if (val != undefined && val.length > 0 && (oldval == undefined || oldval.length == 0)) {
-				this._updateUrl();
-			}
 		}
 
 		/*----------
   EVENT HANDLERS
   ----------*/
 
-	}, {
-		key: '_updateUrl',
-		value: function _updateUrl(evt) {
-			var _this = this;
-
-			this._url = location.hash;
-			var current = this.menu.filter(function (item) {
-				return item.url.split('/')[1] === _this._url.split('/')[1];
-			});
-			this._handleEventFire(current[0]);
-
-			if (window.innerWidth > 960) {
-				this.set('_mainNav', true);
-			}
-		}
 	}, {
 		key: '_toggleMenu',
 		value: function _toggleMenu(evt) {
@@ -110,28 +84,9 @@ var MenuClab = function () {
   ----------*/
 
 	}, {
-		key: '_handleEventFire',
-		value: function _handleEventFire(current) {
-			if (current) {
-				if (current.submenu) {
-					this.set('submenu', current.submenu);
-					this.fire('menuchange', {
-						label: current.label,
-						links: current.submenu
-					});
-				} else {
-					this.set('submenu', undefined);
-					this.fire('menuchange', {
-						label: current.label,
-						links: []
-					});
-				}
-			}
-		}
-	}, {
 		key: '_iosMenu',
 		value: function _iosMenu() {
-			var _this2 = this;
+			var _this = this;
 
 			document.querySelector('body').addEventListener('click', function (evt) {
 				switch (evt.target.nodeName) {
@@ -143,10 +98,41 @@ var MenuClab = function () {
 						return true;
 						break;
 					default:
-						_this2.querySelector('.logo a').focus();
+						_this.querySelector('.logo a').focus();
 						break;
 				}
 			});
+		}
+
+		/*----------
+  OBSERVERS
+  ----------*/
+
+	}, {
+		key: '_updateCurrent',
+		value: function _updateCurrent(menu, currentHash) {
+			if (menu != undefined && menu.length > 0 && currentHash != undefined) {
+				var current = menu.filter(function (item) {
+					return item.url.split('/')[1] == currentHash.split('/')[1];
+				});
+
+				if (current.length > 0) {
+					var menuItem = current[0];
+					this.set('submenu', menuItem.submenu || undefined);
+					this.fire('menuchange', {
+						label: menuItem.label,
+						links: menuItem.submenu || []
+					});
+				} else {
+					// redirect alla home
+					window.location.href = '/';
+					this.fire('hashnotfound');
+				}
+
+				if (window.innerWidth > 960) {
+					this.set('_mainNav', true);
+				}
+			}
 		}
 
 		/*----------

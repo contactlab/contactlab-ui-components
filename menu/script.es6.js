@@ -13,8 +13,7 @@ class MenuClab{
 			},
 			menu: {
 				type: Array,
-				value: [],
-				observer: '_init'
+				value: []
 			},
 			link: {
 				type:String,
@@ -29,28 +28,21 @@ class MenuClab{
 				value:false
 			},
 			submenu:Object,
-			_url: String,
+			currentHash:String,
+
 			_mainNav:{
 				type:Boolean,
 				value:false
 			}
-		}
+		};
+
+		this.observers=[
+			'_updateCurrent(menu, currentHash)'
+		]
 	}
 
 	attached(){
-		window.addEventListener('hashchange', this._updateUrl.bind(this));
 		this._iosMenu();
-	}
-
-
-
-	/*----------
-	OBSERVERS
-	----------*/
-	_init(val, oldval){
-		if( val!=undefined && val.length>0 && (oldval==undefined || oldval.length==0) ){
-			this._updateUrl();
-		}
 	}
 
 
@@ -58,18 +50,6 @@ class MenuClab{
 	/*----------
 	EVENT HANDLERS
 	----------*/
-	_updateUrl(evt){
-		this._url = location.hash;
-		let current=this.menu.filter(item=>{
-			return item.url.split('/')[1]===this._url.split('/')[1];
-		})
-		this._handleEventFire(current[0]);
-
-		if(window.innerWidth>960){
-			this.set('_mainNav',true);
-		}
-	}
-
 	_toggleMenu(evt){
 		switch(evt.target.localName){
 			case 'i':
@@ -91,25 +71,6 @@ class MenuClab{
 	/*----------
 	METHODS
 	----------*/
-	_handleEventFire(current){
-		if(current){
-			if(current.submenu){
-				this.set('submenu', current.submenu);
-				this.fire('menuchange', {
-					label:current.label,
-					links:current.submenu
-				});
-			}
-			else {
-				this.set('submenu', undefined);
-				this.fire('menuchange', {
-					label:current.label,
-					links:[]
-				});
-			}
-		}
-	}
-
 	_iosMenu(){
 		document.querySelector('body').addEventListener('click', (evt) => {
 			switch(evt.target.nodeName){
@@ -125,6 +86,37 @@ class MenuClab{
 					break;
 			}
 		});
+	}
+
+
+
+	/*----------
+	OBSERVERS
+	----------*/
+	_updateCurrent(menu, currentHash){
+		if(menu!=undefined && menu.length>0 && currentHash!=undefined) {
+			let current=menu.filter(item=>{
+				return item.url.split('/')[1] == currentHash.split('/')[1];
+			});
+
+			if(current.length>0){
+				let menuItem=current[0];
+				this.set('submenu', menuItem.submenu || undefined);
+				this.fire('menuchange', {
+					label: menuItem.label,
+					links: menuItem.submenu || []
+				});
+
+			} else { // redirect alla home
+				window.location.href='/';
+				this.fire('hashnotfound');
+
+			}
+
+			if(window.innerWidth>960){
+				this.set('_mainNav',true);
+			}
+		}
 	}
 
 
