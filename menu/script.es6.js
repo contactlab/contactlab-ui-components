@@ -107,10 +107,8 @@ class MenuClab{
 					links: menuItem.submenu || []
 				});
 
-			} else { // redirect alla home
-				window.location.href='/';
+			} else {
 				this.fire('hashnotfound');
-
 			}
 
 			if(window.innerWidth>960){

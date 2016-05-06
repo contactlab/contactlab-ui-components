@@ -124,8 +124,6 @@ var MenuClab = function () {
 						links: menuItem.submenu || []
 					});
 				} else {
-					// redirect alla home
-					window.location.href = '/';
 					this.fire('hashnotfound');
 				}
 
