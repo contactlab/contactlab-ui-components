@@ -263,12 +263,12 @@ var DropdownClab = function () {
 	}, {
 		key: '_compValue',
 		value: function _compValue(option) {
-			return option[this.valueField];
+			return option ? option[this.valueField] : '';
 		}
 	}, {
 		key: '_compLabel',
 		value: function _compLabel(option) {
-			return option[this.labelField];
+			return option ? option[this.labelField] : '';
 		}
 	}, {
 		key: '_compHighlight',

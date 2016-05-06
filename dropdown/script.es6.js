@@ -245,11 +245,11 @@ class DropdownClab{
 	}
 
 	_compValue(option){
-		return option[this.valueField];
+		return option? option[this.valueField] : '';
 	}
 
 	_compLabel(option){
-		return option[this.labelField];
+		return option? option[this.labelField] : '';
 	}
 
 	_compHighlight(selected, option){
