@@ -71,6 +71,42 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-system:before {
+  content: ""; }
+
+.icon-support:before {
+  content: ""; }
+
+.icon-smile:before {
+  content: ""; }
+
+.icon-phone:before {
+  content: ""; }
+
+.icon-file-log:before {
+  content: ""; }
+
+.icon-faq:before {
+  content: ""; }
+
+.icon-wand:before {
+  content: ""; }
+
+.icon-chat:before {
+  content: ""; }
+
+.icon-bulb:before {
+  content: ""; }
+
+.icon-attachment:before {
+  content: ""; }
+
+.icon-link:before {
+  content: ""; }
+
+.icon-unlink:before {
+  content: ""; }
+
 .icon-switch:before {
   content: ""; }
 
