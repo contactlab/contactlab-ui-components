@@ -46,7 +46,7 @@ class TabsClab{
 	_activateThis(evt){
 		evt ? evt.preventDefault() : null;
 		this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-		this.fire('changed', {'active':this.active});
+		this.fire('change', {'active':this.active});
 	}
 
 
