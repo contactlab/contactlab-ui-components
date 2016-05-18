@@ -71,6 +71,18 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-facebook-circle:before {
+  content: ""; }
+
+.icon-google-plus-circle:before {
+  content: ""; }
+
+.icon-linkedin-circle:before {
+  content: ""; }
+
+.icon-twitter-circle:before {
+  content: ""; }
+
 .icon-system:before {
   content: ""; }
 
