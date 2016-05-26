@@ -1723,7 +1723,8 @@ label, .key-value li span:first-of-type {
   font-size: 0.8571rem;
   font-weight: 700;
   padding-right: 10px;
-  padding-bottom: 5px; }
+  padding-bottom: 5px;
+  display: block; }
   label.disabled, .key-value li span.disabled:first-of-type {
     color: #C0C0C0; }
 
@@ -2779,13 +2780,13 @@ td, .table .th,
 .table .td,
 .table .striped-table tr:nth-child(odd) .td,
 .striped-table .tr:nth-child(odd) .td {
-  background: #e3e3e3; }
+  background: #eaeaea; }
 
 .hover-table tr:hover td, .hover-table tr:hover .table .th, .table .hover-table tr:hover .th, .hover-table tr:hover
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #E6E9ED;
+  background: red;
   cursor: pointer; }
 
 .full-table-wrapper {

@@ -41,10 +41,10 @@ $disabled-color: #C0C0C0;
 
 // STRUCTURE COLORS
 $default-color: $darker-gray;
-$background-color: #F0f0f0; 
+$background-color: #F0f0f0;
 $overlay-color: $background-color;
 $header-color: #FFFFFF;
-$table-hover-color: $light-gray;
+$table-hover-color: red;
 $primary-color: nth($palette, 1);
 $primary-text-color: set-text-color($primary-color);
 $secondary-color: nth($palette, 2);
@@ -95,7 +95,7 @@ $larger-spacing: $base-spacing*4;
 
 @function set-stripe-color($color) {
   @if (lightness($color) > 60) {
-    @return darken($background-color, 5); // Lighter backgorund, return dark color
+    @return darken($background-color, 2.5); // Lighter backgorund, return dark color
   } @else {
     @return lighten($background-color, 5); // Darker background, return light color
   }

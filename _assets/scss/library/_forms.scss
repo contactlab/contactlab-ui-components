@@ -241,6 +241,7 @@ label {
 	font-weight: $bold-weight;
 	padding-right: $small-spacing;
 	padding-bottom: $smaller-spacing;
+	display: block;
 
 	&.disabled {
 		color: $disabled-color;
