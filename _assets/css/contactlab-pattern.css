@@ -2786,7 +2786,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: red;
+  background: #e7e7e7;
   cursor: pointer; }
 
 .full-table-wrapper {

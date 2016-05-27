@@ -44,7 +44,7 @@ $default-color: $darker-gray;
 $background-color: #F0f0f0;
 $overlay-color: $background-color;
 $header-color: #FFFFFF;
-$table-hover-color: red;
+$table-hover-color: darken($background-color, 3.5);
 $primary-color: nth($palette, 1);
 $primary-text-color: set-text-color($primary-color);
 $secondary-color: nth($palette, 2);
