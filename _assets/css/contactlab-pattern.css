@@ -699,7 +699,8 @@ header {
   right: 0;
   z-index: 5;
   min-height: 64px;
-  line-height: 1; }
+  line-height: 1;
+  border-bottom: 1px solid #F0f0f0; }
   header ul,
   header ol {
     margin: 0;

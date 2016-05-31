@@ -16,6 +16,7 @@ header {
 	z-index: 5;
 	min-height: $header-height;
 	line-height: 1;
+	border-bottom: 1px solid $background-color;
 
 	ul,
 	ol {
