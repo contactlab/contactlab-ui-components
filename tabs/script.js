@@ -47,9 +47,11 @@ var TabsClab = function () {
 			var _this = this;
 
 			this.tabContents = this.querySelectorAll('.tab-content');
-			Array.prototype.map.call(this.tabContents, function (content, i) {
-				if (i != _this.active) content.style.display = 'none';
-			});
+			if (this.tabContents.length > 0) {
+				Array.prototype.map.call(this.tabContents, function (content, i) {
+					if (i != _this.active) content.style.display = 'none';
+				});
+			}
 		}
 
 		/*----------
@@ -87,15 +89,15 @@ var TabsClab = function () {
 		value: function _computedLabels(tabContents, labels) {
 			var newLabels = labels;
 
-			if (tabContents.length >= labels.length) {
-				for (var i = 0; i < tabContents.length; i++) {
-					if (newLabels[i] === undefined) {
-						newLabels.push('Tab ' + (i + 1));
-					}
-				}
-			} else {
-				console.warn("Some of the labels need a content");
-			}
+			// if(tabContents.length>=labels.length){
+			// for(var i=0; i<tabContents.length; i++){
+			// 	if(newLabels[i]===undefined){
+			// 		newLabels.push('Tab '+(i+1));
+			// 	}
+			// }
+			// } else {
+			// 	console.warn("Some of the labels need a content");
+			// }
 
 			return newLabels;
 		}

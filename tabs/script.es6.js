@@ -33,9 +33,11 @@ class TabsClab{
 
 	attached(){
 		this.tabContents = this.querySelectorAll('.tab-content');
-		Array.prototype.map.call(this.tabContents, (content, i)=>{
-			if(i!=this.active) content.style.display = 'none';
-		});
+		if(this.tabContents.length>0){
+			Array.prototype.map.call(this.tabContents, (content, i)=>{
+				if(i!=this.active) content.style.display = 'none';
+			});
+		}
 	}
 
 
@@ -74,15 +76,15 @@ class TabsClab{
 	_computedLabels(tabContents, labels){
 		var newLabels = labels;
 
-		if(tabContents.length>=labels.length){
-			for(var i=0; i<tabContents.length; i++){
-				if(newLabels[i]===undefined){
-					newLabels.push('Tab '+(i+1));
-				}
-			}
-		} else {
-			console.warn("Some of the labels need a content");
-		}
+		// if(tabContents.length>=labels.length){
+			// for(var i=0; i<tabContents.length; i++){
+			// 	if(newLabels[i]===undefined){
+			// 		newLabels.push('Tab '+(i+1));
+			// 	}
+			// }
+		// } else {
+		// 	console.warn("Some of the labels need a content");
+		// }
 
 		return newLabels;
 	}
