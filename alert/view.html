@@ -25,7 +25,7 @@
 				</div>
 			</template>
 			<template is="dom-if" if="[[notify]]">
-				<div class$="[[_computeType('alert', type)]]" style$="[[alertDisplay]]" on-click="_close">
+				<div class$="[[_computeType('alert', type)]]" style$="[[_alertStyle]]" on-click="_close">
 					<div class="close"><i class="clab-icon icon-close"></i></div>
 					<p><content></content></p>
 				</div>
