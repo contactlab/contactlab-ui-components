@@ -231,6 +231,7 @@ var AutoCompleteClab = function () {
 			// handle list visual
 			if (this.results.length > 0) {
 				this._currentHint = this.results[0];
+				this.querySelector('curtain-clab').open = true;
 			} else {
 				this.querySelector('curtain-clab').open = false;
 				this._currentHint = undefined;

@@ -112,23 +112,8 @@ var DropdownClab = function () {
 		value: function _toggleList(evt) {
 			var _this = this;
 
-			// if(!this.disabled){
-			// 	if(this._liHeight==null){
-			// 		this.querySelector('.options-list').classList.add('hidden');
-			// 		this._setMaxHeight();
-			// 		setTimeout(()=>{
-			// 			this.querySelector('.options-list').classList.remove('hidden');
-			// 			this.querySelector('.options-list').classList.add('active');
-			// 			this.querySelector('.value_wrapper > span').classList.add('active');
-			// 		},50);
-			// 	} else {
-			// 		this.querySelector('.options-list').classList.toggle('active');
-			// 		this.querySelector('.value_wrapper').classList.toggle('active');
-			// 	}
-			// }
 			if (!this.disabled) {
-				this.querySelector('curtain-clab').set('open', true);
-				console.log(this.querySelector('curtain-clab').open);
+				this.querySelector('curtain-clab').open = true;
 				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
 
@@ -143,7 +128,7 @@ var DropdownClab = function () {
 					window.removeEventListener('mousedown', windowClick);
 					return;
 				} else {
-					_this.querySelector('.options-list').classList.remove('active');
+					_this.querySelector('curtain-clab').open = false;
 					_this.querySelector('.value_wrapper').classList.remove('active');
 					window.removeEventListener('mousedown', windowClick);
 				}

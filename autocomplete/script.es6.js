@@ -210,12 +210,14 @@ class AutoCompleteClab{
 			}
 
 		// handle list visual
-		if(this.results.length>0){ this._currentHint=this.results[0]; }
-			else {
-				this.querySelector('curtain-clab').open=false;
-				this._currentHint=undefined;
-				console.info('No hint was found');
-			}
+		if(this.results.length>0){
+			this._currentHint=this.results[0];
+			this.querySelector('curtain-clab').open=true;
+		} else {
+			this.querySelector('curtain-clab').open=false;
+			this._currentHint=undefined;
+			console.info('No hint was found');
+		}
 	}
 
 	_handleArrows(type){

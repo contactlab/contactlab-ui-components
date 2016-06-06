@@ -38,9 +38,10 @@ var CurtainClab = function () {
 				_hidden: {
 					type: Boolean,
 					value: false
-				}
+				},
+				_computedStyles: String
 			};
-			this.observers = ['_setLiHeight(options, maxInView, disabled)'];
+			this.observers = ['_setLiHeight(options, maxInView, disabled)', '_compStyles(_hidden, _listMaxHeight, _listHeight, open)'];
 		}
 	}, {
 		key: 'attached',
@@ -86,18 +87,18 @@ var CurtainClab = function () {
 		value: function _setLiHeight(options, maxInView, disabled) {
 			var _this2 = this;
 
-			if (options != undefined && maxInView != undefined && !disabled) {
+			if (options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
 				this.async(function () {
 					if (_this2._liHeight == undefined) {
 						_this2.set('_hidden', true);
-						_this2._liHeight = _this2.querySelectorAll('li')[0] ? _this2.querySelectorAll('li')[0].clientHeight : 30;
+						_this2._liHeight = 28;
+						console.log(_this2._liHeight);
 						_this2.set('_listMaxHeight', _this2._liHeight * maxInView + 'px');
 						_this2.set('_hidden', false);
 					}
 
 					_this2.set('_listHeight', _this2._liHeight * options.length + 'px');
 					_this2.$.list.scrollTop = 0;
-					if (!_this2.open) _this2.open = true;
 				}, 100);
 			}
 		}
@@ -119,13 +120,14 @@ var CurtainClab = function () {
 	}, {
 		key: '_compStyles',
 		value: function _compStyles(hidden, maxHeight, height, open) {
-			// console.log(hidden, maxHeight, height, open)
+			console.log(hidden, maxHeight, height, open);
 			var arr = [];
 			if (hidden) arr.push('display:block; opacity:0');
 			if (maxHeight != undefined) arr.push('max-height:' + maxHeight);
 			if (height != undefined) arr.push('height:' + height);
 			if (open) arr.push('display:block');
-			return arr.join(';');
+			// return arr.join(';');
+			this.set('_computedStyles', arr.join(';'));
 		}
 
 		/*----------
