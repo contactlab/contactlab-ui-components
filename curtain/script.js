@@ -120,7 +120,7 @@ var CurtainClab = function () {
 	}, {
 		key: '_compStyles',
 		value: function _compStyles(hidden, maxHeight, height, open) {
-			console.log(hidden, maxHeight, height, open);
+			// console.log(hidden, maxHeight, height, open)
 			var arr = [];
 			if (hidden) arr.push('display:block; opacity:0');
 			if (maxHeight != undefined) arr.push('max-height:' + maxHeight);
