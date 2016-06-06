@@ -21,12 +21,13 @@ class AlertClab {
 				notify: true,
 				observer: '_animateShowHide'
 			},
-			labels:{
-				type: Object,
-				value: {
-					primary: 'Confirm',
-					secondary: 'Cancel'
-				}
+			primary:{
+				type:String,
+				value:'Confirm'
+			},
+			secondary:{
+				type:String,
+				value:'Cancel'
 			},
 			notify:{
 				type:Boolean,
@@ -115,7 +116,7 @@ class AlertClab {
 				this.set('_alertStyle', 'display:block; opacity:1');
 				return;
 			}
-			
+
 			target.style.display='block';
 			if(!this.noAnimation && oldval!=undefined) {
 				let animation=this.alertEnter(target);

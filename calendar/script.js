@@ -16,9 +16,7 @@ var CalendarClab = function () {
 		value: function beforeRegister() {
 			this.is = "calendar-clab";
 			this.properties = {
-				label: {
-					type: String
-				},
+				label: String,
 				disabled: {
 					type: Boolean,
 					value: false
@@ -36,21 +34,9 @@ var CalendarClab = function () {
 					type: Object,
 					value: {}
 				},
-				placeholder: {
-					type: String
-				},
-				type: {
-					type: String,
-					value: ""
-				},
-				noteType: {
-					type: String,
-					value: ''
-				},
-				compNoteType: {
-					type: String,
-					computed: '_computeNoteType(type, noteType)'
-				}
+				placeholder: String,
+				type: String,
+				noteType: String
 			};
 		}
 	}, {
@@ -80,6 +66,7 @@ var CalendarClab = function () {
 		value: function _focusElement(evt) {
 			if (!this.disabled) {
 				evt.stopPropagation();
+				console.log(this.getRomeInstance());
 				this.getRomeInstance().show();
 			}
 		}
@@ -108,13 +95,8 @@ var CalendarClab = function () {
 
 	}, {
 		key: "_computeType",
-		value: function _computeType(type) {
-			return ['calendar', type].join(' ');
-		}
-	}, {
-		key: "_computeNoteType",
-		value: function _computeNoteType(type, noteType) {
-			return [type, noteType].join(' ');
+		value: function _computeType(str, type) {
+			return [str, type].join(' ');
 		}
 
 		/*----------
@@ -142,16 +124,12 @@ var CalendarClab = function () {
 		key: "getValue",
 		value: function getValue() {
 			var formatted = moment(this.valueStr, this._getFormat()).format();
-			if (this.valueStr) {
-				return formatted;
-			} else {
-				return undefined;
-			}
+			return this.valueStr ? formatted : undefined;
 		}
 	}, {
 		key: "getRomeInstance",
 		value: function getRomeInstance() {
-			return rome.find(this.$$('input'));
+			return rome.find(this.querySelector('input'));
 		}
 	}, {
 		key: "clear",

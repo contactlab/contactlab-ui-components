@@ -16,20 +16,13 @@ var CheckboxClab = function () {
 		value: function beforeRegister() {
 			this.is = "checkbox-clab";
 			this.properties = {
-				labels: {
-					type: Array
-				},
-				wrapperType: {
-					type: String,
-					value: ''
-				},
+				labels: Array,
+				wrapperType: String,
 				active: {
 					type: Array,
 					notify: true
 				},
-				disabled: {
-					type: Array
-				}
+				disabled: Array
 			};
 		}
 

@@ -33,19 +33,19 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<main class="main-content">
 		<section>
 			<h2>Alerts</h2>
-			<alert-clab visible type="primary" labels='{"primary": "Go", "secondary": "Cancel"}'>
+			<alert-clab visible type="primary" primary="Go" secondary="Cancel">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
-			<alert-clab visible labels='{"primary": "Go", "secondary": "Cancel"}'>
+			<alert-clab visible primary="Go" secondary="Cancel">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
-			<alert-clab visible type="warning" labels='{"primary": "Go", "secondary": "Cancel"}'>
+			<alert-clab visible type="warning" primary="Go" secondary="Cancel">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
-			<alert-clab visible type="error" labels='{"primary": "Go", "secondary": "Cancel"}'>
+			<alert-clab visible type="error" primary="Go" secondary="Cancel">
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
-			<alert-clab visible type="info" labels='{"primary": "Go", "secondary": "Cancel"}' no-animation>
+			<alert-clab visible type="info" primary="Go" secondary="Cancel" no-animation>
 				Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
 			</alert-clab>
 
@@ -196,7 +196,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<card-clab title="My Card 2" no-actions>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
 			</card-clab>
-			<card-clab link='{"text":"blabla", "href":"../../img.img"}'>
+			<card-clab link='{"text":"blabla", "href":"#/hearts"}' icon="clab-icon icon-heart-full" title="Queen of hearts">
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
 				With a link</p>
 			</card-clab>
@@ -302,7 +302,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Label & badges</h2>
-			<label-clab>
+			<label-clab type="error">
 				Just a test
 			</label-clab>
 
@@ -313,7 +313,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Autocomplete</h2>
-			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1" inline label-size="larger">
+			<autocomplete-clab label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1" inline label-size="larger" note-type="info">
 			    <span class="note">Type here to get hints</span>
                 <span class="button"><button-clab>hola</button-clab></span>
 			</autocomplete-clab>
@@ -371,7 +371,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			<modal-clab id="modal-one" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
 			</modal-clab>
 
-			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning-btn="Do something" no-animation>
+			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" tertiary="Do something" no-animation>
 				<h2>Some HTML...</h2>
 				<hr>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?
@@ -456,7 +456,9 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<section>
 			<h2>Calendar</h2>
 			<calendar-clab inline></calendar-clab>
-			<calendar-clab></calendar-clab>
+			<calendar-clab type="error" note-type="error">
+			    <span class="note">This is note</span>
+			</calendar-clab>
 		</section>
 
 		<section>
@@ -532,7 +534,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 					evt.target.hide();
 				})
 
-				this.modal2.addEventListener('modal-third',function(evt){
+				this.modal2.addEventListener('modal-tertiary',function(evt){
 					if(this.modal2.primaryDisabled) this.modal2.primaryDisabled=false;
 				}.bind(this))
 

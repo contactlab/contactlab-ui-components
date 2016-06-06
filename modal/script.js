@@ -11,12 +11,6 @@ var ModalClab = function () {
 
 	_createClass(ModalClab, [{
 		key: 'beforeRegister',
-
-
-		/*set behaviors(value) {
-  	this._behaviors = value;
-  }*/
-
 		value: function beforeRegister() {
 			this.is = 'modal-clab';
 			this.properties = {
@@ -30,17 +24,20 @@ var ModalClab = function () {
 					observer: '_animateShowHide'
 				},
 				primary: {
-					type: String
+					type: String,
+					value: null
+				},
+				secondary: {
+					type: String,
+					value: null
+				},
+				tertiary: {
+					type: String,
+					value: null
 				},
 				primaryDisabled: {
 					type: Boolean,
 					value: false
-				},
-				secondary: {
-					type: String
-				},
-				warningBtn: {
-					type: String
 				},
 				content: {
 					type: String,
@@ -120,9 +117,9 @@ var ModalClab = function () {
 			this.fire('modal-secondary');
 		}
 	}, {
-		key: '_thirdAction',
-		value: function _thirdAction(evt) {
-			this.fire('modal-third');
+		key: '_tertiaryAction',
+		value: function _tertiaryAction(evt) {
+			this.fire('modal-tertiary');
 		}
 
 		/*----------
@@ -157,20 +154,6 @@ var ModalClab = function () {
 						target.style.opacity = 0;
 					}
 				}
-			}
-		}
-
-		/*----------
-  	COMPUTE
-  ----------*/
-
-	}, {
-		key: '_checkIfTrue',
-		value: function _checkIfTrue(str) {
-			if (str != undefined && str.length > 0) {
-				return true;
-			} else {
-				return false;
 			}
 		}
 

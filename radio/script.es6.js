@@ -7,28 +7,20 @@ class RadioClab{
 	beforeRegister(){
 		this.is = "radio-clab";
 		this.properties = {
-			labels: {
-				type: Array
-			},
-			name: {
-				type: String
-			},
+			labels: Array,
+			name: String,
 			wrapperType: {
 				type: String,
 				value: ''
 			},
-			active: {
-				type: Number
-			},
-			disabled: {
-				type: Array
-			}
+			active: Number,
+			disabled: Array
 		}
 	}
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	_computeType(wt){
@@ -37,7 +29,7 @@ class RadioClab{
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
 	_checkIfTrue(i, n){

@@ -14,21 +14,15 @@ var InputClab = function () {
 		value: function beforeRegister() {
 			this.is = "input-clab";
 			this.properties = {
-				label: {
-					type: String,
-					value: ''
-				},
-				icon: {
-					type: String,
-					value: ''
-				},
+				label: String,
+				icon: String,
 				name: {
 					type: String,
 					value: 'textinput'
 				},
 				type: {
 					type: String,
-					value: ''
+					value: null
 				},
 				noteType: String,
 				value: {
@@ -47,7 +41,7 @@ var InputClab = function () {
 				},
 				labelSize: {
 					type: String,
-					value: ''
+					value: null
 				},
 				placeholder: String,
 				check: {
@@ -125,17 +119,17 @@ var InputClab = function () {
 		key: '_compWrapperClass',
 		value: function _compWrapperClass(str, type, inline, labelSize) {
 			var arr = [str];
-			if (type != undefined && type.length > 0) arr.push(type);
+			if (type != null) arr.push(type);
 			if (inline) {
 				arr.push('inline');
-				if (labelSize.length > 0) arr.push(labelSize + '-label');
+				if (labelSize != null) arr.push(labelSize + '-label');
 			}
 			return arr.join(' ');
 		}
 	}, {
 		key: '_compIcon',
 		value: function _compIcon(icon) {
-			if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
+			if (icon != undefined) return 'clab-icon ' + icon;else return '';
 		}
 	}, {
 		key: '_computeInputType',

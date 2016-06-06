@@ -7,9 +7,7 @@ class CalendarClab{
 	beforeRegister(){
 		this.is = "calendar-clab";
 		this.properties = {
-			label: {
-				type: String
-			},
+			label: String,
 			disabled: {
 				type: Boolean,
 				value: false
@@ -27,21 +25,9 @@ class CalendarClab{
 				type: Object,
 				value: {}
 			},
-			placeholder: {
-				type: String
-			},
-			type: {
-				type: String,
-				value: ""
-			},
-			noteType: {
-				type: String,
-				value: ''
-			},
-			compNoteType: {
-				type: String,
-				computed: '_computeNoteType(type, noteType)'
-			}
+			placeholder: String,
+			type: String,
+			noteType: String
 		}
 	}
 
@@ -68,6 +54,7 @@ class CalendarClab{
 	_focusElement(evt){
 		if(!this.disabled){
 			evt.stopPropagation();
+			console.log(this.getRomeInstance())
 			this.getRomeInstance().show();
 		}
 	}
@@ -94,12 +81,8 @@ class CalendarClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computeType(type){
-		return ['calendar',type].join(' ');
-	}
-
-	_computeNoteType(type, noteType){
-		return [type, noteType].join(' ');
+	_computeType(str, type){
+		return [str,type].join(' ');
 	}
 
 
@@ -127,15 +110,11 @@ class CalendarClab{
 
 	getValue(){
 		let formatted = moment(this.valueStr, this._getFormat()).format();
-		if(this.valueStr){
-			return formatted;
-		} else {
-			return undefined;
-		}
+		return this.valueStr? formatted : undefined;
 	}
 
 	getRomeInstance(){
-		return rome.find(this.$$('input'));
+		return rome.find(this.querySelector('input'));
 	}
 
 	clear(){

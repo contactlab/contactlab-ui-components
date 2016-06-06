@@ -6,31 +6,37 @@ class CardClab {
 			/**
 	       * Title of the card
 	       */
-			title: {
-				type: String,
-				value: null
-			},
+			title: String,
 			/**
-	       * Inner text of the primary button
+	       * Inner text of the primary buttons
 	       */
-			primaryLabel: {
-				type: String,
-				value: 'OK'
-			},
-			/**
-	       * Inner text of the secondary button
-	       */
-			secondaryLabel: {
-				type: String,
-				value: 'Cancel'
-			},
+		   primary:{
+			   type:String,
+			   value:'OK'
+		   },
+		   /**
+		  * Inner text of the secondary buttons
+		  */
+		   secondary:{
+			   type:String,
+			   value:'Cancel'
+		   },
+		   /**
+		  * Add an url to the card
+			  {
+				  class:'',
+				  href:'',
+				  text:''
+			  }
+		  */
+		   link: {
+			   type:Object,
+			   value:{}
+		   },
 			/**
 	       * Add an icon to the card (class)
 	       */
-			icon: {
-				type: String,
-				value: ''
-			},
+			icon: String,
 			/**
 	       * Whether the card is big
 	       */
@@ -65,39 +71,27 @@ class CardClab {
 			noActions: {
 				type:Boolean,
 				value:false
-			},
-			/**
-	       * Add an url to the card
-	       */
-			link: {
-				type:Object,
-				value:null
 			}
 		}
 	}
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_handleClick(evt){
-		if(Polymer.dom(evt.target).node.children[0].classList.contains('primary')){
+		if(Polymer.dom(evt.target).node.children[0].classList.contains('primary'))
 			this.fire('primary');
-		} else {
+		else
 			this.fire('secondary');
-		}
 	}
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
-	_computeIconClass(icon){
-		return icon;
-	}
-
 	_computeCardClass(big){
 		let classes = ['card-title'];
 		big ? classes.push('big-icon') : null;
@@ -110,19 +104,19 @@ class CardClab {
 
 
 
-	/*---------- 
+	/*----------
 	UTILS
 	----------*/
-	_showActions(noactions, link){
-		if(link!=null) return false; else return !noactions;
+	_showActions(noActions, link){
+		return !link.hasOwnProperty('href') && !noActions;
 	}
 
-	_showLink(link, noactions){
-		if (noactions) return false; else if(link!=null) return true; else return false;
+	_showLink(noActions, link){
+		return link.hasOwnProperty('href') && !noActions;
 	}
 
 	_showTitle(title){
-		title==null? false :  true;
+		return title!=undefined;
 	}
 
 

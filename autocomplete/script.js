@@ -24,9 +24,7 @@ var AutoCompleteClab = function () {
 					type: String,
 					value: 'auto complete'
 				},
-				value: {
-					type: Object
-				},
+				value: Object,
 				placeholder: {
 					type: String,
 					value: 'Type..'
@@ -35,12 +33,8 @@ var AutoCompleteClab = function () {
 					type: Boolean,
 					value: false
 				},
-				options: {
-					type: Array
-				},
-				url: {
-					type: String
-				},
+				options: Array,
+				url: String,
 				results: {
 					type: Array,
 					notify: true
@@ -69,25 +63,14 @@ var AutoCompleteClab = function () {
 					type: Number,
 					value: 6
 				},
-				inputType: {
-					type: String,
-					value: ''
-				},
-				noteType: {
-					type: String
-				},
+				inputType: String,
+				noteType: String,
 				inline: {
 					type: Boolean,
 					value: false
 				},
-				labelSize: {
-					type: String,
-					value: ''
-				},
-				icon: {
-					type: String,
-					value: ''
-				},
+				labelSize: String,
+				icon: String,
 
 				/*----------
       PRIVATE

@@ -14,9 +14,7 @@ var RangeClab = function () {
 		value: function beforeRegister() {
 			this.is = "range-clab";
 			this.properties = {
-				label: {
-					type: String
-				},
+				label: String,
 				name: {
 					type: String,
 					value: 'rangeinput'
@@ -30,15 +28,9 @@ var RangeClab = function () {
 					notify: true,
 					reflectToAttribute: true
 				},
-				min: {
-					type: Number
-				},
-				max: {
-					type: Number
-				},
-				step: {
-					type: Number
-				},
+				min: Number,
+				max: Number,
+				step: Number,
 				disabled: {
 					type: Boolean,
 					value: false,
@@ -56,7 +48,7 @@ var RangeClab = function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -66,7 +58,7 @@ var RangeClab = function () {
 			this.value = this.querySelector('input').value;
 		}
 
-		/*---------- 
+		/*----------
   OBSERVERS
   ----------*/
 
@@ -76,7 +68,7 @@ var RangeClab = function () {
 			if (newVal) this.type = 'disabled';
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 

@@ -16,26 +16,18 @@ var RadioClab = function () {
 		value: function beforeRegister() {
 			this.is = "radio-clab";
 			this.properties = {
-				labels: {
-					type: Array
-				},
-				name: {
-					type: String
-				},
+				labels: Array,
+				name: String,
 				wrapperType: {
 					type: String,
 					value: ''
 				},
-				active: {
-					type: Number
-				},
-				disabled: {
-					type: Array
-				}
+				active: Number,
+				disabled: Array
 			};
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
@@ -45,7 +37,7 @@ var RadioClab = function () {
 			return ['row', wt].join(' ');
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 

@@ -4,10 +4,6 @@ class ModalClab{
 		return [AnimationsBehavior];
 	}
 
-	/*set behaviors(value) {
-		this._behaviors = value;
-	}*/
-
 	beforeRegister(){
 		this.is = 'modal-clab';
 		this.properties = {
@@ -21,17 +17,20 @@ class ModalClab{
 				observer: '_animateShowHide'
 			},
 			primary: {
-				type: String
+				type: String,
+				value:null
+			},
+			secondary: {
+				type: String,
+				value:null
+			},
+			tertiary: {
+				type: String,
+				value:null
 			},
 			primaryDisabled:{
 				type:Boolean,
 				value:false
-			},
-			secondary: {
-				type: String
-			},
-			warningBtn: {
-				type: String
 			},
 			content: {
 				type: String,
@@ -114,8 +113,8 @@ class ModalClab{
 		this.fire('modal-secondary');
 	}
 
-	_thirdAction(evt){
-		this.fire('modal-third');
+	_tertiaryAction(evt){
+		this.fire('modal-tertiary');
 	}
 
 
@@ -149,19 +148,6 @@ class ModalClab{
 					target.style.opacity=0;
 				}
 			}
-		}
-	}
-
-
-
-	/*----------
-		COMPUTE
-	----------*/
-	_checkIfTrue(str){
-		if(str!=undefined && str.length>0){
-			return true;
-		} else {
-			return false;
 		}
 	}
 
