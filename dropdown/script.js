@@ -30,6 +30,7 @@ var DropdownClab = function () {
 					type: Object,
 					value: {}
 				},
+				highlighted: Object,
 				valueField: {
 					type: String,
 					value: 'value'
@@ -87,12 +88,8 @@ var DropdownClab = function () {
 			};
 		}
 	}, {
-		key: 'ready',
-		value: function ready() {
-			if (this.url != undefined || this.url != null) {
-				this._fetchOptions();
-			}
-
+		key: 'attached',
+		value: function attached() {
 			if (this.id === undefined || this.id.length < 1) {
 				var id = '';
 				var possible = "abcdefghijklmnopqrstuvwxyz";
@@ -115,19 +112,24 @@ var DropdownClab = function () {
 		value: function _toggleList(evt) {
 			var _this = this;
 
+			// if(!this.disabled){
+			// 	if(this._liHeight==null){
+			// 		this.querySelector('.options-list').classList.add('hidden');
+			// 		this._setMaxHeight();
+			// 		setTimeout(()=>{
+			// 			this.querySelector('.options-list').classList.remove('hidden');
+			// 			this.querySelector('.options-list').classList.add('active');
+			// 			this.querySelector('.value_wrapper > span').classList.add('active');
+			// 		},50);
+			// 	} else {
+			// 		this.querySelector('.options-list').classList.toggle('active');
+			// 		this.querySelector('.value_wrapper').classList.toggle('active');
+			// 	}
+			// }
 			if (!this.disabled) {
-				if (this._liHeight == null) {
-					this.querySelector('.options-list').classList.add('hidden');
-					this._setMaxHeight();
-					setTimeout(function () {
-						_this.querySelector('.options-list').classList.remove('hidden');
-						_this.querySelector('.options-list').classList.add('active');
-						_this.querySelector('.value_wrapper > span').classList.add('active');
-					}, 50);
-				} else {
-					this.querySelector('.options-list').classList.toggle('active');
-					this.querySelector('.value_wrapper').classList.toggle('active');
-				}
+				this.querySelector('curtain-clab').set('open', true);
+				console.log(this.querySelector('curtain-clab').open);
+				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
 
 			var windowClick = function windowClick(evt) {
@@ -149,12 +151,14 @@ var DropdownClab = function () {
 			window.addEventListener('mousedown', windowClick);
 		}
 	}, {
-		key: '_setThis',
-		value: function _setThis(evt) {
-			var i = evt.target.getAttribute('data-index');
-			this._setSelected(this.options[i]);
-			this.querySelector('.options-list').classList.remove('active');
-			this.querySelector('.value_wrapper').classList.remove('active');
+		key: 'handleSelect',
+		value: function handleSelect(evt) {
+			this._setSelected(this.options[evt.detail.index]);
+		}
+	}, {
+		key: '_handleHighlight',
+		value: function _handleHighlight(evt) {
+			this.set('highlighted', this.options[evt.detail.index]);
 		}
 
 		/*----------
@@ -188,6 +192,7 @@ var DropdownClab = function () {
 		value: function _setSelected(item) {
 			var old = this.selected;
 			this.set('selected', item);
+			this.set('highlighted', item);
 
 			if (!this.preventChange) {
 				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'newValue': this.selected, 'oldValue': old });else this.fire('change', { 'selected': this.selected[this.valueField], 'newValue': this.selected, 'oldValue': old });
@@ -196,8 +201,8 @@ var DropdownClab = function () {
 	}, {
 		key: '_setMaxHeight',
 		value: function _setMaxHeight() {
-			// this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
-			this._liHeight = 30;
+			this._liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
+			// this._liHeight= 30;
 			this.querySelector('.options-list').style.maxHeight = this._liHeight * this.maxInView + 'px';
 		}
 
@@ -217,7 +222,7 @@ var DropdownClab = function () {
 	}, {
 		key: '_observUrl',
 		value: function _observUrl(newv, oldv) {
-			if (oldv != undefined) this._fetchOptions();
+			if (newv != undefined) this._fetchOptions();
 		}
 
 		/*----------
@@ -269,11 +274,6 @@ var DropdownClab = function () {
 		key: '_compLabel',
 		value: function _compLabel(option) {
 			return option ? option[this.labelField] : '';
-		}
-	}, {
-		key: '_compHighlight',
-		value: function _compHighlight(selected, option) {
-			// if(selected.value===option.value) return 'selected'; else return '';
 		}
 	}, {
 		key: 'behaviors',

@@ -35,28 +35,18 @@
       opacity: 0;
     }
 
-    &.visible {
-      display: block;
-    }
-
     .noResults {
       cursor: initial;
     }
 
-    li,
-    .noResults {
+    li{
       background-color: white;
-      display: none;
       padding: $smaller-spacing $small-spacing;;
       margin: 0;
       cursor: pointer;
 
       &.hide {
         display: none;
-      }
-
-      &.show {
-        display: block;
       }
 
       &.selected {

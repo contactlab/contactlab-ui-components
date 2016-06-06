@@ -318,7 +318,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
                 <span class="button"><button-clab>hola</button-clab></span>
 			</autocomplete-clab>
 			&nbsp;
-			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1">
+			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1" filter>
 			    <span class="note">Type here to get hints</span>
 			</autocomplete-clab>
 		</section>
@@ -331,7 +331,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
             </dropdown-clab>
 
 
-			<dropdown-clab max-in-view="5" result-as-obj options='[]' selected='{" ":" ", " ":" "}' inline label-size="larger" icon="icon-edit">>
+			<dropdown-clab max-in-view="5" url="http://localhost:3000/options" result-as-obj inline label-size="larger" icon="icon-edit">
 			    <span class="note">This is my note</span>
             </dropdown-clab>
 

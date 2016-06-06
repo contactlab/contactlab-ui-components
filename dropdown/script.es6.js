@@ -23,6 +23,7 @@ class DropdownClab{
 				type:Object,
 				value:{}
 			},
+			highlighted:Object,
 			valueField: {
 				type: String,
 				value: 'value'
@@ -83,11 +84,7 @@ class DropdownClab{
 		};
 	}
 
-	ready(){
-		if(this.url!=undefined || this.url!=null){
-			this._fetchOptions();
-		}
-
+	attached(){
 		if(this.id===undefined || this.id.length<1){
 			let id = '';
 			let possible = "abcdefghijklmnopqrstuvwxyz";
@@ -106,21 +103,25 @@ class DropdownClab{
 	EVENT HANDLERS
 	----------*/
 	_toggleList(evt){
+		// if(!this.disabled){
+		// 	if(this._liHeight==null){
+		// 		this.querySelector('.options-list').classList.add('hidden');
+		// 		this._setMaxHeight();
+		// 		setTimeout(()=>{
+		// 			this.querySelector('.options-list').classList.remove('hidden');
+		// 			this.querySelector('.options-list').classList.add('active');
+		// 			this.querySelector('.value_wrapper > span').classList.add('active');
+		// 		},50);
+		// 	} else {
+		// 		this.querySelector('.options-list').classList.toggle('active');
+		// 		this.querySelector('.value_wrapper').classList.toggle('active');
+		// 	}
+		// }
 		if(!this.disabled){
-			if(this._liHeight==null){
-				this.querySelector('.options-list').classList.add('hidden');
-				this._setMaxHeight();
-				setTimeout(()=>{
-					this.querySelector('.options-list').classList.remove('hidden');
-					this.querySelector('.options-list').classList.add('active');
-					this.querySelector('.value_wrapper > span').classList.add('active');
-				},50);
-			} else {
-				this.querySelector('.options-list').classList.toggle('active');
-				this.querySelector('.value_wrapper').classList.toggle('active');
-			}
+			this.querySelector('curtain-clab').set('open', true);
+				console.log(this.querySelector('curtain-clab').open)
+			this.querySelector('.value_wrapper').classList.toggle('active');
 		}
-
 
 		let windowClick=(evt)=>{
 			let name=evt.target.localName;
@@ -141,11 +142,12 @@ class DropdownClab{
 		window.addEventListener('mousedown', windowClick);
 	}
 
-	_setThis(evt){
-		let i=evt.target.getAttribute('data-index');
-		this._setSelected(this.options[i]);
-		this.querySelector('.options-list').classList.remove('active');
-		this.querySelector('.value_wrapper').classList.remove('active');
+	handleSelect(evt){
+		this._setSelected(this.options[evt.detail.index]);
+	}
+
+	_handleHighlight(evt){
+		this.set('highlighted', this.options[evt.detail.index]);
 	}
 
 
@@ -177,6 +179,7 @@ class DropdownClab{
 	_setSelected(item){
 		let old = this.selected;
 		this.set('selected',item);
+		this.set('highlighted', item);
 
 		if(!this.preventChange){
 			if(this.resultAsObj)
@@ -187,8 +190,8 @@ class DropdownClab{
 	}
 
 	_setMaxHeight(){
-		// this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
-		this._liHeight= 30;
+		this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
+		// this._liHeight= 30;
 		this.querySelector('.options-list').style.maxHeight=(this._liHeight*this.maxInView)+'px';
 	}
 
@@ -204,7 +207,7 @@ class DropdownClab{
 	}
 
 	_observUrl(newv, oldv){
-		if(oldv!=undefined) this._fetchOptions();
+		if(newv!=undefined) this._fetchOptions();
 	}
 
 
@@ -250,10 +253,6 @@ class DropdownClab{
 
 	_compLabel(option){
 		return option? option[this.labelField] : '';
-	}
-
-	_compHighlight(selected, option){
-		// if(selected.value===option.value) return 'selected'; else return '';
 	}
 
 

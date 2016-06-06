@@ -1,5 +1,6 @@
 <link rel="import" href="../../polymer/polymer.html">
 <link rel="import" href="../note/view.html">
+<link rel="import" href="../curtain/view.html">
 
 <dom-module id="dropdown-clab">
 
@@ -29,11 +30,12 @@
                         <span class="placeholder">[[placeholder]]</span>
                     </template>
                 </div>
-                <ol class="options-list">
+                <!-- <ol class="options-list">
                     <template is="dom-repeat" items="[[options]]">
-                        <li class$="[[_compHighlight(selected, item)]]" data-index$="[[index]]" data-value$="[[_compValue(item)]]" on-click="_setThis">[[_compLabel(item)]]</li>
+                        <li class$="[[_compHighlight(selected, item)]]" on-click="_setThis">[[_compLabel(item)]]</li>
                     </template>
-                </ol>
+                </ol> -->
+                <curtain-clab options="[[options]]" highlighted="[[highlighted]]" label-field="[[labelField]]" value-field="[[valueField]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"></curtain-clab>
             </div>
 
             <content select=".button"></content>
