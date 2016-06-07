@@ -254,21 +254,25 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<section>
 			<h2>Tabs & pills</h2>
 			<tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' vertical centered full-width>
-				<div class="tab-content">Tab 1 content</div>
-				<div class="tab-content">Tab 2 content</div>
-				<div class="tab-content">Tab 3 content</div>
-				<div class="tab-content">Tab 4 content</div>
-				<div class="tab-content">Tab 5 content</div>
-				<div class="tab-content">Tab 6 content</div>
+				<div>
+				    <accordion-clab title="ciccio">ciccio puzzo</accordion-clab>
+				</div>
+				<div>
+                    <input-clab></input-clab>
+                </div>
+				<div>Tab 3 content</div>
+				<div>Tab 4 content</div>
+				<div>Tab 5 content</div>
+				<div>Tab 6 content</div>
 			</tabs-clab>
 
 			<tabs-clab pills labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' centered full-width>
-				<div class="tab-content">Tab 1 content</div>
-				<div class="tab-content">Tab 2 content</div>
-				<div class="tab-content">Tab 3 content</div>
-				<div class="tab-content">Tab 4 content</div>
-				<div class="tab-content">Tab 5 content</div>
-				<div class="tab-content">Tab 6 content</div>
+				<div>Tab 1 content</div>
+				<div>Tab 2 content</div>
+				<div>Tab 3 content</div>
+				<div>Tab 4 content</div>
+				<div>Tab 5 content</div>
+				<div>Tab 6 content</div>
 			</tabs-clab>
 
 		</section>
@@ -318,7 +322,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
                 <span class="button"><button-clab>hola</button-clab></span>
 			</autocomplete-clab>
 			&nbsp;
-			<autocomplete-clab label="AJAX auto-complete" url="http://localhost:3000/options" min-char="1" filter>
+			<autocomplete-clab label="AJAX auto-complete" min-char="1" filter>
 			    <span class="note">Type here to get hints</span>
 			</autocomplete-clab>
 		</section>
@@ -331,7 +335,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
             </dropdown-clab>
 
 
-			<dropdown-clab max-in-view="5" url="http://localhost:3000/options" result-as-obj inline label-size="larger" icon="icon-edit">
+			<dropdown-clab max-in-view="5" result-as-obj inline label-size="larger" icon="icon-edit">
 			    <span class="note">This is my note</span>
             </dropdown-clab>
 

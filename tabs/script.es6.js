@@ -28,16 +28,7 @@ class TabsClab{
 				value: 0,
 				observer: '_changeTab'
 			}
-		}
-	}
-
-	attached(){
-		this.tabContents = this.querySelectorAll('.tab-content');
-		if(this.tabContents.length>0){
-			Array.prototype.map.call(this.tabContents, (content, i)=>{
-				if(i!=this.active) content.style.display = 'none';
-			});
-		}
+		};
 	}
 
 
@@ -57,14 +48,11 @@ class TabsClab{
 	/*----------
 	OBSERVERS
 	----------*/
-	_changeTab(newVal, oldVal){
-		if(this.tabContents!=undefined){
-			Array.prototype.map.call(this.tabContents, (el, i)=>{
-				if(i===newVal)
-					el.style.display = 'block';
-				else
-					el.style.display = 'none';
-			});
+	_changeTab(val, old){
+		if(val!=undefined){
+			let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
+			if(old!=undefined) this.$.content.innerHTML='';
+			this.$.content.appendChild(contents[val].cloneNode(true));
 		}
 	}
 
@@ -73,22 +61,6 @@ class TabsClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computedLabels(tabContents, labels){
-		var newLabels = labels;
-
-		// if(tabContents.length>=labels.length){
-			// for(var i=0; i<tabContents.length; i++){
-			// 	if(newLabels[i]===undefined){
-			// 		newLabels.push('Tab '+(i+1));
-			// 	}
-			// }
-		// } else {
-		// 	console.warn("Some of the labels need a content");
-		// }
-
-		return newLabels;
-	}
-
 	_computeType(pills, vertical, centered, fullWidth){
 		let arr = [];
 		pills ? arr.push('pills') : arr.push('tabs');
