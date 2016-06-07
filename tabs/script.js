@@ -39,6 +39,10 @@ var TabsClab = function () {
 					value: 0,
 					observer: '_changeTab'
 				}
+				// restamp:{
+				// 	type:Boolean,
+				// 	value:false
+				// }
 			};
 		}
 
@@ -63,8 +67,13 @@ var TabsClab = function () {
 		value: function _changeTab(val, old) {
 			if (val != undefined) {
 				var contents = this.contents == undefined ? this.getEffectiveChildren() : this.contents;
-				if (old != undefined) this.$.content.innerHTML = '';
-				this.$.content.appendChild(contents[val].cloneNode(true));
+				while (this.$.content.firstChild) {
+					this.$.content.removeChild(this.$.content.firstChild);
+				}
+				this.$.content.appendChild(contents[val]);
+
+				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
+				// 	else this.$.content.appendChild(contents[val]);
 			}
 		}
 
