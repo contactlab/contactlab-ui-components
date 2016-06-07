@@ -92,7 +92,6 @@ var CurtainClab = function () {
 					if (_this2._liHeight == undefined) {
 						_this2.set('_hidden', true);
 						_this2._liHeight = 28;
-						console.log(_this2._liHeight);
 						_this2.set('_listMaxHeight', _this2._liHeight * maxInView + 'px');
 						_this2.set('_hidden', false);
 					}

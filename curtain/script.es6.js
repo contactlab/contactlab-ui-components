@@ -76,7 +76,6 @@ class CurtainClab{
 				if(this._liHeight==undefined){
 					this.set('_hidden', true);
 					this._liHeight = 28;
-					console.log(this._liHeight);
 					this.set('_listMaxHeight', (this._liHeight*maxInView)+'px');
 					this.set('_hidden', false);
 				}

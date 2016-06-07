@@ -78,6 +78,15 @@ var MenuClab = function () {
 				this.set('_mainNav', false);
 			}
 		}
+	}, {
+		key: '_linkClicked',
+		value: function _linkClicked(evt) {
+			var target = evt.target;
+			while (target.localName != 'a') {
+				target = target.parentNode;
+			}
+			this.fire('a-click', { href: target.getAttribute('href') });
+		}
 
 		/*----------
   METHODS
@@ -166,7 +175,7 @@ var MenuClab = function () {
 	}, {
 		key: '_computeUrl',
 		value: function _computeUrl(item) {
-			var url = undefined;
+			var url = void 0;
 			if (this.firstChild && item.submenu) {
 				if (item.submenu[0].submenu) // 3 levels
 					url = item.submenu[0].submenu[0].url;else // 2 levels
@@ -178,9 +187,9 @@ var MenuClab = function () {
 		}
 	}, {
 		key: '_computeActive',
-		value: function _computeActive(url, link) {
+		value: function _computeActive(hash, url) {
 			var arr = [];
-			if (url.search(link) > -1) arr.push('active');
+			if (hash.search(url) > -1) arr.push('active');
 			return arr.join(' ');
 		}
 	}, {

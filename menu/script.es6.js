@@ -66,6 +66,12 @@ class MenuClab{
 		}
 	}
 
+	_linkClicked(evt){
+		let target=evt.target;
+		while(target.localName!='a'){ target=target.parentNode; }
+		this.fire('a-click', {href:target.getAttribute('href')});
+	}
+
 
 
 	/*----------
@@ -153,9 +159,9 @@ class MenuClab{
 		return url;
 	}
 
-	_computeActive(url,link){
+	_computeActive(hash, url){
 		let arr = [];
-		if(url.search(link) > -1) arr.push('active');
+		if(hash.search(url) > -1) arr.push('active');
 		return arr.join(' ');
 	}
 

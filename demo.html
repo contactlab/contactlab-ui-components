@@ -20,7 +20,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 	<template>
 
 
-        <menu-clab title-icon="icon-sign sign" link="#/home">
+        <menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
             <span class="product-name">contact<b>plan</b></span>
 
             <div class="alerts">
@@ -510,6 +510,12 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 	Polymer({
         is: "demo-clab",
+        properties:{
+            currentHash:{
+                type:String,
+                value:'#/plans'
+            }
+        },
 
         attached:function(){
 
@@ -568,6 +574,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 			var menu = document.querySelector('menu-clab');
 			menu.menu = [{
+		            "label": "Home",
+		            "url": "#/home",
+                    "visible": false
+		        },{
 		            "label": "Plans",
 		            "url": "#/plans",
 		            "icon": "clab-icon icon-dashboard icon"
@@ -616,6 +626,10 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
         _checkboxChange:function(evt){
             console.log(evt.model);
+        },
+
+        _changeCurrentHash:function(evt){
+            this.set('currentHash', evt.detail.href);
         }
     });
 
