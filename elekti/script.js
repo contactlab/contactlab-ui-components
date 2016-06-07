@@ -273,7 +273,7 @@ var ElektiMer = function () {
 		value: function getIndex(value) {
 			var _this3 = this;
 
-			var n = undefined;
+			var n = void 0;
 			this.options.forEach(function (opt) {
 				opt.value == value ? n = _this3.options.indexOf(opt) : null;
 			});

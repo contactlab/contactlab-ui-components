@@ -242,7 +242,7 @@ var AutoCompleteClab = function () {
 		key: '_handleArrows',
 		value: function _handleArrows(type) {
 			var HIdx = this._getIndex(this._currentHint, this.results);
-			var item = undefined;
+			var item = void 0;
 			switch (type) {
 				case 'up':
 					item = this.results[HIdx - 1];

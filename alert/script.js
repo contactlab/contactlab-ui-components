@@ -128,9 +128,9 @@ var AlertClab = function () {
 				}
 			} else {
 				if (!this.noAnimation && target != null) {
-					var animation = this.alertExit(target);
-					var player = document.timeline.play(animation);
-					this._onAnimationComplete(player, function () {
+					var _animation = this.alertExit(target);
+					var _player = document.timeline.play(_animation);
+					this._onAnimationComplete(_player, function () {
 						target.style.display = 'none';
 					});
 				} else if (target != null) {
