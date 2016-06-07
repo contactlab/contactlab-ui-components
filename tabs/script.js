@@ -41,18 +41,6 @@ var TabsClab = function () {
 				}
 			};
 		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			var _this = this;
-
-			this.tabContents = this.querySelectorAll('.tab-content');
-			if (this.tabContents.length > 0) {
-				Array.prototype.map.call(this.tabContents, function (content, i) {
-					if (i != _this.active) content.style.display = 'none';
-				});
-			}
-		}
 
 		/*----------
   EVENT HANDLERS
@@ -72,11 +60,11 @@ var TabsClab = function () {
 
 	}, {
 		key: '_changeTab',
-		value: function _changeTab(newVal, oldVal) {
-			if (this.tabContents != undefined) {
-				Array.prototype.map.call(this.tabContents, function (el, i) {
-					if (i === newVal) el.style.display = 'block';else el.style.display = 'none';
-				});
+		value: function _changeTab(val, old) {
+			if (val != undefined) {
+				var contents = this.contents == undefined ? this.getEffectiveChildren() : this.contents;
+				if (old != undefined) this.$.content.innerHTML = '';
+				this.$.content.appendChild(contents[val].cloneNode(true));
 			}
 		}
 
@@ -84,23 +72,6 @@ var TabsClab = function () {
   COMPUTED
   ----------*/
 
-	}, {
-		key: '_computedLabels',
-		value: function _computedLabels(tabContents, labels) {
-			var newLabels = labels;
-
-			// if(tabContents.length>=labels.length){
-			// for(var i=0; i<tabContents.length; i++){
-			// 	if(newLabels[i]===undefined){
-			// 		newLabels.push('Tab '+(i+1));
-			// 	}
-			// }
-			// } else {
-			// 	console.warn("Some of the labels need a content");
-			// }
-
-			return newLabels;
-		}
 	}, {
 		key: '_computeType',
 		value: function _computeType(pills, vertical, centered, fullWidth) {
