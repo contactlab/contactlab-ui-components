@@ -7,7 +7,10 @@ class InputClab{
 	beforeRegister(){
 		this.is = "input-clab";
 		this.properties = {
-			label: String,
+			label: {
+				type:String,
+				value:null
+			},
 			icon:String,
 			name: {
 				type: String,
