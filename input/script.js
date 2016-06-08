@@ -18,7 +18,10 @@ var InputClab = function () {
 					type: String,
 					value: null
 				},
-				icon: String,
+				icon: {
+					type: String,
+					value: null
+				},
 				name: {
 					type: String,
 					value: 'textinput'
