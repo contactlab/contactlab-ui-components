@@ -14,10 +14,6 @@ var TooltipClab = function () {
 		value: function beforeRegister() {
 			this.is = "tooltip-clab";
 			this.properties = {
-				content: {
-					type: String,
-					value: 'The content'
-				},
 				type: {
 					type: String,
 					value: ""
@@ -159,8 +155,8 @@ var TooltipClab = function () {
   ----------*/
 
 	}, {
-		key: "_computeBtnClass",
-		value: function _computeBtnClass(type, visible) {
+		key: "_computeTooltipClass",
+		value: function _computeTooltipClass(type, visible) {
 			var arr = ['tooltip'];
 			if (type) arr.push(type);
 			if (visible) arr.push('visible');
