@@ -3,10 +3,6 @@ class TooltipClab{
 	beforeRegister(){
 		this.is = "tooltip-clab";
 		this.properties = {
-			content: {
-				type: String,
-				value: 'The content'
-			},
 			type: {
 				type: String,
 				value: ""
@@ -135,7 +131,7 @@ class TooltipClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computeBtnClass(type, visible){
+	_computeTooltipClass(type, visible){
 		var arr = ['tooltip'];
 		if(type) arr.push(type);
 		if(visible) arr.push('visible');
