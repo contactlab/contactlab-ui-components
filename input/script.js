@@ -14,8 +14,14 @@ var InputClab = function () {
 		value: function beforeRegister() {
 			this.is = "input-clab";
 			this.properties = {
-				label: String,
-				icon: String,
+				label: {
+					type: String,
+					value: null
+				},
+				icon: {
+					type: String,
+					value: null
+				},
 				name: {
 					type: String,
 					value: 'textinput'
