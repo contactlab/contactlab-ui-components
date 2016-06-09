@@ -9,19 +9,23 @@ class InputClab{
 		this.properties = {
 			label: {
 				type:String,
-				value:null
+				value:null,
+				reflectToAttribute: true
 			},
 			icon:{
 				type:String,
-				value:null
+				value:null,
+				reflectToAttribute: true
 			},
 			name: {
 				type: String,
-				value: 'textinput'
+				value: 'textinput',
+				reflectToAttribute: true
 			},
 			type: {
 				type:String,
-				value:null
+				value:null,
+				reflectToAttribute: true
 			},
 			noteType: String,
 			value: {
@@ -32,20 +36,30 @@ class InputClab{
 			disabled: {
 				type: Boolean,
 				value: false,
-				observer: '_disabledChanged'
+				observer: '_disabledChanged',
+				reflectToAttribute: true
 			},
 			inline: {
 				type: Boolean,
-				value: false
+				value: false,
+				reflectToAttribute: true
 			},
 			labelSize: {
 				type:String,
 				value:null
 			},
-			placeholder: String,
+			placeholder: {
+				type: String,
+				reflectToAttribute: true
+			},
 			check: {
 				type: Boolean,
 				value: false
+			},
+			required: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true
 			},
 			btnPswd:{
 				type:Object,
