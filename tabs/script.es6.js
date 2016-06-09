@@ -35,6 +35,15 @@ class TabsClab{
 		};
 	}
 
+	attached(){
+		this.tabContents = this.querySelectorAll('.tab-content');
+		if(this.tabContents.length>0){
+			Array.prototype.map.call(this.tabContents, (content, i)=>{
+				if(i!=this.active) content.style.display = 'none';
+			});
+		}
+	}
+
 
 
 	/*----------
@@ -53,16 +62,25 @@ class TabsClab{
 	OBSERVERS
 	----------*/
 	_changeTab(val, old){
-		if(val!=undefined){
-			let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
-			while(this.$.content.firstChild){
-				this.$.content.removeChild(this.$.content.firstChild);
-			}
-			this.$.content.appendChild(contents[val]);
-
-				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
-				// 	else this.$.content.appendChild(contents[val]);
+		if(this.tabContents!=undefined){
+			Array.prototype.map.call(this.tabContents, (el, i)=>{
+				if(i===val)
+				el.style.display = 'block';
+				else
+				el.style.display = 'none';
+			});
 		}
+
+		// if(val!=undefined){
+		// 	let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
+		// 	while(this.$.content.firstChild){
+		// 		this.$.content.removeChild(this.$.content.firstChild);
+		// 	}
+		// 	this.$.content.appendChild(contents[val]);
+		//
+		// 		// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
+		// 		// 	else this.$.content.appendChild(contents[val]);
+		// }
 	}
 
 
