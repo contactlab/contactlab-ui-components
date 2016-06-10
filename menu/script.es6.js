@@ -70,6 +70,7 @@ class MenuClab{
 		let target=evt.target;
 		while(target.localName!='a'){ target=target.parentNode; }
 		this.fire('a-click', {href:target.getAttribute('href')});
+		if(window.innerWidth<960) this.set('_mainNav',false);
 	}
 
 
@@ -115,10 +116,6 @@ class MenuClab{
 
 			} else {
 				this.fire('hashnotfound');
-			}
-
-			if(window.innerWidth>960){
-				this.set('_mainNav',true);
 			}
 		}
 	}
