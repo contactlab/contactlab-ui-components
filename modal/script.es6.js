@@ -24,7 +24,7 @@ class ModalClab{
 				type: String,
 				value:null
 			},
-			tertiary: {
+			warning: {
 				type: String,
 				value:null
 			},
@@ -113,8 +113,8 @@ class ModalClab{
 		this.fire('modal-secondary');
 	}
 
-	_tertiaryAction(evt){
-		this.fire('modal-tertiary');
+	_warningAction(evt){
+		this.fire('modal-warning');
 	}
 
 
