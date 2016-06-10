@@ -31,7 +31,7 @@ var ModalClab = function () {
 					type: String,
 					value: null
 				},
-				tertiary: {
+				warning: {
 					type: String,
 					value: null
 				},
@@ -117,9 +117,9 @@ var ModalClab = function () {
 			this.fire('modal-secondary');
 		}
 	}, {
-		key: '_tertiaryAction',
-		value: function _tertiaryAction(evt) {
-			this.fire('modal-tertiary');
+		key: '_warningAction',
+		value: function _warningAction(evt) {
+			this.fire('modal-warning');
 		}
 
 		/*----------

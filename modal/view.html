@@ -32,8 +32,8 @@
 						</template>
 						<div class="main-actions">
 							<div class="primary">
-								<template is="dom-if" if="[[tertiary]]">
-									<button-clab type="error third" on-btnclick="_tertiaryAction">[[tertiary]]</button-clab>
+								<template is="dom-if" if="[[warning]]">
+									<button-clab type="error third" on-btnclick="_warningAction">[[warning]]</button-clab>
 								</template>
 								<template is="dom-if" if="[[secondary]]">
 									<button-clab type="secondary" appearance="flat" on-btnclick="_secondaryAction">[[secondary]]</button-clab>
