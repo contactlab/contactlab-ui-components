@@ -39,24 +39,17 @@ var TabsClab = function () {
 					value: 0,
 					observer: '_changeTab'
 				}
-				// restamp:{
-				// 	type:Boolean,
-				// 	value:false
-				// }
 			};
 		}
-	}, {
-		key: 'attached',
-		value: function attached() {
-			var _this = this;
 
-			this.tabContents = this.querySelectorAll('.tab-content');
-			if (this.tabContents.length > 0) {
-				Array.prototype.map.call(this.tabContents, function (content, i) {
-					if (i != _this.active) content.style.display = 'none';
-				});
-			}
-		}
+		// attached(){
+		// 	this.tabContents = this.querySelectorAll('.tab-content');
+		// 	if(this.tabContents.length>0){
+		// 		Array.prototype.map.call(this.tabContents, (content, i)=>{
+		// 			if(i!=this.active) content.style.display = 'none';
+		// 		});
+		// 	}
+		// }
 
 		/*----------
   EVENT HANDLERS
@@ -77,22 +70,25 @@ var TabsClab = function () {
 	}, {
 		key: '_changeTab',
 		value: function _changeTab(val, old) {
-			if (this.tabContents != undefined) {
-				Array.prototype.map.call(this.tabContents, function (el, i) {
-					if (i === val) el.style.display = 'block';else el.style.display = 'none';
-				});
-			}
-
-			// if(val!=undefined){
-			// 	let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
-			// 	while(this.$.content.firstChild){
-			// 		this.$.content.removeChild(this.$.content.firstChild);
-			// 	}
-			// 	this.$.content.appendChild(contents[val]);
-			//
-			// 		// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
-			// 		// 	else this.$.content.appendChild(contents[val]);
+			// if(this.tabContents!=undefined){
+			// 	Array.prototype.map.call(this.tabContents, (el, i)=>{
+			// 		if(i===val)
+			// 		el.style.display = 'block';
+			// 		else
+			// 		el.style.display = 'none';
+			// 	});
 			// }
+
+			if (val != undefined) {
+				var contents = this.contents == undefined ? this.getEffectiveChildren() : this.contents;
+				while (this.$.content.firstChild) {
+					this.$.content.removeChild(this.$.content.firstChild);
+				}
+				this.$.content.appendChild(contents[val]);
+
+				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
+				// 	else this.$.content.appendChild(contents[val]);
+			}
 		}
 
 		/*----------
