@@ -69,6 +69,8 @@ class TabsClab{
 
 		if(val!=undefined){
 			let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
+			if(contents.length<1) return;
+			
 			while(this.$.content.firstChild){
 				this.$.content.removeChild(this.$.content.firstChild);
 			}
