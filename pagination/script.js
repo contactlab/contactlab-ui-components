@@ -67,8 +67,8 @@ var PaginationClab = function () {
 	}, {
 		key: '_setCurrent',
 		value: function _setCurrent(evt) {
-			var i = void 0;
-			var type = void 0;
+			var i = undefined;
+			var type = undefined;
 			switch (evt.target.localName) {
 				case 'i':
 					i = Number(evt.target.parentNode.getAttribute('data-index'));

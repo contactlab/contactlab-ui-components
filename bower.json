@@ -28,10 +28,14 @@
     "moment": "2.12.0",
     "web-animations-js": "^2.1.4",
     "fetch": "^0.11.0",
-    "es6-promise": "^3.1.2"
+    "es6-promise": "^3.1.2",
+    "lodash": "^4.13.1"
   },
-  "devDependencies":{
+  "devDependencies": {
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
     "web-component-tester": "Polymer/web-component-tester#~4.1.0"
+  },
+  "resolutions": {
+    "lodash": "^4.13.1"
   }
 }

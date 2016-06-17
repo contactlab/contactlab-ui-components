@@ -80,13 +80,15 @@ var TabsClab = function () {
 			// }
 
 			if (val != undefined) {
-				var contents = this.contents == undefined ? this.getEffectiveChildren() : this.contents;
+				var contents = _.cloneDeep(this.getEffectiveChildren());
 				if (contents.length < 1) return;
+				console.log(contents[val].innerHTML);
+				this.set('activeContent', contents[val].innerHTML);
 
-				while (this.$.content.firstChild) {
-					this.$.content.removeChild(this.$.content.firstChild);
-				}
-				this.$.content.appendChild(contents[val]);
+				// while(this.$.content.firstChild){
+				// 	this.$.content.removeChild(this.$.content.firstChild);
+				// }
+				// this.$.content.appendChild(contents[val]);
 
 				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
 				// 	else this.$.content.appendChild(contents[val]);

@@ -61,7 +61,7 @@ var PaginationClab = function () {
 	}, {
 		key: '_setThisAsCurrent',
 		value: function _setThisAsCurrent(evt) {
-			var i = void 0;
+			var i = undefined;
 			if (typeof evt != 'number') {
 				// se è event handler
 				evt.preventDefault();

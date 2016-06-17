@@ -75,7 +75,7 @@ var RangeClab = function () {
 	}, {
 		key: 'computeRangeWrapperClasses',
 		value: function computeRangeWrapperClasses(show) {
-			var name = void 0;
+			var name = undefined;
 			if (show) name = 'details';
 			return ['range-wrapper', name].join(' ');
 		}

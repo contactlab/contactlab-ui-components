@@ -119,7 +119,7 @@ var TooltipClab = function () {
 	}, {
 		key: "_setTooltipPosition",
 		value: function _setTooltipPosition() {
-			var targetSize = void 0;
+			var targetSize = undefined;
 			if (Polymer.dom(this.querySelector('.tt-label')).node.$) //if the content is a component or not
 				targetSize = Polymer.dom(this.querySelector('.tt-label')).node.children[0].getBoundingClientRect();else targetSize = this.querySelector('.tt-label').getBoundingClientRect();
 			var tooltipSize = this.querySelector('.tooltip').getBoundingClientRect();
