@@ -30,9 +30,7 @@ var MultipleClab = function () {
 					type: Function,
 					observer: '_setOptions'
 				},
-				url: {
-					type: String
-				},
+				url: String,
 				selected: {
 					type: Array,
 					value: [],
@@ -55,9 +53,7 @@ var MultipleClab = function () {
 					type: Boolean,
 					value: false
 				},
-				noteType: {
-					type: String
-				}
+				noteType: String
 			};
 		}
 	}, {
@@ -254,8 +250,8 @@ var MultipleClab = function () {
 		key: '_selectThese',
 		value: function _selectThese(lastClicked) {
 			var arr = [],
-			    first = undefined,
-			    last = undefined;
+			    first = void 0,
+			    last = void 0;
 			if (this.lastSelected > lastClicked) {
 				first = lastClicked;
 				last = this.lastSelected;

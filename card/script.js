@@ -17,31 +17,37 @@ var CardClab = function () {
 				/**
          * Title of the card
          */
-				title: {
-					type: String,
-					value: null
-				},
+				title: String,
 				/**
-         * Inner text of the primary button
+         * Inner text of the primary buttons
          */
-				primaryLabel: {
+				primary: {
 					type: String,
 					value: 'OK'
 				},
 				/**
-         * Inner text of the secondary button
-         */
-				secondaryLabel: {
+    * Inner text of the secondary buttons
+    */
+				secondary: {
 					type: String,
 					value: 'Cancel'
 				},
 				/**
+    * Add an url to the card
+    {
+     class:'',
+     href:'',
+     text:''
+    }
+    */
+				link: {
+					type: Object,
+					value: {}
+				},
+				/**
          * Add an icon to the card (class)
          */
-				icon: {
-					type: String,
-					value: ''
-				},
+				icon: String,
 				/**
          * Whether the card is big
          */
@@ -76,40 +82,24 @@ var CardClab = function () {
 				noActions: {
 					type: Boolean,
 					value: false
-				},
-				/**
-         * Add an url to the card
-         */
-				link: {
-					type: Object,
-					value: null
 				}
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
 	}, {
 		key: '_handleClick',
 		value: function _handleClick(evt) {
-			if (Polymer.dom(evt.target).node.children[0].classList.contains('primary')) {
-				this.fire('primary');
-			} else {
-				this.fire('secondary');
-			}
+			if (Polymer.dom(evt.target).node.children[0].classList.contains('primary')) this.fire('primary');else this.fire('secondary');
 		}
 
-		/*---------- 
+		/*----------
   COMPUTED
   ----------*/
 
-	}, {
-		key: '_computeIconClass',
-		value: function _computeIconClass(icon) {
-			return icon;
-		}
 	}, {
 		key: '_computeCardClass',
 		value: function _computeCardClass(big) {
@@ -123,24 +113,24 @@ var CardClab = function () {
 			return ['card', effect].join(' ');
 		}
 
-		/*---------- 
+		/*----------
   UTILS
   ----------*/
 
 	}, {
 		key: '_showActions',
-		value: function _showActions(noactions, link) {
-			if (link != null) return false;else return !noactions;
+		value: function _showActions(noActions, link) {
+			return !link.hasOwnProperty('href') && !noActions;
 		}
 	}, {
 		key: '_showLink',
-		value: function _showLink(link, noactions) {
-			if (noactions) return false;else if (link != null) return true;else return false;
+		value: function _showLink(noActions, link) {
+			return link.hasOwnProperty('href') && !noActions;
 		}
 	}, {
 		key: '_showTitle',
 		value: function _showTitle(title) {
-			title == null ? false : true;
+			return title != undefined;
 		}
 	}]);
 

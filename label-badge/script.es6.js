@@ -5,7 +5,7 @@ class LabelClab{
 		this.properties = {
 			type: {
 				type: String,
-				value: ''
+				value: null
 			},
 			counter: {
 				type: Number,
@@ -21,9 +21,9 @@ class LabelClab{
 			}
 		}
 	}
-	
 
-	/*---------- 
+
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_removeClicked(evt){
@@ -31,12 +31,13 @@ class LabelClab{
 	}
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeClass(badge,type){
-		let str = badge ? 'badge' : 'label';
-		return [str,type].join(' ');
+		let arr=[badge ? 'badge' : 'label'];
+		if(type!=null) arr.push(type);
+		return arr.join(' ');
 	}
 
 }

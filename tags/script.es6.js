@@ -7,16 +7,12 @@ class TagsClab {
 	beforeRegister(){
 		this.is = "tags-clab";
 		this.properties = {
-			label:{
-				type:String
-			},
+			label:String,
 			name:{
 				type:String,
 				value:'tags input'
 			},
-			inputString:{
-				type:String
-			},
+			inputString:String,
 			disabled:{
 				type:Boolean,
 				value:false
@@ -39,15 +35,9 @@ class TagsClab {
 				type:String,
 				value:'Add'
 			},
-			btnAppearence:{
-				type:String
-			},
-			btnSize:{
-				type:String
-			},
-			btnIcon:{
-				type:String
-			},
+			btnAppearence:String,
+			btnSize:String,
+			btnIcon:String,
 			hideInput:{
 				type:Boolean,
 				value:false

@@ -16,19 +16,23 @@ var InputClab = function () {
 			this.properties = {
 				label: {
 					type: String,
-					value: ''
+					value: null,
+					reflectToAttribute: true
 				},
 				icon: {
 					type: String,
-					value: ''
+					value: null,
+					reflectToAttribute: true
 				},
 				name: {
 					type: String,
-					value: 'textinput'
+					value: 'textinput',
+					reflectToAttribute: true
 				},
 				type: {
 					type: String,
-					value: ''
+					value: null,
+					reflectToAttribute: true
 				},
 				noteType: String,
 				value: {
@@ -39,20 +43,30 @@ var InputClab = function () {
 				disabled: {
 					type: Boolean,
 					value: false,
-					observer: '_disabledChanged'
+					observer: '_disabledChanged',
+					reflectToAttribute: true
 				},
 				inline: {
 					type: Boolean,
-					value: false
+					value: false,
+					reflectToAttribute: true
 				},
 				labelSize: {
 					type: String,
-					value: ''
+					value: null
 				},
-				placeholder: String,
+				placeholder: {
+					type: String,
+					reflectToAttribute: true
+				},
 				check: {
 					type: Boolean,
 					value: false
+				},
+				required: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
 				},
 				btnPswd: {
 					type: Object,
@@ -125,17 +139,17 @@ var InputClab = function () {
 		key: '_compWrapperClass',
 		value: function _compWrapperClass(str, type, inline, labelSize) {
 			var arr = [str];
-			if (type != undefined && type.length > 0) arr.push(type);
+			if (type != null) arr.push(type);
 			if (inline) {
 				arr.push('inline');
-				if (labelSize.length > 0) arr.push(labelSize + '-label');
+				if (labelSize != null) arr.push(labelSize + '-label');
 			}
 			return arr.join(' ');
 		}
 	}, {
 		key: '_compIcon',
 		value: function _compIcon(icon) {
-			if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
+			if (icon != undefined) return 'clab-icon ' + icon;else return '';
 		}
 	}, {
 		key: '_computeInputType',

@@ -6,10 +6,11 @@
 	<template>
 		<div class$="[[_computeType(pills, vertical, centered, fullWidth)]]">
 			<ul>
-				<template is="dom-repeat" items$="[[_computedLabels(tabContents, labels)]]">
+				<template is="dom-repeat" items="[[labels]]">
 					<li class$="[[_computeActive(active,index)]]" data-index$="[[index]]"><a on-click="_activateThis">[[item]]</a></li>
 				</template>
 			</ul>
+			<!-- <div id="content" class="tab-content"></div> -->
 			<content></content>
 		</div>
 	</template>

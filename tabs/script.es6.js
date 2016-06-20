@@ -28,14 +28,20 @@ class TabsClab{
 				value: 0,
 				observer: '_changeTab'
 			}
-		}
+			// restamp:{
+			// 	type:Boolean,
+			// 	value:false
+			// }
+		};
 	}
 
 	attached(){
 		this.tabContents = this.querySelectorAll('.tab-content');
-		Array.prototype.map.call(this.tabContents, (content, i)=>{
-			if(i!=this.active) content.style.display = 'none';
-		});
+		if(this.tabContents.length>0){
+			Array.prototype.map.call(this.tabContents, (content, i)=>{
+				if(i!=this.active) content.style.display = 'none';
+			});
+		}
 	}
 
 
@@ -55,15 +61,26 @@ class TabsClab{
 	/*----------
 	OBSERVERS
 	----------*/
-	_changeTab(newVal, oldVal){
+	_changeTab(val, old){
 		if(this.tabContents!=undefined){
 			Array.prototype.map.call(this.tabContents, (el, i)=>{
-				if(i===newVal)
-					el.style.display = 'block';
+				if(i===val)
+				el.style.display = 'block';
 				else
-					el.style.display = 'none';
+				el.style.display = 'none';
 			});
 		}
+
+		// if(val!=undefined){
+		// 	let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
+		// 	while(this.$.content.firstChild){
+		// 		this.$.content.removeChild(this.$.content.firstChild);
+		// 	}
+		// 	this.$.content.appendChild(contents[val]);
+		//
+		// 		// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
+		// 		// 	else this.$.content.appendChild(contents[val]);
+		// }
 	}
 
 
@@ -71,22 +88,6 @@ class TabsClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computedLabels(tabContents, labels){
-		var newLabels = labels;
-
-		if(tabContents.length>=labels.length){
-			for(var i=0; i<tabContents.length; i++){
-				if(newLabels[i]===undefined){
-					newLabels.push('Tab '+(i+1));
-				}
-			}
-		} else {
-			console.warn("Some of the labels need a content");
-		}
-
-		return newLabels;
-	}
-
 	_computeType(pills, vertical, centered, fullWidth){
 		let arr = [];
 		pills ? arr.push('pills') : arr.push('tabs');

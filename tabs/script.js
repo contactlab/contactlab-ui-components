@@ -39,6 +39,10 @@ var TabsClab = function () {
 					value: 0,
 					observer: '_changeTab'
 				}
+				// restamp:{
+				// 	type:Boolean,
+				// 	value:false
+				// }
 			};
 		}
 	}, {
@@ -47,9 +51,11 @@ var TabsClab = function () {
 			var _this = this;
 
 			this.tabContents = this.querySelectorAll('.tab-content');
-			Array.prototype.map.call(this.tabContents, function (content, i) {
-				if (i != _this.active) content.style.display = 'none';
-			});
+			if (this.tabContents.length > 0) {
+				Array.prototype.map.call(this.tabContents, function (content, i) {
+					if (i != _this.active) content.style.display = 'none';
+				});
+			}
 		}
 
 		/*----------
@@ -70,35 +76,29 @@ var TabsClab = function () {
 
 	}, {
 		key: '_changeTab',
-		value: function _changeTab(newVal, oldVal) {
+		value: function _changeTab(val, old) {
 			if (this.tabContents != undefined) {
 				Array.prototype.map.call(this.tabContents, function (el, i) {
-					if (i === newVal) el.style.display = 'block';else el.style.display = 'none';
+					if (i === val) el.style.display = 'block';else el.style.display = 'none';
 				});
 			}
+
+			// if(val!=undefined){
+			// 	let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
+			// 	while(this.$.content.firstChild){
+			// 		this.$.content.removeChild(this.$.content.firstChild);
+			// 	}
+			// 	this.$.content.appendChild(contents[val]);
+			//
+			// 		// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
+			// 		// 	else this.$.content.appendChild(contents[val]);
+			// }
 		}
 
 		/*----------
   COMPUTED
   ----------*/
 
-	}, {
-		key: '_computedLabels',
-		value: function _computedLabels(tabContents, labels) {
-			var newLabels = labels;
-
-			if (tabContents.length >= labels.length) {
-				for (var i = 0; i < tabContents.length; i++) {
-					if (newLabels[i] === undefined) {
-						newLabels.push('Tab ' + (i + 1));
-					}
-				}
-			} else {
-				console.warn("Some of the labels need a content");
-			}
-
-			return newLabels;
-		}
 	}, {
 		key: '_computeType',
 		value: function _computeType(pills, vertical, centered, fullWidth) {

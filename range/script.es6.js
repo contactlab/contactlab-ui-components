@@ -7,9 +7,7 @@ class RangeClab{
 	beforeRegister(){
 		this.is = "range-clab";
 		this.properties = {
-			label: {
-				type: String,
-			},
+			label: String,
 			name: {
 				type: String,
 				value: 'rangeinput'
@@ -23,15 +21,9 @@ class RangeClab{
 				notify: true,
 				reflectToAttribute: true
 			},
-			min: {
-				type: Number
-			},
-			max: {
-				type: Number
-			},
-			step: {
-				type: Number
-			},
+			min: Number,
+			max: Number,
+			step: Number,
 			disabled:{
 				type: Boolean,
 				value: false,
@@ -51,7 +43,7 @@ class RangeClab{
 
 
 
-	/*---------- 
+	/*----------
 	EVENT HANDLERS
 	----------*/
 	_updateCompValue(evt){
@@ -60,7 +52,7 @@ class RangeClab{
 
 
 
-	/*---------- 
+	/*----------
 	OBSERVERS
 	----------*/
 	disabledChanged(newVal, oldVal){
@@ -69,7 +61,7 @@ class RangeClab{
 
 
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	computeRangeWrapperClasses(show){

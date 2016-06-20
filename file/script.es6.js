@@ -7,17 +7,12 @@ class FileClab{
 	beforeRegister(){
 		this.is = "file-clab";
 		this.properties = {
-			label: {
-				type: String,
-			},
+			label: String,
 			name: {
 				type: String,
 				value: 'fileinput'
 			},
-			type: {
-				type: String,
-				value: ''
-			},
+			type: String,
 			value: {
 				type: String,
 				notify: true,

@@ -3,18 +3,16 @@ class NoteClab{
 	beforeRegister(){
 		this.is = "note-clab";
 		this.properties = {
-			type: {
-				type: String
-			},
-
+			type: String,
 			classes: {
 				type: String,
-				computed: 'computeClasses(type)'
+				computed: 'computeClasses(type)',
+				readonly:true
 			}
 		}
 	}
 
-	/*---------- 
+	/*----------
 	COMPUTED
 	----------*/
 	computeClasses(type){

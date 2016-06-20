@@ -16,7 +16,7 @@ var LabelClab = function () {
 			this.properties = {
 				type: {
 					type: String,
-					value: ''
+					value: null
 				},
 				counter: {
 					type: Number,
@@ -33,7 +33,7 @@ var LabelClab = function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   EVENT HANDLERS
   ----------*/
 
@@ -43,15 +43,16 @@ var LabelClab = function () {
 			this.fire('remove');
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 
 	}, {
 		key: '_computeClass',
 		value: function _computeClass(badge, type) {
-			var str = badge ? 'badge' : 'label';
-			return [str, type].join(' ');
+			var arr = [badge ? 'badge' : 'label'];
+			if (type != null) arr.push(type);
+			return arr.join(' ');
 		}
 	}]);
 

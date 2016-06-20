@@ -7,14 +7,8 @@ class FeatureClab {
 				type: String,
 				value: '#'
 			},
-			iconClass: {
-				type: String,
-				value: null
-			},
-			src: {
-				type: String,
-				value: null
-			},
+			iconClass: String,
+			src: String,
 			size: {
 				type: String,
 				value: null
@@ -27,7 +21,7 @@ class FeatureClab {
 	}
 
 
-	/*---------- 
+	/*----------
 	COMPUTE
 	----------*/
 	_computeFeatureClass(size, vertical){

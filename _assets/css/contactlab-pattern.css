@@ -3202,35 +3202,20 @@ tabs-clab {
   .dropdown-clab .options-list.hidden {
     display: block;
     opacity: 0; }
-  .autocomplete-clab .options-list.visible,
-  .dropdown-clab .options-list.visible {
-    display: block; }
   .autocomplete-clab .options-list .noResults,
   .dropdown-clab .options-list .noResults {
     cursor: initial; }
   .autocomplete-clab .options-list li,
-  .autocomplete-clab .options-list .noResults,
-  .dropdown-clab .options-list li,
-  .dropdown-clab .options-list .noResults {
+  .dropdown-clab .options-list li {
     background-color: white;
-    display: none;
     padding: 5px 10px;
     margin: 0;
     cursor: pointer; }
     .autocomplete-clab .options-list li.hide,
-    .autocomplete-clab .options-list .noResults.hide,
-    .dropdown-clab .options-list li.hide,
-    .dropdown-clab .options-list .noResults.hide {
+    .dropdown-clab .options-list li.hide {
       display: none; }
-    .autocomplete-clab .options-list li.show,
-    .autocomplete-clab .options-list .noResults.show,
-    .dropdown-clab .options-list li.show,
-    .dropdown-clab .options-list .noResults.show {
-      display: block; }
     .autocomplete-clab .options-list li.selected,
-    .autocomplete-clab .options-list .noResults.selected,
-    .dropdown-clab .options-list li.selected,
-    .dropdown-clab .options-list .noResults.selected {
+    .dropdown-clab .options-list li.selected {
       color: #0072bc; }
   .autocomplete-clab .options-list li[data-disabled=true],
   .dropdown-clab .options-list li[data-disabled=true] {

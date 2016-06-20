@@ -18,14 +18,8 @@ var FeatureClab = function () {
 					type: String,
 					value: '#'
 				},
-				iconClass: {
-					type: String,
-					value: null
-				},
-				src: {
-					type: String,
-					value: null
-				},
+				iconClass: String,
+				src: String,
 				size: {
 					type: String,
 					value: null
@@ -37,7 +31,7 @@ var FeatureClab = function () {
 			};
 		}
 
-		/*---------- 
+		/*----------
   COMPUTE
   ----------*/
 

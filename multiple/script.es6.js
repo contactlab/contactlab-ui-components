@@ -23,9 +23,7 @@ class MultipleClab {
 				type: Function,
 				observer: '_setOptions'
 			},
-			url:{
-				type:String
-			},
+			url:String,
 			selected:{
 				type:Array,
 				value:[],
@@ -48,9 +46,7 @@ class MultipleClab {
 				type:Boolean,
 				value:false
 			},
-			noteType: {
-				type: String
-			}
+			noteType:String
 		}
 	}
 

@@ -8,7 +8,8 @@ class ButtonClab {
 	       */
 			type: {
 				type: String,
-				value: ""
+				value: "",
+				reflectToAttribute: true
 			},
 			/**
 	       * `appearance` additional class for the type
@@ -36,7 +37,16 @@ class ButtonClab {
 	       */
 			disabled: {
 				type: Boolean,
-				value: false
+				value: false,
+				reflectToAttribute: true
+			},
+			/**
+	       * If it use block layout (auto width)
+	       */
+			block: {
+				type: Boolean,
+				value: false,
+				reflectToAttribute: true
 			}
 		}
 	}
@@ -48,8 +58,10 @@ class ButtonClab {
 	/**
 	* Computes the class of the button joining the values of 'type', 'appearence' and 'size'
 	*/
-	_computeClass(type, appearance, size){
-		return ['btn',type,appearance,size].join(' ');
+	_computeClass(type, appearance, size, block){
+		let arr = ['btn',type,appearance,size];
+		block ? arr.push('block') : null;
+		return arr.join(' ');
 	}
 
 	/**

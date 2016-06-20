@@ -14,10 +14,6 @@ var TooltipClab = function () {
 		value: function beforeRegister() {
 			this.is = "tooltip-clab";
 			this.properties = {
-				content: {
-					type: String,
-					value: 'The content'
-				},
 				type: {
 					type: String,
 					value: ""
@@ -123,7 +119,7 @@ var TooltipClab = function () {
 	}, {
 		key: "_setTooltipPosition",
 		value: function _setTooltipPosition() {
-			var targetSize = undefined;
+			var targetSize = void 0;
 			if (Polymer.dom(this.querySelector('.tt-label')).node.$) //if the content is a component or not
 				targetSize = Polymer.dom(this.querySelector('.tt-label')).node.children[0].getBoundingClientRect();else targetSize = this.querySelector('.tt-label').getBoundingClientRect();
 			var tooltipSize = this.querySelector('.tooltip').getBoundingClientRect();
@@ -159,8 +155,8 @@ var TooltipClab = function () {
   ----------*/
 
 	}, {
-		key: "_computeBtnClass",
-		value: function _computeBtnClass(type, visible) {
+		key: "_computeTooltipClass",
+		value: function _computeTooltipClass(type, visible) {
 			var arr = ['tooltip'];
 			if (type) arr.push(type);
 			if (visible) arr.push('visible');

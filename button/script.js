@@ -19,7 +19,8 @@ var ButtonClab = function () {
          */
 				type: {
 					type: String,
-					value: ""
+					value: "",
+					reflectToAttribute: true
 				},
 				/**
          * `appearance` additional class for the type
@@ -47,7 +48,16 @@ var ButtonClab = function () {
          */
 				disabled: {
 					type: Boolean,
-					value: false
+					value: false,
+					reflectToAttribute: true
+				},
+				/**
+         * If it use block layout (auto width)
+         */
+				block: {
+					type: Boolean,
+					value: false,
+					reflectToAttribute: true
 				}
 			};
 		}
@@ -63,8 +73,10 @@ var ButtonClab = function () {
 
 	}, {
 		key: "_computeClass",
-		value: function _computeClass(type, appearance, size) {
-			return ['btn', type, appearance, size].join(' ');
+		value: function _computeClass(type, appearance, size, block) {
+			var arr = ['btn', type, appearance, size];
+			block ? arr.push('block') : null;
+			return arr.join(' ');
 		}
 
 		/**
