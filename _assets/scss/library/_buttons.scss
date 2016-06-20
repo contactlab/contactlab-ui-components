@@ -155,6 +155,11 @@ button-clab {
   &.small {
     .btn {
       @extend .small;
+      border-top: 1px solid $default-color;
+
+      &:active {
+        padding-top: 6px;
+      }
     }
   }
 
