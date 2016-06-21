@@ -25,20 +25,18 @@ class TabsClab{
 			},
 			active: {
 				type: Number,
-				value: 0,
-				observer: '_changeTab'
-			}
+				value: 0
+			},
+			_content:Array
 		};
+		this.observers = [
+			'_changeTab(active, _content)'
+		]
 	}
 
-	// attached(){
-	// 	this.tabContents = this.querySelectorAll('.tab-content');
-	// 	if(this.tabContents.length>0){
-	// 		Array.prototype.map.call(this.tabContents, (content, i)=>{
-	// 			if(i!=this.active) content.style.display = 'none';
-	// 		});
-	// 	}
-	// }
+	attached(){
+		this._content = this.getEffectiveChildren();
+	}
 
 
 
@@ -57,29 +55,20 @@ class TabsClab{
 	/*----------
 	OBSERVERS
 	----------*/
-	_changeTab(val, old){
-		// if(this.tabContents!=undefined){
-		// 	Array.prototype.map.call(this.tabContents, (el, i)=>{
-		// 		if(i===val)
-		// 		el.style.display = 'block';
-		// 		else
-		// 		el.style.display = 'none';
-		// 	});
-		// }
+	_changeTab(active, content){
+		if(active!=undefined && content!=undefined && content.length>0){
 
-		if(val!=undefined){
-			let contents = _.cloneDeep(this.getEffectiveChildren());
-			if(contents.length<1) return;
-			console.log(contents[val].innerHTML)
-			this.set('activeContent', contents[val].innerHTML);
+			while(Polymer.dom(this.$.activeContentWrapper).firstChild){
+				Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
+			}
+			Array.prototype.map.call(this._content, (node, i)=>{
+				if(i==active){
+					Polymer.dom(this.$.activeContentWrapper).appendChild(node);
+					Polymer.dom.flush();
+					return;
+				}
+			});
 
-			// while(this.$.content.firstChild){
-			// 	this.$.content.removeChild(this.$.content.firstChild);
-			// }
-			// this.$.content.appendChild(contents[val]);
-
-				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
-				// 	else this.$.content.appendChild(contents[val]);
 		}
 	}
 

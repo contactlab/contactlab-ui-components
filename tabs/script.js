@@ -36,20 +36,17 @@ var TabsClab = function () {
 				},
 				active: {
 					type: Number,
-					value: 0,
-					observer: '_changeTab'
-				}
+					value: 0
+				},
+				_content: Array
 			};
+			this.observers = ['_changeTab(active, _content)'];
 		}
-
-		// attached(){
-		// 	this.tabContents = this.querySelectorAll('.tab-content');
-		// 	if(this.tabContents.length>0){
-		// 		Array.prototype.map.call(this.tabContents, (content, i)=>{
-		// 			if(i!=this.active) content.style.display = 'none';
-		// 		});
-		// 	}
-		// }
+	}, {
+		key: 'attached',
+		value: function attached() {
+			this._content = this.getEffectiveChildren();
+		}
 
 		/*----------
   EVENT HANDLERS
@@ -69,29 +66,21 @@ var TabsClab = function () {
 
 	}, {
 		key: '_changeTab',
-		value: function _changeTab(val, old) {
-			// if(this.tabContents!=undefined){
-			// 	Array.prototype.map.call(this.tabContents, (el, i)=>{
-			// 		if(i===val)
-			// 		el.style.display = 'block';
-			// 		else
-			// 		el.style.display = 'none';
-			// 	});
-			// }
+		value: function _changeTab(active, content) {
+			var _this = this;
 
-			if (val != undefined) {
-				var contents = _.cloneDeep(this.getEffectiveChildren());
-				if (contents.length < 1) return;
-				console.log(contents[val].innerHTML);
-				this.set('activeContent', contents[val].innerHTML);
+			if (active != undefined && content != undefined && content.length > 0) {
 
-				// while(this.$.content.firstChild){
-				// 	this.$.content.removeChild(this.$.content.firstChild);
-				// }
-				// this.$.content.appendChild(contents[val]);
-
-				// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
-				// 	else this.$.content.appendChild(contents[val]);
+				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
+					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
+				}
+				Array.prototype.map.call(this._content, function (node, i) {
+					if (i == active) {
+						Polymer.dom(_this.$.activeContentWrapper).appendChild(node);
+						Polymer.dom.flush();
+						return;
+					}
+				});
 			}
 		}
 
