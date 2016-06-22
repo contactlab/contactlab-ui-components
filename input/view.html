@@ -11,6 +11,7 @@
 
 	<template>
 		<div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
+
 			<template is="dom-if" if="[[_viewLabel(label, icon)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">
 					<template is="dom-if" if="[[_viewLabel(icon)]]">
@@ -19,6 +20,7 @@
 					[[label]]
 				</label>
 			</template>
+
 			<div class="input">
 				<input class$="[[type]]" type$="[[_computeInputType(password)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]"
 				value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus" required="[[required]]">
@@ -26,12 +28,13 @@
 				<template is="dom-if" if="[[check]]">
 					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
 				</template>
-
 				<content select=".button"></content>
+
+				<content select".curtain"></content>
 			</div>
-			<note-clab type="[[noteType]]">
-				<content select=".note"></content>
-			</note-clab>
+
+			<note-clab type="[[noteType]]"></note-clab>
+			
 		</div>
 	</template>
 	<script src="./../_behaviors/behaviors.js"></script>

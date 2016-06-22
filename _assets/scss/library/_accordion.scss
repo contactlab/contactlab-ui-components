@@ -7,10 +7,7 @@
     @extend .default-transition;
 
     &.active {
-      @extend .depth-1;
-      background-color: #FFFFFF;
       margin-bottom: $base-spacing;
-      padding: $base-spacing;
       @extend .default-transition;
 
       .accordion-title {
@@ -18,8 +15,8 @@
       }
 
       .accordion-content {
-        height: 100px;
         @extend .default-transition;
+        padding-bottom: $base-spacing;
       }
 
       .accordion-title:before {
@@ -32,6 +29,7 @@
     position: relative;
     padding-left: $medium-spacing;
     cursor: pointer;
+    @include user-selection; 
 
     &:before {
       content: "\e60c";

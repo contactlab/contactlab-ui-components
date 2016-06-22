@@ -611,7 +611,7 @@ textarea, .accordion .accordion-block, .accordion .accordion-block.active, .acco
   -o-box-shadow: 0 0 0 transparent !important;
   box-shadow: 0 0 0 transparent !important; }
 
-.depth-1, .accordion .accordion-block.active, .autocomplete-clab .options-list,
+.depth-1, .autocomplete-clab .options-list,
 .dropdown-clab .options-list {
   -webkit-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16) !important;
   -khtml-box-shadow: 0 2px 5px rgba(0, 0, 0, 0.16) !important;
@@ -699,7 +699,8 @@ header {
   right: 0;
   z-index: 5;
   min-height: 64px;
-  line-height: 1; }
+  line-height: 1;
+  border-bottom: 1px solid #F0f0f0; }
   header ul,
   header ol {
     margin: 0;
@@ -1255,6 +1256,10 @@ button-clab {
     margin: 0; }
     .buttons-group button-clab:first-of-type .btn {
       margin-left: 0; }
+  .buttons-group.small .btn {
+    border-top: 1px solid #434A5A; }
+    .buttons-group.small .btn:active {
+      padding-top: 6px; }
   .buttons-group.smaller .btn {
     padding: 3px 5px;
     font-size: 0.8571rem;
@@ -2826,20 +2831,23 @@ td, .table .th,
 .accordion .accordion-block {
   padding-bottom: 5px; }
   .accordion .accordion-block.active {
-    background-color: #FFFFFF;
-    margin-bottom: 20px;
-    padding: 20px; }
+    margin-bottom: 20px; }
     .accordion .accordion-block.active .accordion-title {
       font-weight: 600; }
     .accordion .accordion-block.active .accordion-content {
-      height: 100px; }
+      padding-bottom: 20px; }
     .accordion .accordion-block.active .accordion-title:before {
       content: "\e60f"; }
 
 .accordion .accordion-title {
   position: relative;
   padding-left: 30px;
-  cursor: pointer; }
+  cursor: pointer;
+  -webkit-user-select: none;
+  -khtml-user-select: none;
+  -moz-user-select: none;
+  -o-user-select: none;
+  user-select: none; }
   .accordion .accordion-title:before {
     content: "\e60c";
     font-family: 'contactlab-icons';

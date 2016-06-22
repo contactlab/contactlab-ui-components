@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../autocomplete/view.html">
+
+</head>
+<body>
+
+<test-fixture id="autocomplete">
+	<template>
+	  <autocomplete-clab>This is my note</autocomplete-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+// TODO DA COMPLETARE: anomalie
+// input type 
+
+suite('<autocomplete-clab>', function() {
+  var autocomplete;
+
+  setup(function() {
+		autocomplete = fixture('autocomplete');
+		autocomplete.liHeight=20;
+  });
+
+  suite('Test Properties', function() {
+
+  	test('Default Properties', function() {
+  		assert.isNull(autocomplete.label);
+  		assert.equal(autocomplete.name, 'auto complete');
+      assert.isObject(autocomplete.selected);
+      assert.equal(autocomplete.valueField, 'value');
+      assert.equal(autocomplete.labelField, 'label');
+  		assert.equal(autocomplete.placeholder, 'Type..');
+  		assert.isFalse(autocomplete.disabled, 'Input disabled: false');
+      assert.isUndefined(autocomplete.options);
+      assert.isUndefined(autocomplete.url);
+  		assert.isArray(autocomplete.results);
+  		assert.isUndefined(autocomplete.optionsFn);
+      assert.isFalse(autocomplete.filter, "Filter: false");
+  		assert.isFalse(autocomplete.hideHints, "Hide hints: false");
+  		assert.isFalse(autocomplete.resultAsObj, "Result obj false");
+  		assert.equal(autocomplete.minChar, 3);
+  		assert.equal(autocomplete.maxInView, 6);
+  		assert.isUndefined(autocomplete.inputType);
+  		assert.isUndefined(autocomplete.noteType);
+      assert.isFalse(autocomplete.inline, "Inline: false");
+      assert.isUndefined(autocomplete.labelSize);
+      assert.isUndefined(autocomplete.icon);
+	  });
+
+	});
+
+
+	suite('Test DOM Bindings', function() {
+
+		it('Check label', function(done) {
+			var str = 'ciccio';
+			autocomplete.name = str;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('input-clab').name).to.equal(str);
+
+				done();
+			},50);
+		});
+
+		/*it('Check name', function(done) {
+			var str='ciccio';
+			autocomplete.label=str;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('label')).to.not.be.undefined;
+
+				done();
+			},50);
+		});
+
+		it('Check inputType & noteType', function(done) {
+			var str='ciccio';
+			var str2='ciccio2';
+			autocomplete.label=str;
+			autocomplete.inputType=str;
+			autocomplete.noteType=str2;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('label').classList.contains(str)).to.equal(true);
+				expect(autocomplete.querySelector('input[type=text]').classList.contains(str)).to.equal(true);
+				expect(autocomplete.querySelector('.input-note').classList.contains(str)).to.equal(true);
+				expect(autocomplete.querySelector('.input-note').classList.contains(str2)).to.equal(true);
+
+				done();
+			},50);
+		});
+
+		it('Check options', function(done) {
+			var obj=[
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.options=obj;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelectorAll('.options-list li').length).to.equal(obj.length);
+
+				done();
+			},50);
+		});
+
+		it('Check placeholder', function(done) {
+			var str='ciccio';
+			autocomplete.placeholder=str;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('input-clab').placeholder).to.equal(autocomplete.placeholder);
+
+				done();
+			},50);
+		});
+
+		it('Check disabled', function(done) {
+			autocomplete.disabled=true;
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('input-clab').disabled).to.equal(true);
+
+				done();
+			},50);
+		});
+
+		it('Check hideHints', function(done) {
+			var evt=new Event('keyup');
+			autocomplete.hideHints=true;
+			autocomplete.inputString='opt';
+			autocomplete.options=[
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('.options-list').classList.contains('active')).to.equal(false);
+
+				done();
+			},50);
+		});
+
+		it('Check maxInView', function(done) {
+			var evt=new Event('keyup');
+			autocomplete.maxInView=10;
+			autocomplete.inputString='opt';
+			autocomplete.options=[
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+
+			setTimeout(function(){
+				expect(autocomplete.querySelector('.options-list').clientHeight).to.be.below((autocomplete.liHeight*autocomplete.maxInView)+1);
+
+				done();
+			},50);
+		});
+
+		it('Check minChar', function(done) {
+			var evt=new Event('keyup');
+			var typing=false;
+			var listen=function(){ typing=true; }
+			autocomplete.minChar=2;
+			autocomplete.options=[
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.inputString='op';
+			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+
+			setTimeout(function(){
+				autocomplete.addEventListener('typing',listen);
+				expect(typing).to.equal(false);
+
+				autocomplete.inputString='opt';
+				autocomplete.querySelector('input-clab').dispatchEvent(evt);
+
+				setTimeout(function(){
+					expect(typing).to.equal(true);
+
+					done();
+				},100);
+			},100);
+
+
+		});*/
+
+	});
+
+});
+
+</script>
+</body>
+</html>

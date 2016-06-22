@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../card/view.html">
+
+</head>
+<body>
+
+<test-fixture id="card">
+	<template>
+	  <card-clab></card-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<card-clab>', function() {
+  var card;
+
+	setup(function() {
+		card = fixture('card');
+	});
+
+	suite('Test Properties', function() {
+
+		test('Default Properties', function() {
+			assert.isUndefined(card.title);
+			assert.equal(card.primary, 'OK');
+			assert.equal(card.secondary, 'Cancel');
+			assert.isUndefined(card.icon);
+			assert.isFalse(card.big);
+			assert.isFalse(card.table);
+			assert.isNull(card.figure);
+			assert.isNull(card.effect);
+			assert.isFalse(card.noActions);
+			assert.isObject(card.link);
+		});
+
+	});
+
+
+  suite('Test DOM Bindings', function() {
+
+    test('Check title', function(done) {
+      var str = 'This is a title';
+      card.title = str;
+      // Wait dom change title
+      setTimeout(function () {
+        var title = card.$$('.card-title span').textContent;
+        assert.equal(title, str, "Title: changed");
+        done();
+      }, 0);
+    });
+
+    test('Check labels', function(done) {
+      var primary = 'This is primary';
+      var secondary = 'This is secondary';
+      card.primary = primary;
+      card.secondary = secondary;
+      setTimeout(function () {
+        var wrapperLabels = card.$$('.card-actions');
+        var buttons = wrapperLabels.querySelectorAll('button');
+        assert.equal(buttons[0].innerText, secondary, "Secondary label: changed");
+        assert.equal(buttons[1].innerText, primary, "Primary label: changed");
+        done();
+      }, 0);
+    });
+
+    test('Check icon', function(done) {
+      var icon = 'icon-class';
+      card.icon = icon;
+      setTimeout(function () {
+        var el = card.$$('.card-title i');
+        assert.include(el.classList.value, icon, "Class icon: included");
+        done();
+      });
+    });
+
+    /*test('Check Big attr', function(done) {
+      // TODO: Strange error 'fa fa-circle'
+      var bool = true;
+      var icon = 'icon-class';
+      //card.big = bool;
+      card.icon = icon;
+      setTimeout(function () {
+        var el = card.$$('.card-title');
+        var iconEl = card.$$('.card-title i')
+        assert.include(iconEl.classList.value, icon, "Class icon: included");
+        assert.include(el.classList.value, "big-icon", "Class 'big-icon': included");
+        done();
+      });
+    });*/
+
+    test('Check Figure', function(done) {
+      var path = 'path/to/img.jpg';
+      card.figure = path;
+      setTimeout(function () {
+        var el = card.$$('figure img')
+        assert.include(el.src, path, "Relative path in src: included");
+        done();
+      });
+    });
+
+    test('Check Effect (blur)', function() {
+      var eff = "blur";
+      card.effect = eff;
+
+      var el = card.$$('.card');
+      assert.include(el.classList.value, eff, "Effect 'blur': included");
+    });
+
+    test('Check noActions', function(done) {
+      var bool = true;
+      card.noActions = bool;
+      setTimeout(function () {
+        var buttons = Polymer.dom(card.root).querySelectorAll('.card-actions button');
+        assert.lengthOf(buttons, 0, "noActions: correct, no buttons shown");
+        done();
+      }, 20);
+
+    });
+
+    // TODO: link not showing;
+    /*test('Check Link', function(done) {
+      var link = 'http://exampleboh.com';
+      var linkText = 'exampleboh-link';
+      card.link.href = link;
+      card.link.text = linkText;
+      card.link.class = linkText;
+      setTimeout(function () {
+        var anchor = card.$$('.card-actions a');
+        assert.equal(anchor.href, link, "Link: correct");
+        done();
+      }, 50);
+
+    });*/
+
+    test('Check Table', function() {
+      var bool = true;
+      card.table = bool;
+      // card-body is present only with table = false
+      setTimeout(function () {
+        var body = card.$$('.card-body')
+        assert.isNull(body, ".card-body null when table = true");
+      });
+    });
+
+  });
+
+  suite('Test Event', function() {
+		test('Buttons click (primary)', function(done) {
+      var type = "primary";
+
+      card.addEventListener(type, function (evt) {
+				setTimeout(function () {
+	        assert.equal(evt.type, type, "Event name (primary): correct");
+					done();
+				}, 5);
+      });
+
+      setTimeout(function () {
+        var buttonClab = card.querySelectorAll('button-clab')[0];
+				var button = Polymer.dom(buttonClab.root).querySelector('button');
+        button.click();
+      });
+		});
+
+		test('Buttons click (secondary)', function(done) {
+      var type = "secondary";
+
+      card.addEventListener(type, function (evt) {
+				setTimeout(function () {
+	        assert.equal(evt.type, type, "Event name (secondary): correct");
+					done();
+				}, 5);
+      });
+
+      setTimeout(function () {
+        var buttonClab = card.querySelectorAll('button-clab')[1];
+				var button = Polymer.dom(buttonClab.root).querySelector('button');
+        button.click();
+      });
+		});
+	});
+
+
+});
+
+</script>
+</body>
+</html>

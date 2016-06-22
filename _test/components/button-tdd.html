@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../button/view.html">
+
+</head>
+<body>
+
+<test-fixture id="button">
+	<template>
+	  <button-clab></button-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<button-clab>', function() {
+  var button;
+
+  setup(function() {
+		button = fixture('button');
+  });
+
+  suite('Test Properties', function() {
+
+  	test('Default Properties', function() {
+			assert.equal(button.type, '');
+			assert.equal(button.appearance, '');
+			assert.equal(button.size, '');
+			assert.equal(button.icon, '');
+			assert.isFalse(button.disabled);
+      assert.isFalse(button.block);
+		});
+
+  	/*it('change a random property', function() {
+  		var arr = ['type','size','appearance','icon'];
+  		var i = Math.floor(Math.random() * arr.length);
+  		var str = 'prop value';
+  		button[arr[i]] = str;
+  		expect(button[arr[i]]).to.equal(str);
+  	});*/
+  });
+
+  suite('Test DOM Bindings', function(){
+
+  	test('Check type', function() {
+			var str = 'error';
+			button.type = str;
+      var el = button.$$('button')
+			assert.include(el.classList.value, str, "Type correct");
+		});
+
+  	test('Check appearance', function() {
+			var str = 'full';
+			button.appearance = str;
+      var el = button.$$('button')
+			assert.include(el.classList.value, str, "Appearance correct");
+		});
+
+    test('Check size', function() {
+      var str = 'small';
+      button.size = str;
+      var el = button.$$('button')
+      assert.include(el.classList.value, str, "Size correct");
+    });
+
+    test('Check icon', function() {
+      var str = 'fa-camion';
+      button.icon = str;
+      // Wait for dom-change
+      setTimeout(function () {
+        var el = button.$$('button');
+				var icon = Polymer.dom(el.root).querySelector('i');
+        assert.include(i.classList.value, str, "Icon is showing");
+      }, 200);
+    });
+
+    test('Check disabled', function() {
+      var bool = true;
+      button.disabled = bool;
+      assert.isTrue(button.$$('button').disabled, "Button is disabled");
+    });
+  });
+
+  suite('Test Events', function() {
+
+
+    test('Click event', function(done) {
+      // Set up a type
+      var str = 'success'
+      button.type = 'success'
+      var el = button.$$('button');
+      button.addEventListener('btnclick', function (evt) {
+        assert.equal(evt.currentTarget.type, str, "Clicked 'success' button");
+				done();
+      })
+      el.click();
+    });
+  });
+
+});
+
+</script>
+</body>
+</html>
