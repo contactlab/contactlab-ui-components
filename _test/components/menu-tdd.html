@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../menu/view.html">
+
+</head>
+<body>
+
+<test-fixture id="menu">
+	<template>
+	  	<menu-clab>
+			<span class="name">menu-<b>clab</b></span>
+	  	</menu-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<menu-clab>', function() {
+  var menu;
+
+	setup(function() {
+		menu = fixture('menu');
+	});
+
+	suite('Test Properties', function() {
+
+		test('Default Properties', function() {
+      //assert.equal(menu.title, 'Title');
+			assert.equal(menu.titleIcon, 'fa-hand-peace-o');
+			assert.isArray(menu.menu);
+			assert.equal(menu.link, '/');
+			assert.isNull(menu.draft);
+      //assert.isFalse(menu.firstChild, "false firstChild");
+			//assert.isUndefined(menu.submenu);
+      assert.isUndefined(menu.currentHash);
+      assert.isFalse(menu._mainNav);
+		});
+
+	});
+
+  suite('Test DOM Bindings', function() {
+
+		test('Check titleIcon', function(done) {
+      var icon = 'icon-class';
+      menu.titleIcon = icon;
+
+      setTimeout(function () {
+        var iconClass = menu.$$('.logo i').classList;
+        assert.isTrue(iconClass.contains(icon));
+        done();
+      });
+		});
+
+    test('Check menu (array) NO-submenu', function(done) {
+      var arr = [{
+				"label": "Plans",
+				"url": "#/plans",
+				"icon": "clab-icon icon-dashboard icon"
+			}, {
+				"label": "Segments",
+				"url": "#/segments",
+				"icon": "clab-icon icon-segment icon"
+			}, {
+				"label": "Reports",
+				"url": "#/reports",
+				"icon": "clab-icon icon-analytics icon"
+			}];
+      menu.menu = arr;
+
+      setTimeout(function () {
+        var list = Polymer.dom(menu.root).querySelectorAll('.main-nav li');
+        assert.lengthOf(list, arr.length, "Menu binding: correct");
+        done()
+      });
+		});
+
+    test('Check link', function() {
+      var link = 'www.example.com';
+      menu.link = link;
+
+      var anchor = menu.$$('.logo a').getAttribute('href');
+      assert.equal(anchor, link);
+		});
+
+    test('Check draft', function(done) {
+      var draft = 'Text example';
+      menu.draft = draft;
+      setTimeout(function () {
+        var draftRibbon = Polymer.dom(menu.root).querySelector('#draft-ribbon');
+        assert.equal(draftRibbon.innerText, draft);
+        done();
+      });
+    });
+
+    test('Check currentHash', function(done) {
+      var arr = [{
+        "label": "Plans",
+        "url": "#/plans",
+        "icon": "clab-icon icon-dashboard icon"
+      }, {
+        "label": "Segments",
+        "url": "#/segments",
+        "icon": "clab-icon icon-segment icon"
+      }, {
+        "label": "Reports",
+        "url": "#/reports",
+        "icon": "clab-icon icon-analytics icon"
+      }];
+      menu.menu = arr;
+      menu.currentHash = arr[0].url;
+      setTimeout(function () {
+        var firstEl = Polymer.dom(menu.root).querySelectorAll('.main-nav li')[0];
+        assert.isTrue(firstEl.classList.contains('active'));
+        done();
+      });
+    });
+	});
+
+  suite('Test Events', function() {
+
+		test('_toggleMenu()', function() {
+
+		});
+
+	});
+
+});
+
+</script>
+</body>
+</html>

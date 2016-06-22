@@ -46,7 +46,7 @@ suite('<accordion-clab>', function() {
 
       //setTimeout(function(){
         var accordionClasses = accordion.$$('.accordion-block').classList;
-        assert.include(accordionClasses.value, style, 'Accordion Classes: contains "error"');
+        assert.isTrue(accordionClasses.contains(style), 'Accordion Classes: contains "error"');
         //done();
       //}, 50);
 	  });
@@ -56,24 +56,29 @@ suite('<accordion-clab>', function() {
 
     test('Toggle accordion on-click', function(done) {
       var accordionTitle = accordion.$$('.accordion-title');
+			var click = new Event('click');
       accordionTitle.addEventListener('click', function(evt) {
-        var accordionClasses = accordionTitle.classList;
-        console.log(accordionClasses);
-        assert.isTrue(accordion.open, "Accordion open: true");
-        assert.include(accordionClasses.value, "active", 'Accordion Classes: contains "active"');
-        done();
+				setTimeout(function () {
+	        var accordionClasses = accordion.$$('.accordion-block').classList;
+	        assert.isTrue(accordion.open, "Accordion open: true");
+	        assert.isTrue(accordionClasses.contains("active"), 'Accordion Classes: contains "active"');
+	        done();
+				});
       });
-      accordionTitle.click();
+      accordionTitle.dispatchEvent(click);
     });
 
-    test('Toggle accordion with _toggleActive()', function() {
+    test('Toggle accordion with _toggleActive()', function(done) {
       accordion._toggleActive();
-      var accordionClasses = accordion.$$('.accordion-title').classList;
-      assert.isTrue(accordion.open, "Accordion open: true");
-      assert.include(accordionClasses.value, "active", 'Accordion Classes: contains "active"');
+			setTimeout(function () {
+				var accordionClasses = accordion.$$('.accordion-block').classList;
+	      assert.isTrue(accordion.open, "Accordion open: true");
+	      assert.isTrue(accordionClasses.contains("active"), 'Accordion Classes: contains "active"');
+				done()
+			});
     });
   });
-  
+
 });
 
 </script>

@@ -142,13 +142,14 @@ suite('<card-clab>', function() {
 
     });*/
 
-    test('Check Table', function() {
+    test('Check Table', function(done) {
       var bool = true;
       card.table = bool;
       // card-body is present only with table = false
       setTimeout(function () {
-        var body = card.$$('.card-body')
+        var body = card.$$('.card-body');
         assert.isNull(body, ".card-body null when table = true");
+				done();
       });
     });
 
