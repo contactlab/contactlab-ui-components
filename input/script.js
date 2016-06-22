@@ -95,6 +95,18 @@ var InputClab = function () {
 				}
 			};
 		}
+	}, {
+		key: 'attached',
+		value: function attached() {
+			var _this = this;
+
+			Array.prototype.map.call(this.getEffectiveChildren(), function (node) {
+				if (node.classList.contains('note')) {
+					Polymer.dom(_this.$$('note-clab')).appendChild(node);
+					Polymer.dom.flush();
+				}
+			});
+		}
 
 		/*----------
   EVENT HANDLERS

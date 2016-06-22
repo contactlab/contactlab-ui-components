@@ -90,6 +90,16 @@ class InputClab{
 	}
 
 
+	attached(){
+		Array.prototype.map.call(this.getEffectiveChildren(), node=>{
+			if(node.classList.contains('note')){
+				Polymer.dom(this.$$('note-clab')).appendChild(node);
+				Polymer.dom.flush();
+			}
+		})
+	}
+
+
 
 	/*----------
 	EVENT HANDLERS
