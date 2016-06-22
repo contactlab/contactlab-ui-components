@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../file/view.html">
+
+</head>
+<body>
+
+<test-fixture id="file">
+	<template>
+	  <file-clab>This is my note</file-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<file-clab>', function() {
+  var file;
+
+	setup(function() {
+		file = fixture('file');
+	});
+
+	suite('Test Properties', function() {
+
+		test('Default Properties', function() {
+			assert.isUndefined(file.label);
+			assert.isUndefined(file.type);
+			assert.isUndefined(file.noteType);
+			assert.equal(file.name, 'fileinput');
+			assert.isNull(file.value);
+			assert.isFalse(file.disabled);
+			assert.isFalse(file.multiple);
+      assert.isFalse(file.noPreview);
+		});
+
+	});
+
+  suite('Test DOM Bindings', function() {
+
+		test('Check label, type and noteType', function(done) {
+			var label = 'This is a label';
+      var type = 'error';
+      var noteType = 'error-note';
+      file.label = label;
+      file.type = type;
+      file.noteType = noteType;
+      setTimeout(function () {
+        var labelEl = file.$$('label');
+        var inputClass = file.$$('input').classList;
+        var noteClass = file.querySelector('.input-note').classList;
+        assert.equal(labelEl.innerText, label, "Label shows: correct");
+        assert.isTrue(inputClass.contains(type), "Type in class: correct");
+        assert.isTrue(noteClass.contains(noteType), "noteType in class: correct");
+        done()
+      });
+		});
+
+    test('Check name input and value', function(done) {
+      var name = 'newinput';
+      var value = 'file/in/path.pdf';
+      file.name = name;
+      file.value = value;
+
+      setTimeout(function () {
+        var el = file.$$('input[type=text]');
+        assert.equal(el.getAttribute('name'), name, "Name attribute: correct");
+        assert.equal(el.value, value, "Value binding: correct");
+        done();
+      });
+    });
+
+    test('Check disabled', function() {
+      var bool = true;
+      file.disabled = bool;
+
+      var el = file.$$('input[type=text]');
+      assert.isTrue(el.disabled, "Disabled property true: correct");
+    });
+
+    test('Check disabled', function() {
+      var bool = true;
+      file.disabled = bool;
+
+      var el = file.$$('input[type=text]');
+      assert.isTrue(el.disabled, "Disabled property true: correct");
+    });
+
+	});
+
+});
+
+</script>
+</body>
+</html>
