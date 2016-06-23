@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../tabs/view.html">
+
+</head>
+<body>
+
+<test-fixture id="tabs">
+	<template>
+		<tabs-clab active="0">
+		  	<div class="tab-content">First tab Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sit illo mollitia odio quam necessitatibus veritatis sed placeat.</div>
+			<div class="tab-content">Second tab repellat ratione nisi quisquam quod, quo deleniti eveniet asperiores rerum veniam delectus. Voluptas. </div>
+		</tabs-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<tabs-clab>', function() {
+  var tabs;
+
+	setup(function() {
+		tabs = fixture('tabs');
+	});
+
+	suite('Test Properties', function() {
+
+		test('Default Properties', function() {
+			assert.isArray(tabs.labels);
+			assert.isFalse(tabs.pills);
+			assert.isFalse(tabs.vertical);
+			assert.isFalse(tabs.centerd);
+			assert.isFalse(tabs.fullWidth);
+      assert.equal(tabs.active, 0);
+		});
+
+	});
+
+  suite('Test DOM Bindings', function() {
+
+		test('Check labels', function() {
+			var labels = ['label 1', 'label 2', 'label 3'];
+      tabs.labels = labels;
+
+      var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
+      
+		});
+
+	});
+
+
+	/*context('Test DOM Bindings', function(){
+
+		it('Check pills', function(done) {
+			tabs.pills=true;
+
+			setTimeout(function(){
+				expect(tabs.querySelector('.pills')).to.not.be.undefined;
+
+				done();
+			},50);
+		});
+
+		it('Check active', function(done) {
+			var n=1;
+			tabs.active=n;
+
+			setTimeout(function(){
+				expect(tabs.querySelectorAll('.tab')[n].classList.contains('active')).to.equal(true);
+				expect(tabs.querySelectorAll('.tab-content')[n].style.display).to.equal('block');
+
+				done();
+			},50);
+		});
+
+	});*/
+
+});
+
+</script>
+</body>
+</html>

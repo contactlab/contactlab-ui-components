@@ -41,63 +41,42 @@ suite('<progress-clab>', function() {
   suite('Test DOM Bindings', function() {
 
   	test('Check value', function() {
+      var num = Math.floor(Math.random() * 100);
+      // Get percent
+      var perc = progress._percent(num);
+      progress.value = num;
 
+      var el = progress.$$('article');
+      assert.equal(el.style.width, perc);
+	  });
+
+    test('Check minimal', function() {
+      progress.minimal = true;
+      // Get percent
+      var elClass = progress.$$('.progress-bar').classList;
+      assert.isTrue(elClass.contains('minimal'));
+	  });
+
+    test('Check type', function() {
+      var type = 'error';
+      progress.type = type;
+      // Get percent
+      var elClass = progress.$$('.progress-bar').classList;
+      assert.isTrue(elClass.contains(type));
 	  });
 
   });
 
-  /*context('Test DOM Bindings', function(){
 
-	it('Check value', function(done) {
-		var num = Math.floor(Math.random() * 100);
-		var perc = progress._percent(num);
-		progress.value = num;
+  suite('Test Methods', function() {
 
-		setTimeout(function(){
-			expect(progress.querySelector('article').style.width).to.equal(perc);
-
-	  		done();
-		},50);
-	});
-
-	it('Check minimal', function(done) {
-		var bool = true;
-		progress.minimal = bool;
-
-		setTimeout(function(){
-			expect(progress.querySelector('.progress-bar').classList.contains('minimal')).to.equal(true);
-
-	  		done();
-		},50);
-	});
-
-	it('Check type', function(done) {
-		var str = 'error';
-		progress.type = str;
-
-		setTimeout(function(){
-			expect(progress.querySelector('.progress-bar').classList.contains(str)).to.equal(true);
-
-	  		done();
-		},50);
-	});
-
-  });
-
-  context('Test Methods', function() {
-
-  	it('Get % of value', function(done) {
+  	test('Get % of value', function() {
   		var num = Math.floor(Math.random() * 100);
   		var perc = progress._percent(num);
-
-		setTimeout(function(){
-	  		expect(perc).to.equal(num + '%');
-
-	  		done();
-		},50);
+      assert.equal(perc, num + '%');
   	});
 
-  });*/
+  });
 
 });
 
