@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../note/view.html">
+
+</head>
+<body>
+
+<test-fixture id="note">
+	<template>
+	  <note-clab></note-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<note-clab>', function() {
+  var note;
+
+  setup(function() {
+		note = fixture('note');
+  });
+
+  suite('Test Properties', function() {
+
+  	test('Default properties', function() {
+			assert.isUndefined(note.type);
+			assert.isUndefined(note.classes);
+		});
+
+  });
+
+  suite('Test DOM Bindings', function() {
+
+		test('Check type', function() {
+			var type = 'error';
+			note.type = type;
+
+			var elClass = note.$$('.input-note').classList;
+			assert.isTrue(elClass.contains(type));
+		});
+
+  });
+
+});
+
+</script>
+</body>
+</html>

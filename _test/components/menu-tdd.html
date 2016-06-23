@@ -126,7 +126,33 @@ suite('<menu-clab>', function() {
 
   suite('Test Events', function() {
 
-		test('_toggleMenu()', function() {
+		test('_toggleMenu()', function(done) {
+      assert.isFalse(menu._mainNav, "Start with _mainNav = false: correct");
+      var openMenu = menu.$$('.open-menu');
+      var click = new Event('click');
+      openMenu.addEventListener('click', function () {
+        assert.isTrue(menu._mainNav, "Change _mainNav = true: correct");
+        done();
+      });
+      openMenu.dispatchEvent(click);
+		});
+
+    test('_linkClicked()', function(done) {
+      var arr = [{
+        "label": "Plans",
+        "url": "#/plans",
+        "icon": "clab-icon icon-dashboard icon"
+      }];
+      var click = new Event('click');
+      menu.menu = arr;
+      setTimeout(function () {
+        var anchorMenu = menu.$$('.main-nav a');
+        menu.addEventListener('a-click', function (evt) {
+          assert.equal(evt.detail.href, arr[0].url, "Click on link menu and fire event: correct");
+          done();
+        });
+        anchorMenu.dispatchEvent(click);
+      });
 
 		});
 
