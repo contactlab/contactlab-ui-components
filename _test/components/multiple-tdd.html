@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../multiple/view.html">
+
+</head>
+<body>
+
+<test-fixture id="multiple">
+	<template>
+	  <multiple-clab>
+	    <div class="note">This is a note</div>
+	  </multiple-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<multiple-clab>', function() {
+  var multiple;
+
+	setup(function() {
+		multiple = fixture('multiple');
+		multiple.liHeight=20;
+	});
+
+	suite('Test Properties', function() {
+
+		test('Default Properties', function() {
+			assert.isNull(multiple.label);
+      assert.equal(multiple.type, '');
+      assert.isArray(multiple.options);
+      assert.isUndefined(multiple.optionsFn);
+			assert.isUndefined(multiple.url);
+      assert.isArray(multiple.selected);
+      assert.equal(multiple.name, 'multiple select');
+			assert.isFalse(multiple.disabled);
+			assert.isFalse(multiple.spinner);
+			assert.equal(multiple.maxInView, 6);
+			assert.isUndefined(multiple.noteType);
+		});
+
+	});
+
+  suite('Test DOM Bindings', function() {
+
+		test('Check label', function(done) {
+			var label = 'this is label';
+      multiple.label = label;
+      setTimeout(function () {
+        var el = multiple.$$('label');
+        assert.equal(el.innerText, label);
+        done();
+      });
+		});
+
+    test('Check name', function(done) {
+			var name = 'name of multiple';
+      var nameDash = 'name-of-multiple';
+      var label = 'this is label';
+      multiple.label = label;
+      multiple.name = name;
+      setTimeout(function () {
+        var elLabel = multiple.$$('label');
+        var elMultiple = multiple.$$('#' + nameDash);
+        assert.equal(elLabel.getAttribute('for'), nameDash);
+        assert.isNotNull(elMultiple);
+        done();
+      });
+		});
+
+    test('Check type', function(done) {
+      var type = 'error';
+      var label = 'this is label';
+      var name = 'name of multiple';
+      var nameDash = 'name-of-multiple';
+      multiple.label = label;
+      multiple.type = type;
+      multiple.name = name;
+      setTimeout(function () {
+        var elClass = multiple.$$('label').classList;
+        var elMultipleClass = multiple.$$('#' + nameDash).classList;
+        assert.isTrue(elClass.contains(type));
+        assert.isTrue(elMultipleClass.contains(type));
+        done();
+      });
+    });
+
+    test('Check options', function(done) {
+      var obj = [
+          {"label":"ciccio", "value":"ciccio"},
+          {"label":"puzzo raga", "value":"puzzo raga"},
+          {"label":"bella", "value":"bella"},
+          {"label":"raga", "value":"raga"},
+          {"label":"tutto raga", "value":"tutto raga"},
+          {"label":"tutto rego", "value":"tutto rego"}
+        ];
+      multiple.options = obj;
+
+      setTimeout(function () {
+        var els = Polymer.dom(multiple.root).querySelectorAll('li');
+        assert.lengthOf(els, obj.length);
+        done();
+      });
+    });
+
+    test('Check optionsFn', function() {
+      assert('error' == 'no erorr');
+    });
+
+    test('Check url', function() {
+      assert('error' == 'no erorr');
+    });
+
+    test('Check disabled', function(done) {
+      var label = 'this is a label';
+      multiple.disabled = true;
+      multiple.label = label;
+      setTimeout(function () {
+        var labelClass = multiple.$$('label').classList;
+        var wrapClass = multiple.$$('.multiple-wrapper').classList;
+        assert.isTrue(labelClass.contains('disabled'));
+        assert.isTrue(wrapClass.contains('disabled'));
+        done();
+      });
+    });
+
+    test('Check selected', function(done) {
+      var selected = [{"label":"ciccio", "value":"ciccio", "selected":true},{"label":"ciccio3", "value":"ciccio3", "selected":true}];
+      var obj = [{"label":"ciccio", "value":"ciccio"},
+                {"label":"ciccio2", "value":"ciccio2"},
+                {"label":"ciccio3", "value":"ciccio3"}];
+      var click1 = new Event('click');
+      var click2 = new Event('click');
+      multiple.options = obj;
+      multiple.ctrl = true;
+      setTimeout(function () {
+        var els = Polymer.dom(multiple.root).querySelectorAll('li');
+        assert.lengthOf(els, obj.length);
+        els[0].dispatchEvent(click1);
+        els[2].dispatchEvent(click2);
+        setTimeout(function () {
+          assert.isTrue(multiple.options[0].selected);
+          assert.isTrue(multiple.options[2].selected);
+          assert.equal(JSON.stringify(multiple.selected), JSON.stringify(selected));
+          done();
+        });
+      });
+		});
+
+    test('Check spinner', function(done) {
+
+      var obj = [{"label":"ciccio", "value":"ciccio"},
+                {"label":"ciccio2", "value":"ciccio2"},
+                {"label":"ciccio3", "value":"ciccio3"}];
+      multiple.options = obj;
+      multiple.spinner = true;
+
+      setTimeout(function () {
+        var el = multiple.querySelector('.spinner-overlay');
+        assert.isNotNull(el);
+        done();
+      });
+		});
+
+    test('Check noteType', function(done) {
+      var noteType = "note-error";
+      multiple.noteType = noteType;
+      setTimeout(function () {
+        var elClass = multiple.querySelector('.input-note').classList;
+        assert.isTrue(elClass.contains(noteType));
+        done();
+      });
+		});
+
+    test('Check maxInView', function(done) {
+      var max = 2;
+      var obj = [{"label":"ciccio", "value":"ciccio"},
+                {"label":"ciccio2", "value":"ciccio2"},
+                {"label":"ciccio3", "value":"ciccio3"}];
+      multiple.maxInView = max;
+      multiple.options = obj;
+      setTimeout(function () {
+        var el = multiple.querySelector('.options-list');
+        assert.equal(el.style.maxHeight, (multiple.liHeight * multiple.maxInView) + 'px');
+        done();
+      }, 200);
+		});
+	});
+});
+
+</script>
+</body>
+</html>

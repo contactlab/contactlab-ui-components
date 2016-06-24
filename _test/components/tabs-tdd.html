@@ -37,7 +37,7 @@ suite('<tabs-clab>', function() {
 			assert.isArray(tabs.labels);
 			assert.isFalse(tabs.pills);
 			assert.isFalse(tabs.vertical);
-			assert.isFalse(tabs.centerd);
+			assert.isFalse(tabs.centered);
 			assert.isFalse(tabs.fullWidth);
       assert.equal(tabs.active, 0);
 		});
@@ -46,42 +46,84 @@ suite('<tabs-clab>', function() {
 
   suite('Test DOM Bindings', function() {
 
-		test('Check labels', function() {
+		test('Check labels', function(done) {
 			var labels = ['label 1', 'label 2', 'label 3'];
       tabs.labels = labels;
+      setTimeout(function () {
+        var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
+        assert.lengthOf(els, labels.length);
+        done();
+      });
+    });
 
-      var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
-      
-		});
+      test('Check pills', function(done) {
+        tabs.pills = true;
+        setTimeout(function () {
+          var el = tabs.$$('.pills');
+          assert.isNotNull(el, "Pills present");
+          done();
+        });
+      });
 
+      test('Check vertical', function(done) {
+        tabs.vertical = true;
+        setTimeout(function () {
+          var elClass = tabs.$$('.tabs').classList;
+          assert.isTrue(elClass.contains('vertical'), "Vertical class present");
+          done();
+        });
+      });
+
+      test('Check centered', function(done) {
+        tabs.centered = true;
+        setTimeout(function () {
+          var elClass = tabs.$$('.tabs').classList;
+          assert.isTrue(elClass.contains('centered'), "Centerd tabs");
+          done();
+        });
+      });
+
+      test('Check fullWidth', function(done) {
+        tabs.fullWidth = true;
+        setTimeout(function () {
+          var elClass = tabs.$$('.tabs').classList;
+          assert.isTrue(elClass.contains('full-width'), "Full width tab");
+          done();
+        });
+      });
+
+      test('Check active', function(done) {
+        var n = 1;
+        var labels = ['label 1', 'label 2', 'label 3'];
+        tabs.labels = labels;
+        tabs.active = n;
+        setTimeout(function () {
+          var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
+          var elClass = els[n].classList;
+          assert.isTrue(elClass.contains('active'), "Active tab");
+          done();
+        });
+      });
 	});
 
+  suite('Test Events', function() {
 
-	/*context('Test DOM Bindings', function(){
+    test('Change on activate tab', function(done) {
+      var click = new Event('click');
+      var labels = ['label 1', 'label 2', 'label 3'];
+      var n = 2;
+      tabs.labels = labels;
+      tabs.addEventListener('change', function (evt) {
+        assert.equal(evt.detail.active, n);
+        done();
+      });
+      setTimeout(function () {
+        var els = Polymer.dom(tabs.root).querySelectorAll('.tab a');
+        els[n].dispatchEvent(click);
+      });
+    });
 
-		it('Check pills', function(done) {
-			tabs.pills=true;
-
-			setTimeout(function(){
-				expect(tabs.querySelector('.pills')).to.not.be.undefined;
-
-				done();
-			},50);
-		});
-
-		it('Check active', function(done) {
-			var n=1;
-			tabs.active=n;
-
-			setTimeout(function(){
-				expect(tabs.querySelectorAll('.tab')[n].classList.contains('active')).to.equal(true);
-				expect(tabs.querySelectorAll('.tab-content')[n].style.display).to.equal('block');
-
-				done();
-			},50);
-		});
-
-	});*/
+  });
 
 });
 
