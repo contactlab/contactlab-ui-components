@@ -21,7 +21,7 @@
 
 <script>
 // TODO DA COMPLETARE: anomalie
-// input type 
+// input type
 
 suite('<autocomplete-clab>', function() {
   var autocomplete;
@@ -36,12 +36,12 @@ suite('<autocomplete-clab>', function() {
   	test('Default Properties', function() {
   		assert.isNull(autocomplete.label);
   		assert.equal(autocomplete.name, 'auto complete');
+      assert.isUndefined(autocomplete.options);
+  		assert.equal(autocomplete.placeholder, 'Type..');
       assert.isObject(autocomplete.selected);
       assert.equal(autocomplete.valueField, 'value');
       assert.equal(autocomplete.labelField, 'label');
-  		assert.equal(autocomplete.placeholder, 'Type..');
   		assert.isFalse(autocomplete.disabled, 'Input disabled: false');
-      assert.isUndefined(autocomplete.options);
       assert.isUndefined(autocomplete.url);
   		assert.isArray(autocomplete.results);
   		assert.isUndefined(autocomplete.optionsFn);
@@ -55,6 +55,11 @@ suite('<autocomplete-clab>', function() {
       assert.isFalse(autocomplete.inline, "Inline: false");
       assert.isUndefined(autocomplete.labelSize);
       assert.isUndefined(autocomplete.icon);
+
+			assert.isUndefined(autocomplete._inputString);
+			assert.isUndefined(autocomplete._currentHint);
+			assert.isFalse(autocomplete._spinner);
+			assert.isUndefined(autocomplete._interval);
 	  });
 
 	});
@@ -62,151 +67,335 @@ suite('<autocomplete-clab>', function() {
 
 	suite('Test DOM Bindings', function() {
 
-		it('Check label', function(done) {
-			var str = 'ciccio';
-			autocomplete.name = str;
-
-			setTimeout(function(){
-				expect(autocomplete.querySelector('input-clab').name).to.equal(str);
-
+		test('Check label', function(done) {
+			var label = 'ciccio';
+			autocomplete.label = label;
+			setTimeout(function () {
+				var el = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('label');
+				assert.equal(el.innerText, label);
 				done();
-			},50);
+			});
 		});
 
-		/*it('Check name', function(done) {
-			var str='ciccio';
-			autocomplete.label=str;
-
-			setTimeout(function(){
-				expect(autocomplete.querySelector('label')).to.not.be.undefined;
-
+		test('Check name', function(done) {
+			var label = 'ciccio';
+			var name = 'autocompletename';
+			autocomplete.label = label;
+			autocomplete.name = name;
+			setTimeout(function () {
+				var labelEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('label');
+				var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('input');
+				assert.equal(labelEl.getAttribute('for'), name);
+				assert.equal(inputEl.getAttribute('name'), name);
 				done();
-			},50);
+			});
 		});
 
-		it('Check inputType & noteType', function(done) {
-			var str='ciccio';
-			var str2='ciccio2';
-			autocomplete.label=str;
-			autocomplete.inputType=str;
-			autocomplete.noteType=str2;
 
-			setTimeout(function(){
-				expect(autocomplete.querySelector('label').classList.contains(str)).to.equal(true);
-				expect(autocomplete.querySelector('input[type=text]').classList.contains(str)).to.equal(true);
-				expect(autocomplete.querySelector('.input-note').classList.contains(str)).to.equal(true);
-				expect(autocomplete.querySelector('.input-note').classList.contains(str2)).to.equal(true);
-
-				done();
-			},50);
-		});
-
-		it('Check options', function(done) {
-			var obj=[
+		test('Check _inputString and options', function(done) {
+			var opt = [
 					{value: 'A', label: 'Option 1'},
 					{value: 'B', label: 'Option 2'},
 					{value: 'C', label: 'Option 1'},
 					{value: 'D', label: 'Option 2'}
 				];
-			autocomplete.options=obj;
+			var value = 'opti';
+			autocomplete.options = opt;
+			var keyup = new Event('keyup');
 
-			setTimeout(function(){
-				expect(autocomplete.querySelectorAll('.options-list li').length).to.equal(obj.length);
+			autocomplete._inputString = value;
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
 
+			setTimeout(function () {
+				var el = autocomplete.querySelectorAll('.options-list li');
+
+				assert.lengthOf(el, opt.length);
 				done();
-			},50);
+			});
 		});
 
-		it('Check placeholder', function(done) {
-			var str='ciccio';
-			autocomplete.placeholder=str;
+		test('Check placeholder', function() {
+			var placeholder = 'this is a placeholder';
+			autocomplete.placeholder = placeholder;
 
-			setTimeout(function(){
-				expect(autocomplete.querySelector('input-clab').placeholder).to.equal(autocomplete.placeholder);
-
-				done();
-			},50);
+			var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('input');
+			assert.equal(inputEl.placeholder, placeholder);
 		});
 
-		it('Check disabled', function(done) {
-			autocomplete.disabled=true;
-
-			setTimeout(function(){
-				expect(autocomplete.querySelector('input-clab').disabled).to.equal(true);
-
-				done();
-			},50);
-		});
-
-		it('Check hideHints', function(done) {
-			var evt=new Event('keyup');
-			autocomplete.hideHints=true;
-			autocomplete.inputString='opt';
-			autocomplete.options=[
+		test('Check _currentHint', function(done) {
+			var opt = [
 					{value: 'A', label: 'Option 1'},
 					{value: 'B', label: 'Option 2'},
 					{value: 'C', label: 'Option 1'},
 					{value: 'D', label: 'Option 2'}
 				];
-			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+			var value = 'opti';
+			autocomplete.options = opt;
 
-			setTimeout(function(){
-				expect(autocomplete.querySelector('.options-list').classList.contains('active')).to.equal(false);
-
+			var keydown = new Event('keydown');
+			var keyup = new Event('keyup');
+			autocomplete._inputString = value;
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
+			setTimeout(function () {
+				var el = autocomplete.querySelectorAll('.options-list li');
+				el[0].dispatchEvent(keydown);
+				assert.equal(autocomplete._currentHint.value, opt[0].value);
 				done();
-			},50);
+			});
 		});
 
-		it('Check maxInView', function(done) {
-			var evt=new Event('keyup');
-			autocomplete.maxInView=10;
-			autocomplete.inputString='opt';
-			autocomplete.options=[
+		test('Check valueField, labelField', function(done) {
+			var valField = 'valueField';
+			var labelField = 'labelfield';
+			var opt = [
+					{valueField: 'A', labelfield: 'Option 1'},
+					{valueField: 'B', labelfield: 'Option 2'},
+					{valueField: 'C', labelfield: 'Option 1'},
+					{valueField: 'D', labelfield: 'Option 2'}
+				];
+			autocomplete.valueField = valField;
+			autocomplete.labelField = labelField;
+			autocomplete.label = "Test label";
+			autocomplete.options = opt;
+			autocomplete._inputString = "test";
+
+
+			setTimeout(function () {
+				var keyup = new Event('keyup');
+				var inputClab = autocomplete.querySelector('input-clab');
+				inputClab.dispatchEvent(keyup);
+				// Verificare lunghezza coretta opzioni e corretto label mostrato
+				var els = autocomplete.querySelectorAll('.options-list li');
+				assert.equal(els[0].innerText, opt[0].labelfield);
+				assert.lengthOf(els, opt.length);
+				done();
+			});
+
+		});
+
+		test('Check disabled', function(done) {
+
+			autocomplete.disabled = true;
+			autocomplete.label = "label";
+
+			setTimeout(function () {
+				var labelElClass = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('label').classList;
+				var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('input');
+				assert.isTrue(labelElClass.contains('disabled'));
+				assert.isTrue(inputEl.disabled);
+				done();
+			});
+
+		});
+
+		test('Check filter and results', function(done) {
+			var opt = [
 					{value: 'A', label: 'Option 1'},
 					{value: 'B', label: 'Option 2'},
 					{value: 'C', label: 'Option 1'},
 					{value: 'D', label: 'Option 2'}
 				];
-			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+			autocomplete.options = opt;
+			autocomplete._inputString = "test";
 
-			setTimeout(function(){
-				expect(autocomplete.querySelector('.options-list').clientHeight).to.be.below((autocomplete.liHeight*autocomplete.maxInView)+1);
+			// Show hints without filter
+			autocomplete.filter = true;
 
+			var keyup = new Event('keyup');
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
+
+			setTimeout(function () {
+				var els = autocomplete.querySelectorAll('.options-list li');
+				assert.lengthOf(els, 0);
+				assert.lengthOf(autocomplete.results, 0);
 				done();
-			},50);
+			});
+
 		});
 
-		it('Check minChar', function(done) {
-			var evt=new Event('keyup');
-			var typing=false;
-			var listen=function(){ typing=true; }
-			autocomplete.minChar=2;
-			autocomplete.options=[
+		test('Check hideHints', function(done) {
+			var opt = [
 					{value: 'A', label: 'Option 1'},
 					{value: 'B', label: 'Option 2'},
 					{value: 'C', label: 'Option 1'},
 					{value: 'D', label: 'Option 2'}
 				];
-			autocomplete.inputString='op';
-			autocomplete.querySelector('input-clab').dispatchEvent(evt);
+			autocomplete.options = opt;
+			autocomplete._inputString = "opti";
+			autocomplete.hideHints = true;
+
+			var keyup = new Event('keyup');
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
+
+			setTimeout(function () {
+				var elClass = autocomplete.querySelector('.options-list').classList;
+				assert.isFalse(elClass.contains('active'));
+				done();
+			});
+		});
+
+		test('Check minChar', function(done) {
+			var opt = [
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.options = opt;
+			autocomplete._inputString = "opti";
+			autocomplete.minChar = 5
+
+			var keyup = new Event('keyup');
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
+
+			setTimeout(function () {
+				var els = autocomplete.querySelectorAll('.options-list li');
+				assert.lengthOf(els, 0, "Lenght of els must be 0");
+				done();
+			});
+		});
+
+		test('Check maxInView', function(done) {
+			var opt = [
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			autocomplete.options = opt;
+			autocomplete._inputString = "opti";
+			autocomplete.maxInView = 2;
+
+			var keyup = new Event('keyup');
+			var inputClab = autocomplete.querySelector('input-clab');
+			inputClab.dispatchEvent(keyup);
+
+			setTimeout(function () {
+				var elHeight = autocomplete.querySelector('.options-list').clientHeight;
+				assert.isBelow(elHeight, (autocomplete.liHeight * autocomplete.maxInView) + 1);
+				done();
+			});
+		});
+
+		test('Check inputType and noteType', function(done) {
+
+			var type = 'error';
+			autocomplete.inputType = type;
+			autocomplete.noteType = type;
 
 			setTimeout(function(){
-				autocomplete.addEventListener('typing',listen);
-				expect(typing).to.equal(false);
+				var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('.input-wrapper');
+				assert.isTrue(inputEl.classList.contains(type));
+				done();
+			});
+		});
 
-				autocomplete.inputString='opt';
-				autocomplete.querySelector('input-clab').dispatchEvent(evt);
+		test('Check inline', function(done) {
 
-				setTimeout(function(){
-					expect(typing).to.equal(true);
+			autocomplete.inline = true;
 
-					done();
-				},100);
-			},100);
+			setTimeout(function(){
+				var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('.input-wrapper');
+				assert.isTrue(inputEl.classList.contains("inline"));
+				done();
+			});
+		});
+
+		test('Check labelSize', function(done) {
+			var size = 'larger';
+			var label = "label";
+			autocomplete.labelSize = size;
+			autocomplete.label = label;
+
+			setTimeout(function(){
+				var inputEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('.input-wrapper');
+				//assert.equal(inputEl.classList, 'ciao');
+				assert.isTrue(inputEl.classList.contains(size + "-label"));
+				done();
+			}, 1000);
+		});
+
+		test('Check icon', function(done) {
+			var icon = 'icon-test';
+			autocomplete.icon = icon;
+
+			setTimeout(function(){
+				var iconEl = Polymer.dom(autocomplete.$$('input-clab').root).querySelector('label i');
+				assert.isTrue(iconEl.classList.contains(icon));
+				done();
+			});
+		});
+
+		test('Check spinner', function(done) {
+			autocomplete._spinner = true;
+
+			setTimeout(function(){
+				var spinner = autocomplete.$$('spinner-clab').querySelector('.spinner-overlay');
+				assert.isNotNull(spinner);
+				done();
+			});
+		});
+
+	});
+
+	suite('Test Methods', function() {
+
+  	test('Check _startSpinnerTimeout(), _resetSpinnerTimeout() and _interval (prop)', function(done) {
+
+			autocomplete._startSpinnerTimeout();
+			assert.isDefined(autocomplete._interval);
 
 
-		});*/
+			setTimeout(function(){
+				assert.isTrue(autocomplete._spinner);
+				autocomplete._resetSpinnerTimeout();
+				assert.isUndefined(autocomplete._interval);
+				assert.isFalse(autocomplete._spinner);
+				done();
+			}, 400);
+		});
 
+		test('Check setSelected() and resultAsObj = false', function(done) {
+			var opt = [
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			var selected = {value: 'A', label: 'Option 1'};
+			autocomplete.options = opt;
+			// Get selected as string
+			autocomplete.addEventListener('change', function (evt) {
+				assert.equal(evt.detail.selected, selected.label);
+				done();
+			});
+			autocomplete.setSelected(selected);
+
+		});
+
+		test('Check setSelected() and resultAsObj = true', function(done) {
+			var opt = [
+					{value: 'A', label: 'Option 1'},
+					{value: 'B', label: 'Option 2'},
+					{value: 'C', label: 'Option 1'},
+					{value: 'D', label: 'Option 2'}
+				];
+			var selected = {value: 'A', label: 'Option 1'};
+			autocomplete.options = opt;
+			autocomplete.resultAsObj = true;
+			// Get selected as string
+			autocomplete.addEventListener('change', function (evt) {
+				assert.equal(evt.detail.selected.label, selected.label);
+				done();
+			});
+			autocomplete.setSelected(selected);
+
+		});
 	});
 
 });
