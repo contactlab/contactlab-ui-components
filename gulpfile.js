@@ -91,7 +91,6 @@ gulp.task('watch-es6', function() {
 gulp.task('vulcanize', function (c) {
   var files;
   var dest;
-
   if(c!=null){
     if(c==true){ // all but separately
       files= conf.comps;
