@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+
+
+	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+	<script src="./../../../web-component-tester/browser.js"></script>
+
+	<link rel="import" href="./../../calendar/view.html">
+
+</head>
+<body>
+
+<test-fixture id="calendar">
+	<template>
+	 	<calendar-clab></calendar-clab>
+	</template>
+</test-fixture>
+
+
+<script>
+
+suite('<calendar-clab>', function() {
+  var calendar;
+
+  setup(function() {
+	  calendar = fixture('calendar');
+  });
+
+  suite('Test Properties', function() {
+
+  	test('Default Properties', function() {
+
+			assert.isUndefined(calendar.label);
+			assert.isFalse(calendar.disabled);
+			assert.isNull(calendar.valueStr);
+			assert.isFalse(calendar.inline);
+			assert.isUndefined(calendar.placeholder);
+			assert.isUndefined(calendar.type);
+			assert.isUndefined(calendar.noteType);
+
+	  });
+
+  });
+
+  suite('Test DOM Bindings', function() {
+
+  	test('Check label', function(done) {
+
+			var label = 'this is a label';
+      calendar.label = label;
+      setTimeout(function () {
+        var el = calendar.$$('label');
+        assert.equal(el.innerText, label);
+        done();
+      });
+	  });
+
+    test('Check disabled', function(done) {
+
+      calendar.disabled = true;
+      setTimeout(function () {
+        var el = calendar.$$('input[type=text]');
+        assert.isTrue(el.disabled);
+        done();
+      });
+	  });
+
+    test('Check inline', function(done) {
+
+      calendar.inline = true;
+      setTimeout(function () {
+        var el = calendar.$$('.inline-cal');
+        assert.isDefined(el);
+        done();
+      });
+	  });
+
+    test('Check placeholder', function(done) {
+      var placeholder = 'this is a placeholder';
+      calendar.placeholder = placeholder;
+      setTimeout(function () {
+        var el = calendar.$$('input[type=text]');
+        assert.equal(el.getAttribute('placeholder'), placeholder);
+        done();
+      });
+	  });
+
+    test('Check type and noteType', function(done) {
+      var type = 'error';
+      calendar.type = type;
+      calendar.noteType = type;
+      setTimeout(function () {
+        var elInputClass = calendar.$$('input[type=text]').classList;
+        var elNoteClass = calendar.querySelector('.input-note').classList;
+        assert.isTrue(elInputClass.contains(type));
+        assert.isTrue(elNoteClass.contains(type));
+        done();
+      });
+	  });
+
+    test('Check valueStr', function(done) {
+      var str = "A string here";
+      calendar.valueStr = str;
+      setTimeout(function () {
+        var elInput = calendar.$$('input[type=text]');
+        setTimeout(function () {
+          assert.equal(elInput.value, str);
+          done();
+        });
+      });
+	  });
+
+  });
+
+  suite('Test Methods', function() {
+
+  	test('Check setValue() (and _getFormat())', function() {
+      var date = '10/10/2010';
+      var dateFormatted = "2010-10-10 00:00";
+      calendar.setValue(date);
+      assert.equal(calendar.valueStr, dateFormatted);
+	  });
+
+    test('Check getValue() (and _getFormat())', function() {
+      var date = '10/10/2010';
+      calendar.valueStr = date;
+      var dateFormatted = "2010-10-20T10:00:00+02:00";
+      var valueFormatted = calendar.getValue();
+      assert.equal(valueFormatted, dateFormatted);
+	  });
+
+    test('Check _createInstance and getRomeInstance()', function(done) {
+      var date = '10/10/2010';
+      var selector = 'input[type=text]';
+      setTimeout(function () {
+        calendar._createInstance(selector);
+        var romeInstance = calendar.getRomeInstance();
+        assert.isObject(romeInstance);
+        done();
+      });
+	  });
+
+    test('Check clear()', function(done) {
+      var date = '10/10/2010';
+      var selector = 'input[type=text]';
+      calendar.valueStr = date;
+      setTimeout(function () {
+        calendar._createInstance(selector);
+        calendar.clear();
+        assert.isNull(calendar.valueStr);
+        var el = calendar.$$('input[type=text]');
+        assert.equal(el.value, '');
+        done();
+      });
+	  });
+
+  });
+
+  suite('Test Events', function() {
+
+    test('Check datechange (_changeDate())', function(done) {
+      var selector = 'input[type=text]';
+      var date = '10/10/2010';
+      //calendar.valueStr = date;
+      setTimeout(function () {
+        calendar.addEventListener('datechange', function (evt) {
+          assert.equal(evt.detail.date, date);
+          done();
+        });
+        calendar._changeDate(date);
+      });
+    });
+  });
+  
+});
+
+</script>
+</body>
+</html>
