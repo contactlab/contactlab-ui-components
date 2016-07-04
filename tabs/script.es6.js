@@ -27,11 +27,12 @@ class TabsClab{
 				type: Number,
 				value: 0
 			},
+			current:{
+				type:String,
+				notify:true
+			},
 			_content:Array
 		};
-		this.observers = [
-			'_changeTab(active, _content)'
-		]
 	}
 
 	attached(){
@@ -57,6 +58,7 @@ class TabsClab{
 	----------*/
 	_changeTab(active, content){
 		if(active!=undefined && content!=undefined && content.length>0){
+			this.set('current', this.labels[active]);
 
 			while(Polymer.dom(this.$.activeContentWrapper).firstChild){
 				Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);

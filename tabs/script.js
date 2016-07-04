@@ -38,9 +38,12 @@ var TabsClab = function () {
 					type: Number,
 					value: 0
 				},
+				current: {
+					type: String,
+					notify: true
+				},
 				_content: Array
 			};
-			this.observers = ['_changeTab(active, _content)'];
 		}
 	}, {
 		key: 'attached',
@@ -70,6 +73,7 @@ var TabsClab = function () {
 			var _this = this;
 
 			if (active != undefined && content != undefined && content.length > 0) {
+				this.set('current', this.labels[active]);
 
 				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
 					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
