@@ -23,7 +23,7 @@
     "_demo-server"
   ],
   "dependencies": {
-    "polymer": "^1.4.0",
+    "polymer": "^1.6.0",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
     "moment": "2.12.0",
     "web-animations-js": "^2.1.4",
@@ -34,8 +34,5 @@
   "devDependencies": {
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
     "web-component-tester": "Polymer/web-component-tester#~4.1.0"
-  },
-  "resolutions": {
-    "lodash": "^4.13.1"
   }
 }
