@@ -36,26 +36,16 @@ var TabsClab = function () {
 				},
 				active: {
 					type: Number,
-					value: 0,
-					observer: '_changeTab'
-				}
-				// restamp:{
-				// 	type:Boolean,
-				// 	value:false
-				// }
+					value: 0
+				},
+				_content: Array
 			};
+			this.observers = ['_changeTab(active, _content)'];
 		}
 	}, {
 		key: 'attached',
 		value: function attached() {
-			var _this = this;
-
-			this.tabContents = this.querySelectorAll('.tab-content');
-			if (this.tabContents.length > 0) {
-				Array.prototype.map.call(this.tabContents, function (content, i) {
-					if (i != _this.active) content.style.display = 'none';
-				});
-			}
+			this._content = this.getEffectiveChildren();
 		}
 
 		/*----------
@@ -76,23 +66,22 @@ var TabsClab = function () {
 
 	}, {
 		key: '_changeTab',
-		value: function _changeTab(val, old) {
-			if (this.tabContents != undefined) {
-				Array.prototype.map.call(this.tabContents, function (el, i) {
-					if (i === val) el.style.display = 'block';else el.style.display = 'none';
+		value: function _changeTab(active, content) {
+			var _this = this;
+
+			if (active != undefined && content != undefined && content.length > 0) {
+
+				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
+					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
+				}
+				Array.prototype.map.call(this._content, function (node, i) {
+					if (i == active) {
+						Polymer.dom(_this.$.activeContentWrapper).appendChild(node);
+						Polymer.dom.flush();
+						return;
+					}
 				});
 			}
-
-			// if(val!=undefined){
-			// 	let contents = this.contents==undefined?this.getEffectiveChildren():this.contents;
-			// 	while(this.$.content.firstChild){
-			// 		this.$.content.removeChild(this.$.content.firstChild);
-			// 	}
-			// 	this.$.content.appendChild(contents[val]);
-			//
-			// 		// if(this.restamp) this.$.content.appendChild(contents[val].cloneNode(true));
-			// 		// 	else this.$.content.appendChild(contents[val]);
-			// }
 		}
 
 		/*----------

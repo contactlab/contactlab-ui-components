@@ -19,6 +19,7 @@ var CheckboxClab = function () {
 				labels: Array,
 				wrapperType: String,
 				active: {
+					value: [],
 					type: Array,
 					notify: true
 				},
