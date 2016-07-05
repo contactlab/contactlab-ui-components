@@ -38,6 +38,10 @@ var TabsClab = function () {
 					type: Number,
 					value: 0
 				},
+				current: {
+					type: String,
+					notify: true
+				},
 				_content: Array
 			};
 			this.observers = ['_changeTab(active, _content)'];
@@ -69,18 +73,21 @@ var TabsClab = function () {
 		value: function _changeTab(active, content) {
 			var _this = this;
 
-			if (active != undefined && content != undefined && content.length > 0) {
+			if (active != undefined) {
+				this.set('current', this.labels[active]);
 
-				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
-					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
-				}
-				Array.prototype.map.call(this._content, function (node, i) {
-					if (i == active) {
-						Polymer.dom(_this.$.activeContentWrapper).appendChild(node);
-						Polymer.dom.flush();
-						return;
+				if (content != undefined && content.length > 0) {
+					while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
+						Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
 					}
-				});
+					Array.prototype.map.call(this._content, function (node, i) {
+						if (i == active) {
+							Polymer.dom(_this.$.activeContentWrapper).appendChild(node);
+							Polymer.dom.flush();
+							return;
+						}
+					});
+				}
 			}
 		}
 

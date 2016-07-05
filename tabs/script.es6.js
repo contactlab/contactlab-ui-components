@@ -27,9 +27,13 @@ class TabsClab{
 				type: Number,
 				value: 0
 			},
+			current:{
+				type:String,
+				notify:true
+			},
 			_content:Array
 		};
-		this.observers = [
+		this.observers=[
 			'_changeTab(active, _content)'
 		]
 	}
@@ -56,19 +60,21 @@ class TabsClab{
 	OBSERVERS
 	----------*/
 	_changeTab(active, content){
-		if(active!=undefined && content!=undefined && content.length>0){
+		if(active!=undefined){
+			this.set('current', this.labels[active]);
 
-			while(Polymer.dom(this.$.activeContentWrapper).firstChild){
-				Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
-			}
-			Array.prototype.map.call(this._content, (node, i)=>{
-				if(i==active){
-					Polymer.dom(this.$.activeContentWrapper).appendChild(node);
-					Polymer.dom.flush();
-					return;
+			if(content!=undefined && content.length>0){
+				while(Polymer.dom(this.$.activeContentWrapper).firstChild){
+					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
 				}
-			});
-
+				Array.prototype.map.call(this._content, (node, i)=>{
+					if(i==active){
+						Polymer.dom(this.$.activeContentWrapper).appendChild(node);
+						Polymer.dom.flush();
+						return;
+					}
+				});
+			}
 		}
 	}
 
