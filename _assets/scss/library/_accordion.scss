@@ -25,11 +25,11 @@
     }
   }
 
-  .accordion-title {
+  .accordion-title { 
     position: relative;
     padding-left: $medium-spacing;
     cursor: pointer;
-    @include user-selection; 
+    @include user-selection;
 
     &:before {
       content: "\e60c";
@@ -45,7 +45,6 @@
     height: 0;
     padding-left: $medium-spacing;
     padding-top: $small-spacing;
-    overflow: hidden;
     @extend .default-transition;
   }
 }
