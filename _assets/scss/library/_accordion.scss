@@ -25,7 +25,7 @@
     }
   }
 
-  .accordion-title { 
+  .accordion-title {
     position: relative;
     padding-left: $medium-spacing;
     cursor: pointer;
@@ -45,6 +45,7 @@
     height: 0;
     padding-left: $medium-spacing;
     padding-top: $small-spacing;
+    overflow: hidden;
     @extend .default-transition;
   }
 }

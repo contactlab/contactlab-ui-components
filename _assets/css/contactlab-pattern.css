@@ -2859,7 +2859,8 @@ td, .table .th,
 .accordion .accordion-content {
   height: 0;
   padding-left: 30px;
-  padding-top: 10px; }
+  padding-top: 10px;
+  overflow: hidden; }
 
 .tooltip {
   background-color: #656D78;
