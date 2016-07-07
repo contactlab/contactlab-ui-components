@@ -6,16 +6,21 @@
     padding-bottom: $smaller-spacing;
     @extend .default-transition;
 
+    &.opened {
+        overflow: inherit;
+    }
+
     &.active {
+
       margin-bottom: $base-spacing;
-      @extend .default-transition;
+    //   @extend .default-transition;
 
       .accordion-title {
         font-weight: $semibold-weight;
       }
 
       .accordion-content {
-        @extend .default-transition;
+        // @extend .default-transition;
         padding-bottom: $base-spacing;
       }
 

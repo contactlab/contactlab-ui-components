@@ -78,7 +78,7 @@ var CalendarClab = function () {
 	}, {
 		key: "_createInstance",
 		value: function _createInstance(selector) {
-			var obj = void 0;
+			var obj = undefined;
 			_typeof(this.options) == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
 			rome(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 		}
@@ -106,7 +106,7 @@ var CalendarClab = function () {
 	}, {
 		key: "_getFormat",
 		value: function _getFormat() {
-			var thisFormat = void 0;
+			var thisFormat = undefined;
 			this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
 			return thisFormat;
 		}
