@@ -147,6 +147,16 @@ class PaginationClab{
 	}
 
 
+	_hideIfLast(current, tot, str){
+		let text=str?str:'';
+		return (current==tot-1)? text+=' unactive' : text;
+	}
+	_hideIfFirst(current, str){
+		let text=str?str:'';
+		return (current==0)? text+=' unactive' : text;
+	}
+
+
 
 	/*----------
 	UTILS

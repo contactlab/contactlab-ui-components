@@ -18,10 +18,10 @@
 
 	<template>
 		<ul class="pagination">
-			<li class="first" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
+			<li class$="[[_hideIfFirst(currentPage, 'first')]]" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
 				<i class="clab-icon icon-double-arrow-left"></i>
 			</li>
-			<li on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
+			<li class$="[[_hideIfFirst(currentPage)]]" on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
 		    	<i class="clab-icon icon-arrow-left"></i>
 		    </li>
 
@@ -29,13 +29,16 @@
 				<li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
 			</template>
 
-			<li on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
+			<li class$="[[_hideIfLast(currentPage, tot)]]" on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
 		    	<i class="clab-icon icon-arrow-right"></i>
 		    </li>
-			<li class="last" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
+			<li class$="[[_hideIfLast(currentPage, tot, 'last')]]" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
 		    	<i class="clab-icon icon-double-arrow-right"></i>
 		    </li>
 		</ul>
+
+		[[currentPage]]
+		[[tot]]
 	</template>
 
 	<script src="./../_behaviors/behaviors.js"></script>

@@ -164,6 +164,18 @@ var PaginationClab = function () {
 				return c + this.range / 2;
 			}
 		}
+	}, {
+		key: '_hideIfLast',
+		value: function _hideIfLast(current, tot, str) {
+			var text = str ? str : '';
+			return current == tot - 1 ? text += ' unactive' : text;
+		}
+	}, {
+		key: '_hideIfFirst',
+		value: function _hideIfFirst(current, str) {
+			var text = str ? str : '';
+			return current == 0 ? text += ' unactive' : text;
+		}
 
 		/*----------
   UTILS
