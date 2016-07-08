@@ -9,10 +9,10 @@
 			content:"\e60f";
 		}
 	</style>
-	
+
 	<template>
 		<div class="accordion">
-			<div class$="[[_computeType(type)]]">
+			<div class$="[[_computeType(type,overflow)]]">
 				<div class="accordion-title" on-click="_toggleActive">
 					<span>[[title]]</span>
 				</div>

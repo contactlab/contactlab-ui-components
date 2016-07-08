@@ -250,8 +250,8 @@ var MultipleClab = function () {
 		key: '_selectThese',
 		value: function _selectThese(lastClicked) {
 			var arr = [],
-			    first = void 0,
-			    last = void 0;
+			    first = undefined,
+			    last = undefined;
 			if (this.lastSelected > lastClicked) {
 				first = lastClicked;
 				last = this.lastSelected;

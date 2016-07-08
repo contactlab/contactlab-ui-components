@@ -587,7 +587,7 @@ input[type="text"], .dropdown-clab .value_wrapper,
 input[type="time"],
 input[type="url"],
 input[type="week"],
-textarea, .accordion .accordion-block, .accordion .accordion-block.active, .accordion .accordion-block.active .accordion-content, .accordion .accordion-content {
+textarea, .accordion .accordion-block, .accordion .accordion-content {
   -webkit-transition: all 100ms ease-in-out;
   -khtml-transition: all 100ms ease-in-out;
   -moz-transition: all 100ms ease-in-out;
@@ -2579,6 +2579,9 @@ alert-clab {
     cursor: pointer; }
     .pagination li.page.active {
       background-color: #CCD1D9; }
+    .pagination li.unactive {
+      opacity: .3;
+      pointer-events: none; }
 
 .progress-bar {
   position: relative;
@@ -2830,6 +2833,8 @@ td, .table .th,
 
 .accordion .accordion-block {
   padding-bottom: 5px; }
+  .accordion .accordion-block.opened {
+    overflow: inherit; }
   .accordion .accordion-block.active {
     margin-bottom: 20px; }
     .accordion .accordion-block.active .accordion-title {

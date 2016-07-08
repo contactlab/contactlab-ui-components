@@ -105,7 +105,7 @@ var AccordionClab = function () {
 					var player = document.timeline.play(this.openAccordion);
 					this.querySelector('.accordion-block').classList.add('active');
 				} else {
-					var _player = document.timeline.play(this.closeAccordion);
+					var player = document.timeline.play(this.closeAccordion);
 					this.querySelector('.accordion-block').classList.remove('active');
 				}
 			}
