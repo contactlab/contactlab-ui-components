@@ -2830,8 +2830,6 @@ td, .table .th,
 
 .accordion .accordion-block {
   padding-bottom: 5px; }
-  .accordion .accordion-block.opened {
-    overflow: inherit; }
   .accordion .accordion-block.active {
     margin-bottom: 20px; }
     .accordion .accordion-block.active .accordion-title {
@@ -2863,6 +2861,8 @@ td, .table .th,
   padding-left: 30px;
   padding-top: 10px;
   overflow: hidden; }
+  .accordion .accordion-content.opened {
+    overflow: inherit; }
 
 .tooltip {
   background-color: #656D78;

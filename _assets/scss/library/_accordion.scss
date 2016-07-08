@@ -6,10 +6,6 @@
     padding-bottom: $smaller-spacing;
     @extend .default-transition;
 
-    &.opened {
-        overflow: inherit;
-    }
-
     &.active {
 
       margin-bottom: $base-spacing;
@@ -52,6 +48,10 @@
     padding-top: $small-spacing;
     overflow: hidden;
     @extend .default-transition;
+
+    &.opened {
+        overflow: inherit;
+    }
   }
 }
 
