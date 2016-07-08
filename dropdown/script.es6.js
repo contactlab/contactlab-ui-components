@@ -104,13 +104,13 @@ class DropdownClab{
 	----------*/
 	_toggleList(evt){
 		if(!this.disabled){
-			this.querySelector('curtain-clab').open=true;
+			this.$.curtain.open=!this.$.curtain.open;
 			this.querySelector('.value_wrapper').classList.toggle('active');
 		}
 
 		let windowClick=(evt)=>{
 			let name=evt.target.localName;
-			let hasClass=evt.target.classList.contains('dropdown-clab');
+			let hasClass=evt.target.classList.contains('curtain-clab');
 			let hasIdentity=evt.target.classList.contains(this.id);
 
 			if(name=='ol' && hasClass) {
@@ -119,7 +119,7 @@ class DropdownClab{
 				window.removeEventListener('mousedown', windowClick);
 				return;
 			} else {
-				this.querySelector('curtain-clab').open=false;
+				this.$.curtain.open=false;
 				this.querySelector('.value_wrapper').classList.remove('active');
 				window.removeEventListener('mousedown', windowClick);
 			}
@@ -165,6 +165,8 @@ class DropdownClab{
 		let old = this.selected;
 		this.set('selected',item);
 		this.set('highlighted', item);
+		this.$.curtain.open=false;
+		this.querySelector('.value_wrapper').classList.remove('active');
 
 		if(!this.preventChange){
 			if(this.resultAsObj)
