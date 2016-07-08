@@ -22,6 +22,11 @@
         background-color: $gray;
       }
     }
+
+    &.unactive{
+        opacity:.3;
+        pointer-events: none;
+    }
   }
 }
 

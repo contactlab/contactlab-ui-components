@@ -2579,6 +2579,9 @@ alert-clab {
     cursor: pointer; }
     .pagination li.page.active {
       background-color: #CCD1D9; }
+    .pagination li.unactive {
+      opacity: .3;
+      pointer-events: none; }
 
 .progress-bar {
   position: relative;
