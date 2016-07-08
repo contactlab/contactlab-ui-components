@@ -3,6 +3,7 @@ class CurtainClab{
 	beforeRegister(){
 		this.is = "curtain-clab";
 		this.properties = {
+			id:String,
 			options:Array,
 			highlighted:Object,
 			labelField:String,
@@ -101,13 +102,11 @@ class CurtainClab{
 	}
 
 	_compStyles(hidden, maxHeight, height, open){
-		// console.log(hidden, maxHeight, height, open)
 		let arr=[];
 		if(hidden) arr.push('display:block; opacity:0');
 		if(maxHeight!=undefined) arr.push('max-height:'+maxHeight);
 		if(height!=undefined) arr.push('height:'+height);
 		if(open) arr.push('display:block');
-		// return arr.join(';');
 		this.set('_computedStyles', arr.join(';'));
 	}
 
