@@ -1,10 +1,10 @@
 'use strict';
 
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-var AccordionClab = function () {
+var AccordionClab = (function () {
 	function AccordionClab() {
 		_classCallCheck(this, AccordionClab);
 	}
@@ -100,13 +100,19 @@ var AccordionClab = function () {
 		// 	direction: 'reverse'
 		// })
 		value: function _animateOpenClose(val, old) {
+			var _this = this;
+
 			if (old != undefined) {
 				if (val) {
 					var player = document.timeline.play(this.openAccordion);
 					this.querySelector('.accordion-block').classList.add('active');
+					setTimeout(function () {
+						_this.querySelector('.accordion-content').classList.add('opened');
+					}, 110);
 				} else {
 					var player = document.timeline.play(this.closeAccordion);
 					this.querySelector('.accordion-block').classList.remove('active');
+					this.querySelector('.accordion-content').classList.remove('opened');
 				}
 			}
 		}
@@ -128,6 +134,6 @@ var AccordionClab = function () {
 	}]);
 
 	return AccordionClab;
-}();
+})();
 
 Polymer(AccordionClab);

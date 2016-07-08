@@ -20,15 +20,15 @@ class AccordionClab {
 	}
 
 	attached(){
-		this.block=this.querySelector('.accordion-block');
-		this.content=this.querySelector('.accordion-content');
+		this.block = this.querySelector('.accordion-block');
+		this.content = this.querySelector('.accordion-content');
 
 		// Preparing the animations
-		let height=[
+		let height = [
 			{height: '0'},
 			{height: 'auto'}
 		];
-		let margin=[
+		let margin = [
 			{'margin-bottom': '0'},
 			{'margin-bottom': '20px'}
 		];
@@ -100,9 +100,13 @@ class AccordionClab {
 			if(val){
 				let player = document.timeline.play(this.openAccordion);
 				this.querySelector('.accordion-block').classList.add('active');
+				setTimeout(() => {
+					this.querySelector('.accordion-content').classList.add('opened');
+				},110);
 			} else {
 				let player = document.timeline.play(this.closeAccordion);
 				this.querySelector('.accordion-block').classList.remove('active');
+				this.querySelector('.accordion-content').classList.remove('opened');
 			}
 		}
 	}
