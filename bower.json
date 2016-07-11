@@ -19,9 +19,14 @@
     "globals"
   ],
   "keywords": [
-   "motion",
-   "physics",
-   "particles"
+    "polymer",
+    "components",
+    "ui",
+    "pattern",
+    "library",
+    "contactlab",
+    "clab",
+    "webcomponents"
   ],
   "authors": [
     "Salvatore Laisa <moebiusmania@gmail.com>",
