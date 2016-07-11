@@ -1,5 +1,5 @@
 {
-  "name": "clab-ui-components-dev",
+  "name": "clab-ui-components",
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "",
   "dependencies": {
