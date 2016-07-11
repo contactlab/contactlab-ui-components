@@ -2747,6 +2747,15 @@ hr, td, .table .th,
   padding-left: 5px;
   padding-right: 5px;
   position: relative; }
+  hr.align-left, td.align-left, .table .align-left.th,
+  .table .align-left.td, th.align-left, .table .align-left.th {
+    text-align: left; }
+  hr.align-right, td.align-right, .table .align-right.th,
+  .table .align-right.td, th.align-right, .table .align-right.th {
+    text-align: right; }
+  hr.align-center, td.align-center, .table .align-center.th,
+  .table .align-center.td, th.align-center, .table .align-center.th {
+    text-align: center; }
 
 th, .table .th {
   text-align: left;
@@ -2794,7 +2803,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #e7e7e7;
+  background: #e3e3e3;
   cursor: pointer; }
 
 .full-table-wrapper {
