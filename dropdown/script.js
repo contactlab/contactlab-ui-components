@@ -113,13 +113,13 @@ var DropdownClab = function () {
 			var _this = this;
 
 			if (!this.disabled) {
-				this.querySelector('curtain-clab').open = true;
+				this.$.curtain.open = !this.$.curtain.open;
 				this.querySelector('.value_wrapper').classList.toggle('active');
 			}
 
 			var windowClick = function windowClick(evt) {
 				var name = evt.target.localName;
-				var hasClass = evt.target.classList.contains('dropdown-clab');
+				var hasClass = evt.target.classList.contains('curtain-clab');
 				var hasIdentity = evt.target.classList.contains(_this.id);
 
 				if (name == 'ol' && hasClass) {
@@ -128,7 +128,7 @@ var DropdownClab = function () {
 					window.removeEventListener('mousedown', windowClick);
 					return;
 				} else {
-					_this.querySelector('curtain-clab').open = false;
+					_this.$.curtain.open = false;
 					_this.querySelector('.value_wrapper').classList.remove('active');
 					window.removeEventListener('mousedown', windowClick);
 				}
@@ -178,6 +178,8 @@ var DropdownClab = function () {
 			var old = this.selected;
 			this.set('selected', item);
 			this.set('highlighted', item);
+			this.$.curtain.open = false;
+			this.querySelector('.value_wrapper').classList.remove('active');
 
 			if (!this.preventChange) {
 				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'newValue': this.selected, 'oldValue': old });else this.fire('change', { 'selected': this.selected[this.valueField], 'newValue': this.selected, 'oldValue': old });
