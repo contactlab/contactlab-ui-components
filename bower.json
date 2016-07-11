@@ -1,27 +1,7 @@
 {
   "name": "clab-ui-components",
-  "version": "0.1.0",
-  "authors": [
-    "Salvatore Laisa <moebiusmania@gmail.com>",
-    "Meroni Raoul <raoul.meroni@gmail.com>",
-    "Santalucia Laura <laura.dreamrain@gmail.com>"
-  ],
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "",
-  "moduleType": [],
-  "license": "Apache-2.0",
-  "homepage": "index.html",
-  "ignore": [
-    "**/.*",
-    "_test",
-    "_tests",
-    "node_modules",
-    "toaster_",
-    "panel_",
-    "starter_",
-    "pagination_",
-    "_demo-server"
-  ],
   "dependencies": {
     "polymer": "^1.6.0",
     "rome": "moebiusmania/rome#highlighting_v2_1_22",
@@ -34,5 +14,38 @@
   "devDependencies": {
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
     "web-component-tester": "Polymer/web-component-tester#~4.1.0"
+  },
+  "moduleType": [
+    "globals"
+  ],
+  "keywords": [
+   "motion",
+   "physics",
+   "particles"
+  ],
+  "authors": [
+    "Salvatore Laisa <moebiusmania@gmail.com>",
+    "Meroni Raoul <raoul.meroni@gmail.com>",
+    "Santalucia Laura <laura.dreamrain@gmail.com>",
+    "Alessio Occhipinti <alessio.occhipinti@contactlab.com>",
+    "Carlo Audino <carlo.audino@contactlab.com>",
+  ],
+  "license": "Apache-2.0",
+  "ignore": [
+    "**/.*",
+    "_test",
+    "_tests",
+    "node_modules",
+    "toaster_",
+    "panel_",
+    "starter_",
+    "pagination_",
+    "_demo-server"
+  ],
+  "private": false,
+  "homepage": "https://ux.contactlab.com",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/contactlab/contactlab-ui-components"
   }
 }
