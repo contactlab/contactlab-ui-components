@@ -144,9 +144,9 @@ var ModalClab = function () {
 				} else {
 					document.querySelector('body').classList.remove('no-scroll');
 					if (!this.noAnimation) {
-						var animation = this.modalExit(target);
-						var player = document.timeline.play(animation);
-						this._onAnimationComplete(player, function () {
+						var _animation = this.modalExit(target);
+						var _player = document.timeline.play(_animation);
+						this._onAnimationComplete(_player, function () {
 							target.style.display = 'none';
 						});
 					} else {
