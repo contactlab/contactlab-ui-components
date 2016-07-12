@@ -71,6 +71,45 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-segment:before {
+  content: ""; }
+
+.icon-file:before {
+  content: ""; }
+
+.icon-pin:before {
+  content: ""; }
+
+.icon-filter:before {
+  content: ""; }
+
+.icon-filter-2:before {
+  content: ""; }
+
+.icon-diamond:before {
+  content: ""; }
+
+.icon-eye-hide:before {
+  content: ""; }
+
+.icon-magic-wand:before {
+  content: ""; }
+
+.icon-clock:before {
+  content: ""; }
+
+.icon-digital-campaign:before {
+  content: ""; }
+
+.icon-ecommerce:before {
+  content: ""; }
+
+.icon-dots:before {
+  content: ""; }
+
+.icon-retail:before {
+  content: ""; }
+
 .icon-facebook-circle:before {
   content: ""; }
 
@@ -128,6 +167,9 @@ table, .table {
 .icon-check-circle:before {
   content: ""; }
 
+.icon-contactlab:before {
+  content: ""; }
+
 .icon-smartphone:before {
   content: ""; }
 
@@ -135,7 +177,7 @@ table, .table {
   content: ""; }
 
 .icon-chart-pie:before {
-  content: ""; }
+  content: ""; }
 
 .icon-info-full:before {
   content: ""; }
@@ -197,29 +239,26 @@ table, .table {
 .icon-tag-full:before {
   content: ""; }
 
-.icon-filter:before {
-  content: ""; }
-
 .icon-double-arrow-left:before {
-  content: ""; }
-
-.icon-double-arrow-right:before {
   content: ""; }
 
-.icon-eye:before {
+.icon-double-arrow-right:before {
   content: ""; }
 
+.icon-eye:before {
+  content: ""; }
+
 .icon-info:before {
-  content: ""; }
+  content: ""; }
 
 .icon-heart:before {
-  content: ""; }
+  content: ""; }
 
 .icon-heart-full:before {
-  content: ""; }
+  content: ""; }
 
 .icon-lock:before {
-  content: ""; }
+  content: ""; }
 
 .icon-refresh:before {
   content: ""; }
@@ -376,9 +415,6 @@ table, .table {
 
 .icon-users:before {
   content: ""; }
-
-.icon-contactlab:before {
-  content: ""; }
 
 @font-face {
   font-family: 'frutiger-light';
