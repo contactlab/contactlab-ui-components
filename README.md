@@ -28,16 +28,15 @@ For detailed instruction on how to install and use the ContactLab Pattern Librar
 Internet Explorer 11 does not support the .from() method in the Array object. You can use [this polyfill](https://github.com/ChilldeinEistee/Array.from) to fix the issue. In a future release we will ship this polyfill within the project.
 
 ### Builds
-Work in progress
 
-* `$ gulp build`  				
-Build all elements inside a single file (\_components/clab-components.build.html)
-* `$ gulp build --all` 	
-Build all elements inside a poper folder (elementName/elementName.html)
-* `$ gulp build 	--single [elementName]`  
-Build single choosen element inside proper folder (elementName/elementName.html)
-* `$ gulp build 	--single [elementName1|elementName2|...]`  
-Build every choosen elements and wrap in a file (\_components/clab-components-custom.build.html)
+`$ gulp build`  				
+Build all elements inside a single file (clab-ui-components.html)  
+`$ gulp build --all` 	
+Build all elements inside a poper folder (elementName/elementName.html)  
+`$ gulp build --single [elementName]`  
+Build single choosen element inside proper folder (elementName/elementName.html)  
+`$ gulp build --single [elementName1,elementName2,...]`  
+Build every choosen elements and wrap in a file (clab-ui-components-custom.html)
 
 <!-- ### Building
 * gulp build: 					creates a minified file containing all the components in the root folder.

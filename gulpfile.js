@@ -97,9 +97,9 @@ gulp.task('watch-es6', function() {
 */
 gulp.task('vulcanize', function (all, single) {
   // Define file where all components are import
-  var files = './_components/clab-components.html';
+  var files = './_components/clab-ui-components.html';
   // Define destination path for building
-  var dest = './_components/';
+  var dest = './';
 
   // If "--all" as arg
   // Build every single element inside proper folder
@@ -108,18 +108,18 @@ gulp.task('vulcanize', function (all, single) {
     dest = '';
   // If "--single" and elementName as arg and check for "|"
   // Build single element choosen (or multiple)
-  } else if(single && typeof single === "string" && single.split('|').length > 1){
+  } else if(single && typeof single === "string" && single.split(',').length > 1){
     // Setup custom destination for imports
-    files = './_components/clab-components-custom.html';
+    files = './_components/clab-ui-components-custom.html';
     // Split string in single element name
     // Put it in array
-    var elArr = single.split(' ');
+    var elArr = single.split(',');
     var data = '';
     // Setup import to attach to the building file
     elArr.forEach(function(el) {
-      data += '<link rel="import" href="../'+arr[i]+'/view.html">\n';
+      data += '<link rel="import" href="../'+ el +'/view.html">\n';
     });
-    fs.writeFileSync('./_components/clab-components-custom.html', data);
+    fs.writeFileSync('./_components/clab-ui-components-custom.html', data);
   // Else if single element
   } else if (single && typeof single === "string") {
     files = './' + single + '/view.html';
@@ -127,7 +127,7 @@ gulp.task('vulcanize', function (all, single) {
   } else if (single) {
     throw new gutil.PluginError({
       plugin: "vulcanize",
-      message: "'--single' param passed with no 'elementName' or 'elementName1|elementName2'"
+      message: "'--single' param passed with no 'elementName' or 'elementName1,elementName2'"
     });
   }
 
@@ -141,8 +141,7 @@ gulp.task('vulcanize', function (all, single) {
       inlineScripts:true
     }))
     .pipe(rename(function(path){
-      path.basename = path.basename + '.build';
-      if(dest != './_components/') {
+      if(dest != './') {
         path.basename = path.dirname;
       }
       console.log('BUILT: '+ path.basename +' in '+ (dest === '' ? (path.dirname.length > 1 ? path.dirname : 'root') : dest));
@@ -152,8 +151,8 @@ gulp.task('vulcanize', function (all, single) {
 
 
 gulp.task('min-html', ['vulcanize'] , function(all, single) {
-  var files = './_components/clab-components.build.html';
-  var dest = './_components/';
+  var files = './clab-ui-components.html';
+  var dest = './';
 
   // If "--all" as arg
   // Build every single element inside proper folder
@@ -164,7 +163,7 @@ gulp.task('min-html', ['vulcanize'] , function(all, single) {
   // Build single element choosen (or multiple)
   } else if(single && typeof single === "string" && single.split('|').length > 1){
     // Setup custom destination for imports
-    files = './_components/clab-components-custom.build.html';
+    files = './clab-components-custom.html';
   // Else if single element
   } else if (single && typeof single === "string") {
     files = './' + single + '/'+ single +'.html';
@@ -177,8 +176,8 @@ gulp.task('min-html', ['vulcanize'] , function(all, single) {
 });
 
 gulp.task('min-inline', ['min-html'], function(all, single) {
-  var files = './_components/clab-components.build.html';
-  var dest = './_components/';
+  var files = './clab-components.html';
+  var dest = './';
 
   // If "--all" as arg
   // Build every single element inside proper folder
@@ -189,7 +188,7 @@ gulp.task('min-inline', ['min-html'], function(all, single) {
   // Build single element choosen (or multiple)
   } else if(single && typeof single === "string" && single.split('|').length > 1){
     // Setup custom destination for imports
-    files = './_components/clab-components-custom.build.html';
+    files = './clab-components-custom.html';
   // Else if single element
   } else if (single && typeof single === "string") {
     files = './' + single + '/'+ single +'.html';
