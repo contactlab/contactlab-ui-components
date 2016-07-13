@@ -37,7 +37,7 @@ Build all elements inside a poper folder (elementName/elementName.html)
 * `$ gulp build 	--single [elementName]`  
 Build single choosen element inside proper folder (elementName/elementName.html)
 * `$ gulp build 	--single [elementName1|elementName2|...]`  
-Build every choosen elements inside proper folder (elementName/elementName.html)
+Build every choosen elements and wrap in a file (\_components/clab-components-custom.build.html)
 
 <!-- ### Building
 * gulp build: 					creates a minified file containing all the components in the root folder.
