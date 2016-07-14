@@ -165,7 +165,7 @@ header {
 				right: -9px;
 				width: 18px;
 				height: 18px;
-				background-color: $primary-color;
+				background-color: $primary-color; 
 				color: $primary-text-color;
 				line-height: 18px;
 				text-align: center;
@@ -182,10 +182,11 @@ header {
 
 			.company {
 				font-size: $small-font-size;
+				@extend .truncate;
 			}
 
 			.workspace {
-				font-size: $smaller-font-size;
+				font-size: $small-font-size;
 				color: $medium-gray;
 				@extend .truncate;
 			}
