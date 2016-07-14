@@ -165,7 +165,7 @@ header {
 				right: -9px;
 				width: 18px;
 				height: 18px;
-				background-color: $primary-color; 
+				background-color: $primary-color;
 				color: $primary-text-color;
 				line-height: 18px;
 				text-align: center;
@@ -177,12 +177,14 @@ header {
 		.user-details {
 			flex-grow: 1;
 			padding: 0 10px;
+			max-width: 205px;
 			text-align: right;
 			@include user-selection(none);
 
 			.company {
 				font-size: $small-font-size;
 				@extend .truncate;
+				margin-top: 3px;
 			}
 
 			.workspace {
