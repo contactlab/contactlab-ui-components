@@ -146,6 +146,7 @@ header {
 			display: flex;
 			justify-content: center;
 			align-items: center;
+			flex: 0 0 45px;
 
 			img {
 				position: absolute;
@@ -181,6 +182,12 @@ header {
 
 			.company {
 				font-size: $small-font-size;
+			}
+
+			.workspace {
+				font-size: $smaller-font-size;
+				color: $medium-gray;
+				@extend .truncate;
 			}
 		}
 
