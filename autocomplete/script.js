@@ -27,6 +27,7 @@ var AutoCompleteClab = function () {
 				selected: {
 					type: Object,
 					value: {},
+					notify: true,
 					observer: '_changedSelected'
 				},
 				valueField: {

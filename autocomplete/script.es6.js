@@ -18,6 +18,7 @@ class AutoCompleteClab{
 			selected:{
 				type:Object,
 				value:{},
+				notify:true,
 				observer:'_changedSelected'
 			},
 			valueField: {
