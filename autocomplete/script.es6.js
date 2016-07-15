@@ -18,7 +18,6 @@ class AutoCompleteClab{
 			selected:{
 				type:Object,
 				value:{},
-				notify:true,
 				observer:'_changedSelected'
 			},
 			valueField: {
@@ -258,13 +257,12 @@ class AutoCompleteClab{
 	}
 
 	_changedSelected(val, old){
-		// console.log(val, old);
 		if(val!=undefined && Object.keys(val).length>0){
 			this._inputString=this.selected[this.labelField];
 			this._currentHint=undefined;
 
-			if(this.resultAsObj) this.fire('change', {'selected':this.selected});
-				else this.fire('change', {'selected':this._inputString});
+			if(this.resultAsObj) this.fire('change', {'selected':this.selected, 'value':this.selected});
+				else this.fire('change', {'selected':this.this.selected.label, 'value':this.this.selected.label});
 		}
 	}
 
