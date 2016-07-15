@@ -17,7 +17,8 @@ class AutoCompleteClab{
 			},
 			selected:{
 				type:Object,
-				value:{}
+				value:{},
+				observer:'_changedSelected'
 			},
 			valueField: {
 				type: String,
@@ -101,7 +102,8 @@ class AutoCompleteClab{
 	_handleKeyboardInputs(evt){
 		// If Enter
 		if(evt.keyCode==13 && this._currentHint!=undefined){
-			this.setSelected(this._currentHint);
+			// this.setSelected(this._currentHint);
+			this.set('selected', this._currentHint);
 			this.querySelector('input-clab input').blur();
 			this.results=[];
 			return;
@@ -146,7 +148,8 @@ class AutoCompleteClab{
 	}
 
 	handleSelect(evt){
-		this.setSelected(this.results[evt.detail.index]);
+		// this.setSelected(this.results[evt.detail.index]);
+		this.set('selected', this.results[evt.detail.index]);
 	}
 
 	_handleBlur(evt){
@@ -253,6 +256,17 @@ class AutoCompleteClab{
 		});
 	}
 
+	_changedSelected(val, old){
+		// console.log(val, old);
+		if(val!=undefined && Object.keys(val).length>0){
+			this._inputString=this.selected[this.labelField];
+			this._currentHint=undefined;
+
+			if(this.resultAsObj) this.fire('change', {'selected':this.selected});
+				else this.fire('change', {'selected':this._inputString});
+		}
+	}
+
 
 
 
@@ -280,11 +294,11 @@ class AutoCompleteClab{
 	----------*/
 	setSelected(obj){
 		this.set('selected', obj);
-		this._inputString=this.selected[this.labelField];
-		this._currentHint=undefined;
-
-		if(this.resultAsObj) this.fire('change', {'selected':this.selected});
-			else this.fire('change', {'selected':this._inputString});
+		// this._inputString=this.selected[this.labelField];
+		// this._currentHint=undefined;
+		//
+		// if(this.resultAsObj) this.fire('change', {'selected':this.selected});
+		// 	else this.fire('change', {'selected':this._inputString});
 	}
 
 
