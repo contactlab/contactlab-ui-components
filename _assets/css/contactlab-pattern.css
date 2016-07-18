@@ -3088,7 +3088,12 @@ ol {
   margin: 0 0 20px; }
   ul li,
   ol li {
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto; }
 
 ul.default,
 ol.default {
