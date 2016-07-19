@@ -50,6 +50,10 @@ var ModalClab = function () {
 				stopClose: {
 					type: Boolean,
 					value: false
+				},
+				width: {
+					type: Number,
+					value: 840
 				}
 			};
 		}
@@ -88,6 +92,12 @@ var ModalClab = function () {
 					};
 				})();
 			}
+		}
+	}, {
+		key: 'computeWidth',
+		value: function computeWidth(width) {
+			var str = 'max-width:' + width + 'px';
+			return str;
 		}
 
 		/*----------
