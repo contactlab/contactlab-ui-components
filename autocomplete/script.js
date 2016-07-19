@@ -314,7 +314,6 @@ var AutoCompleteClab = function () {
 	}, {
 		key: '_setLabelSize',
 		value: function _setLabelSize(newSize) {
-			console.log("NEW SIZE", newSize);
 			this.set("labelSize", newSize);
 		}
 

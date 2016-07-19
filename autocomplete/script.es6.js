@@ -288,7 +288,6 @@ class AutoCompleteClab{
 	}
 
 	_setLabelSize(newSize){
-		console.log("NEW SIZE", newSize)
 		this.set("labelSize", newSize)
 	}
 
