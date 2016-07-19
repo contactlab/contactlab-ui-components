@@ -73,7 +73,10 @@ class AutoCompleteClab{
 				type:Boolean,
 				value:false
 			},
-			labelSize: String,
+			labelSize: {
+				type: String,
+				observer: '_setLabelSize'
+			},
 			icon:String,
 
 
@@ -207,7 +210,7 @@ class AutoCompleteClab{
 			else {
 				let results=[];
 				this.options.map((opt, i)=>{
-					if(opt.label.toLowerCase().search(searchVal)>-1) results.push(this.options[i]);
+					if(opt[this.labelField].toLowerCase().search(searchVal)>-1) results.push(this.options[i]);
 				});
 				this.set('results', results);
 			}
@@ -284,7 +287,10 @@ class AutoCompleteClab{
 		if(this._spinner) this._spinner=false;
 	}
 
-
+	_setLabelSize(newSize){
+		console.log("NEW SIZE", newSize)
+		this.set("labelSize", newSize)
+	}
 
 
 
