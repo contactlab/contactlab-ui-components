@@ -265,7 +265,7 @@ class AutoCompleteClab{
 			this._currentHint=undefined;
 
 			if(this.resultAsObj) this.fire('change', {'selected':this.selected, 'value':this.selected});
-				else this.fire('change', {'selected':this.this.selected.label, 'value':this.this.selected.label});
+				else this.fire('change', {'selected':this.selected.label, 'value':this.selected.label});
 		}
 	}
 

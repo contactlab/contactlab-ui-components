@@ -36,7 +36,7 @@ suite('<checkbox-clab>', function() {
 		test('Default Properties', function() {
 			assert.isUndefined(checkbox.labels);
 			assert.isUndefined(checkbox.wrapperType);
-			assert.isUndefined(checkbox.active); // MUST BE ARRAY
+			assert.isArray(checkbox.active);
 			assert.isUndefined(checkbox.disabled);
 		});
 

@@ -359,7 +359,7 @@ suite('<autocomplete-clab>', function() {
 			assert.isDefined(autocomplete._interval);
 
 
-			flush(function(){
+			setTimeout(function(){
 				assert.isTrue(autocomplete._spinner);
 				autocomplete._resetSpinnerTimeout();
 				assert.isUndefined(autocomplete._interval);
