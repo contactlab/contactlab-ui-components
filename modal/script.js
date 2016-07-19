@@ -94,8 +94,8 @@ var ModalClab = function () {
 			}
 		}
 	}, {
-		key: 'computeWidth',
-		value: function computeWidth(width) {
+		key: '_computeWidth',
+		value: function _computeWidth(width) {
 			var str = 'max-width:' + width + 'px';
 			return str;
 		}

@@ -94,7 +94,7 @@ class ModalClab{
 		}
 	}
 
-	computeWidth(width) {
+	_computeWidth(width) {
 		let str = 'max-width:' + width + 'px';
 		return str;
 	}
