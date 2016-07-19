@@ -17,8 +17,8 @@
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
+				<div class="close-overlay" on-click="_closeModal"><i class="clab-icon icon-close"></i></div>
 				<div class="modal">
-					<div class="close-overlay" on-click="_closeModal"><i class="clab-icon icon-close"></i></div>
 					<div class="modal-wrapper" style$="[[_computeWidth(width)]]">
 						<div class="modal-title">[[title]]</div>
 						<template is="dom-if" if="[[content]]">
