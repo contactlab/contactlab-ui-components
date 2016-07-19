@@ -3123,6 +3123,9 @@ ol.default {
   margin: 0 auto;
   padding: 5rem 20px 40px; }
 
+.modal-wrapper.large {
+  max-width: 1100px; }
+
 .modal {
   position: absolute;
   top: 0;
