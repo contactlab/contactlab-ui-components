@@ -13,7 +13,8 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
     minifyInline = require('gulp-minify-inline'),
     sass = require('gulp-sass'),
     sourcemaps = require('gulp-sourcemaps'),
-    watch = require('gulp-watch');
+    watch = require('gulp-watch'),
+    gutil = require("gulp-util");
 
 
 /**
@@ -85,10 +86,122 @@ gulp.task('watch-es6', function() {
 });
 
 
+
+/* ===========================================================
+      BUILDING REV(13/07)
+    ========================================================= */
+
 /**
+* Prepare single file with import of all componets if needed
 * Vulcanize components in a single file
 */
-gulp.task('vulcanize', function (c) {
+gulp.task('vulcanize', function (all, single) {
+  // Define file where all components are import
+  var files = './_components/clab-ui-components.html';
+  // Define destination path for building
+  var dest = './';
+
+  // If "--all" as arg
+  // Build every single element inside proper folder
+  if(all){
+    files = conf.comps;
+    dest = '';
+  // If "--single" and elementName as arg and check for "|"
+  // Build single element choosen (or multiple)
+  } else if(single && typeof single === "string" && single.split(',').length > 1){
+    // Setup custom destination for imports
+    files = './_components/clab-ui-components-custom.html';
+    // Split string in single element name
+    // Put it in array
+    var elArr = single.split(',');
+    var data = '';
+    // Setup import to attach to the building file
+    elArr.forEach(function(el) {
+      data += '<link rel="import" href="../'+ el +'/view.html">\n';
+    });
+    fs.writeFileSync('./_components/clab-ui-components-custom.html', data);
+  // Else if single element
+  } else if (single && typeof single === "string") {
+    files = './' + single + '/view.html';
+    dest = './' + single + '/';
+  } else if (single) {
+    throw new gutil.PluginError({
+      plugin: "vulcanize",
+      message: "'--single' param passed with no 'elementName' or 'elementName1,elementName2'"
+    });
+  }
+
+  // Start with gulp real task
+  return gulp.src(files)
+    .pipe(vulcanize({
+      abspath: '',
+      stripExcludes:false,
+      stripComments: true,
+      inlineCSS:false,
+      inlineScripts:true
+    }))
+    .pipe(rename(function(path){
+      if(dest != './') {
+        path.basename = path.dirname;
+      }
+      console.log('BUILT: '+ path.basename +' in '+ (dest === '' ? (path.dirname.length > 1 ? path.dirname : 'root') : dest));
+    }))
+    .pipe(gulp.dest(dest));
+});
+
+
+gulp.task('min-html', ['vulcanize'] , function(all, single) {
+  var files = './clab-ui-components.html';
+  var dest = './';
+
+  // If "--all" as arg
+  // Build every single element inside proper folder
+  if(all){
+    files = conf.compsBuilt;
+    dest = '';
+  // If "--single" and elementName as arg and check for "|"
+  // Build single element choosen (or multiple)
+  } else if(single && typeof single === "string" && single.split('|').length > 1){
+    // Setup custom destination for imports
+    files = './clab-components-custom.html';
+  // Else if single element
+  } else if (single && typeof single === "string") {
+    files = './' + single + '/'+ single +'.html';
+    dest = './' + single + '/';
+  }
+
+  return gulp.src(files)
+    .pipe(minifyHTML({ empty: true }))
+    .pipe(gulp.dest(dest))
+});
+
+gulp.task('min-inline', ['min-html'], function(all, single) {
+  var files = './clab-components.html';
+  var dest = './';
+
+  // If "--all" as arg
+  // Build every single element inside proper folder
+  if(all){
+    files = conf.compsBuilt;
+    dest = '';
+  // If "--single" and elementName as arg and check for "|"
+  // Build single element choosen (or multiple)
+  } else if(single && typeof single === "string" && single.split('|').length > 1){
+    // Setup custom destination for imports
+    files = './clab-components-custom.html';
+  // Else if single element
+  } else if (single && typeof single === "string") {
+    files = './' + single + '/'+ single +'.html';
+    dest = './' + single + '/';
+  }
+
+  return gulp.src(files)
+    .pipe(minifyInline())
+    .pipe(gulp.dest(dest))
+});
+
+
+/*gulp.task('vulcanize', function (c) {
   var files;
   var dest;
   if(c!=null){
@@ -127,11 +240,8 @@ gulp.task('vulcanize', function (c) {
     }))
     .pipe(gulp.dest(dest));
 });
-
-
 /**
 * Minify HTML code
-*/
 gulp.task('min-html', ['vulcanize'] , function(c) {
   var files;
   var dest;
@@ -156,11 +266,8 @@ gulp.task('min-html', ['vulcanize'] , function(c) {
     .pipe(minifyHTML({ empty: true }))
     .pipe(gulp.dest(dest))
 });
-
-
 /**
 * Minify inline Javascript
-*/
 gulp.task('min-inline', ['min-html'], function(c) {
   var files;
   var dest;
@@ -184,7 +291,9 @@ gulp.task('min-inline', ['min-html'], function(c) {
   return gulp.src(files)
     .pipe(minifyInline())
     .pipe(gulp.dest(dest))
-});
+});*/
+
+
 
 /**
 * Default action: webserver
@@ -203,8 +312,18 @@ gulp.task('ux', ['connect', 'watch-sass']);
 
 /**
 * Vulcanize Polymer components in one file
+* Will generate _components/clab-components.build.html
+* @arg {--all} Will generate every componentName/componentName.html build
+* @arg {--single elementName (elementName1|elementName2)} Will generate choosen componentName/componentName.html build
+*
+* This task will run in order:
+* 1. "vulcanize";
+* 2. "min-html";
+* 3. "min-inline"
+*
 */
 gulp.task('build', ['min-inline']);
+
 // gulp.task('build', function(cb){
 //   runSequence('vulcanize','minHtml','minInline');
 // });

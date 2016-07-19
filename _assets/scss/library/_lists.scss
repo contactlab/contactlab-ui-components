@@ -9,6 +9,7 @@ ol {
 
   li {
     margin-bottom: $smaller-spacing;
+    @include user-selection(auto);
   }
 }
 
