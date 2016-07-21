@@ -30,7 +30,7 @@
                         <span class="placeholder">[[placeholder]]</span>
                     </template>
                 </div>
-                <curtain-clab id="curtain" options="[[options]]" highlighted="[[highlighted]]" label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"></curtain-clab>
+                <curtain-clab id="curtain" options="[[options]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]" label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"></curtain-clab>
             </div>
 
             <content select=".button"></content>

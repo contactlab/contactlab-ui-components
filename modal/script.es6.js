@@ -43,6 +43,10 @@ class ModalClab{
 			stopClose:{
 				type:Boolean,
 				value:false
+			},
+			width: {
+				type: Number,
+				value: 840
 			}
 		};
 	}
@@ -90,7 +94,10 @@ class ModalClab{
 		}
 	}
 
-
+	_computeWidth(width) {
+		let str = 'max-width:' + width + 'px';
+		return str;
+	}
 
 	/*----------
 		EVENT HANDLERS
