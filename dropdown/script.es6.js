@@ -76,11 +76,15 @@ class DropdownClab{
 				value:4
 			},
 			noteType: String,
-			_liHeight:{
+			maxHeight: {
+				type: Number,
+				value: 28
+			}
+			/*_liHeight:{
 				type:String,
 				value:null,
 				readonly: true
-			}
+			}*/
 		};
 	}
 
@@ -176,12 +180,6 @@ class DropdownClab{
 		}
 	}
 
-	_setMaxHeight(){
-		this._liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
-		// this._liHeight= 30;
-		this.querySelector('.options-list').style.maxHeight=(this._liHeight*this.maxInView)+'px';
-	}
-
 
 
 	/*----------
@@ -240,6 +238,10 @@ class DropdownClab{
 
 	_compLabel(option){
 		return option? option[this.labelField] : '';
+	}
+
+	_compMaxHeight(height){
+		return height ? height: '';
 	}
 
 

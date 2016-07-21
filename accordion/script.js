@@ -55,16 +55,6 @@ var AccordionClab = function () {
 				direction: 'normal'
 			})]);
 
-			// new KeyframeEffect(this.block, padding, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'normal'
-			// }),
-			// new KeyframeEffect(this.block, shadow, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'normal'
-			// })
 			this.closeAccordion = new GroupEffect([new KeyframeEffect(this.content, height, {
 				duration: 100,
 				fill: 'forwards',
@@ -88,17 +78,6 @@ var AccordionClab = function () {
 
 	}, {
 		key: '_animateOpenClose',
-
-		// new KeyframeEffect(this.block, padding, {
-		// 	duration:100,
-		// 	fill:'forwards',
-		// 	direction: 'reverse'
-		// }),
-		// new KeyframeEffect(this.block, shadow, {
-		// 	duration:100,
-		// 	fill:'forwards',
-		// 	direction: 'reverse'
-		// })
 		value: function _animateOpenClose(val, old) {
 			var _this = this;
 
