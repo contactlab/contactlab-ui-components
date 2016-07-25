@@ -26,7 +26,8 @@ var AutoCompleteClab = function () {
 				},
 				selected: {
 					type: Object,
-					value: {}
+					value: {},
+					observer: '_changedSelected'
 				},
 				valueField: {
 					type: String,
@@ -111,7 +112,8 @@ var AutoCompleteClab = function () {
 
 			// If Enter
 			if (evt.keyCode == 13 && this._currentHint != undefined) {
-				this.setSelected(this._currentHint);
+				// this.setSelected(this._currentHint);
+				this.set('selected', this._currentHint);
 				this.querySelector('input-clab input').blur();
 				this.results = [];
 				return;
@@ -156,7 +158,8 @@ var AutoCompleteClab = function () {
 	}, {
 		key: 'handleSelect',
 		value: function handleSelect(evt) {
-			this.setSelected(this.results[evt.detail.index]);
+			// this.setSelected(this.results[evt.detail.index]);
+			this.set('selected', this.results[evt.detail.index]);
 		}
 	}, {
 		key: '_handleBlur',
@@ -274,6 +277,16 @@ var AutoCompleteClab = function () {
 				_this4.set('options', resp);
 			});
 		}
+	}, {
+		key: '_changedSelected',
+		value: function _changedSelected(val, old) {
+			if (val != undefined && Object.keys(val).length > 0) {
+				this._inputString = this.selected[this.labelField];
+				this._currentHint = undefined;
+
+				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'value': this.selected });else this.fire('change', { 'selected': this.this.selected.label, 'value': this.this.selected.label });
+			}
+		}
 
 		/*----------
   UTILS
@@ -304,10 +317,11 @@ var AutoCompleteClab = function () {
 		key: 'setSelected',
 		value: function setSelected(obj) {
 			this.set('selected', obj);
-			this._inputString = this.selected[this.labelField];
-			this._currentHint = undefined;
-
-			if (this.resultAsObj) this.fire('change', { 'selected': this.selected });else this.fire('change', { 'selected': this._inputString });
+			// this._inputString=this.selected[this.labelField];
+			// this._currentHint=undefined;
+			//
+			// if(this.resultAsObj) this.fire('change', {'selected':this.selected});
+			// 	else this.fire('change', {'selected':this._inputString});
 		}
 	}, {
 		key: 'behaviors',

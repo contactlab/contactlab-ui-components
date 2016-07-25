@@ -18,7 +18,7 @@
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
 				<div class="modal">
-					<div class="modal-wrapper">
+					<div class="modal-wrapper" style$="[[_computeWidth(width)]]">
 						<div class="modal-title">[[title]]</div>
 						<template is="dom-if" if="[[content]]">
 							<div class="modal-body">

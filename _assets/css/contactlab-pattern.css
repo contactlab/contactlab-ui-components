@@ -477,7 +477,7 @@ strong {
     .row-action.error a:active, .buttons-group.error .row-action.btn a:active {
       color: #a23f50; }
 
-.truncate, .card .card-title, .dropdown-clab .value_wrapper {
+.truncate, header .user .user-details .company, header .user .user-details .workspace, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -780,11 +780,11 @@ header {
     align-items: center;
     position: relative;
     cursor: pointer;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none; }
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto; }
     header .user .user-picture {
       margin: 0;
       padding: 0;
@@ -802,7 +802,8 @@ header {
       color: #CCD1D9;
       display: flex;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      flex: 0 0 45px; }
       header .user .user-picture img {
         position: absolute;
         top: 0;
@@ -837,6 +838,7 @@ header {
     header .user .user-details {
       flex-grow: 1;
       padding: 0 10px;
+      max-width: 205px;
       text-align: right;
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -844,7 +846,11 @@ header {
       -o-user-select: none;
       user-select: none; }
       header .user .user-details .company {
-        font-size: 0.8571rem; }
+        font-size: 0.8571rem;
+        margin-top: 3px; }
+      header .user .user-details .workspace {
+        font-size: 0.8571rem;
+        color: #AAB2BD; }
     header .user .user-panel {
       position: absolute;
       right: 0;
@@ -938,11 +944,11 @@ footer {
   border-top: 1px solid #CCD1D9;
   font-weight: 600;
   margin-bottom: 20px;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: auto;
+  -o-user-select: auto;
+  user-select: auto; }
   .contextual-menu .mobile-nav-toggle {
     padding: 10px 10px;
     border-bottom: 1px solid #CCD1D9;
@@ -1823,11 +1829,11 @@ input[type=radio] {
     padding: 0;
     display: flex;
     align-items: baseline;
-    -webkit-user-select: none;
-    -khtml-user-select: none;
-    -moz-user-select: none;
-    -o-user-select: none;
-    user-select: none;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto;
     width: auto !important; }
     input[type=checkbox] + label span, .key-value li input[type=checkbox] + span:first-of-type span,
     input[type=radio] + label span, .key-value li
@@ -2846,11 +2852,11 @@ td, .table .th,
   position: relative;
   padding-left: 30px;
   cursor: pointer;
-  -webkit-user-select: none;
-  -khtml-user-select: none;
-  -moz-user-select: none;
-  -o-user-select: none;
-  user-select: none; }
+  -webkit-user-select: auto;
+  -khtml-user-select: auto;
+  -moz-user-select: auto;
+  -o-user-select: auto;
+  user-select: auto; }
   .accordion .accordion-title:before {
     content: "\e60c";
     font-family: 'contactlab-icons';
@@ -3037,7 +3043,12 @@ ol {
   margin: 0 0 20px; }
   ul li,
   ol li {
-    margin-bottom: 5px; }
+    margin-bottom: 5px;
+    -webkit-user-select: auto;
+    -khtml-user-select: auto;
+    -moz-user-select: auto;
+    -o-user-select: auto;
+    user-select: auto; }
 
 ul.default,
 ol.default {
@@ -3066,6 +3077,9 @@ ol.default {
   max-width: 840px;
   margin: 0 auto;
   padding: 5rem 20px 40px; }
+
+.modal-wrapper.large {
+  max-width: 1100px; }
 
 .modal {
   position: absolute;

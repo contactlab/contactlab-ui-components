@@ -8,7 +8,7 @@
 }
 
 
-@mixin user-selection ($value: none) {
+@mixin user-selection ($value: auto) {
   -webkit-user-select: $value;
   -khtml-user-select: $value;
   -moz-user-select: $value;
@@ -37,11 +37,11 @@
 @mixin rotate ($deg) {
   @include transform(rotate(#{$deg}deg));
 }
- 
+
 // scale
 @mixin scale($scale) {
    @include transform(scale($scale));
-} 
+}
 
 // translate
 @mixin translate ($x, $y) {
