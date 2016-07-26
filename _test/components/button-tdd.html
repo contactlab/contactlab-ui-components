@@ -76,10 +76,10 @@ suite('<button-clab>', function() {
       button.icon = str;
       // Wait for dom-change
       setTimeout(function () {
-        var el = button.$$('button');
-				var icon = Polymer.dom(el.root).querySelector('i');
-        assert.include(i.classList.value, str, "Icon is showing");
-      }, 200);
+
+				var icon = button.querySelector('button i');
+        assert.include(icon.classList.value, str, "Icon is showing");
+      }, 500);
     });
 
     test('Check disabled', function() {

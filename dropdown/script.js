@@ -80,11 +80,15 @@ var DropdownClab = function () {
 					value: 4
 				},
 				noteType: String,
-				_liHeight: {
-					type: String,
-					value: null,
-					readonly: true
+				maxHeight: {
+					type: Number,
+					value: 28
 				}
+				/*_liHeight:{
+    	type:String,
+    	value:null,
+    	readonly: true
+    }*/
 			};
 		}
 	}, {
@@ -185,13 +189,6 @@ var DropdownClab = function () {
 				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'newValue': this.selected, 'oldValue': old });else this.fire('change', { 'selected': this.selected[this.valueField], 'newValue': this.selected, 'oldValue': old });
 			}
 		}
-	}, {
-		key: '_setMaxHeight',
-		value: function _setMaxHeight() {
-			this._liHeight = this.querySelectorAll('.options-list li')[0].clientHeight;
-			// this._liHeight= 30;
-			this.querySelector('.options-list').style.maxHeight = this._liHeight * this.maxInView + 'px';
-		}
 
 		/*----------
   OBSERVERS
@@ -261,6 +258,11 @@ var DropdownClab = function () {
 		key: '_compLabel',
 		value: function _compLabel(option) {
 			return option ? option[this.labelField] : '';
+		}
+	}, {
+		key: '_compMaxHeight',
+		value: function _compMaxHeight(height) {
+			return height ? height : '';
 		}
 	}, {
 		key: 'behaviors',
