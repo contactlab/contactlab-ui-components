@@ -84,11 +84,17 @@ suite('<pagination-clab>', function() {
 			var range = 15;
 			pagination.tot = n;
 			pagination.range = range;
+			var tap = new Event('click');
 
 			setTimeout(function () {
-				var els = Polymer.dom(pagination.root).querySelectorAll('.page');
-				assert.lengthOf(els, range);
-				done();
+				var arrow = pagination.querySelector('li[data-type="next"]');
+				arrow.dispatchEvent(tap);
+				setTimeout(function () {
+
+					var els = Polymer.dom(pagination.root).querySelectorAll('.page');
+					assert.lengthOf(els, range + 1);
+					done();
+				})
 			});
 		});
 

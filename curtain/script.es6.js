@@ -22,7 +22,11 @@ class CurtainClab{
 				value:false
 			},
 
-			_liHeight:Number,
+			//_liHeight:Number,
+			maxHeight: {
+				type: Number,
+				value: 28
+			}
 			_listMaxHeight:String,
 			_listHeight:String,
 			_hidden:{
@@ -74,14 +78,18 @@ class CurtainClab{
 	_setLiHeight(options, maxInView, disabled){
 		if(options!=undefined && options.length>0 && maxInView!=undefined && !disabled){
 			this.async(()=>{
-				if(this._liHeight==undefined){
+				if(this.maxHeight == undefined || this.maxHeight == ''){
 					this.set('_hidden', true);
-					this._liHeight = 28;
-					this.set('_listMaxHeight', (this._liHeight*maxInView)+'px');
+					this.maxHeight = 28;
+					this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
+					this.set('_hidden', false);
+				} else {
+					this.set('_hidden', true);
+					this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
 					this.set('_hidden', false);
 				}
 
-				this.set('_listHeight', (this._liHeight*options.length)+'px');
+				this.set('_listHeight', (this.maxHeight * options.length) + 'px');
 				this.$.list.scrollTop=0;
 			}, 100);
 		}

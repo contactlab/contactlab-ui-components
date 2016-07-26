@@ -73,7 +73,10 @@ class AutoCompleteClab{
 				type:Boolean,
 				value:false
 			},
-			labelSize: String,
+			labelSize: {
+				type: String,
+				observer: '_setLabelSize'
+			},
 			icon:String,
 
 
@@ -207,7 +210,7 @@ class AutoCompleteClab{
 			else {
 				let results=[];
 				this.options.map((opt, i)=>{
-					if(opt.label.toLowerCase().search(searchVal)>-1) results.push(this.options[i]);
+					if(opt[this.labelField].toLowerCase().search(searchVal)>-1) results.push(this.options[i]);
 				});
 				this.set('results', results);
 			}
@@ -262,7 +265,7 @@ class AutoCompleteClab{
 			this._currentHint=undefined;
 
 			if(this.resultAsObj) this.fire('change', {'selected':this.selected, 'value':this.selected});
-				else this.fire('change', {'selected':this.this.selected.label, 'value':this.this.selected.label});
+				else this.fire('change', {'selected':this.selected.label, 'value':this.selected.label});
 		}
 	}
 
@@ -284,7 +287,9 @@ class AutoCompleteClab{
 		if(this._spinner) this._spinner=false;
 	}
 
-
+	_setLabelSize(newSize){
+		this.set("labelSize", newSize)
+	}
 
 
 

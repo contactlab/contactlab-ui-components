@@ -82,7 +82,10 @@ var AutoCompleteClab = function () {
 					type: Boolean,
 					value: false
 				},
-				labelSize: String,
+				labelSize: {
+					type: String,
+					observer: '_setLabelSize'
+				},
 				icon: String,
 
 				/*----------
@@ -225,7 +228,7 @@ var AutoCompleteClab = function () {
 				(function () {
 					var results = [];
 					_this3.options.map(function (opt, i) {
-						if (opt.label.toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
+						if (opt[_this3.labelField].toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
 					});
 					_this3.set('results', results);
 				})();
@@ -284,7 +287,7 @@ var AutoCompleteClab = function () {
 				this._inputString = this.selected[this.labelField];
 				this._currentHint = undefined;
 
-				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'value': this.selected });else this.fire('change', { 'selected': this.this.selected.label, 'value': this.this.selected.label });
+				if (this.resultAsObj) this.fire('change', { 'selected': this.selected, 'value': this.selected });else this.fire('change', { 'selected': this.selected.label, 'value': this.selected.label });
 			}
 		}
 
@@ -307,6 +310,11 @@ var AutoCompleteClab = function () {
 			window.clearTimeout(this._interval);
 			this._interval = undefined;
 			if (this._spinner) this._spinner = false;
+		}
+	}, {
+		key: '_setLabelSize',
+		value: function _setLabelSize(newSize) {
+			this.set("labelSize", newSize);
 		}
 
 		/*----------
