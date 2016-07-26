@@ -5,7 +5,11 @@ class FeatureClab {
 		this.properties = {
 			link: {
 				type: String,
-				value: '#'
+				value: ''
+			},
+			linkTarget: {
+				type:String,
+				value:'_self'
 			},
 			iconClass: String,
 			src: String,

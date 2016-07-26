@@ -30,13 +30,35 @@ Internet Explorer 11 does not support the .from() method in the Array object. Yo
 ### Builds
 Work in progress
 
+Build all elements inside a single file (clab-ui-components.html)  
+
+	$ gulp build
+
+Build all elements inside a poper folder (elementName/elementName.html)  
+
+	$ gulp build --all
+
+Build single choosen element inside proper folder (elementName/elementName.html)  	
+
+	$ gulp build --single [elementName]  
+
+Build every choosen elements and wrap in a file (clab-ui-components-custom.html)
+
+	$ gulp build --single [elementName1,elementName2,...]  
+
 <!-- ### Building
 * gulp build: 					creates a minified file containing all the components in the root folder.
 * gulp build -s: 				vulcanize every single component separately.
 * gulp build -s 'folder':		vulcanize specific component. -->
 
-### Testing
-Work in progress
+### Testing  
+Start test suites with **web-component-tester**:
+
+	$ wct
+
+If you want to see tests on your browser (Chrome):
+
+	$ wct -p
 
 ### License
 Apache 2.0 [http://www.apache.org/licenses/](http://www.apache.org/licenses/)
