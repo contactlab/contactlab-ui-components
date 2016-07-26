@@ -14,8 +14,8 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/contactlab/contactlab-ui-components#readme",
   "devDependencies": {
-    "babel-preset-es2015": "^6.1.2",
     "faker": "^3.0.1",
+    "babel-preset-es2015": "^6.1.2",
     "gulp": "^3.9.0",
     "gulp-babel": "^6.1.2",
     "gulp-concat": "^2.6.0",
@@ -25,12 +25,11 @@
     "gulp-param": "^0.6.4",
     "gulp-plumber": "^1.0.1",
     "gulp-rename": "^1.2.2",
-    "gulp-sass": "^2.0.4",
     "gulp-sourcemaps": "^1.6.0",
-    "gulp-util": "^3.0.7",
     "gulp-vulcanize": "^6.1.0",
     "gulp-watch": "^4.3.5",
     "vulcanize": "1.14.0",
+    "gulp-sass": "^2.0.4",
     "web-component-tester": "^3.3.30"
   }
 }
