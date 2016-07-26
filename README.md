@@ -28,6 +28,7 @@ For detailed instruction on how to install and use the ContactLab Pattern Librar
 Internet Explorer 11 does not support the .from() method in the Array object. You can use [this polyfill](https://github.com/ChilldeinEistee/Array.from) to fix the issue. In a future release we will ship this polyfill within the project.
 
 ### Builds
+Work in progress
 
 Build all elements inside a single file (clab-ui-components.html)  
 
