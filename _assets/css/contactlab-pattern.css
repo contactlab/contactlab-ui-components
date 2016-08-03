@@ -71,6 +71,51 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-gender:before {
+  content: ""; }
+
+.icon-gift:before {
+  content: ""; }
+
+.icon-segment:before {
+  content: ""; }
+
+.icon-file:before {
+  content: ""; }
+
+.icon-pin:before {
+  content: ""; }
+
+.icon-filter:before {
+  content: ""; }
+
+.icon-filter-2:before {
+  content: ""; }
+
+.icon-diamond:before {
+  content: ""; }
+
+.icon-eye-hide:before {
+  content: ""; }
+
+.icon-magic-wand:before {
+  content: ""; }
+
+.icon-clock:before {
+  content: ""; }
+
+.icon-digital-campaign:before {
+  content: ""; }
+
+.icon-ecommerce:before {
+  content: ""; }
+
+.icon-dots:before {
+  content: ""; }
+
+.icon-retail:before {
+  content: ""; }
+
 .icon-facebook-circle:before {
   content: ""; }
 
@@ -128,6 +173,9 @@ table, .table {
 .icon-check-circle:before {
   content: ""; }
 
+.icon-contactlab:before {
+  content: ""; }
+
 .icon-smartphone:before {
   content: ""; }
 
@@ -135,7 +183,7 @@ table, .table {
   content: ""; }
 
 .icon-chart-pie:before {
-  content: ""; }
+  content: ""; }
 
 .icon-info-full:before {
   content: ""; }
@@ -197,29 +245,26 @@ table, .table {
 .icon-tag-full:before {
   content: ""; }
 
-.icon-filter:before {
-  content: ""; }
-
 .icon-double-arrow-left:before {
-  content: ""; }
-
-.icon-double-arrow-right:before {
   content: ""; }
 
-.icon-eye:before {
+.icon-double-arrow-right:before {
   content: ""; }
 
+.icon-eye:before {
+  content: ""; }
+
 .icon-info:before {
-  content: ""; }
+  content: ""; }
 
 .icon-heart:before {
-  content: ""; }
+  content: ""; }
 
 .icon-heart-full:before {
-  content: ""; }
+  content: ""; }
 
 .icon-lock:before {
-  content: ""; }
+  content: ""; }
 
 .icon-refresh:before {
   content: ""; }
@@ -377,9 +422,6 @@ table, .table {
 .icon-users:before {
   content: ""; }
 
-.icon-contactlab:before {
-  content: ""; }
-
 @font-face {
   font-family: 'frutiger-light';
   src: url("../fonts/frutiger_ce_45_light-webfont.eot");
@@ -477,7 +519,7 @@ strong {
     .row-action.error a:active, .buttons-group.error .row-action.btn a:active {
       color: #a23f50; }
 
-.truncate, header .user .user-details .company, header .user .user-details .workspace, .card .card-title, .dropdown-clab .value_wrapper {
+.truncate, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -802,8 +844,7 @@ header {
       color: #CCD1D9;
       display: flex;
       justify-content: center;
-      align-items: center;
-      flex: 0 0 45px; }
+      align-items: center; }
       header .user .user-picture img {
         position: absolute;
         top: 0;
@@ -838,7 +879,6 @@ header {
     header .user .user-details {
       flex-grow: 1;
       padding: 0 10px;
-      max-width: 205px;
       text-align: right;
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -846,11 +886,7 @@ header {
       -o-user-select: none;
       user-select: none; }
       header .user .user-details .company {
-        font-size: 0.8571rem;
-        margin-top: 3px; }
-      header .user .user-details .workspace {
-        font-size: 0.8571rem;
-        color: #AAB2BD; }
+        font-size: 0.8571rem; }
     header .user .user-panel {
       position: absolute;
       right: 0;
