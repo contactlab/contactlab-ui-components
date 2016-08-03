@@ -519,7 +519,7 @@ strong {
     .row-action.error a:active, .buttons-group.error .row-action.btn a:active {
       color: #a23f50; }
 
-.truncate, .card .card-title, .dropdown-clab .value_wrapper {
+.truncate, header .user .user-details .company, header .user .user-details .workspace, .card .card-title, .dropdown-clab .value_wrapper {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis; }
@@ -844,7 +844,8 @@ header {
       color: #CCD1D9;
       display: flex;
       justify-content: center;
-      align-items: center; }
+      align-items: center;
+      flex: 0 0 45px; }
       header .user .user-picture img {
         position: absolute;
         top: 0;
@@ -879,6 +880,7 @@ header {
     header .user .user-details {
       flex-grow: 1;
       padding: 0 10px;
+      max-width: 205px;
       text-align: right;
       -webkit-user-select: none;
       -khtml-user-select: none;
@@ -886,7 +888,11 @@ header {
       -o-user-select: none;
       user-select: none; }
       header .user .user-details .company {
-        font-size: 0.8571rem; }
+        font-size: 0.8571rem;
+        margin-top: 3px; }
+      header .user .user-details .workspace {
+        font-size: 0.8571rem;
+        color: #AAB2BD; }
     header .user .user-panel {
       position: absolute;
       right: 0;
@@ -2789,6 +2795,15 @@ hr, td, .table .th,
   padding-left: 5px;
   padding-right: 5px;
   position: relative; }
+  hr.align-left, td.align-left, .table .align-left.th,
+  .table .align-left.td, th.align-left, .table .align-left.th {
+    text-align: left; }
+  hr.align-right, td.align-right, .table .align-right.th,
+  .table .align-right.td, th.align-right, .table .align-right.th {
+    text-align: right; }
+  hr.align-center, td.align-center, .table .align-center.th,
+  .table .align-center.td, th.align-center, .table .align-center.th {
+    text-align: center; }
 
 th, .table .th {
   text-align: left;
@@ -2836,7 +2851,7 @@ td, .table .th,
 .table .td,
 .table .hover-table tr:hover .td,
 .hover-table .tr:hover .td {
-  background: #e7e7e7;
+  background: #e3e3e3;
   cursor: pointer; }
 
 .full-table-wrapper {
