@@ -57,6 +57,18 @@ hr, td, th {
   padding-left: $smaller-spacing;
   padding-right: $smaller-spacing;
   position: relative;
+
+  &.align-left {
+      text-align: left;
+  }
+
+  &.align-right {
+      text-align: right;
+  }
+
+  &.align-center {
+      text-align: center;
+  }
 }
 
 th {

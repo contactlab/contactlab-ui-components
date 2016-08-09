@@ -101,15 +101,15 @@ gulp.task('vulcanize', function (c) {
       for(var i=0; i<arr.length;i++){
         data+='<link rel="import" href="../'+arr[i]+'/view.html">\n';
       }
-      fs.writeFileSync('./_components/clab-components-custom.html', data);
-      files='./_components/clab-components-custom.html';
+      fs.writeFileSync('./_components/clab-ui-components-custom.html', data);
+      files='./_components/clab-ui-components-custom.html';
       dest= './_components/';
     } else { // only one file
       files= './'+c+'/view.html';
       dest= './'+c+'/';
     }
   } else { // all in one file
-    files= './_components/clab-components.html';
+    files= './_components/clab-ui-components.html';
     dest= './_components/';
   }
 
@@ -141,14 +141,14 @@ gulp.task('min-html', ['vulcanize'] , function(c) {
       files= conf.compsBuilt;
       dest= '';
     } else if(c.split('_').length>1){ // only the files selected
-      files='./_components/clab-components-custom.build.html';
+      files='./_components/clab-ui-components-custom.build.html';
       dest= './_components/';
     } else { // only one
       files= './'+c+'/view.build.html';
       dest= './'+c+'/';
     }
   } else { // all in one file
-    files= './_components/clab-components.build.html';
+    files= './_components/clab-ui-components.build.html';
     dest= './_components/';
   }
 
@@ -170,14 +170,14 @@ gulp.task('min-inline', ['min-html'], function(c) {
       files= conf.compsBuilt;
       dest= '';
     } else if(c.split('-').length>1){ // only the files selected
-      files='./_components/clab-components-custom.build.html';
+      files='./_components/clab-ui-components-custom.build.html';
       dest= './_components/';
     } else { // only one
       files= './'+c+'/view.build.html';
       dest= './'+c+'/';
     }
   } else { // all in one file
-    files= './_components/clab-components.build.html';
+    files= './_components/clab-ui-components.build.html';
     dest= './_components/';
   }
 
