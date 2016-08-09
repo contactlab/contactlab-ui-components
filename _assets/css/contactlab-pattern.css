@@ -1125,6 +1125,9 @@ button-clab {
   button-clab:last-of-type {
     margin-right: 0; }
 
+button-clab[block] {
+  width: 100%; }
+
 .btn {
   border: 0;
   padding: 10px 20px;

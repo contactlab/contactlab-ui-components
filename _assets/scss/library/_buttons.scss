@@ -13,6 +13,10 @@ button-clab {
   }
 }
 
+button-clab[block] {
+    width: 100%;
+}
+
 .btn {
   border: 0;
   padding: $small-spacing $base-spacing;
