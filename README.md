@@ -1,11 +1,11 @@
-# ContactLab Pattern Library UI Components
+# Contactlab Pattern Library UI Components
 
 ### Installation
 To include the components in your project you first need Bower installed on your machine.
 
 Stable branch
 
-	bower install https://github.com/contactlab/contactlab-ui-components
+	bower install clab-ui-components
 
 Development branch (unstable)
 
@@ -22,34 +22,17 @@ The following required libraries and polyfills are resolved by Bower during the 
 - [Web Animations](https://github.com/web-animations/web-animations-js) *(polyfill)*
 
 ### How to use & Documentation
-For detailed instruction on how to install and use the ContactLab Pattern Library components check out the [documentation website](https://ux.contactlab.com).
+For detailed instruction on how to install and use the Contactlab Pattern Library components check out the [documentation website](https://ux.contactlab.com).
 
-### IE issues
-Internet Explorer 11 does not support the .from() method in the Array object. You can use [this polyfill](https://github.com/ChilldeinEistee/Array.from) to fix the issue. In a future release we will ship this polyfill within the project.
+<!-- ### IE issues
+Internet Explorer 11 does not support the .from() method in the Array object. You can use [this polyfill](https://github.com/ChilldeinEistee/Array.from) to fix the issue. In a future release we will ship this polyfill within the project. -->
 
 ### Builds
-Work in progress
+`$ gulp build` - Bundle and minify all the components in a single **clab-ui-components.html** file in the root.
 
-Build all elements inside a single file (clab-ui-components.html)  
+`$ gulp build -c [component]` - Build and minify a single component inside its folder, specified by the argument passed after the flag, and create a **[component].html** file.
 
-	$ gulp build
-
-Build all elements inside a poper folder (elementName/elementName.html)  
-
-	$ gulp build --all
-
-Build single choosen element inside proper folder (elementName/elementName.html)  	
-
-	$ gulp build --single [elementName]  
-
-Build every choosen elements and wrap in a file (clab-ui-components-custom.html)
-
-	$ gulp build --single [elementName1,elementName2,...]  
-
-<!-- ### Building
-* gulp build: 					creates a minified file containing all the components in the root folder.
-* gulp build -s: 				vulcanize every single component separately.
-* gulp build -s 'folder':		vulcanize specific component. -->
+`$ gulp build -c [component1],[component2],[component3]` - Same as above except it builds multiple components individually.
 
 ### Testing  
 Start test suites with **web-component-tester**:
@@ -61,4 +44,4 @@ If you want to see tests on your browser (Chrome):
 	$ wct -p
 
 ### License
-Apache 2.0 [http://www.apache.org/licenses/](http://www.apache.org/licenses/)
+Apache 2.0

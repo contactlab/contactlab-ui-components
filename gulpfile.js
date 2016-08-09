@@ -1,7 +1,9 @@
+'use strict';
+
 /**
 * Gulp & Node module requires
 */
-var gulp = require('gulp-param')(require('gulp'), process.argv),
+const gulp = require('gulp-param')(require('gulp'), process.argv),
   	fs = require("fs"),
   	path = require("path"),
   	babel = require("gulp-babel"),
@@ -19,7 +21,7 @@ var gulp = require('gulp-param')(require('gulp'), process.argv),
 /**
 * Configuration paths object
 */
-var conf = {
+const conf = {
     jsSourcePath: '**/*.{js,jsx}',
     es6SourcePath: '**/*.es6.js',
     scssSourcePath: './**/*.{scss,sass}',
@@ -123,7 +125,7 @@ gulp.task('vulcanize', function (c) {
     }))
     .pipe(rename(function(path){
       path.basename = path.basename+'.build';
-      console.log('BUILT: '+path.basename+' in '+(dest==='' ? (path.dirname.length>1 ? path.dirname : 'root') : dest));
+      console.log('BUILT: '+ path.basename  +' in ' + (dest === '' ? (path.dirname.length > 1 ? path.dirname : 'root') : dest));
     }))
     .pipe(gulp.dest(dest));
 });
@@ -186,6 +188,52 @@ gulp.task('min-inline', ['min-html'], function(c) {
     .pipe(gulp.dest(dest))
 });
 
+gulp.task('create-bundle', function(c){
+  let files, dest, msg;
+  let comps = c ? c.split(',') : null;
+
+  if(c === null){
+    files = './_components/clab-ui-components.html';
+    dest = './';
+    msg = 'BUILT: ./clab-ui-components.html';
+    _doVulcanize(files,dest,c,msg);
+  }
+
+  if(c !== null && !comps.length){
+    files = './' + c + '/view.html';
+    dest = './' + c + '/';
+    msg = 'BUILT: ' + './' + c + '/' + c + '.html';
+    _doVulcanize(files,dest,c,msg);
+  }
+
+  if (c !== null && comps.length ){
+    comps.forEach(function(e,i){
+      files = './' + e + '/view.html';
+      dest = './' + e + '/';
+      msg = 'BUILT: ' + './' + e + '/' + e + '.html';
+      _doVulcanize(files,dest,e,msg);
+    });
+  }
+});
+
+function _doVulcanize(files,dest,c,msg){
+  return gulp.src(files)
+    .pipe(vulcanize({
+      abspath: '',
+      stripExcludes: false,
+      stripComments: true,
+      inlineCSS: true,
+      inlineScripts: true
+    }))
+    .pipe(rename(function(path){
+      (c !== null) ? path.basename = c : null;
+      console.log(msg);
+    }))
+    .pipe(minifyInline())
+    .pipe(minifyHTML({ empty: true }))
+    .pipe(gulp.dest(dest));
+}
+
 /**
 * Default action: webserver
 */
@@ -204,7 +252,8 @@ gulp.task('ux', ['connect', 'watch-sass']);
 /**
 * Vulcanize Polymer components in one file
 */
-gulp.task('build', ['min-inline']);
+gulp.task('build-old', ['min-inline']);
+gulp.task('build', ['create-bundle']);
 // gulp.task('build', function(cb){
 //   runSequence('vulcanize','minHtml','minInline');
 // });
