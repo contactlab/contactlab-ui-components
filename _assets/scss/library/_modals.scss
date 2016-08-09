@@ -27,13 +27,41 @@
 }
 
 .modal {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  overflow: auto;
-  padding: 0 $base-spacing;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    overflow: auto;
+    padding: 0 $base-spacing;
+
+    .arrows {
+    	.prev,
+    	.next {
+    		position: absolute;
+    		top: 50%;
+    		width: 40px;
+    		height: 40px;
+    		display: flex;
+    		justify-content: center;
+    		align-items: center;
+    		margin-top: -20px;
+    		cursor: pointer;
+    		font-size: 20px;
+
+    		&:active {
+    			color: $primary-color;
+    		}
+    	}
+
+    	.prev {
+    		left: 0;
+    	}
+
+    	.next {
+    		right: 0;
+    	}
+    }
 }
 
 .modal-title {
