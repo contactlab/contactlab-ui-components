@@ -2679,6 +2679,17 @@ alert-clab {
       display: block;
       width: 100%; }
 
+.spinner-overlay.app-load {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  left: 0;
+  z-index: 99; }
+  .spinner-overlay.app-load .spinner {
+    position: initial;
+    margin: 10px 0 0; }
+
 .spinner-overlay {
   position: absolute;
   top: 0;
@@ -3143,6 +3154,25 @@ ol.default {
   bottom: 0;
   overflow: auto;
   padding: 0 20px; }
+  .modal .arrows .prev,
+  .modal .arrows .next {
+    position: absolute;
+    top: 50%;
+    width: 40px;
+    height: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: -20px;
+    cursor: pointer;
+    font-size: 20px; }
+    .modal .arrows .prev:active,
+    .modal .arrows .next:active {
+      color: #0072bc; }
+  .modal .arrows .prev {
+    left: 0; }
+  .modal .arrows .next {
+    right: 0; }
 
 .modal-title {
   padding: 0;
