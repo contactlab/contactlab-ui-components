@@ -7,16 +7,13 @@
     @extend .default-transition;
 
     &.active {
-
       margin-bottom: $base-spacing;
-    //   @extend .default-transition;
 
       .accordion-title {
         font-weight: $semibold-weight;
       }
 
       .accordion-content {
-        // @extend .default-transition;
         padding-bottom: $base-spacing;
       }
 

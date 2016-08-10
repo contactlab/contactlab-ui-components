@@ -122,8 +122,8 @@ ol.multiple-clab {
       cursor: pointer;
 
       &.selected {
-        background-color: $light-gray;
-        color: $primary-color;
+        background-color: $default-color;
+        color: #FFFFFF;
       }
     }
 }
