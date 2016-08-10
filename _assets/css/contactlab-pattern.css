@@ -3267,13 +3267,15 @@ ol.default {
 .modal-actions {
   text-align: right; }
 
-.modal-overlay.classic {
+modal-clab[classic] .modal-overlay {
   background-color: rgba(204, 209, 217, 0.95); }
-  .modal-overlay.classic .modal-wrapper {
-    background: #F0f0f0;
-    margin-top: 5rem;
-    box-shadow: 0 2px 5px 2px rgba(170, 178, 189, 0.5);
-    padding-top: 40px; }
+
+modal-clab[classic] .modal-wrapper {
+  background: #F0f0f0;
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+  box-shadow: 0 2px 5px 2px rgba(170, 178, 189, 0.5);
+  padding-top: 40px; }
 
 tabs-clab {
   width: 100%;

@@ -80,12 +80,16 @@
 
 // CLASSIC MODAL
 
-.modal-overlay.classic {
-    background-color: rgba($gray, 0.95);
+modal-clab[classic] {
+
+    .modal-overlay {
+        background-color: rgba($gray, 0.95);
+    }
 
     .modal-wrapper {
         background: $overlay-color;
         margin-top: 5rem;
+        margin-bottom: 5rem;
         box-shadow: 0 2px 5px 2px rgba($medium-gray, 0.5);
         padding-top: $large-spacing;
     }
