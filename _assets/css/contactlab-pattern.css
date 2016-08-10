@@ -539,16 +539,12 @@ strong {
   text-overflow: ellipsis; }
 
 section {
-  padding: 0 0 40px;
-  display: flex;
-  flex-flow: column wrap; }
+  padding: 0 0 40px; }
   section:last-of-type {
     padding-bottom: 0; }
 
 article {
-  padding: 0 0 20px;
-  display: flex;
-  flex-flow: row wrap; }
+  padding: 0 0 20px; }
   article:last-of-type {
     padding-bottom: 0; }
 
@@ -2872,12 +2868,15 @@ td, .table .th,
     font-size: 1.286rem;
     vertical-align: middle; }
   .table .tr {
-    display: table-row; }
+    display: table-row;
+    border-bottom: 1px solid #CCD1D9; }
   .table .th,
   .table .td {
     display: table-cell; }
   .table .th {
     border-bottom: 1px solid #656D78; }
+  .table .td {
+    border-bottom: 0; }
 
 .striped-table hr,
 .striped-table td,
@@ -2893,13 +2892,13 @@ td, .table .th,
 .striped-table tr:nth-child(odd) td, .striped-table tr:nth-child(odd) .table .th, .table .striped-table tr:nth-child(odd) .th, .striped-table tr:nth-child(odd)
 .table .td,
 .table .striped-table tr:nth-child(odd) .td,
-.striped-table .tr:nth-child(odd) .td {
+.striped-table .tr:nth-child(odd) {
   background: #eaeaea; }
 
 .hover-table tr:hover td, .hover-table tr:hover .table .th, .table .hover-table tr:hover .th, .hover-table tr:hover
 .table .td,
 .table .hover-table tr:hover .td,
-.hover-table .tr:hover .td {
+.hover-table .tr:hover {
   background: #e3e3e3;
   cursor: pointer; }
 
@@ -2936,6 +2935,33 @@ td, .table .th,
     flex-grow: 1; }
   .table-recap .total-entries {
     font-size: 0.8571rem; }
+
+.responsive-table {
+  display: flex;
+  flex-direction: column; }
+  .responsive-table.striped-table .thead .tr {
+    background: transparent; }
+  .responsive-table.striped-table .tr {
+    border: 0; }
+  .responsive-table .tr {
+    display: flex;
+    flex: 1; }
+  .responsive-table .td,
+  .responsive-table .th {
+    flex: 1 1; }
+  @media (max-width: 600px) {
+    .responsive-table .thead {
+      display: none; }
+    .responsive-table .tr {
+      flex-direction: column;
+      padding: 5px 0; }
+      .responsive-table .tr .td {
+        padding: 5px 10px; }
+        .responsive-table .tr .td:before {
+          content: attr(data-th) ":";
+          font-weight: 700;
+          margin-right: 5px;
+          font-size: 0.8571rem; } }
 
 .accordion .accordion-block {
   padding-bottom: 5px; }

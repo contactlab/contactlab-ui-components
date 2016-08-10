@@ -139,8 +139,6 @@ strong {
 
 section {
   padding: 0 0 $large-spacing;
-  display: flex;
-  flex-flow: column wrap;
 
   &:last-of-type {
     padding-bottom: 0;
@@ -149,8 +147,6 @@ section {
 
 article {
   padding: 0 0 $base-spacing;
-  display: flex;
-  flex-flow: row wrap;
 
   &:last-of-type {
     padding-bottom: 0;
