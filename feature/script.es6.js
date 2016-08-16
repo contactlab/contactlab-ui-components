@@ -5,14 +5,20 @@ class FeatureClab {
 		this.properties = {
 			link: {
 				type: String,
-				value: ''
+				value: null
 			},
 			linkTarget: {
 				type:String,
 				value:'_self'
 			},
-			iconClass: String,
-			src: String,
+			iconClass: {
+				type:String,
+				value: null
+			},
+			src: {
+				type:String,
+				value: null
+			},
 			size: {
 				type: String,
 				value: null
@@ -33,6 +39,10 @@ class FeatureClab {
 		if(size) arr.push(size);
 		if(vertical) arr.push('vertical');
 		return arr.join(' ');
+	}
+
+	_compDisplay(prop){
+		return prop!=null && prop!=undefined && prop? '' : 'display:none'; 
 	}
 
 
