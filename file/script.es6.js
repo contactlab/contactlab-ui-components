@@ -13,6 +13,7 @@ class FileClab{
 				value: 'fileinput'
 			},
 			type: String,
+			noteType: String,
 			value: {
 				type: String,
 				notify: true,
@@ -32,8 +33,7 @@ class FileClab{
 			noPreview:{
 				type:Boolean,
 				value:false
-			},
-			noteType: String
+			}
 		}
 	}
 
