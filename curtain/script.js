@@ -33,7 +33,11 @@ var CurtainClab = function () {
 					value: false
 				},
 
-				_liHeight: Number,
+				//_liHeight:Number,
+				maxHeight: {
+					type: Number,
+					value: 28
+				},
 				_listMaxHeight: String,
 				_listHeight: String,
 				_hidden: {
@@ -90,14 +94,18 @@ var CurtainClab = function () {
 
 			if (options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
 				this.async(function () {
-					if (_this2._liHeight == undefined) {
+					if (_this2.maxHeight == undefined || _this2.maxHeight == '') {
 						_this2.set('_hidden', true);
-						_this2._liHeight = 28;
-						_this2.set('_listMaxHeight', _this2._liHeight * maxInView + 'px');
+						_this2.maxHeight = 28;
+						_this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
+						_this2.set('_hidden', false);
+					} else {
+						_this2.set('_hidden', true);
+						_this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
 						_this2.set('_hidden', false);
 					}
 
-					_this2.set('_listHeight', _this2._liHeight * options.length + 'px');
+					_this2.set('_listHeight', _this2.maxHeight * options.length + 'px');
 					_this2.$.list.scrollTop = 0;
 				}, 100);
 			}

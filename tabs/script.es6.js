@@ -25,7 +25,8 @@ class TabsClab{
 			},
 			active: {
 				type: Number,
-				value: 0
+				value: 0,
+				notify: true
 			},
 			current:{
 				type:String,

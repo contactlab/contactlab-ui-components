@@ -26,7 +26,7 @@ class CurtainClab{
 			maxHeight: {
 				type: Number,
 				value: 28
-			}
+			},
 			_listMaxHeight:String,
 			_listHeight:String,
 			_hidden:{

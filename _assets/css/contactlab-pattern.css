@@ -71,6 +71,27 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-equal-circle-full:before {
+  content: ""; }
+
+.icon-full-arrow-left:before {
+  content: ""; }
+
+.icon-full-arrow-right:before {
+  content: ""; }
+
+.icon-full-arrow-top:before {
+  content: ""; }
+
+.icon-equal:before {
+  content: ""; }
+
+.icon-equal-circle:before {
+  content: ""; }
+
+.icon-full-arrow-down:before {
+  content: ""; }
+
 .icon-gender:before {
   content: ""; }
 

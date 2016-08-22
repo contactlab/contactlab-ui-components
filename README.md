@@ -1,5 +1,7 @@
 # Contactlab Pattern Library UI Components
 
+[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg)](https://travis-ci.org/contactlab/contactlab-ui-components)
+
 ### Installation
 To include the components in your project you first need Bower installed on your machine.
 
