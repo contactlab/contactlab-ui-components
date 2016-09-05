@@ -3,7 +3,6 @@
 .progress-bar {
   position: relative;
   padding-top: 20px;
-  margin-bottom: $base-spacing;
 
   @each $type, $color in $default-status {
     &.#{$type} section article {
@@ -30,7 +29,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: $dark-gray; 
+      background-color: $dark-gray;
       height: 3px;
       text-align: center;
       padding: 0 !important;

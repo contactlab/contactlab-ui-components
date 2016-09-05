@@ -15,6 +15,7 @@ button-clab {
 
 button-clab[block] {
     width: 100%;
+    margin-right: 0;
 }
 
 .btn {
@@ -28,6 +29,7 @@ button-clab[block] {
   vertical-align: bottom;
   font-size: $base-font-size;
   display: inline-block;
+  text-align: center;
 
   &.block {
     width: 100%;
@@ -57,6 +59,16 @@ button-clab[block] {
     &:active {
         min-height: 29px;
     }
+  }
+
+  &.smaller {
+      padding: 3px 5px;
+      min-height: 22px;
+      font-size: $small-font-size;
+
+      &:active {
+          min-height: 21px;
+      }
   }
 
   .icon {
@@ -113,6 +125,10 @@ button-clab[block] {
       padding-top: $smaller-spacing - 1px;
     }
 
+    &.smaller {
+      padding-top: 3px;
+    }
+
     @each $type, $color in $default-status {
       &.#{$type} {
         border-color: nth($color, 1);
@@ -145,6 +161,22 @@ button-clab[block] {
 
 //////////////// BUTTONS GROUP ////////////////
 
+group-clab[block] {
+    width: 100%;
+
+    .buttons-group {
+        display: flex;
+
+        button-clab {
+            flex: 1 1;
+        }
+
+        .btn {
+            width: 100%;
+        }
+    }
+}
+
 .buttons-group {
   display: flex;
 
@@ -175,11 +207,18 @@ button-clab[block] {
       }
   }
 
+  button-clab {
+      margin-left: -1px;
+
+      &:first-of-type {
+          margin-left: 0;
+      }
+  }
+
   .btn {
     margin: 0;
     border-left: 1px solid $default-color;
     border-right: 1px solid $default-color;
-    margin-left: -1px;
 
     &:active {
       border-bottom: 1px solid $default-color;

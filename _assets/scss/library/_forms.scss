@@ -7,7 +7,6 @@ $large-label-width: 200px;
 $larger-label-width: 250px;
 
 input-clab {
-	// width: 100%;
 	flex-grow: 1;
 }
 
@@ -23,6 +22,7 @@ textarea {
 		border-bottom-color: $medium-gray;
 		color: $text-color;
 		line-height: 1;
+		min-height: 30px;
 
 		&:hover {
 		    background-color: lighten($gray, 3%);
@@ -30,6 +30,7 @@ textarea {
 
 		&:active {
 			background-color: darken($gray, 3%);
+			min-height: 29px;
 		}
 
 		@each $type, $color in $default-status {
@@ -62,12 +63,7 @@ textarea {
 	display: flex;
 	flex-flow: column wrap;
 	justify-content: flex-end;
-	padding-bottom: $base-spacing;
 	position: relative;
-
-	.input-wrapper {
-		padding-bottom: 0;
-	}
 
 	.input {
 		display: flex;
@@ -109,13 +105,13 @@ textarea {
 			input[type="url"],
 			input[type="week"],
 			textarea {
-				border-bottom-color: darken(nth($color, 1), 20);
+				border-bottom-color: nth($color, 1);
 			}
 
 			.input-note,
 			label,
 			.note-clab {
-				color: darken(nth($color, 1), 20);
+				color: nth($color, 1);
 			}
 		}
 	}
@@ -283,7 +279,7 @@ textarea {
 .input-wrapper .input-note {
 	@each $type, $color in $default-status {
 		&.#{$type} {
-			color: darken(nth($color, 1), 20);
+			color: nth($color, 1);
 		}
 	}
 }
@@ -547,8 +543,6 @@ input[type=range]:focus::-ms-fill-upper {
 /////////////////// TAGS ///////////////////
 
 .tags-wrapper {
-	padding-bottom: $base-spacing;
-
 	.input-wrapper {
 		padding-bottom: $smaller-spacing;
 	}

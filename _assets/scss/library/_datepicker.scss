@@ -16,7 +16,7 @@
 .rd-container {
   .rd-date,
   .rd-month {
-    
+
   }
 
   .rd-month {
@@ -44,7 +44,7 @@
     position: absolute;
     top: $small-spacing;
     left: 10px;
-    width: 20px; 
+    width: 20px;
     height: 20px;
     color: #eaeced;
     cursor: pointer;
@@ -83,7 +83,6 @@
 
   table {
     margin: 0;
-    margin-bottom: $small-spacing;
   }
 
   .rd-days-head {
@@ -113,7 +112,7 @@
 
   .rd-time {
     position: relative;
-    display: inline-block;
+    display: flex;
     min-width: 80px;
     color: #FFFFFF;
     font-size: $small-font-size;
@@ -123,17 +122,30 @@
     position: absolute;
     overflow-y: scroll;
     max-height: 160px;
-    left: 0;
-    right: 0;
+    width: 160px;
+    left: 50%;
+    margin-left: -80px;
+    top: 100%;
     background-color: #fff;
     color: #333;
     z-index: 10;
   }
   .rd-time-selected {
     padding: 5px;
+    cursor: pointer;
+    flex: 1 1;
+
+    &:active {
+        background: $dark-gray;
+    }
   }
   .rd-time-option {
     padding: 5px;
+    cursor: pointer;
+
+    &:active {
+        color: $primary-color;
+    }
   }
   .rd-day-concealed {
     visibility: hidden;

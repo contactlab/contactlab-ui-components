@@ -31,7 +31,6 @@
 
 table {
   width: 100%;
-  margin-bottom: $base-spacing;
   font-family: $base-font;
   border-spacing: 0px;
   border-collapse: separate;
@@ -97,6 +96,7 @@ td {
 
   .tr {
     display: table-row;
+    border-bottom: 1px solid $gray;
   }
 
   .th,
@@ -112,6 +112,7 @@ td {
 
   .td {
     @extend td;
+    border-bottom: 0;
   }
 }
 
@@ -120,21 +121,21 @@ td {
 
 .striped-table {
 
-  hr,
-  td,
-  .td {
-    border: none;
-  }
+    hr,
+    td,
+    .td {
+        border: none;
+    }
 
-  tr:nth-child(odd) td,
-  .tr:nth-child(odd) .td {
-    background: set-stripe-color($background-color);
-  }
+    tr:nth-child(odd) td,
+    .tr:nth-child(odd) {
+        background: set-stripe-color($background-color);
+    }
 }
 
 .hover-table {
   tr:hover td,
-  .tr:hover .td {
+  .tr:hover {
     background: $table-hover-color;
     cursor: pointer;
   }
@@ -170,7 +171,7 @@ td {
 
     .entries-select {
       margin: 0 $small-spacing;
-      width: 50px;
+      width: 50px; 
     }
   }
 
@@ -196,3 +197,52 @@ td {
 // end full table component
 
 /////////////////// END TABLES ///////////////////
+
+
+
+
+
+.responsive-table {
+    display: flex;
+    flex-direction: column;
+
+    &.striped-table .thead .tr {
+        background: transparent;
+    }
+
+    &.striped-table .tr {
+        border: 0;
+    }
+
+    .tr {
+        display: flex;
+        flex: 1;
+    }
+
+    .td,
+    .th {
+        flex: 1 1;
+    }
+
+    @media (max-width: 600px) {
+        .thead {
+            display: none;
+        }
+
+        .tr {
+            flex-direction: column;
+            padding: $smaller-spacing 0;
+
+            .td {
+                padding: $smaller-spacing $small-spacing;
+
+                &:before {
+                    content: attr(data-th)":";
+                    font-weight: $bold-weight;
+                    margin-right: 5px;
+                    font-size: $small-font-size;
+                }
+            }
+        }
+    }
+}

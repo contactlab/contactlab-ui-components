@@ -1,7 +1,9 @@
 /////////////////// PAGINATION ///////////////////
 
 .pagination {
-  text-align: right;
+  @include user-selection(none);
+  display: flex;
+  justify-content: flex-end;
 
   .clab-icon {
     font-size: 10px;
@@ -16,6 +18,7 @@
     padding: 0 $smaller-spacing;
     text-align: center;
     cursor: pointer;
+    @include user-selection(none);
 
     &.page {
       &.active {
