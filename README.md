@@ -1,15 +1,17 @@
 # Contactlab Pattern Library UI Components
 
+[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg)](https://travis-ci.org/contactlab/contactlab-ui-components)
+
 ### Installation
 To include the components in your project you first need Bower installed on your machine.
 
 Stable branch
 
-	bower install clab-ui-components
+	$ bower install clab-ui-components
 
 Development branch (unstable)
 
-	bower install https://github.com/contactlab/contactlab-ui-components#develop
+	$ bower install https://github.com/contactlab/contactlab-ui-components#develop
 
 ### Dependencies
 The following required libraries and polyfills are resolved by Bower during the installation:
