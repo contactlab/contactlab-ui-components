@@ -3302,7 +3302,8 @@ tabs-clab {
 
 .tabs, .pills {
   display: flex;
-  flex-flow: column wrap; }
+  flex-flow: column wrap;
+  width: 100%; }
   .tabs.centered ul, .centered.pills ul {
     justify-content: center; }
   .tabs.full-width ul li, .full-width.pills ul li {
@@ -3460,7 +3461,8 @@ autocomplete-clab {
   pointer-events: none; }
 
 multiple-clab {
-  flex-grow: 1; }
+  flex-grow: 1;
+  max-width: 100%; }
 
 select[multiple],
 ol.multiple-clab {
