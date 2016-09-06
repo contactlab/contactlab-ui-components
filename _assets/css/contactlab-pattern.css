@@ -2883,19 +2883,30 @@ td, .table .th,
 
 .table {
   display: table; }
+  .table .thead .tr {
+    border-bottom: 0; }
   .table .clab-icon {
     font-size: 1.286rem;
     vertical-align: middle; }
   .table .tr {
     display: table-row;
-    border-bottom: 1px solid #CCD1D9; }
+    border-bottom: 1px solid #CCD1D9;
+    width: 100%;
+    display: flex; }
   .table .th,
   .table .td {
-    display: table-cell; }
+    display: table-cell;
+    flex: 1 1; }
   .table .th {
     border-bottom: 1px solid #656D78; }
   .table .td {
     border-bottom: 0; }
+
+.striped-table .thead .tr {
+  background: transparent !important; }
+
+.striped-table .tr {
+  border-bottom: 0; }
 
 .striped-table hr,
 .striped-table td,

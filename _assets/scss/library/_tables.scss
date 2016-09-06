@@ -89,6 +89,10 @@ td {
   display: table;
   @extend table;
 
+  .thead .tr {
+      border-bottom: 0;
+  }
+
   .clab-icon {
       font-size: $big-font-size;
       vertical-align: middle;
@@ -97,12 +101,15 @@ td {
   .tr {
     display: table-row;
     border-bottom: 1px solid $gray;
+    width: 100%;
+    display: flex;
   }
 
   .th,
   .td {
     display: table-cell;
     @extend td;
+    flex: 1 1;
   }
 
   .th {
@@ -120,6 +127,16 @@ td {
 
 
 .striped-table {
+
+    .thead {
+        .tr {
+            background: transparent !important;
+        }
+    }
+
+    .tr {
+        border-bottom: 0;
+    }
 
     hr,
     td,
@@ -171,7 +188,7 @@ td {
 
     .entries-select {
       margin: 0 $small-spacing;
-      width: 50px; 
+      width: 50px;
     }
   }
 
