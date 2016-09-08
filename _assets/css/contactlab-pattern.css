@@ -2883,6 +2883,10 @@ td, .table .th,
 
 .table {
   display: table; }
+  .table .thead {
+    display: table-header-group; }
+  .table .tbody {
+    display: table-row-group; }
   .table .thead .tr {
     border-bottom: 0; }
   .table .clab-icon {
@@ -2891,8 +2895,7 @@ td, .table .th,
   .table .tr {
     display: table-row;
     border-bottom: 1px solid #CCD1D9;
-    width: 100%;
-    display: flex; }
+    width: 100%; }
   .table .th,
   .table .td {
     display: table-cell;
@@ -3204,7 +3207,8 @@ ul,
 ol {
   list-style: none;
   padding-left: 0;
-  margin: 0; }
+  margin: 0;
+  margin-bottom: 20px; }
   ul li,
   ol li {
     margin-bottom: 5px;

@@ -89,6 +89,14 @@ td {
   display: table;
   @extend table;
 
+  .thead {
+      display: table-header-group;
+  }
+
+  .tbody {
+      display: table-row-group;
+  }
+
   .thead .tr {
       border-bottom: 0;
   }
@@ -102,7 +110,7 @@ td {
     display: table-row;
     border-bottom: 1px solid $gray;
     width: 100%;
-    display: flex;
+    // display: flex;
   }
 
   .th,
