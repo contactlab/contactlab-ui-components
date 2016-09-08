@@ -54,7 +54,7 @@ class CalendarClab{
 	_focusElement(evt){
 		if(!this.disabled){
 			evt.stopPropagation();
-			console.log(this.getRomeInstance())
+			console.log(this.getRomeInstance());
 			this.getRomeInstance().show();
 		}
 	}
@@ -65,8 +65,7 @@ class CalendarClab{
 	METHODS
 	----------*/
 	_createInstance(selector){
-		let obj;
-		typeof this.options == 'object' ? obj = this.options : obj = this.getRomeInstance().options();
+		let obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
 		rome(this.$$(selector), obj)
 			.on('data', this._changeDate.bind(this));
 	}
@@ -92,8 +91,7 @@ class CalendarClab{
 	UTILS
 	----------*/
 	_getFormat(){
-		let thisFormat;
-		this.options.inputFormat ? thisFormat = this.options.inputFormat : thisFormat = this.getRomeInstance().options().inputFormat;
+		let thisFormat = this.options.inputFormat ? this.options.inputFormat : this.getRomeInstance().options().inputFormat;
 		return thisFormat;
 	}
 

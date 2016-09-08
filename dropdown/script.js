@@ -26,6 +26,9 @@ var DropdownClab = function () {
 					type: String,
 					value: ''
 				},
+				noteType: {
+					type: String
+				},
 				selected: {
 					type: Object,
 					value: {}
@@ -79,7 +82,6 @@ var DropdownClab = function () {
 					type: Number,
 					value: 4
 				},
-				noteType: String,
 				maxHeight: {
 					type: Number,
 					value: 28

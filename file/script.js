@@ -20,6 +20,7 @@ var FileClab = function () {
 					value: 'fileinput'
 				},
 				type: String,
+				noteType: String,
 				value: {
 					type: String,
 					notify: true,
@@ -39,8 +40,7 @@ var FileClab = function () {
 				noPreview: {
 					type: Boolean,
 					value: false
-				},
-				noteType: String
+				}
 			};
 		}
 
