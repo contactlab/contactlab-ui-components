@@ -24,6 +24,12 @@ var AutoCompleteClab = function () {
 					type: String,
 					value: 'auto complete'
 				},
+				type: {
+					type: String
+				},
+				noteType: {
+					type: String
+				},
 				selected: {
 					type: Object,
 					value: {},
@@ -76,8 +82,6 @@ var AutoCompleteClab = function () {
 					type: Number,
 					value: 6
 				},
-				inputType: String,
-				noteType: String,
 				inline: {
 					type: Boolean,
 					value: false
@@ -197,14 +201,14 @@ var AutoCompleteClab = function () {
 			}).then(function (res) {
 				if (res.status !== 200) {
 					console.log('Looks like there was a problem. Status Code: ' + res.status);
-					_this2.inputType = 'error';
+					_this2.type = 'error';
 					_this2._resetSpinnerTimeout();
 					return;
 				}
 
 				res.json().then(function (data) {
 					_this2.set('options', data);
-					if (_this2.inputType === 'error') _this2.inputType = '';
+					if (_this2.type === 'error') _this2.type = '';
 					_this2.async(function () {
 						_this2._showHints(_this2.filter);
 						_this2._resetSpinnerTimeout();
@@ -212,7 +216,7 @@ var AutoCompleteClab = function () {
 				});
 			}).catch(function (err) {
 				console.error("Fetch Error ==> ", err);
-				_this2.inputType = 'error';
+				_this2.type = 'error';
 				_this2._resetSpinnerTimeout();
 			});
 		}

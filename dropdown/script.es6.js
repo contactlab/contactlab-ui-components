@@ -19,6 +19,9 @@ class DropdownClab{
 				type:String,
 				value:''
 			},
+			noteType: {
+				type:String
+			},
 			selected:{
 				type:Object,
 				value:{}
@@ -75,7 +78,6 @@ class DropdownClab{
 				type:Number,
 				value:4
 			},
-			noteType: String,
 			maxHeight: {
 				type: Number,
 				value: 28

@@ -104,6 +104,7 @@
 
 multiple-clab {
     flex-grow: 1;
+    max-width: 100%;
 }
 
 select[multiple],
@@ -122,8 +123,8 @@ ol.multiple-clab {
       cursor: pointer;
 
       &.selected {
-        background-color: $light-gray;
-        color: $primary-color;
+        background-color: $default-color;
+        color: #FFFFFF;
       }
     }
 }

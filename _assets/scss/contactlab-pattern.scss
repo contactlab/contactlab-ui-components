@@ -1,18 +1,15 @@
-/* @import "../bower/susy/sass/susy/"; */
-// $fa-font-path: "../bower/fontawesome/fonts";
-/* @import "../bower/font-awesome/scss/font-awesome";  */
 @import "library/reset";
 @import "library/variables";
 @import "library/mixins";
 @import "library/icons";
 @import "library/general";
-@import "library/layout";
+@import "library/layout"; 
 
 // COMPONENTS
 @import "library/buttons";
 @import "library/forms";
 @import "library/alerts";
-@import "library/breadcrumb"; 
+@import "library/breadcrumb";
 @import "library/cards";
 @import "library/features";
 @import "library/labels-badges";

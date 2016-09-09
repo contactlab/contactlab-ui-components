@@ -13,6 +13,13 @@ class TagsClab {
 				value:'tags input'
 			},
 			inputString:String,
+			type:{
+				type:String,
+				value:''
+			},
+			noteType:{
+				type:String
+			},
 			disabled:{
 				type:Boolean,
 				value:false
@@ -26,10 +33,6 @@ class TagsClab {
 				type:Array,
 				value:[],
 				notify:true
-			},
-			inputType:{
-				type:String,
-				value:''
 			},
 			btnLabel:{
 				type:String,

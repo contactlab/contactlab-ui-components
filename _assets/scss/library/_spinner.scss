@@ -14,6 +14,22 @@
 	}
 }
 
+spinner-clab[loading-text] .spinner-overlay:after,
+.spinner-overlay.loading-app:after {
+	content: "Loading";
+	font-size: $base-font-size;
+	margin-top: $small-spacing;
+}
+
+spinner-clab[loading-text] .spinner-overlay.dark:after,
+.spinner-overlay.dark.loading-app:after {
+	color: #FFFFFF;
+}
+
+.spinner-overlay.loading-app:after {
+	content: "Loading application";
+}
+
 .spinner-overlay {
   position: absolute;
   top: 0;
@@ -21,6 +37,10 @@
   right: 0;
   bottom: 0;
   z-index: 2;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   background-color: rgba($background-color, 0.9);
   @include user-selection(none);
 
@@ -36,7 +56,6 @@
     .spinner {
       width: 50px;
       height: 50px;
-      margin: -25px 0 0 -25px;
 
       > div {
         width: 2px;
@@ -47,17 +66,11 @@
 }
 
 .spinner {
-  margin: 0 auto;
-  width: 24px;
-  height: 24px;
-  text-align: center;
-  font-size: 0px;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  margin: -12px 0 0 -12px;
-  z-index: 3;
-  @include user-selection(none);
+	width: 24px;
+	height: 24px;
+	text-align: center;
+	font-size: 0px;
+	@include user-selection(none);
 
 
 

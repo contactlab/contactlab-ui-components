@@ -31,7 +31,6 @@
 
 table {
   width: 100%;
-  margin-bottom: $base-spacing;
   font-family: $base-font;
   border-spacing: 0px;
   border-collapse: separate;
@@ -90,6 +89,18 @@ td {
   display: table;
   @extend table;
 
+  .thead {
+      display: table-header-group;
+  }
+
+  .tbody {
+      display: table-row-group;
+  }
+
+  .thead .tr {
+      border-bottom: 0;
+  }
+
   .clab-icon {
       font-size: $big-font-size;
       vertical-align: middle;
@@ -97,12 +108,16 @@ td {
 
   .tr {
     display: table-row;
+    border-bottom: 1px solid $gray;
+    width: 100%;
+    // display: flex;
   }
 
   .th,
   .td {
     display: table-cell;
     @extend td;
+    flex: 1 1;
   }
 
   .th {
@@ -112,6 +127,7 @@ td {
 
   .td {
     @extend td;
+    border-bottom: 0;
   }
 }
 
@@ -120,21 +136,31 @@ td {
 
 .striped-table {
 
-  hr,
-  td,
-  .td {
-    border: none;
-  }
+    .thead {
+        .tr {
+            background: transparent !important;
+        }
+    }
 
-  tr:nth-child(odd) td,
-  .tr:nth-child(odd) .td {
-    background: set-stripe-color($background-color);
-  }
+    .tr {
+        border-bottom: 0;
+    }
+
+    hr,
+    td,
+    .td {
+        border: none;
+    }
+
+    tr:nth-child(odd) td,
+    .tr:nth-child(odd) {
+        background: set-stripe-color($background-color);
+    }
 }
 
 .hover-table {
   tr:hover td,
-  .tr:hover .td {
+  .tr:hover {
     background: $table-hover-color;
     cursor: pointer;
   }
@@ -196,3 +222,52 @@ td {
 // end full table component
 
 /////////////////// END TABLES ///////////////////
+
+
+
+
+
+.responsive-table {
+    display: flex;
+    flex-direction: column;
+
+    &.striped-table .thead .tr {
+        background: transparent;
+    }
+
+    &.striped-table .tr {
+        border: 0;
+    }
+
+    .tr {
+        display: flex;
+        flex: 1;
+    }
+
+    .td,
+    .th {
+        flex: 1 1;
+    }
+
+    @media (max-width: 600px) {
+        .thead {
+            display: none;
+        }
+
+        .tr {
+            flex-direction: column;
+            padding: $smaller-spacing 0;
+
+            .td {
+                padding: $smaller-spacing $small-spacing;
+
+                &:before {
+                    content: attr(data-th)":";
+                    font-weight: $bold-weight;
+                    margin-right: 5px;
+                    font-size: $small-font-size;
+                }
+            }
+        }
+    }
+}

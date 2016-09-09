@@ -20,6 +20,13 @@ var TagsClab = function () {
 					value: 'tags input'
 				},
 				inputString: String,
+				type: {
+					type: String,
+					value: ''
+				},
+				noteType: {
+					type: String
+				},
 				disabled: {
 					type: Boolean,
 					value: false
@@ -33,10 +40,6 @@ var TagsClab = function () {
 					type: Array,
 					value: [],
 					notify: true
-				},
-				inputType: {
-					type: String,
-					value: ''
 				},
 				btnLabel: {
 					type: String,

@@ -5,7 +5,6 @@
 	flex-flow: column nowrap;
 	background-color: #FFFFFF;
 	border: 1px solid $gray;
-	margin-bottom: $base-spacing;
 	position: relative;
 
 	.card-loader {
@@ -65,7 +64,8 @@
     flex-flow: row wrap;
     align-items: center;
 
-    .icon {
+    .icon,
+	.clab-icon {
       margin-right: 5px;
     }
 

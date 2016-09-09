@@ -2,11 +2,13 @@
 
 tabs-clab {
     width: 100%;
+    display: flex;
 }
 
 .tabs {
   display: flex;
   flex-flow: column wrap;
+  width: 100%;
 
   &.centered {
     ul {

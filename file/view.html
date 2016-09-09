@@ -16,13 +16,14 @@
 			<template is="dom-if" if="[[_viewLabel(label)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 			</template>
+
 			<div class="input" on-click="_selection">
 				<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}" on-change="_checkIfResetPreview">
 				<button class="btn"><i class="clab-icon icon-folder"></i></button>
 			</div>
 
 			<note-clab type="[[noteType]]">
-				<content></content>
+				<content select=".note"></content>
 			</note-clab>
 
 			<input id="input_file" type="file" multiple$="[[multiple]]" disabled="[[disabled]]" on-change="_updateValue">

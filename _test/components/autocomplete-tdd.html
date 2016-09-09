@@ -50,7 +50,7 @@ suite('<autocomplete-clab>', function() {
   		assert.isFalse(autocomplete.resultAsObj, "Result obj false");
   		assert.equal(autocomplete.minChar, 3);
   		assert.equal(autocomplete.maxInView, 6);
-  		assert.isUndefined(autocomplete.inputType);
+  		assert.isUndefined(autocomplete.type);
   		assert.isUndefined(autocomplete.noteType);
       assert.isFalse(autocomplete.inline, "Inline: false");
       assert.isUndefined(autocomplete.labelSize);
@@ -290,7 +290,7 @@ suite('<autocomplete-clab>', function() {
 		test('Check inputType and noteType', function(done) {
 
 			var type = 'error';
-			autocomplete.inputType = type;
+			autocomplete.type = type;
 			autocomplete.noteType = type;
 
 			flush(function(){
