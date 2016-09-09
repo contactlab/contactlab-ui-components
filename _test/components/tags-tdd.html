@@ -38,7 +38,7 @@ suite('<tags-clab>', function() {
       assert.isUndefined(tags.placeholder);
       assert.isFalse(tags.stacked);
       assert.isArray(tags.tags);
-			assert.equal(tags.inputType, '');
+			assert.equal(tags.type, '');
       assert.equal(tags.btnLabel, 'Add');
       assert.isUndefined(tags.btnAppearence);
       assert.isUndefined(tags.btnSize);
@@ -120,7 +120,7 @@ suite('<tags-clab>', function() {
 
     test('Check inputType', function(done) {
       var type = 'error';
-      tags.inputType = type;
+      tags.type = type;
       setTimeout(function () {
         var elClass = tags.querySelector('.input input').classList;
         assert.isTrue(elClass.contains(type));
