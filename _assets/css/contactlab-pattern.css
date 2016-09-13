@@ -69,13 +69,13 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
-.icon-previous:before {
+.icon-fast-backward:before {
   content: ""; }
 
-.icon-rewind:before {
+.icon-backward:before {
   content: ""; }
 
-.icon-skip:before {
+.icon-fast-forward:before {
   content: ""; }
 
 .icon-forward:before {
