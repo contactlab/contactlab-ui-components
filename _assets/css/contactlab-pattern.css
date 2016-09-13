@@ -69,6 +69,27 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-previous:before {
+  content: ""; }
+
+.icon-rewind:before {
+  content: ""; }
+
+.icon-skip:before {
+  content: ""; }
+
+.icon-forward:before {
+  content: ""; }
+
+.icon-play:before {
+  content: ""; }
+
+.icon-stop:before {
+  content: ""; }
+
+.icon-pause:before {
+  content: ""; }
+
 .icon-equal-circle-full:before {
   content: ""; }
 
