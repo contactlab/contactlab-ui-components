@@ -69,6 +69,27 @@ table, .table {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale; }
 
+.icon-fast-backward:before {
+  content: ""; }
+
+.icon-backward:before {
+  content: ""; }
+
+.icon-fast-forward:before {
+  content: ""; }
+
+.icon-forward:before {
+  content: ""; }
+
+.icon-play:before {
+  content: ""; }
+
+.icon-stop:before {
+  content: ""; }
+
+.icon-pause:before {
+  content: ""; }
+
 .icon-equal-circle-full:before {
   content: ""; }
 
@@ -3108,22 +3129,25 @@ td, .table .th,
 
 .rd-container .rd-back:after,
 .rd-container .rd-next:after {
-  font: normal normal normal 20px/1 FontAwesome;
+  font: normal normal normal 12px/1 contactlab-icons;
   position: absolute;
   top: 10px;
   left: 10px;
   width: 20px;
   height: 20px;
   color: #eaeced;
-  cursor: pointer; }
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center; }
 
 .rd-container .rd-next:after {
-  content: "\f105";
+  content: "\e60e";
   right: 0;
   left: auto; }
 
 .rd-container .rd-back:after {
-  content: "\f104";
+  content: "\e60d";
   left: 0; }
 
 .rd-container .rd-month-label {
