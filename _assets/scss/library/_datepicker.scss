@@ -40,7 +40,7 @@
 
   .rd-back:after,
   .rd-next:after {
-    font: normal normal normal 20px/1 FontAwesome;
+    font: normal normal normal 12px/1 contactlab-icons;
     position: absolute;
     top: $small-spacing;
     left: 10px;
@@ -48,16 +48,19 @@
     height: 20px;
     color: #eaeced;
     cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
 
   .rd-next:after {
-    content: "\f105";
+    content: "\e60e";
     right: 0;
     left: auto;
   }
 
   .rd-back:after {
-    content: "\f104";
+    content: "\e60d";
     left: 0;
   }
 
