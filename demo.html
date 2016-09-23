@@ -185,8 +185,13 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
             <article>
                 <button-clab block>
-    				Just click me
-    			</button-clab>
+                    Just click me
+                </button-clab>
+
+
+                <button-clab block size="small">
+                    Just click me
+                </button-clab>
             </article>
 
             <article>
@@ -209,11 +214,29 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Buttons group</h2>
-			<group-clab smaller>
-				<button-clab>First</button-clab>
-				<button-clab>Second</button-clab>
-				<button-clab>Third</button-clab>
-			</group-clab>
+			<article>
+                <group-clab>
+    				<button-clab>First</button-clab>
+    				<button-clab>Second</button-clab>
+    				<button-clab>Third</button-clab>
+    			</group-clab>
+			</article>
+
+			<article>
+                <group-clab type="info" size="small">
+    				<button-clab>First</button-clab>
+    				<button-clab>Second</button-clab>
+    				<button-clab>Third</button-clab>
+    			</group-clab>
+			</article>
+
+			<article>
+                <group-clab type="success" size="smaller">
+    				<button-clab>First</button-clab>
+    				<button-clab>Second</button-clab>
+    				<button-clab>Third</button-clab>
+    			</group-clab>
+			</article>
 		</section>
 
 		<section>
@@ -239,14 +262,14 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				</div>
 			</feature-clab>
 
-			<feature-clab icon-class="clab-icon icon-heart-full">
+			<feature-clab icon-class="clab-icon icon-heart-full" link="#" vertical>
 				<div class="title">Title</div>
 				<div class="text">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
 				</div>
 			</feature-clab>
 
-			<feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big" link="https://www.google.it/">
+			<feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big">
 				<div class="title">Title</div>
 				<div class="text">
 					Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
@@ -404,7 +427,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 				Open modal (content via HTML)
 			</button-clab>
 
-			<modal-clab id="modal-one"  max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px">
+			<modal-clab id="modal-one"  max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px" no-actions>
 			</modal-clab>
 
 			<modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something" no-animation>

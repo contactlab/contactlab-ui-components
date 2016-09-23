@@ -16,14 +16,20 @@ var FeatureClab = function () {
 			this.properties = {
 				link: {
 					type: String,
-					value: ''
+					value: null
 				},
 				linkTarget: {
 					type: String,
 					value: '_self'
 				},
-				iconClass: String,
-				src: String,
+				iconClass: {
+					type: String,
+					value: null
+				},
+				src: {
+					type: String,
+					value: null
+				},
 				size: {
 					type: String,
 					value: null
@@ -46,6 +52,11 @@ var FeatureClab = function () {
 			if (size) arr.push(size);
 			if (vertical) arr.push('vertical');
 			return arr.join(' ');
+		}
+	}, {
+		key: '_compDisplay',
+		value: function _compDisplay(prop) {
+			return prop != null && prop != undefined && prop ? '' : 'display:none';
 		}
 	}]);
 
