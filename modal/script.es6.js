@@ -36,10 +36,6 @@ class ModalClab{
 				type: String,
 				value: null
 			},
-			noAnimation:{
-				type:Boolean,
-				value:false
-			},
 			stopClose:{
 				type:Boolean,
 				value:false
@@ -47,6 +43,14 @@ class ModalClab{
 			width: {
 				type: Number,
 				value: 840
+			},
+			noAnimation:{
+				type:Boolean,
+				value:false
+			},
+			noActions:{
+				type:Boolean,
+				value:false
 			}
 		};
 	}

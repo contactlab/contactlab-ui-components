@@ -17,7 +17,9 @@
 	<template>
 		<!-- <template is="dom-if" if="[[visible]]"> -->
 			<div class="modal-overlay">
+
 				<div class="close-overlay" on-click="_closeModal"><i class="clab-icon icon-close"></i></div>
+
 				<div class="modal">
 					<div class="modal-wrapper" style$="[[_computeWidth(width)]]">
 						<div class="modal-title">[[title]]</div>
@@ -31,23 +33,25 @@
 								<content></content>
 							</div>
 						</template>
-						<div class="main-actions">
-							<div class="primary">
-								<template is="dom-if" if="[[warning]]">
-									<button-clab type="error third" on-btnclick="_warningAction">[[warning]]</button-clab>
-								</template>
-								<template is="dom-if" if="[[secondary]]">
-									<button-clab type="secondary" appearance="flat" on-btnclick="_secondaryAction">[[secondary]]</button-clab>
-								</template>
-								<template is="dom-if" if="[[primary]]">
-									<button-clab type="primary" disabled="[[primaryDisabled]]" on-btnclick="_primaryAction">[[primary]]</button-clab>
-								</template>
+
+						<template is="dom-if" if="[[!noActions]]">
+							<div class="main-actions">
+								<div class="primary">
+									<template is="dom-if" if="[[warning]]">
+										<button-clab type="error third" on-btnclick="_warningAction">[[warning]]</button-clab>
+									</template>
+									<template is="dom-if" if="[[secondary]]">
+										<button-clab type="secondary" appearance="flat" on-btnclick="_secondaryAction">[[secondary]]</button-clab>
+									</template>
+									<template is="dom-if" if="[[primary]]">
+										<button-clab type="primary" disabled="[[primaryDisabled]]" on-btnclick="_primaryAction">[[primary]]</button-clab>
+									</template>
+								</div>
 							</div>
-						</div>
+						</template>
 					</div>
-
-
 				</div>
+
 			</div>
 		<!-- </template> -->
 	</template>
