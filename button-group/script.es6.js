@@ -4,37 +4,29 @@ class GroupClab{
 		this.is = 'group-clab';
 		this.properties = {
 			/**
-	       * Whether the buttons are small
-	       */
-			small: {
-				type: Boolean,
-				value: false
+			* Additional class
+			*/
+			type: {
+				type: String,
+				value: ""
 			},
 			/**
-	       * Whether the buttons are smaller
-	       */
-			smaller: {
-				type: Boolean,
-				value: false
+			* `size` additional class for the size of the buttons
+			*/
+			size:{
+				type: String
 			},
 			/**
-	       * Whether the buttons are disabled
-	       */
+			* Whether the buttons are disabled
+			*/
 			disabled: {
 				type: Boolean,
 				value: false,
 				observer: '_updateDisabled'
 			},
 			/**
-	       * Additional class
-	       */
-			type: {
-				type: String,
-				value: ""
-			},
-			/**
-	       * Index of the button active at init
-	       */
+			* Index of the button active at init
+			*/
 			value: {
 				type: Number,
 				value: 0,
@@ -92,10 +84,10 @@ class GroupClab{
 	/*----------
 	COMPUTED
 	----------*/
-	_computeGroupClass(type,small,smaller){
-		let arr = ['buttons-group',type];
-		small ? arr.push('small') : null;
-		smaller ? arr.push('smaller') : null;
+	_computeGroupClass(type, size){
+		let arr = ['buttons-group'];
+		type ? arr.push(type) : null;
+		size ? arr.push(size) : null;
 		return arr.join(' ');
 	}
 
