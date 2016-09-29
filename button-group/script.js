@@ -104,7 +104,8 @@ var GroupClab = function () {
 	}, {
 		key: '_computeGroupClass',
 		value: function _computeGroupClass(type, size) {
-			var arr = ['buttons-group'];
+			// let arr = ['buttons-group'];
+			var arr = [];
 			type ? arr.push(type) : null;
 			size ? arr.push(size) : null;
 			return arr.join(' ');
