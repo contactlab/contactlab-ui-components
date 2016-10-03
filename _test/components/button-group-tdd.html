@@ -36,9 +36,7 @@ suite('<group-clab>', function() {
   suite('Test Properties', function() {
 
   	test('Default Properties', function() {
-  		assert.isFalse(group.small);
-      assert.isFalse(group.smaller);
-  		assert.isFalse(group.disabled);
+  		assert.isUndefined(group.size);
   		assert.equal(group.type, '');
   		assert.equal(group.value, 0);
 	  });
@@ -47,21 +45,23 @@ suite('<group-clab>', function() {
 
   suite('Test DOM Bindings', function() {
     test('Check size "small"', function() {
-  		var bool = true;
-  		group.small = bool;
+  		var str = "small";
+  		group.size = str;
       var el = group.$$('.buttons-group');
       assert.include(el.classList.value, 'small', "Size 'small' correct");
     });
     test('Check size "smaller"', function() {
-      var bool = true;
-      group.smaller = bool;
+      var str = "smaller";
+      group.size = str;
       var el = group.$$('.buttons-group');
       assert.include(el.classList.value, 'smaller', "Size 'smaller' correct");
     });
 
     test('Check type', function() {
       var type = "warning";
+      var str = "smaller";
       group.type = type;
+      group.size = str;
       var el = group.$$('.buttons-group');
       assert.include(el.classList.value, type, "Type correct");
     });

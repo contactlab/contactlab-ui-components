@@ -32,7 +32,7 @@ suite('<file-clab>', function() {
 
 		test('Default Properties', function() {
 			assert.isUndefined(file.label);
-			assert.isUndefined(file.type);
+			assert.isNull(file.type);
 			assert.isUndefined(file.noteType);
 			assert.equal(file.name, 'fileinput');
 			assert.isNull(file.value);
@@ -54,9 +54,11 @@ suite('<file-clab>', function() {
       file.noteType = noteType;
       setTimeout(function () {
         var labelEl = file.$$('label');
+        var wrapperClass = file.$$('.input-wrapper').classList;
         var inputClass = file.$$('input').classList;
         var noteClass = file.querySelector('.input-note').classList;
         assert.equal(labelEl.innerText, label, "Label shows: correct");
+        assert.isTrue(inputClass.contains(type), "Type in wrapper div's class: correct");
         assert.isTrue(inputClass.contains(type), "Type in class: correct");
         assert.isTrue(noteClass.contains(noteType), "noteType in class: correct");
         done()

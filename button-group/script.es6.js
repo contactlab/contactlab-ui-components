@@ -85,7 +85,8 @@ class GroupClab{
 	COMPUTED
 	----------*/
 	_computeGroupClass(type, size){
-		let arr = ['buttons-group'];
+		// let arr = ['buttons-group'];
+		let arr = [];
 		type ? arr.push(type) : null;
 		size ? arr.push(size) : null;
 		return arr.join(' ');
