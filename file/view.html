@@ -12,7 +12,7 @@
 	</style>
 
 	<template>
-		<div class="input-wrapper">
+		<div class$="[[_compWrapperClass('input-wrapper', type)]]">
 			<template is="dom-if" if="[[_viewLabel(label)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
 			</template>
