@@ -1,5 +1,12 @@
 <!-- Web animations polyfill -->
 <script src="././.././../web-animations-js/web-animations-next-lite.min.js"></script>
+<script>
+  window.addEventListener('WebComponentsReady', function(e) {
+  	var script = document.createElement('script');
+  	script.src = './bundle.js';
+  	document.body.appendChild(script);
+  });
+</script>
 
 <!-- All components -->
 <link rel="import" href="./../alert/view.html">

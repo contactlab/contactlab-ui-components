@@ -26,5 +26,19 @@
 		</template>
 	</template>
 
-	<script src="./../bundle.js"></script>
+	<!-- <script>
+		var isRegistered = function(el){
+			switch(document.createElement(el).constructor) {
+		    case HTMLElement: return false;
+		    case HTMLUnknownElement: return undefined;
+		  }
+		  return true;
+		};
+		if(!isRegistered('alert-clab')){
+			var script = document.createElement('script');
+			script.src = './../bundle.js';
+			document.body.appendChild(script);
+		}
+	</script> -->
+	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>
