@@ -1,10 +1,8 @@
-<link rel="import" href="../../polymer/polymer.html">
-
 <dom-module id="spinner-clab">
 	<style></style>
-	
+
 	<template>
-		<template is="dom-if" if="[[visible]]">	
+		<template is="dom-if" if="[[visible]]">
 			<div class$="[[_computeClass(big,dark)]]" style$="[[_computeBgColor(background)]]">
 				<div class="spinner">
 					<div class="rect1"></div>
@@ -14,8 +12,8 @@
 					<div class="rect5"></div>
 				</div>
 			</div>
-		</template>	
+		</template>
 	</template>
 
-	<script src="script.js"></script>
+	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

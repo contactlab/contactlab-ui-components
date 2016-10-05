@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	
+
 <test-fixture id="toaster">
 	<template>
 	  <toaster-clab></toaster-clab>
@@ -46,7 +46,7 @@ describe('<toaster-clab>', function() {
 
   	it('Check right', function(done) {
 		toaster.right = true;
-		
+
 		setTimeout(function(){
 			expect(toaster.querySelector('#toast-right').classList.contains('right')).to.equal(true);
 
@@ -120,7 +120,7 @@ describe('<toaster-clab>', function() {
 	});
 
   });
-});	
+});
 
 </script>
 </body>
