@@ -1,4 +1,13 @@
-class FileClab {
+'use strict';
+
+import {
+  Polymer
+} from "./../_assets/js/polymer";
+import {
+  UtilBehavior
+} from "./../_behaviors/behaviors.es6";
+
+export class FileClab {
 
   get behaviors() {
     return [UtilBehavior];

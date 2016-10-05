@@ -1,4 +1,10 @@
-class GroupClab{
+'use strict';
+
+import {
+  Polymer
+} from "./../_assets/js/polymer";
+
+export class GroupClab{
 
 	beforeRegister(){
 		this.is = 'group-clab';
