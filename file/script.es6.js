@@ -1,16 +1,4 @@
-'use strict';
-
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  NoteClab
-} from "./../note/script.es6";
-
-export class FileClab {
+class FileClab {
 
   get behaviors() {
     return [UtilBehavior];
@@ -24,7 +12,10 @@ export class FileClab {
         type: String,
         value: 'fileinput'
       },
-      type: String,
+      type: {
+        type: String,
+        value: null
+      },
       noteType: String,
       value: {
         type: String,
@@ -36,7 +27,7 @@ export class FileClab {
         value: false,
         notify: true,
         reflectToAttribute: true,
-        observer: 'disabledChanged'
+        observer: '_disabledChanged'
       },
       multiple: {
         type: Boolean,
@@ -95,8 +86,19 @@ export class FileClab {
   /*----------
   OBSERVERS
   ----------*/
-  disabledChanged(newVal, oldVal) {
+  _disabledChanged(newVal, oldVal) {
     if(newVal) this.type = 'disabled';
+  }
+
+
+
+  /*----------
+  COMPUTE
+  ----------*/
+  _compWrapperClass(str, type) {
+    let arr = [str];
+    if(type != null) arr.push(type);
+    return arr.join(' ');
   }
 
 
