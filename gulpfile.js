@@ -274,8 +274,8 @@ gulp.task('webpack', function(reload) {
 
 // Watch every .js file for changes except bundle.js and run the Webpack action, plus it prints out on the terminal which files has changed
 gulp.task('watch-npm', function() {
-  gulp.watch(['./**/*.js', '!./bundle.js'], ['webpack']);
-  gulp.watch(['./**/*.js', '!./bundle.js'], function(arg) {
+  gulp.watch(['./**/*.es6.js', '!./bundle.js'], ['webpack']);
+  gulp.watch(['./**/*.es6.js', '!./bundle.js'], function(arg) {
     console.log('something changend', arg)
   });
 });

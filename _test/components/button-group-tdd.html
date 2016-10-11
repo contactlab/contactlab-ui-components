@@ -38,7 +38,7 @@ suite('<group-clab>', function() {
   suite('Test Properties', function() {
 
   	test('Default Properties', function() {
-  		assert.isUndefined(group.size);
+  		assert.equal(group.size, '');
   		assert.equal(group.type, '');
   		assert.equal(group.value, 0);
 	  });
@@ -61,9 +61,7 @@ suite('<group-clab>', function() {
 
     test('Check type', function() {
       var type = "warning";
-      var str = "smaller";
       group.type = type;
-      group.size = str;
       var el = group.$$('.buttons-group');
       assert.include(el.classList.value, type, "Type correct");
     });
