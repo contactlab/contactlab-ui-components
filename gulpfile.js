@@ -55,7 +55,6 @@ gulp.task('reload', function() {
 });
 
 
-
 /**
  * Compile every .scss files in plain .css
  */
@@ -65,23 +64,6 @@ gulp.task('sass', function() {
     .pipe(gulp.dest('./_assets/css'));
 });
 
-
-/**
- * Compile every .es6.js files and transpiles in ES5 .js
- */
-// gulp.task('babel', function () {
-//   return gulp.src(conf.es6SourcePath)
-//     .pipe(plumber())
-//     .pipe(watch(conf.es6SourcePath))
-//     .pipe(babel())
-//     .pipe(rename(function(path){
-//         path.basename = path.basename.replace(/.es6$/, '');
-//         console.log('updated: '+path.basename+' in '+path.dirname);
-//     }))
-//     .pipe(gulp.dest(''));
-// });
-
-
 /**
  * Watch changes in .scss files and runs 'sass' task
  */
@@ -89,175 +71,9 @@ gulp.task('watch-sass', function() {
   gulp.watch(conf.scssSourcePath, ['sass']);
 });
 
-
 /**
- * Watch changes in .es6.js files and runs 'babel' task
+ * Load the configuration file and execute Webpack using `./app/index.js` as entry point
  */
-// gulp.task('watch-es6', function() {
-//   gulp.watch(conf.es6SourcePath, ['babel']);
-// });
-
-
-/**
- * Vulcanize components in a single file
- */
-gulp.task('vulcanize', function(c) {
-  var files;
-  var dest;
-  if(c != null) {
-    if(c == true) { // all but separately
-      files = conf.comps;
-      dest = '';
-    } else if(c.split('_').length > 1) { // only the files selected
-      var arr = c.split('_');
-      var data = '';
-      for(var i = 0; i < arr.length; i++) {
-        data += '<link rel="import" href="../' + arr[i] + '/view.html">\n';
-      }
-      fs.writeFileSync('./_components/clab-ui-components-custom.html', data);
-      files = './_components/clab-ui-components-custom.html';
-      dest = './_components/';
-    } else { // only one file
-      files = './' + c + '/view.html';
-      dest = './' + c + '/';
-    }
-  } else { // all in one file
-    files = './_components/clab-ui-components.html';
-    dest = './_components/';
-  }
-
-  return gulp.src(files)
-    .pipe(vulcanize({
-      abspath: '',
-      stripExcludes: false,
-      stripComments: true,
-      inlineCSS: false,
-      inlineScripts: true
-    }))
-    .pipe(rename(function(path) {
-      path.basename = path.basename + '.build';
-      console.log('BUILT: ' + path.basename + ' in ' + (dest === '' ? (path.dirname.length > 1 ? path.dirname : 'root') : dest));
-    }))
-    .pipe(gulp.dest(dest));
-});
-
-
-/**
- * Minify HTML code
- */
-gulp.task('min-html', ['vulcanize'], function(c) {
-  var files;
-  var dest;
-
-  if(c != null) {
-    if(c == true) { // all but separately
-      files = conf.compsBuilt;
-      dest = '';
-    } else if(c.split('_').length > 1) { // only the files selected
-      files = './_components/clab-ui-components-custom.build.html';
-      dest = './_components/';
-    } else { // only one
-      files = './' + c + '/view.build.html';
-      dest = './' + c + '/';
-    }
-  } else { // all in one file
-    files = './_components/clab-ui-components.build.html';
-    dest = './_components/';
-  }
-
-  return gulp.src(files)
-    .pipe(minifyHTML({
-      empty: true
-    }))
-    .pipe(gulp.dest(dest))
-});
-
-
-/**
- * Minify inline Javascript
- */
-gulp.task('min-inline', ['min-html'], function(c) {
-  var files;
-  var dest;
-
-  if(c != null) {
-    if(c == true) { // all but separately
-      files = conf.compsBuilt;
-      dest = '';
-    } else if(c.split('-').length > 1) { // only the files selected
-      files = './_components/clab-ui-components-custom.build.html';
-      dest = './_components/';
-    } else { // only one
-      files = './' + c + '/view.build.html';
-      dest = './' + c + '/';
-    }
-  } else { // all in one file
-    files = './_components/clab-ui-components.build.html';
-    dest = './_components/';
-  }
-
-  return gulp.src(files)
-    .pipe(minifyInline())
-    .pipe(gulp.dest(dest))
-});
-
-gulp.task('create-bundle', function(c) {
-  let files, dest, msg;
-  let comps = c ? c.split(',') : null;
-
-  if(c === null) {
-    files = './_components/clab-ui-components.html';
-    dest = './';
-    msg = 'BUILT: ./clab-ui-components.html';
-    _doVulcanize(files, dest, c, msg);
-  }
-
-  if(c !== null && !comps.length) {
-    files = './' + c + '/view.html';
-    dest = './' + c + '/';
-    msg = 'BUILT: ' + './' + c + '/' + c + '.html';
-    _doVulcanize(files, dest, c, msg);
-  }
-
-  if(c !== null && comps.length) {
-    comps.forEach(function(e, i) {
-      files = './' + e + '/view.html';
-      dest = './' + e + '/';
-      msg = 'BUILT: ' + './' + e + '/' + e + '.html';
-      _doVulcanize(files, dest, e, msg);
-    });
-  }
-});
-
-function _doVulcanize(files, dest, c, msg) {
-  return gulp.src(files)
-    .pipe(vulcanize({
-      abspath: '',
-      stripExcludes: false,
-      stripComments: true,
-      inlineCSS: true,
-      inlineScripts: true
-    }))
-    .pipe(rename(function(path) {
-      (c !== null) ? path.basename = c: null;
-      console.log(msg);
-    }))
-    .pipe(minifyInline())
-    .pipe(minifyHTML({
-      empty: true
-    }))
-    .pipe(gulp.dest(dest));
-}
-
-
-
-
-
-
-
-
-
-// Load the configuration file and execute Webpack using `./app/index.js` as entry point
 gulp.task('webpack', function(reload) {
   var config = Object.assign({}, webpackConfig);
   return gulp.src('./_assets/js/index.js')
@@ -272,7 +88,9 @@ gulp.task('webpack', function(reload) {
     });
 });
 
-// Watch every .js file for changes except bundle.js and run the Webpack action, plus it prints out on the terminal which files has changed
+/**
+ * Watch every .js file for changes except bundle.js and run the Webpack action, plus it prints out on the terminal which files has changed
+ */
 gulp.task('watch-npm', function() {
   gulp.watch(['./**/*.es6.js', '!./bundle.js'], ['webpack']);
   gulp.watch(['./**/*.es6.js', '!./bundle.js'], function(arg) {
@@ -281,12 +99,38 @@ gulp.task('watch-npm', function() {
 });
 
 
+gulp.task('bundle', function(components){
+  if(!components){
+    console.error('No components specified!');
+    return;
+  } else {
+    let comps = components.split(',').map(function(e){
+      return './' + e + '/script.es6.js'
+    });
+    console.log(comps);
+    let config = Object.assign({}, webpackConfig);
+    config.entry.page1 = comps;
+    config.output.filename = 'bundle-custom.js';
+    return gulp.src(comps)
+      .pipe(webpack(config))
+      .pipe(gulp.dest('./_components'))
+      .pipe(notify("Webpack build completed!"))
+      .on('error', function() {
+        notify("Webpack build failed!")
+      });
+  }
+});
 
+gulp.task('vulcanize', function(components){
+  
+});
 
-
-
-
-
+/**
+ * Starts building task
+ */
+gulp.task('start-build', ['bundle'], function(components){
+  console.log('Building package');
+});
 
 /**
  * Default action: webserver
@@ -296,9 +140,7 @@ gulp.task('default', ['connect']);
 /**
  * JS development action: webserver + babel on save
  */
-// gulp.task('dev', ['connect', 'watch-es6']);
 gulp.task('dev', ['connect', 'webpack', 'watch-npm']);
-
 
 /**
  * CSS development action: webserver + sass on save
@@ -308,8 +150,4 @@ gulp.task('ux', ['connect', 'watch-sass']);
 /**
  * Vulcanize Polymer components in one file
  */
-gulp.task('build-old', ['min-inline']);
-gulp.task('build', ['create-bundle']);
-// gulp.task('build', function(cb){
-//   runSequence('vulcanize','minHtml','minInline');
-// });
+ gulp.task('build', ['start-build']);

@@ -15,8 +15,7 @@ module.exports = {
         exclude: ['node_modules','./bundle.js'],
         loader: 'babel', // 'babel-loader' is also a legal name to reference
         query: {
-          presets: ['es2015'],
-          plugins: []
+          presets: ['es2015']
         }
       }
     ]
