@@ -541,7 +541,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Checkbox</h2>
-			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]" on-change="_checkboxChange"></checkbox-clab>
+			<checkbox-clab label="ciao" active on-selected-change="_checkboxChange"></checkbox-clab>
 		</section>
 
 		<section>
@@ -693,7 +693,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         },
 
         _checkboxChange:function(evt){
-            console.log(evt.model);
+            console.log(evt.target);
         },
 
         _changeCurrentHash:function(evt){
