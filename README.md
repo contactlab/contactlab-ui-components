@@ -69,19 +69,47 @@ to automatically compile SASS to CSS on every .scss file save.
 
 `$ gulp build` - Bundle and minify all the components in a single **clab-ui-components.html** file in the root.
 
-`$ gulp build -c [component]` - Build and minify a single component inside its folder, specified by the argument passed after the flag, and create a **[component].html** file.
+#### Complete
+Bundle and minify all the components in a single **clab-ui-components.html** file in the root:
 
-`$ gulp build -c [component1],[component2],[component3]` - Same as above except it builds multiple components individually.
+    $ yarn run build
+
+#### Custom
+Bundle and minify a group of components in a single bundle **clab-ui-components-custom.html** file in the root:
+
+    $ yarn run build:single tooltip,radio,checkbox
+
+#### No-Polymer
+Add a `no-polymer` flag to **exclude Polymer** from vulcanization bundle:
+> NOTE: **as is not possible to include two vulcanized copy of Polymer** within an application bundle, this "no-polymer" bundle will allow you to include Polymer in your vulcanized application and still be able to include the `contactlab-ui-components` as a normal `import`.
+
+    $ yarn run build no-polymer
+    $ yarn run build:single tooltip,radio,checkbox no-polymer
+
+#### Sanity check
+A ***pure*** demo is located at `contactlab-ui-components/_demo/demo-pure.html` to test the components after a build.  
+Note that only the ***complete*** build file is included in the `demo-pure.html`. You need to change the `import` if you want to test a ***custom*** bundle.
+
+
+### Development
+
+Start the dev server with watch on ES6 files ([http://localhost:3000/contactlab-ui-components/_demo](http://localhost:3000/contactlab-ui-components/_demo)):
+
+		$ yarn run dev
+
 
 ### Testing
 
 Start test suites with **web-component-tester**:
 
-	$ wct
+	$ yarn test
 
 If you want to see tests on your browser (Chrome):
 
-	$ wct -p
+	$ yarn run test:p
+
+### NOTE on Yarn
+> Everything can be run with NPM as well!
 
 ### Git branching policies
 

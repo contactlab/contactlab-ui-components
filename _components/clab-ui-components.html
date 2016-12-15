@@ -1,14 +1,10 @@
-<!-- Web animations polyfill -->
-<script src="././.././../web-animations-js/web-animations-next-lite.min.js"></script>
-<script>
-  window.addEventListener('WebComponentsReady', function(e) {
-  	var script = document.createElement('script');
-  	script.src = './bundle.js';
-  	document.body.appendChild(script);
-  });
-</script>
 
-<!-- All components -->
+
+<script src="./../../web-animations-js/web-animations-next-lite.min.js"></script>
+<!--polymer!-->
+<link rel="import" href="./../../polymer/polymer.html">
+<!--polymer!-->
+
 <link rel="import" href="./../alert/view.html">
 <link rel="import" href="./../button/view.html">
 <link rel="import" href="./../button-group/view.html">
@@ -32,3 +28,6 @@
 <link rel="import" href="./../dropdown/view.html">
 <link rel="import" href="./../tags/view.html">
 <link rel="import" href="./../multiple/view.html">
+<!--bundlecomp!-->
+<script src="./../_components/bundle.js"></script>
+<!--bundlecomp!-->
