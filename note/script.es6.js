@@ -1,8 +1,6 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
+import {Polymer} from "./../_assets/js/polymer";
 
 export class NoteClab {
 

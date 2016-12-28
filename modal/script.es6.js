@@ -1,14 +1,8 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  AnimationsBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  ButtonClab
-} from "./../button/script.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {AnimationsBehavior} from "./../_behaviors/behaviors.es6";
+import {ButtonClab} from "./../button/script.es6";
 
 export class ModalClab {
 

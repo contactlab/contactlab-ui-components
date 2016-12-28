@@ -1,20 +1,10 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  ButtonClab
-} from "./../button/script.es6";
-import {
-  LabelClab
-} from "./../label-badge/script.es6";
-import {
-  InputClab
-} from "./../input/script.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {ButtonClab} from "./../button/script.es6";
+import {LabelClab} from "./../label-badge/script.es6";
+import {InputClab} from "./../input/script.es6";
 
 export class TagsClab {
 

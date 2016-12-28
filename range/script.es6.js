@@ -1,11 +1,7 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 export class RangeClab {
 

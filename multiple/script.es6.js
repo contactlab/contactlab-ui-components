@@ -1,17 +1,9 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  NoteClab
-} from "./../note/script.es6";
-import {
-  SpinnerClab
-} from "./../spinner/script.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {NoteClab} from "./../note/script.es6";
+import {SpinnerClab} from "./../spinner/script.es6";
 
 export class MultipleClab {
 

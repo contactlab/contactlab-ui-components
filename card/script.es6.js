@@ -1,11 +1,7 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  ButtonClab
-} from "./../button/script.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {ButtonClab} from "./../button/script.es6";
 
 
 export class CardClab {

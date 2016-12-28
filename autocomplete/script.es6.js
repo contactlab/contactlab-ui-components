@@ -1,20 +1,10 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  InputClab
-} from "./../input/script.es6";
-import {
-  SpinnerClab
-} from "./../spinner/script.es6";
-import {
-  CurtainClab
-} from "./../curtain/script.es6";
+import {Polymer} from "./../_assets/js/polymer";
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {InputClab} from "./../input/script.es6";
+import {SpinnerClab} from "./../spinner/script.es6";
+import {CurtainClab} from "./../curtain/script.es6";
 
 export class AutoCompleteClab {
 

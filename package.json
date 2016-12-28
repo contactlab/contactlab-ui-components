@@ -1,24 +1,22 @@
 {
-  "name": "ui-components",
-  "version": "0.2.0",
+  "name": "contactclab-ui-components",
+  "version": "1.0.4",
   "description": "Polymer UI components of the CLAB Pattern Library",
-  "main": "demo.html",
+  "main": "index.js",
   "config": {
     "port": {
       "dev": 3000
     }
   },
   "scripts": {
+    "start": "http-server ./../ -s -p $npm_package_config_port_dev",
     "dev": "webpack --progress --colors --watch & http-server ./../ -s -p $npm_package_config_port_dev",
-    
     "prebuild": "node -e 'require(\"./webpack\").fullWebpack()'",
     "build": "node -e 'require(\"./build\").run()'",
     "postbuild": "node -e 'require(\"./build\").vulcanize()'",
-
     "prebuild:single": "node -e 'require(\"./webpack\").singleWebpack()'",
     "build:single": "node -e 'require(\"./build\").run(true)'",
     "postbuild:single": "node -e 'require(\"./build\").vulcanize(true)'",
-
     "test": "wct",
     "test:p": "wct -p"
   },
@@ -44,5 +42,8 @@
     "vulcanize": "^1.14.8",
     "web-component-tester": "^5.0.0",
     "webpack": "^1.13.3"
+  },
+  "dependencies": {
+    "http-server": "^0.9.0"
   }
 }

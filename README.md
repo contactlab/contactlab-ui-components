@@ -7,7 +7,7 @@
 ### Required tools
 - [NodeJS](https://nodejs.org/)
 - [Bower](https://bower.io/) (```$ npm install -g bower```)
-- [Gulp](http://gulpjs.com) (```$ npm install -g gulp-cli``` and ```npm install --save-dev gulp```) (only for development)
+<!-- - [Gulp](http://gulpjs.com) (```$ npm install -g gulp-cli``` and ```npm install --save-dev gulp```) (only for development) -->
 
 Stable branch
 
@@ -40,7 +40,7 @@ Internet Explorer 11 does not support the .from() method in the Array object. Yo
 From the command line, run
 
 ```
-$ npm install
+$ yarn
 $ bower install
 ```
 
@@ -50,12 +50,11 @@ to install required dependencies.
 
 Running the command
 
-```
-$ gulp dev
-```
+	$ yarn run dev
 
-you can work with Javascript files. This command automatically compiles ES6 to ES5 via Babel and Webpack.
-If you only need to work with markup and styles, you can run
+you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack.
+
+<!-- If you only need to work with markup and styles, you can run
 
 ```
 $ gulp ux
@@ -63,11 +62,11 @@ $ gulp ux
 
 to automatically compile SASS to CSS on every .scss file save.
 
-**Both** actions starts a webserver as explained above.
+**Both** actions starts a webserver as explained above. -->
 
-### Builds
+<!-- ### Builds
 
-`$ gulp build` - Bundle and minify all the components in a single **clab-ui-components.html** file in the root.
+`$ gulp build` - Bundle and minify all the components in a single **clab-ui-components.html** file in the root. -->
 
 #### Complete
 Bundle and minify all the components in a single **clab-ui-components.html** file in the root:
@@ -95,7 +94,7 @@ Note that only the ***complete*** build file is included in the `demo-pure.html`
 
 Start the dev server with watch on ES6 files ([http://localhost:3000/contactlab-ui-components/_demo](http://localhost:3000/contactlab-ui-components/_demo)):
 
-		$ yarn run dev
+	$ yarn run dev
 
 
 ### Testing
