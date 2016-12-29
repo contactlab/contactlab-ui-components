@@ -66,24 +66,23 @@ export class TabsClab {
   /*----------
   OBSERVERS
   ----------*/
-  _changeTab(active, content) {
-    if(active != undefined) {
-      this.set('current', this.labels[active]);
 
-      if(content != undefined && content.length > 0) {
-        while(Polymer.dom(this.$.activeContentWrapper).firstChild) {
-          Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
-        }
-        Array.prototype.map.call(this._content, (node, i) => {
-          if(i == active) {
-            Polymer.dom(this.$.activeContentWrapper).appendChild(node);
-            Polymer.dom.flush();
-            return;
-          }
-        });
-      }
-    }
-  }
+  _changeTab(active, content) {
+		if (active != undefined) {
+			if (content != undefined && content.length > 0) {
+				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
+					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
+				}
+				Array.prototype.map.call(this._content, (node, i) => {
+					if (i == active) {
+						Polymer.dom(this.$.activeContentWrapper).appendChild(node);
+						Polymer.dom.flush();
+						return;
+					}
+				});
+			}
+		}
+	}
 
 
 
@@ -100,10 +99,14 @@ export class TabsClab {
   }
 
   _computeActive(active, index) {
-    let arr = ['tab'];
-    (active === index) ? arr.push('active'): arr;
-    return arr.join(' ');
-  }
+		let arr = ['tab'];
+		if (active === index) {
+			arr.push('active');
+			this.set('current', this.labels[active]);
+		};
+		return arr.join(' ');
+	}
+
 
 }
 

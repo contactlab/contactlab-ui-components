@@ -51,6 +51,11 @@ export class InputClab {
         value: false,
         reflectToAttribute: true
       },
+      readonly: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
       labelSize: {
         type: String,
         value: null
@@ -66,6 +71,11 @@ export class InputClab {
       required: {
         type: Boolean,
         value: false,
+        reflectToAttribute: true
+      },
+      maxlength: {
+        type: Number,
+        value: null,
         reflectToAttribute: true
       },
       btnPswd: {
@@ -105,7 +115,6 @@ export class InputClab {
       }
     })
   }
-
 
 
   /*----------
@@ -167,10 +176,11 @@ export class InputClab {
   }
 
   _computeBtnPswd(val, old) {
-    if(val)
+    if(val){
       this.set('_btnPswd', this.btnPswd.show);
-    else
+    } else {
       this.set('_btnPswd', this.btnPswd.hide);
+    }
   }
 
 }
