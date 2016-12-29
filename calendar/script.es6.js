@@ -43,6 +43,11 @@ export class CalendarClab {
     }, 50);
   }
 
+  detached(){
+    const calendar = rome.find(this.querySelector('input'));
+    calendar ? calendar.destroy() : null;
+  }
+
 
 
 
