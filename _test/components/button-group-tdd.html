@@ -7,7 +7,9 @@
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
 
+	<link rel="import" href="./../../../polymer/polymer.html">
 	<link rel="import" href="./../../button-group/view.html">
+	<script src="./../../_components/bundle.js"></script>
 
 </head>
 <body>
@@ -36,7 +38,7 @@ suite('<group-clab>', function() {
   suite('Test Properties', function() {
 
   	test('Default Properties', function() {
-  		assert.isUndefined(group.size);
+  		assert.equal(group.size, '');
   		assert.equal(group.type, '');
   		assert.equal(group.value, 0);
 	  });
@@ -59,9 +61,7 @@ suite('<group-clab>', function() {
 
     test('Check type', function() {
       var type = "warning";
-      var str = "smaller";
       group.type = type;
-      group.size = str;
       var el = group.$$('.buttons-group');
       assert.include(el.classList.value, type, "Type correct");
     });

@@ -1,7 +1,9 @@
 <!-- When components are vulcanized (in build version) loading polymer.html file throws a lot of errors beacause it is already included in the build file.
-Anyway it seems to work even if the components are not vulcanized but loaded before this demo-clab.
+Anyway it seems to work even if the components are not vulcanized but loaded before this demo-clab. -->
 
-<link rel="import" href="../polymer/polymer.html"> -->
+<link rel="import" href="../../polymer/polymer.html">
+<link rel="import" href="./../_components/clab-ui-components.html">
+
 
 
 <dom-module id="demo-clab">
@@ -215,7 +217,23 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 		<section>
 			<h2>Buttons group</h2>
 			<article>
-                <group-clab>
+          <group-clab>
+    				<button-clab>First</button-clab>
+    				<button-clab>Second</button-clab>
+    				<button-clab>Third</button-clab>
+    			</group-clab>
+			</article>
+
+      <article>
+          <group-clab type="success">
+            <button-clab>First</button-clab>
+            <button-clab>Second</button-clab>
+            <button-clab>Third</button-clab>
+          </group-clab>
+      </article>
+
+			<article>
+          <group-clab type="info" size="small">
     				<button-clab>First</button-clab>
     				<button-clab>Second</button-clab>
     				<button-clab>Third</button-clab>
@@ -223,15 +241,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 			</article>
 
 			<article>
-                <group-clab type="info" size="small">
-    				<button-clab>First</button-clab>
-    				<button-clab>Second</button-clab>
-    				<button-clab>Third</button-clab>
-    			</group-clab>
-			</article>
-
-			<article>
-                <group-clab type="success" size="smaller">
+          <group-clab type="success" size="smaller">
     				<button-clab>First</button-clab>
     				<button-clab>Second</button-clab>
     				<button-clab>Third</button-clab>
@@ -531,7 +541,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 		<section>
 			<h2>Checkbox</h2>
-			<checkbox-clab labels='["checkbox 1", "checkbox 2", "checkbox 3"]' active="[0, 2]" on-change="_checkboxChange"></checkbox-clab>
+			<checkbox-clab label="ciao" active on-selected-change="_checkboxChange"></checkbox-clab>
 		</section>
 
 		<section>
@@ -683,7 +693,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         },
 
         _checkboxChange:function(evt){
-            console.log(evt.model);
+            console.log(evt.target);
         },
 
         _changeCurrentHash:function(evt){

@@ -1,4 +1,8 @@
-class GroupClab{
+'use strict';
+
+import {Polymer} from "./../_assets/js/polymer";
+
+export class GroupClab{
 
 	beforeRegister(){
 		this.is = 'group-clab';
@@ -8,13 +12,14 @@ class GroupClab{
 			*/
 			type: {
 				type: String,
-				value: ""
+				value: ''
 			},
 			/**
 			* `size` additional class for the size of the buttons
 			*/
 			size:{
-				type: String
+				type: String,
+				value: ''
 			},
 			/**
 			* Whether the buttons are disabled
@@ -85,10 +90,7 @@ class GroupClab{
 	COMPUTED
 	----------*/
 	_computeGroupClass(type, size){
-		// let arr = ['buttons-group'];
-		let arr = [];
-		type ? arr.push(type) : null;
-		size ? arr.push(size) : null;
+		let arr = [type, size];
 		return arr.join(' ');
 	}
 

@@ -1,25 +1,29 @@
-class NoteClab{
+'use strict';
 
-	beforeRegister(){
-		this.is = "note-clab";
-		this.properties = {
-			type: String,
-			classes: {
-				type: String,
-				computed: 'computeClasses(type)',
-				readonly:true
-			}
-		}
-	}
+import {Polymer} from "./../_assets/js/polymer";
 
-	/*----------
-	COMPUTED
-	----------*/
-	computeClasses(type){
-		var arr=['input-note'];
-		if(type!=undefined) arr.push(type);
-		return arr.join(' ');
-	}
+export class NoteClab {
+
+  beforeRegister() {
+    this.is = "note-clab";
+    this.properties = {
+      type: String,
+      classes: {
+        type: String,
+        computed: 'computeClasses(type)',
+        readonly: true
+      }
+    }
+  }
+
+  /*----------
+  COMPUTED
+  ----------*/
+  computeClasses(type) {
+    var arr = ['input-note'];
+    if(type != undefined) arr.push(type);
+    return arr.join(' ');
+  }
 }
 
 

@@ -4,3 +4,5 @@ node_modules/
 **/*.sublime-project
 **/*.sublime-workspace
 **/*.sass-cache
+workspace
+clab-ui-components-custom.html

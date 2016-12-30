@@ -1,6 +1,5 @@
-<link rel="import" href="../../polymer/polymer.html">
-<link rel="import" href="../note/view.html">
-<link rel="import" href="../button/view.html">
+<link rel="import" href="./../note/view.html">
+<link rel="import" href="./../button/view.html">
 
 <dom-module id="input-clab">
 	<style>
@@ -22,8 +21,18 @@
 			</template>
 
 			<div class="input">
-				<input class$="[[type]]" type$="[[_computeInputType(password)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]"
-				value="{{value::input}}" placeholder="[[placeholder]]" on-blur="_blur" on-focus="_focus" required="[[required]]">
+				<input
+					class$="[[type]]"
+					type$="[[_computeInputType(password)]]"
+					name$="[[_dashify(name)]]"
+					disabled="[[disabled]]"
+					value="{{value::input}}"
+					placeholder="[[placeholder]]"
+					required="[[required]]"
+					readonly$="[[readonly]]"
+					maxlength$="[[maxlength]]"
+					on-blur="_blur"
+					on-focus="_focus" >
 
 				<template is="dom-if" if="[[check]]">
 					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
@@ -34,9 +43,9 @@
 			</div>
 
 			<note-clab type="[[noteType]]"></note-clab>
-			
+
 		</div>
 	</template>
-	<script src="./../_behaviors/behaviors.js"></script>
-	<script src="script.js"></script>
+
+	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

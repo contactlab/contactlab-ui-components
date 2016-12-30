@@ -1,49 +1,54 @@
-class RadioClab{
+'use strict';
 
-	get behaviors() {
-      return [UtilBehavior];
+import {Polymer} from "./../_assets/js/polymer";
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+
+export class RadioClab {
+
+  get behaviors() {
+    return [UtilBehavior];
+  }
+
+  beforeRegister() {
+    this.is = "radio-clab";
+    this.properties = {
+      labels: Array,
+      name: String,
+      wrapperType: {
+        type: String,
+        value: ''
+      },
+      active: Number,
+      disabled: Array
     }
-
-	beforeRegister(){
-		this.is = "radio-clab";
-		this.properties = {
-			labels: Array,
-			name: String,
-			wrapperType: {
-				type: String,
-				value: ''
-			},
-			active: Number,
-			disabled: Array
-		}
-	}
+  }
 
 
 
-	/*----------
-	COMPUTED
-	----------*/
-	_computeType(wt){
-		return ['row',wt].join(' ');
-	}
+  /*----------
+  COMPUTED
+  ----------*/
+  _computeType(wt) {
+    return ['row', wt].join(' ');
+  }
 
 
 
-	/*----------
-	UTILS
-	----------*/
-	_checkIfTrue(i, n){
-		switch(typeof n){
-			case 'number':
-				return i==n;
-				break;
-			case 'object':
-				for(let x=0; x<n.length; x++){
-					if(i == n[x]) return true;
-				}
-				break;
-		}
-	}
+  /*----------
+  UTILS
+  ----------*/
+  _checkIfTrue(i, n) {
+    switch(typeof n) {
+      case 'number':
+        return i == n;
+        break;
+      case 'object':
+        for(let x = 0; x < n.length; x++) {
+          if(i == n[x]) return true;
+        }
+        break;
+    }
+  }
 
 }
 

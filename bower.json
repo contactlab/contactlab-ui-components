@@ -3,13 +3,13 @@
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "",
   "dependencies": {
-    "polymer": "^1.6.0",
-    "rome": "moebiusmania/rome#highlighting_v2_1_22",
-    "moment": "2.12.0",
-    "web-animations-js": "^2.1.4",
-    "fetch": "^0.11.0",
-    "es6-promise": "^3.1.2",
-    "lodash": "^4.13.1"
+    "es6-promise": "^4.0.5",
+    "fetch": "^2.0.1",
+    "lodash": "^4.17.3",
+    "moment": "^2.17.1",
+    "polymer": "^1.7.1",
+    "web-animations-js": "^2.2.2",
+    "rome": "^2.1.22"
   },
   "devDependencies": {
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
@@ -42,7 +42,6 @@
     "_tests",
     "node_modules",
     "toaster_",
-    "panel_",
     "starter_",
     "pagination_",
     "_demo-server"
