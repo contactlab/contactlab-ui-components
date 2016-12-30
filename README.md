@@ -18,7 +18,6 @@ Development branch (unstable)
 	$ bower install https://github.com/contactlab/contactlab-ui-components#develop
 
 ### Dependencies
-
 The following required libraries and polyfills are resolved by Bower during the installation:
 
 - [Polymer](https://www.polymer-project.org/1.0/)
@@ -52,21 +51,7 @@ Running the command
 
 	$ yarn run dev
 
-you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack.
-
-<!-- If you only need to work with markup and styles, you can run
-
-```
-$ gulp ux
-```
-
-to automatically compile SASS to CSS on every .scss file save.
-
-**Both** actions starts a webserver as explained above. -->
-
-<!-- ### Builds
-
-`$ gulp build` - Bundle and minify all the components in a single **clab-ui-components.html** file in the root. -->
+you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack and starts a static web server on `localhost:8080`.
 
 #### Complete
 Bundle and minify all the components in a single **clab-ui-components.html** file in the root:
@@ -90,13 +75,6 @@ A ***pure*** demo is located at `contactlab-ui-components/_demo/demo-pure.html` 
 Note that only the ***complete*** build file is included in the `demo-pure.html`. You need to change the `import` if you want to test a ***custom*** bundle.
 
 
-### Development
-
-Start the dev server with watch on ES6 files ([http://localhost:3000/contactlab-ui-components/_demo](http://localhost:3000/contactlab-ui-components/_demo)):
-
-	$ yarn run dev
-
-
 ### Testing
 
 Start test suites with **web-component-tester**:
@@ -111,8 +89,7 @@ If you want to see tests on your browser (Chrome):
 > Everything can be run with NPM as well!
 
 ### Git branching policies
-
 Any feature/bug fixing/refactor must be developed on a **feature branch** derived from the **develop** branch and integrate the changes through a **pull request** to have a code review.
 
 ### License
-Apache 2.0
+Released under the [Apache 2.0](LICENSE) license.

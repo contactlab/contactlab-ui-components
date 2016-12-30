@@ -29,20 +29,12 @@ export class AccordionClab {
 
     // Preparing the animations
     let height = [
-      {
-        height: '0'
-      },
-      {
-        height: 'auto'
-      }
+      { height: '0' },
+      { height: 'auto' }
 		];
     let margin = [
-      {
-        'margin-bottom': '0'
-      },
-      {
-        'margin-bottom': '20px'
-      }
+      { 'margin-bottom': '0' },
+      { 'margin-bottom': '20px' }
 		];
 
     this.openAccordion = new GroupEffect([
@@ -51,26 +43,11 @@ export class AccordionClab {
         fill: 'forwards',
         direction: 'normal'
       }),
-			// new KeyframeEffect(this.block, bgColor, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'normal'
-			// }),
 			new KeyframeEffect(this.block, margin, {
         duration: 100,
         fill: 'forwards',
         direction: 'normal'
       }),
-			// new KeyframeEffect(this.block, padding, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'normal'
-			// }),
-			// new KeyframeEffect(this.block, shadow, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'normal'
-			// })
 		]);
 
     this.closeAccordion = new GroupEffect([
@@ -79,26 +56,12 @@ export class AccordionClab {
         fill: 'forwards',
         direction: 'reverse'
       }),
-			// new KeyframeEffect(this.block, bgColor, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'reverse'
-			// }),
+
 			new KeyframeEffect(this.block, margin, {
         duration: 100,
         fill: 'forwards',
         direction: 'reverse'
       }),
-			// new KeyframeEffect(this.block, padding, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'reverse'
-			// }),
-			// new KeyframeEffect(this.block, shadow, {
-			// 	duration:100,
-			// 	fill:'forwards',
-			// 	direction: 'reverse'
-			// })
 		]);
   }
 
