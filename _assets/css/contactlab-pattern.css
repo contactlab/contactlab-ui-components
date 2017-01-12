@@ -3697,24 +3697,25 @@ td, .table .th,
 .rd-container .rd-next {
   background-color: transparent;
   border: 0;
+  position: absolute;
+  top: 10px;
+  width: 20px;
+  height: 20px;
 }
 
 .rd-container .rd-back {
   float: left;
+  left: 10px;
 }
 
 .rd-container .rd-next {
   float: right;
+  right: 10px;
 }
 
 .rd-container .rd-back:after,
 .rd-container .rd-next:after {
   font: normal normal normal 12px/1 contactlab-icons;
-  position: absolute;
-  top: 10px;
-  left: 10px;
-  width: 20px;
-  height: 20px;
   color: #eaeced;
   cursor: pointer;
   display: flex;

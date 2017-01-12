@@ -28,24 +28,25 @@
   .rd-next {
     background-color: transparent;
     border: 0;
+    position: absolute;
+    top: $small-spacing;
+    width: 20px;
+    height: 20px;
   }
 
   .rd-back {
     float: left;
+    left: 10px;
   }
 
   .rd-next {
     float: right;
+    right: 10px;
   }
 
   .rd-back:after,
   .rd-next:after {
     font: normal normal normal 12px/1 contactlab-icons;
-    position: absolute;
-    top: $small-spacing;
-    left: 10px;
-    width: 20px;
-    height: 20px;
     color: #eaeced;
     cursor: pointer;
     display: flex;
