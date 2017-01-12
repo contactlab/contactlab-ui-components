@@ -9,7 +9,8 @@
     "moment": "^2.17.1",
     "polymer": "^1.7.1",
     "web-animations-js": "^2.2.2",
-    "rome": "^2.1.22"
+    "rome": "^2.1.22",
+    "ikonograph": "^1.0.0"
   },
   "devDependencies": {
     "hydrolysis": "https://github.com/Arual90/hydrolysis.git",
