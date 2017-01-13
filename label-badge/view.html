@@ -3,7 +3,7 @@
 
 	<template>
 		<span class$="[[_computeClass(badge,type)]]">
-			<content></content>
+			<slot></slot>
 			<template is="dom-if" if="[[counter]]">
 				<span class="counter">[[counter]]</span>
 			</template>
