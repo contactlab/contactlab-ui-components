@@ -1,5 +1,7 @@
 'use strict';
 
+import rome from 'rome';
+import moment from 'moment';
 import {Polymer} from "./../_assets/js/polymer";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import {NoteClab} from "./../note/script.es6";

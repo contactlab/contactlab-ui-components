@@ -3,12 +3,10 @@ const webpack = require('webpack')
 module.exports = {
   entry: './_assets/js/index.js',
   output: {
-    // Make sure to use [name] or [id] in output.filename
-    //  when using multiple entry points
     path: '_components',
-    filename: 'bundle.js'
+    filename: 'bundle.js',
   },
-  devtool: 'eval-source-map',
+  devtool: 'source-map',
   plugins: [
     new webpack.optimize.OccurenceOrderPlugin()
   ],

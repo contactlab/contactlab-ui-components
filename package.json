@@ -44,6 +44,6 @@
     "webpack": "^1.13.3"
   },
   "dependencies": {
-    "http-server": "^0.9.0"
+    "rome": "^2.1.22"
   }
 }
