@@ -105,15 +105,15 @@ export class AlertClab {
   _handleClick(evt) {
     let primary = evt.target.childNodes[1].parentNode.getAttribute('data-primary');
     if(primary == 'true') {
-      this.fire('primary');
+      this.dispatchEvent(new CustomEvent('primary'), {bubbles: true});
     } else if(primary == 'false') {
-      this.fire('secondary');
+      this.dispatchEvent(new CustomEvent('secondary'), {bubbles: true});
     }
   }
 
   _close(evt) {
     this.visible = false;
-    this.fire('close');
+    this.dispatchEvent(new CustomEvent('close'), {bubbles: true});
   }
 
 

@@ -123,7 +123,7 @@ export class ModalClab {
   _closeModal(evt) {
     evt.stopPropagation();
     if(!this.stopClose) this.visible = false;
-    this.fire('close');
+    this.dispatchEvent(new CustomEvent('close'), {bubbles: true});
   }
 
   _block(evt) {
@@ -131,15 +131,15 @@ export class ModalClab {
   }
 
   _primaryAction(evt) {
-    this.fire('modal-primary');
+    this.dispatchEvent(new CustomEvent('modal-primary'), {bubbles: true});
   }
 
   _secondaryAction(evt) {
-    this.fire('modal-secondary');
+    this.dispatchEvent(new CustomEvent('modal-secondary'), {bubbles: true});
   }
 
   _warningAction(evt) {
-    this.fire('modal-warning');
+    this.dispatchEvent(new CustomEvent('modal-warning'), {bubbles: true});
   }
 
 

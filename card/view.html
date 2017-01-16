@@ -27,11 +27,11 @@
 			</template>
 			<template is="dom-if" if="[[!table]]">
 				<div class="card-body">
-					<content></content>
+					<slot></slot>
 				</div>
 			</template>
 			<template is="dom-if" if="[[table]]">
-				<content></content>
+				<slot></slot>
 			</template>
 			<div class="card-actions">
 				<template is="dom-if" if="[[_showActions(noActions, link)]]">

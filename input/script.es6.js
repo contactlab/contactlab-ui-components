@@ -125,18 +125,19 @@ export class InputClab {
   }
 
   _btnclick(evt) {
-    this.fire('btnclick');
+    this.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
   }
 
   _blur(evt) {
-    this.fire('blur', {
+    this.dispatchEvent(new CustomEvent('blur', {detail: {
       input: evt
-    });
+    }}), {bubbles: true});
   }
+  
   _focus(evt) {
-    this.fire('focus', {
+    this.dispatchEvent(new CustomEvent('focus', {detail: {
       input: evt
-    });
+    }}), {bubbles: true});
   }
 
 

@@ -13,7 +13,7 @@
 			<div class$="[[_computeType('alert', type)]]" style$="[[_alertStyle]]">
 				<div class="close" on-click="_close"><i class="clab-icon icon-close"></i></div>
 				<h3>[[title]]</h3>
-				<p><content></content></p>
+				<p><slot></slot></p>
 				<button-clab type="secondary" appearance="empty" data-primary="false" on-btnclick="_handleClick">[[secondary]]</button-clab>
 				<button-clab type="primary" data-primary="true" on-btnclick="_handleClick">[[primary]]</button-clab>
 			</div>
@@ -21,7 +21,7 @@
 		<template is="dom-if" if="[[notify]]">
 			<div class$="[[_computeType('alert', type)]]" style$="[[_alertStyle]]" on-click="_close">
 				<div class="close"><i class="clab-icon icon-close"></i></div>
-				<p><content></content></p>
+				<p><slot></slot></p>
 			</div>
 		</template>
 	</template>

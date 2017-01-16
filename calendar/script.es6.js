@@ -1,5 +1,7 @@
 'use strict';
 
+import rome from 'rome';
+import moment from 'moment';
 import {Polymer} from "./../_assets/js/polymer";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import {NoteClab} from "./../note/script.es6";
@@ -57,10 +59,10 @@ export class CalendarClab {
   _checkClear(evt) {
     if(evt.target.value == "") {
       this.clear();
-      this.fire('datechange', {
+      this.dispatchEvent(new CustomEvent('datechange', {detail: {
         date: undefined,
         dateISO: undefined
-      });
+			}}), {bubbles: true});
     }
 
   }
@@ -86,10 +88,10 @@ export class CalendarClab {
 
   _changeDate(evt) {
     this.valueStr = evt;
-    this.fire('datechange', {
+    this.dispatchEvent(new CustomEvent('datechange', {detail: {
       date: evt,
       dateISO: moment(new Date(evt)).format()
-    });
+    }}), {bubbles: true});
   }
 
 

@@ -31,7 +31,7 @@ export class LabelClab {
   EVENT HANDLERS
   ----------*/
   _removeClicked(evt) {
-    this.fire('remove');
+    this.dispatchEvent(new CustomEvent('remove'), {bubbles: true});
   }
 
 

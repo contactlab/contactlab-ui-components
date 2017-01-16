@@ -1,66 +1,10 @@
 <dom-module id="button-clab">
-	<!-- <link rel="import" type="css" href="../_assets/css/color-vars.css"> -->
-	<style>
-		/*.btn.primary {
-		  border-bottom-color: var(--primary-color-dark);
-		  background-color: var(--primary-color);
-		  color: var(--primary-text-color);
-		}
-		.btn.primary:hover {
-		  background-color: var(--primary-color-light);
-		  color: var(--primary-text-color);
-		}
-		.btn.primary:focus {
-		  background-color: var(--primary-color);
-		}
-		.btn.primary:active, .btn.primary.active {
-		  color: var(--primary-text-color);
-		  background-color: var(--primary-color-dark);
-		}
-
-
-
-		.btn.empty.primary {
-		  background: var(--transparent);
-		  border-color: var(--primary-color);
-		  color: var(--primary-color);
-		}
-		.btn.empty.primary:hover {
-		  border-color: var(--primary-color-light);
-		  border-color: var(--primary-color-light);
-		}
-		.btn.empty.primary:focus {
-		  background: transparent;
-		  border-color: var(--primary-color);
-		}
-		.btn.empty.primary:active, .btn.empty.primary.active {
-		  color: var(--primary-text-color);
-		  background-color: var(--primary-color-dark);
-		}
-
-
-		.btn.flat.primary {
-		  background-color: transparent;
-		  color: var(--primary-color);
-		}
-		.btn.flat.primary:hover {
-		  border-color: transparent;
-		}
-		.btn.flat.primary:active, .btn.flat.primary.active {
-		  background-color: var(--primary-color);
-		  border-color: var(--primary-color);
-		  color: var(--primary-text-color);
-		}*/
-	</style>
-
 	<template>
 		<button class$="[[_computeClass(type, appearance, size, block)]]" disabled="[[disabled]]" on-click="_click">
 			<template is="dom-if" if="[[icon]]">
 				<i class$="[[_computeIconClass(icon)]]"></i>
 			</template>
-			<content></content>
+			<slot></slot>
 		</button>
 	</template>
-
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

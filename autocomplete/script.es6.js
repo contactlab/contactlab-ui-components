@@ -138,7 +138,7 @@ export class AutoCompleteClab {
 
     // If typing
     if(this._inputString.length > this.minChar) {
-      this.fire('typing');
+      this.dispatchEvent(new CustomEvent('typing'), {bubbles: true});
       if(typeof this._interval == 'number') {
         window.clearTimeout(this._interval);
         this._interval = undefined;
@@ -277,14 +277,17 @@ export class AutoCompleteClab {
       this._inputString = this.selected[this.labelField];
       this._currentHint = undefined;
 
-      if(this.resultAsObj) this.fire('change', {
-        'selected': this.selected,
-        'value': this.selected
-      });
-      else this.fire('change', {
-        'selected': this.selected.label,
-        'value': this.selected.label
-      });
+      if(this.resultAsObj) {
+        this.dispatchEvent(new CustomEvent('change', {detail: {
+          'selected': this.selected,
+          'value': this.selected
+        }}), {bubbles: true});
+      } else {
+        this.dispatchEvent(new CustomEvent('change', {detail: {
+          'selected': this.selected.label,
+          'value': this.selected.label
+        }}), {bubbles: true});
+      }
     }
   }
 
@@ -311,22 +314,13 @@ export class AutoCompleteClab {
   }
 
 
-
   /*----------
   PUBLIC
   ----------*/
   setSelected(obj) {
     this.set('selected', obj);
-    // this._inputString=this.selected[this.labelField];
-    // this._currentHint=undefined;
-    //
-    // if(this.resultAsObj) this.fire('change', {'selected':this.selected});
-    // 	else this.fire('change', {'selected':this._inputString});
   }
 
-
 }
-
-
 
 Polymer(AutoCompleteClab);
