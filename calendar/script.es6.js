@@ -59,10 +59,10 @@ export class CalendarClab {
   _checkClear(evt) {
     if(evt.target.value == "") {
       this.clear();
-      this.fire('datechange', {
+      this.dispatchEvent(new CustomEvent('datechange', {detail: {
         date: undefined,
         dateISO: undefined
-      });
+			}}), {bubbles: true});
     }
 
   }
@@ -88,10 +88,10 @@ export class CalendarClab {
 
   _changeDate(evt) {
     this.valueStr = evt;
-    this.fire('datechange', {
+    this.dispatchEvent(new CustomEvent('datechange', {detail: {
       date: evt,
       dateISO: moment(new Date(evt)).format()
-    });
+    }}), {bubbles: true});
   }
 
 

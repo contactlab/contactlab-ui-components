@@ -213,6 +213,7 @@ suite('<input-clab>', function() {
           var pwd = Polymer.dom(btnClab.root).querySelector('button');
           assert.equal(pwd.innerText, "Hide", "Input password 'Hide' text: correct");
           pwd.click();
+					done();
         });
   		});
 

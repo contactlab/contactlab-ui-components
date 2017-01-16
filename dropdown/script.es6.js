@@ -189,18 +189,19 @@ export class DropdownClab {
     this.querySelector('.value_wrapper').classList.remove('active');
 
     if(!this.preventChange) {
-      if(this.resultAsObj)
-        this.fire('change', {
-          'selected': this.selected,
-          'newValue': this.selected,
-          'oldValue': old
-        });
-      else
-        this.fire('change', {
-          'selected': this.selected[this.valueField],
-          'newValue': this.selected,
-          'oldValue': old
-        });
+      if(this.resultAsObj){
+        this.dispatchEvent(new CustomEvent('change', {detail: {
+          selected: this.selected,
+          newValue: this.selected,
+          oldValue: old
+        }}), {bubbles: true});
+      } else {
+        this.dispatchEvent(new CustomEvent('change', {detail: {
+          selected: this.selected[this.valueField],
+          newValue: this.selected,
+          oldValue: old
+        }}), {bubbles: true});
+      }
     }
   }
 

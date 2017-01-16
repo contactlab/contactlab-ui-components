@@ -219,25 +219,22 @@ export class MultipleClab {
     // elem.classList.add('selected');
     this.push('selected', this.options[i]);
     this.set('options.' + i + '.selected', true);
-    this.fire('change', {
+    this.dispatchEvent(new CustomEvent('change', {detail: {
       selected: this.selected
-    });
+    }}), {bubbles: true});
     this.lastSelected = i;
   }
 
   _removeThis(elem) {
     let i = elem.getAttribute('data-index');
-    // console.log(i);
-    // elem.classList.remove('selected');
-    // this.splice('selected', i, 1);
     let temp = this.selected.filter(function(obj) {
       return obj.label !== elem.innerHTML;
     });
     this.set('selected', temp);
     this.set('options.' + i + '.selected', false);
-    this.fire('change', {
+    this.dispatchEvent(new CustomEvent('change', {detail: {
       selected: this.selected
-    });
+    }}), {bubbles: true});
     this.lastSelected = undefined;
   }
 
@@ -259,9 +256,9 @@ export class MultipleClab {
     }
 
     this._highlightElems(arr);
-    this.fire('change', {
+    this.dispatchEvent(new CustomEvent('change', {detail: {
       selected: this.selected
-    });
+    }}), {bubbles: true});
   }
 
   _highlightElems(idx) {

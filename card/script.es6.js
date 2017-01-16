@@ -88,9 +88,9 @@ export class CardClab {
   ----------*/
   _handleClick(evt) {
     if(Polymer.dom(evt.target).node.children[0].classList.contains('primary'))
-      this.fire('primary');
+      this.dispatchEvent(new CustomEvent('primary'), {bubbles: true});
     else
-      this.fire('secondary');
+      this.dispatchEvent(new CustomEvent('secondary'), {bubbles: true});
   }
 
 

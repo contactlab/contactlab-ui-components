@@ -56,7 +56,7 @@ export class ButtonClab {
   }
 
   _click(evt) {
-    this.fire('btnclick');
+    this.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
   }
 
   /**
