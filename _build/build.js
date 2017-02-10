@@ -221,7 +221,7 @@ module.exports.vulcanize = vulcanize
 
 module.exports.end = () => {
 	fs.removeSync('./workspace')
-	console.log(`  BUILD.JS: ##### Everithing done! #####  `.finish)
+	console.log(`  BUILD.JS: ##### Everything done! #####  `.finish)
 }
 
 runnableExports()
