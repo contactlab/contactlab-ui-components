@@ -6,15 +6,14 @@
   "config": {
     "port": {
       "dev": 3000
-    }
+    },
+    "buildType": null
   },
   "scripts": {
     "start": "http-server ./../ -s -p $npm_package_config_port_dev",
     "dev": "webpack --progress --colors --watch & http-server ./../ -s -p $npm_package_config_port_dev",
     "build": "node _build/build.js run",
-    "postbuild": "node _build/build.js vulcanize",
-    "build:single": "node _build/build.js run single",
-    "postbuild:single": "node _build/build.js vulcanize single",
+    "vulcanize": "node _build/build.js vulcanize",
     "test": "wct",
     "test:p": "wct -p"
   },
@@ -33,13 +32,13 @@
     "babel-preset-es2015": "^6.18.0",
     "colors": "^1.1.2",
     "fs-extra": "^1.0.0",
-    "make-runnable": "^1.0.7",
     "node-minify": "^2.0.0",
     "replace-in-file": "^2.0.1",
     "strip-loader": "^0.1.2",
     "vulcanize": "^1.14.8",
     "web-component-tester": "^5.0.0",
-    "webpack": "^1.13.3"
+    "webpack": "^1.13.3",
+    "runnable-exports": "^0.1.1"
   },
   "dependencies": {
     "rome": "^2.1.22"
