@@ -47,8 +47,8 @@ class Build {
 			promises.push(this._replace(componentsPath, distBundle, /<!--bundlecomp!-->((.|\n)*)<!--bundlecomp!-->/g))
 		}
 
-		if(process.argv.indexOf('no-polymer') > -1) {
-			console.log('BUILD.JS: Excluding Polymer from the bunlde...'.info)
+		if (process.argv.indexOf('no-polymer') > -1) {
+			console.log('BUILD.JS: Excluding Polymer from the bundle...'.info)
 			const replacedPolymer = this._replaceSync(componentsPath, '', /<!--polymer!-->((.|\n)*)<!--polymer!-->/g)
 			console.log(`BUILD.js: --- Replaced for polymer --> ${replacedPolymer}`.verbose)
 		}
@@ -85,8 +85,7 @@ class Build {
 		try {
 			let changedFiles = Replace.sync(options)
 			return changedFiles.join(', ')
-		}
-		catch (err) {
+		} catch (err) {
 			throw new Error(err)
 		}
 	}

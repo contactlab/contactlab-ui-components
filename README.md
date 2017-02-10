@@ -61,14 +61,14 @@ Bundle and minify all the components in a single **clab-ui-components.html** fil
 #### Custom
 Bundle and minify a group of components in a single bundle **clab-ui-components-custom.html** file in the root:
 
-    $ yarn run build:single tooltip,radio,checkbox
+    $ yarn run build g=tooltip,radio,checkbox
 
 #### No-Polymer
 Add a `no-polymer` flag to **exclude Polymer** from vulcanization bundle:
 > NOTE: **as is not possible to include two vulcanized copy of Polymer** within an application bundle, this "no-polymer" bundle will allow you to include Polymer in your vulcanized application and still be able to include the `contactlab-ui-components` as a normal `import`.
 
     $ yarn run build no-polymer
-    $ yarn run build:single tooltip,radio,checkbox no-polymer
+    $ yarn run build g=tooltip,radio,checkbox no-polymer
 
 #### Sanity check
 A ***pure*** demo is located at `contactlab-ui-components/_demo/demo-pure.html` to test the components after a build.  
