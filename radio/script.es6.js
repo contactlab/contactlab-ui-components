@@ -26,30 +26,31 @@ export class RadioClab {
 
 
   /*----------
-  COMPUTED
+    COMPUTED
   ----------*/
   _computeType(wt) {
     return ['row', wt].join(' ');
   }
 
-
-
   /*----------
-  UTILS
+    UTILS
   ----------*/
-  _checkIfTrue(i, n) {
-    switch(typeof n) {
-      case 'number':
-        return i == n;
-        break;
-      case 'object':
-        for(let x = 0; x < n.length; x++) {
-          if(i == n[x]) return true;
-        }
-        break;
-    }
+  _isChecked(index, active) {
+    return index === active;
   }
 
+  _isDisabled(index, disabledArr) {
+    return disabledArr.includes(index)
+  }
+
+  /*----------
+    LISTENERS
+  ----------*/
+
+  _onChange(evt) {
+    const clickedIndex = parseInt(evt.target.dataset.index, 10)
+    this.set('active', clickedIndex)
+  }
 }
 
 
