@@ -21566,8 +21566,6 @@
 	});
 	exports.RadioClab = undefined;
 	
-	var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-	
 	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 	
 	var _polymer = __webpack_require__(2);
@@ -21598,7 +21596,7 @@
 	    }
 	
 	    /*----------
-	    COMPUTED
+	      COMPUTED
 	    ----------*/
 	
 	  }, {
@@ -21608,22 +21606,29 @@
 	    }
 	
 	    /*----------
-	    UTILS
+	      UTILS
 	    ----------*/
 	
 	  }, {
-	    key: "_checkIfTrue",
-	    value: function _checkIfTrue(i, n) {
-	      switch (typeof n === "undefined" ? "undefined" : _typeof(n)) {
-	        case 'number':
-	          return i == n;
-	          break;
-	        case 'object':
-	          for (var x = 0; x < n.length; x++) {
-	            if (i == n[x]) return true;
-	          }
-	          break;
-	      }
+	    key: "_isChecked",
+	    value: function _isChecked(index, active) {
+	      return index === active;
+	    }
+	  }, {
+	    key: "_isDisabled",
+	    value: function _isDisabled(index, disabledArr) {
+	      return disabledArr.includes(index);
+	    }
+	
+	    /*----------
+	      LISTENERS
+	    ----------*/
+	
+	  }, {
+	    key: "_onChange",
+	    value: function _onChange(evt) {
+	      var clickedIndex = parseInt(evt.target.dataset.index, 10);
+	      this.set('active', clickedIndex);
 	    }
 	  }, {
 	    key: "behaviors",

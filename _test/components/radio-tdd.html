@@ -82,7 +82,7 @@ suite('<radio-clab>', function() {
       });
     });
 
-    test('Check active', function(done) {
+    test('Check active on load', function(done) {
       var lbls = ["radio 1", "radio 2", "radio 3"];
       var active = 1
       radio.labels = lbls;
@@ -91,6 +91,21 @@ suite('<radio-clab>', function() {
         var el = Polymer.dom(radio.root).querySelectorAll('input[type=radio]')[1];
         assert.isTrue(el.checked);
         done();
+      });
+    });
+
+    test('Check updating on change checkd', function(done) {
+      var lbls = ["radio 1", "radio 2", "radio 3"];
+      var active = 0
+      radio.labels = lbls;
+      radio.active = active;
+      setTimeout(function () {
+        var el = Polymer.dom(radio.root).querySelectorAll('label')[2];
+        el.click()
+        setTimeout(function () {
+          assert.equal(radio.active, 2)
+          done();
+        }, 1000)
       });
     });
 	});
