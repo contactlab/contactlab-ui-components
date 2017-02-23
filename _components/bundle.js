@@ -21967,6 +21967,7 @@
 	  }, {
 	    key: "_handleKeyUp",
 	    value: function _handleKeyUp(evt) {
+	      evt.preventDefault();
 	      switch (evt.keyCode) {
 	        case 188:
 	          // if comma
