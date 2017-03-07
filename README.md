@@ -53,6 +53,14 @@ Running the command
 
 you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack and starts a static web server on `localhost:3000`.
 
+#### Styling
+
+To compile and watch the sass files run:
+
+```
+$ yarn run sass
+```
+
 #### Complete
 Bundle and minify all the components in a single **clab-ui-components.html** file in the root:
 
