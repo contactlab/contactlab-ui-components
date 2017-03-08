@@ -122,7 +122,7 @@ td {
 
   .th {
     @extend th;
-  	border-bottom: 1px solid $dark-gray;
+    border-bottom: 1px solid $dark-gray;
   }
 
   .td {
@@ -176,18 +176,18 @@ td {
 }
 
 .table-tools {
-	display: flex;
-	flex-direction: row;
-	padding-bottom: $base-spacing;
+  display: flex;
+  flex-direction: row;
+  padding-bottom: $base-spacing;
 
-	.entries-number,
-	.table-search {
-		flex-grow: 1;
+  .entries-number,
+  .table-search {
+    flex-grow: 1;
 
     .input-wrapper {
       padding: 0;
     }
-	}
+  }
 
   .entries-number {
     display: flex;
@@ -200,19 +200,19 @@ td {
     }
   }
 
-	.table-search {
-		text-align: right;
-	}
+  .table-search {
+    text-align: right;
+  }
 }
 
 .table-recap {
-	display: flex;
-	flex-direction: row;
+  display: flex;
+  flex-direction: row;
 
-	.total-entries,
-	.pagination {
-		flex-grow: 1;
-	}
+  .total-entries,
+  .pagination {
+    flex-grow: 1;
+  }
 
   .total-entries {
     font-size: $small-font-size;
@@ -239,14 +239,24 @@ td {
         border: 0;
     }
 
+    .thead {
+      display: flex;
+    }
+
     .tr {
-        display: flex;
-        flex: 1;
+      display: flex;
+      flex: 1;
     }
 
     .td,
     .th {
-        flex: 1 1;
+      flex-basis: 100%;
+      display: flex;
+    }
+
+    .tbody {
+      display: flex;
+      flex-flow: column nowrap;
     }
 
     @media (max-width: 600px) {
@@ -257,6 +267,7 @@ td {
         .tr {
             flex-direction: column;
             padding: $smaller-spacing 0;
+            display: table-row;
 
             .td {
                 padding: $smaller-spacing $small-spacing;

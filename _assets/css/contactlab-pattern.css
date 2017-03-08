@@ -2584,18 +2584,25 @@ td, .table .th,
     background: transparent; }
   .responsive-table.striped-table .tr {
     border: 0; }
+  .responsive-table .thead {
+    display: flex; }
   .responsive-table .tr {
     display: flex;
     flex: 1; }
   .responsive-table .td,
   .responsive-table .th {
-    flex: 1 1; }
+    flex-basis: 100%;
+    display: flex; }
+  .responsive-table .tbody {
+    display: flex;
+    flex-flow: column nowrap; }
   @media (max-width: 600px) {
     .responsive-table .thead {
       display: none; }
     .responsive-table .tr {
       flex-direction: column;
-      padding: 5px 0; }
+      padding: 5px 0;
+      display: table-row; }
       .responsive-table .tr .td {
         padding: 5px 10px; }
         .responsive-table .tr .td:before {
