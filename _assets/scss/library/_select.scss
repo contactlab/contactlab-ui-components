@@ -73,14 +73,18 @@
   .dropdown-clab {
 
         .value_wrapper {
-            @extend input[type="text"];
-            cursor: pointer;
-            text-align:left;
-            height: 30px;
-            padding-right: $base-spacing;
-            @extend .truncate;
+          @extend input[type="text"];
+          cursor: pointer;
+          text-align:left;
+          height: 30px;
+          padding-right: $base-spacing;
+          @extend .truncate;
           display: flex;
           align-items: center;
+        }
+
+        .placeholder {
+          color: #a9a9a9;
         }
 
         .input {
