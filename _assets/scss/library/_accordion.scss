@@ -18,7 +18,7 @@
       }
 
       .accordion-title:before {
-        content: "\e60f";
+        content: "\e909";
       }
     }
   }
@@ -30,8 +30,8 @@
     @include user-selection;
 
     &:before {
-      content: "\e60c";
-      font-family: 'contactlab-icons';
+      content: "\e902";
+      font-family: 'ikonograph';
       width: $medium-spacing;
       position: absolute;
       left: 0;

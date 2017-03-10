@@ -4394,11 +4394,13 @@
 	  setValue: function setValue(obj, prevent) {
 	    var _this3 = this;
 	
+	    console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
 	    prevent = prevent ? true : false;
 	    this.preventChange = prevent;
 	
 	    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
 	      this._setSelected(obj);
+	      console.log('RULE-HEADER.setValue(obj): ', obj);
 	    } else {
 	      this.options.map(function (opt) {
 	        if (opt[_this3.valueField] === obj) {
@@ -17251,7 +17253,7 @@
 	        method: 'GET'
 	      }).then(function (res) {
 	        if (res.status !== 200) {
-	
+	          console.log('Looks like there was a problem. Status Code: ' + res.status);
 	          _this2.type = 'error';
 	          _this2._resetSpinnerTimeout();
 	          return;
@@ -17635,7 +17637,7 @@
 	    value: function _focusElement(evt) {
 	      if (!this.disabled) {
 	        evt.stopPropagation();
-	
+	        console.log(this.getRomeInstance());
 	        this.getRomeInstance().show();
 	      }
 	    }
@@ -18223,7 +18225,7 @@
 	        method: 'GET'
 	      }).then(function (res) {
 	        if (res.status !== 200) {
-	
+	          console.log('Looks like there was a problem. Status Code: ' + res.status);
 	          _this2.type = 'error';
 	          return;
 	        }
@@ -18905,6 +18907,7 @@
 	            method: 'GET'
 	          }).then(function (res) {
 	            if (res.status !== 200) {
+	              console.log('Looks like there was a problem. Status Code: ' + res.status);
 	
 	              window.clearTimeout(timeoutID);
 	              timeoutID = undefined;
@@ -18975,6 +18978,7 @@
 	        } else {
 	          this._selectThis(evt.target);
 	        }
+	        console.log('##', this.selected);
 	      } else if (this.shift) {
 	        //adding multiple select
 	        if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -19024,7 +19028,7 @@
 	              method: 'GET'
 	            }).then(function (res) {
 	              if (res.status !== 200) {
-	
+	                console.log('Looks like there was a problem. Status Code: ' + res.status);
 	                if (typeof timeoutID == 'number') {
 	                  window.clearTimeout(timeoutID);
 	                  timeoutID = undefined;

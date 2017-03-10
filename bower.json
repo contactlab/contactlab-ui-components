@@ -7,7 +7,7 @@
     "fetch": "^2.0.1",
     "polymer": "^1.7.1",
     "web-animations-js": "^2.2.2",
-    "ikonograph": "^1.0.0"
+    "ikonograph": "^2.0.0"
   },
   "moduleType": [
     "globals"
