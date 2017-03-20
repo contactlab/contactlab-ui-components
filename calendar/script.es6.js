@@ -81,6 +81,7 @@ export class CalendarClab {
   METHODS
   ----------*/
   _createInstance(selector) {
+    this.setLocale();
     let obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
     rome(this.$$(selector), obj)
       .on('data', this._changeDate.bind(this));
@@ -114,7 +115,10 @@ export class CalendarClab {
     return thisFormat;
   }
 
-
+  _getLocale() {
+    let thisLocale = this.options.locale ? this.options.locale : 'en';
+    return thisLocale;
+  }
 
 
 
@@ -128,6 +132,15 @@ export class CalendarClab {
   getValue() {
     let formatted = moment(this.valueStr, this._getFormat()).format();
     return this.valueStr ? formatted : undefined;
+  }
+
+  setLocale() {
+    let thisLocale = this._getLocale();
+    rome.moment.locale(thisLocale);
+  }
+
+  getLocale() {
+    return rome.moment.locale();
   }
 
   getRomeInstance() {

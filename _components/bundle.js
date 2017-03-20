@@ -4394,13 +4394,11 @@
 	  setValue: function setValue(obj, prevent) {
 	    var _this3 = this;
 	
-	    console.log('RULE-HEADER.setValue(' + (typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) + '): ', obj);
 	    prevent = prevent ? true : false;
 	    this.preventChange = prevent;
 	
 	    if ((typeof obj === 'undefined' ? 'undefined' : _typeof(obj)) === 'object') {
 	      this._setSelected(obj);
-	      console.log('RULE-HEADER.setValue(obj): ', obj);
 	    } else {
 	      this.options.map(function (opt) {
 	        if (opt[_this3.valueField] === obj) {
@@ -16912,45 +16910,41 @@
 	  }, {
 	    key: "attached",
 	    value: function attached() {
-	      var _this = this;
-	
 	      // Preparing the animations
 	      if (!this.noAnimation) {
-	        (function () {
-	          var opacity = [{
-	            opacity: 0
-	          }, {
-	            opacity: 1
-	          }];
-	          var translateY = [{
-	            transform: 'translateY(-5px)'
-	          }, {
-	            transform: 'translateY(0)'
-	          }];
+	        var opacity = [{
+	          opacity: 0
+	        }, {
+	          opacity: 1
+	        }];
+	        var translateY = [{
+	          transform: 'translateY(-5px)'
+	        }, {
+	          transform: 'translateY(0)'
+	        }];
 	
-	          _this.alertEnter = function (target) {
-	            return new GroupEffect([new KeyframeEffect(target, opacity, {
-	              duration: 190,
-	              fill: 'forwards',
-	              direction: 'normal'
-	            }), new KeyframeEffect(target, translateY, {
-	              duration: 190,
-	              fill: 'forwards',
-	              direction: 'normal'
-	            })]);
-	          };
-	          _this.alertExit = function (target) {
-	            return new GroupEffect([new KeyframeEffect(target, opacity, {
-	              duration: 150,
-	              fill: 'forwards',
-	              direction: 'reverse'
-	            }), new KeyframeEffect(target, translateY, {
-	              duration: 150,
-	              fill: 'forwards',
-	              direction: 'reverse'
-	            })]);
-	          };
-	        })();
+	        this.alertEnter = function (target) {
+	          return new GroupEffect([new KeyframeEffect(target, opacity, {
+	            duration: 190,
+	            fill: 'forwards',
+	            direction: 'normal'
+	          }), new KeyframeEffect(target, translateY, {
+	            duration: 190,
+	            fill: 'forwards',
+	            direction: 'normal'
+	          })]);
+	        };
+	        this.alertExit = function (target) {
+	          return new GroupEffect([new KeyframeEffect(target, opacity, {
+	            duration: 150,
+	            fill: 'forwards',
+	            direction: 'reverse'
+	          }), new KeyframeEffect(target, translateY, {
+	            duration: 150,
+	            fill: 'forwards',
+	            direction: 'reverse'
+	          })]);
+	        };
 	      }
 	    }
 	
@@ -17253,7 +17247,7 @@
 	        method: 'GET'
 	      }).then(function (res) {
 	        if (res.status !== 200) {
-	          console.log('Looks like there was a problem. Status Code: ' + res.status);
+	
 	          _this2.type = 'error';
 	          _this2._resetSpinnerTimeout();
 	          return;
@@ -17282,13 +17276,11 @@
 	      if (!filter) {
 	        this.set('results', this.options);
 	      } else {
-	        (function () {
-	          var results = [];
-	          _this3.options.map(function (opt, i) {
-	            if (opt[_this3.labelField].toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
-	          });
-	          _this3.set('results', results);
-	        })();
+	        var results = [];
+	        this.options.map(function (opt, i) {
+	          if (opt[_this3.labelField].toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
+	        });
+	        this.set('results', results);
 	      }
 	
 	      // handle list visual
@@ -17637,7 +17629,7 @@
 	    value: function _focusElement(evt) {
 	      if (!this.disabled) {
 	        evt.stopPropagation();
-	        console.log(this.getRomeInstance());
+	
 	        this.getRomeInstance().show();
 	      }
 	    }
@@ -17649,6 +17641,7 @@
 	  }, {
 	    key: '_createInstance',
 	    value: function _createInstance(selector) {
+	      this.setLocale();
 	      var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
 	      (0, _rome2.default)(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 	    }
@@ -17682,6 +17675,12 @@
 	      var thisFormat = this.options.inputFormat ? this.options.inputFormat : this.getRomeInstance().options().inputFormat;
 	      return thisFormat;
 	    }
+	  }, {
+	    key: '_getLocale',
+	    value: function _getLocale() {
+	      var thisLocale = this.options.locale ? this.options.locale : 'en';
+	      return thisLocale;
+	    }
 	
 	    /*----------
 	    PUBLIC METHODS
@@ -17697,6 +17696,17 @@
 	    value: function getValue() {
 	      var formatted = (0, _moment2.default)(this.valueStr, this._getFormat()).format();
 	      return this.valueStr ? formatted : undefined;
+	    }
+	  }, {
+	    key: 'setLocale',
+	    value: function setLocale() {
+	      var thisLocale = this._getLocale();
+	      _rome2.default.moment.locale(thisLocale);
+	    }
+	  }, {
+	    key: 'getLocale',
+	    value: function getLocale() {
+	      return _rome2.default.moment.locale();
 	    }
 	  }, {
 	    key: 'getRomeInstance',
@@ -18225,7 +18235,7 @@
 	        method: 'GET'
 	      }).then(function (res) {
 	        if (res.status !== 200) {
-	          console.log('Looks like there was a problem. Status Code: ' + res.status);
+	
 	          _this2.type = 'error';
 	          return;
 	        }
@@ -18509,23 +18519,21 @@
 	
 	      var readFiles = function readFiles(file) {
 	        if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-	          (function () {
-	            arr.push(file.name);
+	          arr.push(file.name);
 	
-	            var reader = new FileReader();
-	            reader.addEventListener("loadend", function () {
-	              var image = new Image();
-	              image.height = 100;
-	              image.title = file.name;
-	              image.src = reader.result;
-	              // console.log(image);
-	              if (!_this.noPreview) {
-	                _this.$.preview.innerHTML = '';
-	                _this.$.preview.appendChild(image);
-	              }
-	            }, false);
-	            reader.readAsDataURL(file);
-	          })();
+	          var reader = new FileReader();
+	          reader.addEventListener("loadend", function () {
+	            var image = new Image();
+	            image.height = 100;
+	            image.title = file.name;
+	            image.src = reader.result;
+	            // console.log(image);
+	            if (!_this.noPreview) {
+	              _this.$.preview.innerHTML = '';
+	              _this.$.preview.appendChild(image);
+	            }
+	          }, false);
+	          reader.readAsDataURL(file);
 	        }
 	      };
 	
@@ -18666,41 +18674,39 @@
 	
 				// Preparing the animations
 				if (!this.noAnimation) {
-					(function () {
-						var opacity = [{
-							opacity: 0
-						}, {
-							opacity: 1
-						}];
-						var scale = [{
-							transform: 'scale(.95)'
-						}, {
-							transform: 'scale(1)'
-						}];
+					var opacity = [{
+						opacity: 0
+					}, {
+						opacity: 1
+					}];
+					var scale = [{
+						transform: 'scale(.95)'
+					}, {
+						transform: 'scale(1)'
+					}];
 	
-						_this.modalEnter = function (target) {
-							return new GroupEffect([new KeyframeEffect(target, opacity, {
-								duration: 190,
-								fill: 'forwards',
-								direction: 'normal'
-							}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
-								duration: 190,
-								fill: 'forwards',
-								direction: 'normal'
-							})]);
-						};
-						_this.modalExit = function (target) {
-							return new GroupEffect([new KeyframeEffect(target, opacity, {
-								duration: 150,
-								fill: 'forwards',
-								direction: 'reverse'
-							}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
-								duration: 150,
-								fill: 'forwards',
-								direction: 'reverse'
-							})]);
-						};
-					})();
+					this.modalEnter = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+							duration: 190,
+							fill: 'forwards',
+							direction: 'normal'
+						})]);
+					};
+					this.modalExit = function (target) {
+						return new GroupEffect([new KeyframeEffect(target, opacity, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+							duration: 150,
+							fill: 'forwards',
+							direction: 'reverse'
+						})]);
+					};
 				}
 			}
 		}, {
@@ -18898,41 +18904,38 @@
 	
 	      // Fetch options
 	      if (this.url != undefined) {
-	        (function () {
-	          var timeoutID = window.setTimeout(function () {
-	            _this.spinner = true;
-	          }, 400);
+	        var timeoutID = window.setTimeout(function () {
+	          _this.spinner = true;
+	        }, 400);
 	
-	          fetch(_this.url, {
-	            method: 'GET'
-	          }).then(function (res) {
-	            if (res.status !== 200) {
-	              console.log('Looks like there was a problem. Status Code: ' + res.status);
+	        fetch(this.url, {
+	          method: 'GET'
+	        }).then(function (res) {
+	          if (res.status !== 200) {
 	
-	              window.clearTimeout(timeoutID);
-	              timeoutID = undefined;
-	              if (_this.spinner) _this.spinner = false;
-	              return;
-	            }
-	            res.json().then(function (data) {
-	              _this.set('options', data);
-	              window.clearTimeout(timeoutID);
-	              timeoutID = undefined;
-	              if (_this.spinner) _this.spinner = false;
-	
-	              _this.async(function () {
-	                _this._setWrapperHeights();
-	              }, 100);
-	            });
-	          }).catch(function (err) {
-	            console.error("Fetch Error ==> ", err);
-	
-	            _this.type = 'error';
 	            window.clearTimeout(timeoutID);
 	            timeoutID = undefined;
 	            if (_this.spinner) _this.spinner = false;
+	            return;
+	          }
+	          res.json().then(function (data) {
+	            _this.set('options', data);
+	            window.clearTimeout(timeoutID);
+	            timeoutID = undefined;
+	            if (_this.spinner) _this.spinner = false;
+	
+	            _this.async(function () {
+	              _this._setWrapperHeights();
+	            }, 100);
 	          });
-	        })();
+	        }).catch(function (err) {
+	          console.error("Fetch Error ==> ", err);
+	
+	          _this.type = 'error';
+	          window.clearTimeout(timeoutID);
+	          timeoutID = undefined;
+	          if (_this.spinner) _this.spinner = false;
+	        });
 	      } else {
 	        this.async(function () {
 	          _this._setWrapperHeights();
@@ -18978,7 +18981,6 @@
 	        } else {
 	          this._selectThis(evt.target);
 	        }
-	        console.log('##', this.selected);
 	      } else if (this.shift) {
 	        //adding multiple select
 	        if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -19018,36 +19020,34 @@
 	        evt.preventDefault();
 	
 	        if (this.url != undefined) {
-	          (function () {
-	            //load more content
-	            var timeoutID = window.setTimeout(function () {
-	              _this3.spinner = true;
-	            }, 400);
+	          //load more content
+	          var timeoutID = window.setTimeout(function () {
+	            _this3.spinner = true;
+	          }, 400);
 	
-	            fetch(_this3.url, {
-	              method: 'GET'
-	            }).then(function (res) {
-	              if (res.status !== 200) {
-	                console.log('Looks like there was a problem. Status Code: ' + res.status);
-	                if (typeof timeoutID == 'number') {
-	                  window.clearTimeout(timeoutID);
-	                  timeoutID = undefined;
-	                  _this3.spinner = false;
-	                }
-	                return;
+	          fetch(this.url, {
+	            method: 'GET'
+	          }).then(function (res) {
+	            if (res.status !== 200) {
+	
+	              if (typeof timeoutID == 'number') {
+	                window.clearTimeout(timeoutID);
+	                timeoutID = undefined;
+	                _this3.spinner = false;
 	              }
-	              res.json().then(function (data) {
-	                var newData = _this3.options.concat(data);
-	                _this3.set('options', newData);
+	              return;
+	            }
+	            res.json().then(function (data) {
+	              var newData = _this3.options.concat(data);
+	              _this3.set('options', newData);
 	
-	                if (typeof timeoutID == 'number') {
-	                  window.clearTimeout(timeoutID);
-	                  timeoutID = undefined;
-	                  _this3.spinner = false;
-	                }
-	              });
+	              if (typeof timeoutID == 'number') {
+	                window.clearTimeout(timeoutID);
+	                timeoutID = undefined;
+	                _this3.spinner = false;
+	              }
 	            });
-	          })();
+	          });
 	        }
 	      }
 	    }
