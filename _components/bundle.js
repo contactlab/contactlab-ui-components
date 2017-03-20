@@ -17647,6 +17647,7 @@
 	  }, {
 	    key: '_createInstance',
 	    value: function _createInstance(selector) {
+	      this.setLocale();
 	      var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
 	      (0, _rome2.default)(this.$$(selector), obj).on('data', this._changeDate.bind(this));
 	    }
@@ -17680,6 +17681,12 @@
 	      var thisFormat = this.options.inputFormat ? this.options.inputFormat : this.getRomeInstance().options().inputFormat;
 	      return thisFormat;
 	    }
+	  }, {
+	    key: '_getLocale',
+	    value: function _getLocale() {
+	      var thisLocale = this.options.locale ? this.options.locale : 'en';
+	      return thisLocale;
+	    }
 	
 	    /*----------
 	    PUBLIC METHODS
@@ -17695,6 +17702,17 @@
 	    value: function getValue() {
 	      var formatted = (0, _moment2.default)(this.valueStr, this._getFormat()).format();
 	      return this.valueStr ? formatted : undefined;
+	    }
+	  }, {
+	    key: 'setLocale',
+	    value: function setLocale() {
+	      var thisLocale = this._getLocale();
+	      _rome2.default.moment.locale(thisLocale);
+	    }
+	  }, {
+	    key: 'getLocale',
+	    value: function getLocale() {
+	      return _rome2.default.moment.locale();
 	    }
 	  }, {
 	    key: 'getRomeInstance',

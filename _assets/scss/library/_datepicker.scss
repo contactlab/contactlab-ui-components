@@ -46,7 +46,7 @@
 
   .rd-back:after,
   .rd-next:after {
-    font: normal normal normal 12px/1 contactlab-icons;
+    font: normal normal normal 12px/1 ikonograph;
     color: #eaeced;
     cursor: pointer;
     display: flex;
@@ -55,13 +55,13 @@
   }
 
   .rd-next:after {
-    content: "\e60e";
+    content: "\e908";
     right: 0;
     left: auto;
   }
 
   .rd-back:after {
-    content: "\e60d";
+    content: "\e907";
     left: 0;
   }
 

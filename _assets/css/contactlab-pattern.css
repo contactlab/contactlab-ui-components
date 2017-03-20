@@ -1530,23 +1530,23 @@ input[type=radio] {
   input[type=checkbox] + label:before, .key-value li input[type=checkbox] + span:first-of-type:before,
   input[type=radio] + label:before, .key-value li
   input[type=radio] + span:first-of-type:before {
-    font-family: 'contactlab-icons';
+    font-family: 'ikonograph';
     color: #434A5A;
     font-size: 14px;
     cursor: pointer;
     margin-right: 5px; }
 
 input[type=radio] + label:before, .key-value li input[type=radio] + span:first-of-type:before {
-  content: "\e62e"; }
+  content: "\e960"; }
 
 input[type=radio]:checked + label:before, .key-value li input[type=radio]:checked + span:first-of-type:before {
-  content: "\e62f"; }
+  content: "\e95f"; }
 
 input[type=checkbox] + label:before, .key-value li input[type=checkbox] + span:first-of-type:before {
-  content: "\e612"; }
+  content: "\e916"; }
 
 input[type=checkbox]:checked + label:before, .key-value li input[type=checkbox]:checked + span:first-of-type:before {
-  content: "\e613"; }
+  content: "\e915"; }
 
 input[type=radio]:disabled + label, .key-value li input[type=radio]:disabled + span:first-of-type,
 input[type=radio]:disabled + label:before, .key-value li
@@ -2620,7 +2620,7 @@ td, .table .th,
     .accordion .accordion-block.active .accordion-content {
       padding-bottom: 20px; }
     .accordion .accordion-block.active .accordion-title:before {
-      content: "\e60f"; }
+      content: "\e909"; }
 
 .accordion .accordion-title {
   position: relative;
@@ -2632,8 +2632,8 @@ td, .table .th,
   -o-user-select: auto;
   user-select: auto; }
   .accordion .accordion-title:before {
-    content: "\e60c";
-    font-family: 'contactlab-icons';
+    content: "\e902";
+    font-family: 'ikonograph';
     width: 30px;
     position: absolute;
     left: 0;
@@ -2729,7 +2729,7 @@ td, .table .th,
 
 .rd-container .rd-back:after,
 .rd-container .rd-next:after {
-  font: normal normal normal 12px/1 contactlab-icons;
+  font: normal normal normal 12px/1 ikonograph;
   color: #eaeced;
   cursor: pointer;
   display: flex;
@@ -2737,12 +2737,12 @@ td, .table .th,
   align-items: center; }
 
 .rd-container .rd-next:after {
-  content: "\e60e";
+  content: "\e908";
   right: 0;
   left: auto; }
 
 .rd-container .rd-back:after {
-  content: "\e60d";
+  content: "\e907";
   left: 0; }
 
 .rd-container .rd-month-label {
@@ -3088,8 +3088,8 @@ autocomplete-clab {
   color: #a9a9a9; }
 
 .dropdown-clab .input:after {
-  font-family: 'contactlab-icons';
-  content: "\e60c";
+  font-family: 'ikonograph';
+  content: "\e902";
   position: absolute;
   top: 9px;
   right: 5px;

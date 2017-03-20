@@ -41,6 +41,7 @@ suite('<calendar-clab>', function() {
 			assert.isUndefined(calendar.placeholder);
 			assert.isUndefined(calendar.type);
 			assert.isUndefined(calendar.noteType);
+			assert.isUndefined(calendar.options.locale);
 
 	  });
 
@@ -156,6 +157,19 @@ suite('<calendar-clab>', function() {
         assert.equal(el.value, '');
         done();
       });
+	  });
+
+  	test('Check calendar.options.locale and _getLocale())', function() {
+      var locale = 'it';
+      calendar.options.locale = locale;
+      assert.equal(calendar.options.locale, calendar._getLocale());
+	  });
+
+  	test('Check setLocale() and getLocale())', function() {
+      var locale = 'it';
+      calendar.options.locale = locale;
+      calendar.setLocale();
+      assert.equal(calendar.getLocale(), locale);
 	  });
 
   });
