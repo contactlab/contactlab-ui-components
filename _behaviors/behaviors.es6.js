@@ -70,13 +70,11 @@ export const DropdownBehavior = {
   },
 
   setValue: function(obj, prevent) {
-    console.log('RULE-HEADER.setValue(' + (typeof obj) + '): ', obj);
     prevent = prevent ? true : false;
     this.preventChange = prevent;
 
     if(typeof obj === 'object') {
       this._setSelected(obj);
-      console.log('RULE-HEADER.setValue(obj): ', obj);
     } else {
       this.options.map(opt => {
         if(opt[this.valueField] === obj) {

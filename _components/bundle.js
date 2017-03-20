@@ -16910,41 +16910,45 @@
 	  }, {
 	    key: "attached",
 	    value: function attached() {
+	      var _this = this;
+	
 	      // Preparing the animations
 	      if (!this.noAnimation) {
-	        var opacity = [{
-	          opacity: 0
-	        }, {
-	          opacity: 1
-	        }];
-	        var translateY = [{
-	          transform: 'translateY(-5px)'
-	        }, {
-	          transform: 'translateY(0)'
-	        }];
+	        (function () {
+	          var opacity = [{
+	            opacity: 0
+	          }, {
+	            opacity: 1
+	          }];
+	          var translateY = [{
+	            transform: 'translateY(-5px)'
+	          }, {
+	            transform: 'translateY(0)'
+	          }];
 	
-	        this.alertEnter = function (target) {
-	          return new GroupEffect([new KeyframeEffect(target, opacity, {
-	            duration: 190,
-	            fill: 'forwards',
-	            direction: 'normal'
-	          }), new KeyframeEffect(target, translateY, {
-	            duration: 190,
-	            fill: 'forwards',
-	            direction: 'normal'
-	          })]);
-	        };
-	        this.alertExit = function (target) {
-	          return new GroupEffect([new KeyframeEffect(target, opacity, {
-	            duration: 150,
-	            fill: 'forwards',
-	            direction: 'reverse'
-	          }), new KeyframeEffect(target, translateY, {
-	            duration: 150,
-	            fill: 'forwards',
-	            direction: 'reverse'
-	          })]);
-	        };
+	          _this.alertEnter = function (target) {
+	            return new GroupEffect([new KeyframeEffect(target, opacity, {
+	              duration: 190,
+	              fill: 'forwards',
+	              direction: 'normal'
+	            }), new KeyframeEffect(target, translateY, {
+	              duration: 190,
+	              fill: 'forwards',
+	              direction: 'normal'
+	            })]);
+	          };
+	          _this.alertExit = function (target) {
+	            return new GroupEffect([new KeyframeEffect(target, opacity, {
+	              duration: 150,
+	              fill: 'forwards',
+	              direction: 'reverse'
+	            }), new KeyframeEffect(target, translateY, {
+	              duration: 150,
+	              fill: 'forwards',
+	              direction: 'reverse'
+	            })]);
+	          };
+	        })();
 	      }
 	    }
 	
@@ -17276,11 +17280,13 @@
 	      if (!filter) {
 	        this.set('results', this.options);
 	      } else {
-	        var results = [];
-	        this.options.map(function (opt, i) {
-	          if (opt[_this3.labelField].toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
-	        });
-	        this.set('results', results);
+	        (function () {
+	          var results = [];
+	          _this3.options.map(function (opt, i) {
+	            if (opt[_this3.labelField].toLowerCase().search(searchVal) > -1) results.push(_this3.options[i]);
+	          });
+	          _this3.set('results', results);
+	        })();
 	      }
 	
 	      // handle list visual
@@ -18519,21 +18525,23 @@
 	
 	      var readFiles = function readFiles(file) {
 	        if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
-	          arr.push(file.name);
+	          (function () {
+	            arr.push(file.name);
 	
-	          var reader = new FileReader();
-	          reader.addEventListener("loadend", function () {
-	            var image = new Image();
-	            image.height = 100;
-	            image.title = file.name;
-	            image.src = reader.result;
-	            // console.log(image);
-	            if (!_this.noPreview) {
-	              _this.$.preview.innerHTML = '';
-	              _this.$.preview.appendChild(image);
-	            }
-	          }, false);
-	          reader.readAsDataURL(file);
+	            var reader = new FileReader();
+	            reader.addEventListener("loadend", function () {
+	              var image = new Image();
+	              image.height = 100;
+	              image.title = file.name;
+	              image.src = reader.result;
+	              // console.log(image);
+	              if (!_this.noPreview) {
+	                _this.$.preview.innerHTML = '';
+	                _this.$.preview.appendChild(image);
+	              }
+	            }, false);
+	            reader.readAsDataURL(file);
+	          })();
 	        }
 	      };
 	
@@ -18674,39 +18682,41 @@
 	
 				// Preparing the animations
 				if (!this.noAnimation) {
-					var opacity = [{
-						opacity: 0
-					}, {
-						opacity: 1
-					}];
-					var scale = [{
-						transform: 'scale(.95)'
-					}, {
-						transform: 'scale(1)'
-					}];
+					(function () {
+						var opacity = [{
+							opacity: 0
+						}, {
+							opacity: 1
+						}];
+						var scale = [{
+							transform: 'scale(.95)'
+						}, {
+							transform: 'scale(1)'
+						}];
 	
-					this.modalEnter = function (target) {
-						return new GroupEffect([new KeyframeEffect(target, opacity, {
-							duration: 190,
-							fill: 'forwards',
-							direction: 'normal'
-						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
-							duration: 190,
-							fill: 'forwards',
-							direction: 'normal'
-						})]);
-					};
-					this.modalExit = function (target) {
-						return new GroupEffect([new KeyframeEffect(target, opacity, {
-							duration: 150,
-							fill: 'forwards',
-							direction: 'reverse'
-						}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
-							duration: 150,
-							fill: 'forwards',
-							direction: 'reverse'
-						})]);
-					};
+						_this.modalEnter = function (target) {
+							return new GroupEffect([new KeyframeEffect(target, opacity, {
+								duration: 190,
+								fill: 'forwards',
+								direction: 'normal'
+							}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+								duration: 190,
+								fill: 'forwards',
+								direction: 'normal'
+							})]);
+						};
+						_this.modalExit = function (target) {
+							return new GroupEffect([new KeyframeEffect(target, opacity, {
+								duration: 150,
+								fill: 'forwards',
+								direction: 'reverse'
+							}), new KeyframeEffect(_this.querySelector('.modal'), scale, {
+								duration: 150,
+								fill: 'forwards',
+								direction: 'reverse'
+							})]);
+						};
+					})();
 				}
 			}
 		}, {
@@ -18904,38 +18914,40 @@
 	
 	      // Fetch options
 	      if (this.url != undefined) {
-	        var timeoutID = window.setTimeout(function () {
-	          _this.spinner = true;
-	        }, 400);
+	        (function () {
+	          var timeoutID = window.setTimeout(function () {
+	            _this.spinner = true;
+	          }, 400);
 	
-	        fetch(this.url, {
-	          method: 'GET'
-	        }).then(function (res) {
-	          if (res.status !== 200) {
+	          fetch(_this.url, {
+	            method: 'GET'
+	          }).then(function (res) {
+	            if (res.status !== 200) {
 	
+	              window.clearTimeout(timeoutID);
+	              timeoutID = undefined;
+	              if (_this.spinner) _this.spinner = false;
+	              return;
+	            }
+	            res.json().then(function (data) {
+	              _this.set('options', data);
+	              window.clearTimeout(timeoutID);
+	              timeoutID = undefined;
+	              if (_this.spinner) _this.spinner = false;
+	
+	              _this.async(function () {
+	                _this._setWrapperHeights();
+	              }, 100);
+	            });
+	          }).catch(function (err) {
+	            console.error("Fetch Error ==> ", err);
+	
+	            _this.type = 'error';
 	            window.clearTimeout(timeoutID);
 	            timeoutID = undefined;
 	            if (_this.spinner) _this.spinner = false;
-	            return;
-	          }
-	          res.json().then(function (data) {
-	            _this.set('options', data);
-	            window.clearTimeout(timeoutID);
-	            timeoutID = undefined;
-	            if (_this.spinner) _this.spinner = false;
-	
-	            _this.async(function () {
-	              _this._setWrapperHeights();
-	            }, 100);
 	          });
-	        }).catch(function (err) {
-	          console.error("Fetch Error ==> ", err);
-	
-	          _this.type = 'error';
-	          window.clearTimeout(timeoutID);
-	          timeoutID = undefined;
-	          if (_this.spinner) _this.spinner = false;
-	        });
+	        })();
 	      } else {
 	        this.async(function () {
 	          _this._setWrapperHeights();
@@ -19020,34 +19032,36 @@
 	        evt.preventDefault();
 	
 	        if (this.url != undefined) {
-	          //load more content
-	          var timeoutID = window.setTimeout(function () {
-	            _this3.spinner = true;
-	          }, 400);
+	          (function () {
+	            //load more content
+	            var timeoutID = window.setTimeout(function () {
+	              _this3.spinner = true;
+	            }, 400);
 	
-	          fetch(this.url, {
-	            method: 'GET'
-	          }).then(function (res) {
-	            if (res.status !== 200) {
+	            fetch(_this3.url, {
+	              method: 'GET'
+	            }).then(function (res) {
+	              if (res.status !== 200) {
 	
-	              if (typeof timeoutID == 'number') {
-	                window.clearTimeout(timeoutID);
-	                timeoutID = undefined;
-	                _this3.spinner = false;
+	                if (typeof timeoutID == 'number') {
+	                  window.clearTimeout(timeoutID);
+	                  timeoutID = undefined;
+	                  _this3.spinner = false;
+	                }
+	                return;
 	              }
-	              return;
-	            }
-	            res.json().then(function (data) {
-	              var newData = _this3.options.concat(data);
-	              _this3.set('options', newData);
+	              res.json().then(function (data) {
+	                var newData = _this3.options.concat(data);
+	                _this3.set('options', newData);
 	
-	              if (typeof timeoutID == 'number') {
-	                window.clearTimeout(timeoutID);
-	                timeoutID = undefined;
-	                _this3.spinner = false;
-	              }
+	                if (typeof timeoutID == 'number') {
+	                  window.clearTimeout(timeoutID);
+	                  timeoutID = undefined;
+	                  _this3.spinner = false;
+	                }
+	              });
 	            });
-	          });
+	          })();
 	        }
 	      }
 	    }
