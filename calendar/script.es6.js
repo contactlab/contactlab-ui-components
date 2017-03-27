@@ -82,9 +82,11 @@ export class CalendarClab {
   ----------*/
   _createInstance(selector) {
     this.setLocale();
-    let obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
-    rome(this.$$(selector), obj)
+    const obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
+    const currentCalendar = this.$$(selector);
+    rome(currentCalendar, obj)
       .on('data', this._changeDate.bind(this));
+    this.dispatchEvent(new CustomEvent('instance-created', {detail: currentCalendar, bubbles: true}));
   }
 
   _changeDate(evt) {
@@ -145,6 +147,13 @@ export class CalendarClab {
 
   getRomeInstance() {
     return rome.find(this.querySelector('input'));
+  }
+
+  restore() {
+    const selector = this.inline ? 'div.inline-cal' : 'input';
+    const currentCalendar = this.$$(selector);
+    rome(currentCalendar).restore(this.options);
+    return currentCalendar;
   }
 
   clear() {
