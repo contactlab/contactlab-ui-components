@@ -15,6 +15,7 @@
     "sass": "node _build/build-sass.js",
     "build": "node _build/build.js run",
     "vulcanize": "node _build/build.js vulcanize",
+    "prepublish": "yarn run build && yarn run build no-polymer",
     "test": "wct",
     "test:p": "wct -p"
   },

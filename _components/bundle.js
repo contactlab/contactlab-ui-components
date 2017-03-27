@@ -17649,7 +17649,9 @@
 	    value: function _createInstance(selector) {
 	      this.setLocale();
 	      var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
-	      (0, _rome2.default)(this.$$(selector), obj).on('data', this._changeDate.bind(this));
+	      var currentCalendar = this.$$(selector);
+	      (0, _rome2.default)(currentCalendar, obj).on('data', this._changeDate.bind(this));
+	      this.dispatchEvent(new CustomEvent('instance-created', { detail: currentCalendar, bubbles: true }));
 	    }
 	  }, {
 	    key: '_changeDate',
@@ -17718,6 +17720,14 @@
 	    key: 'getRomeInstance',
 	    value: function getRomeInstance() {
 	      return _rome2.default.find(this.querySelector('input'));
+	    }
+	  }, {
+	    key: 'restore',
+	    value: function restore() {
+	      var selector = this.inline ? 'div.inline-cal' : 'input';
+	      var currentCalendar = this.$$(selector);
+	      (0, _rome2.default)(currentCalendar).restore(this.options);
+	      return currentCalendar;
 	    }
 	  }, {
 	    key: 'clear',
