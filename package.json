@@ -1,6 +1,6 @@
 {
   "name": "contactclab-ui-components",
-  "version": "1.0.4",
+  "version": "1.2.0",
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "index.js",
   "config": {

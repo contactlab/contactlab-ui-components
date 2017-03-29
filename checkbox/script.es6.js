@@ -23,7 +23,8 @@ export class CheckboxClab {
       /** Determine if the check is checked or not */
       active: {
         type: Boolean,
-        value: false
+        value: false,
+        notify: true
       },
       /** Determine if the check is disabled or not */
       disabled: {
