@@ -4542,7 +4542,10 @@ var ButtonClab = exports.ButtonClab = function () {
   }, {
     key: '_click',
     value: function _click(evt) {
-      this.dispatchEvent(new CustomEvent('btnclick'), { bubbles: true });
+      this.dispatchEvent(new CustomEvent('btnclick', {
+        bubbles: true,
+        composed: true
+      }));
     }
 
     /**
@@ -4830,9 +4833,13 @@ var CurtainClab = exports.CurtainClab = function () {
           case 'li':
             _this.dontHide = false;
             var i = evt.target.getAttribute('data-i');
-            _this.dispatchEvent(new CustomEvent('do-select', { detail: {
+            _this.dispatchEvent(new CustomEvent('do-select', {
+              bubbles: true,
+              composed: true,
+              detail: {
                 index: i
-              } }), { bubbles: true });
+              }
+            }));
             break;
           default:
             _this.dontHide = false;
@@ -4851,9 +4858,13 @@ var CurtainClab = exports.CurtainClab = function () {
     key: "doHighlight",
     value: function doHighlight(evt) {
       var i = evt.target.getAttribute('data-i');
-      this.dispatchEvent(new CustomEvent('do-highlight', { detail: {
+      this.dispatchEvent(new CustomEvent('do-highlight', {
+        bubbles: true,
+        composed: true,
+        detail: {
           index: i
-        } }), { bubbles: true });
+        }
+      }));
     }
 
     /*----------
@@ -5080,21 +5091,32 @@ var InputClab = exports.InputClab = function () {
   }, {
     key: "_btnclick",
     value: function _btnclick(evt) {
-      this.dispatchEvent(new CustomEvent('btnclick'), { bubbles: true });
+      this.dispatchEvent(new CustomEvent('btnclick', {
+        bubbles: true,
+        composed: true
+      }));
     }
   }, {
     key: "_blur",
     value: function _blur(evt) {
-      this.dispatchEvent(new CustomEvent('blur', { detail: {
+      this.dispatchEvent(new CustomEvent('blur', {
+        bubbles: true,
+        composed: true,
+        detail: {
           input: evt
-        } }), { bubbles: true });
+        }
+      }));
     }
   }, {
     key: "_focus",
     value: function _focus(evt) {
-      this.dispatchEvent(new CustomEvent('focus', { detail: {
+      this.dispatchEvent(new CustomEvent('focus', {
+        bubbles: true,
+        composed: true,
+        detail: {
           input: evt
-        } }), { bubbles: true });
+        }
+      }));
     }
 
     /*----------
@@ -5355,7 +5377,10 @@ var LabelClab = exports.LabelClab = function () {
   }, {
     key: '_removeClicked',
     value: function _removeClicked(evt) {
-      this.dispatchEvent(new CustomEvent('remove'), { bubbles: true });
+      this.dispatchEvent(new CustomEvent('remove', {
+        bubbles: true,
+        composed: true
+      }));
     }
 
     /*----------
@@ -17420,16 +17445,25 @@ var AlertClab = exports.AlertClab = function () {
     value: function _handleClick(evt) {
       var primary = evt.target.childNodes[1].parentNode.getAttribute('data-primary');
       if (primary == 'true') {
-        this.dispatchEvent(new CustomEvent('primary'), { bubbles: true });
+        this.dispatchEvent(new CustomEvent('primary', {
+          bubbles: true,
+          composed: true
+        }));
       } else if (primary == 'false') {
-        this.dispatchEvent(new CustomEvent('secondary'), { bubbles: true });
+        this.dispatchEvent(new CustomEvent('secondary', {
+          bubbles: true,
+          composed: true
+        }));
       }
     }
   }, {
     key: "_close",
     value: function _close(evt) {
       this.visible = false;
-      this.dispatchEvent(new CustomEvent('close'), { bubbles: true });
+      this.dispatchEvent(new CustomEvent('close', {
+        bubbles: true,
+        composed: true
+      }));
     }
 
     /*----------
@@ -17651,7 +17685,10 @@ var AutoCompleteClab = exports.AutoCompleteClab = function () {
 
       // If typing
       if (this._inputString.length > this.minChar) {
-        this.dispatchEvent(new CustomEvent('typing'), { bubbles: true });
+        this.dispatchEvent(new CustomEvent('typing', {
+          bubbles: true,
+          composed: true
+        }));
         if (typeof this._interval == 'number') {
           window.clearTimeout(this._interval);
           this._interval = undefined;
@@ -17803,15 +17840,23 @@ var AutoCompleteClab = exports.AutoCompleteClab = function () {
         this._currentHint = undefined;
 
         if (this.resultAsObj) {
-          this.dispatchEvent(new CustomEvent('change', { detail: {
+          this.dispatchEvent(new CustomEvent('change', {
+            bubbles: true,
+            composed: true,
+            detail: {
               'selected': this.selected,
               'value': this.selected
-            } }), { bubbles: true });
+            }
+          }));
         } else {
-          this.dispatchEvent(new CustomEvent('change', { detail: {
+          this.dispatchEvent(new CustomEvent('change', {
+            bubbles: true,
+            composed: true,
+            detail: {
               'selected': this.selected.label,
               'value': this.selected.label
-            } }), { bubbles: true });
+            }
+          }));
         }
       }
     }
@@ -17956,9 +18001,13 @@ var GroupClab = exports.GroupClab = function () {
 			var _this2 = this;
 
 			if (old !== undefined && old !== val) {
-				this.dispatchEvent(new CustomEvent('change', { detail: {
+				this.dispatchEvent(new CustomEvent('change', {
+					bubbles: true,
+					composed: true,
+					detail: {
 						value: val
-					} }), { bubbles: true });
+					}
+				}));
 
 				var btns = this.getContentChildren();
 				Array.prototype.map.call(btns, function (btn, i) {
@@ -18086,10 +18135,14 @@ var CalendarClab = exports.CalendarClab = function () {
     value: function _checkClear(evt) {
       if (evt.target.value == "") {
         this.clear();
-        this.dispatchEvent(new CustomEvent('datechange', { detail: {
+        this.dispatchEvent(new CustomEvent('datechange', {
+          bubbles: true,
+          composed: true,
+          detail: {
             date: undefined,
             dateISO: undefined
-          } }), { bubbles: true });
+          }
+        }));
       }
     }
   }, {
@@ -18113,16 +18166,24 @@ var CalendarClab = exports.CalendarClab = function () {
       var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
       var currentCalendar = this.$$(selector);
       (0, _rome2.default)(currentCalendar, obj).on('data', this._changeDate.bind(this));
-      this.dispatchEvent(new CustomEvent('instance-created', { detail: currentCalendar, bubbles: true }));
+      this.dispatchEvent(new CustomEvent('instance-created', {
+        bubbles: true,
+        composed: true,
+        detail: currentCalendar
+      }));
     }
   }, {
     key: '_changeDate',
     value: function _changeDate(evt) {
       this.valueStr = evt;
-      this.dispatchEvent(new CustomEvent('datechange', { detail: {
+      this.dispatchEvent(new CustomEvent('datechange', {
+        bubbles: true,
+        composed: true,
+        detail: {
           date: evt,
           dateISO: (0, _moment2.default)(new Date(evt)).format()
-        } }), { bubbles: true });
+        }
+      }));
     }
 
     /*----------
@@ -18320,7 +18381,13 @@ var CardClab = exports.CardClab = function () {
   }, {
     key: "_handleClick",
     value: function _handleClick(evt) {
-      if (_polymer.Polymer.dom(evt.target).node.children[0].classList.contains('primary')) this.dispatchEvent(new CustomEvent('primary'), { bubbles: true });else this.dispatchEvent(new CustomEvent('secondary'), { bubbles: true });
+      if (_polymer.Polymer.dom(evt.target).node.children[0].classList.contains('primary')) this.dispatchEvent(new CustomEvent('primary', {
+        bubbles: true,
+        composed: true
+      }));else this.dispatchEvent(new CustomEvent('secondary', {
+        bubbles: true,
+        composed: true
+      }));
     }
 
     /*----------
@@ -18489,7 +18556,10 @@ var CheckboxClab = exports.CheckboxClab = function () {
       var _this = this;
 
       this.toggleActive().then(function (res) {
-        _this.dispatchEvent(new CustomEvent('selected-change'));
+        _this.dispatchEvent(new CustomEvent('selected-change', {
+          bubbles: true,
+          composed: true
+        }));
       });
     }
 
@@ -18740,17 +18810,25 @@ var DropdownClab = exports.DropdownClab = function () {
 
       if (!this.preventChange) {
         if (this.resultAsObj) {
-          this.dispatchEvent(new CustomEvent('change', { detail: {
+          this.dispatchEvent(new CustomEvent('change', {
+            bubbles: true,
+            composed: true,
+            detail: {
               selected: this.selected,
               newValue: this.selected,
               oldValue: old
-            } }), { bubbles: true });
+            }
+          }));
         } else {
-          this.dispatchEvent(new CustomEvent('change', { detail: {
+          this.dispatchEvent(new CustomEvent('change', {
+            bubbles: true,
+            composed: true,
+            detail: {
               selected: this.selected[this.valueField],
               newValue: this.selected,
               oldValue: old
-            } }), { bubbles: true });
+            }
+          }));
         }
       }
     }
@@ -19218,9 +19296,10 @@ var ModalClab = exports.ModalClab = function () {
 		value: function _closeModal(evt) {
 			evt.stopPropagation();
 			if (!this.stopClose) this.visible = false;
-			this.dispatchEvent(new CustomEvent('close'), {
-				bubbles: true
-			});
+			this.dispatchEvent(new CustomEvent('close', {
+				bubbles: true,
+				composed: true
+			}));
 		}
 	}, {
 		key: "_block",
@@ -19230,23 +19309,26 @@ var ModalClab = exports.ModalClab = function () {
 	}, {
 		key: "_primaryAction",
 		value: function _primaryAction(evt) {
-			this.dispatchEvent(new CustomEvent('modal-primary'), {
-				bubbles: true
-			});
+			this.dispatchEvent(new CustomEvent('modal-primary', {
+				bubbles: true,
+				composed: true
+			}));
 		}
 	}, {
 		key: "_secondaryAction",
 		value: function _secondaryAction(evt) {
-			this.dispatchEvent(new CustomEvent('modal-secondary'), {
-				bubbles: true
-			});
+			this.dispatchEvent(new CustomEvent('modal-secondary', {
+				bubbles: true,
+				composed: true
+			}));
 		}
 	}, {
 		key: "_warningAction",
 		value: function _warningAction(evt) {
-			this.dispatchEvent(new CustomEvent('modal-warning'), {
-				bubbles: true
-			});
+			this.dispatchEvent(new CustomEvent('modal-warning', {
+				bubbles: true,
+				composed: true
+			}));
 		}
 
 		/*----------
@@ -19558,9 +19640,13 @@ var MultipleClab = exports.MultipleClab = function () {
       // elem.classList.add('selected');
       this.push('selected', this.options[i]);
       this.set('options.' + i + '.selected', true);
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           selected: this.selected
-        } }), { bubbles: true });
+        }
+      }));
       this.lastSelected = i;
     }
   }, {
@@ -19572,9 +19658,13 @@ var MultipleClab = exports.MultipleClab = function () {
       });
       this.set('selected', temp);
       this.set('options.' + i + '.selected', false);
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           selected: this.selected
-        } }), { bubbles: true });
+        }
+      }));
       this.lastSelected = undefined;
     }
   }, {
@@ -19597,9 +19687,13 @@ var MultipleClab = exports.MultipleClab = function () {
       }
 
       this._highlightElems(arr);
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           selected: this.selected
-        } }), { bubbles: true });
+        }
+      }));
     }
   }, {
     key: "_highlightElems",
@@ -19778,8 +19872,13 @@ var PaginationClab = exports.PaginationClab = function () {
       if (type && this[type + 'Page'] == undefined || type && this[type + 'Page'] == this.currentPage) return;
       if (i >= 0 && i <= this.lastPage) {
         this.set('currentPage', i);
-        this.dispatchEvent(new CustomEvent('change', { detail: { currentPage: i }
-        }), { bubbles: true });
+        this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            currentPage: i
+          }
+        }));
       }
     }
 
@@ -20242,9 +20341,13 @@ var TabsClab = exports.TabsClab = function () {
     value: function _activateThis(evt) {
       evt ? evt.preventDefault() : null;
       this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           active: this.active
-        } }), { bubbles: true });
+        }
+      }));
     }
 
     /*----------
@@ -20412,10 +20515,14 @@ var TagsClab = exports.TagsClab = function () {
       this.push('tags', newTag);
       this.inputString = '';
 
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           tags: this.tags,
           new: newTag
-        } }), { bubbles: true });
+        }
+      }));
     }
   }, {
     key: "_removeTag",
@@ -20430,10 +20537,14 @@ var TagsClab = exports.TagsClab = function () {
       });
       if (i != undefined) this.splice('tags', i, 1);
 
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           tags: this.tags,
           removed: i
-        } }), { bubbles: true });
+        }
+      }));
     }
   }, {
     key: "_computeStacked",
@@ -20461,10 +20572,14 @@ var TagsClab = exports.TagsClab = function () {
           _this.push('tags', item);
         });
       }
-      this.dispatchEvent(new CustomEvent('change', { detail: {
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
           tags: this.tags,
           new: array
-        } }), { bubbles: true });
+        }
+      }));
 
       return this.tags;
     }

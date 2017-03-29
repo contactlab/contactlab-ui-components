@@ -80,9 +80,13 @@ export class PaginationClab {
     if((type && this[type + 'Page'] == undefined) || (type && this[type + 'Page'] == this.currentPage)) return;
     if(i >= 0 && i <= this.lastPage) {
       this.set('currentPage', i);
-      this.dispatchEvent(new CustomEvent('change', {detail:
-        {currentPage: i}
-      }), {bubbles: true});
+      this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail:{
+          currentPage: i
+        }
+      }));
     }
   }
 

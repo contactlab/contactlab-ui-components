@@ -97,7 +97,10 @@ export class CheckboxClab {
 
   _onChange(evt) {
     this.toggleActive().then(res => {
-      this.dispatchEvent(new CustomEvent('selected-change'))
+      this.dispatchEvent(new CustomEvent('selected-change',{
+        bubbles: true,
+        composed: true
+      }))
     })
   }
 

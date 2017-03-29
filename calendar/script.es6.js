@@ -59,10 +59,14 @@ export class CalendarClab {
   _checkClear(evt) {
     if(evt.target.value == "") {
       this.clear();
-      this.dispatchEvent(new CustomEvent('datechange', {detail: {
-        date: undefined,
-        dateISO: undefined
-			}}), {bubbles: true});
+      this.dispatchEvent(new CustomEvent('datechange', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          date: undefined,
+          dateISO: undefined
+  			}
+      }));
     }
 
   }
@@ -86,15 +90,23 @@ export class CalendarClab {
     const currentCalendar = this.$$(selector);
     rome(currentCalendar, obj)
       .on('data', this._changeDate.bind(this));
-    this.dispatchEvent(new CustomEvent('instance-created', {detail: currentCalendar, bubbles: true}));
+    this.dispatchEvent(new CustomEvent('instance-created', {
+      bubbles: true,
+      composed: true,
+      detail: currentCalendar,
+    }));
   }
 
   _changeDate(evt) {
     this.valueStr = evt;
-    this.dispatchEvent(new CustomEvent('datechange', {detail: {
-      date: evt,
-      dateISO: moment(new Date(evt)).format()
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('datechange', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        date: evt,
+        dateISO: moment(new Date(evt)).format()
+      }
+    }));
   }
 
 

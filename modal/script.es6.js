@@ -131,9 +131,10 @@ export class ModalClab {
 	_closeModal(evt) {
 		evt.stopPropagation();
 		if (!this.stopClose) this.visible = false;
-		this.dispatchEvent(new CustomEvent('close'), {
-			bubbles: true
-		});
+		this.dispatchEvent(new CustomEvent('close',{
+			bubbles: true,
+			composed: true
+		}));
 	}
 
 	_block(evt) {
@@ -141,21 +142,24 @@ export class ModalClab {
 	}
 
 	_primaryAction(evt) {
-		this.dispatchEvent(new CustomEvent('modal-primary'), {
-			bubbles: true
-		});
+		this.dispatchEvent(new CustomEvent('modal-primary',{
+			bubbles: true,
+			composed: true
+		}));
 	}
 
 	_secondaryAction(evt) {
-		this.dispatchEvent(new CustomEvent('modal-secondary'), {
-			bubbles: true
-		});
+		this.dispatchEvent(new CustomEvent('modal-secondary',{
+			bubbles: true,
+			composed: true
+		}));
 	}
 
 	_warningAction(evt) {
-		this.dispatchEvent(new CustomEvent('modal-warning'), {
-			bubbles: true
-		});
+		this.dispatchEvent(new CustomEvent('modal-warning',{
+			bubbles: true,
+			composed: true
+		}));
 	}
 
 

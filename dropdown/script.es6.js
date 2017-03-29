@@ -190,17 +190,25 @@ export class DropdownClab {
 
     if(!this.preventChange) {
       if(this.resultAsObj){
-        this.dispatchEvent(new CustomEvent('change', {detail: {
-          selected: this.selected,
-          newValue: this.selected,
-          oldValue: old
-        }}), {bubbles: true});
+        this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            selected: this.selected,
+            newValue: this.selected,
+            oldValue: old
+          }
+        }));
       } else {
-        this.dispatchEvent(new CustomEvent('change', {detail: {
-          selected: this.selected[this.valueField],
-          newValue: this.selected,
-          oldValue: old
-        }}), {bubbles: true});
+        this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            selected: this.selected[this.valueField],
+            newValue: this.selected,
+            oldValue: old
+          }
+        }));
       }
     }
   }

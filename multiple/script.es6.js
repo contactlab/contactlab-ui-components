@@ -219,9 +219,13 @@ export class MultipleClab {
     // elem.classList.add('selected');
     this.push('selected', this.options[i]);
     this.set('options.' + i + '.selected', true);
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      selected: this.selected
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        selected: this.selected
+      }
+    }));
     this.lastSelected = i;
   }
 
@@ -232,9 +236,13 @@ export class MultipleClab {
     });
     this.set('selected', temp);
     this.set('options.' + i + '.selected', false);
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      selected: this.selected
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        selected: this.selected
+      }
+    }));
     this.lastSelected = undefined;
   }
 
@@ -256,9 +264,13 @@ export class MultipleClab {
     }
 
     this._highlightElems(arr);
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      selected: this.selected
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        selected: this.selected
+      }
+    }));
   }
 
   _highlightElems(idx) {

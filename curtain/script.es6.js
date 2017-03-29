@@ -54,9 +54,13 @@ export class CurtainClab {
         case 'li':
           this.dontHide = false;
           let i = evt.target.getAttribute('data-i');
-          this.dispatchEvent(new CustomEvent('do-select', {detail: {
-            index: i
-          }}), {bubbles: true});
+          this.dispatchEvent(new CustomEvent('do-select', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              index: i
+            }
+          }));
           break;
         default:
           this.dontHide = false;
@@ -75,9 +79,13 @@ export class CurtainClab {
   ----------*/
   doHighlight(evt) {
     const i = evt.target.getAttribute('data-i');
-    this.dispatchEvent(new CustomEvent('do-highlight', {detail: {
-      index: i
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('do-highlight', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        index: i
+      }
+    }));
   }
 
 
