@@ -59,10 +59,14 @@ export class CalendarClab {
   _checkClear(evt) {
     if(evt.target.value == "") {
       this.clear();
-      this.dispatchEvent(new CustomEvent('datechange', {detail: {
-        date: undefined,
-        dateISO: undefined
-			}}), {bubbles: true});
+      this.dispatchEvent(new CustomEvent('datechange', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          date: undefined,
+          dateISO: undefined
+  			}
+      }));
     }
 
   }
@@ -82,17 +86,27 @@ export class CalendarClab {
   ----------*/
   _createInstance(selector) {
     this.setLocale();
-    let obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
-    rome(this.$$(selector), obj)
+    const obj = typeof this.options == 'object' ? this.options : this.getRomeInstance().options();
+    const currentCalendar = this.$$(selector);
+    rome(currentCalendar, obj)
       .on('data', this._changeDate.bind(this));
+    this.dispatchEvent(new CustomEvent('instance-created', {
+      bubbles: true,
+      composed: true,
+      detail: currentCalendar,
+    }));
   }
 
   _changeDate(evt) {
     this.valueStr = evt;
-    this.dispatchEvent(new CustomEvent('datechange', {detail: {
-      date: evt,
-      dateISO: moment(new Date(evt)).format()
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('datechange', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        date: evt,
+        dateISO: moment(new Date(evt)).format()
+      }
+    }));
   }
 
 
@@ -145,6 +159,13 @@ export class CalendarClab {
 
   getRomeInstance() {
     return rome.find(this.querySelector('input'));
+  }
+
+  restore() {
+    const selector = this.inline ? 'div.inline-cal' : 'input';
+    const currentCalendar = this.$$(selector);
+    rome(currentCalendar).restore(this.options);
+    return currentCalendar;
   }
 
   clear() {

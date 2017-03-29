@@ -65,9 +65,13 @@ export class GroupClab{
 
 	_updateAppearance(val, old){
 		if(old!==undefined && old !== val){
-			this.dispatchEvent(new CustomEvent('change', {detail: { 
-				value: val
-			}}), {bubbles: true});
+			this.dispatchEvent(new CustomEvent('change', {
+				bubbles: true,
+				composed: true,
+				detail: {
+					value: val
+				}
+			}));
 
 			let btns = this.getContentChildren();
 			Array.prototype.map.call(btns, (btn, i) => {

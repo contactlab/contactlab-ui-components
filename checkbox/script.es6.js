@@ -23,7 +23,8 @@ export class CheckboxClab {
       /** Determine if the check is checked or not */
       active: {
         type: Boolean,
-        value: false
+        value: false,
+        notify: true
       },
       /** Determine if the check is disabled or not */
       disabled: {
@@ -97,7 +98,10 @@ export class CheckboxClab {
 
   _onChange(evt) {
     this.toggleActive().then(res => {
-      this.dispatchEvent(new CustomEvent('selected-change'))
+      this.dispatchEvent(new CustomEvent('selected-change',{
+        bubbles: true,
+        composed: true
+      }))
     })
   }
 

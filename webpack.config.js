@@ -1,15 +1,15 @@
+const path = require('path');
 const webpack = require('webpack')
 const WebpackNotifierPlugin = require('webpack-notifier')
 
 module.exports = {
   entry: './_assets/js/index.js',
   output: {
-    path: '_components',
+    path: path.join(__dirname, '_components'),
     filename: 'bundle.js',
   },
   devtool: 'source-map',
   plugins: [
-    new webpack.optimize.OccurenceOrderPlugin(),
     new WebpackNotifierPlugin({
 			title: 'UI Components',
 			alwaysNotify: true
@@ -27,5 +27,8 @@ module.exports = {
   },
   devServer: {
     contentBase: './../'
+  },
+  resolve: {
+    mainFields: ['browserify', 'browser', 'module', 'main']
   }
 }

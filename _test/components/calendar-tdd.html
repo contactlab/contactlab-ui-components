@@ -172,6 +172,15 @@ suite('<calendar-clab>', function() {
       assert.equal(calendar.getLocale(), locale);
 	  });
 
+    test('Check restore()', function (done) {
+      calendar.options.locale = 'it';
+      calendar.options.time = true;
+      setTimeout(function () {
+        const currentCalendar = calendar.restore();
+        assert.equal(currentCalendar.tagName, 'INPUT');
+        done();
+      });
+    });
   });
 
   suite('Test Events', function() {
@@ -186,6 +195,13 @@ suite('<calendar-clab>', function() {
           done();
         });
         calendar._changeDate(date);
+      });
+    });
+
+    test('on-instance-created', function(done) {
+      calendar.addEventListener('instance-created', function(evt) {
+        assert.ok(evt.detail, 'Instance created event correct');
+        done();
       });
     });
   });

@@ -138,7 +138,10 @@ export class AutoCompleteClab {
 
     // If typing
     if(this._inputString.length > this.minChar) {
-      this.dispatchEvent(new CustomEvent('typing'), {bubbles: true});
+      this.dispatchEvent(new CustomEvent('typing',{
+        bubbles: true,
+        composed: true
+      }));
       if(typeof this._interval == 'number') {
         window.clearTimeout(this._interval);
         this._interval = undefined;
@@ -278,15 +281,23 @@ export class AutoCompleteClab {
       this._currentHint = undefined;
 
       if(this.resultAsObj) {
-        this.dispatchEvent(new CustomEvent('change', {detail: {
-          'selected': this.selected,
-          'value': this.selected
-        }}), {bubbles: true});
+        this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            'selected': this.selected,
+            'value': this.selected
+          }
+        }));
       } else {
-        this.dispatchEvent(new CustomEvent('change', {detail: {
-          'selected': this.selected.label,
-          'value': this.selected.label
-        }}), {bubbles: true});
+        this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            'selected': this.selected.label,
+            'value': this.selected.label
+          }
+        }));
       }
     }
   }

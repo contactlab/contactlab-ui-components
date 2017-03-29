@@ -85,10 +85,14 @@ export class TagsClab {
     this.push('tags', newTag);
     this.inputString = '';
 
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      tags: this.tags,
-      new: newTag
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        tags: this.tags,
+        new: newTag
+      }
+    }));
   }
 
   _removeTag(evt) {
@@ -102,10 +106,14 @@ export class TagsClab {
     });
     if(i != undefined) this.splice('tags', i, 1);
 
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      tags: this.tags,
-      removed: i
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        tags: this.tags,
+        removed: i
+      }
+    }));
   }
 
   _computeStacked(stacked) {
@@ -128,10 +136,14 @@ export class TagsClab {
         this.push('tags', item);
       });
     }
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      tags: this.tags,
-      new: array
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        tags: this.tags,
+        new: array
+      }
+    }));
 
     return this.tags;
   }

@@ -55,9 +55,13 @@ export class TabsClab {
   _activateThis(evt) {
     evt ? evt.preventDefault() : null;
     this.active = parseInt(evt.currentTarget.parentNode.getAttribute('data-index'));
-    this.dispatchEvent(new CustomEvent('change', {detail: {
-      active: this.active
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        active: this.active
+      }
+    }));
   }
 
 

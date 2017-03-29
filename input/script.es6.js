@@ -125,19 +125,30 @@ export class InputClab {
   }
 
   _btnclick(evt) {
-    this.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('btnclick',{
+      bubbles: true,
+      composed: true
+    }));
   }
 
   _blur(evt) {
-    this.dispatchEvent(new CustomEvent('blur', {detail: {
-      input: evt
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('blur', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        input: evt
+      }
+    }));
   }
-  
+
   _focus(evt) {
-    this.dispatchEvent(new CustomEvent('focus', {detail: {
-      input: evt
-    }}), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('focus', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        input: evt
+      }
+    }));
   }
 
 

@@ -63,7 +63,10 @@ export class ButtonClab {
   }
 
   _click(evt) {
-    this.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
+    this.dispatchEvent(new CustomEvent('btnclick',{
+      bubbles: true,
+      composed: true
+    }));
   }
 
   /**
