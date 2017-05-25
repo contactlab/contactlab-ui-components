@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId])
+/******/ 		if(installedModules[moduleId]) {
 /******/ 			return installedModules[moduleId].exports;
-/******/
+/******/ 		}
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -19008,7 +19008,26 @@ var CalendarClab = exports.CalendarClab = function () {
   }, {
     key: '_checkClear',
     value: function _checkClear(evt) {
-      if (evt.target.value == "") {
+      var newDate = evt.target.value;
+      if (newDate === this.valueStr) return;
+
+      if (evt.keyCode === 13) {
+        if (newDate !== "") {
+          this.valueStr = newDate;
+
+          this.dispatchEvent(new CustomEvent('datechange', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              date: newDate,
+              dateISO: (0, _moment2.default)(new Date(newDate)).format()
+            }
+          }));
+        }
+        this.getRomeInstance().hide();
+      }
+
+      if (newDate === "" && this.valueStr !== null) {
         this.clear();
         this.dispatchEvent(new CustomEvent('datechange', {
           bubbles: true,
@@ -19025,7 +19044,6 @@ var CalendarClab = exports.CalendarClab = function () {
     value: function _focusElement(evt) {
       if (!this.disabled) {
         evt.stopPropagation();
-        console.log(this.getRomeInstance());
         this.getRomeInstance().show();
       }
     }
@@ -19037,10 +19055,21 @@ var CalendarClab = exports.CalendarClab = function () {
   }, {
     key: '_createInstance',
     value: function _createInstance(selector) {
+      var _this2 = this;
+
       this.setLocale();
-      var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
+      var obj = _typeof(this.options) === 'object' ? this.options : this.getRomeInstance().options();
       var currentCalendar = this.$$(selector);
-      (0, _rome2.default)(currentCalendar, obj).on('data', this._changeDate.bind(this));
+      var cal = (0, _rome2.default)(currentCalendar, obj);
+
+      cal.on('data', this._changeDate.bind(this));
+      cal.on('next', function (evt) {
+        _this2.cancelAsync(_this2._fireDate);
+      });
+      cal.on('back', function (evt) {
+        _this2.cancelAsync(_this2._fireDate);
+      });
+
       this.dispatchEvent(new CustomEvent('instance-created', {
         bubbles: true,
         composed: true,
@@ -19049,16 +19078,23 @@ var CalendarClab = exports.CalendarClab = function () {
     }
   }, {
     key: '_changeDate',
-    value: function _changeDate(evt) {
-      this.valueStr = evt;
-      this.dispatchEvent(new CustomEvent('datechange', {
-        bubbles: true,
-        composed: true,
-        detail: {
-          date: evt,
-          dateISO: (0, _moment2.default)(new Date(evt)).format()
-        }
-      }));
+    value: function _changeDate(newDate) {
+      var _this3 = this;
+
+      if (newDate === this.valueStr) return;
+
+      this.cancelAsync(this._fireDate);
+      this._fireDate = this.async(function () {
+        _this3.valueStr = newDate;
+        _this3.dispatchEvent(new CustomEvent('datechange', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            date: newDate,
+            dateISO: (0, _moment2.default)(new Date(newDate)).format()
+          }
+        }));
+      }, 250);
     }
 
     /*----------
@@ -22326,6 +22362,12 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
+process.prependListener = noop;
+process.prependOnceListener = noop;
+
+process.listeners = function (name) {
+    return [];
+};
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
