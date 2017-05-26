@@ -5145,6 +5145,11 @@ var InputClab = exports.InputClab = function () {
           value: 'textinput',
           reflectToAttribute: true
         },
+        inputType: {
+          type: String,
+          value: null,
+          reflectToAttribute: true
+        },
         type: {
           type: String,
           value: null,
@@ -5306,9 +5311,11 @@ var InputClab = exports.InputClab = function () {
     }
   }, {
     key: "_computeInputType",
-    value: function _computeInputType(password) {
+    value: function _computeInputType(password, inputType) {
       if (password) {
         return 'password';
+      }if (inputType) {
+        return inputType;
       } else {
         return 'text';
       }
@@ -19008,7 +19015,26 @@ var CalendarClab = exports.CalendarClab = function () {
   }, {
     key: '_checkClear',
     value: function _checkClear(evt) {
-      if (evt.target.value == "") {
+      var newDate = evt.target.value;
+      if (newDate === this.valueStr) return;
+
+      if (evt.keyCode === 13) {
+        if (newDate !== "") {
+          this.valueStr = newDate;
+
+          this.dispatchEvent(new CustomEvent('datechange', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              date: newDate,
+              dateISO: (0, _moment2.default)(new Date(newDate)).format()
+            }
+          }));
+        }
+        this.getRomeInstance().hide();
+      }
+
+      if (newDate === "" && this.valueStr !== null) {
         this.clear();
         this.dispatchEvent(new CustomEvent('datechange', {
           bubbles: true,
@@ -19025,7 +19051,6 @@ var CalendarClab = exports.CalendarClab = function () {
     value: function _focusElement(evt) {
       if (!this.disabled) {
         evt.stopPropagation();
-        console.log(this.getRomeInstance());
         this.getRomeInstance().show();
       }
     }
@@ -19037,10 +19062,21 @@ var CalendarClab = exports.CalendarClab = function () {
   }, {
     key: '_createInstance',
     value: function _createInstance(selector) {
+      var _this2 = this;
+
       this.setLocale();
-      var obj = _typeof(this.options) == 'object' ? this.options : this.getRomeInstance().options();
+      var obj = _typeof(this.options) === 'object' ? this.options : this.getRomeInstance().options();
       var currentCalendar = this.$$(selector);
-      (0, _rome2.default)(currentCalendar, obj).on('data', this._changeDate.bind(this));
+      var cal = (0, _rome2.default)(currentCalendar, obj);
+
+      cal.on('data', this._changeDate.bind(this));
+      cal.on('next', function (evt) {
+        _this2.cancelAsync(_this2._fireDate);
+      });
+      cal.on('back', function (evt) {
+        _this2.cancelAsync(_this2._fireDate);
+      });
+
       this.dispatchEvent(new CustomEvent('instance-created', {
         bubbles: true,
         composed: true,
@@ -19049,16 +19085,23 @@ var CalendarClab = exports.CalendarClab = function () {
     }
   }, {
     key: '_changeDate',
-    value: function _changeDate(evt) {
-      this.valueStr = evt;
-      this.dispatchEvent(new CustomEvent('datechange', {
-        bubbles: true,
-        composed: true,
-        detail: {
-          date: evt,
-          dateISO: (0, _moment2.default)(new Date(evt)).format()
-        }
-      }));
+    value: function _changeDate(newDate) {
+      var _this3 = this;
+
+      if (newDate === this.valueStr) return;
+
+      this.cancelAsync(this._fireDate);
+      this._fireDate = this.async(function () {
+        _this3.valueStr = newDate;
+        _this3.dispatchEvent(new CustomEvent('datechange', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            date: newDate,
+            dateISO: (0, _moment2.default)(new Date(newDate)).format()
+          }
+        }));
+      }, 250);
     }
 
     /*----------
@@ -20805,7 +20848,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getStart",
-    value: function _getStart(c, pages) {
+    value: function _getStart(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last - this.range;
@@ -20817,7 +20862,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getEnd",
-    value: function _getEnd(c, pages) {
+    value: function _getEnd(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last;
@@ -20975,7 +21022,13 @@ var RadioClab = exports.RadioClab = function () {
           value: ''
         },
         active: Number,
-        disabled: Array
+        disabled: Array,
+        inline: {
+          type: Boolean,
+          value: false,
+          observer: '_computeInline',
+          reflectToAttribute: true
+        }
       };
     }
 
@@ -20987,6 +21040,11 @@ var RadioClab = exports.RadioClab = function () {
     key: "_computeType",
     value: function _computeType(wt) {
       return ['row', wt].join(' ');
+    }
+  }, {
+    key: "_computeInline",
+    value: function _computeInline(inline) {
+      inline ? this.classList.add('inline') : this.classList.remove('inline');
     }
 
     /*----------

@@ -7,193 +7,206 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 
 <dom-module id="demo-clab">
-    <!-- Needs to have rel="import" -->
-    <!-- <link rel="import" href="_assets/css/color-vars.css"> -->
+  <!-- Needs to have rel="import" -->
+  <!-- <link rel="import" href="_assets/css/color-vars.css"> -->
 
   <style>
-    .content.dark{
+    .content.dark {
       background-color: var(--bg-color);
     }
-    .content:last-child{
+
+    .content:last-child {
       margin-bottom: 100px;
     }
+
   </style>
 
   <template>
 
 
-        <menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
-            <span class="product-name">contact<b>plan</b></span>
+    <menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
+      <span class="product-name">contact<b>plan</b></span>
 
-            <div class="alerts">
-              <alert-clab id="notify" notify>
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+      <div class="alerts">
+        <alert-clab id="notify" notify>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
         </alert-clab>
-            </div>
-        </menu-clab>
+      </div>
+    </menu-clab>
 
     <main class="main-content">
-            <section class="icons" style="font-size: 50px">
-                <i class="clab-icon icon-play"></i>
-                <i class="clab-icon icon-pause"></i>
-                <i class="clab-icon icon-stop"></i>
-                <i class="clab-icon icon-fast-backward"></i>
-                <i class="clab-icon icon-backward"></i>
-                <i class="clab-icon icon-forward"></i>
-                <i class="clab-icon icon-fast-forward"></i>
-                <i class="clab-icon icon-equal-circle"></i>
-                <i class="clab-icon icon-equal-circle-full"></i>
-                <i class="clab-icon icon-full-arrow-top"></i>
-                <i class="clab-icon icon-full-arrow-right"></i>
-                <i class="clab-icon icon-full-arrow-down"></i>
-                <i class="clab-icon icon-full-arrow-left"></i>
-            </section>
-    <section>
-      <h2>Alerts</h2>
-      <alert-clab visible type="primary" primary="Go" secondary="Cancel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-      </alert-clab>
-      <alert-clab visible primary="Go" secondary="Cancel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-      </alert-clab>
-      <alert-clab visible type="warning" primary="Go" secondary="Cancel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-      </alert-clab>
-      <alert-clab visible type="error" primary="Go" secondary="Cancel">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-      </alert-clab>
-      <alert-clab visible type="info" primary="Go" secondary="Cancel" no-animation>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-      </alert-clab>
+      <section class="icons" style="font-size: 50px">
+        <i class="clab-icon icon-play"></i>
+        <i class="clab-icon icon-pause"></i>
+        <i class="clab-icon icon-stop"></i>
+        <i class="clab-icon icon-fast-backward"></i>
+        <i class="clab-icon icon-backward"></i>
+        <i class="clab-icon icon-forward"></i>
+        <i class="clab-icon icon-fast-forward"></i>
+        <i class="clab-icon icon-equal-circle"></i>
+        <i class="clab-icon icon-equal-circle-full"></i>
+        <i class="clab-icon icon-full-arrow-top"></i>
+        <i class="clab-icon icon-full-arrow-right"></i>
+        <i class="clab-icon icon-full-arrow-down"></i>
+        <i class="clab-icon icon-full-arrow-left"></i>
+      </section>
+      <section>
+        <h2>Alerts</h2>
+        <alert-clab visible type="primary" primary="Go" secondary="Cancel">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+        </alert-clab>
+        <alert-clab visible primary="Go" secondary="Cancel">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+        </alert-clab>
+        <alert-clab visible type="warning" primary="Go" secondary="Cancel">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+        </alert-clab>
+        <alert-clab visible type="error" primary="Go" secondary="Cancel">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+        </alert-clab>
+        <alert-clab visible type="info" primary="Go" secondary="Cancel" no-animation>
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+          aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+        </alert-clab>
 
-      <button-clab on-click="_notify">Show notification alert</button-clab>
-    </section>
+        <button-clab on-click="_notify">Show notification alert</button-clab>
+      </section>
 
-        <section>
-            <ul>
-                <li>Lorem ipsum dolor sit amet.</li>
-                <li>Ipsam eos assumenda laboriosam veritatis!</li>
-            </ul>
-        </section>
+      <section>
+        <ul>
+          <li>Lorem ipsum dolor sit amet.</li>
+          <li>Ipsam eos assumenda laboriosam veritatis!</li>
+        </ul>
+      </section>
 
-        <section>
-            <h2>Tables</h2>
-            <table class="striped-table">
-                <tr>
-                    <th>Lorem ipsum.</th>
-                    <th>Quia, doloremque!</th>
-                    <th>Nesciunt, odio?</th>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-                <tr>
-                    <td>Lorem ipsum.</td>
-                    <td>Quia, doloremque!</td>
-                    <td>Nesciunt, odio?</td>
-                </tr>
-            </table>
-
-      <br>
-
-      <table class="hover-table">
+      <section>
+        <h2>Tables</h2>
+        <table class="striped-table">
           <tr>
-              <th>Lorem ipsum.</th>
-              <th>Quia, doloremque!</th>
-              <th>Nesciunt, odio?</th>
+            <th>Lorem ipsum.</th>
+            <th>Quia, doloremque!</th>
+            <th>Nesciunt, odio?</th>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
           <tr>
-              <td>Lorem ipsum.</td>
-              <td>Quia, doloremque!</td>
-              <td>Nesciunt, odio?</td>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
           </tr>
-      </table>
+        </table>
 
-      <br>
+        <br>
 
-      <!-- Responsive table -->
-      <div class="table responsive-table">
-        <div class="thead">
-          <div class="tr">
-            <div class="th">Table Header 1</div>
-            <div class="th">Table Header 2</div>
-            <div class="th">Table Header 3</div>
+        <table class="hover-table">
+          <tr>
+            <th>Lorem ipsum.</th>
+            <th>Quia, doloremque!</th>
+            <th>Nesciunt, odio?</th>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+          <tr>
+            <td>Lorem ipsum.</td>
+            <td>Quia, doloremque!</td>
+            <td>Nesciunt, odio?</td>
+          </tr>
+        </table>
+
+        <br>
+
+        <!-- Responsive table -->
+        <div class="table responsive-table">
+          <div class="thead">
+            <div class="tr">
+              <div class="th">Table Header 1</div>
+              <div class="th">Table Header 2</div>
+              <div class="th">Table Header 3</div>
+            </div>
+          </div>
+          <div class="tbody">
+            <div class="tr">
+              <div class="td" data-th="Table Header 1">Division 1</div>
+              <div class="td" data-th="Table Header 2">Division 2</div>
+              <div class="td" data-th="Table Header 3">Division 3</div>
+            </div>
           </div>
         </div>
-        <div class="tbody">
-          <div class="tr">
-            <div class="td" data-th="Table Header 1">Division 1</div>
-            <div class="td" data-th="Table Header 2">Division 2</div>
-            <div class="td" data-th="Table Header 3">Division 3</div>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Accordion</h2>
-      <accordion-clab title="Accordion 1">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
-      </accordion-clab>
-      <accordion-clab title="Accordion 2">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
-      </accordion-clab>
-    </section>
+      <section>
+        <h2>Accordion</h2>
+        <accordion-clab title="Accordion 1">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia
+          vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor
+          sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae
+          ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae
+          ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit
+          amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae
+          ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
+        </accordion-clab>
+        <accordion-clab title="Accordion 2">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia
+          vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.
+        </accordion-clab>
+      </section>
 
-    <section>
-      <h2>Buttons</h2>
-            <article>
-                <button-clab>
+      <section>
+        <h2>Buttons</h2>
+        <article>
+          <button-clab>
             Just click me
           </button-clab>
 
@@ -206,21 +219,21 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
           <button-clab type="primary empty">
             Just click me
           </button-clab>
-            </article>
+        </article>
 
-            <article>
-                <button-clab block>
-                    Just click me
-                </button-clab>
+        <article>
+          <button-clab block>
+            Just click me
+          </button-clab>
 
 
-                <button-clab block size="small">
-                    Just click me
-                </button-clab>
-            </article>
+          <button-clab block size="small">
+            Just click me
+          </button-clab>
+        </article>
 
-            <article>
-                <button-clab size="small">
+        <article>
+          <button-clab size="small">
             Just click me
           </button-clab>
 
@@ -233,360 +246,420 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
           <button-clab size="small" type="primary empty">
             Just click me
           </button-clab>
-            </article>
+        </article>
 
-    </section>
+      </section>
 
-    <section>
-      <h2>Buttons group</h2>
-      <article>
+      <section>
+        <h2>Buttons group</h2>
+        <article>
           <group-clab>
             <button-clab>First</button-clab>
             <button-clab>Second</button-clab>
             <button-clab>Third</button-clab>
           </group-clab>
-      </article>
+        </article>
 
-      <article>
+        <article>
           <group-clab type="success">
             <button-clab>First</button-clab>
             <button-clab>Second</button-clab>
             <button-clab>Third</button-clab>
           </group-clab>
-      </article>
+        </article>
 
-      <article>
+        <article>
           <group-clab type="info" size="small">
             <button-clab>First</button-clab>
             <button-clab>Second</button-clab>
             <button-clab>Third</button-clab>
           </group-clab>
-      </article>
+        </article>
 
-      <article>
+        <article>
           <group-clab type="success" size="smaller">
             <button-clab>First</button-clab>
             <button-clab>Second</button-clab>
             <button-clab>Third</button-clab>
           </group-clab>
-      </article>
-    </section>
-
-    <section>
-      <h2>Cards</h2>
-      <card-clab title="My Card" icon="icon-class">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
-      </card-clab>
-      <card-clab title="My Card 2" no-actions>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
-      </card-clab>
-      <card-clab link='{"text":"blabla", "href":"#/hearts"}' icon="clab-icon icon-heart-full" title="Queen of hearts">
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
-        With a link</p>
-      </card-clab>
-    </section>
-
-    <section>
-      <h2>Features</h2>
-      <feature-clab icon-class="clab-icon icon-heart-full" size="small">
-        <div class="title">Title</div>
-        <div class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
-        </div>
-      </feature-clab>
-
-      <feature-clab icon-class="clab-icon icon-heart-full" link="#" vertical>
-        <div class="title">Title</div>
-        <div class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
-        </div>
-      </feature-clab>
-
-      <feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big">
-        <div class="title">Title</div>
-        <div class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
-        </div>
-      </feature-clab>
-
-      <feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708" size="big" vertical link="https://www.google.it/" link-target="_blank">
-        <div class="title">Title</div>
-        <div class="text">
-          Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
-        </div>
-      </feature-clab>
-    </section>
-
-    <section>
-      <h2>Spinner</h2>
-      <div style="display: flex;">
-        <article style="position: relative; flex-grow: 1; height: 200px;">
-          <spinner-clab visible background="200, 200, 200, 0.8"></spinner-clab>
         </article>
-        <article style="position: relative; flex-grow: 1; height: 200px;">
-          <spinner-clab visible background="0, 0, 0, 0.9" dark></spinner-clab>
-        </article>
-      </div>
-    </section>
+      </section>
 
-    <section>
-      <h2>Progress bar</h2>
-      <progress-clab value="42" minimal></progress-clab>
-      <progress-clab value="87" type="primary"></progress-clab>
-    </section>
+      <section>
+        <h2>Cards</h2>
+        <card-clab title="My Card" icon="icon-class">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+        </card-clab>
+        <card-clab title="My Card 2" no-actions>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>
+        </card-clab>
+        <card-clab link='{"text":"blabla", "href":"#/hearts"}' icon="clab-icon icon-heart-full" title="Queen of hearts">
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With
+            a link</p>
+        </card-clab>
+      </section>
 
-    <section>
-      <h2>Tabs & pills</h2>
-      <tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' vertical centered full-width restamp>
-        <div class="tab-content">
-            <div><button-clab>vai</button-clab></div>
-        </div>
-        <div class="tab-content">
-                    <input-clab></input-clab>
-                </div>
-        <div class="tab-content">Tab 3 content</div>
-        <div class="tab-content">Tab 4 content</div>
-        <div class="tab-content">Tab 5 content</div>
-        <div class="tab-content">Tab 6 content</div>
-      </tabs-clab>
-
-      <tabs-clab pills labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' centered full-width>
-                <div class="tab-content">
-            <accordion-clab title="ciccio">ciccio puzzo</accordion-clab>
-        </div>
-        <div class="tab-content">
-                    <input-clab></input-clab>
-                </div>
-        <div class="tab-content">Tab 3 content</div>
-        <div class="tab-content">Tab 4 content</div>
-        <div class="tab-content">Tab 5 content</div>
-        <div class="tab-content">Tab 6 content</div>
-      </tabs-clab>
-
-    </section>
-
-    <section>
-      <h2>Tooltips</h2>
-      <article>
-        <tooltip-clab type="primary" wait="200">
-                  <button-clab class="tt-label">Edit</button-clab>
-          <span class="tt-content">Click to edit this block</span>
-        </tooltip-clab>
-        <tooltip-clab type="error" wait="0">
-                  <button-clab class="tt-label">Cancel</button-clab>
-          <span class="tt-content">Click to cancel this block</span>
-        </tooltip-clab>
-      </article>
-      <article>
-        <tooltip-clab type="info" wait="0">
-                  <accordion-clab class="tt-label">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi cumque.</accordion-clab>
-          <span class="tt-content">Click to read more</span>
-        </tooltip-clab>
-      </article>
-      <article>
-        <tooltip-clab type="info" wait="0">
-                  <span class="tt-label">My Tooltip</span>
-          <span class="tt-content">Click to read more</span>
-        </tooltip-clab>
-      </article>
-
-    </section>
-
-    <section>
-      <h2>Label & badges</h2>
-      <label-clab type="error">
-        Just a test
-      </label-clab>
-
-      <label-clab badge>
-        42
-      </label-clab>
-    </section>
-
-    <section>
-      <h2>Autocomplete</h2>
-      <autocomplete-clab inline label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' min-char="1" label-size="larger" type="success" note-type="info">
-          <span class="note">Type here to get hints</span>
-                <span class="button"><button-clab>hola</button-clab></span>
-      </autocomplete-clab>
-      &nbsp;
-      <autocomplete-clab label="AJAX auto-complete" min-char="1" filter url="http://localhost:4000/json">
-          <span class="note">Type here to get hints</span>
-      </autocomplete-clab>
-    </section>
-
-    <section>
-      <h2>Dropdown</h2>
-      <dropdown-clab max-in-view="5" type="success" note-type="error" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' selected='{"label":"bella", "value":"bella"}' inline label-size="larger" icon="icon-edit">>
-          <span class="note">This is my note</span>
-                <span class="button"><button-clab>ciao</button-clab></span>
-            </dropdown-clab>
-
-
-      <dropdown-clab max-in-view="5" result-as-obj inline label-size="larger" icon="icon-edit">
-          <span class="note">This is my note</span>
-            </dropdown-clab>
-
-      <dropdown-clab max-in-view="3" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]' label-field="name">
-                <span class="note">This is my note</span>
-            </dropdown-clab>
-    </section>
-
-    <section>
-      <h2>Tags</h2>
-      <article>
-        <tags-clab label="Add tag" placeholder="rosso" type="warning">
-            <span class="note">Lorem ipsum dolor sit.</span>
-        </tags-clab>
-      </article>
-      <article>
-        <div class="input-wrapper">
-          <label for="">Add tag</label>
-          <div class="input">
-            <input type="text" placeholder="placeholder">
-            <button class="btn">Add</button>
+      <section>
+        <h2>Features</h2>
+        <feature-clab icon-class="clab-icon icon-heart-full" size="small">
+          <div class="title">Title</div>
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
           </div>
-          <div class="note-clab">Lorem ipsum dolor sit.</div>
+        </feature-clab>
+
+        <feature-clab icon-class="clab-icon icon-heart-full" link="#" vertical>
+          <div class="title">Title</div>
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
+          </div>
+        </feature-clab>
+
+        <feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708"
+          size="big">
+          <div class="title">Title</div>
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
+          </div>
+        </feature-clab>
+
+        <feature-clab src="https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708"
+          size="big" vertical link="https://www.google.it/" link-target="_blank">
+          <div class="title">Title</div>
+          <div class="text">
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos
+            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?
+          </div>
+        </feature-clab>
+      </section>
+
+      <section>
+        <h2>Spinner</h2>
+        <div style="display: flex;">
+          <article style="position: relative; flex-grow: 1; height: 200px;">
+            <spinner-clab visible background="200, 200, 200, 0.8"></spinner-clab>
+          </article>
+          <article style="position: relative; flex-grow: 1; height: 200px;">
+            <spinner-clab visible background="0, 0, 0, 0.9" dark></spinner-clab>
+          </article>
         </div>
-      </article>
-    </section>
+      </section>
 
-    <section>
-      <h2>Modal</h2>
-      <button-clab id="openModal-one" on-click="_openModal1">
-        Open modal (content via attribute)
-      </button-clab>
-      <button-clab id="openModal-two" on-click="_openModal2">
-        Open modal (content via HTML)
-      </button-clab>
+      <section>
+        <h2>Progress bar</h2>
+        <progress-clab value="42" minimal></progress-clab>
+        <progress-clab value="87" type="primary"></progress-clab>
+      </section>
 
-      <modal-clab id="modal-one"  max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?" width="800px" no-actions>
-      </modal-clab>
+      <section>
+        <h2>Tabs & pills</h2>
+        <tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' vertical centered full-width restamp>
+          <div class="tab-content">
+            <div>
+              <button-clab>vai</button-clab>
+            </div>
+          </div>
+          <div class="tab-content">
+            <input-clab></input-clab>
+          </div>
+          <div class="tab-content">Tab 3 content</div>
+          <div class="tab-content">Tab 4 content</div>
+          <div class="tab-content">Tab 5 content</div>
+          <div class="tab-content">Tab 6 content</div>
+        </tabs-clab>
 
-      <modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something" no-animation>
-        <h2>Some HTML...</h2>
-        <hr>
-        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?
-                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel! Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo. Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p>
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci, quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto! Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt. Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!
-                </p>
-        <ul>
-          <li>ksbdfkbsdf</li>
-          <li>sdfbgsdfgsdfg</li>
-          <li>sdfgsdfgsdfg</li>
-        </ul>
-      </modal-clab>
-    </section>
+        <tabs-clab pills labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' centered full-width>
+          <div class="tab-content">
+            <accordion-clab title="ciccio">ciccio puzzo</accordion-clab>
+          </div>
+          <div class="tab-content">
+            <input-clab></input-clab>
+          </div>
+          <div class="tab-content">Tab 3 content</div>
+          <div class="tab-content">Tab 4 content</div>
+          <div class="tab-content">Tab 5 content</div>
+          <div class="tab-content">Tab 6 content</div>
+        </tabs-clab>
 
-    <section>
-      <h2>Pagination</h2>
-      <pagination-clab tot="20"></pagination-clab>
-    </section>
+      </section>
 
-    <section>
-      <h2>Multiple</h2>
-      <multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]' max-in-view="10">
+      <section>
+        <h2>Tooltips</h2>
+        <article>
+          <tooltip-clab type="primary" wait="200">
+            <button-clab class="tt-label">Edit</button-clab>
+            <span class="tt-content">Click to edit this block</span>
+          </tooltip-clab>
+          <tooltip-clab type="error" wait="0">
+            <button-clab class="tt-label">Cancel</button-clab>
+            <span class="tt-content">Click to cancel this block</span>
+          </tooltip-clab>
+        </article>
+        <article>
+          <tooltip-clab type="info" wait="0">
+            <accordion-clab class="tt-label">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam
+              voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi
+              cumque.
+            </accordion-clab>
+            <span class="tt-content">Click to read more</span>
+          </tooltip-clab>
+        </article>
+        <article>
+          <tooltip-clab type="info" wait="0">
+            <span class="tt-label">My Tooltip</span>
+            <span class="tt-content">Click to read more</span>
+          </tooltip-clab>
+        </article>
+
+      </section>
+
+      <section>
+        <h2>Label & badges</h2>
+        <label-clab type="error">
+          Just a test
+        </label-clab>
+
+        <label-clab badge>
+          42
+        </label-clab>
+      </section>
+
+      <section>
+        <h2>Autocomplete</h2>
+        <autocomplete-clab inline label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
+          min-char="1" label-size="larger" type="success" note-type="info">
+          <span class="note">Type here to get hints</span>
+          <span class="button"><button-clab>hola</button-clab></span>
+        </autocomplete-clab>
+        &nbsp;
+        <autocomplete-clab label="AJAX auto-complete" min-char="1" filter url="http://localhost:4000/json">
+          <span class="note">Type here to get hints</span>
+        </autocomplete-clab>
+      </section>
+
+      <section>
+        <h2>Dropdown</h2>
+        <dropdown-clab max-in-view="5" type="success" note-type="error" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
+          selected='{"label":"bella", "value":"bella"}' inline label-size="larger" icon="icon-edit">>
+          <span class="note">This is my note</span>
+          <span class="button"><button-clab>ciao</button-clab></span>
+        </dropdown-clab>
+
+
+        <dropdown-clab max-in-view="5" result-as-obj inline label-size="larger" icon="icon-edit">
+          <span class="note">This is my note</span>
+        </dropdown-clab>
+
+        <dropdown-clab max-in-view="3" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]'
+          label-field="name">
+          <span class="note">This is my note</span>
+        </dropdown-clab>
+      </section>
+
+      <section>
+        <h2>Tags</h2>
+        <article>
+          <tags-clab label="Add tag" placeholder="rosso" type="warning">
+            <span class="note">Lorem ipsum dolor sit.</span>
+          </tags-clab>
+        </article>
+        <article>
+          <div class="input-wrapper">
+            <label for="">Add tag</label>
+            <div class="input">
+              <input type="text" placeholder="placeholder">
+              <button class="btn">Add</button>
+            </div>
+            <div class="note-clab">Lorem ipsum dolor sit.</div>
+          </div>
+        </article>
+      </section>
+
+      <section>
+        <h2>Modal</h2>
+        <button-clab id="openModal-one" on-click="_openModal1">
+          Open modal (content via attribute)
+        </button-clab>
+        <button-clab id="openModal-two" on-click="_openModal2">
+          Open modal (content via HTML)
+        </button-clab>
+
+        <modal-clab id="modal-one" max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?"
+          width="800px" no-actions>
+        </modal-clab>
+
+        <modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something"
+          no-animation>
+          <h2>Some HTML...</h2>
+          <hr>
+          <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis
+            maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem
+            ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur
+            a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio
+            nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel
+            in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates
+            ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati
+            corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio
+            qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus
+            ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos
+            ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur
+            consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut
+            odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio
+            veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur
+            illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi
+            iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias
+            minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus
+            perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima
+            commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit
+            ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam
+            doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel!
+            Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat
+            in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo.
+            Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam
+            vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur
+            ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis
+            odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam
+            repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat
+            totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium
+            quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora
+            temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae
+            ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid
+            dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit
+            fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem
+            veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem
+            ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci,
+            quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto!
+            Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum
+            est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate
+            architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt.
+            Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis
+            temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!
+          </p>
+          <ul>
+            <li>ksbdfkbsdf</li>
+            <li>sdfbgsdfgsdfg</li>
+            <li>sdfgsdfgsdfg</li>
+          </ul>
+        </modal-clab>
+      </section>
+
+      <section>
+        <h2>Pagination</h2>
+        <pagination-clab tot="20"></pagination-clab>
+      </section>
+
+      <section>
+        <h2>Multiple</h2>
+        <multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
+          max-in-view="10">
           <span class="note">This is a note</span>
-      </multiple-clab>
-    </section>
+        </multiple-clab>
+      </section>
 
-        <section>
-            <h2>Row actions</h2>
-            <div class="row-action success">
-                <a><i class="clab-icon icon-check"></i></a>
-            </div>
+      <section>
+        <h2>Row actions</h2>
+        <div class="row-action success">
+          <a><i class="clab-icon icon-check"></i></a>
+        </div>
 
-            <div class="row-action error">
-                <a><i class="clab-icon icon-close"></i></a>
-            </div>
-        </section>
+        <div class="row-action error">
+          <a><i class="clab-icon icon-close"></i></a>
+        </div>
+      </section>
 
-    <section>
-      <h2>Input</h2>
-      <input-clab value="ciao" label="My label" note-type="error" type="success">
-        <span class="note">A simple input component</span>
-      </input-clab>
-      <input-clab value="ciao" icon="icon-edit">
-        <span class="note">A simple input component</span>
-      </input-clab>
+      <section>
+        <h2>Input</h2>
+        <input-clab value="ciao" label="My label" note-type="error" type="success">
+          <span class="note">A simple input component</span>
+        </input-clab>
+        <input-clab value="ciao" icon="icon-edit">
+          <span class="note">A simple input component</span>
+        </input-clab>
 
-            <input-clab value="ciao" label="Input with buttons">
-        <span class="note">A simple note</span>
-                <button-clab class="button" type="error">cancel</button-clab>
-                <button-clab class="button" type="success">save</button-clab>
-      </input-clab>
+        <input-clab value="ciao" label="Input with buttons">
+          <span class="note">A simple note</span>
+          <button-clab class="button" type="error">cancel</button-clab>
+          <button-clab class="button" type="success">save</button-clab>
+        </input-clab>
 
-            <input-clab value="ciao" label="Input inline" inline label-size="small">
-        <span class="note">A simple note</span>
-                <button-clab class="button" type="success">ok</button-clab>
-      </input-clab>
-            <input-clab value="ciao" icon="icon-edit" inline>
-        <span class="note">A simple note</span>
-                <button-clab class="button" type="success">ok</button-clab>
-      </input-clab>
-            <input-clab value="ciao" label="Input inline" inline label-size="large" icon="icon-edit">
-        <span class="note">A simple note</span>
-                <button-clab class="button" type="success">ok</button-clab>
-      </input-clab>
+        <input-clab value="ciao" label="Input inline" inline label-size="small">
+          <span class="note">A simple note</span>
+          <button-clab class="button" type="success">ok</button-clab>
+        </input-clab>
+        <input-clab value="ciao" icon="icon-edit" inline>
+          <span class="note">A simple note</span>
+          <button-clab class="button" type="success">ok</button-clab>
+        </input-clab>
+        <input-clab value="ciao" label="Input inline" inline label-size="large" icon="icon-edit">
+          <span class="note">A simple note</span>
+          <button-clab class="button" type="success">ok</button-clab>
+        </input-clab>
 
-      <!-- <div class="input-wrapper inline">
+        <!-- <div class="input-wrapper inline">
         <label for="">Label</label>
         <div class="input">
           <input type="text" placeholder="placeholder">
         </div>
         <div class="note-clab">Lorem ipsum dolor sit.</div>
       </div> -->
-    </section>
+      </section>
 
-    <section>
-      <h2>Password</h2>
-      <input-clab password check value="ciao" label="My label"></input-clab>
-    </section>
+      <section>
+        <h2>Password</h2>
+        <input-clab password check value="ciao" label="My label"></input-clab>
+      </section>
 
-    <section>
-      <h2>Calendar</h2>
-      <calendar-clab inline></calendar-clab>
+      <section>
+        <h2>Calendar</h2>
+        <calendar-clab inline></calendar-clab>
 
-      <calendar-clab label="Calendar not inline - ITALIAN" options='{"locale": "it"}' type="info" note-type="error">
+        <calendar-clab label="Calendar not inline - ITALIAN" options='{"locale": "it"}' type="info" note-type="error" on-datechange="_dateChange">
           <span class="note">This is note</span>
-      </calendar-clab>
-      <calendar-clab label="Calendar not inline - FRENCH" options='{"locale": "fr"}' type="info" note-type="error"></calendar-clab>
-    </section>
+        </calendar-clab>
+        <calendar-clab label="Calendar not inline - FRENCH" options='{"locale": "fr"}' type="info" note-type="error"></calendar-clab>
+      </section>
 
-    <section>
-      <h2>Range</h2>
-      <range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1" show-details></range-clab>
-    </section>
+      <section>
+        <h2>Range</h2>
+        <range-clab label="My wonderful range input label" value="5" min="0" max="10" step="1" show-details></range-clab>
+      </section>
 
-    <section>
-      <h2>Radio</h2>
-      <radio-clab labels='["radio 1", "radio 3", "radio 2"]' name="group1" active="0" disabled='[1]'></radio-clab>
-    </section>
+      <section>
+        <h2>Radio</h2>
+        <radio-clab labels='["radio 1", "radio 3", "radio 2"]' name="group1" active="0" disabled='[1]'></radio-clab>
+      </section>
 
-    <section>
-      <h2>Checkbox</h2>
-      <checkbox-clab label="ciao" active on-selected-change="_checkboxChange"></checkbox-clab>
-    </section>
+      <section>
+        <h2>Checkbox</h2>
+        <checkbox-clab label="ciao" active on-selected-change="_checkboxChange"></checkbox-clab>
+      </section>
 
-    <section>
-      <h2>Input file</h2>
-      <file-clab label="My wonderful file input label" type="info" note-type="error">
-        <span class="note">A simple input component</span>
-      </file-clab>
-    </section>
-
-
+      <section>
+        <h2>Input file</h2>
+        <file-clab label="My wonderful file input label" type="info" note-type="error">
+          <span class="note">A simple input component</span>
+        </file-clab>
+      </section>
 
 
-    <!-- <div class="content">
+
+
+      <!-- <div class="content">
       <h2>Toaster</h2>
       <toaster-clab message="this is my wonderful toast"></toaster-clab>
       <toaster-clab message="this is my wonderful toast" right message="Mark as read" action-type="error" action-text="UNDO"></toaster-clab>
     </div> -->
 
 
-    <!-- <div class="content">
+      <!-- <div class="content">
       <h2>Panel</h2>
       <panel-clab>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quia maxime voluptatum odio dolor, beatae earum asperiores molestiae commodi nostrum ex repudiandae quos dolores ut quasi quod accusamus blanditiis itaque. Similique.</p>
@@ -600,131 +673,136 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
 
 
 <script>
-
   Polymer({
-        is: "demo-clab",
-        properties:{
-            currentHash:{
-                type:String,
-                value:'#/plans'
-            }
-        },
+    is: "demo-clab",
+    properties: {
+      currentHash: {
+        type: String,
+        value: '#/plans'
+      }
+    },
 
-        attached:function(){
+    attached: function () {
 
-          this.async(function(){
-            // MODAL
+      this.async(function () {
+        // MODAL
         this.modal1 = document.querySelector('#modal-one');
         this.modal2 = document.querySelector('#modal-two');
 
-        this.modal1.addEventListener('modal-primary',function(){
+        this.modal1.addEventListener('modal-primary', function () {
           alert('Clicked');
         });
 
-        this.modal1.addEventListener('modal-secondary',function(evt){
+        this.modal1.addEventListener('modal-secondary', function (evt) {
           evt.target.hide();
         })
 
-        this.modal2.addEventListener('modal-primary',function(){
+        this.modal2.addEventListener('modal-primary', function () {
           alert('Clicked');
         });
 
-        this.modal2.addEventListener('modal-secondary',function(evt){
+        this.modal2.addEventListener('modal-secondary', function (evt) {
           evt.target.hide();
         })
 
-        this.modal2.addEventListener('modal-warning',function(evt){
-          if(this.modal2.primaryDisabled) this.modal2.primaryDisabled=false;
+        this.modal2.addEventListener('modal-warning', function (evt) {
+          if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
         }.bind(this))
 
         // Calendar
-        document.querySelector('calendar-clab').options = {time: false, inputFormat: "DD/MM/YYYY"};
+        document.querySelector('calendar-clab').options = {
+          time: false,
+          inputFormat: "DD/MM/YYYY"
+        };
 
-        Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function(el){
-          el.addEventListener('change',function(evt){
+        Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function (el) {
+          el.addEventListener('change', function (evt) {
             console.log('autocomplete-clab ', evt.detail)
           });
-          el.addEventListener('sendRes',function(evt){
+          el.addEventListener('sendRes', function (evt) {
             console.log('autocomplete-clab ', evt.detail)
           });
-          el.addEventListener('typing',function(evt){
+          el.addEventListener('typing', function (evt) {
             console.log('autocomplete-clab typing', evt)
           });
         });
 
-        Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function(dropdown){
-          dropdown.addEventListener('change',function(evt){
+        Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function (dropdown) {
+          dropdown.addEventListener('change', function (evt) {
             console.log('dropdown-clab ', evt.detail)
           });
         });
 
 
-        document.querySelector('multiple-clab').addEventListener('change',function(evt){
+        document.querySelector('multiple-clab').addEventListener('change', function (evt) {
           console.log('multiple-clab ', evt.detail.selected)
         });
-          }.bind(this), 200);
+      }.bind(this), 200);
 
 
       var menu = document.querySelector('menu-clab');
       menu.menu = [{
-                "label": "Home",
-                "url": "#/home",
-                    "visible": false
-            },{
-                "label": "Plans",
-                "url": "#/plans",
-                "icon": "clab-icon icon-dashboard icon"
-            }, {
-                "label": "Segments",
-                "url": "#/segments",
-                "icon": "clab-icon icon-segment icon"
-            }, {
-                "label": "Reports",
-                "url": "#/reports",
-                "icon": "clab-icon icon-analytics icon"
-            }, {
-                "label": "Settings",
-                "url": "#/settings",
-                "icon": "clab-icon icon-settings icon",
-                "submenu": [{
-                    "label": "Showed fields",
-                    "url": "#/settings/fields"
-                }, {
-                    "label": "Time zones & week",
-                    "url": "#/settings/timezones"
-                }, {
-                    "label": "Do Not Disturb Policy",
-                    "url": "#/settings/dnd"
-                }, {
-                    "label": "Users",
-                    "url": "#/settings/users"
-                }]
-        }];
+        "label": "Home",
+        "url": "#/home",
+        "visible": false
+      }, {
+        "label": "Plans",
+        "url": "#/plans",
+        "icon": "clab-icon icon-dashboard icon"
+      }, {
+        "label": "Segments",
+        "url": "#/segments",
+        "icon": "clab-icon icon-segment icon"
+      }, {
+        "label": "Reports",
+        "url": "#/reports",
+        "icon": "clab-icon icon-analytics icon"
+      }, {
+        "label": "Settings",
+        "url": "#/settings",
+        "icon": "clab-icon icon-settings icon",
+        "submenu": [{
+          "label": "Showed fields",
+          "url": "#/settings/fields"
+        }, {
+          "label": "Time zones & week",
+          "url": "#/settings/timezones"
+        }, {
+          "label": "Do Not Disturb Policy",
+          "url": "#/settings/dnd"
+        }, {
+          "label": "Users",
+          "url": "#/settings/users"
+        }]
+      }];
 
-        },
+    },
 
-        _openModal1:function(){
-          this.modal1.show();
-        },
-        _openModal2:function(){
-          this.modal2.show();
-        },
+    _openModal1: function () {
+      this.modal1.show();
+    },
+    _openModal2: function () {
+      this.modal2.show();
+    },
 
-        _notify:function(evt){
-          this.querySelector('#notify').visible=true;
-        },
-        _fire:function(evt){
-          console.log('primary');
-        },
+    _notify: function (evt) {
+      this.querySelector('#notify').visible = true;
+    },
+    _fire: function (evt) {
+      console.log('primary');
+    },
 
-        _checkboxChange:function(evt){
-            console.log(evt.target);
-        },
+    _checkboxChange: function (evt) {
+      console.log(evt.target);
+    },
 
-        _changeCurrentHash:function(evt){
-            this.set('currentHash', evt.detail.href);
-        }
-    });
+    _changeCurrentHash: function (evt) {
+      this.set('currentHash', evt.detail.href);
+    },
 
+    _dateChange: evt => {
+      console.log(evt.detail)
+    }
+  });
 
 </script>

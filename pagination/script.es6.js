@@ -130,13 +130,18 @@ export class PaginationClab {
   _getLastPage(pages) {
     return pages.length - 1;
   }
+
   _getPrevPage(pages, cur) {
     return pages[cur - 1];
   }
+
   _getNextPage(pages, cur) {
     return pages[cur + 1];
   }
-  _getStart(c, pages) {
+
+  _getStart(_c, _pages) {
+    const pages = parseInt(_pages);
+    const c = parseInt(_c);
     let last = pages.length - 1;
     if(c >= last - (this.range / 2)) {
       return last - this.range;
@@ -146,7 +151,10 @@ export class PaginationClab {
       return c - (this.range / 2);
     }
   }
-  _getEnd(c, pages) {
+
+  _getEnd(_c, _pages) {
+    const pages = parseInt(_pages);
+    const c = parseInt(_c);
     let last = pages.length - 1;
     if(c >= last - (this.range / 2)) {
       return last;

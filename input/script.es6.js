@@ -29,6 +29,11 @@ export class InputClab {
         value: 'textinput',
         reflectToAttribute: true
       },
+      inputType: {
+        type: String,
+        value: null,
+        reflectToAttribute: true
+      },
       type: {
         type: String,
         value: null,
@@ -179,9 +184,11 @@ export class InputClab {
     else return '';
   }
 
-  _computeInputType(password) {
+  _computeInputType(password, inputType) {
     if(password) {
       return 'password';
+    } if (inputType){
+      return inputType;
     } else {
       return 'text';
     }
