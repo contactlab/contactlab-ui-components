@@ -23,7 +23,8 @@ export class RadioClab {
       inline: {
         type: Boolean,
         value: false,
-        observer: '_computeInline'
+        observer: '_computeInline',
+        reflectToAttribute: true
       }
     }
   }
