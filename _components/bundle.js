@@ -20848,7 +20848,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getStart",
-    value: function _getStart(c, pages) {
+    value: function _getStart(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last - this.range;
@@ -20860,7 +20862,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getEnd",
-    value: function _getEnd(c, pages) {
+    value: function _getEnd(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last;
