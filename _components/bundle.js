@@ -21022,7 +21022,12 @@ var RadioClab = exports.RadioClab = function () {
           value: ''
         },
         active: Number,
-        disabled: Array
+        disabled: Array,
+        inline: {
+          type: Boolean,
+          value: false,
+          observer: '_computeInline'
+        }
       };
     }
 
@@ -21034,6 +21039,11 @@ var RadioClab = exports.RadioClab = function () {
     key: "_computeType",
     value: function _computeType(wt) {
       return ['row', wt].join(' ');
+    }
+  }, {
+    key: "_computeInline",
+    value: function _computeInline(inline) {
+      inline ? this.classList.add('inline') : this.classList.remove('inline');
     }
 
     /*----------

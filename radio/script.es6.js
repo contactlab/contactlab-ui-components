@@ -19,7 +19,12 @@ export class RadioClab {
         value: ''
       },
       active: Number,
-      disabled: Array
+      disabled: Array,
+      inline: {
+        type: Boolean,
+        value: false,
+        observer: '_computeInline'
+      }
     }
   }
 
@@ -30,6 +35,10 @@ export class RadioClab {
   ----------*/
   _computeType(wt) {
     return ['row', wt].join(' ');
+  }
+
+  _computeInline(inline){
+    inline ? this.classList.add('inline') : this.classList.remove('inline');
   }
 
   /*----------
