@@ -6,9 +6,9 @@
 /******/ 	function __webpack_require__(moduleId) {
 /******/
 /******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
+/******/ 		if(installedModules[moduleId])
 /******/ 			return installedModules[moduleId].exports;
-/******/ 		}
+/******/
 /******/ 		// Create a new module (and put it into the cache)
 /******/ 		var module = installedModules[moduleId] = {
 /******/ 			i: moduleId,
@@ -5145,6 +5145,11 @@ var InputClab = exports.InputClab = function () {
           value: 'textinput',
           reflectToAttribute: true
         },
+        inputType: {
+          type: String,
+          value: null,
+          reflectToAttribute: true
+        },
         type: {
           type: String,
           value: null,
@@ -5306,9 +5311,11 @@ var InputClab = exports.InputClab = function () {
     }
   }, {
     key: "_computeInputType",
-    value: function _computeInputType(password) {
+    value: function _computeInputType(password, inputType) {
       if (password) {
         return 'password';
+      }if (inputType) {
+        return inputType;
       } else {
         return 'text';
       }
@@ -22362,12 +22369,6 @@ process.off = noop;
 process.removeListener = noop;
 process.removeAllListeners = noop;
 process.emit = noop;
-process.prependListener = noop;
-process.prependOnceListener = noop;
-
-process.listeners = function (name) {
-    return [];
-};
 
 process.binding = function (name) {
     throw new Error('process.binding is not supported');
