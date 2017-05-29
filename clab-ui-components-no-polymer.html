@@ -8693,7 +8693,7 @@ this.fire('dom-change');
 			</template>
 
 			<div class="input">
-				<input class$="[[type]]" type$="[[_computeInputType(password)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" required="[[required]]" readonly$="[[readonly]]" maxlength$="[[maxlength]]" on-blur="_blur" on-focus="_focus">
+				<input class$="[[type]]" type$="[[_computeInputType(password,inputType)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value::input}}" placeholder="[[placeholder]]" required="[[required]]" readonly$="[[readonly]]" maxlength$="[[maxlength]]" on-blur="_blur" on-focus="_focus">
 
 				<template is="dom-if" if="[[check]]">
 					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
@@ -14295,6 +14295,11 @@ var InputClab = exports.InputClab = function () {
           value: 'textinput',
           reflectToAttribute: true
         },
+        inputType: {
+          type: String,
+          value: null,
+          reflectToAttribute: true
+        },
         type: {
           type: String,
           value: null,
@@ -14456,9 +14461,11 @@ var InputClab = exports.InputClab = function () {
     }
   }, {
     key: "_computeInputType",
-    value: function _computeInputType(password) {
+    value: function _computeInputType(password, inputType) {
       if (password) {
         return 'password';
+      }if (inputType) {
+        return inputType;
       } else {
         return 'text';
       }
@@ -29989,7 +29996,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getStart",
-    value: function _getStart(c, pages) {
+    value: function _getStart(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last - this.range;
@@ -30001,7 +30010,9 @@ var PaginationClab = exports.PaginationClab = function () {
     }
   }, {
     key: "_getEnd",
-    value: function _getEnd(c, pages) {
+    value: function _getEnd(_c, _pages) {
+      var pages = parseInt(_pages);
+      var c = parseInt(_c);
       var last = pages.length - 1;
       if (c >= last - this.range / 2) {
         return last;
@@ -30159,7 +30170,13 @@ var RadioClab = exports.RadioClab = function () {
           value: ''
         },
         active: Number,
-        disabled: Array
+        disabled: Array,
+        inline: {
+          type: Boolean,
+          value: false,
+          observer: '_computeInline',
+          reflectToAttribute: true
+        }
       };
     }
 
@@ -30171,6 +30188,11 @@ var RadioClab = exports.RadioClab = function () {
     key: "_computeType",
     value: function _computeType(wt) {
       return ['row', wt].join(' ');
+    }
+  }, {
+    key: "_computeInline",
+    value: function _computeInline(inline) {
+      inline ? this.classList.add('inline') : this.classList.remove('inline');
     }
 
     /*----------
