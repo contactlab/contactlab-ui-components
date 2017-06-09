@@ -1,24 +1,28 @@
 # Contactlab Pattern Library UI Components
+**Polymer 2 compatible version**
 
-[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg)](https://travis-ci.org/contactlab/contactlab-ui-components)
+This is a hybrid version of the legacy Contactlab Pattern Library UI Components that works with ```Polymer 2``` using ```global CSS``` styles and ```ShadyDOM```.
+
+The **hybrid** term is not releated to the Polymer Hybrid Elements (*elements that works on Polymer 2.x with 1.x syntax*) but to our approach to have a quick refactor of the components to work with Polymer 2 and as an NPM package but mainteining the styles in a global CSS file and not using Shadow DOM.
+
+This is a required step **for us** since we need to upgrade our applications to Polymer 2 & NPM workflows while keeping this UI components with stable functionalities and appearance.
+
+We are currently working on the **next iteration of our Design System** that will involve a complete rewrite of both styles and scripts of there components in a full Web Components v1 / Polymer 2 syntax.
+
+<!--[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg)](https://travis-ci.org/contactlab/contactlab-ui-components)-->
 
 ## Installation
 
 ### Required tools
 - [NodeJS](https://nodejs.org/)
-- [Bower](https://bower.io/) (```$ npm install -g bower```)
-<!-- - [Gulp](http://gulpjs.com) (```$ npm install -g gulp-cli``` and ```npm install --save-dev gulp```) (only for development) -->
+- NPM/Yarn
 
-Stable branch
-
-	$ bower install clab-ui-components
-
-Development branch (unstable)
-
-	$ bower install https://github.com/contactlab/contactlab-ui-components#develop
+```
+$ yarn add https://github.com/contactlab/contactlab-ui-components#hybrid
+```
 
 ### Dependencies
-The following required libraries and polyfills are resolved by Bower during the installation:
+The following required libraries and polyfills are resolved by the package manager during the installation:
 
 - [Polymer](https://www.polymer-project.org/1.0/)
 - [MomentJS](http://momentjs.com/)
@@ -34,13 +38,12 @@ For detailed instruction on how to install and use the Contactlab Pattern Librar
 <!-- ### IE issues
 Internet Explorer 11 does not support the .from() method in the Array object. You can use [this polyfill](https://github.com/ChilldeinEistee/Array.from) to fix the issue. In a future release we will ship this polyfill within the project. -->
 
-### Repository clone and dependencies installation
+<!--### Repository clone and dependencies installation
 
 From the command line, run
 
 ```
 $ yarn
-$ bower install
 ```
 
 to install required dependencies.
@@ -51,7 +54,7 @@ Running the command
 
 	$ yarn run dev
 
-you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack and starts a static web server on `localhost:3000`.
+you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack and starts a static web server on `localhost:3000`.-->
 
 #### Styling
 
@@ -61,29 +64,7 @@ To compile and watch the sass files run:
 $ yarn run sass
 ```
 
-#### Complete
-Bundle and minify all the components in a single **clab-ui-components.html** file in the root:
-
-    $ yarn run build
-
-#### Custom
-Bundle and minify a group of components in a single bundle **clab-ui-components-custom.html** file in the root:
-
-    $ yarn run build g=tooltip,radio,checkbox
-
-#### No-Polymer
-Add a `no-polymer` flag to **exclude Polymer** from vulcanization bundle:
-> NOTE: **as is not possible to include two vulcanized copy of Polymer** within an application bundle, this "no-polymer" bundle will allow you to include Polymer in your vulcanized application and still be able to include the `contactlab-ui-components` as a normal `import`.
-
-    $ yarn run build no-polymer
-    $ yarn run build g=tooltip,radio,checkbox no-polymer
-
-#### Sanity check
-A ***pure*** demo is located at `contactlab-ui-components/_demo/demo-pure.html` to test the components after a build.
-Note that only the ***complete*** build file is included in the `demo-pure.html`. You need to change the `import` if you want to test a ***custom*** bundle.
-
-
-### Testing
+<!--### Testing
 
 Start test suites with **web-component-tester**:
 
@@ -91,7 +72,7 @@ Start test suites with **web-component-tester**:
 
 If you want to see tests on your browser (Chrome):
 
-	$ yarn run test:p
+	$ yarn run test:p-->
 
 ### NOTE on Yarn
 > Everything can be run with NPM as well!
