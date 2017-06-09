@@ -1,16 +1,14 @@
-<link rel="import" href="./../note/view.html">
-
 <dom-module id="file-clab">
-	<style>
-		input[type=file]{
-			display: none;
-		}
-		input[type=text]::-ms-clear{
-			display: none;
-		}
-	</style>
-
 	<template>
+		<style>
+			input[type=file]{
+				display: none;
+			}
+			input[type=text]::-ms-clear{
+				display: none;
+			}
+		</style>
+
 		<div class$="[[_compWrapperClass('input-wrapper', type)]]">
 			<template is="dom-if" if="[[_viewLabel(label)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
@@ -30,6 +28,4 @@
 			<div id="preview"></div>
 		</div>
 	</template>
-
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

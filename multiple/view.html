@@ -1,37 +1,33 @@
-<link rel="import" href="./../note/view.html">
-<link rel="import" href="./../spinner/view.html">
-
 <dom-module id="multiple-clab">
-	<style>
-
-		li{
-			-webkit-touch-callout: none; /* iOS Safari */
-			-webkit-user-select: none;   /* Chrome/Safari/Opera */
-			-khtml-user-select: none;    /* Konqueror */
-			-moz-user-select: none;      /* Firefox */
-			-ms-user-select: none;       /* IE/Edge */
-			user-select: none;
-			margin: 0;
-		}
-		li.selected{
-			color:red;
-		}
-
-		.multiple-wrapper{
-			height: auto;
-			width: 100%;
-			overflow:hidden;
-			position: relative;
-		}
-		.options-list{
-			max-height:0;
-			position: relative;
-			width: 100%;
-			overflow-y:auto;
-		}
-	</style>
-
 	<template>
+		<style>
+
+			li{
+				-webkit-touch-callout: none; /* iOS Safari */
+				-webkit-user-select: none;   /* Chrome/Safari/Opera */
+				-khtml-user-select: none;    /* Konqueror */
+				-moz-user-select: none;      /* Firefox */
+				-ms-user-select: none;       /* IE/Edge */
+				user-select: none;
+				margin: 0;
+			}
+			li.selected{
+				color:red;
+			}
+
+			.multiple-wrapper{
+				height: auto;
+				width: 100%;
+				overflow:hidden;
+				position: relative;
+			}
+			.options-list{
+				max-height:0;
+				position: relative;
+				width: 100%;
+				overflow-y:auto;
+			}
+		</style>
 		<div class="input-wrapper">
 		<template is="dom-if" if="[[label]]">
 			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
@@ -49,6 +45,4 @@
 		</note-clab>
 </div>
 	</template>
-
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

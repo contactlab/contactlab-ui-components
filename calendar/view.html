@@ -1,15 +1,11 @@
-<link rel="import" href="./../note/view.html">
-
 <dom-module id="calendar-clab">
-  <style>
-    input[type=text]::-ms-clear {
-      display: none;
-    }
-
-  </style>
-
   <template>
+    <style>
+      input[type=text]::-ms-clear {
+        display: none;
+      }
 
+    </style>
     <template is="dom-if" if="[[!inline]]">
       <div class$="[[_computeType('calendar input-wrapper', type)]]">
         <template is="dom-if" if="[[_viewLabel(label)]]">
@@ -26,10 +22,8 @@
         </note-clab>
       </div>
     </template>
-
     <template is="dom-if" if="[[inline]]">
       <div class="inline-cal"></div>
     </template>
-
   </template>
 </dom-module>

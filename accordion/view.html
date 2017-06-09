@@ -1,14 +1,13 @@
 <dom-module id="accordion-clab">
-	<style>
-		.accordion-title.active{
-			font-weight:600;
-		}
-		.accordion-title.active::before{
-			content:"\e60f";
-		}
-	</style>
-
 	<template>
+		<style>
+			.accordion-title.active{
+				font-weight:600;
+			}
+			.accordion-title.active::before{
+				content:"\e60f";
+			}
+		</style>
 		<div class="accordion">
 			<div class$="[[_computeType(type)]]">
 				<div class="accordion-title" on-click="_toggleActive">
@@ -20,6 +19,4 @@
 			</div>
 		</div>
 	</template>
-
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

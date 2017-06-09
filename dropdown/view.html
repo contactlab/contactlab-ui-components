@@ -1,15 +1,10 @@
-<link rel="import" href="./../note/view.html">
-<link rel="import" href="./../curtain/view.html">
-
 <dom-module id="dropdown-clab">
-
-    <style>
-        .options-list li{
-            display: block !important;
-        }
-    </style>
-
     <template>
+        <style>
+            .options-list li{
+                display: block !important;
+            }
+        </style>
         <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
             <template is="dom-if" if="[[_viewLabel(label, icon)]]">
 				<label class$="[[type]]" for$="[[_dashify(name)]]">
@@ -39,6 +34,4 @@
             </note-clab>
         </div>
     </template>
-
-    <!-- <script src="./../bundle.js"></script> -->
 </dom-module>

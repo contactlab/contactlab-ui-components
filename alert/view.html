@@ -1,14 +1,11 @@
-<link rel="import" href="../button/view.html">
-
 <dom-module id="alert-clab">
-	<style>
-		.alert{
-			display: none;
-			opacity: 0;
-		}
-	</style>
-
 	<template>
+		<style>
+			.alert{
+				display: none;
+				opacity: 0;
+			}
+		</style>
 		<template is="dom-if" if="[[!notify]]">
 			<div class$="[[_computeType('alert', type)]]" style$="[[_alertStyle]]">
 				<div class="close" on-click="_close"><i class="clab-icon icon-close"></i></div>
@@ -25,20 +22,4 @@
 			</div>
 		</template>
 	</template>
-
-	<!-- <script>
-		var isRegistered = function(el){
-			switch(document.createElement(el).constructor) {
-		    case HTMLElement: return false;
-		    case HTMLUnknownElement: return undefined;
-		  }
-		  return true;
-		};
-		if(!isRegistered('alert-clab')){
-			var script = document.createElement('script');
-			script.src = './../bundle.js';
-			document.body.appendChild(script);
-		}
-	</script> -->
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

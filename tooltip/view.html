@@ -1,34 +1,28 @@
 <dom-module id="tooltip-clab">
-	<style>
-		.tooltip{
-			position:fixed;
-			opacity:0;
-			z-index:1000;
-			display: none;
-		}
-		.tooltip .arrow{
-			position: absolute;
-			width: 0;
-			height: 0;
-		}
-		.tooltip.visible{
-			display: block;
-		}
-	</style>
-
 	<template>
-
+		<style>
+			.tooltip{
+				position:fixed;
+				opacity:0;
+				z-index:1000;
+				display: none;
+			}
+			.tooltip .arrow{
+				position: absolute;
+				width: 0;
+				height: 0;
+			}
+			.tooltip.visible{
+				display: block;
+			}
+		</style>
 		<span on-tap="hide" on-mouseenter="_handleMouseOnLabel" on-mouseleave="_handleMouseOnLabel">
 			<content select=".tt-label"></content>
 		</span>
-
 
 		<div class$="[[_computeTooltipClass(type, visible)]]">
 			<span on-mouseenter="_handleMouseOnTT"  on-mouseleave="_handleMouseOnTT"><content select=".tt-content"></content></span>
 			<div class="arrow"></div>
 		</div>
-
 	</template>
-
-	<!-- <script src="./../bundle.js"></script> -->
 </dom-module>

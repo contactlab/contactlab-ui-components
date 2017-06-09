@@ -1,14 +1,11 @@
-<link rel="import" href="./../note/view.html">
-<link rel="import" href="./../button/view.html">
-
 <dom-module id="input-clab">
-	<style>
-		input[type=text]::-ms-clear{
-			display: none;
-		}
-	</style>
-
 	<template>
+		<style>
+			input[type=text]::-ms-clear{
+				display: none;
+			}
+		</style>
+
 		<div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
 
 			<template is="dom-if" if="[[_viewLabel(label, icon)]]">
