@@ -6,13 +6,9 @@ import {DropdownBehavior} from "./../_behaviors/behaviors.es6";
 import "./../note";
 import "./../curtain";
 
-class DropdownClab extends Polymer.Element {
+class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavior], Polymer.Element) {
         
   static get is() { return 'dropdown-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior, DropdownBehavior];
-  }
 
   static get properties() {
     return {

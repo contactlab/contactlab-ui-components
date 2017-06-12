@@ -6,13 +6,9 @@ import "./../input";
 import "./../spinner";
 import "./../curtain";
 
-class AutoCompleteClab extends Polymer.Element {
+class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
         
   static get is() { return 'autocomplete-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

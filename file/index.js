@@ -3,14 +3,10 @@
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
-class FileClab extends Polymer.Element {
+class FileClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'file-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
-
+  
   static get properties() {
     return {
       label: String,

@@ -3,13 +3,9 @@
 import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
-class RangeClab extends Polymer.Element {
+class RangeClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'range-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

@@ -4,15 +4,11 @@ import './view.html';
 import { AnimationsBehavior } from "./../_behaviors/behaviors.es6";
 import "./../button/";
 
-class ModalClab extends Polymer.Element {
+class ModalClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Element)  {
         
   static get is() { return 'modal-clab'; }
 
-  get behaviors() {
-    return [AnimationsBehavior];
-  }
-
- static get properties() {
+  static get properties() {
     return {
       title: {
         type: String,

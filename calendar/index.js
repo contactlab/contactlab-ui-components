@@ -6,7 +6,7 @@ import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import "./../note";
 
-class CalendarClab extends Polymer.Element {
+class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element){
         
   static get is() { return 'calendar-clab'; }
 

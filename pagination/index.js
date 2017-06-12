@@ -3,13 +3,9 @@
 import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
-class PaginationClab extends Polymer.Element {
+class PaginationClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
         
   static get is() { return 'pagination-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

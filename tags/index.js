@@ -6,13 +6,9 @@ import "./../button";
 import "./../label-badge";
 import "./../input/";
 
-class TagsClab extends Polymer.Element {
+class TagsClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'tags-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

@@ -3,7 +3,7 @@
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
-class CheckboxClab extends Polymer.Element {
+class CheckboxClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
         
   static get is() { return 'checkbox-clab'; }
 

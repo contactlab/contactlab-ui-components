@@ -5,13 +5,9 @@ import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import "./../note";
 import "./../spinner";
 
-class MultipleClab extends Polymer.Element {
+class MultipleClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'multiple-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

@@ -3,13 +3,9 @@
 import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
-class RadioClab extends Polymer.Element {
+class RadioClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'radio-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

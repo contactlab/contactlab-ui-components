@@ -5,13 +5,9 @@ import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import "./../button";
 import "./../note";
 
-class InputClab extends Polymer.Element {
+class InputClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
         
   static get is() { return 'input-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {
