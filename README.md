@@ -21,6 +21,17 @@ We are currently working on the **next iteration of our Design System** that wil
 $ yarn add https://github.com/contactlab/contactlab-ui-components#hybrid
 ```
 
+### How to use
+Importing all the UI components library
+```javascript
+import 'contactlab-ui-components';
+```
+
+Importing a single component, ```<button-clab>``` for instance:
+```javascript
+import 'contactlab-ui-components/button';
+```
+
 ### Dependencies
 The following required libraries and polyfills are resolved by the package manager during the installation:
 
