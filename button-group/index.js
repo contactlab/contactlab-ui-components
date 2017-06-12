@@ -42,7 +42,8 @@ class GroupClab extends Polymer.Element {
 		}
 	}
 
-	attached(){
+	connectedCallback(){
+    	super.connectedCallback();
 		let btns = this.getContentChildren();
 		Array.prototype.map.call(btns, (btn, i) => {
 			btn.classList.add('group-item');

@@ -58,7 +58,8 @@ class MultipleClab extends Polymer.Element {
     }
   }
 
-  attached() {
+  connectedCallback(){
+    super.connectedCallback();
     // Fetch options
     if(this.url != undefined) {
       let timeoutID = window.setTimeout(() => {

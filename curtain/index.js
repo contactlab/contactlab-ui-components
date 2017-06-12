@@ -46,7 +46,8 @@ class CurtainClab extends Polymer.Element {
 		]
   }
 
-  attached() {
+  connectedCallback(){
+    super.connectedCallback();
     this.addEventListener('mousedown', evt => {
       switch(evt.target.localName) {
         case 'ol':

@@ -105,7 +105,8 @@ class DropdownClab extends Polymer.Element {
     };
   }
 
-  attached() {
+  connectedCallback(){
+    super.connectedCallback();
     if(this.id === undefined || this.id.length < 1) {
       let id = '';
       let possible = "abcdefghijklmnopqrstuvwxyz";

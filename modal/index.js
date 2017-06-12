@@ -62,7 +62,8 @@ class ModalClab extends Polymer.Element {
     };
   }
 
-  attached() {
+  connectedCallback(){
+    super.connectedCallback();
     // Preparing the animations
     if (!this.noAnimation) {
       let opacity = [{

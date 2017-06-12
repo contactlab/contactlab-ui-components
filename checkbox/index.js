@@ -47,7 +47,8 @@ class CheckboxClab extends Polymer.Element {
    *
    */
 
-  ready() {
+  constructor() {
+    super();
     if (typeof label === 'undefined') {
       console.warn('WARNING <checkbox-clab>: "label" not specified');
       return false;

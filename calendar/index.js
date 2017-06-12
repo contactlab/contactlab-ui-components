@@ -40,7 +40,8 @@ class CalendarClab extends Polymer.Element {
     }
   }
 
-  attached() {
+  connectedCallback(){
+    super.connectedCallback();
     setTimeout(() => {
       this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
     }, 50);
