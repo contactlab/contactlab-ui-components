@@ -1,7 +1,7 @@
 'use strict';
 
 import './view.html';
-import { AnimationsBehavior } from "./../_behaviors/behaviors.es6";
+import { AnimationsBehavior } from "./../_behaviors";
 import "./../button/";
 
 class ModalClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Element)  {

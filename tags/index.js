@@ -1,7 +1,7 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {UtilBehavior} from "./../_behaviors";
 import "./../button";
 import "./../label-badge";
 import "./../input/";

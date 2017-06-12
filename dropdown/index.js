@@ -1,8 +1,7 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {DropdownBehavior} from "./../_behaviors/behaviors.es6";
+import {UtilBehavior, DropdownBehavior} from "./../_behaviors";
 import "./../note";
 import "./../curtain";
 

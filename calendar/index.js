@@ -3,7 +3,7 @@
 import rome from 'rome';
 import moment from 'moment';
 import './view.html';
-import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {UtilBehavior} from "./../_behaviors";
 import "./../note";
 
 class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element){
