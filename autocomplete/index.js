@@ -2,9 +2,9 @@
 
 import './view.html';
 import {UtilBehavior} from "./../_behaviors";
-import {InputClab} from "./../input";
-import {SpinnerClab} from "./../spinner";
-import {CurtainClab} from "./../curtain";
+import "./../input";
+import "./../spinner";
+import "./../curtain";
 
 class AutoCompleteClab extends Polymer.Element {
         

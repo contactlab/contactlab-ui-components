@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
 class SpinnerClab extends Polymer.Element {
         
-    static get is() { return 'spinner-clab'; }
+  static get is() { return 'spinner-clab'; }
 
-  beforeRegister() {
-    this.is = 'spinner-clab';
-    this.properties = {
+  static get properties() {
+    return {
       dark: {
         type: Boolean,
         value: false
@@ -45,4 +44,5 @@ class SpinnerClab extends Polymer.Element {
   }
 
 }
-Polymer(SpinnerClab);
+
+customElements.define(SpinnerClab.is, SpinnerClab);

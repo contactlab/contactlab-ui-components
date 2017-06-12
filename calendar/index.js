@@ -4,7 +4,7 @@ import rome from 'rome';
 import moment from 'moment';
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {NoteClab} from "./../note/script.es6";
+import "./../note";
 
 class CalendarClab extends Polymer.Element {
         

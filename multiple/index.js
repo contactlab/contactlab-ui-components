@@ -1,21 +1,20 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {NoteClab} from "./../note/script.es6";
-import {SpinnerClab} from "./../spinner/script.es6";
+import "./../note";
+import "./../spinner";
 
 class MultipleClab extends Polymer.Element {
         
-    static get is() { return 'multiple-clab'; }
+  static get is() { return 'multiple-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "multiple-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: {
         type: String,
         value: null
@@ -339,4 +338,4 @@ class MultipleClab extends Polymer.Element {
 }
 
 
-Polymer(MultipleClab);
+customElements.define(MultipleClab.is, MultipleClab);

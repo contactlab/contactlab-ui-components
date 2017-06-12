@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
 class TabsClab extends Polymer.Element {
         
-    static get is() { return 'tabs-clab'; }
+  static get is() { return 'tabs-clab'; }
 
-  beforeRegister() {
-    this.is = 'tabs-clab';
-    this.properties = {
+  static get properties() {
+    return {
       labels: {
         type: Array,
         value: []
@@ -117,4 +116,4 @@ class TabsClab extends Polymer.Element {
 }
 
 
-Polymer(TabsClab);
+customElements.define(TabsClab.is, TabsClab);

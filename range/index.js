@@ -1,19 +1,18 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 class RangeClab extends Polymer.Element {
         
-    static get is() { return 'range-clab'; }
+  static get is() { return 'range-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "range-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: String,
       name: {
         type: String,
@@ -80,4 +79,4 @@ class RangeClab extends Polymer.Element {
 }
 
 
-Polymer(RangeClab);
+customElements.define(RangeClab.is, RangeClab);

@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 
 class ProgressClab extends Polymer.Element {
         
-    static get is() { return 'progress-clab'; }
+  static get is() { return 'progress-clab'; }
 
-  beforeRegister() {
-    this.is = 'progress-clab';
-    this.properties = {
+  static get properties() {
+    return {
       value: {
         type: Number,
         value: 0
@@ -51,4 +50,4 @@ class ProgressClab extends Polymer.Element {
 
 }
 
-Polymer(ProgressClab);
+customElements.define(ProgressClab.is, ProgressClab);

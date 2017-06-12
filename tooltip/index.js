@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
 class TooltipClab extends Polymer.Element {
         
-    static get is() { return 'tooltip-clab'; }
+  static get is() { return 'tooltip-clab'; }
 
-  beforeRegister() {
-    this.is = "tooltip-clab";
-    this.properties = {
+  static get properties() {
+    return {
       type: {
         type: String,
         value: ""
@@ -168,4 +167,4 @@ class TooltipClab extends Polymer.Element {
 
 }
 
-Polymer(TooltipClab);
+customElements.define(TooltipClab.is, TooltipClab);

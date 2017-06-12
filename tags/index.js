@@ -1,22 +1,21 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {ButtonClab} from "./../button/script.es6";
-import {LabelClab} from "./../label-badge/script.es6";
-import {InputClab} from "./../input/script.es6";
+import "./../button";
+import "./../label-badge";
+import "./../input/";
 
 class TagsClab extends Polymer.Element {
         
-    static get is() { return 'tags-clab'; }
+  static get is() { return 'tags-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "tags-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: String,
       name: {
         type: String,
@@ -153,4 +152,4 @@ class TagsClab extends Polymer.Element {
 }
 
 
-Polymer(TagsClab);
+customElements.define(TagsClab.is, TagsClab);

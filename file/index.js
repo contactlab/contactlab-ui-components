@@ -1,19 +1,18 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 class FileClab extends Polymer.Element {
         
-    static get is() { return 'file-clab'; }
+  static get is() { return 'file-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "file-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: String,
       name: {
         type: String,
@@ -98,7 +97,6 @@ class FileClab extends Polymer.Element {
   }
 
 
-
   /*----------
   COMPUTE
   ----------*/
@@ -109,9 +107,6 @@ class FileClab extends Polymer.Element {
   }
 
 
-
-
-
   /*----------
   PUBLIC
   ----------*/
@@ -119,10 +114,8 @@ class FileClab extends Polymer.Element {
     this.$.preview.innerHTML = '';
   }
 
-
-
 }
 
 
 
-Polymer(FileClab);
+customElements.define(FileClab.is, FileClab);

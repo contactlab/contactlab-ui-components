@@ -1,19 +1,18 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 class PaginationClab extends Polymer.Element {
         
-    static get is() { return 'pagination-clab'; }
+  static get is() { return 'pagination-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "pagination-clab";
-    this.properties = {
+  static get properties() {
+    return {
       tot: {
         type: Number,
         observer: '_setPages'
@@ -188,4 +187,4 @@ class PaginationClab extends Polymer.Element {
 
 }
 
-Polymer(PaginationClab);
+customElements.define(PaginationClab.is, PaginationClab);

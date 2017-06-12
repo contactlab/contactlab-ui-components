@@ -1,26 +1,19 @@
 'use strict';
 
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  AnimationsBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  ButtonClab
-} from "./../button/script.es6";
+import './view.html';
+import { AnimationsBehavior } from "./../_behaviors/behaviors.es6";
+import "./../button/";
 
 class ModalClab extends Polymer.Element {
         
-    static get is() { return 'modal-clab'; }
+  static get is() { return 'modal-clab'; }
 
   get behaviors() {
     return [AnimationsBehavior];
   }
 
-  beforeRegister() {
-    this.is = 'modal-clab';
-    this.properties = {
+ static get properties() {
+    return {
       title: {
         type: String,
         value: 'Modal title'
@@ -210,4 +203,4 @@ class ModalClab extends Polymer.Element {
 }
 
 
-Polymer(ModalClab);
+customElements.define(ModalClab.is, ModalClab);

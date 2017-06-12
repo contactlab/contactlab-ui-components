@@ -1,22 +1,21 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import {DropdownBehavior} from "./../_behaviors/behaviors.es6";
-import {NoteClab} from "./../note/script.es6";
-import {CurtainClab} from "./../curtain/script.es6";
+import "./../note";
+import "./../curtain";
 
 class DropdownClab extends Polymer.Element {
         
-    static get is() { return 'dropdown-clab'; }
+  static get is() { return 'dropdown-clab'; }
 
   get behaviors() {
     return [UtilBehavior, DropdownBehavior];
   }
 
-  beforeRegister() {
-    this.is = "dropdown-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: {
         type: String,
         value: null
@@ -285,4 +284,4 @@ class DropdownClab extends Polymer.Element {
 
 
 
-Polymer(DropdownClab);
+customElements.define(DropdownClab.is, DropdownClab);

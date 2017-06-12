@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 
 class NoteClab extends Polymer.Element {
         
-    static get is() { return 'note-clab'; }
+  static get is() { return 'note-clab'; }
 
-  beforeRegister() {
-    this.is = "note-clab";
-    this.properties = {
+  static get properties() {
+    return {
       type: String,
       classes: {
         type: String,
@@ -29,4 +28,4 @@ class NoteClab extends Polymer.Element {
 }
 
 
-Polymer(NoteClab);
+customElements.define(NoteClab.is, NoteClab);

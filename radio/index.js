@@ -1,19 +1,18 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import "./view.html";
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 class RadioClab extends Polymer.Element {
         
-    static get is() { return 'radio-clab'; }
+  static get is() { return 'radio-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "radio-clab";
-    this.properties = {
+  static get properties() {
+    return {
       labels: Array,
       name: String,
       wrapperType: {
@@ -66,4 +65,4 @@ class RadioClab extends Polymer.Element {
 }
 
 
-Polymer(RadioClab);
+customElements.define(RadioClab.is, RadioClab);

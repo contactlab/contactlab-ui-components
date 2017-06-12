@@ -1,21 +1,20 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {ButtonClab} from "./../button/script.es6";
-import {NoteClab} from "./../note/script.es6";
+import "./../button";
+import "./../note";
 
 class InputClab extends Polymer.Element {
         
-    static get is() { return 'input-clab'; }
+  static get is() { return 'input-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "input-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: {
         type: String,
         value: null,
@@ -114,7 +113,8 @@ class InputClab extends Polymer.Element {
   }
 
 
-  attached() {
+  connectedCallback() {
+    super.connectedCallback();
     Array.prototype.map.call(this.getEffectiveChildren(), node => {
       if(node.classList.contains('note')) {
         Polymer.dom(this.$$('note-clab')).appendChild(node);
@@ -207,4 +207,4 @@ class InputClab extends Polymer.Element {
 }
 
 
-Polymer(InputClab);
+customElements.define(InputClab.is, InputClab);
