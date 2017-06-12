@@ -4,13 +4,9 @@ import {AnimationsBehavior} from "./../_behaviors";
 import './view.html';
 import "./../button";
 
-class AlertClab extends Polymer.Element {
+class AlertClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Element) {
         
   static get is() { return 'alert-clab'; }
-
-  get behaviors() {
-    return [AnimationsBehavior];
-  }
 
   static get properties() {
     return {

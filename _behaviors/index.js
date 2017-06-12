@@ -1,3 +1,5 @@
+'use strict';
+
 export const UtilBehavior = {
 
   _dashify: (str) => {
