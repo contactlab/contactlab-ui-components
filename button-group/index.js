@@ -1,12 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
-export class GroupClab{
+class GroupClab extends Polymer.Element {
 
-	beforeRegister(){
-		this.is = 'group-clab';
-		this.properties = {
+	static get is() { return 'group-clab'; }
+
+	static get properties() {
+    	return {
 			/**
 			* Additional class
 			*/
@@ -104,4 +105,4 @@ export class GroupClab{
 }
 
 
-Polymer(GroupClab);
+customElements.define(GroupClab.is, GroupClab);

@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
 class ButtonClab extends Polymer.Element {
         
-    static get is() { return 'button-clab'; }
+  static get is() { return 'button-clab'; }
 
-  beforeRegister() {
-    this.is = 'button-clab';
-    this.properties = {
+  static get properties() {
+    return {
       /**
        * `type` additional class for the type of btn
        */
@@ -88,4 +87,4 @@ class ButtonClab extends Polymer.Element {
   }
 }
 
-Polymer(ButtonClab);
+customElements.define(ButtonClab.is, ButtonClab);

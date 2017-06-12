@@ -14,9 +14,8 @@ class AutoCompleteClab extends Polymer.Element {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "autocomplete-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: {
         type: String,
         value: null
@@ -336,4 +335,4 @@ class AutoCompleteClab extends Polymer.Element {
 
 }
 
-Polymer(AutoCompleteClab);
+customElements.define(AutoCompleteClab.is,AutoCompleteClab);

@@ -2,27 +2,20 @@
 
 import rome from 'rome';
 import moment from 'moment';
-import {
-  Polymer
-} from "./../_assets/js/polymer";
-import {
-  UtilBehavior
-} from "./../_behaviors/behaviors.es6";
-import {
-  NoteClab
-} from "./../note/script.es6";
+import './view.html';
+import {UtilBehavior} from "./../_behaviors/behaviors.es6";
+import {NoteClab} from "./../note/script.es6";
 
 class CalendarClab extends Polymer.Element {
         
-    static get is() { return 'calendar-clab'; }
+  static get is() { return 'calendar-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "calendar-clab";
-    this.properties = {
+  static get properties() {
+    return {
       label: String,
       disabled: {
         type: Boolean,
@@ -216,4 +209,4 @@ class CalendarClab extends Polymer.Element {
 }
 
 
-Polymer(CalendarClab);
+customElements.define(CalendarClab.is, CalendarClab);

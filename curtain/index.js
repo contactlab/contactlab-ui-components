@@ -1,14 +1,13 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 
 class CurtainClab extends Polymer.Element {
         
-    static get is() { return 'curtain-clab'; }
+  static get is() { return 'curtain-clab'; }
 
-  beforeRegister() {
-    this.is = "curtain-clab";
-    this.properties = {
+  static get properties() {
+    return {
       id: String,
       options: Array,
       highlighted: Object,
@@ -159,4 +158,4 @@ class CurtainClab extends Polymer.Element {
 
 
 
-Polymer(CurtainClab);
+customElements.define(CurtainClab.is, CurtainClab);

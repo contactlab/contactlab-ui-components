@@ -1,16 +1,14 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
-import {ButtonClab} from "./../button/script.es6";
-
+import './view.html';
+import "./../button";
 
 class CardClab extends Polymer.Element {
         
-    static get is() { return 'card-clab'; }
+  static get is() { return 'card-clab'; }
 
-  beforeRegister() {
-    this.is = "card-clab";
-    this.properties = {
+  static get properties() {
+    return {
       /**
        * Title of the card
        */
@@ -137,4 +135,4 @@ class CardClab extends Polymer.Element {
 }
 
 
-Polymer(CardClab);
+customElements.define(CardClab.is, CardClab);

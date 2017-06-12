@@ -1,19 +1,18 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
+import './view.html';
 import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 
 class CheckboxClab extends Polymer.Element {
         
-    static get is() { return 'checkbox-clab'; }
+  static get is() { return 'checkbox-clab'; }
 
   get behaviors() {
     return [UtilBehavior];
   }
 
-  beforeRegister() {
-    this.is = "checkbox-clab";
-    this.properties = {
+  static get properties() {
+    return {
       /** Label of the checkbox */
       label: {
         type: String
@@ -128,4 +127,4 @@ class CheckboxClab extends Polymer.Element {
 }
 
 
-Polymer(CheckboxClab);
+customElements.define(CheckboxClab.is, CheckboxClab);
