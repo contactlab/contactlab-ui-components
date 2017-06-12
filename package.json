@@ -10,12 +10,8 @@
     "buildType": null
   },
   "scripts": {
-    "start": "http-server ./../ -s -p $npm_package_config_port_dev",
-    "dev": "concurrently -k \"http-server ./../ -s -p 3000\" \"webpack --progress --colors --watch\"",
-    "sass": "node _build/build-sass.js",
-    "build": "node _build/build.js run",
-    "vulcanize": "node _build/build.js vulcanize",
-    "prepublish": "yarn run build && yarn run build no-polymer",
+    "start": "http-server -s -p 3000",
+    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "test": "wct",
     "test:p": "wct -p"
   },
@@ -43,12 +39,15 @@
     "runnable-exports": "^0.1.1",
     "strip-loader": "^0.1.2",
     "vulcanize": "^1.14.8",
+    "wc-loader": "^1.1.4",
     "web-component-tester": "^5.0.0",
-    "webpack": "^2.3.2",
+    "webpack": "^2.6.1",
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "@polymer/polymer": "https://github.com/contactlab/polymer",
     "moment": "^2.17.1",
-    "rome": "^2.1.22"
+    "rome": "^2.1.22",
+    "web-animations-js": "^2.2.5"
   }
 }
