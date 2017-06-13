@@ -160,7 +160,7 @@ class ModalClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Ele
   	OBSERVERS
   ----------*/
   _animateShowHide(val, oldval) {
-    let target = this.querySelector('.modal-overlay');
+    let target = this.$$('.modal-overlay');
 
     if (val) {
       document.querySelector('body').classList.add('no-scroll');

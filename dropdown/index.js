@@ -122,7 +122,7 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
   _toggleList(evt) {
     if(!this.disabled) {
       this.$.curtain.open = !this.$.curtain.open;
-      this.querySelector('.value_wrapper').classList.toggle('active');
+      this.$.ddWrap.classList.toggle('active');
     }
 
     let windowClick = (evt) => {
@@ -137,7 +137,7 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
         return;
       } else {
         this.$.curtain.open = false;
-        this.querySelector('.value_wrapper').classList.remove('active');
+        this.$.ddWrap.classList.remove('active');
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -183,7 +183,7 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
     this.set('selected', item);
     this.set('highlighted', item);
     this.$.curtain.open = false;
-    this.querySelector('.value_wrapper').classList.remove('active');
+    this.$.ddWrap.classList.remove('active');
 
     if(!this.preventChange) {
       if(this.resultAsObj){

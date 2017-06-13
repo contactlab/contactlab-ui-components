@@ -48,7 +48,7 @@ class FileClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  
   EVENT HANDLERS
   ----------*/
   _selection(evt) {
-    this.querySelector('input[type=file]').click();
+    this.$.input_file.click();
   }
 
   _updateValue(evt) {

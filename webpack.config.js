@@ -18,13 +18,9 @@ module.exports = {
 		}),
   ],
   module: {
-    loaders: [{
-      test: /\.js?$/,
-      exclude: ['node_modules', '_demo/bundle.js'],
-      loader: 'babel-loader',
-      query: {
-        presets: ['es2015']
-      }
+    rules: [{
+      test: /\.html$/,
+      loaders: ['wc-loader?minify=true']
     }]
   }
 }

@@ -46,6 +46,7 @@ class TabsClab extends Polymer.Element {
 
   connectedCallback(){
     super.connectedCallback();
+    
     this._content = this.getEffectiveChildren();
   }
 

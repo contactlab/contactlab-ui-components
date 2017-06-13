@@ -9,8 +9,14 @@ class CurtainClab extends Polymer.Element {
   static get properties() {
     return {
       id: String,
-      options: Array,
-      highlighted: Object,
+      options: {
+        type: Array,
+        value: []
+      },
+      highlighted: {
+        type: Object,
+        value: {}
+      },
       labelField: String,
       valueField: String,
       dontHide: {
@@ -24,7 +30,8 @@ class CurtainClab extends Polymer.Element {
       },
       open: {
         type: Boolean,
-        value: false
+        value: false,
+        observer: '_openCurtain'
       },
 
       //_liHeight:Number,

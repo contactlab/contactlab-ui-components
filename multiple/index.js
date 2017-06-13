@@ -78,10 +78,6 @@ class MultipleClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
           window.clearTimeout(timeoutID);
           timeoutID = undefined;
           if(this.spinner) this.spinner = false;
-
-          this.async(() => {
-            this._setWrapperHeights();
-          }, 100);
         });
       }).catch(err => {
         console.error("Fetch Error ==> ", err);
@@ -91,10 +87,6 @@ class MultipleClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
         timeoutID = undefined;
         if(this.spinner) this.spinner = false;
       });
-    } else {
-      this.async(() => {
-        this._setWrapperHeights();
-      }, 100);
     }
 
     // Global vars
@@ -326,9 +318,9 @@ class MultipleClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
   UTILITIES
   ----------*/
   _setWrapperHeights() {
-    // if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
     if(this.liHeight == undefined) this.liHeight = 35;
-    this.querySelector('.options-list').style.maxHeight = (this.liHeight * this.maxInView) + 'px';
+    return this.liHeight * this.maxInView;
+    // this.querySelector('.options-list').style.maxHeight = (this.liHeight * this.maxInView) + 'px';
   }
 
 

@@ -47,8 +47,8 @@ class CheckboxClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
    *
    */
 
-  constructor() {
-    super();
+  connectedCallback() {
+    super.connectedCallback();
     if (typeof label === 'undefined') {
       console.warn('WARNING <checkbox-clab>: "label" not specified');
       return false;

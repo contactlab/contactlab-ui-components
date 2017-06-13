@@ -44,25 +44,26 @@ class GroupClab extends Polymer.Element {
 
 	connectedCallback(){
     	super.connectedCallback();
-		let btns = this.getContentChildren();
+		// let btns = this.getContentChildren();
+		/*let btns = this.$$('div.buttons-group button-clab');
 		Array.prototype.map.call(btns, (btn, i) => {
 			btn.classList.add('group-item');
 			btn.appearance = (i==this.value) ? '' : 'empty';
 			btn.setAttribute('data-i', i);
 			btn.addEventListener('btnclick', this._selectElement.bind(this));
-		});
+		});*/
 	}
-
 
 
 	/*----------
 	OBSERVER
 	----------*/
 	_updateDisabled(val, old){
-		let btns = this.getContentChildren();
+		// let btns = this.getContentChildren();
+		/*let btns = this.$$('div.buttons-group button-clab');
 		Array.prototype.map.call(btns, btn => {
 			btn.disabled = val;
-		});
+		});*/
 	}
 
 	_updateAppearance(val, old){
@@ -82,16 +83,12 @@ class GroupClab extends Polymer.Element {
 		}
 	}
 
-
-
 	/*----------
 	EVENT HANDLERS
 	----------*/
 	_selectElement(evt){
 		this.set('value', Number(evt.target.getAttribute('data-i')) );
 	}
-
-
 
 
 	/*----------
@@ -101,7 +98,6 @@ class GroupClab extends Polymer.Element {
 		let arr = [type, size];
 		return arr.join(' ');
 	}
-
 
 }
 

@@ -1,30 +1,25 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Contactlab UI Components | Demo</title>
-    <link rel="stylesheet" href="./_assets/css/contactlab-pattern.min.css">
-    <link rel="stylesheet" href="./node_modules/ikonograph/dist/ikonograph.min.css">
-    <script>
-        window.ShadyDOM = { force: true };
-        window.customElements.forcePolyfill = true;
-    </script>
-    <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script>
-    <script>
-      window.addEventListener('WebComponentsReady', function(){
-        console.log('WebComponentsReady');
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = "./_demo/components.js";
-        document.body.appendChild(script);
-      });
-    </script>
-</head>
-<body>
-    
-    <main class="main-content">
+<dom-module id="demo-element">
+	<template>
+		 <style>
+            .content.dark {
+                background-color: var(--bg-color);
+            }
+            .content:last-child {
+                margin-bottom: 100px;
+            }
+        </style>
+         <menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
+            <span class="product-name">contact<b>plan</b></span>
+
+            <div class="alerts">
+                <alert-clab id="notify" notify>
+                Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+                aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+                </alert-clab>
+            </div>
+            </menu-clab>
+
+            <main class="main-content">
             <section class="icons" style="font-size: 50px">
                 <i class="clab-icon icon-play"></i>
                 <i class="clab-icon icon-pause"></i>
@@ -346,7 +341,7 @@
                 <progress-clab value="87" type="primary"></progress-clab>
             </section>
 
-            <!--<section>
+            <section>
                 <h2>Tabs & pills</h2>
                 <tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' vertical centered full-width restamp>
                 <div class="tab-content">
@@ -376,7 +371,7 @@
                 <div class="tab-content">Tab 6 content</div>
                 </tabs-clab>
 
-            </section>-->
+            </section>
 
             <section>
                 <h2>Tooltips</h2>
@@ -630,6 +625,5 @@
                 </file-clab>
             </section>
             </main>
-
-</body>
-</html>
+	</template>
+</dom-module>

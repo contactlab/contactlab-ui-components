@@ -2719,6 +2719,10 @@ ieee754@^1.1.4:
   version "1.1.8"
   resolved "https://registry.yarnpkg.com/ieee754/-/ieee754-1.1.8.tgz#be33d40ac10ef1926701f6f08a2d86fbfd1ad3e4"
 
+ikonograph@2.0.0:
+  version "2.0.0"
+  resolved "https://registry.yarnpkg.com/ikonograph/-/ikonograph-2.0.0.tgz#a12ad64ea28dbcdf0c93571faaca484fbd48eb31"
+
 imurmurhash@^0.1.4:
   version "0.1.4"
   resolved "https://registry.yarnpkg.com/imurmurhash/-/imurmurhash-0.1.4.tgz#9218b9b2b928a238b13dc4fb6b6d576f231453ea"
