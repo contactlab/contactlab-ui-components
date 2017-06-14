@@ -16,10 +16,10 @@ class DemoElement extends Polymer.Element {
   connectedCallback(){
     super.connectedCallback();
 
-    this.async(function () {
+    setTimeout(() => {
         // MODAL
-        this.modal1 = document.querySelector('#modal-one');
-        this.modal2 = document.querySelector('#modal-two');
+        this.modal1 = this.$.modalOne;
+        this.modal2 = this.$.modalTwo;
         this.modal1.addEventListener('modal-primary', function () {
           alert('Clicked');
         });
@@ -36,7 +36,7 @@ class DemoElement extends Polymer.Element {
           if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
         }.bind(this))
         // Calendar
-        document.querySelector('calendar-clab').options = {
+        this.$.cal.options = {
           time: false,
           inputFormat: "DD/MM/YYYY"
         };
@@ -56,12 +56,12 @@ class DemoElement extends Polymer.Element {
             console.log('dropdown-clab ', evt.detail)
           });
         });
-        document.querySelector('multiple-clab').addEventListener('change', function (evt) {
+        this.$.multi.addEventListener('change', function (evt) {
           console.log('multiple-clab ', evt.detail.selected)
         });
-      }.bind(this), 200);
+      }, 200);
 
-      var menu = document.querySelector('menu-clab');
+      /*var menu = document.querySelector('menu-clab');
       menu.menu = [{
         "label": "Home",
         "url": "#/home",
@@ -95,7 +95,7 @@ class DemoElement extends Polymer.Element {
           "label": "Users",
           "url": "#/settings/users"
         }]
-      }];
+      }];*/
     }
   
 
@@ -108,7 +108,7 @@ class DemoElement extends Polymer.Element {
     }
 
     _notify(evt) {
-      this.querySelector('#notify').visible = true;
+      this.$.notify.visible = true;
     }
 
     _fire(evt) {

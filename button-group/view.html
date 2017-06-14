@@ -1,7 +1,10 @@
 <dom-module id="group-clab" class="buttons-group">
 	<template>
 		<div class$="buttons-group [[_computeGroupClass(type, size)]]">
-			<slot></slot>
+			<template is="dom-repeat" items="[[options]]">
+				<button-clab appearance$="[[_computeItemClass(index,value)]]" class="'group-item'" data-i$="[[index]]"
+				disabled="[[disabled]]" on-click="_selectElement">[[item]]</button-clab>
+			</template>
 		</div>
 	</template>
 </dom-module>

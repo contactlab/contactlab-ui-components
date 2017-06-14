@@ -26,8 +26,6 @@ class AccordionClab extends Polymer.Element {
 
   connectedCallback(){
     super.connectedCallback();
-    this.block = this.querySelector('.accordion-block');
-    this.content = this.querySelector('.accordion-content');
 
     // Preparing the animations
     let height = [
@@ -40,12 +38,12 @@ class AccordionClab extends Polymer.Element {
 		];
 
     this.openAccordion = new GroupEffect([
-			new KeyframeEffect(this.content, height, {
+			new KeyframeEffect(this.$.content, height, {
         duration: 100,
         fill: 'forwards',
         direction: 'normal'
       }),
-			new KeyframeEffect(this.block, margin, {
+			new KeyframeEffect(this.$.block, margin, {
         duration: 100,
         fill: 'forwards',
         direction: 'normal'
@@ -53,13 +51,13 @@ class AccordionClab extends Polymer.Element {
 		]);
 
     this.closeAccordion = new GroupEffect([
-			new KeyframeEffect(this.content, height, {
+			new KeyframeEffect(this.$.content, height, {
         duration: 100,
         fill: 'forwards',
         direction: 'reverse'
       }),
 
-			new KeyframeEffect(this.block, margin, {
+			new KeyframeEffect(this.$.block, margin, {
         duration: 100,
         fill: 'forwards',
         direction: 'reverse'
@@ -76,14 +74,14 @@ class AccordionClab extends Polymer.Element {
     if(old != undefined) {
       if(val) {
         let player = document.timeline.play(this.openAccordion);
-        this.querySelector('.accordion-block').classList.add('active');
+        this.$.block.classList.add('active');
         setTimeout(() => {
-          this.querySelector('.accordion-content').classList.add('opened');
+          this.$.content.classList.add('opened');
         }, 110);
       } else {
         let player = document.timeline.play(this.closeAccordion);
-        this.querySelector('.accordion-block').classList.remove('active');
-        this.querySelector('.accordion-content').classList.remove('opened');
+        this.$.block.classList.remove('active');
+        this.$.content.classList.remove('opened');
       }
     }
   }

@@ -1,5 +1,6 @@
 'use strict';
 
+import './../button/';
 import './view.html';
 
 class GroupClab extends Polymer.Element {
@@ -8,6 +9,13 @@ class GroupClab extends Polymer.Element {
 
 	static get properties() {
     	return {
+			/**
+			* Additional class
+			*/
+			options: {
+				type: Array,
+				value: ['Option 1', 'Option 2']
+			},
 			/**
 			* Additional class
 			*/
@@ -27,8 +35,7 @@ class GroupClab extends Polymer.Element {
 			*/
 			disabled: {
 				type: Boolean,
-				value: false,
-				observer: '_updateDisabled'
+				value: false
 			},
 			/**
 			* Index of the button active at init
@@ -36,7 +43,6 @@ class GroupClab extends Polymer.Element {
 			value: {
 				type: Number,
 				value: 0,
-				observer: '_updateAppearance',
 				reflectToAttribute: true
 			}
 		}
@@ -58,14 +64,6 @@ class GroupClab extends Polymer.Element {
 	/*----------
 	OBSERVER
 	----------*/
-	_updateDisabled(val, old){
-		// let btns = this.getContentChildren();
-		/*let btns = this.$$('div.buttons-group button-clab');
-		Array.prototype.map.call(btns, btn => {
-			btn.disabled = val;
-		});*/
-	}
-
 	_updateAppearance(val, old){
 		if(old!==undefined && old !== val){
 			this.dispatchEvent(new CustomEvent('change', {
@@ -87,7 +85,7 @@ class GroupClab extends Polymer.Element {
 	EVENT HANDLERS
 	----------*/
 	_selectElement(evt){
-		this.set('value', Number(evt.target.getAttribute('data-i')) );
+		this.set('value', parseInt(evt.target.getAttribute('data-i')) );
 	}
 
 
@@ -96,6 +94,12 @@ class GroupClab extends Polymer.Element {
 	----------*/
 	_computeGroupClass(type, size){
 		let arr = [type, size];
+		return arr.join(' ');
+	}
+
+	_computeItemClass(index,value){
+		let arr = [];
+		index !== value ? arr.push('empty') : null;
 		return arr.join(' ');
 	}
 

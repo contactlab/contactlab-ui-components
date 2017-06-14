@@ -30,8 +30,7 @@ class CurtainClab extends Polymer.Element {
       },
       open: {
         type: Boolean,
-        value: false,
-        observer: '_openCurtain'
+        value: false
       },
 
       //_liHeight:Number,

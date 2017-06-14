@@ -100,20 +100,19 @@ class AlertClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Ele
   /*----------
   	EVENT HANDLERS
   ----------*/
-  _handleClick(evt) {
-    let primary = evt.target.childNodes[1].parentNode.getAttribute('data-primary');
-    if(primary == 'true') {
+  _handleClickP(evt) {
       this.dispatchEvent(new CustomEvent('primary',{
         bubbles: true,
         composed: true
       }));
-    } else if(primary == 'false') {
+   }
+
+  _handleClickS(evt) {
       this.dispatchEvent(new CustomEvent('secondary',{
         bubbles: true,
         composed: true
       }));
-    }
-  }
+   }
 
   _close(evt) {
     this.visible = false;

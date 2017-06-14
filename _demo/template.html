@@ -237,35 +237,19 @@
             <section>
                 <h2>Buttons group</h2>
                 <article>
-                <group-clab>
-                    <button-clab>First</button-clab>
-                    <button-clab>Second</button-clab>
-                    <button-clab>Third</button-clab>
-                </group-clab>
+                <group-clab options='["First", "Second", "Third"]'></group-clab>
                 </article>
 
                 <article>
-                <group-clab type="success">
-                    <button-clab>First</button-clab>
-                    <button-clab>Second</button-clab>
-                    <button-clab>Third</button-clab>
-                </group-clab>
+                <group-clab type="success" options='["First", "Second", "Third"]'></group-clab>
                 </article>
 
                 <article>
-                <group-clab type="info" size="small">
-                    <button-clab>First</button-clab>
-                    <button-clab>Second</button-clab>
-                    <button-clab>Third</button-clab>
-                </group-clab>
+                <group-clab type="info" size="small" options='["First", "Second", "Third"]'></group-clab>
                 </article>
 
                 <article>
-                <group-clab type="success" size="smaller">
-                    <button-clab>First</button-clab>
-                    <button-clab>Second</button-clab>
-                    <button-clab>Third</button-clab>
-                </group-clab>
+                <group-clab type="success" size="smaller" options='["First", "Second", "Third"]'></group-clab>
                 </article>
             </section>
 
@@ -474,11 +458,11 @@
                 Open modal (content via HTML)
                 </button-clab>
 
-                <modal-clab id="modal-one" max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?"
+                <modal-clab id="modalOne" max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?"
                 width="800px" no-actions>
                 </modal-clab>
 
-                <modal-clab id="modal-two" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something"
+                <modal-clab id="modalTwo" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something"
                 no-animation>
                 <h2>Some HTML...</h2>
                 <hr>
@@ -542,8 +526,9 @@
 
             <section>
                 <h2>Multiple</h2>
-                <multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
-                max-in-view="10">
+                <multiple-clab label="Select multiple options" max-in-view="10" id="multi"
+                options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
+                >
                 <span class="note">This is a note</span>
                 </multiple-clab>
             </section>
@@ -595,7 +580,7 @@
 
             <section>
                 <h2>Calendar</h2>
-                <calendar-clab inline></calendar-clab>
+                <calendar-clab inline id="cal"></calendar-clab>
 
                 <calendar-clab label="Calendar not inline - ITALIAN" options='{"locale": "it"}' type="info" note-type="error" on-datechange="_dateChange">
                 <span class="note">This is note</span>
