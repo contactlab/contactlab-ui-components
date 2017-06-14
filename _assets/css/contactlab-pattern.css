@@ -3044,8 +3044,7 @@ tabs-clab {
   z-index: 3;
   background-color: #FFFFFF;
   margin-bottom: 0;
-  overflow: auto;
-  display: none; }
+  overflow: auto;}
   .autocomplete-clab .options-list.active,
   .dropdown-clab .options-list.active {
     display: block; }

@@ -35,7 +35,8 @@ import 'contactlab-ui-components/button';
 ### Dependencies
 The following required libraries and polyfills are resolved by the package manager during the installation:
 
-- [Polymer](https://www.polymer-project.org/1.0/)
+- [Polymer 2](https://www.polymer-project.org/)
+- [Ikonograph v2](https://github.com/contactlab/ikonograph/releases/tag/v2.0.0)
 - [MomentJS](http://momentjs.com/)
 - [Rome](https://bevacqua.github.io/rome/)
 - [Fetch API](http://github.github.io/fetch/) *(polyfill)*

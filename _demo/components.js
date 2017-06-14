@@ -5041,7 +5041,7 @@ class CurtainClab extends Polymer.Element {
         case 'ol':
           this.dontHide = true;
           break;
-        case 'li':
+       /* case 'li':
           this.dontHide = false;
           let i = evt.target.getAttribute('data-i');
           this.dispatchEvent(new CustomEvent('do-select', {
@@ -5051,7 +5051,7 @@ class CurtainClab extends Polymer.Element {
               index: i
             }
           }));
-          break;
+          break;*/
         default:
           this.dontHide = false;
       }
@@ -5059,6 +5059,18 @@ class CurtainClab extends Polymer.Element {
     this.addEventListener('mouseup', evt => {
       this.dontHide = false;
     });
+  }
+
+  _elementSelection(evt){
+    this.dontHide = false;
+    let i = evt.target.getAttribute('data-i');
+    this.dispatchEvent(new CustomEvent('do-select', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        index: i
+      }
+    }));
   }
 
 
@@ -30214,7 +30226,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
       }
 
     } else {
-      this.querySelector('curtain-clab').open = false;
+      this.$.curtain.open = false;
     }
   }
 
@@ -30233,7 +30245,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
       return;
     }
 
-    this.querySelector('curtain-clab').open = false;
+    this.$.curtain.open = false;
     if(this.selected == undefined || this.selected[this.labelField] != this._inputString) {
       this._inputString = '';
       this._currentHint = undefined;
@@ -30291,9 +30303,9 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     // handle list visual
     if(this.results.length > 0) {
       this._currentHint = this.results[0];
-      this.querySelector('curtain-clab').open = true;
+      this.$.curtain.open = true;
     } else {
-      this.querySelector('curtain-clab').open = false;
+      this.$.curtain.open = false;
       this._currentHint = undefined;
       console.info('No hint was found');
     }
@@ -30307,14 +30319,14 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
         item = this.results[HIdx - 1];
         if(typeof item == 'object') {
           this._currentHint = item;
-          this.querySelector('curtain-clab').scrollToHighlight(HIdx - 1, true);
+          this.$.curtain.scrollToHighlight(HIdx - 1, true);
         }
         break;
       case 'down':
         item = this.results[HIdx + 1];
         if(typeof item == 'object') {
           this._currentHint = item;
-          this.querySelector('curtain-clab').scrollToHighlight(HIdx + 1, false);
+          this.$.curtain.scrollToHighlight(HIdx + 1, false);
         }
         break;
     }
@@ -30837,14 +30849,15 @@ class CardClab extends Polymer.Element {
   /*----------
   EVENT HANDLERS
   ----------*/
-  _handleClick(evt) {
-    if(Polymer.dom(evt.target).node.children[0].classList.contains('primary'))
-      this.dispatchEvent(new CustomEvent('primary',{
+  _handleClickP(evt) {
+     this.dispatchEvent(new CustomEvent('primary',{
         bubbles: true,
         composed: true
       }));
-    else
-      this.dispatchEvent(new CustomEvent('secondary',{
+  }
+
+   _handleClickS(evt) {
+     this.dispatchEvent(new CustomEvent('secondary',{
         bubbles: true,
         composed: true
       }));
@@ -34458,7 +34471,7 @@ exports.clearImmediate = clearImmediate;
 /* 196 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 197 */
@@ -34482,7 +34495,7 @@ exports.clearImmediate = clearImmediate;
 /* 200 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"card-clab\"><template><div class$=\"[[_computeEffectClass(effect)]]\"><template is=\"dom-if\" if=\"[[!figure]]\"><div class$=\"[[_computeCardClass(big)]]\"><template is=\"dom-if\" if=\"[[!big]]\"><i class$=\"[[icon]]\"></i></template><span>[[title]]</span><template is=\"dom-if\" if=\"[[big]]\"><div class=\"circle\"><i class=\"fa fa-circle\"></i></div><div class=\"icon\"><i class$=\"[[icon]]\"></i></div></template></div></template><template is=\"dom-if\" if=\"[[figure]]\"><figure><img src=\"[[figure]]\"><template is=\"dom-if\" if=\"[[_showTitle(title)]]\"><h2>[[title]]</h2></template></figure></template><template is=\"dom-if\" if=\"[[!table]]\"><div class=\"card-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[table]]\"><slot></slot></template><div class=\"card-actions\"><template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\"><button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClick\">[[secondary]]</button-clab><button-clab type=\"secondary\" on-btnclick=\"_handleClick\">[[primary]]</button-clab></template><template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\"><a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"card-clab\"><template><div class$=\"[[_computeEffectClass(effect)]]\"><template is=\"dom-if\" if=\"[[!figure]]\"><div class$=\"[[_computeCardClass(big)]]\"><template is=\"dom-if\" if=\"[[!big]]\"><i class$=\"[[icon]]\"></i></template><span>[[title]]</span><template is=\"dom-if\" if=\"[[big]]\"><div class=\"circle\"><i class=\"fa fa-circle\"></i></div><div class=\"icon\"><i class$=\"[[icon]]\"></i></div></template></div></template><template is=\"dom-if\" if=\"[[figure]]\"><figure><img src=\"[[figure]]\"><template is=\"dom-if\" if=\"[[_showTitle(title)]]\"><h2>[[title]]</h2></template></figure></template><template is=\"dom-if\" if=\"[[!table]]\"><div class=\"card-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[table]]\"><slot></slot></template><div class=\"card-actions\"><template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\"><button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab><button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab></template><template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\"><a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 201 */
@@ -34494,7 +34507,7 @@ exports.clearImmediate = clearImmediate;
 /* 202 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 203 */
@@ -34590,7 +34603,7 @@ exports.clearImmediate = clearImmediate;
 /* 218 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"tooltip-clab\"><template><style>.tooltip{\t\t\t\tposition:fixed;\t\t\t\topacity:0;\t\t\t\tz-index:1000;\t\t\t\tdisplay:none;\t\t\t}\t\t\t.tooltip .arrow{\t\t\t\tposition:absolute;\t\t\t\twidth:0;\t\t\t\theight:0;\t\t\t}\t\t\t.tooltip.visible{\t\t\t\tdisplay:block;\t\t\t}</style><span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\"><content select=\".tt-label\"></content></span><div class$=\"[[_computeTooltipClass(type, visible)]]\"><span on-mouseenter=\"_handleMouseOnTT\" on-mouseleave=\"_handleMouseOnTT\"><content select=\".tt-content\"></content></span><div class=\"arrow\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"tooltip-clab\"><template><style>.tooltip{\t\t\t\tposition:fixed;\t\t\t\topacity:0;\t\t\t\tz-index:1000;\t\t\t\tdisplay:none;\t\t\t}\t\t\t.tooltip .arrow{\t\t\t\tposition:absolute;\t\t\t\twidth:0;\t\t\t\theight:0;\t\t\t}\t\t\t.tooltip.visible{\t\t\t\tdisplay:block;\t\t\t}</style><span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\"><slot name=\"tt-label\"></slot></span><div class$=\"[[_computeTooltipClass(type, visible)]]\"><span on-mouseenter=\"_handleMouseOnTT\" on-mouseleave=\"_handleMouseOnTT\"><slot name=\"tt-label\"></slot></span><div class=\"arrow\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 219 */
@@ -35124,7 +35137,7 @@ class TabsClab extends Polymer.Element {
   ----------*/
 
   _changeTab(active, content) {
-		if (active != undefined) {
+		/*if (active != undefined) {
 			if (content != undefined && content.length > 0) {
 				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
 					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
@@ -35137,7 +35150,7 @@ class TabsClab extends Polymer.Element {
 					}
 				});
 			}
-		}
+		}*/
 	}
 
 

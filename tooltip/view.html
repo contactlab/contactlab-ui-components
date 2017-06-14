@@ -17,11 +17,13 @@
 			}
 		</style>
 		<span on-tap="hide" on-mouseenter="_handleMouseOnLabel" on-mouseleave="_handleMouseOnLabel">
-			<content select=".tt-label"></content>
+			<slot name="tt-label"></slot>
 		</span>
 
 		<div class$="[[_computeTooltipClass(type, visible)]]">
-			<span on-mouseenter="_handleMouseOnTT"  on-mouseleave="_handleMouseOnTT"><content select=".tt-content"></content></span>
+			<span on-mouseenter="_handleMouseOnTT"  on-mouseleave="_handleMouseOnTT">
+				<slot name="tt-label"></slot>
+			</span>
 			<div class="arrow"></div>
 		</div>
 	</template>

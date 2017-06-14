@@ -75,7 +75,7 @@ class TabsClab extends Polymer.Element {
   ----------*/
 
   _changeTab(active, content) {
-		if (active != undefined) {
+		/*if (active != undefined) {
 			if (content != undefined && content.length > 0) {
 				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
 					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
@@ -88,7 +88,7 @@ class TabsClab extends Polymer.Element {
 					}
 				});
 			}
-		}
+		}*/
 	}
 
 

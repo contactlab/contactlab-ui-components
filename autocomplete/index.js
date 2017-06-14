@@ -154,7 +154,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.El
       }
 
     } else {
-      this.querySelector('curtain-clab').open = false;
+      this.$.curtain.open = false;
     }
   }
 
@@ -173,7 +173,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.El
       return;
     }
 
-    this.querySelector('curtain-clab').open = false;
+    this.$.curtain.open = false;
     if(this.selected == undefined || this.selected[this.labelField] != this._inputString) {
       this._inputString = '';
       this._currentHint = undefined;
@@ -231,9 +231,9 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.El
     // handle list visual
     if(this.results.length > 0) {
       this._currentHint = this.results[0];
-      this.querySelector('curtain-clab').open = true;
+      this.$.curtain.open = true;
     } else {
-      this.querySelector('curtain-clab').open = false;
+      this.$.curtain.open = false;
       this._currentHint = undefined;
       console.info('No hint was found');
     }
@@ -247,14 +247,14 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.El
         item = this.results[HIdx - 1];
         if(typeof item == 'object') {
           this._currentHint = item;
-          this.querySelector('curtain-clab').scrollToHighlight(HIdx - 1, true);
+          this.$.curtain.scrollToHighlight(HIdx - 1, true);
         }
         break;
       case 'down':
         item = this.results[HIdx + 1];
         if(typeof item == 'object') {
           this._currentHint = item;
-          this.querySelector('curtain-clab').scrollToHighlight(HIdx + 1, false);
+          this.$.curtain.scrollToHighlight(HIdx + 1, false);
         }
         break;
     }

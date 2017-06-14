@@ -86,14 +86,15 @@ class CardClab extends Polymer.Element {
   /*----------
   EVENT HANDLERS
   ----------*/
-  _handleClick(evt) {
-    if(Polymer.dom(evt.target).node.children[0].classList.contains('primary'))
-      this.dispatchEvent(new CustomEvent('primary',{
+  _handleClickP(evt) {
+     this.dispatchEvent(new CustomEvent('primary',{
         bubbles: true,
         composed: true
       }));
-    else
-      this.dispatchEvent(new CustomEvent('secondary',{
+  }
+
+   _handleClickS(evt) {
+     this.dispatchEvent(new CustomEvent('secondary',{
         bubbles: true,
         composed: true
       }));

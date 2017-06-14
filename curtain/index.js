@@ -59,7 +59,7 @@ class CurtainClab extends Polymer.Element {
         case 'ol':
           this.dontHide = true;
           break;
-        case 'li':
+       /* case 'li':
           this.dontHide = false;
           let i = evt.target.getAttribute('data-i');
           this.dispatchEvent(new CustomEvent('do-select', {
@@ -69,7 +69,7 @@ class CurtainClab extends Polymer.Element {
               index: i
             }
           }));
-          break;
+          break;*/
         default:
           this.dontHide = false;
       }
@@ -77,6 +77,18 @@ class CurtainClab extends Polymer.Element {
     this.addEventListener('mouseup', evt => {
       this.dontHide = false;
     });
+  }
+
+  _elementSelection(evt){
+    this.dontHide = false;
+    let i = evt.target.getAttribute('data-i');
+    this.dispatchEvent(new CustomEvent('do-select', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        index: i
+      }
+    }));
   }
 
 
