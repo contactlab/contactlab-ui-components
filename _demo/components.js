@@ -34537,7 +34537,7 @@ exports.clearImmediate = clearImmediate;
 /* 207 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"label-clab\"><template><span class$=\"[[_computeClass(badge,type)]]\"><slot></slot><template is=\"dom-if\" if=\"[[counter]]\"><span class=\"counter\">[[counter]]</span></template><template is=\"dom-if\" if=\"[[remove]]\"><span class=\"remove\" on-tap=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span></template></span></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"label-clab\"><template><span class$=\"[[_computeClass(badge,type)]]\"><slot></slot><template is=\"dom-if\" if=\"[[counter]]\"><span class=\"counter\">[[counter]]</span></template><template is=\"dom-if\" if=\"[[remove]]\"><span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span></template></span></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 208 */
@@ -34597,7 +34597,7 @@ exports.clearImmediate = clearImmediate;
 /* 217 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"tags-clab\"><template><div class=\"tags-wrapper\"><template is=\"dom-if\" if=\"[[!hideInput]]\"><input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\"><button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\" icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\">[[btnLabel]]</button-clab><content select=\".note\"></content></input-clab></template><div class$=\"[[_computeStacked(stacked)]]\"><template is=\"dom-repeat\" items=\"[[tags]]\"><label-clab remove=\"\" on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"tags-clab\"><template><div class=\"tags-wrapper\"><template is=\"dom-if\" if=\"[[!hideInput]]\"><input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\"><button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\" icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab><slot name=\"note\"></slot></input-clab></template><div class$=\"[[_computeStacked(stacked)]]\"><template is=\"dom-repeat\" items=\"[[tags]]\"><label-clab remove=\"\" on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 218 */
@@ -35262,8 +35262,7 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
         break;
       case 13:
         // if enter
-        const elem = this.querySelector('button-clab');
-        elem.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
+        this._addTag(evt);
         break;
     }
   }

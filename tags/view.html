@@ -2,9 +2,11 @@
 	<template>
 		<div class="tags-wrapper">
 			<template is="dom-if" if="[[!hideInput]]">
-				<input-clab type="[[type]]" note-type="[[noteType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyUp">
-					<button-clab class="button" type="[[inputType]]" appearance="[[btnAppearence]]" size="[[btnSize]]" icon="[[btnIcon]]" disabled="[[disabled]]" on-btnclick="_addTag">[[btnLabel]]</button-clab>
-					<content select=".note"></content>
+				<input-clab type="[[type]]" note-type="[[noteType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" 
+				disabled="[[disabled]]" placeholder="[[placeholder]]" on-keyup="_handleKeyUp">
+					<button-clab class="button" type="[[inputType]]" appearance="[[btnAppearence]]" size="[[btnSize]]" 
+					icon="[[btnIcon]]" disabled="[[disabled]]" on-btnclick="_addTag" id="tagsBtn">[[btnLabel]]</button-clab>
+					<slot name="note"></slot>
 				</input-clab>
 			</template>
 

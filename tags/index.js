@@ -66,8 +66,7 @@ class TagsClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  
         break;
       case 13:
         // if enter
-        const elem = this.querySelector('button-clab');
-        elem.dispatchEvent(new CustomEvent('btnclick'), {bubbles: true});
+        this._addTag(evt);
         break;
     }
   }
