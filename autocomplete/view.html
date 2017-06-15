@@ -4,17 +4,21 @@
 
 <dom-module id="autocomplete-clab">
 
-	<template>
-        <div class="input-wrapper">
-			<input-clab label="[[label]]" value="{{_inputString}}" name="[[name]]" type="[[type]]" note-type="[[noteType]]" disabled="[[disabled]]" inline="[[inline]]" label-size="[[labelSize]]" icon="[[icon]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
-				<content select=".button"></content>
-				<content select=".note"></content>
-				<curtain-clab class="curtain" options="[[results]]" highlighted="[[_currentHint]]" label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" dont-hide="{{dontHide}}" disabled="[[hideHints]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"></curtain-clab>
-			</input-clab>
+  <template>
+    <div class="input-wrapper">
+      <input-clab label="[[label]]" value="{{_inputString}}" name="[[name]]" type="[[type]]" note-type="[[noteType]]" disabled="[[disabled]]"
+        inline="[[inline]]" label-size="[[labelSize]]" icon="[[icon]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs"
+        on-blur="_handleBlur">
+        <slot name="button" slot="button"></slot>
+        <slot name="note" slot="note"></slot>
+        <curtain-clab class="curtain" slot="curtain" options="[[results]]" highlighted="[[_currentHint]]" label-field="[[labelField]]"
+          value-field="[[valueField]]" max-in-view="[[maxInView]]" dont-hide="{{dontHide}}" disabled="[[hideHints]]" on-do-highlight="_handleHighlight"
+          on-do-select="handleSelect"></curtain-clab>
+      </input-clab>
 
-			<spinner-clab visible="[[_spinner]]"></spinner-clab>
-        </div>
-    </template>
+      <spinner-clab visible="[[_spinner]]"></spinner-clab>
+    </div>
+  </template>
 
-	<!-- <script src="./../bundle.js"></script> -->
+  <!-- <script src="./../bundle.js"></script> -->
 </dom-module>

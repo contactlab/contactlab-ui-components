@@ -434,12 +434,12 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         <h2>Autocomplete</h2>
         <autocomplete-clab inline label="Normal auto-complete" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
           min-char="1" label-size="larger" type="success" note-type="info">
-          <span class="note">Type here to get hints</span>
-          <span class="button"><button-clab>hola</button-clab></span>
+          <span slot="note">Type here to get hints</span>
+          <span slot="button"><button-clab>hola</button-clab></span>
         </autocomplete-clab>
         &nbsp;
         <autocomplete-clab label="AJAX auto-complete" min-char="1" filter url="http://localhost:4000/json">
-          <span class="note">Type here to get hints</span>
+          <span slot="note">Type here to get hints</span>
         </autocomplete-clab>
       </section>
 
@@ -447,18 +447,18 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         <h2>Dropdown</h2>
         <dropdown-clab max-in-view="5" type="success" note-type="error" result-as-obj options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
           selected='{"label":"bella", "value":"bella"}' inline label-size="larger" icon="icon-edit">>
-          <span class="note">This is my note</span>
-          <span class="button"><button-clab>ciao</button-clab></span>
+          <span slot="note">This is my note</span>
+          <span slot="button"><button-clab>ciao</button-clab></span>
         </dropdown-clab>
 
 
         <dropdown-clab max-in-view="5" result-as-obj inline label-size="larger" icon="icon-edit">
-          <span class="note">This is my note</span>
+          <span slot="note">This is my note</span>
         </dropdown-clab>
 
         <dropdown-clab max-in-view="3" label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]'
           label-field="name">
-          <span class="note">This is my note</span>
+          <span slot="note">This is my note</span>
         </dropdown-clab>
       </section>
 
@@ -466,7 +466,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         <h2>Tags</h2>
         <article>
           <tags-clab label="Add tag" placeholder="rosso" type="warning">
-            <span class="note">Lorem ipsum dolor sit.</span>
+            <span slot="note">Lorem ipsum dolor sit.</span>
           </tags-clab>
         </article>
         <article>
@@ -560,7 +560,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         <h2>Multiple</h2>
         <multiple-clab label="Select multiple options" options='[{"label":"ciccio", "value":"ciccio"},{"label":"puzzo raga", "value":"puzzo raga"},{"label":"bella", "value":"bella"},{"label":"raga", "value":"raga"},{"label":"tutto raga", "value":"tutto raga"},{"label":"tutto rego", "value":"tutto rego"}]'
           max-in-view="10">
-          <span class="note">This is a note</span>
+          <span slot="note">This is a note</span>
         </multiple-clab>
       </section>
 
@@ -578,29 +578,29 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
       <section>
         <h2>Input</h2>
         <input-clab value="ciao" label="My label" note-type="error" type="success">
-          <span class="note">A simple input component</span>
+          <span slot="note">A simple input component</span>
         </input-clab>
         <input-clab value="ciao" icon="icon-edit">
-          <span class="note">A simple input component</span>
+          <span slot="note">A simple input component</span>
         </input-clab>
 
         <input-clab value="ciao" label="Input with buttons">
-          <span class="note">A simple note</span>
-          <button-clab class="button" type="error">cancel</button-clab>
-          <button-clab class="button" type="success">save</button-clab>
+          <span slot="note">A simple note</span>
+          <button-clab slot="button" type="error">cancel</button-clab>
+          <button-clab slot="button" type="success">save</button-clab>
         </input-clab>
 
         <input-clab value="ciao" label="Input inline" inline label-size="small">
-          <span class="note">A simple note</span>
-          <button-clab class="button" type="success">ok</button-clab>
+          <span slot="note">A simple note</span>
+          <button-clab slot="button" type="success">ok</button-clab>
         </input-clab>
         <input-clab value="ciao" icon="icon-edit" inline>
-          <span class="note">A simple note</span>
-          <button-clab class="button" type="success">ok</button-clab>
+          <span slot="note">A simple note</span>
+          <button-clab slot="button" type="success">ok</button-clab>
         </input-clab>
         <input-clab value="ciao" label="Input inline" inline label-size="large" icon="icon-edit">
-          <span class="note">A simple note</span>
-          <button-clab class="button" type="success">ok</button-clab>
+          <span slot="note">A simple note</span>
+          <button-clab slot="button" type="success">ok</button-clab>
         </input-clab>
 
         <!-- <div class="input-wrapper inline">
@@ -622,7 +622,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
         <calendar-clab inline></calendar-clab>
 
         <calendar-clab label="Calendar not inline - ITALIAN" options='{"locale": "it"}' type="info" note-type="error" on-datechange="_dateChange">
-          <span class="note">This is note</span>
+          <span slot="note">This is note</span>
         </calendar-clab>
         <calendar-clab label="Calendar not inline - FRENCH" options='{"locale": "fr"}' type="info" note-type="error"></calendar-clab>
       </section>
@@ -645,7 +645,7 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
       <section>
         <h2>Input file</h2>
         <file-clab label="My wonderful file input label" type="info" note-type="error">
-          <span class="note">A simple input component</span>
+          <span slot="note">A simple input component</span>
         </file-clab>
       </section>
 

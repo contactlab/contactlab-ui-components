@@ -2,50 +2,45 @@
 <link rel="import" href="./../button/view.html">
 
 <dom-module id="input-clab">
-	<style>
-		input[type=text]::-ms-clear{
-			display: none;
-		}
-	</style>
+  <style>
+    input[type=text]::-ms-clear {
+      display: none;
+    }
 
-	<template>
-		<div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
+  </style>
 
-			<template is="dom-if" if="[[_viewLabel(label, icon)]]">
-				<label class$="[[type]]" for$="[[_dashify(name)]]">
+  <template>
+    <div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
+
+      <template is="dom-if" if="[[_viewLabel(label, icon)]]">
+        <label class$="[[type]]" for$="[[_dashify(name)]]">
 					<template is="dom-if" if="[[_viewLabel(icon)]]">
 						<i class$="[[_compIcon(icon)]]"></i>
 					</template>
 					[[label]]
 				</label>
-			</template>
+      </template>
 
-			<div class="input">
-				<input
-					class$="[[type]]"
-					type$="[[_computeInputType(password,inputType)]]"
-					name$="[[_dashify(name)]]"
-					disabled="[[disabled]]"
-					value="{{value::input}}"
-					placeholder="[[placeholder]]"
-					required="[[required]]"
-					readonly$="[[readonly]]"
-					maxlength$="[[maxlength]]"
-					on-blur="_blur"
-					on-focus="_focus" >
+      <div class="input">
+        <input class$="[[type]]" type$="[[_computeInputType(password,inputType)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]"
+          value="{{value::input}}" placeholder="[[placeholder]]" required="[[required]]" readonly$="[[readonly]]" maxlength$="[[maxlength]]"
+          on-blur="_blur" on-focus="_focus">
 
-				<template is="dom-if" if="[[check]]">
-					<button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]" icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
-				</template>
-				<content select=".button"></content>
+        <template is="dom-if" if="[[check]]">
+          <button-clab class="password-toggle" type="[[_btnPswd.type]]" size="[[_btnPswd.size]]" appearance="[[_btnPswd.appearance]]"
+            icon="[[_btnPswd.icon]]" disabled="[[disabled]]" on-btnclick="_toggleInputType">[[_btnPswd.label]]</button-clab>
+        </template>
+        <slot name="button"></slot>
 
-				<content select".curtain"></content>
-			</div>
+        <slot name="curtain"></slot>
+      </div>
 
-			<note-clab type="[[noteType]]"></note-clab>
+      <note-clab type="[[noteType]]">
+        <slot name="note"></slot>
+      </note-clab>
 
-		</div>
-	</template>
+    </div>
+  </template>
 
-	<!-- <script src="./../bundle.js"></script> -->
+  <!-- <script src="./../bundle.js"></script> -->
 </dom-module>

@@ -3,42 +3,45 @@
 
 <dom-module id="dropdown-clab">
 
-    <style>
-        .options-list li{
-            display: block !important;
-        }
-    </style>
+  <style>
+    .options-list li {
+      display: block !important;
+    }
 
-    <template>
-        <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
-            <template is="dom-if" if="[[_viewLabel(label, icon)]]">
-				<label class$="[[type]]" for$="[[_dashify(name)]]">
+  </style>
+
+  <template>
+    <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
+      <template is="dom-if" if="[[_viewLabel(label, icon)]]">
+        <label class$="[[type]]" for$="[[_dashify(name)]]">
 					<template is="dom-if" if="[[_viewLabel(icon)]]">
 						<i class$="[[_compIcon(icon)]]"></i>
 					</template>
 					[[label]]
 				</label>
-			</template>
+      </template>
 
-            <div class="input">
-                <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
-                    <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
-                        <span class="selected">[[_compLabel(selected)]]</span>
-                    </template>
-                    <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
-                        <span class="placeholder">[[placeholder]]</span>
-                    </template>
-                </div>
-                <curtain-clab id="curtain" options="[[options]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]" label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"></curtain-clab>
-            </div>
-
-            <content select=".button"></content>
-
-            <note-clab type="[[noteType]]">
-                <content select=".note"></content>
-            </note-clab>
+      <div class="input">
+        <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
+          <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
+            <span class="selected">[[_compLabel(selected)]]</span>
+          </template>
+          <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
+            <span class="placeholder">[[placeholder]]</span>
+          </template>
         </div>
-    </template>
+        <curtain-clab id="curtain" slot="curtain" options="[[options]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]"
+          label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight"
+          on-do-select="handleSelect"></curtain-clab>
+      </div>
 
-    <!-- <script src="./../bundle.js"></script> -->
+      <slot name="button"></slot>
+
+      <note-clab type="[[noteType]]">
+        <slot name="note"></slot>
+      </note-clab>
+    </div>
+  </template>
+
+  <!-- <script src="./../bundle.js"></script> -->
 </dom-module>

@@ -1,247 +1,249 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
+  <meta charset="UTF-8">
 
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+  <script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="./../node_modules/web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../input/view.html">
-	<script src="./../../_components/bundle.js"></script>
+  <link rel="import" href="./../../../polymer/polymer.html">
+  <link rel="import" href="./../../input/view.html">
+  <script src="./../../_components/bundle.js"></script>
 
 </head>
+
 <body>
 
-<test-fixture id="input">
-	<template>
-	  <input-clab>This is my note</input-clab>
-	</template>
-</test-fixture>
+  <test-fixture id="input">
+    <template>
+      <input-clab>This is my note</input-clab>
+    </template>
+  </test-fixture>
 
 
-<script>
+  <script>
+    suite('<input-clab>', function () {
+      var input;
 
-suite('<input-clab>', function() {
-  var input;
-
-	setup(function() {
-		input = fixture('input');
-	});
-
-	suite('Test Properties', function() {
-
-		test('Default Properties', function() {
-			assert.equal(input.name, 'textinput');
-			assert.isNull(input.label);
-      assert.isNull(input.icon);
-			assert.isNull(input.type);
-      assert.isUndefined(input.noteType);
-			assert.isUndefined(input.value);
-      assert.isFalse(input.disabled);
-      assert.isFalse(input.inline);
-      assert.isNull(input.labelSize);
-      assert.isUndefined(input.placeholder);
-      assert.isFalse(input.check);
-      assert.isFalse(input.required);
-      assert.isObject(input.btnPswd);
-      assert.isObject(input._btnPswd);
-      assert.isFalse(input.password);
-		});
-
-	});
-
-  suite('Test DOM Bindings', function() {
-
-		test('Check label, type, noteType', function(done) {
-      var label = 'This is a label';
-      var type = 'Error';
-      var noteType = 'error-note';
-      input.label = label;
-      input.type = type;
-      input.noteType = noteType;
-
-      setTimeout(function () {
-        var labelEl = input.$$('label');
-        var inputClass = input.$$('input').classList;
-        var noteClass = input.querySelector('.input-note').classList;
-        assert.equal(labelEl.innerText, label);
-        assert.isTrue(inputClass.contains(type));
-        assert.isTrue(noteClass.contains(noteType));
-        done();
-      });
-		});
-
-    test('Check icon', function(done) {
-      var icon = 'icon-class';
-      input.icon = icon;
-
-      setTimeout(function () {
-        var iconClass = input.$$('label i').classList;
-        assert.isTrue(iconClass.contains(icon));
-        done();
-      });
-		});
-
-    test('Check name input and value', function(done) {
-      var name = 'newname';
-      var value = 'this is value';
-      input.name = name;
-      input.value = value;
-
-      setTimeout(function () {
-        var inputText = input.$$('input[type=text]');
-        assert.equal(input.getAttribute('name'), name);
-        assert.equal(input.value, value);
-        done();
-      });
-		});
-
-    test('Check disabled', function() {
-      var bool = true;
-      input.disabled = bool;
-
-      var el = input.$$('input[type=text]');
-      assert.isTrue(el.disabled);
-		});
-
-    test('Check inline', function() {
-      var bool = true;
-      input.inline = bool;
-
-      var elClass = input.$$('.input-wrapper').classList;
-      assert.isTrue(elClass.contains('inline'), "Inline in class: correct");
-		});
-
-    test('Check labelSize (inline dep)', function(done) {
-      var size = "small";
-      var label = "This is a label";
-      input.label = label;
-      input.inline = true;
-      input.labelSize = size;
-      setTimeout(function () {
-        var elClass = input.$$('.input-wrapper').classList;
-        assert.isTrue(elClass.contains("small-label"), "Label size in class: correct");
-        done();
-      });
-		});
-
-    test('Check placeholder', function(done) {
-      var placeholder = "This is a placeholder";
-      input.placeholder = placeholder;
-      setTimeout(function () {
-        var el = input.$$('input[type=text]');
-        assert.equal(el.getAttribute("placeholder"), placeholder, "placeholder shows: correct");
-        done();
-      });
-    });
-
-    test('Check check (property)', function(done) {
-      var bool = true;
-      input.check = bool;
-
-      setTimeout(function () {
-        var el = input.$$('.password-toggle');
-        assert.isNotNull(el, "Password toggle shows: correct");
-        done();
-      });
-    });
-
-    test('Check required', function(done) {
-      var bool = true;
-      input.required = bool;
-
-      setTimeout(function () {
-        var el = input.$$('input[type=text]');
-        assert.isTrue(el.required, "Input required: correct");
-        done();
-      });
-    });
-
-    test('Check password (check dep)', function(done) {
-      var bool = true;
-      input.check = true;
-      input.password = bool;
-
-      setTimeout(function () {
-        var btnClab = input.$$('button-clab');
-        var pwd = Polymer.dom(btnClab.root).querySelector('button');
-        assert.equal(pwd.innerText, "Show", "Input password 'Show' text: correct");
-        done();
+      setup(function () {
+        input = fixture('input');
       });
 
-      /*test('Check btnPswd', function(done) {
-        var obj = {
-          show:{
-            icon:'',
-            label:'Show',
-            type:"",
-            appearance:"",
-            size:""
-          },
-          hide:{
-            icon:'',
-            label:'Hide',
-            type:"",
-            appearance:"",
-            size:""
-          }
-        };
-        input.required = bool;
+      suite('Test Properties', function () {
 
-        setTimeout(function () {
+        test('Default Properties', function () {
+          assert.equal(input.name, 'textinput');
+          assert.isNull(input.label);
+          assert.isNull(input.icon);
+          assert.isNull(input.type);
+          assert.isUndefined(input.noteType);
+          assert.isUndefined(input.value);
+          assert.isFalse(input.disabled);
+          assert.isFalse(input.inline);
+          assert.isNull(input.labelSize);
+          assert.isUndefined(input.placeholder);
+          assert.isFalse(input.check);
+          assert.isFalse(input.required);
+          assert.isObject(input.btnPswd);
+          assert.isObject(input._btnPswd);
+          assert.isFalse(input.password);
+        });
+
+      });
+
+      suite('Test DOM Bindings', function () {
+
+        test('Check label, type, noteType', function (done) {
+          var label = 'This is a label';
+          var type = 'Error';
+          var noteType = 'error-note';
+          input.label = label;
+          input.type = type;
+          input.noteType = noteType;
+
+          setTimeout(function () {
+            var labelEl = input.$$('label');
+            var inputClass = input.$$('input').classList;
+            var noteClass = input.querySelector('.input-note').classList;
+            assert.equal(labelEl.innerText, label);
+            assert.isTrue(inputClass.contains(type));
+            assert.isTrue(noteClass.contains(noteType));
+            done();
+          });
+        });
+
+        test('Check icon', function (done) {
+          var icon = 'icon-class';
+          input.icon = icon;
+
+          setTimeout(function () {
+            var iconClass = input.$$('label i').classList;
+            assert.isTrue(iconClass.contains(icon));
+            done();
+          });
+        });
+
+        test('Check name input and value', function (done) {
+          var name = 'newname';
+          var value = 'this is value';
+          input.name = name;
+          input.value = value;
+
+          setTimeout(function () {
+            var inputText = input.$$('input[type=text]');
+            assert.equal(input.getAttribute('name'), name);
+            assert.equal(input.value, value);
+            done();
+          });
+        });
+
+        test('Check disabled', function () {
+          var bool = true;
+          input.disabled = bool;
+
           var el = input.$$('input[type=text]');
-          assert.isTrue(el.required, "Input required: correct");
-          done();
+          assert.isTrue(el.disabled);
         });
-      });*/
+
+        test('Check inline', function () {
+          var bool = true;
+          input.inline = bool;
+
+          var elClass = input.$$('.input-wrapper').classList;
+          assert.isTrue(elClass.contains('inline'), "Inline in class: correct");
+        });
+
+        test('Check labelSize (inline dep)', function (done) {
+          var size = "small";
+          var label = "This is a label";
+          input.label = label;
+          input.inline = true;
+          input.labelSize = size;
+          setTimeout(function () {
+            var elClass = input.$$('.input-wrapper').classList;
+            assert.isTrue(elClass.contains("small-label"), "Label size in class: correct");
+            done();
+          });
+        });
+
+        test('Check placeholder', function (done) {
+          var placeholder = "This is a placeholder";
+          input.placeholder = placeholder;
+          setTimeout(function () {
+            var el = input.$$('input[type=text]');
+            assert.equal(el.getAttribute("placeholder"), placeholder, "placeholder shows: correct");
+            done();
+          });
+        });
+
+        test('Check check (property)', function (done) {
+          var bool = true;
+          input.check = bool;
+
+          setTimeout(function () {
+            var el = input.$$('.password-toggle');
+            assert.isNotNull(el, "Password toggle shows: correct");
+            done();
+          });
+        });
+
+        test('Check required', function (done) {
+          var bool = true;
+          input.required = bool;
+
+          setTimeout(function () {
+            var el = input.$$('input[type=text]');
+            assert.isTrue(el.required, "Input required: correct");
+            done();
+          });
+        });
+
+        test('Check password (check dep)', function (done) {
+          var bool = true;
+          input.check = true;
+          input.password = bool;
+
+          setTimeout(function () {
+            var btnClab = input.$$('button-clab');
+            var pwd = Polymer.dom(btnClab.root).querySelector('button');
+            assert.equal(pwd.innerText, "Show", "Input password 'Show' text: correct");
+            done();
+          });
+
+          /*test('Check btnPswd', function(done) {
+            var obj = {
+              show:{
+                icon:'',
+                label:'Show',
+                type:"",
+                appearance:"",
+                size:""
+              },
+              hide:{
+                icon:'',
+                label:'Hide',
+                type:"",
+                appearance:"",
+                size:""
+              }
+            };
+            input.required = bool;
+
+            setTimeout(function () {
+              var el = input.$$('input[type=text]');
+              assert.isTrue(el.required, "Input required: correct");
+              done();
+            });
+          });*/
+        });
+
+        suite('Test Events', function () {
+
+          test('Input type toggle', function (done) {
+            input.set('check', true);
+            input.addEventListener('btnclick', function (evt) {
+              var btnClab = input.$$('button-clab');
+              var pwd = Polymer.dom(btnClab.root).querySelector('button');
+              assert.equal(pwd.innerText, "Show", "Input password 'Show' text: correct");
+              done();
+            });
+
+            flush(function () {
+              var btnClab = input.$$('button-clab');
+              var pwd = Polymer.dom(btnClab.root).querySelector('button');
+              assert.equal(pwd.innerText, "Hide", "Input password 'Hide' text: correct");
+              pwd.click();
+            });
+          });
+
+          test('Input blur and focus', function (done) {
+
+            var blur = new Event('blur');
+            var focus = new Event('focus');
+            var el = input.$$('input');
+
+            input.addEventListener('blur', function (evt) {
+              var nameInput = evt.detail.input.currentTarget.getAttribute('name');
+              assert.equal(nameInput, 'textinput');
+            });
+            input.addEventListener('focus', function (evt) {
+              var nameInput = evt.detail.input.currentTarget.getAttribute('name');
+              assert.equal(nameInput, 'textinput');
+              done();
+            });
+
+            el.dispatchEvent(blur);
+            el.dispatchEvent(focus);
+          });
+        });
+
+      });
+
     });
 
-    suite('Test Events', function() {
-
-  		test('Input type toggle', function(done) {
-        input.check = true;
-        input.addEventListener('btnclick', function (evt) {
-          var btnClab = input.$$('button-clab');
-          var pwd = Polymer.dom(btnClab.root).querySelector('button');
-          assert.equal(pwd.innerText, "Show", "Input password 'Show' text: correct");
-          done();
-        });
-        setTimeout(function () {
-          var btnClab = input.$$('button-clab');
-          var pwd = Polymer.dom(btnClab.root).querySelector('button');
-          assert.equal(pwd.innerText, "Hide", "Input password 'Hide' text: correct");
-          pwd.click();
-					done();
-        });
-  		});
-
-      test('Input blur and focus', function(done) {
-
-        var blur = new Event('blur');
-        var focus = new Event('focus');
-        var el = input.$$('input');
-
-        input.addEventListener('blur', function (evt) {
-          var nameInput = evt.detail.input.currentTarget.getAttribute('name');
-          assert.equal(nameInput, 'textinput');
-        });
-        input.addEventListener('focus', function (evt) {
-          var nameInput = evt.detail.input.currentTarget.getAttribute('name');
-          assert.equal(nameInput, 'textinput');
-          done();
-        });
-
-        el.dispatchEvent(blur);
-        el.dispatchEvent(focus);
-      });
-  	});
-
-	});
-
-});
-
-</script>
+  </script>
 </body>
+
 </html>
