@@ -3,11 +3,8 @@
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "",
   "dependencies": {
-    "es6-promise": "^4.0.5",
-    "fetch": "^2.0.3",
     "polymer": "^1.8.1",
-    "web-animations-js": "^2.2.2",
-    "ikonograph": "<3.0.0"
+    "web-animations-js": "^2.2.2"
   },
   "moduleType": [
     "globals"
