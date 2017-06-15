@@ -2,53 +2,60 @@
 <link rel="import" href="./../spinner/view.html">
 
 <dom-module id="multiple-clab">
-	<style>
+  <style>
+    li {
+      -webkit-touch-callout: none;
+      /* iOS Safari */
+      -webkit-user-select: none;
+      /* Chrome/Safari/Opera */
+      -khtml-user-select: none;
+      /* Konqueror */
+      -moz-user-select: none;
+      /* Firefox */
+      -ms-user-select: none;
+      /* IE/Edge */
+      user-select: none;
+      margin: 0;
+    }
 
-		li{
-			-webkit-touch-callout: none; /* iOS Safari */
-			-webkit-user-select: none;   /* Chrome/Safari/Opera */
-			-khtml-user-select: none;    /* Konqueror */
-			-moz-user-select: none;      /* Firefox */
-			-ms-user-select: none;       /* IE/Edge */
-			user-select: none;
-			margin: 0;
-		}
-		li.selected{
-			color:red;
-		}
+    li.selected {
+      color: red;
+    }
 
-		.multiple-wrapper{
-			height: auto;
-			width: 100%;
-			overflow:hidden;
-			position: relative;
-		}
-		.options-list{
-			max-height:0;
-			position: relative;
-			width: 100%;
-			overflow-y:auto;
-		}
-	</style>
+    .multiple-wrapper {
+      height: auto;
+      width: 100%;
+      overflow: hidden;
+      position: relative;
+    }
 
-	<template>
-		<div class="input-wrapper">
-		<template is="dom-if" if="[[label]]">
-			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
-		</template>
-		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
-			<ol class="options-list" on-scroll="_loadContent">
-				<template is="dom-repeat" items="[[options]]">
-						<li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>
-        </template>
-			</ol>
-			<spinner-clab visible="[[spinner]]"></spinner-clab>
-		</div>
-		<note-clab type="[[noteType]]">
-			<content select=".note"></content>
-		</note-clab>
-</div>
-	</template>
+    .options-list {
+      max-height: 0;
+      position: relative;
+      width: 100%;
+      overflow-y: auto;
+    }
 
-	<!-- <script src="./../bundle.js"></script> -->
+  </style>
+
+  <template>
+    <div class="input-wrapper">
+      <template is="dom-if" if="[[label]]">
+        <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+      </template>
+      <div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
+        <ol class="options-list" on-scroll="_loadContent">
+          <template is="dom-repeat" items="[[options]]">
+            <li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>
+          </template>
+        </ol>
+        <spinner-clab visible="[[spinner]]"></spinner-clab>
+      </div>
+      <note-clab type="[[noteType]]">
+        <slot name="note"></slot>
+      </note-clab>
+    </div>
+  </template>
+
+  <!-- <script src="./../bundle.js"></script> -->
 </dom-module>

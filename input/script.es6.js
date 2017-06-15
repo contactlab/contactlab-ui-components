@@ -1,9 +1,17 @@
 'use strict';
 
-import {Polymer} from "./../_assets/js/polymer";
-import {UtilBehavior} from "./../_behaviors/behaviors.es6";
-import {ButtonClab} from "./../button/script.es6";
-import {NoteClab} from "./../note/script.es6";
+import {
+  Polymer
+} from "./../_assets/js/polymer";
+import {
+  UtilBehavior
+} from "./../_behaviors/behaviors.es6";
+import {
+  ButtonClab
+} from "./../button/script.es6";
+import {
+  NoteClab
+} from "./../note/script.es6";
 
 export class InputClab {
 
@@ -112,16 +120,6 @@ export class InputClab {
   }
 
 
-  attached() {
-    Array.prototype.map.call(this.getEffectiveChildren(), node => {
-      if(node.classList.contains('note')) {
-        Polymer.dom(this.$$('note-clab')).appendChild(node);
-        Polymer.dom.flush();
-      }
-    })
-  }
-
-
   /*----------
   EVENT HANDLERS
   ----------*/
@@ -130,7 +128,7 @@ export class InputClab {
   }
 
   _btnclick(evt) {
-    this.dispatchEvent(new CustomEvent('btnclick',{
+    this.dispatchEvent(new CustomEvent('btnclick', {
       bubbles: true,
       composed: true
     }));
@@ -161,7 +159,7 @@ export class InputClab {
   OBSERVERS
   ----------*/
   _disabledChanged(newVal, oldVal) {
-    if(newVal) this.type = 'disabled';
+    if (newVal) this.type = 'disabled';
   }
 
 
@@ -171,23 +169,24 @@ export class InputClab {
   ----------*/
   _compWrapperClass(str, type, inline, labelSize) {
     let arr = [str];
-    if(type != null) arr.push(type);
-    if(inline) {
+    if (type != null) arr.push(type);
+    if (inline) {
       arr.push('inline');
-      if(labelSize != null) arr.push(labelSize + '-label');
+      if (labelSize != null) arr.push(labelSize + '-label');
     }
     return arr.join(' ');
   }
 
   _compIcon(icon) {
-    if(icon != undefined) return 'clab-icon ' + icon;
+    if (icon != undefined) return 'clab-icon ' + icon;
     else return '';
   }
 
   _computeInputType(password, inputType) {
-    if(password) {
+    if (password) {
       return 'password';
-    } if (inputType){
+    }
+    if (inputType) {
       return inputType;
     } else {
       return 'text';
@@ -195,7 +194,7 @@ export class InputClab {
   }
 
   _computeBtnPswd(val, old) {
-    if(val){
+    if (val) {
       this.set('_btnPswd', this.btnPswd.show);
     } else {
       this.set('_btnPswd', this.btnPswd.hide);

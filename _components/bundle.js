@@ -5226,18 +5226,6 @@ var InputClab = exports.InputClab = function () {
         }
       };
     }
-  }, {
-    key: "attached",
-    value: function attached() {
-      var _this = this;
-
-      Array.prototype.map.call(this.getEffectiveChildren(), function (node) {
-        if (node.classList.contains('note')) {
-          _polymer.Polymer.dom(_this.$$('note-clab')).appendChild(node);
-          _polymer.Polymer.dom.flush();
-        }
-      });
-    }
 
     /*----------
     EVENT HANDLERS
@@ -5314,7 +5302,8 @@ var InputClab = exports.InputClab = function () {
     value: function _computeInputType(password, inputType) {
       if (password) {
         return 'password';
-      }if (inputType) {
+      }
+      if (inputType) {
         return inputType;
       } else {
         return 'text';
