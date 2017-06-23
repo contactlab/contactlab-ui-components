@@ -1,3 +1,5 @@
+'use strict';
+
 export const UtilBehavior = {
 
   _dashify: (str) => {
@@ -18,8 +20,6 @@ export const UtilBehavior = {
 };
 
 
-
-
 export const AnimationsBehavior = {
 
   _onAnimationComplete: (elem, fn) => {
@@ -30,8 +30,6 @@ export const AnimationsBehavior = {
     }
   }
 };
-
-
 
 
 export const DropdownBehavior = {
