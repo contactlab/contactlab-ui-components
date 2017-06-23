@@ -1,6 +1,6 @@
 {
   "name": "contactclab-ui-components",
-  "version": "1.2.0",
+  "version": "1.3.0",
   "description": "Polymer UI components of the CLAB Pattern Library",
   "main": "index.js",
   "config": {
@@ -10,12 +10,8 @@
     "buildType": null
   },
   "scripts": {
-    "start": "http-server ./../ -s -p $npm_package_config_port_dev",
-    "dev": "concurrently -k \"http-server ./../ -s -p 3000\" \"webpack --progress --colors --watch\"",
-    "sass": "node _build/build-sass.js",
-    "build": "node _build/build.js run",
-    "vulcanize": "node _build/build.js vulcanize",
-    "prepublish": "yarn run build && yarn run build no-polymer",
+    "start": "http-server -s -p 3000",
+    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "test": "wct",
     "test:p": "wct -p"
   },
@@ -48,8 +44,10 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
+    "@polymer/polymer": "https://github.com/contactlab/polymer",
     "ikonograph": "2.0.0",
     "moment": "^2.17.1",
-    "rome": "^2.1.22"
+    "rome": "^2.1.22",
+    "web-animations-js": "^2.2.5"
   }
 }
