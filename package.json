@@ -40,10 +40,11 @@
     "webpack-notifier": "^1.5.0"
   },
   "dependencies": {
-    "@polymer/polymer": "https://github.com/contactlab/polymer",
+    "@polymer/polymer": "https://github.com/contactlab/polymer#fb93e032589a48383c68273adecb802fa7883002",
     "ikonograph": "2.0.0",
     "moment": "^2.17.1",
     "rome": "^2.1.22",
-    "web-animations-js": "^2.2.5"
+    "web-animations-js": "^2.2.5",
+    "webcomponents.js": "^0.7.24"
   }
 }

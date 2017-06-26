@@ -2,9 +2,9 @@
 # yarn lockfile v1
 
 
-"@polymer/polymer@https://github.com/contactlab/polymer":
-  version "2.0.1"
-  resolved "https://github.com/contactlab/polymer#a362e184c1a669dae01718930abd0132cceae12c"
+"@polymer/polymer@https://github.com/contactlab/polymer#fb93e032589a48383c68273adecb802fa7883002":
+  version "1.9.1"
+  resolved "https://github.com/contactlab/polymer#fb93e032589a48383c68273adecb802fa7883002"
 
 "@types/body-parser@0.0.33":
   version "0.0.33"
@@ -434,7 +434,7 @@ async@1.2.1:
   version "1.2.1"
   resolved "https://registry.yarnpkg.com/async/-/async-1.2.1.tgz#a4816a17cd5ff516dfa2c7698a453369b9790de0"
 
-async@2.0.1, async@^2.0.0, async@^2.0.1:
+async@2.0.1:
   version "2.0.1"
   resolved "https://registry.yarnpkg.com/async/-/async-2.0.1.tgz#b709cc0280a9c36f09f4536be823c838a9049e25"
   dependencies:
@@ -444,7 +444,7 @@ async@^1.5.0:
   version "1.5.2"
   resolved "https://registry.yarnpkg.com/async/-/async-1.5.2.tgz#ec6a61ae56480c0c3cb241c95618e20892f9672a"
 
-async@^2.1.2:
+async@^2.0.0, async@^2.0.1, async@^2.1.2:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/async/-/async-2.2.0.tgz#c324eba010a237e4fbd55a12dee86367d5c0ef32"
   dependencies:
@@ -5060,6 +5060,10 @@ web-component-tester@^5.0.0:
     update-notifier "^0.6.0"
     wct-local "^2.0.8"
     wct-sauce "^1.8.2"
+
+webcomponents.js@^0.7.24:
+  version "0.7.24"
+  resolved "https://registry.yarnpkg.com/webcomponents.js/-/webcomponents.js-0.7.24.tgz#2116fbfa1468ec416a7befdaa333e1d118f69c04"
 
 webpack-core@^0.6.8:
   version "0.6.9"

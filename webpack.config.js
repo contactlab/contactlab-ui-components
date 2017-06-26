@@ -6,6 +6,7 @@ const WebpackNotifierPlugin = require('webpack-notifier')
 
 module.exports = {
   entry: './_demo/demo.js',
+  // entry: './button',
   output: {
     path: path.join(__dirname, '_demo'),
     filename: 'components.js',
