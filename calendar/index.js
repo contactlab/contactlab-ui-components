@@ -2,7 +2,7 @@
 
 import rome from 'rome';
 import moment from 'moment';
-import '@polymer/polymer';
+ 
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/";
 import './../note/';

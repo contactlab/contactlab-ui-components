@@ -1,6 +1,6 @@
 'use strict';
 
-import '@polymer/polymer';
+
 import './view.html';
 
 class AccordionClab {
