@@ -33,11 +33,11 @@ suite('<radio-clab>', function() {
 	suite('Test Properties', function() {
 
 		test('Default Properties', function() {
-			assert.isUndefined(radio.labels);
+			assert.equal(radio.labels.length, 0);
 			assert.isUndefined(radio.name);
 			assert.equal(radio.wrapperType, '');
-			assert.isUndefined(radio.active);
-			assert.isUndefined(radio.disabled);
+			assert.equal(radio.active, 0);
+			assert.equald(radio.disabled.length, 0);
 		});
 
 	});
