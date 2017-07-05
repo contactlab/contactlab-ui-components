@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	
+
 
 	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
 	<script src="./../../../web-component-tester/browser.js"></script>
@@ -11,7 +11,7 @@
 
 </head>
 <body>
-	
+
 <test-fixture id="radio">
 	<template>
 	  <radio-clab></radio-clab>
@@ -31,11 +31,11 @@ describe('<radio-clab>', function() {
 	context('Test Properties', function() {
 
 		it('Default Properties', function(done) {
-			expect(radio.labels).to.be.undefined;
+			expect(radio.labels.length).to.equal(0);
 			expect(radio.name).to.be.undefined;
 			expect(radio.wrapperType).to.equal('');
-			expect(radio.active).to.be.undefined;
-			expect(radio.disabled).to.be.undefined;
+			expect(radio.active).to.equal(0);
+			expect(radio.disabled.length).to.equal(0);
 
 			done();
 		});
@@ -75,7 +75,7 @@ describe('<radio-clab>', function() {
 					for(var n=0; n<radio.disabled.length; n++){
 						if(n==i) expect(el.disabled).to.equal(true);
 					}
-					
+
 				});
 
 				done();
@@ -95,7 +95,7 @@ describe('<radio-clab>', function() {
 
 	});
 
-});	
+});
 
 </script>
 </body>
