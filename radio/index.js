@@ -1,6 +1,6 @@
 'use strict';
 
- 
+
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/";
 
@@ -13,14 +13,25 @@ class RadioClab {
   beforeRegister() {
     this.is = "radio-clab";
     this.properties = {
-      labels: Array,
-      name: String,
+      labels: {
+        type: Array,
+        value: []
+      },
+      name: {
+        type: String
+      },
       wrapperType: {
         type: String,
         value: ''
       },
-      active: Number,
-      disabled: Array,
+      active: {
+        type: Number,
+        value: 0
+      },
+      disabled: {
+        type: Array,
+        value: []
+      },
       inline: {
         type: Boolean,
         value: false,
