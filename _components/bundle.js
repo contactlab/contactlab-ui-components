@@ -18621,7 +18621,7 @@ var AutoCompleteClab = exports.AutoCompleteClab = function () {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + res.status);
+
           _this2.type = 'error';
           _this2._resetSpinnerTimeout();
           return;
@@ -19153,10 +19153,11 @@ var CalendarClab = exports.CalendarClab = function () {
     }
   }, {
     key: 'restore',
-    value: function restore() {
+    value: function restore(options) {
       var selector = this.inline ? 'div.inline-cal' : 'input';
       var currentCalendar = this.$$(selector);
-      (0, _rome2.default)(currentCalendar).restore(this.options);
+      (0, _rome2.default)(currentCalendar).destroy();
+      (0, _rome2.default)(currentCalendar).restore(options || this.options);
       return currentCalendar;
     }
   }, {
@@ -19694,7 +19695,7 @@ var DropdownClab = exports.DropdownClab = function () {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + res.status);
+
           _this2.type = 'error';
           return;
         }
@@ -20385,7 +20386,6 @@ var MultipleClab = exports.MultipleClab = function () {
           method: 'GET'
         }).then(function (res) {
           if (res.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' + res.status);
 
             window.clearTimeout(timeoutID);
             timeoutID = undefined;
@@ -20455,7 +20455,6 @@ var MultipleClab = exports.MultipleClab = function () {
         } else {
           this._selectThis(evt.target);
         }
-        console.log('##', this.selected);
       } else if (this.shift) {
         //adding multiple select
         if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -20504,7 +20503,7 @@ var MultipleClab = exports.MultipleClab = function () {
             method: 'GET'
           }).then(function (res) {
             if (res.status !== 200) {
-              console.log('Looks like there was a problem. Status Code: ' + res.status);
+
               if (typeof timeoutID == 'number') {
                 window.clearTimeout(timeoutID);
                 timeoutID = undefined;
