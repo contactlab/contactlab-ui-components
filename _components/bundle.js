@@ -18621,7 +18621,7 @@ var AutoCompleteClab = exports.AutoCompleteClab = function () {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-
+          console.log('Looks like there was a problem. Status Code: ' + res.status);
           _this2.type = 'error';
           _this2._resetSpinnerTimeout();
           return;
@@ -19695,7 +19695,7 @@ var DropdownClab = exports.DropdownClab = function () {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-
+          console.log('Looks like there was a problem. Status Code: ' + res.status);
           _this2.type = 'error';
           return;
         }
@@ -20386,6 +20386,7 @@ var MultipleClab = exports.MultipleClab = function () {
           method: 'GET'
         }).then(function (res) {
           if (res.status !== 200) {
+            console.log('Looks like there was a problem. Status Code: ' + res.status);
 
             window.clearTimeout(timeoutID);
             timeoutID = undefined;
@@ -20455,6 +20456,7 @@ var MultipleClab = exports.MultipleClab = function () {
         } else {
           this._selectThis(evt.target);
         }
+        console.log('##', this.selected);
       } else if (this.shift) {
         //adding multiple select
         if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -20503,7 +20505,7 @@ var MultipleClab = exports.MultipleClab = function () {
             method: 'GET'
           }).then(function (res) {
             if (res.status !== 200) {
-
+              console.log('Looks like there was a problem. Status Code: ' + res.status);
               if (typeof timeoutID == 'number') {
                 window.clearTimeout(timeoutID);
                 timeoutID = undefined;
