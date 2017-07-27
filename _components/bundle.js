@@ -19153,10 +19153,11 @@ var CalendarClab = exports.CalendarClab = function () {
     }
   }, {
     key: 'restore',
-    value: function restore() {
+    value: function restore(options) {
       var selector = this.inline ? 'div.inline-cal' : 'input';
       var currentCalendar = this.$$(selector);
-      (0, _rome2.default)(currentCalendar).restore(this.options);
+      (0, _rome2.default)(currentCalendar).destroy();
+      (0, _rome2.default)(currentCalendar).restore(options || this.options);
       return currentCalendar;
     }
   }, {

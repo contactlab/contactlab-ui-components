@@ -197,10 +197,11 @@ export class CalendarClab {
     return rome.find(this.querySelector('input'));
   }
 
-  restore() {
+  restore(options) {
     const selector = this.inline ? 'div.inline-cal' : 'input';
     const currentCalendar = this.$$(selector);
-    rome(currentCalendar).restore(this.options);
+    rome(currentCalendar).destroy();
+    rome(currentCalendar).restore(options || this.options);
     return currentCalendar;
   }
 
