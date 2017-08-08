@@ -2,7 +2,7 @@
 
 import rome from 'rome';
 import moment from 'moment';
- 
+
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/";
 import './../note/';
@@ -52,8 +52,6 @@ class CalendarClab {
   }
 
 
-
-
   /*----------
   EVENT HANDLERS
   ----------*/
@@ -98,7 +96,6 @@ class CalendarClab {
   }
 
 
-
   /*----------
   METHODS
   ----------*/
@@ -141,15 +138,12 @@ class CalendarClab {
   }
 
 
-
   /*----------
   COMPUTED
   ----------*/
   _computeType(str, type) {
     return [str, type].join(' ');
   }
-
-
 
 
   /*----------
@@ -164,7 +158,6 @@ class CalendarClab {
     let thisLocale = this.options.locale ? this.options.locale : 'en';
     return thisLocale;
   }
-
 
 
   /*----------
@@ -192,10 +185,11 @@ class CalendarClab {
     return rome.find(this.querySelector('input'));
   }
 
-  restore() {
+  restore(options) {
     const selector = this.inline ? 'div.inline-cal' : 'input';
     const currentCalendar = this.$$(selector);
-    rome(currentCalendar).restore(this.options);
+    rome(currentCalendar).destroy();
+    rome(currentCalendar).restore(options || this.options);
     return currentCalendar;
   }
 
