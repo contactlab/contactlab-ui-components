@@ -1,9 +1,10 @@
 'use strict';
 
- 
+
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/";
 import {DropdownBehavior} from "./../_behaviors/";
+import "./../input/";
 import "./../note/";
 import "./../curtain/";
 
@@ -55,7 +56,12 @@ class DropdownClab {
             value: 'B',
             label: 'Option 2'
           }
-				]
+				],
+        observer: '_updateList'
+      },
+      optionsList: {
+        type: Array,
+        value: []
       },
       optionsFn: {
         type: Function,
@@ -96,7 +102,15 @@ class DropdownClab {
       maxHeight: {
         type: Number,
         value: 28
-      }
+      },
+      search: {
+        type: Boolean,
+        value: false
+      },
+      searchValue: {
+        type: String,
+        value: ''
+      },
       /*_liHeight:{
       	type:String,
       	value:null,
@@ -118,6 +132,18 @@ class DropdownClab {
     }
   }
 
+  _updateList(newValue, oldValue){
+    this.optionsList = newValue.slice();
+  }
+
+  _filter(evt){
+    console.log(evt.target.value);
+    this.searchValue = evt.target.value;
+    const str = evt.target.value;
+    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e,i) => {
+      return e[this.labelField].search(this.searchValue) > -1;
+    }) : this.optionsList = this.options.slice();
+  }
 
 
   /*----------
@@ -126,7 +152,7 @@ class DropdownClab {
   _toggleList(evt) {
     if(!this.disabled) {
       this.$.curtain.open = !this.$.curtain.open;
-      this.querySelector('.value_wrapper').classList.toggle('active');
+      !this.search ? this.querySelector('.value_wrapper').classList.toggle('active') : null;
     }
 
     let windowClick = (evt) => {
@@ -141,7 +167,7 @@ class DropdownClab {
         return;
       } else {
         this.$.curtain.open = false;
-        this.querySelector('.value_wrapper').classList.remove('active');
+        !this.search ? this.querySelector('.value_wrapper').classList.remove('active') : null;
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -187,7 +213,8 @@ class DropdownClab {
     this.set('selected', item);
     this.set('highlighted', item);
     this.$.curtain.open = false;
-    this.querySelector('.value_wrapper').classList.remove('active');
+    !this.search ? this.querySelector('.value_wrapper').classList.remove('active') : null;
+    this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
       if(this.resultAsObj){
