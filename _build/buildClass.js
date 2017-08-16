@@ -21,7 +21,7 @@ class Build {
 
 		// Using YUI Compressor for CSS
 		compressor.minify({
-			compressor: 'yui-css',
+			compressor: 'clean-css',
 			input: '_assets/css/contactlab-pattern.css',
 			output: '_assets/css/contactlab-pattern.min.css',
 			callback: err => {

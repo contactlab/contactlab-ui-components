@@ -4809,298 +4809,6 @@ var NoteClab = exports.NoteClab = function () {
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var customEvent = __webpack_require__(163);
-var eventmap = __webpack_require__(162);
-var doc = document;
-var addEvent = addEventEasy;
-var removeEvent = removeEventEasy;
-var hardCache = [];
-
-if (!global.addEventListener) {
-  addEvent = addEventHard;
-  removeEvent = removeEventHard;
-}
-
-function addEventEasy(el, type, fn, capturing) {
-  return el.addEventListener(type, fn, capturing);
-}
-
-function addEventHard(el, type, fn) {
-  return el.attachEvent('on' + type, wrap(el, type, fn));
-}
-
-function removeEventEasy(el, type, fn, capturing) {
-  return el.removeEventListener(type, fn, capturing);
-}
-
-function removeEventHard(el, type, fn) {
-  return el.detachEvent('on' + type, unwrap(el, type, fn));
-}
-
-function fabricateEvent(el, type, model) {
-  var e = eventmap.indexOf(type) === -1 ? makeCustomEvent() : makeClassicEvent();
-  if (el.dispatchEvent) {
-    el.dispatchEvent(e);
-  } else {
-    el.fireEvent('on' + type, e);
-  }
-  function makeClassicEvent() {
-    var e;
-    if (doc.createEvent) {
-      e = doc.createEvent('Event');
-      e.initEvent(type, true, true);
-    } else if (doc.createEventObject) {
-      e = doc.createEventObject();
-    }
-    return e;
-  }
-  function makeCustomEvent() {
-    return new customEvent(type, { detail: model });
-  }
-}
-
-function wrapperFactory(el, type, fn) {
-  return function wrapper(originalEvent) {
-    var e = originalEvent || global.event;
-    e.target = e.target || e.srcElement;
-    e.preventDefault = e.preventDefault || function preventDefault() {
-      e.returnValue = false;
-    };
-    e.stopPropagation = e.stopPropagation || function stopPropagation() {
-      e.cancelBubble = true;
-    };
-    e.which = e.which || e.keyCode;
-    fn.call(el, e);
-  };
-}
-
-function wrap(el, type, fn) {
-  var wrapper = unwrap(el, type, fn) || wrapperFactory(el, type, fn);
-  hardCache.push({
-    wrapper: wrapper,
-    element: el,
-    type: type,
-    fn: fn
-  });
-  return wrapper;
-}
-
-function unwrap(el, type, fn) {
-  var i = find(el, type, fn);
-  if (i) {
-    var wrapper = hardCache[i].wrapper;
-    hardCache.splice(i, 1); // free up a tad of memory
-    return wrapper;
-  }
-}
-
-function find(el, type, fn) {
-  var i, item;
-  for (i = 0; i < hardCache.length; i++) {
-    item = hardCache[i];
-    if (item.element === el && item.type === type && item.fn === fn) {
-      return i;
-    }
-  }
-}
-
-module.exports = {
-  add: addEvent,
-  remove: removeEvent,
-  fabricate: fabricateEvent
-};
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-exports.CurtainClab = undefined;
-
-var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
-var _polymer = __webpack_require__(1);
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-var CurtainClab = exports.CurtainClab = function () {
-  function CurtainClab() {
-    _classCallCheck(this, CurtainClab);
-  }
-
-  _createClass(CurtainClab, [{
-    key: "beforeRegister",
-    value: function beforeRegister() {
-      this.is = "curtain-clab";
-      this.properties = {
-        id: String,
-        options: Array,
-        highlighted: Object,
-        labelField: String,
-        valueField: String,
-        dontHide: {
-          type: Boolean,
-          notify: true
-        },
-        maxInView: Number,
-        disabled: {
-          type: Boolean,
-          value: false
-        },
-        open: {
-          type: Boolean,
-          value: false
-        },
-
-        //_liHeight:Number,
-        maxHeight: {
-          type: Number,
-          value: 28
-        },
-        _listMaxHeight: String,
-        _listHeight: String,
-        _hidden: {
-          type: Boolean,
-          value: false
-        },
-        _computedStyles: String
-      };
-      this.observers = ['_setLiHeight(options, maxInView, disabled)', '_compStyles(_hidden, _listMaxHeight, _listHeight, open)'];
-    }
-  }, {
-    key: "attached",
-    value: function attached() {
-      var _this = this;
-
-      this.addEventListener('mousedown', function (evt) {
-        switch (evt.target.localName) {
-          case 'ol':
-            _this.dontHide = true;
-            break;
-          case 'li':
-            _this.dontHide = false;
-            var i = evt.target.getAttribute('data-i');
-            _this.dispatchEvent(new CustomEvent('do-select', {
-              bubbles: true,
-              composed: true,
-              detail: {
-                index: i
-              }
-            }));
-            break;
-          default:
-            _this.dontHide = false;
-        }
-      });
-      this.addEventListener('mouseup', function (evt) {
-        _this.dontHide = false;
-      });
-    }
-
-    /*----------
-    	EVENT HANDLERS
-    ----------*/
-
-  }, {
-    key: "doHighlight",
-    value: function doHighlight(evt) {
-      var i = evt.target.getAttribute('data-i');
-      this.dispatchEvent(new CustomEvent('do-highlight', {
-        bubbles: true,
-        composed: true,
-        detail: {
-          index: i
-        }
-      }));
-    }
-
-    /*----------
-    	METHODS
-    ----------*/
-
-  }, {
-    key: "_setLiHeight",
-    value: function _setLiHeight(options, maxInView, disabled) {
-      var _this2 = this;
-
-      if (options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
-        this.async(function () {
-          if (_this2.maxHeight == undefined || _this2.maxHeight == '') {
-            _this2.set('_hidden', true);
-            _this2.maxHeight = 28;
-            _this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
-            _this2.set('_hidden', false);
-          } else {
-            _this2.set('_hidden', true);
-            _this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
-            _this2.set('_hidden', false);
-          }
-
-          _this2.set('_listHeight', _this2.maxHeight * options.length + 'px');
-          _this2.$.list.scrollTop = 0;
-        }, 100);
-      }
-    }
-
-    /*----------
-    	COMPUTERS
-    ----------*/
-
-  }, {
-    key: "_compHighlight",
-    value: function _compHighlight(highlighted, option) {
-      return highlighted[this.valueField] === option[this.valueField] ? 'selected' : '';
-    }
-  }, {
-    key: "_compLabel",
-    value: function _compLabel(opt) {
-      return opt[this.labelField];
-    }
-  }, {
-    key: "_compStyles",
-    value: function _compStyles(hidden, maxHeight, height, open) {
-      var arr = [];
-      if (hidden) arr.push('display:block; opacity:0');
-      if (maxHeight != undefined) arr.push('max-height:' + maxHeight);
-      if (height != undefined) arr.push('height:' + height);
-      if (open) arr.push('display:block');
-      this.set('_computedStyles', arr.join(';'));
-    }
-
-    /*----------
-    	PUBLIC
-    ----------*/
-
-  }, {
-    key: "scrollToHighlight",
-    value: function scrollToHighlight(i, goesUp) {
-      var offsetTop = this.$.list.children[i].offsetTop,
-          scrollTop = this.$.list.scrollTop,
-          h = this.$.list.clientHeight,
-          visible = offsetTop < scrollTop || offsetTop >= scrollTop + h ? false : true;
-
-      if (!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;else if (!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
-    }
-  }]);
-
-  return CurtainClab;
-}();
-
-(0, _polymer.Polymer)(CurtainClab);
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
 
 
 Object.defineProperty(exports, "__esModule", {
@@ -5329,6 +5037,298 @@ var InputClab = exports.InputClab = function () {
 }();
 
 (0, _polymer.Polymer)(InputClab);
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var customEvent = __webpack_require__(163);
+var eventmap = __webpack_require__(162);
+var doc = document;
+var addEvent = addEventEasy;
+var removeEvent = removeEventEasy;
+var hardCache = [];
+
+if (!global.addEventListener) {
+  addEvent = addEventHard;
+  removeEvent = removeEventHard;
+}
+
+function addEventEasy(el, type, fn, capturing) {
+  return el.addEventListener(type, fn, capturing);
+}
+
+function addEventHard(el, type, fn) {
+  return el.attachEvent('on' + type, wrap(el, type, fn));
+}
+
+function removeEventEasy(el, type, fn, capturing) {
+  return el.removeEventListener(type, fn, capturing);
+}
+
+function removeEventHard(el, type, fn) {
+  return el.detachEvent('on' + type, unwrap(el, type, fn));
+}
+
+function fabricateEvent(el, type, model) {
+  var e = eventmap.indexOf(type) === -1 ? makeCustomEvent() : makeClassicEvent();
+  if (el.dispatchEvent) {
+    el.dispatchEvent(e);
+  } else {
+    el.fireEvent('on' + type, e);
+  }
+  function makeClassicEvent() {
+    var e;
+    if (doc.createEvent) {
+      e = doc.createEvent('Event');
+      e.initEvent(type, true, true);
+    } else if (doc.createEventObject) {
+      e = doc.createEventObject();
+    }
+    return e;
+  }
+  function makeCustomEvent() {
+    return new customEvent(type, { detail: model });
+  }
+}
+
+function wrapperFactory(el, type, fn) {
+  return function wrapper(originalEvent) {
+    var e = originalEvent || global.event;
+    e.target = e.target || e.srcElement;
+    e.preventDefault = e.preventDefault || function preventDefault() {
+      e.returnValue = false;
+    };
+    e.stopPropagation = e.stopPropagation || function stopPropagation() {
+      e.cancelBubble = true;
+    };
+    e.which = e.which || e.keyCode;
+    fn.call(el, e);
+  };
+}
+
+function wrap(el, type, fn) {
+  var wrapper = unwrap(el, type, fn) || wrapperFactory(el, type, fn);
+  hardCache.push({
+    wrapper: wrapper,
+    element: el,
+    type: type,
+    fn: fn
+  });
+  return wrapper;
+}
+
+function unwrap(el, type, fn) {
+  var i = find(el, type, fn);
+  if (i) {
+    var wrapper = hardCache[i].wrapper;
+    hardCache.splice(i, 1); // free up a tad of memory
+    return wrapper;
+  }
+}
+
+function find(el, type, fn) {
+  var i, item;
+  for (i = 0; i < hardCache.length; i++) {
+    item = hardCache[i];
+    if (item.element === el && item.type === type && item.fn === fn) {
+      return i;
+    }
+  }
+}
+
+module.exports = {
+  add: addEvent,
+  remove: removeEvent,
+  fabricate: fabricateEvent
+};
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.CurtainClab = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _polymer = __webpack_require__(1);
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+var CurtainClab = exports.CurtainClab = function () {
+  function CurtainClab() {
+    _classCallCheck(this, CurtainClab);
+  }
+
+  _createClass(CurtainClab, [{
+    key: "beforeRegister",
+    value: function beforeRegister() {
+      this.is = "curtain-clab";
+      this.properties = {
+        id: String,
+        options: Array,
+        highlighted: Object,
+        labelField: String,
+        valueField: String,
+        dontHide: {
+          type: Boolean,
+          notify: true
+        },
+        maxInView: Number,
+        disabled: {
+          type: Boolean,
+          value: false
+        },
+        open: {
+          type: Boolean,
+          value: false
+        },
+
+        //_liHeight:Number,
+        maxHeight: {
+          type: Number,
+          value: 28
+        },
+        _listMaxHeight: String,
+        _listHeight: String,
+        _hidden: {
+          type: Boolean,
+          value: false
+        },
+        _computedStyles: String
+      };
+      this.observers = ['_setLiHeight(options, maxInView, disabled)', '_compStyles(_hidden, _listMaxHeight, _listHeight, open)'];
+    }
+  }, {
+    key: "attached",
+    value: function attached() {
+      var _this = this;
+
+      this.addEventListener('mousedown', function (evt) {
+        switch (evt.target.localName) {
+          case 'ol':
+            _this.dontHide = true;
+            break;
+          case 'li':
+            _this.dontHide = false;
+            var i = evt.target.getAttribute('data-i');
+            _this.dispatchEvent(new CustomEvent('do-select', {
+              bubbles: true,
+              composed: true,
+              detail: {
+                index: i
+              }
+            }));
+            break;
+          default:
+            _this.dontHide = false;
+        }
+      });
+      this.addEventListener('mouseup', function (evt) {
+        _this.dontHide = false;
+      });
+    }
+
+    /*----------
+    	EVENT HANDLERS
+    ----------*/
+
+  }, {
+    key: "doHighlight",
+    value: function doHighlight(evt) {
+      var i = evt.target.getAttribute('data-i');
+      this.dispatchEvent(new CustomEvent('do-highlight', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          index: i
+        }
+      }));
+    }
+
+    /*----------
+    	METHODS
+    ----------*/
+
+  }, {
+    key: "_setLiHeight",
+    value: function _setLiHeight(options, maxInView, disabled) {
+      var _this2 = this;
+
+      if (options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
+        this.async(function () {
+          if (_this2.maxHeight == undefined || _this2.maxHeight == '') {
+            _this2.set('_hidden', true);
+            _this2.maxHeight = 28;
+            _this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
+            _this2.set('_hidden', false);
+          } else {
+            _this2.set('_hidden', true);
+            _this2.set('_listMaxHeight', _this2.maxHeight * maxInView + 'px');
+            _this2.set('_hidden', false);
+          }
+
+          _this2.set('_listHeight', _this2.maxHeight * options.length + 'px');
+          _this2.$.list.scrollTop = 0;
+        }, 100);
+      }
+    }
+
+    /*----------
+    	COMPUTERS
+    ----------*/
+
+  }, {
+    key: "_compHighlight",
+    value: function _compHighlight(highlighted, option) {
+      return highlighted[this.valueField] === option[this.valueField] ? 'selected' : '';
+    }
+  }, {
+    key: "_compLabel",
+    value: function _compLabel(opt) {
+      return opt[this.labelField];
+    }
+  }, {
+    key: "_compStyles",
+    value: function _compStyles(hidden, maxHeight, height, open) {
+      var arr = [];
+      if (hidden) arr.push('display:block; opacity:0');
+      if (maxHeight != undefined) arr.push('max-height:' + maxHeight);
+      if (height != undefined) arr.push('height:' + height);
+      if (open) arr.push('display:block');
+      this.set('_computedStyles', arr.join(';'));
+    }
+
+    /*----------
+    	PUBLIC
+    ----------*/
+
+  }, {
+    key: "scrollToHighlight",
+    value: function scrollToHighlight(i, goesUp) {
+      var offsetTop = this.$.list.children[i].offsetTop,
+          scrollTop = this.$.list.scrollTop,
+          h = this.$.list.clientHeight,
+          visible = offsetTop < scrollTop || offsetTop >= scrollTop + h ? false : true;
+
+      if (!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;else if (!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
+    }
+  }]);
+
+  return CurtainClab;
+}();
+
+(0, _polymer.Polymer)(CurtainClab);
 
 /***/ }),
 /* 10 */
@@ -17012,7 +17012,7 @@ var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol
 "use strict";
 
 
-var crossvent = __webpack_require__(7);
+var crossvent = __webpack_require__(8);
 var emitter = __webpack_require__(161);
 var dom = __webpack_require__(167);
 var text = __webpack_require__(182);
@@ -18416,11 +18416,11 @@ var _polymer = __webpack_require__(1);
 
 var _behaviors = __webpack_require__(2);
 
-var _script = __webpack_require__(9);
+var _script = __webpack_require__(7);
 
 var _script2 = __webpack_require__(10);
 
-var _script3 = __webpack_require__(8);
+var _script3 = __webpack_require__(9);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -18621,7 +18621,7 @@ var AutoCompleteClab = exports.AutoCompleteClab = function () {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + res.status);
+
           _this2.type = 'error';
           _this2._resetSpinnerTimeout();
           return;
@@ -19524,7 +19524,9 @@ var _behaviors = __webpack_require__(2);
 
 var _script = __webpack_require__(6);
 
-var _script2 = __webpack_require__(8);
+var _script2 = __webpack_require__(9);
+
+var _script3 = __webpack_require__(7);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -19574,7 +19576,12 @@ var DropdownClab = exports.DropdownClab = function () {
           }, {
             value: 'B',
             label: 'Option 2'
-          }]
+          }],
+          observer: '_updateList'
+        },
+        optionsList: {
+          type: Array,
+          value: []
         },
         optionsFn: {
           type: Function,
@@ -19585,6 +19592,10 @@ var DropdownClab = exports.DropdownClab = function () {
           observer: '_observUrl'
         },
         inline: {
+          type: Boolean,
+          value: false
+        },
+        open: {
           type: Boolean,
           value: false
         },
@@ -19615,12 +19626,15 @@ var DropdownClab = exports.DropdownClab = function () {
         maxHeight: {
           type: Number,
           value: 28
+        },
+        search: {
+          type: Boolean,
+          value: false
+        },
+        searchValue: {
+          type: String,
+          value: ''
         }
-        /*_liHeight:{
-        	type:String,
-        	value:null,
-        	readonly: true
-        }*/
       };
     }
   }, {
@@ -19649,8 +19663,7 @@ var DropdownClab = exports.DropdownClab = function () {
       var _this = this;
 
       if (!this.disabled) {
-        this.$.curtain.open = !this.$.curtain.open;
-        this.querySelector('.value_wrapper').classList.toggle('active');
+        this.open = !this.open;
       }
 
       var windowClick = function windowClick(evt) {
@@ -19664,8 +19677,7 @@ var DropdownClab = exports.DropdownClab = function () {
           window.removeEventListener('mousedown', windowClick);
           return;
         } else {
-          _this.$.curtain.open = false;
-          _this.querySelector('.value_wrapper').classList.remove('active');
+          _this.open = false;
           window.removeEventListener('mousedown', windowClick);
         }
       };
@@ -19674,12 +19686,22 @@ var DropdownClab = exports.DropdownClab = function () {
   }, {
     key: "handleSelect",
     value: function handleSelect(evt) {
-      this._setSelected(this.options[evt.detail.index]);
+      this._setSelected(this.optionsList[evt.detail.index]);
     }
   }, {
     key: "_handleHighlight",
     value: function _handleHighlight(evt) {
       this.set('highlighted', this.options[evt.detail.index]);
+    }
+  }, {
+    key: "_filter",
+    value: function _filter(evt) {
+      var _this2 = this;
+
+      this.searchValue = evt.target.value;
+      this.searchValue.length > 0 ? this.optionsList = this.options.filter(function (e, i) {
+        return e[_this2.labelField].search(_this2.searchValue) > -1;
+      }) : this.optionsList = this.options.slice();
     }
 
     /*----------
@@ -19689,33 +19711,34 @@ var DropdownClab = exports.DropdownClab = function () {
   }, {
     key: "_fetchOptions",
     value: function _fetchOptions() {
-      var _this2 = this;
+      var _this3 = this;
 
       fetch(this.url, {
         method: 'GET'
       }).then(function (res) {
         if (res.status !== 200) {
-          console.log('Looks like there was a problem. Status Code: ' + res.status);
-          _this2.type = 'error';
+
+          _this3.type = 'error';
           return;
         }
 
         res.json().then(function (data) {
-          _this2.set('options', data);
+          _this3.set('options', data);
         });
       }).catch(function (err) {
         console.error("Fetch Error ==> ", err);
-        _this2.type = 'error';
+        _this3.type = 'error';
       });
     }
   }, {
     key: "_setSelected",
     value: function _setSelected(item) {
       var old = this.selected;
+      this.optionsList = this.options.slice();
       this.set('selected', item);
       this.set('highlighted', item);
-      this.$.curtain.open = false;
-      this.querySelector('.value_wrapper').classList.remove('active');
+      this.open = false;
+      this.searchValue = this.selected[this.labelField];
 
       if (!this.preventChange) {
         if (this.resultAsObj) {
@@ -19749,16 +19772,23 @@ var DropdownClab = exports.DropdownClab = function () {
   }, {
     key: "_setOptions",
     value: function _setOptions(promise) {
-      var _this3 = this;
+      var _this4 = this;
 
       promise().then(function (resp) {
-        _this3.set('options', resp);
+        _this4.set('options', resp);
       });
     }
   }, {
     key: "_observUrl",
     value: function _observUrl(newv, oldv) {
       if (newv != undefined) this._fetchOptions();
+    }
+  }, {
+    key: "_updateList",
+    value: function _updateList(newValue, oldValue) {
+      var selected = this.selected;
+      this.optionsList = newValue ? newValue.slice() : this.optionsList;
+      this.searchValue = selected ? selected[this.labelField] : null;
     }
 
     /*----------
@@ -19793,12 +19823,13 @@ var DropdownClab = exports.DropdownClab = function () {
     }
   }, {
     key: "_compType",
-    value: function _compType(str, disabled, type, id) {
+    value: function _compType(str, disabled, type, id, open) {
       var arr = [];
       if (str != undefined && str.length > 0) arr.push(str);
       if (id != undefined && id.length > 0) arr.push(id);
       if (disabled) arr.push('disabled');
       if (type != undefined && type.length > 0) arr.push(type);
+      open ? arr.push('active') : null;
       return arr.join(' ');
     }
   }, {
@@ -20254,7 +20285,9 @@ var ModalClab = exports.ModalClab = function () {
         } else {
           target.style.opacity = 1;
         }
-      } else {
+        // Check if was a previously attached modal to avoid to remove the "no-scroll" class from the body needed for another modal. 
+        // The oldval should be "false"
+      } else if (typeof oldval !== 'undefined') {
         document.querySelector('body').classList.remove('no-scroll');
         if (!this.noAnimation && this.modalExit) {
           var _animation = this.modalExit(target);
@@ -20386,7 +20419,6 @@ var MultipleClab = exports.MultipleClab = function () {
           method: 'GET'
         }).then(function (res) {
           if (res.status !== 200) {
-            console.log('Looks like there was a problem. Status Code: ' + res.status);
 
             window.clearTimeout(timeoutID);
             timeoutID = undefined;
@@ -20456,7 +20488,6 @@ var MultipleClab = exports.MultipleClab = function () {
         } else {
           this._selectThis(evt.target);
         }
-        console.log('##', this.selected);
       } else if (this.shift) {
         //adding multiple select
         if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
@@ -20505,7 +20536,7 @@ var MultipleClab = exports.MultipleClab = function () {
             method: 'GET'
           }).then(function (res) {
             if (res.status !== 200) {
-              console.log('Looks like there was a problem. Status Code: ' + res.status);
+
               if (typeof timeoutID == 'number') {
                 window.clearTimeout(timeoutID);
                 timeoutID = undefined;
@@ -21353,7 +21384,7 @@ var _script = __webpack_require__(4);
 
 var _script2 = __webpack_require__(14);
 
-var _script3 = __webpack_require__(9);
+var _script3 = __webpack_require__(7);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -21747,7 +21778,7 @@ var _script7 = __webpack_require__(142);
 
 var _script8 = __webpack_require__(143);
 
-var _script9 = __webpack_require__(8);
+var _script9 = __webpack_require__(9);
 
 var _script10 = __webpack_require__(144);
 
@@ -21755,7 +21786,7 @@ var _script11 = __webpack_require__(145);
 
 var _script12 = __webpack_require__(146);
 
-var _script13 = __webpack_require__(9);
+var _script13 = __webpack_require__(7);
 
 var _script14 = __webpack_require__(14);
 
@@ -21799,7 +21830,7 @@ module.exports = function atoa(a, n) {
 "use strict";
 
 
-var crossvent = __webpack_require__(7);
+var crossvent = __webpack_require__(8);
 var throttle = __webpack_require__(15);
 var tailormade = __webpack_require__(159);
 
@@ -21898,7 +21929,7 @@ module.exports = bullseye;
 /* WEBPACK VAR INJECTION */(function(global) {
 
 var sell = __webpack_require__(192);
-var crossvent = __webpack_require__(7);
+var crossvent = __webpack_require__(8);
 var seleccion = __webpack_require__(190);
 var throttle = __webpack_require__(15);
 var getSelection = seleccion.get;
@@ -22544,7 +22575,7 @@ module.exports = inline;
 "use strict";
 
 
-var crossvent = __webpack_require__(7);
+var crossvent = __webpack_require__(8);
 var bullseye = __webpack_require__(158);
 var throttle = __webpack_require__(183);
 var clone = __webpack_require__(133);

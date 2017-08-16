@@ -52,11 +52,14 @@ suite('<dropdown-clab>', function() {
 			assert.equal(dropdown.maxInView, 4);
 			assert.isUndefined(dropdown.noteType);
       assert.equal(dropdown.maxHeight, 28);
+      assert.isFalse(dropdown.search);
+      assert.equal(dropdown.searchValue, '');
+      assert.isArray(dropdown.optionsList);
 		});
 
 	});
 
-  suite('Test DOM Bindings', function() {
+  /*suite('Test DOM Bindings', function() {
 
 		test('Check labels', function(done) {
       var label = 'ciccio';
@@ -196,7 +199,7 @@ suite('<dropdown-clab>', function() {
       });
 		});
 
-	});
+	});*/
 
   suite('Test Events', function() {
 

@@ -85,6 +85,20 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
       </section>
 
       <section>
+        <h2>Searchable dropdown</h2>
+        <dropdown-clab search
+          max-in-view="4"
+          label="Awesome Dropdown" result-as-obj options='[{"name":"ciccio", "value":"ciccio"},{"name":"puzzo raga", "value":"puzzo raga"},{"name":"bella", "value":"bella"},{"name":"raga", "value":"raga"},{"name":"tutto raga", "value":"tutto raga"},{"name":"tutto rego", "value":"tutto rego"}]'
+          selected='{"name":"puzzo raga", "value":"puzzo raga"}'
+          label-field="name">
+        </dropdown-clab>
+
+        <dropdown-clab search id="ddsearch" max-in-view="4" label="Awesome Dropdown [test]" result-as-obj
+          label-field="name">
+        </dropdown-clab>
+      </section>
+
+      <section>
         <h2>Tables</h2>
         <table class="striped-table">
           <tr>
@@ -685,6 +699,18 @@ Anyway it seems to work even if the components are not vulcanized but loaded bef
     attached: function () {
 
       this.async(function () {
+        const ddData = [{ "name": "ciccio", "value": "ciccio" }, { "name": "puzzo raga", "value": "puzzo raga" }, { "name": "bella", "value": "bella" }, { "name": "raga", "value": "raga" }, { "name": "tutto raga", "value": "tutto raga" }, { "name": "tutto rego", "value": "tutto rego" }]
+        const ddSelected = Object.assign({},ddData[2]);
+        const ddsearch = this.querySelector('#ddsearch');
+
+        setTimeout(() => {
+          ddsearch.options = ddData;
+        }, 1500)
+
+        setTimeout(() => {
+          ddsearch.selected = ddSelected;
+        }, 700)
+
         // MODAL
         this.modal1 = document.querySelector('#modal-one');
         this.modal2 = document.querySelector('#modal-two');

@@ -1,5 +1,6 @@
 <link rel="import" href="./../note/view.html">
 <link rel="import" href="./../curtain/view.html">
+<link rel="import" href="./../input/view.html">
 
 <dom-module id="dropdown-clab">
 
@@ -22,17 +23,22 @@
       </template>
 
       <div class="input">
-        <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
-          <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
-            <span class="selected">[[_compLabel(selected)]]</span>
-          </template>
-          <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
-            <span class="placeholder">[[placeholder]]</span>
-          </template>
-        </div>
-        <curtain-clab id="curtain" slot="curtain" options="[[options]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]"
+        <template is="dom-if" if="[[!search]]">
+          <div class$="[[_compType('value_wrapper', disabled, type, id, open)]]" on-tap="_toggleList">
+            <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
+              <span class="selected">[[_compLabel(selected)]]</span>
+            </template>
+            <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
+              <span class="placeholder">[[placeholder]]</span>
+            </template>
+          </div>
+        </template>
+        <template is="dom-if" if="[[search]]">
+          <input-clab on-click="_toggleList" on-keyup="_filter" value="[[searchValue]]"></input-clab>
+        </template>
+        <curtain-clab id="curtain" slot="curtain" options="[[optionsList]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]"
           label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight"
-          on-do-select="handleSelect"></curtain-clab>
+          on-do-select="handleSelect" open="[[open]]"></curtain-clab>
       </div>
 
       <slot name="button"></slot>

@@ -5,6 +5,7 @@ import {UtilBehavior} from "./../_behaviors/behaviors.es6";
 import {DropdownBehavior} from "./../_behaviors/behaviors.es6";
 import {NoteClab} from "./../note/script.es6";
 import {CurtainClab} from "./../curtain/script.es6";
+import {InputClab} from "./../input/script.es6";
 
 export class DropdownClab {
 
@@ -54,7 +55,12 @@ export class DropdownClab {
             value: 'B',
             label: 'Option 2'
           }
-				]
+				],
+        observer: '_updateList'
+      },
+      optionsList: {
+        type: Array,
+        value: []
       },
       optionsFn: {
         type: Function,
@@ -65,6 +71,10 @@ export class DropdownClab {
         observer: '_observUrl'
       },
       inline: {
+        type: Boolean,
+        value: false
+      },
+      open: {
         type: Boolean,
         value: false
       },
@@ -95,7 +105,15 @@ export class DropdownClab {
       maxHeight: {
         type: Number,
         value: 28
-      }
+      },
+      search: {
+        type: Boolean,
+        value: false
+      },
+      searchValue: {
+        type: String,
+        value: ''
+      },
       /*_liHeight:{
       	type:String,
       	value:null,
@@ -124,8 +142,7 @@ export class DropdownClab {
   ----------*/
   _toggleList(evt) {
     if(!this.disabled) {
-      this.$.curtain.open = !this.$.curtain.open;
-      this.querySelector('.value_wrapper').classList.toggle('active');
+      this.open = !this.open;
     }
 
     let windowClick = (evt) => {
@@ -139,8 +156,7 @@ export class DropdownClab {
         window.removeEventListener('mousedown', windowClick);
         return;
       } else {
-        this.$.curtain.open = false;
-        this.querySelector('.value_wrapper').classList.remove('active');
+        this.open = false;
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -148,11 +164,18 @@ export class DropdownClab {
   }
 
   handleSelect(evt) {
-    this._setSelected(this.options[evt.detail.index]);
+    this._setSelected(this.optionsList[evt.detail.index]);
   }
 
   _handleHighlight(evt) {
     this.set('highlighted', this.options[evt.detail.index]);
+  }
+
+  _filter(evt) {
+    this.searchValue = evt.target.value;
+    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e, i) => {
+      return e[this.labelField].search(this.searchValue) > -1;
+    }) : this.optionsList = this.options.slice();
   }
 
 
@@ -183,10 +206,11 @@ export class DropdownClab {
 
   _setSelected(item) {
     let old = this.selected;
+    this.optionsList = this.options.slice();
     this.set('selected', item);
     this.set('highlighted', item);
-    this.$.curtain.open = false;
-    this.querySelector('.value_wrapper').classList.remove('active');
+    this.open = false;
+    this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
       if(this.resultAsObj){
@@ -228,6 +252,12 @@ export class DropdownClab {
     if(newv != undefined) this._fetchOptions();
   }
 
+  _updateList(newValue, oldValue) {
+    const selected = this.selected;
+    this.optionsList = newValue ? newValue.slice() : this.optionsList;
+    this.searchValue = selected ? selected[this.labelField] : null;
+  }
+
 
 
   /*----------
@@ -257,12 +287,13 @@ export class DropdownClab {
     return arr.join(' ');
   }
 
-  _compType(str, disabled, type, id) {
+  _compType(str, disabled, type, id, open) {
     let arr = [];
     if(str != undefined && str.length > 0) arr.push(str);
     if(id != undefined && id.length > 0) arr.push(id);
     if(disabled) arr.push('disabled');
     if(type != undefined && type.length > 0) arr.push(type);
+    open ? arr.push('active') : null;
     return arr.join(' ');
   }
 

@@ -179,7 +179,9 @@ export class ModalClab {
       } else {
         target.style.opacity = 1;
       }
-    } else {
+     // Check if was a previously attached modal to avoid to remove the "no-scroll" class from the body needed for another modal. 
+      // The oldval should be "false"
+    } else if (typeof oldval !== 'undefined') {
       document.querySelector('body').classList.remove('no-scroll');
       if (!this.noAnimation && this.modalExit) {
         let animation = this.modalExit(target);
