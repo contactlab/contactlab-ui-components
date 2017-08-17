@@ -4,19 +4,30 @@ import "./view.html";
 import {UtilBehavior} from "./../_behaviors";
 
 class RadioClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+
   static get is() { return 'radio-clab'; }
 
   static get properties() {
     return {
-      labels: Array,
-      name: String,
+      labels: {
+        type:Array,
+        value: []
+      },
+      name: {
+        type: String
+      },
       wrapperType: {
         type: String,
         value: ''
       },
-      active: Number,
-      disabled: Array,
+      active: {
+        type: Number,
+        value: 0
+      },
+      disabled: {
+        type: Array,
+        value: []
+      },
       inline: {
         type: Boolean,
         value: false,

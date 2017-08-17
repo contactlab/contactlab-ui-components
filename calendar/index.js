@@ -7,7 +7,7 @@ import {UtilBehavior} from "./../_behaviors";
 import "./../note";
 
 class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element){
-        
+
   static get is() { return 'calendar-clab'; }
 
   get behaviors() {
@@ -193,10 +193,11 @@ class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
     return rome.find(this.querySelector('input'));
   }
 
-  restore() {
+  restore(options) {
     const selector = this.inline ? 'div.inline-cal' : 'input';
     const currentCalendar = this.$$(selector);
-    rome(currentCalendar).restore(this.options);
+    rome(currentCalendar).destroy();
+    rome(currentCalendar).restore(options || this.options);
     return currentCalendar;
   }
 

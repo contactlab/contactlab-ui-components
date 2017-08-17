@@ -18580,7 +18580,7 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 class CalendarClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_3__behaviors__["c" /* UtilBehavior */]], Polymer.Element){
-        
+
   static get is() { return 'calendar-clab'; }
 
   get behaviors() {
@@ -18766,10 +18766,11 @@ class CalendarClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_3__
     return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.find(this.querySelector('input'));
   }
 
-  restore() {
+  restore(options) {
     const selector = this.inline ? 'div.inline-cal' : 'input';
     const currentCalendar = this.$$(selector);
-    __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar).restore(this.options);
+    __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar).destroy();
+    __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar).restore(options || this.options);
     return currentCalendar;
   }
 
@@ -22879,19 +22880,30 @@ customElements.define(ProgressClab.is, ProgressClab);
 
 
 class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
+
   static get is() { return 'radio-clab'; }
 
   static get properties() {
     return {
-      labels: Array,
-      name: String,
+      labels: {
+        type:Array,
+        value: []
+      },
+      name: {
+        type: String
+      },
       wrapperType: {
         type: String,
         value: ''
       },
-      active: Number,
-      disabled: Array,
+      active: {
+        type: Number,
+        value: 0
+      },
+      disabled: {
+        type: Array,
+        value: []
+      },
       inline: {
         type: Boolean,
         value: false,
@@ -22943,7 +22955,7 @@ customElements.define(RadioClab.is, RadioClab);
 /* 215 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked$=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 216 */
