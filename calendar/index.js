@@ -2,17 +2,15 @@
 
 import rome from 'rome';
 import moment from 'moment';
+import { dashify, viewLabel } from './../_libs/utils';
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
 import "./../note";
 
-class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element){
+// class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
+class CalendarClab extends Polymer.mixinBehaviors(
+  [Polymer.LegacyElementMixin, { dashify, viewLabel }], Polymer.Element) {
 
   static get is() { return 'calendar-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {
@@ -47,12 +45,10 @@ class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Elemen
     }, 50);
   }
 
-  detached() {
+  disconnectedCallback() {
     const calendar = rome.find(this.querySelector('input'));
     calendar ? calendar.destroy() : null;
   }
-
-
 
 
   /*----------

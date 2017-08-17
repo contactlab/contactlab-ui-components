@@ -8,13 +8,13 @@
     </style>
     <template is="dom-if" if="[[!inline]]">
       <div class$="[[_computeType('calendar input-wrapper', type)]]">
-        <template is="dom-if" if="[[_viewLabel(label)]]">
-          <label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+        <template is="dom-if" if="[[viewLabel(label)]]">
+          <label class$="[[type]]" for$="[[dashify(name)]]">[[label]]</label>
         </template>
 
         <div class="input">
           <div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
-          <input class$="[[type]]" type="text" disabled="[[disabled]]" 
+          <input class$="[[type]]" type="text" disabled="[[disabled]]"
           placeholder="[[placeholder]]" value="[[valueStr]]" on-keyup="_checkClear">
         </div>
 
