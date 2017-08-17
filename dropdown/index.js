@@ -4,9 +4,10 @@ import './view.html';
 import {UtilBehavior, DropdownBehavior} from "./../_behaviors";
 import "./../note";
 import "./../curtain";
+import "./../input";
 
 class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavior], Polymer.Element) {
-        
+
   static get is() { return 'dropdown-clab'; }
 
   static get properties() {
@@ -50,7 +51,12 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
             value: 'B',
             label: 'Option 2'
           }
-				]
+        ],
+        observer: '_updateList'
+      },
+      optionsList: {
+        type: Array,
+        value: []
       },
       optionsFn: {
         type: Function,
@@ -61,6 +67,10 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
         observer: '_observUrl'
       },
       inline: {
+        type: Boolean,
+        value: false
+      },
+      open: {
         type: Boolean,
         value: false
       },
@@ -91,7 +101,15 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
       maxHeight: {
         type: Number,
         value: 28
-      }
+      },
+      search: {
+        type: Boolean,
+        value: false
+      },
+      searchValue: {
+        type: String,
+        value: ''
+      },
       /*_liHeight:{
       	type:String,
       	value:null,
@@ -121,8 +139,7 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
   ----------*/
   _toggleList(evt) {
     if(!this.disabled) {
-      this.$.curtain.open = !this.$.curtain.open;
-      this.$.ddWrap.classList.toggle('active');
+      this.open = !this.open;
     }
 
     let windowClick = (evt) => {
@@ -136,8 +153,7 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
         window.removeEventListener('mousedown', windowClick);
         return;
       } else {
-        this.$.curtain.open = false;
-        this.$.ddWrap.classList.remove('active');
+        this.open = false;
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -145,14 +161,19 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
   }
 
   handleSelect(evt) {
-    this._setSelected(this.options[evt.detail.index]);
+    this._setSelected(this.optionsList[evt.detail.index]);
   }
 
   _handleHighlight(evt) {
     this.set('highlighted', this.options[evt.detail.index]);
   }
 
-
+  _filter(evt) {
+    this.searchValue = evt.target.value;
+    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e, i) => {
+      return e[this.labelField].search(this.searchValue) > -1;
+    }) : this.optionsList = this.options.slice();
+  }
 
 
   /*----------
@@ -180,10 +201,11 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
 
   _setSelected(item) {
     let old = this.selected;
+    this.optionsList = this.options.slice();
     this.set('selected', item);
     this.set('highlighted', item);
-    this.$.curtain.open = false;
-    this.$.ddWrap.classList.remove('active');
+    this.open = false;
+    this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
       if(this.resultAsObj){
@@ -225,6 +247,11 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
     if(newv != undefined) this._fetchOptions();
   }
 
+  _updateList(newValue, oldValue) {
+    const selected = this.selected;
+    this.optionsList = newValue ? newValue.slice() : this.optionsList;
+    this.searchValue = selected ? selected[this.labelField] : null;
+  }
 
 
   /*----------
@@ -254,12 +281,13 @@ class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavio
     return arr.join(' ');
   }
 
-  _compType(str, disabled, type, id) {
+  _compType(str, disabled, type, id, open) {
     let arr = [];
     if(str != undefined && str.length > 0) arr.push(str);
     if(id != undefined && id.length > 0) arr.push(id);
     if(disabled) arr.push('disabled');
     if(type != undefined && type.length > 0) arr.push(type);
+    open ? arr.push('active') : null;
     return arr.join(' ');
   }
 

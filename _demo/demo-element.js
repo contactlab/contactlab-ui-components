@@ -3,12 +3,12 @@
 import './template.html';
 
 class DemoElement extends Polymer.Element {
-        
+
   static get is() { return 'demo-element'; }
 
   static get properties() {
     return {
-        
+
     }
   }
 
@@ -17,6 +17,19 @@ class DemoElement extends Polymer.Element {
     super.connectedCallback();
 
     setTimeout(() => {
+        // Dropdown in search mode
+        const ddData = [{ "name": "ciccio", "value": "ciccio" }, { "name": "puzzo raga", "value": "puzzo raga" }, { "name": "bella", "value": "bella" }, { "name": "raga", "value": "raga" }, { "name": "tutto raga", "value": "tutto raga" }, { "name": "tutto rego", "value": "tutto rego" }]
+        const ddSelected = Object.assign({}, ddData[2]);
+        const ddsearch = this.$.ddsearch;
+
+        setTimeout(() => {
+          ddsearch.options = ddData;
+        }, 1500)
+        setTimeout(() => {
+          ddsearch.selected = ddSelected;
+        }, 700)
+
+
         // MODAL
         this.modal1 = this.$.modalOne;
         this.modal2 = this.$.modalTwo;
@@ -97,7 +110,7 @@ class DemoElement extends Polymer.Element {
         }]
       }];*/
     }
-  
+
 
     _openModal1() {
         this.modal1.show();
@@ -126,7 +139,7 @@ class DemoElement extends Polymer.Element {
     _dateChange(evt){
       console.log(evt.detail)
     }
-  
+
 }
 
 customElements.define(DemoElement.is, DemoElement);

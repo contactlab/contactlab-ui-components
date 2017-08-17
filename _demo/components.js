@@ -33,9 +33,6 @@
 /******/ 	// expose the module cache
 /******/ 	__webpack_require__.c = installedModules;
 /******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
 /******/ 	// define getter function for harmony exports
 /******/ 	__webpack_require__.d = function(exports, name, getter) {
 /******/ 		if(!__webpack_require__.o(exports, name)) {
@@ -63,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 140);
+/******/ 	return __webpack_require__(__webpack_require__.s = 136);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -1899,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(160)("./" + name);
+            __webpack_require__(155)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4534,7 +4531,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(219)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(154)(module)))
 
 /***/ }),
 /* 1 */
@@ -4561,7 +4558,7 @@ const UtilBehavior = {
     return items.indexOf(item);
   }
 };
-/* harmony export (immutable) */ __webpack_exports__["a"] = UtilBehavior;
+/* harmony export (immutable) */ __webpack_exports__["c"] = UtilBehavior;
 
 
 
@@ -4577,7 +4574,7 @@ const AnimationsBehavior = {
     }
   }
 };
-/* harmony export (immutable) */ __webpack_exports__["b"] = AnimationsBehavior;
+/* harmony export (immutable) */ __webpack_exports__["a"] = AnimationsBehavior;
 
 
 
@@ -4678,7 +4675,7 @@ const DropdownBehavior = {
     return v;
   }
 };
-/* harmony export (immutable) */ __webpack_exports__["c"] = DropdownBehavior;
+/* harmony export (immutable) */ __webpack_exports__["b"] = DropdownBehavior;
 
 
 
@@ -4714,7 +4711,7 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -4832,7 +4829,7 @@ module.exports = api;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -4874,8 +4871,8 @@ customElements.define(NoteClab.is, NoteClab);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-var customEvent = __webpack_require__(159);
-var eventmap = __webpack_require__(158);
+var customEvent = __webpack_require__(168);
+var eventmap = __webpack_require__(169);
 var doc = document;
 var addEvent = addEventEasy;
 var removeEvent = removeEventEasy;
@@ -4978,196 +4975,7 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-
-
-
-
-class CurtainClab extends Polymer.Element {
-        
-  static get is() { return 'curtain-clab'; }
-
-  static get properties() {
-    return {
-      id: String,
-      options: {
-        type: Array,
-        value: []
-      },
-      highlighted: {
-        type: Object,
-        value: {}
-      },
-      labelField: String,
-      valueField: String,
-      dontHide: {
-        type: Boolean,
-        notify: true
-      },
-      maxInView: Number,
-      disabled: {
-        type: Boolean,
-        value: false
-      },
-      open: {
-        type: Boolean,
-        value: false
-      },
-
-      //_liHeight:Number,
-      maxHeight: {
-        type: Number,
-        value: 28
-      },
-      _listMaxHeight: String,
-      _listHeight: String,
-      _hidden: {
-        type: Boolean,
-        value: false
-      },
-      _computedStyles: String
-    };
-    this.observers = [
-			'_setLiHeight(options, maxInView, disabled)',
-			'_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
-		]
-  }
-
-  connectedCallback(){
-    super.connectedCallback();
-    this.addEventListener('mousedown', evt => {
-      switch(evt.target.localName) {
-        case 'ol':
-          this.dontHide = true;
-          break;
-       /* case 'li':
-          this.dontHide = false;
-          let i = evt.target.getAttribute('data-i');
-          this.dispatchEvent(new CustomEvent('do-select', {
-            bubbles: true,
-            composed: true,
-            detail: {
-              index: i
-            }
-          }));
-          break;*/
-        default:
-          this.dontHide = false;
-      }
-    });
-    this.addEventListener('mouseup', evt => {
-      this.dontHide = false;
-    });
-  }
-
-  _elementSelection(evt){
-    this.dontHide = false;
-    let i = evt.target.getAttribute('data-i');
-    this.dispatchEvent(new CustomEvent('do-select', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        index: i
-      }
-    }));
-  }
-
-
-
-
-  /*----------
-  	EVENT HANDLERS
-  ----------*/
-  doHighlight(evt) {
-    const i = evt.target.getAttribute('data-i');
-    this.dispatchEvent(new CustomEvent('do-highlight', {
-      bubbles: true,
-      composed: true,
-      detail: {
-        index: i
-      }
-    }));
-  }
-
-
-
-  /*----------
-  	METHODS
-  ----------*/
-  _setLiHeight(options, maxInView, disabled) {
-    if(options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
-      this.async(() => {
-        if(this.maxHeight == undefined || this.maxHeight == '') {
-          this.set('_hidden', true);
-          this.maxHeight = 28;
-          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
-          this.set('_hidden', false);
-        } else {
-          this.set('_hidden', true);
-          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
-          this.set('_hidden', false);
-        }
-
-        this.set('_listHeight', (this.maxHeight * options.length) + 'px');
-        this.$.list.scrollTop = 0;
-      }, 100);
-    }
-  }
-
-
-
-
-  /*----------
-  	COMPUTERS
-  ----------*/
-  _compHighlight(highlighted, option) {
-    return(highlighted[this.valueField] === option[this.valueField]) ? 'selected' : '';
-  }
-
-  _compLabel(opt) {
-    return opt[this.labelField];
-  }
-
-  _compStyles(hidden, maxHeight, height, open) {
-    let arr = [];
-    if(hidden) arr.push('display:block; opacity:0');
-    if(maxHeight != undefined) arr.push('max-height:' + maxHeight);
-    if(height != undefined) arr.push('height:' + height);
-    if(open) arr.push('display:block');
-    this.set('_computedStyles', arr.join(';'));
-  }
-
-
-
-
-
-  /*----------
-  	PUBLIC
-  ----------*/
-  scrollToHighlight(i, goesUp) {
-    let offsetTop = this.$.list.children[i].offsetTop,
-      scrollTop = this.$.list.scrollTop,
-      h = this.$.list.clientHeight,
-      visible = (offsetTop < scrollTop || offsetTop >= (scrollTop + h)) ? false : true;
-
-    if(!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;
-    else if(!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
-  }
-
-}
-
-
-
-customElements.define(CurtainClab.is, CurtainClab);
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
@@ -5179,7 +4987,7 @@ customElements.define(CurtainClab.is, CurtainClab);
 
 
 
-class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'input-clab'; }
 
@@ -5381,85 +5189,11 @@ customElements.define(InputClab.is, InputClab);
 
 
 /***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-var no;
-var ikey = 'data-rome-id';
-var index = [];
-
-function find (thing) { // can be a DOM element or a number
-  if (typeof thing !== 'number' && thing && thing.getAttribute) {
-    return find(thing.getAttribute(ikey));
-  }
-  var existing = index[thing];
-  if (existing !== no) {
-    return existing;
-  }
-  return null;
-}
-
-function assign (elem, instance) {
-  elem.setAttribute(ikey, instance.id = index.push(instance) - 1);
-}
-
-module.exports = {
-  find: find,
-  assign: assign
-};
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function isInput (elem) {
-  return elem && elem.nodeName && elem.nodeName.toLowerCase() === 'input';
-}
-
-module.exports = isInput;
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var momentum = __webpack_require__(4);
-
-function raw (date, format) {
-  if (typeof date === 'string') {
-    return momentum.moment(date, format);
-  }
-  if (Object.prototype.toString.call(date) === '[object Date]') {
-    return momentum.moment(date);
-  }
-  if (momentum.isMoment(date)) {
-    return date.clone();
-  }
-}
-
-function parse (date, format) {
-  var m = raw(date, typeof format === 'string' ? format : null);
-  return m && m.isValid() ? m : null;
-}
-
-module.exports = parse;
-
-
-/***/ }),
-/* 12 */
+/* 8 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(215);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -5512,103 +5246,270 @@ customElements.define(SpinnerClab.is, SpinnerClab);
 
 
 /***/ }),
-/* 13 */
+/* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
-class LabelClab extends Polymer.Element {
+class CurtainClab extends Polymer.Element {
         
-  static get is() { return 'label-clab'; }
+  static get is() { return 'curtain-clab'; }
 
   static get properties() {
     return {
-      type: {
-        type: String,
-        value: null
+      id: String,
+      options: {
+        type: Array,
+        value: []
       },
-      counter: {
+      highlighted: {
+        type: Object,
+        value: {}
+      },
+      labelField: String,
+      valueField: String,
+      dontHide: {
+        type: Boolean,
+        notify: true
+      },
+      maxInView: Number,
+      disabled: {
+        type: Boolean,
+        value: false
+      },
+      open: {
+        type: Boolean,
+        value: false
+      },
+
+      //_liHeight:Number,
+      maxHeight: {
         type: Number,
-        value: null
+        value: 28
       },
-      remove: {
+      _listMaxHeight: String,
+      _listHeight: String,
+      _hidden: {
         type: Boolean,
         value: false
       },
-      badge: {
-        type: Boolean,
-        value: false
-      }
-    }
+      _computedStyles: String
+    };
+    this.observers = [
+			'_setLiHeight(options, maxInView, disabled)',
+			'_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
+		]
   }
 
+  connectedCallback(){
+    super.connectedCallback();
+    this.addEventListener('mousedown', evt => {
+      switch(evt.target.localName) {
+        case 'ol':
+          this.dontHide = true;
+          break;
+       /* case 'li':
+          this.dontHide = false;
+          let i = evt.target.getAttribute('data-i');
+          this.dispatchEvent(new CustomEvent('do-select', {
+            bubbles: true,
+            composed: true,
+            detail: {
+              index: i
+            }
+          }));
+          break;*/
+        default:
+          this.dontHide = false;
+      }
+    });
+    this.addEventListener('mouseup', evt => {
+      this.dontHide = false;
+    });
+  }
 
-  /*----------
-  EVENT HANDLERS
-  ----------*/
-  _removeClicked(evt) {
-    this.dispatchEvent(new CustomEvent('remove',{
+  _elementSelection(evt){
+    this.dontHide = false;
+    let i = evt.target.getAttribute('data-i');
+    this.dispatchEvent(new CustomEvent('do-select', {
       bubbles: true,
-      composed: true
+      composed: true,
+      detail: {
+        index: i
+      }
     }));
   }
 
 
+
+
   /*----------
-  COMPUTE
+  	EVENT HANDLERS
   ----------*/
-  _computeClass(badge, type) {
-    let arr = [badge ? 'badge' : 'label'];
-    if(type != null) arr.push(type);
-    return arr.join(' ');
+  doHighlight(evt) {
+    const i = evt.target.getAttribute('data-i');
+    this.dispatchEvent(new CustomEvent('do-highlight', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        index: i
+      }
+    }));
+  }
+
+
+
+  /*----------
+  	METHODS
+  ----------*/
+  _setLiHeight(options, maxInView, disabled) {
+    if(options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
+      this.async(() => {
+        if(this.maxHeight == undefined || this.maxHeight == '') {
+          this.set('_hidden', true);
+          this.maxHeight = 28;
+          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
+          this.set('_hidden', false);
+        } else {
+          this.set('_hidden', true);
+          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
+          this.set('_hidden', false);
+        }
+
+        this.set('_listHeight', (this.maxHeight * options.length) + 'px');
+        this.$.list.scrollTop = 0;
+      }, 100);
+    }
+  }
+
+
+
+
+  /*----------
+  	COMPUTERS
+  ----------*/
+  _compHighlight(highlighted, option) {
+    return(highlighted[this.valueField] === option[this.valueField]) ? 'selected' : '';
+  }
+
+  _compLabel(opt) {
+    return opt[this.labelField];
+  }
+
+  _compStyles(hidden, maxHeight, height, open) {
+    let arr = [];
+    if(hidden) arr.push('display:block; opacity:0');
+    if(maxHeight != undefined) arr.push('max-height:' + maxHeight);
+    if(height != undefined) arr.push('height:' + height);
+    if(open) arr.push('display:block');
+    this.set('_computedStyles', arr.join(';'));
+  }
+
+
+
+
+
+  /*----------
+  	PUBLIC
+  ----------*/
+  scrollToHighlight(i, goesUp) {
+    let offsetTop = this.$.list.children[i].offsetTop,
+      scrollTop = this.$.list.scrollTop,
+      h = this.$.list.clientHeight,
+      visible = (offsetTop < scrollTop || offsetTop >= (scrollTop + h)) ? false : true;
+
+    if(!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;
+    else if(!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
   }
 
 }
 
-customElements.define(LabelClab.is, LabelClab);
+
+
+customElements.define(CurtainClab.is, CurtainClab);
 
 
 /***/ }),
-/* 14 */
+/* 10 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+var no;
+var ikey = 'data-rome-id';
+var index = [];
+
+function find (thing) { // can be a DOM element or a number
+  if (typeof thing !== 'number' && thing && thing.getAttribute) {
+    return find(thing.getAttribute(ikey));
+  }
+  var existing = index[thing];
+  if (existing !== no) {
+    return existing;
+  }
+  return null;
+}
+
+function assign (elem, instance) {
+  elem.setAttribute(ikey, instance.id = index.push(instance) - 1);
+}
+
+module.exports = {
+  find: find,
+  assign: assign
+};
+
+
+/***/ }),
+/* 11 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-function throttle (fn, boundary) {
-  var last = -Infinity;
-  var timer;
-  return function bounced () {
-    if (timer) {
-      return;
-    }
-    unbound();
+var momentum = __webpack_require__(4);
 
-    function unbound () {
-      clearTimeout(timer);
-      timer = null;
-      var next = last + boundary;
-      var now = Date.now();
-      if (now > next) {
-        last = now;
-        fn();
-      } else {
-        timer = setTimeout(unbound, next - now);
-      }
-    }
-  };
+function raw (date, format) {
+  if (typeof date === 'string') {
+    return momentum.moment(date, format);
+  }
+  if (Object.prototype.toString.call(date) === '[object Date]') {
+    return momentum.moment(date);
+  }
+  if (momentum.isMoment(date)) {
+    return date.clone();
+  }
 }
 
-module.exports = throttle;
+function parse (date, format) {
+  var m = raw(date, typeof format === 'string' ? format : null);
+  return m && m.isValid() ? m : null;
+}
+
+module.exports = parse;
 
 
 /***/ }),
-/* 15 */
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function isInput (elem) {
+  return elem && elem.nodeName && elem.nodeName.toLowerCase() === 'input';
+}
+
+module.exports = isInput;
+
+
+/***/ }),
+/* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5686,505 +5587,7 @@ return af;
 
 
 /***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Algeria) [ar-dz]
-//! author : Noureddine LOUAHEDJ : https://github.com/noureddineme
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arDz = moment.defineLocale('ar-dz', {
-    months : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    monthsShort : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'احد_اثنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'أح_إث_ثلا_أر_خم_جم_سب'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 4  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arDz;
-
-})));
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Kuwait) [ar-kw]
-//! author : Nusret Parlak: https://github.com/nusretparlak
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arKw = moment.defineLocale('ar-kw', {
-    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arKw;
-
-})));
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Lybia) [ar-ly]
-//! author : Ali Hmer: https://github.com/kikoanis
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var symbolMap = {
-    '1': '1',
-    '2': '2',
-    '3': '3',
-    '4': '4',
-    '5': '5',
-    '6': '6',
-    '7': '7',
-    '8': '8',
-    '9': '9',
-    '0': '0'
-};
-var pluralForm = function (n) {
-    return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
-};
-var plurals = {
-    s : ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
-    m : ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
-    h : ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
-    d : ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
-    M : ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
-    y : ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
-};
-var pluralize = function (u) {
-    return function (number, withoutSuffix, string, isFuture) {
-        var f = pluralForm(number),
-            str = plurals[u][pluralForm(number)];
-        if (f === 2) {
-            str = str[withoutSuffix ? 0 : 1];
-        }
-        return str.replace(/%d/i, number);
-    };
-};
-var months = [
-    'يناير',
-    'فبراير',
-    'مارس',
-    'أبريل',
-    'مايو',
-    'يونيو',
-    'يوليو',
-    'أغسطس',
-    'سبتمبر',
-    'أكتوبر',
-    'نوفمبر',
-    'ديسمبر'
-];
-
-var arLy = moment.defineLocale('ar-ly', {
-    months : months,
-    monthsShort : months,
-    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'D/\u200FM/\u200FYYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /ص|م/,
-    isPM : function (input) {
-        return 'م' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'ص';
-        } else {
-            return 'م';
-        }
-    },
-    calendar : {
-        sameDay: '[اليوم عند الساعة] LT',
-        nextDay: '[غدًا عند الساعة] LT',
-        nextWeek: 'dddd [عند الساعة] LT',
-        lastDay: '[أمس عند الساعة] LT',
-        lastWeek: 'dddd [عند الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'بعد %s',
-        past : 'منذ %s',
-        s : pluralize('s'),
-        m : pluralize('m'),
-        mm : pluralize('m'),
-        h : pluralize('h'),
-        hh : pluralize('h'),
-        d : pluralize('d'),
-        dd : pluralize('d'),
-        M : pluralize('M'),
-        MM : pluralize('M'),
-        y : pluralize('y'),
-        yy : pluralize('y')
-    },
-    preparse: function (string) {
-        return string.replace(/\u200f/g, '').replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/\d/g, function (match) {
-            return symbolMap[match];
-        }).replace(/,/g, '،');
-    },
-    week : {
-        dow : 6, // Saturday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arLy;
-
-})));
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Morocco) [ar-ma]
-//! author : ElFadili Yassine : https://github.com/ElFadiliY
-//! author : Abdel Said : https://github.com/abdelsaid
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arMa = moment.defineLocale('ar-ma', {
-    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
-    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    week : {
-        dow : 6, // Saturday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arMa;
-
-})));
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Arabic (Saudi Arabia) [ar-sa]
-//! author : Suhail Alkowaileet : https://github.com/xsoh
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var symbolMap = {
-    '1': '١',
-    '2': '٢',
-    '3': '٣',
-    '4': '٤',
-    '5': '٥',
-    '6': '٦',
-    '7': '٧',
-    '8': '٨',
-    '9': '٩',
-    '0': '٠'
-};
-var numberMap = {
-    '١': '1',
-    '٢': '2',
-    '٣': '3',
-    '٤': '4',
-    '٥': '5',
-    '٦': '6',
-    '٧': '7',
-    '٨': '8',
-    '٩': '9',
-    '٠': '0'
-};
-
-var arSa = moment.defineLocale('ar-sa', {
-    months : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    monthsShort : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort : 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    meridiemParse: /ص|م/,
-    isPM : function (input) {
-        return 'م' === input;
-    },
-    meridiem : function (hour, minute, isLower) {
-        if (hour < 12) {
-            return 'ص';
-        } else {
-            return 'م';
-        }
-    },
-    calendar : {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'في %s',
-        past : 'منذ %s',
-        s : 'ثوان',
-        m : 'دقيقة',
-        mm : '%d دقائق',
-        h : 'ساعة',
-        hh : '%d ساعات',
-        d : 'يوم',
-        dd : '%d أيام',
-        M : 'شهر',
-        MM : '%d أشهر',
-        y : 'سنة',
-        yy : '%d سنوات'
-    },
-    preparse: function (string) {
-        return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
-            return numberMap[match];
-        }).replace(/،/g, ',');
-    },
-    postformat: function (string) {
-        return string.replace(/\d/g, function (match) {
-            return symbolMap[match];
-        }).replace(/,/g, '،');
-    },
-    week : {
-        dow : 0, // Sunday is the first day of the week.
-        doy : 6  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return arSa;
-
-})));
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale  :  Arabic (Tunisia) [ar-tn]
-//! author : Nader Toukabri : https://github.com/naderio
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var arTn = moment.defineLocale('ar-tn', {
-    months: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    monthsShort: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
-    weekdays: 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
-    weekdaysShort: 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
-    weekdaysMin: 'ح_ن_ث_ر_خ_ج_س'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat: {
-        LT: 'HH:mm',
-        LTS: 'HH:mm:ss',
-        L: 'DD/MM/YYYY',
-        LL: 'D MMMM YYYY',
-        LLL: 'D MMMM YYYY HH:mm',
-        LLLL: 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar: {
-        sameDay: '[اليوم على الساعة] LT',
-        nextDay: '[غدا على الساعة] LT',
-        nextWeek: 'dddd [على الساعة] LT',
-        lastDay: '[أمس على الساعة] LT',
-        lastWeek: 'dddd [على الساعة] LT',
-        sameElse: 'L'
-    },
-    relativeTime: {
-        future: 'في %s',
-        past: 'منذ %s',
-        s: 'ثوان',
-        m: 'دقيقة',
-        mm: '%d دقائق',
-        h: 'ساعة',
-        hh: '%d ساعات',
-        d: 'يوم',
-        dd: '%d أيام',
-        M: 'شهر',
-        MM: '%d أشهر',
-        y: 'سنة',
-        yy: '%d سنوات'
-    },
-    week: {
-        dow: 1, // Monday is the first day of the week.
-        doy: 4 // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return arTn;
-
-})));
-
-
-/***/ }),
-/* 22 */
+/* 14 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6331,7 +5734,505 @@ return ar;
 
 
 /***/ }),
-/* 23 */
+/* 15 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Arabic (Algeria) [ar-dz]
+//! author : Noureddine LOUAHEDJ : https://github.com/noureddineme
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var arDz = moment.defineLocale('ar-dz', {
+    months : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    monthsShort : 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort : 'احد_اثنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin : 'أح_إث_ثلا_أر_خم_جم_سب'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[اليوم على الساعة] LT',
+        nextDay: '[غدا على الساعة] LT',
+        nextWeek: 'dddd [على الساعة] LT',
+        lastDay: '[أمس على الساعة] LT',
+        lastWeek: 'dddd [على الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'في %s',
+        past : 'منذ %s',
+        s : 'ثوان',
+        m : 'دقيقة',
+        mm : '%d دقائق',
+        h : 'ساعة',
+        hh : '%d ساعات',
+        d : 'يوم',
+        dd : '%d أيام',
+        M : 'شهر',
+        MM : '%d أشهر',
+        y : 'سنة',
+        yy : '%d سنوات'
+    },
+    week : {
+        dow : 0, // Sunday is the first day of the week.
+        doy : 4  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return arDz;
+
+})));
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Arabic (Kuwait) [ar-kw]
+//! author : Nusret Parlak: https://github.com/nusretparlak
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var arKw = moment.defineLocale('ar-kw', {
+    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[اليوم على الساعة] LT',
+        nextDay: '[غدا على الساعة] LT',
+        nextWeek: 'dddd [على الساعة] LT',
+        lastDay: '[أمس على الساعة] LT',
+        lastWeek: 'dddd [على الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'في %s',
+        past : 'منذ %s',
+        s : 'ثوان',
+        m : 'دقيقة',
+        mm : '%d دقائق',
+        h : 'ساعة',
+        hh : '%d ساعات',
+        d : 'يوم',
+        dd : '%d أيام',
+        M : 'شهر',
+        MM : '%d أشهر',
+        y : 'سنة',
+        yy : '%d سنوات'
+    },
+    week : {
+        dow : 0, // Sunday is the first day of the week.
+        doy : 12  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return arKw;
+
+})));
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Arabic (Lybia) [ar-ly]
+//! author : Ali Hmer: https://github.com/kikoanis
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var symbolMap = {
+    '1': '1',
+    '2': '2',
+    '3': '3',
+    '4': '4',
+    '5': '5',
+    '6': '6',
+    '7': '7',
+    '8': '8',
+    '9': '9',
+    '0': '0'
+};
+var pluralForm = function (n) {
+    return n === 0 ? 0 : n === 1 ? 1 : n === 2 ? 2 : n % 100 >= 3 && n % 100 <= 10 ? 3 : n % 100 >= 11 ? 4 : 5;
+};
+var plurals = {
+    s : ['أقل من ثانية', 'ثانية واحدة', ['ثانيتان', 'ثانيتين'], '%d ثوان', '%d ثانية', '%d ثانية'],
+    m : ['أقل من دقيقة', 'دقيقة واحدة', ['دقيقتان', 'دقيقتين'], '%d دقائق', '%d دقيقة', '%d دقيقة'],
+    h : ['أقل من ساعة', 'ساعة واحدة', ['ساعتان', 'ساعتين'], '%d ساعات', '%d ساعة', '%d ساعة'],
+    d : ['أقل من يوم', 'يوم واحد', ['يومان', 'يومين'], '%d أيام', '%d يومًا', '%d يوم'],
+    M : ['أقل من شهر', 'شهر واحد', ['شهران', 'شهرين'], '%d أشهر', '%d شهرا', '%d شهر'],
+    y : ['أقل من عام', 'عام واحد', ['عامان', 'عامين'], '%d أعوام', '%d عامًا', '%d عام']
+};
+var pluralize = function (u) {
+    return function (number, withoutSuffix, string, isFuture) {
+        var f = pluralForm(number),
+            str = plurals[u][pluralForm(number)];
+        if (f === 2) {
+            str = str[withoutSuffix ? 0 : 1];
+        }
+        return str.replace(/%d/i, number);
+    };
+};
+var months = [
+    'يناير',
+    'فبراير',
+    'مارس',
+    'أبريل',
+    'مايو',
+    'يونيو',
+    'يوليو',
+    'أغسطس',
+    'سبتمبر',
+    'أكتوبر',
+    'نوفمبر',
+    'ديسمبر'
+];
+
+var arLy = moment.defineLocale('ar-ly', {
+    months : months,
+    monthsShort : months,
+    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort : 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'D/\u200FM/\u200FYYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    meridiemParse: /ص|م/,
+    isPM : function (input) {
+        return 'م' === input;
+    },
+    meridiem : function (hour, minute, isLower) {
+        if (hour < 12) {
+            return 'ص';
+        } else {
+            return 'م';
+        }
+    },
+    calendar : {
+        sameDay: '[اليوم عند الساعة] LT',
+        nextDay: '[غدًا عند الساعة] LT',
+        nextWeek: 'dddd [عند الساعة] LT',
+        lastDay: '[أمس عند الساعة] LT',
+        lastWeek: 'dddd [عند الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'بعد %s',
+        past : 'منذ %s',
+        s : pluralize('s'),
+        m : pluralize('m'),
+        mm : pluralize('m'),
+        h : pluralize('h'),
+        hh : pluralize('h'),
+        d : pluralize('d'),
+        dd : pluralize('d'),
+        M : pluralize('M'),
+        MM : pluralize('M'),
+        y : pluralize('y'),
+        yy : pluralize('y')
+    },
+    preparse: function (string) {
+        return string.replace(/\u200f/g, '').replace(/،/g, ',');
+    },
+    postformat: function (string) {
+        return string.replace(/\d/g, function (match) {
+            return symbolMap[match];
+        }).replace(/,/g, '،');
+    },
+    week : {
+        dow : 6, // Saturday is the first day of the week.
+        doy : 12  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return arLy;
+
+})));
+
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Arabic (Morocco) [ar-ma]
+//! author : ElFadili Yassine : https://github.com/ElFadiliY
+//! author : Abdel Said : https://github.com/abdelsaid
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var arMa = moment.defineLocale('ar-ma', {
+    months : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+    monthsShort : 'يناير_فبراير_مارس_أبريل_ماي_يونيو_يوليوز_غشت_شتنبر_أكتوبر_نونبر_دجنبر'.split('_'),
+    weekdays : 'الأحد_الإتنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort : 'احد_اتنين_ثلاثاء_اربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[اليوم على الساعة] LT',
+        nextDay: '[غدا على الساعة] LT',
+        nextWeek: 'dddd [على الساعة] LT',
+        lastDay: '[أمس على الساعة] LT',
+        lastWeek: 'dddd [على الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'في %s',
+        past : 'منذ %s',
+        s : 'ثوان',
+        m : 'دقيقة',
+        mm : '%d دقائق',
+        h : 'ساعة',
+        hh : '%d ساعات',
+        d : 'يوم',
+        dd : '%d أيام',
+        M : 'شهر',
+        MM : '%d أشهر',
+        y : 'سنة',
+        yy : '%d سنوات'
+    },
+    week : {
+        dow : 6, // Saturday is the first day of the week.
+        doy : 12  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return arMa;
+
+})));
+
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Arabic (Saudi Arabia) [ar-sa]
+//! author : Suhail Alkowaileet : https://github.com/xsoh
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var symbolMap = {
+    '1': '١',
+    '2': '٢',
+    '3': '٣',
+    '4': '٤',
+    '5': '٥',
+    '6': '٦',
+    '7': '٧',
+    '8': '٨',
+    '9': '٩',
+    '0': '٠'
+};
+var numberMap = {
+    '١': '1',
+    '٢': '2',
+    '٣': '3',
+    '٤': '4',
+    '٥': '5',
+    '٦': '6',
+    '٧': '7',
+    '٨': '8',
+    '٩': '9',
+    '٠': '0'
+};
+
+var arSa = moment.defineLocale('ar-sa', {
+    months : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    monthsShort : 'يناير_فبراير_مارس_أبريل_مايو_يونيو_يوليو_أغسطس_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    weekdays : 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort : 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin : 'ح_ن_ث_ر_خ_ج_س'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    meridiemParse: /ص|م/,
+    isPM : function (input) {
+        return 'م' === input;
+    },
+    meridiem : function (hour, minute, isLower) {
+        if (hour < 12) {
+            return 'ص';
+        } else {
+            return 'م';
+        }
+    },
+    calendar : {
+        sameDay: '[اليوم على الساعة] LT',
+        nextDay: '[غدا على الساعة] LT',
+        nextWeek: 'dddd [على الساعة] LT',
+        lastDay: '[أمس على الساعة] LT',
+        lastWeek: 'dddd [على الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'في %s',
+        past : 'منذ %s',
+        s : 'ثوان',
+        m : 'دقيقة',
+        mm : '%d دقائق',
+        h : 'ساعة',
+        hh : '%d ساعات',
+        d : 'يوم',
+        dd : '%d أيام',
+        M : 'شهر',
+        MM : '%d أشهر',
+        y : 'سنة',
+        yy : '%d سنوات'
+    },
+    preparse: function (string) {
+        return string.replace(/[١٢٣٤٥٦٧٨٩٠]/g, function (match) {
+            return numberMap[match];
+        }).replace(/،/g, ',');
+    },
+    postformat: function (string) {
+        return string.replace(/\d/g, function (match) {
+            return symbolMap[match];
+        }).replace(/,/g, '،');
+    },
+    week : {
+        dow : 0, // Sunday is the first day of the week.
+        doy : 6  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return arSa;
+
+})));
+
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale  :  Arabic (Tunisia) [ar-tn]
+//! author : Nader Toukabri : https://github.com/naderio
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var arTn = moment.defineLocale('ar-tn', {
+    months: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    monthsShort: 'جانفي_فيفري_مارس_أفريل_ماي_جوان_جويلية_أوت_سبتمبر_أكتوبر_نوفمبر_ديسمبر'.split('_'),
+    weekdays: 'الأحد_الإثنين_الثلاثاء_الأربعاء_الخميس_الجمعة_السبت'.split('_'),
+    weekdaysShort: 'أحد_إثنين_ثلاثاء_أربعاء_خميس_جمعة_سبت'.split('_'),
+    weekdaysMin: 'ح_ن_ث_ر_خ_ج_س'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat: {
+        LT: 'HH:mm',
+        LTS: 'HH:mm:ss',
+        L: 'DD/MM/YYYY',
+        LL: 'D MMMM YYYY',
+        LLL: 'D MMMM YYYY HH:mm',
+        LLLL: 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar: {
+        sameDay: '[اليوم على الساعة] LT',
+        nextDay: '[غدا على الساعة] LT',
+        nextWeek: 'dddd [على الساعة] LT',
+        lastDay: '[أمس على الساعة] LT',
+        lastWeek: 'dddd [على الساعة] LT',
+        sameElse: 'L'
+    },
+    relativeTime: {
+        future: 'في %s',
+        past: 'منذ %s',
+        s: 'ثوان',
+        m: 'دقيقة',
+        mm: '%d دقائق',
+        h: 'ساعة',
+        hh: '%d ساعات',
+        d: 'يوم',
+        dd: '%d أيام',
+        M: 'شهر',
+        MM: '%d أشهر',
+        y: 'سنة',
+        yy: '%d سنوات'
+    },
+    week: {
+        dow: 1, // Monday is the first day of the week.
+        doy: 4 // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return arTn;
+
+})));
+
+
+/***/ }),
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6441,7 +6342,7 @@ return az;
 
 
 /***/ }),
-/* 24 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6580,7 +6481,7 @@ return be;
 
 
 /***/ }),
-/* 25 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6675,7 +6576,7 @@ return bg;
 
 
 /***/ }),
-/* 26 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6799,7 +6700,7 @@ return bn;
 
 
 /***/ }),
-/* 27 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6923,7 +6824,7 @@ return bo;
 
 
 /***/ }),
-/* 28 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7036,7 +6937,7 @@ return br;
 
 
 /***/ }),
-/* 29 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7184,7 +7085,7 @@ return bs;
 
 
 /***/ }),
-/* 30 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7277,7 +7178,7 @@ return ca;
 
 
 /***/ }),
-/* 31 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7454,7 +7355,7 @@ return cs;
 
 
 /***/ }),
-/* 32 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7522,7 +7423,7 @@ return cv;
 
 
 /***/ }),
-/* 33 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7608,7 +7509,7 @@ return cy;
 
 
 /***/ }),
-/* 34 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7673,7 +7574,90 @@ return da;
 
 
 /***/ }),
-/* 35 */
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : German [de]
+//! author : lluchs : https://github.com/lluchs
+//! author: Menelion Elensúle: https://github.com/Oire
+//! author : Mikolaj Dadela : https://github.com/mik01aj
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+function processRelativeTime(number, withoutSuffix, key, isFuture) {
+    var format = {
+        'm': ['eine Minute', 'einer Minute'],
+        'h': ['eine Stunde', 'einer Stunde'],
+        'd': ['ein Tag', 'einem Tag'],
+        'dd': [number + ' Tage', number + ' Tagen'],
+        'M': ['ein Monat', 'einem Monat'],
+        'MM': [number + ' Monate', number + ' Monaten'],
+        'y': ['ein Jahr', 'einem Jahr'],
+        'yy': [number + ' Jahre', number + ' Jahren']
+    };
+    return withoutSuffix ? format[key][0] : format[key][1];
+}
+
+var de = moment.defineLocale('de', {
+    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
+    monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
+    monthsParseExact : true,
+    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
+    weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
+    weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT: 'HH:mm',
+        LTS: 'HH:mm:ss',
+        L : 'DD.MM.YYYY',
+        LL : 'D. MMMM YYYY',
+        LLL : 'D. MMMM YYYY HH:mm',
+        LLLL : 'dddd, D. MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[heute um] LT [Uhr]',
+        sameElse: 'L',
+        nextDay: '[morgen um] LT [Uhr]',
+        nextWeek: 'dddd [um] LT [Uhr]',
+        lastDay: '[gestern um] LT [Uhr]',
+        lastWeek: '[letzten] dddd [um] LT [Uhr]'
+    },
+    relativeTime : {
+        future : 'in %s',
+        past : 'vor %s',
+        s : 'ein paar Sekunden',
+        m : processRelativeTime,
+        mm : '%d Minuten',
+        h : processRelativeTime,
+        hh : '%d Stunden',
+        d : processRelativeTime,
+        dd : processRelativeTime,
+        M : processRelativeTime,
+        MM : processRelativeTime,
+        y : processRelativeTime,
+        yy : processRelativeTime
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinal : '%d.',
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return de;
+
+})));
+
+
+/***/ }),
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7757,7 +7741,7 @@ return deAt;
 
 
 /***/ }),
-/* 36 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7840,90 +7824,7 @@ return deCh;
 
 
 /***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : German [de]
-//! author : lluchs : https://github.com/lluchs
-//! author: Menelion Elensúle: https://github.com/Oire
-//! author : Mikolaj Dadela : https://github.com/mik01aj
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-function processRelativeTime(number, withoutSuffix, key, isFuture) {
-    var format = {
-        'm': ['eine Minute', 'einer Minute'],
-        'h': ['eine Stunde', 'einer Stunde'],
-        'd': ['ein Tag', 'einem Tag'],
-        'dd': [number + ' Tage', number + ' Tagen'],
-        'M': ['ein Monat', 'einem Monat'],
-        'MM': [number + ' Monate', number + ' Monaten'],
-        'y': ['ein Jahr', 'einem Jahr'],
-        'yy': [number + ' Jahre', number + ' Jahren']
-    };
-    return withoutSuffix ? format[key][0] : format[key][1];
-}
-
-var de = moment.defineLocale('de', {
-    months : 'Januar_Februar_März_April_Mai_Juni_Juli_August_September_Oktober_November_Dezember'.split('_'),
-    monthsShort : 'Jan._Febr._Mrz._Apr._Mai_Jun._Jul._Aug._Sept._Okt._Nov._Dez.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'Sonntag_Montag_Dienstag_Mittwoch_Donnerstag_Freitag_Samstag'.split('_'),
-    weekdaysShort : 'So._Mo._Di._Mi._Do._Fr._Sa.'.split('_'),
-    weekdaysMin : 'So_Mo_Di_Mi_Do_Fr_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT: 'HH:mm',
-        LTS: 'HH:mm:ss',
-        L : 'DD.MM.YYYY',
-        LL : 'D. MMMM YYYY',
-        LLL : 'D. MMMM YYYY HH:mm',
-        LLLL : 'dddd, D. MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[heute um] LT [Uhr]',
-        sameElse: 'L',
-        nextDay: '[morgen um] LT [Uhr]',
-        nextWeek: 'dddd [um] LT [Uhr]',
-        lastDay: '[gestern um] LT [Uhr]',
-        lastWeek: '[letzten] dddd [um] LT [Uhr]'
-    },
-    relativeTime : {
-        future : 'in %s',
-        past : 'vor %s',
-        s : 'ein paar Sekunden',
-        m : processRelativeTime,
-        mm : '%d Minuten',
-        h : processRelativeTime,
-        hh : '%d Stunden',
-        d : processRelativeTime,
-        dd : processRelativeTime,
-        M : processRelativeTime,
-        MM : processRelativeTime,
-        y : processRelativeTime,
-        yy : processRelativeTime
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
-    ordinal : '%d.',
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return de;
-
-})));
-
-
-/***/ }),
-/* 38 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8028,7 +7929,7 @@ return dv;
 
 
 /***/ }),
-/* 39 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8133,7 +8034,7 @@ return el;
 
 
 /***/ }),
-/* 40 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8205,7 +8106,7 @@ return enAu;
 
 
 /***/ }),
-/* 41 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8273,7 +8174,7 @@ return enCa;
 
 
 /***/ }),
-/* 42 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8345,7 +8246,7 @@ return enGb;
 
 
 /***/ }),
-/* 43 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8417,7 +8318,7 @@ return enIe;
 
 
 /***/ }),
-/* 44 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8489,7 +8390,7 @@ return enNz;
 
 
 /***/ }),
-/* 45 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8567,94 +8468,7 @@ return eo;
 
 
 /***/ }),
-/* 46 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Spanish (Dominican Republic) [es-do]
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
-var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
-
-var esDo = moment.defineLocale('es-do', {
-    months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
-    monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortDot;
-        } else if (/-MMM-/.test(format)) {
-            return monthsShort[m.month()];
-        } else {
-            return monthsShortDot[m.month()];
-        }
-    },
-    monthsParseExact : true,
-    weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
-    weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
-    weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'h:mm A',
-        LTS : 'h:mm:ss A',
-        L : 'DD/MM/YYYY',
-        LL : 'D [de] MMMM [de] YYYY',
-        LLL : 'D [de] MMMM [de] YYYY h:mm A',
-        LLLL : 'dddd, D [de] MMMM [de] YYYY h:mm A'
-    },
-    calendar : {
-        sameDay : function () {
-            return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-        },
-        nextDay : function () {
-            return '[mañana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-        },
-        nextWeek : function () {
-            return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-        },
-        lastDay : function () {
-            return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-        },
-        lastWeek : function () {
-            return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
-        },
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'en %s',
-        past : 'hace %s',
-        s : 'unos segundos',
-        m : 'un minuto',
-        mm : '%d minutos',
-        h : 'una hora',
-        hh : '%d horas',
-        d : 'un día',
-        dd : '%d días',
-        M : 'un mes',
-        MM : '%d meses',
-        y : 'un año',
-        yy : '%d años'
-    },
-    dayOfMonthOrdinalParse : /\d{1,2}º/,
-    ordinal : '%dº',
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return esDo;
-
-})));
-
-
-/***/ }),
-/* 47 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8742,7 +8556,94 @@ return es;
 
 
 /***/ }),
-/* 48 */
+/* 45 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Spanish (Dominican Republic) [es-do]
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var monthsShortDot = 'ene._feb._mar._abr._may._jun._jul._ago._sep._oct._nov._dic.'.split('_');
+var monthsShort = 'ene_feb_mar_abr_may_jun_jul_ago_sep_oct_nov_dic'.split('_');
+
+var esDo = moment.defineLocale('es-do', {
+    months : 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_'),
+    monthsShort : function (m, format) {
+        if (!m) {
+            return monthsShortDot;
+        } else if (/-MMM-/.test(format)) {
+            return monthsShort[m.month()];
+        } else {
+            return monthsShortDot[m.month()];
+        }
+    },
+    monthsParseExact : true,
+    weekdays : 'domingo_lunes_martes_miércoles_jueves_viernes_sábado'.split('_'),
+    weekdaysShort : 'dom._lun._mar._mié._jue._vie._sáb.'.split('_'),
+    weekdaysMin : 'do_lu_ma_mi_ju_vi_sá'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'h:mm A',
+        LTS : 'h:mm:ss A',
+        L : 'DD/MM/YYYY',
+        LL : 'D [de] MMMM [de] YYYY',
+        LLL : 'D [de] MMMM [de] YYYY h:mm A',
+        LLLL : 'dddd, D [de] MMMM [de] YYYY h:mm A'
+    },
+    calendar : {
+        sameDay : function () {
+            return '[hoy a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+        },
+        nextDay : function () {
+            return '[mañana a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+        },
+        nextWeek : function () {
+            return 'dddd [a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+        },
+        lastDay : function () {
+            return '[ayer a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+        },
+        lastWeek : function () {
+            return '[el] dddd [pasado a la' + ((this.hours() !== 1) ? 's' : '') + '] LT';
+        },
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'en %s',
+        past : 'hace %s',
+        s : 'unos segundos',
+        m : 'un minuto',
+        mm : '%d minutos',
+        h : 'una hora',
+        hh : '%d horas',
+        d : 'un día',
+        dd : '%d días',
+        M : 'un mes',
+        MM : '%d meses',
+        y : 'un año',
+        yy : '%d años'
+    },
+    dayOfMonthOrdinalParse : /\d{1,2}º/,
+    ordinal : '%dº',
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return esDo;
+
+})));
+
+
+/***/ }),
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8827,7 +8728,7 @@ return et;
 
 
 /***/ }),
-/* 49 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8898,7 +8799,7 @@ return eu;
 
 
 /***/ }),
-/* 50 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9010,7 +8911,7 @@ return fa;
 
 
 /***/ }),
-/* 51 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9122,7 +9023,7 @@ return fi;
 
 
 /***/ }),
-/* 52 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9187,169 +9088,7 @@ return fo;
 
 
 /***/ }),
-/* 53 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : French (Canada) [fr-ca]
-//! author : Jonathan Abourbih : https://github.com/jonbca
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var frCa = moment.defineLocale('fr-ca', {
-    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
-    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'YYYY-MM-DD',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'dans %s',
-        past : 'il y a %s',
-        s : 'quelques secondes',
-        m : 'une minute',
-        mm : '%d minutes',
-        h : 'une heure',
-        hh : '%d heures',
-        d : 'un jour',
-        dd : '%d jours',
-        M : 'un mois',
-        MM : '%d mois',
-        y : 'un an',
-        yy : '%d ans'
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // Words with masculine grammatical gender: mois, trimestre, jour
-            default:
-            case 'M':
-            case 'Q':
-            case 'D':
-            case 'DDD':
-            case 'd':
-                return number + (number === 1 ? 'er' : 'e');
-
-            // Words with feminine grammatical gender: semaine
-            case 'w':
-            case 'W':
-                return number + (number === 1 ? 're' : 'e');
-        }
-    }
-});
-
-return frCa;
-
-})));
-
-
-/***/ }),
-/* 54 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : French (Switzerland) [fr-ch]
-//! author : Gaspard Bucher : https://github.com/gaspard
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var frCh = moment.defineLocale('fr-ch', {
-    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
-    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
-    monthsParseExact : true,
-    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
-    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
-    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD.MM.YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay : '[Aujourd’hui à] LT',
-        nextDay : '[Demain à] LT',
-        nextWeek : 'dddd [à] LT',
-        lastDay : '[Hier à] LT',
-        lastWeek : 'dddd [dernier à] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'dans %s',
-        past : 'il y a %s',
-        s : 'quelques secondes',
-        m : 'une minute',
-        mm : '%d minutes',
-        h : 'une heure',
-        hh : '%d heures',
-        d : 'un jour',
-        dd : '%d jours',
-        M : 'un mois',
-        MM : '%d mois',
-        y : 'un an',
-        yy : '%d ans'
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
-    ordinal : function (number, period) {
-        switch (period) {
-            // Words with masculine grammatical gender: mois, trimestre, jour
-            default:
-            case 'M':
-            case 'Q':
-            case 'D':
-            case 'DDD':
-            case 'd':
-                return number + (number === 1 ? 'er' : 'e');
-
-            // Words with feminine grammatical gender: semaine
-            case 'w':
-            case 'W':
-                return number + (number === 1 ? 're' : 'e');
-        }
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return frCh;
-
-})));
-
-
-/***/ }),
-/* 55 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9437,7 +9176,169 @@ return fr;
 
 
 /***/ }),
-/* 56 */
+/* 52 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : French (Canada) [fr-ca]
+//! author : Jonathan Abourbih : https://github.com/jonbca
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var frCa = moment.defineLocale('fr-ca', {
+    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
+    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+    monthsParseExact : true,
+    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
+    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'YYYY-MM-DD',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay : '[Aujourd’hui à] LT',
+        nextDay : '[Demain à] LT',
+        nextWeek : 'dddd [à] LT',
+        lastDay : '[Hier à] LT',
+        lastWeek : 'dddd [dernier à] LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'dans %s',
+        past : 'il y a %s',
+        s : 'quelques secondes',
+        m : 'une minute',
+        mm : '%d minutes',
+        h : 'une heure',
+        hh : '%d heures',
+        d : 'un jour',
+        dd : '%d jours',
+        M : 'un mois',
+        MM : '%d mois',
+        y : 'un an',
+        yy : '%d ans'
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
+    ordinal : function (number, period) {
+        switch (period) {
+            // Words with masculine grammatical gender: mois, trimestre, jour
+            default:
+            case 'M':
+            case 'Q':
+            case 'D':
+            case 'DDD':
+            case 'd':
+                return number + (number === 1 ? 'er' : 'e');
+
+            // Words with feminine grammatical gender: semaine
+            case 'w':
+            case 'W':
+                return number + (number === 1 ? 're' : 'e');
+        }
+    }
+});
+
+return frCa;
+
+})));
+
+
+/***/ }),
+/* 53 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : French (Switzerland) [fr-ch]
+//! author : Gaspard Bucher : https://github.com/gaspard
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var frCh = moment.defineLocale('fr-ch', {
+    months : 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
+    monthsShort : 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+    monthsParseExact : true,
+    weekdays : 'dimanche_lundi_mardi_mercredi_jeudi_vendredi_samedi'.split('_'),
+    weekdaysShort : 'dim._lun._mar._mer._jeu._ven._sam.'.split('_'),
+    weekdaysMin : 'Di_Lu_Ma_Me_Je_Ve_Sa'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD.MM.YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay : '[Aujourd’hui à] LT',
+        nextDay : '[Demain à] LT',
+        nextWeek : 'dddd [à] LT',
+        lastDay : '[Hier à] LT',
+        lastWeek : 'dddd [dernier à] LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'dans %s',
+        past : 'il y a %s',
+        s : 'quelques secondes',
+        m : 'une minute',
+        mm : '%d minutes',
+        h : 'une heure',
+        hh : '%d heures',
+        d : 'un jour',
+        dd : '%d jours',
+        M : 'un mois',
+        MM : '%d mois',
+        y : 'un an',
+        yy : '%d ans'
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}(er|e)/,
+    ordinal : function (number, period) {
+        switch (period) {
+            // Words with masculine grammatical gender: mois, trimestre, jour
+            default:
+            case 'M':
+            case 'Q':
+            case 'D':
+            case 'DDD':
+            case 'd':
+                return number + (number === 1 ? 'er' : 'e');
+
+            // Words with feminine grammatical gender: semaine
+            case 'w':
+            case 'W':
+                return number + (number === 1 ? 're' : 'e');
+        }
+    },
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return frCh;
+
+})));
+
+
+/***/ }),
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9517,7 +9418,7 @@ return fy;
 
 
 /***/ }),
-/* 57 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9598,7 +9499,7 @@ return gd;
 
 
 /***/ }),
-/* 58 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9680,7 +9581,7 @@ return gl;
 
 
 /***/ }),
-/* 59 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9807,7 +9708,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 60 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9911,7 +9812,7 @@ return he;
 
 
 /***/ }),
-/* 61 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10040,7 +9941,7 @@ return hi;
 
 
 /***/ }),
-/* 62 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10190,7 +10091,7 @@ return hr;
 
 
 /***/ }),
-/* 63 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10304,7 +10205,7 @@ return hu;
 
 
 /***/ }),
-/* 64 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10404,7 +10305,7 @@ return hyAm;
 
 
 /***/ }),
-/* 65 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10492,7 +10393,7 @@ return id;
 
 
 /***/ }),
-/* 66 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10624,7 +10525,7 @@ return is;
 
 
 /***/ }),
-/* 67 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10699,7 +10600,7 @@ return it;
 
 
 /***/ }),
-/* 68 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10784,7 +10685,7 @@ return ja;
 
 
 /***/ }),
-/* 69 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10872,7 +10773,7 @@ return jv;
 
 
 /***/ }),
-/* 70 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10966,7 +10867,7 @@ return ka;
 
 
 /***/ }),
-/* 71 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11058,7 +10959,7 @@ return kk;
 
 
 /***/ }),
-/* 72 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11121,7 +11022,7 @@ return km;
 
 
 /***/ }),
-/* 73 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11252,7 +11153,7 @@ return kn;
 
 
 /***/ }),
-/* 74 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11326,7 +11227,7 @@ return ko;
 
 
 /***/ }),
-/* 75 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11419,7 +11320,7 @@ return ky;
 
 
 /***/ }),
-/* 76 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11561,7 +11462,7 @@ return lb;
 
 
 /***/ }),
-/* 77 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11636,7 +11537,7 @@ return lo;
 
 
 /***/ }),
-/* 78 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11758,7 +11659,7 @@ return lt;
 
 
 /***/ }),
-/* 79 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11860,7 +11761,7 @@ return lv;
 
 
 /***/ }),
-/* 80 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11976,7 +11877,7 @@ return me;
 
 
 /***/ }),
-/* 81 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12045,7 +11946,7 @@ return mi;
 
 
 /***/ }),
-/* 82 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12140,7 +12041,7 @@ return mk;
 
 
 /***/ }),
-/* 83 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12226,7 +12127,7 @@ return ml;
 
 
 /***/ }),
-/* 84 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12390,7 +12291,94 @@ return mr;
 
 
 /***/ }),
-/* 85 */
+/* 83 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Malay [ms]
+//! author : Weldan Jamili : https://github.com/weldan
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var ms = moment.defineLocale('ms', {
+    months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
+    monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
+    weekdays : 'Ahad_Isnin_Selasa_Rabu_Khamis_Jumaat_Sabtu'.split('_'),
+    weekdaysShort : 'Ahd_Isn_Sel_Rab_Kha_Jum_Sab'.split('_'),
+    weekdaysMin : 'Ah_Is_Sl_Rb_Km_Jm_Sb'.split('_'),
+    longDateFormat : {
+        LT : 'HH.mm',
+        LTS : 'HH.mm.ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY [pukul] HH.mm',
+        LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
+    },
+    meridiemParse: /pagi|tengahari|petang|malam/,
+    meridiemHour: function (hour, meridiem) {
+        if (hour === 12) {
+            hour = 0;
+        }
+        if (meridiem === 'pagi') {
+            return hour;
+        } else if (meridiem === 'tengahari') {
+            return hour >= 11 ? hour : hour + 12;
+        } else if (meridiem === 'petang' || meridiem === 'malam') {
+            return hour + 12;
+        }
+    },
+    meridiem : function (hours, minutes, isLower) {
+        if (hours < 11) {
+            return 'pagi';
+        } else if (hours < 15) {
+            return 'tengahari';
+        } else if (hours < 19) {
+            return 'petang';
+        } else {
+            return 'malam';
+        }
+    },
+    calendar : {
+        sameDay : '[Hari ini pukul] LT',
+        nextDay : '[Esok pukul] LT',
+        nextWeek : 'dddd [pukul] LT',
+        lastDay : '[Kelmarin pukul] LT',
+        lastWeek : 'dddd [lepas pukul] LT',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'dalam %s',
+        past : '%s yang lepas',
+        s : 'beberapa saat',
+        m : 'seminit',
+        mm : '%d minit',
+        h : 'sejam',
+        hh : '%d jam',
+        d : 'sehari',
+        dd : '%d hari',
+        M : 'sebulan',
+        MM : '%d bulan',
+        y : 'setahun',
+        yy : '%d tahun'
+    },
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 7  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return ms;
+
+})));
+
+
+/***/ }),
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12478,94 +12466,7 @@ return msMy;
 
 
 /***/ }),
-/* 86 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Malay [ms]
-//! author : Weldan Jamili : https://github.com/weldan
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var ms = moment.defineLocale('ms', {
-    months : 'Januari_Februari_Mac_April_Mei_Jun_Julai_Ogos_September_Oktober_November_Disember'.split('_'),
-    monthsShort : 'Jan_Feb_Mac_Apr_Mei_Jun_Jul_Ogs_Sep_Okt_Nov_Dis'.split('_'),
-    weekdays : 'Ahad_Isnin_Selasa_Rabu_Khamis_Jumaat_Sabtu'.split('_'),
-    weekdaysShort : 'Ahd_Isn_Sel_Rab_Kha_Jum_Sab'.split('_'),
-    weekdaysMin : 'Ah_Is_Sl_Rb_Km_Jm_Sb'.split('_'),
-    longDateFormat : {
-        LT : 'HH.mm',
-        LTS : 'HH.mm.ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY [pukul] HH.mm',
-        LLLL : 'dddd, D MMMM YYYY [pukul] HH.mm'
-    },
-    meridiemParse: /pagi|tengahari|petang|malam/,
-    meridiemHour: function (hour, meridiem) {
-        if (hour === 12) {
-            hour = 0;
-        }
-        if (meridiem === 'pagi') {
-            return hour;
-        } else if (meridiem === 'tengahari') {
-            return hour >= 11 ? hour : hour + 12;
-        } else if (meridiem === 'petang' || meridiem === 'malam') {
-            return hour + 12;
-        }
-    },
-    meridiem : function (hours, minutes, isLower) {
-        if (hours < 11) {
-            return 'pagi';
-        } else if (hours < 15) {
-            return 'tengahari';
-        } else if (hours < 19) {
-            return 'petang';
-        } else {
-            return 'malam';
-        }
-    },
-    calendar : {
-        sameDay : '[Hari ini pukul] LT',
-        nextDay : '[Esok pukul] LT',
-        nextWeek : 'dddd [pukul] LT',
-        lastDay : '[Kelmarin pukul] LT',
-        lastWeek : 'dddd [lepas pukul] LT',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'dalam %s',
-        past : '%s yang lepas',
-        s : 'beberapa saat',
-        m : 'seminit',
-        mm : '%d minit',
-        h : 'sejam',
-        hh : '%d jam',
-        d : 'sehari',
-        dd : '%d hari',
-        M : 'sebulan',
-        MM : '%d bulan',
-        y : 'setahun',
-        yy : '%d tahun'
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 7  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return ms;
-
-})));
-
-
-/***/ }),
-/* 87 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12666,7 +12567,7 @@ return my;
 
 
 /***/ }),
-/* 88 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12734,7 +12635,7 @@ return nb;
 
 
 /***/ }),
-/* 89 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12862,100 +12763,7 @@ return ne;
 
 
 /***/ }),
-/* 90 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Dutch (Belgium) [nl-be]
-//! author : Joris Röling : https://github.com/jorisroling
-//! author : Jacob Middag : https://github.com/middagj
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
-var monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
-
-var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
-var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
-
-var nlBe = moment.defineLocale('nl-be', {
-    months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
-    monthsShort : function (m, format) {
-        if (!m) {
-            return monthsShortWithDots;
-        } else if (/-MMM-/.test(format)) {
-            return monthsShortWithoutDots[m.month()];
-        } else {
-            return monthsShortWithDots[m.month()];
-        }
-    },
-
-    monthsRegex: monthsRegex,
-    monthsShortRegex: monthsRegex,
-    monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
-    monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
-
-    monthsParse : monthsParse,
-    longMonthsParse : monthsParse,
-    shortMonthsParse : monthsParse,
-
-    weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
-    weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
-    weekdaysMin : 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[vandaag om] LT',
-        nextDay: '[morgen om] LT',
-        nextWeek: 'dddd [om] LT',
-        lastDay: '[gisteren om] LT',
-        lastWeek: '[afgelopen] dddd [om] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'over %s',
-        past : '%s geleden',
-        s : 'een paar seconden',
-        m : 'één minuut',
-        mm : '%d minuten',
-        h : 'één uur',
-        hh : '%d uur',
-        d : 'één dag',
-        dd : '%d dagen',
-        M : 'één maand',
-        MM : '%d maanden',
-        y : 'één jaar',
-        yy : '%d jaar'
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
-    ordinal : function (number) {
-        return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 4  // The week that contains Jan 4th is the first week of the year.
-    }
-});
-
-return nlBe;
-
-})));
-
-
-/***/ }),
-/* 91 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13048,7 +12856,100 @@ return nl;
 
 
 /***/ }),
-/* 92 */
+/* 89 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Dutch (Belgium) [nl-be]
+//! author : Joris Röling : https://github.com/jorisroling
+//! author : Jacob Middag : https://github.com/middagj
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var monthsShortWithDots = 'jan._feb._mrt._apr._mei_jun._jul._aug._sep._okt._nov._dec.'.split('_');
+var monthsShortWithoutDots = 'jan_feb_mrt_apr_mei_jun_jul_aug_sep_okt_nov_dec'.split('_');
+
+var monthsParse = [/^jan/i, /^feb/i, /^maart|mrt.?$/i, /^apr/i, /^mei$/i, /^jun[i.]?$/i, /^jul[i.]?$/i, /^aug/i, /^sep/i, /^okt/i, /^nov/i, /^dec/i];
+var monthsRegex = /^(januari|februari|maart|april|mei|april|ju[nl]i|augustus|september|oktober|november|december|jan\.?|feb\.?|mrt\.?|apr\.?|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i;
+
+var nlBe = moment.defineLocale('nl-be', {
+    months : 'januari_februari_maart_april_mei_juni_juli_augustus_september_oktober_november_december'.split('_'),
+    monthsShort : function (m, format) {
+        if (!m) {
+            return monthsShortWithDots;
+        } else if (/-MMM-/.test(format)) {
+            return monthsShortWithoutDots[m.month()];
+        } else {
+            return monthsShortWithDots[m.month()];
+        }
+    },
+
+    monthsRegex: monthsRegex,
+    monthsShortRegex: monthsRegex,
+    monthsStrictRegex: /^(januari|februari|maart|mei|ju[nl]i|april|augustus|september|oktober|november|december)/i,
+    monthsShortStrictRegex: /^(jan\.?|feb\.?|mrt\.?|apr\.?|mei|ju[nl]\.?|aug\.?|sep\.?|okt\.?|nov\.?|dec\.?)/i,
+
+    monthsParse : monthsParse,
+    longMonthsParse : monthsParse,
+    shortMonthsParse : monthsParse,
+
+    weekdays : 'zondag_maandag_dinsdag_woensdag_donderdag_vrijdag_zaterdag'.split('_'),
+    weekdaysShort : 'zo._ma._di._wo._do._vr._za.'.split('_'),
+    weekdaysMin : 'Zo_Ma_Di_Wo_Do_Vr_Za'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[vandaag om] LT',
+        nextDay: '[morgen om] LT',
+        nextWeek: 'dddd [om] LT',
+        lastDay: '[gisteren om] LT',
+        lastWeek: '[afgelopen] dddd [om] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'over %s',
+        past : '%s geleden',
+        s : 'een paar seconden',
+        m : 'één minuut',
+        mm : '%d minuten',
+        h : 'één uur',
+        hh : '%d uur',
+        d : 'één dag',
+        dd : '%d dagen',
+        M : 'één maand',
+        MM : '%d maanden',
+        y : 'één jaar',
+        yy : '%d jaar'
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}(ste|de)/,
+    ordinal : function (number) {
+        return number + ((number === 1 || number === 8 || number >= 20) ? 'ste' : 'de');
+    },
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 4  // The week that contains Jan 4th is the first week of the year.
+    }
+});
+
+return nlBe;
+
+})));
+
+
+/***/ }),
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13113,7 +13014,7 @@ return nn;
 
 
 /***/ }),
-/* 93 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13242,7 +13143,7 @@ return paIn;
 
 
 /***/ }),
-/* 94 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13354,73 +13255,7 @@ return pl;
 
 
 /***/ }),
-/* 95 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Portuguese (Brazil) [pt-br]
-//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var ptBr = moment.defineLocale('pt-br', {
-    months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
-    weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
-    weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
-    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D [de] MMMM [de] YYYY',
-        LLL : 'D [de] MMMM [de] YYYY [às] HH:mm',
-        LLLL : 'dddd, D [de] MMMM [de] YYYY [às] HH:mm'
-    },
-    calendar : {
-        sameDay: '[Hoje às] LT',
-        nextDay: '[Amanhã às] LT',
-        nextWeek: 'dddd [às] LT',
-        lastDay: '[Ontem às] LT',
-        lastWeek: function () {
-            return (this.day() === 0 || this.day() === 6) ?
-                '[Último] dddd [às] LT' : // Saturday + Sunday
-                '[Última] dddd [às] LT'; // Monday - Friday
-        },
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'em %s',
-        past : '%s atrás',
-        s : 'poucos segundos',
-        m : 'um minuto',
-        mm : '%d minutos',
-        h : 'uma hora',
-        hh : '%d horas',
-        d : 'um dia',
-        dd : '%d dias',
-        M : 'um mês',
-        MM : '%d meses',
-        y : 'um ano',
-        yy : '%d anos'
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}º/,
-    ordinal : '%dº'
-});
-
-return ptBr;
-
-})));
-
-
-/***/ }),
-/* 96 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13490,7 +13325,73 @@ return pt;
 
 
 /***/ }),
-/* 97 */
+/* 94 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Portuguese (Brazil) [pt-br]
+//! author : Caio Ribeiro Pereira : https://github.com/caio-ribeiro-pereira
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var ptBr = moment.defineLocale('pt-br', {
+    months : 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julho_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+    monthsShort : 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dez'.split('_'),
+    weekdays : 'Domingo_Segunda-feira_Terça-feira_Quarta-feira_Quinta-feira_Sexta-feira_Sábado'.split('_'),
+    weekdaysShort : 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
+    weekdaysMin : 'Do_2ª_3ª_4ª_5ª_6ª_Sá'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D [de] MMMM [de] YYYY',
+        LLL : 'D [de] MMMM [de] YYYY [às] HH:mm',
+        LLLL : 'dddd, D [de] MMMM [de] YYYY [às] HH:mm'
+    },
+    calendar : {
+        sameDay: '[Hoje às] LT',
+        nextDay: '[Amanhã às] LT',
+        nextWeek: 'dddd [às] LT',
+        lastDay: '[Ontem às] LT',
+        lastWeek: function () {
+            return (this.day() === 0 || this.day() === 6) ?
+                '[Último] dddd [às] LT' : // Saturday + Sunday
+                '[Última] dddd [às] LT'; // Monday - Friday
+        },
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'em %s',
+        past : '%s atrás',
+        s : 'poucos segundos',
+        m : 'um minuto',
+        mm : '%d minutos',
+        h : 'uma hora',
+        hh : '%d horas',
+        d : 'um dia',
+        dd : '%d dias',
+        M : 'um mês',
+        MM : '%d meses',
+        y : 'um ano',
+        yy : '%d anos'
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}º/,
+    ordinal : '%dº'
+});
+
+return ptBr;
+
+})));
+
+
+/***/ }),
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13570,7 +13471,7 @@ return ro;
 
 
 /***/ }),
-/* 98 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13758,7 +13659,7 @@ return ru;
 
 
 /***/ }),
-/* 99 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13861,7 +13762,7 @@ return sd;
 
 
 /***/ }),
-/* 100 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13927,7 +13828,7 @@ return se;
 
 
 /***/ }),
-/* 101 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14003,7 +13904,7 @@ return si;
 
 
 /***/ }),
-/* 102 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14158,7 +14059,7 @@ return sk;
 
 
 /***/ }),
-/* 103 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14325,7 +14226,7 @@ return sl;
 
 
 /***/ }),
-/* 104 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14400,122 +14301,7 @@ return sq;
 
 
 /***/ }),
-/* 105 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Serbian Cyrillic [sr-cyrl]
-//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var translator = {
-    words: { //Different grammatical cases
-        m: ['један минут', 'једне минуте'],
-        mm: ['минут', 'минуте', 'минута'],
-        h: ['један сат', 'једног сата'],
-        hh: ['сат', 'сата', 'сати'],
-        dd: ['дан', 'дана', 'дана'],
-        MM: ['месец', 'месеца', 'месеци'],
-        yy: ['година', 'године', 'година']
-    },
-    correctGrammaticalCase: function (number, wordKey) {
-        return number === 1 ? wordKey[0] : (number >= 2 && number <= 4 ? wordKey[1] : wordKey[2]);
-    },
-    translate: function (number, withoutSuffix, key) {
-        var wordKey = translator.words[key];
-        if (key.length === 1) {
-            return withoutSuffix ? wordKey[0] : wordKey[1];
-        } else {
-            return number + ' ' + translator.correctGrammaticalCase(number, wordKey);
-        }
-    }
-};
-
-var srCyrl = moment.defineLocale('sr-cyrl', {
-    months: 'јануар_фебруар_март_април_мај_јун_јул_август_септембар_октобар_новембар_децембар'.split('_'),
-    monthsShort: 'јан._феб._мар._апр._мај_јун_јул_авг._сеп._окт._нов._дец.'.split('_'),
-    monthsParseExact: true,
-    weekdays: 'недеља_понедељак_уторак_среда_четвртак_петак_субота'.split('_'),
-    weekdaysShort: 'нед._пон._уто._сре._чет._пет._суб.'.split('_'),
-    weekdaysMin: 'не_по_ут_ср_че_пе_су'.split('_'),
-    weekdaysParseExact : true,
-    longDateFormat: {
-        LT: 'H:mm',
-        LTS : 'H:mm:ss',
-        L: 'DD.MM.YYYY',
-        LL: 'D. MMMM YYYY',
-        LLL: 'D. MMMM YYYY H:mm',
-        LLLL: 'dddd, D. MMMM YYYY H:mm'
-    },
-    calendar: {
-        sameDay: '[данас у] LT',
-        nextDay: '[сутра у] LT',
-        nextWeek: function () {
-            switch (this.day()) {
-                case 0:
-                    return '[у] [недељу] [у] LT';
-                case 3:
-                    return '[у] [среду] [у] LT';
-                case 6:
-                    return '[у] [суботу] [у] LT';
-                case 1:
-                case 2:
-                case 4:
-                case 5:
-                    return '[у] dddd [у] LT';
-            }
-        },
-        lastDay  : '[јуче у] LT',
-        lastWeek : function () {
-            var lastWeekDays = [
-                '[прошле] [недеље] [у] LT',
-                '[прошлог] [понедељка] [у] LT',
-                '[прошлог] [уторка] [у] LT',
-                '[прошле] [среде] [у] LT',
-                '[прошлог] [четвртка] [у] LT',
-                '[прошлог] [петка] [у] LT',
-                '[прошле] [суботе] [у] LT'
-            ];
-            return lastWeekDays[this.day()];
-        },
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'за %s',
-        past   : 'пре %s',
-        s      : 'неколико секунди',
-        m      : translator.translate,
-        mm     : translator.translate,
-        h      : translator.translate,
-        hh     : translator.translate,
-        d      : 'дан',
-        dd     : translator.translate,
-        M      : 'месец',
-        MM     : translator.translate,
-        y      : 'годину',
-        yy     : translator.translate
-    },
-    dayOfMonthOrdinalParse: /\d{1,2}\./,
-    ordinal : '%d.',
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 7  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return srCyrl;
-
-})));
-
-
-/***/ }),
-/* 106 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14630,7 +14416,122 @@ return sr;
 
 
 /***/ }),
-/* 107 */
+/* 104 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Serbian Cyrillic [sr-cyrl]
+//! author : Milan Janačković<milanjanackovic@gmail.com> : https://github.com/milan-j
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var translator = {
+    words: { //Different grammatical cases
+        m: ['један минут', 'једне минуте'],
+        mm: ['минут', 'минуте', 'минута'],
+        h: ['један сат', 'једног сата'],
+        hh: ['сат', 'сата', 'сати'],
+        dd: ['дан', 'дана', 'дана'],
+        MM: ['месец', 'месеца', 'месеци'],
+        yy: ['година', 'године', 'година']
+    },
+    correctGrammaticalCase: function (number, wordKey) {
+        return number === 1 ? wordKey[0] : (number >= 2 && number <= 4 ? wordKey[1] : wordKey[2]);
+    },
+    translate: function (number, withoutSuffix, key) {
+        var wordKey = translator.words[key];
+        if (key.length === 1) {
+            return withoutSuffix ? wordKey[0] : wordKey[1];
+        } else {
+            return number + ' ' + translator.correctGrammaticalCase(number, wordKey);
+        }
+    }
+};
+
+var srCyrl = moment.defineLocale('sr-cyrl', {
+    months: 'јануар_фебруар_март_април_мај_јун_јул_август_септембар_октобар_новембар_децембар'.split('_'),
+    monthsShort: 'јан._феб._мар._апр._мај_јун_јул_авг._сеп._окт._нов._дец.'.split('_'),
+    monthsParseExact: true,
+    weekdays: 'недеља_понедељак_уторак_среда_четвртак_петак_субота'.split('_'),
+    weekdaysShort: 'нед._пон._уто._сре._чет._пет._суб.'.split('_'),
+    weekdaysMin: 'не_по_ут_ср_че_пе_су'.split('_'),
+    weekdaysParseExact : true,
+    longDateFormat: {
+        LT: 'H:mm',
+        LTS : 'H:mm:ss',
+        L: 'DD.MM.YYYY',
+        LL: 'D. MMMM YYYY',
+        LLL: 'D. MMMM YYYY H:mm',
+        LLLL: 'dddd, D. MMMM YYYY H:mm'
+    },
+    calendar: {
+        sameDay: '[данас у] LT',
+        nextDay: '[сутра у] LT',
+        nextWeek: function () {
+            switch (this.day()) {
+                case 0:
+                    return '[у] [недељу] [у] LT';
+                case 3:
+                    return '[у] [среду] [у] LT';
+                case 6:
+                    return '[у] [суботу] [у] LT';
+                case 1:
+                case 2:
+                case 4:
+                case 5:
+                    return '[у] dddd [у] LT';
+            }
+        },
+        lastDay  : '[јуче у] LT',
+        lastWeek : function () {
+            var lastWeekDays = [
+                '[прошле] [недеље] [у] LT',
+                '[прошлог] [понедељка] [у] LT',
+                '[прошлог] [уторка] [у] LT',
+                '[прошле] [среде] [у] LT',
+                '[прошлог] [четвртка] [у] LT',
+                '[прошлог] [петка] [у] LT',
+                '[прошле] [суботе] [у] LT'
+            ];
+            return lastWeekDays[this.day()];
+        },
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'за %s',
+        past   : 'пре %s',
+        s      : 'неколико секунди',
+        m      : translator.translate,
+        mm     : translator.translate,
+        h      : translator.translate,
+        hh     : translator.translate,
+        d      : 'дан',
+        dd     : translator.translate,
+        M      : 'месец',
+        MM     : translator.translate,
+        y      : 'годину',
+        yy     : translator.translate
+    },
+    dayOfMonthOrdinalParse: /\d{1,2}\./,
+    ordinal : '%d.',
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 7  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return srCyrl;
+
+})));
+
+
+/***/ }),
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14724,7 +14625,7 @@ return ss;
 
 
 /***/ }),
-/* 108 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14798,7 +14699,7 @@ return sv;
 
 
 /***/ }),
-/* 109 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14862,7 +14763,7 @@ return sw;
 
 
 /***/ }),
-/* 110 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14997,7 +14898,7 @@ return ta;
 
 
 /***/ }),
-/* 111 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15091,7 +14992,7 @@ return te;
 
 
 /***/ }),
-/* 112 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15164,7 +15065,7 @@ return tet;
 
 
 /***/ }),
-/* 113 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15236,7 +15137,7 @@ return th;
 
 
 /***/ }),
-/* 114 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15303,7 +15204,7 @@ return tlPh;
 
 
 /***/ }),
-/* 115 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15428,7 +15329,7 @@ return tlh;
 
 
 /***/ }),
-/* 116 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15523,7 +15424,7 @@ return tr;
 
 
 /***/ }),
-/* 117 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15619,70 +15520,7 @@ return tzl;
 
 
 /***/ }),
-/* 118 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Central Atlas Tamazight Latin [tzm-latn]
-//! author : Abdel Said : https://github.com/abdelsaid
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var tzmLatn = moment.defineLocale('tzm-latn', {
-    months : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
-    monthsShort : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
-    weekdays : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
-    weekdaysShort : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
-    weekdaysMin : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'dddd D MMMM YYYY HH:mm'
-    },
-    calendar : {
-        sameDay: '[asdkh g] LT',
-        nextDay: '[aska g] LT',
-        nextWeek: 'dddd [g] LT',
-        lastDay: '[assant g] LT',
-        lastWeek: 'dddd [g] LT',
-        sameElse: 'L'
-    },
-    relativeTime : {
-        future : 'dadkh s yan %s',
-        past : 'yan %s',
-        s : 'imik',
-        m : 'minuḍ',
-        mm : '%d minuḍ',
-        h : 'saɛa',
-        hh : '%d tassaɛin',
-        d : 'ass',
-        dd : '%d ossan',
-        M : 'ayowr',
-        MM : '%d iyyirn',
-        y : 'asgas',
-        yy : '%d isgasn'
-    },
-    week : {
-        dow : 6, // Saturday is the first day of the week.
-        doy : 12  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return tzmLatn;
-
-})));
-
-
-/***/ }),
-/* 119 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15745,7 +15583,70 @@ return tzm;
 
 
 /***/ }),
-/* 120 */
+/* 117 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Central Atlas Tamazight Latin [tzm-latn]
+//! author : Abdel Said : https://github.com/abdelsaid
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var tzmLatn = moment.defineLocale('tzm-latn', {
+    months : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
+    monthsShort : 'innayr_brˤayrˤ_marˤsˤ_ibrir_mayyw_ywnyw_ywlywz_ɣwšt_šwtanbir_ktˤwbrˤ_nwwanbir_dwjnbir'.split('_'),
+    weekdays : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
+    weekdaysShort : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
+    weekdaysMin : 'asamas_aynas_asinas_akras_akwas_asimwas_asiḍyas'.split('_'),
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'dddd D MMMM YYYY HH:mm'
+    },
+    calendar : {
+        sameDay: '[asdkh g] LT',
+        nextDay: '[aska g] LT',
+        nextWeek: 'dddd [g] LT',
+        lastDay: '[assant g] LT',
+        lastWeek: 'dddd [g] LT',
+        sameElse: 'L'
+    },
+    relativeTime : {
+        future : 'dadkh s yan %s',
+        past : 'yan %s',
+        s : 'imik',
+        m : 'minuḍ',
+        mm : '%d minuḍ',
+        h : 'saɛa',
+        hh : '%d tassaɛin',
+        d : 'ass',
+        dd : '%d ossan',
+        M : 'ayowr',
+        MM : '%d iyyirn',
+        y : 'asgas',
+        yy : '%d isgasn'
+    },
+    week : {
+        dow : 6, // Saturday is the first day of the week.
+        doy : 12  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return tzmLatn;
+
+})));
+
+
+/***/ }),
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15901,7 +15802,7 @@ return uk;
 
 
 /***/ }),
-/* 121 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16005,70 +15906,7 @@ return ur;
 
 
 /***/ }),
-/* 122 */
-/***/ (function(module, exports, __webpack_require__) {
-
-//! moment.js locale configuration
-//! locale : Uzbek Latin [uz-latn]
-//! author : Rasulbek Mirzayev : github.com/Rasulbeeek
-
-;(function (global, factory) {
-    true ? factory(__webpack_require__(0)) :
-   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
-   factory(global.moment)
-}(this, (function (moment) { 'use strict';
-
-
-var uzLatn = moment.defineLocale('uz-latn', {
-    months : 'Yanvar_Fevral_Mart_Aprel_May_Iyun_Iyul_Avgust_Sentabr_Oktabr_Noyabr_Dekabr'.split('_'),
-    monthsShort : 'Yan_Fev_Mar_Apr_May_Iyun_Iyul_Avg_Sen_Okt_Noy_Dek'.split('_'),
-    weekdays : 'Yakshanba_Dushanba_Seshanba_Chorshanba_Payshanba_Juma_Shanba'.split('_'),
-    weekdaysShort : 'Yak_Dush_Sesh_Chor_Pay_Jum_Shan'.split('_'),
-    weekdaysMin : 'Ya_Du_Se_Cho_Pa_Ju_Sha'.split('_'),
-    longDateFormat : {
-        LT : 'HH:mm',
-        LTS : 'HH:mm:ss',
-        L : 'DD/MM/YYYY',
-        LL : 'D MMMM YYYY',
-        LLL : 'D MMMM YYYY HH:mm',
-        LLLL : 'D MMMM YYYY, dddd HH:mm'
-    },
-    calendar : {
-        sameDay : '[Bugun soat] LT [da]',
-        nextDay : '[Ertaga] LT [da]',
-        nextWeek : 'dddd [kuni soat] LT [da]',
-        lastDay : '[Kecha soat] LT [da]',
-        lastWeek : '[O\'tgan] dddd [kuni soat] LT [da]',
-        sameElse : 'L'
-    },
-    relativeTime : {
-        future : 'Yaqin %s ichida',
-        past : 'Bir necha %s oldin',
-        s : 'soniya',
-        m : 'bir daqiqa',
-        mm : '%d daqiqa',
-        h : 'bir soat',
-        hh : '%d soat',
-        d : 'bir kun',
-        dd : '%d kun',
-        M : 'bir oy',
-        MM : '%d oy',
-        y : 'bir yil',
-        yy : '%d yil'
-    },
-    week : {
-        dow : 1, // Monday is the first day of the week.
-        doy : 7  // The week that contains Jan 1st is the first week of the year.
-    }
-});
-
-return uzLatn;
-
-})));
-
-
-/***/ }),
-/* 123 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16131,7 +15969,70 @@ return uz;
 
 
 /***/ }),
-/* 124 */
+/* 121 */
+/***/ (function(module, exports, __webpack_require__) {
+
+//! moment.js locale configuration
+//! locale : Uzbek Latin [uz-latn]
+//! author : Rasulbek Mirzayev : github.com/Rasulbeeek
+
+;(function (global, factory) {
+    true ? factory(__webpack_require__(0)) :
+   typeof define === 'function' && define.amd ? define(['../moment'], factory) :
+   factory(global.moment)
+}(this, (function (moment) { 'use strict';
+
+
+var uzLatn = moment.defineLocale('uz-latn', {
+    months : 'Yanvar_Fevral_Mart_Aprel_May_Iyun_Iyul_Avgust_Sentabr_Oktabr_Noyabr_Dekabr'.split('_'),
+    monthsShort : 'Yan_Fev_Mar_Apr_May_Iyun_Iyul_Avg_Sen_Okt_Noy_Dek'.split('_'),
+    weekdays : 'Yakshanba_Dushanba_Seshanba_Chorshanba_Payshanba_Juma_Shanba'.split('_'),
+    weekdaysShort : 'Yak_Dush_Sesh_Chor_Pay_Jum_Shan'.split('_'),
+    weekdaysMin : 'Ya_Du_Se_Cho_Pa_Ju_Sha'.split('_'),
+    longDateFormat : {
+        LT : 'HH:mm',
+        LTS : 'HH:mm:ss',
+        L : 'DD/MM/YYYY',
+        LL : 'D MMMM YYYY',
+        LLL : 'D MMMM YYYY HH:mm',
+        LLLL : 'D MMMM YYYY, dddd HH:mm'
+    },
+    calendar : {
+        sameDay : '[Bugun soat] LT [da]',
+        nextDay : '[Ertaga] LT [da]',
+        nextWeek : 'dddd [kuni soat] LT [da]',
+        lastDay : '[Kecha soat] LT [da]',
+        lastWeek : '[O\'tgan] dddd [kuni soat] LT [da]',
+        sameElse : 'L'
+    },
+    relativeTime : {
+        future : 'Yaqin %s ichida',
+        past : 'Bir necha %s oldin',
+        s : 'soniya',
+        m : 'bir daqiqa',
+        mm : '%d daqiqa',
+        h : 'bir soat',
+        hh : '%d soat',
+        d : 'bir kun',
+        dd : '%d kun',
+        M : 'bir oy',
+        MM : '%d oy',
+        y : 'bir yil',
+        yy : '%d yil'
+    },
+    week : {
+        dow : 1, // Monday is the first day of the week.
+        doy : 7  // The week that contains Jan 1st is the first week of the year.
+    }
+});
+
+return uzLatn;
+
+})));
+
+
+/***/ }),
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16215,7 +16116,7 @@ return vi;
 
 
 /***/ }),
-/* 125 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16288,7 +16189,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 126 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16353,7 +16254,7 @@ return yo;
 
 
 /***/ }),
-/* 127 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16469,7 +16370,7 @@ return zhCn;
 
 
 /***/ }),
-/* 128 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16579,7 +16480,7 @@ return zhHk;
 
 
 /***/ }),
-/* 129 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16688,22 +16589,296 @@ return zhTw;
 
 
 /***/ }),
+/* 128 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function throttle (fn, boundary) {
+  var last = -Infinity;
+  var timer;
+  return function bounced () {
+    if (timer) {
+      return;
+    }
+    unbound();
+
+    function unbound () {
+      clearTimeout(timer);
+      timer = null;
+      var next = last + boundary;
+      var now = Date.now();
+      if (now > next) {
+        last = now;
+        fn();
+      } else {
+        timer = setTimeout(unbound, next - now);
+      }
+    }
+  };
+}
+
+module.exports = throttle;
+
+
+/***/ }),
+/* 129 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var getSelection;
+var doc = global.document;
+var getSelectionRaw = __webpack_require__(174);
+var getSelectionNullOp = __webpack_require__(175);
+var getSelectionSynthetic = __webpack_require__(176);
+var isHost = __webpack_require__(177);
+if (isHost.method(global, 'getSelection')) {
+  getSelection = getSelectionRaw;
+} else if (typeof doc.selection === 'object' && doc.selection) {
+  getSelection = getSelectionSynthetic;
+} else {
+  getSelection = getSelectionNullOp;
+}
+
+module.exports = getSelection;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
 /* 130 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var doc = global.document;
+var body = doc.body;
+
+function rangeToTextRange (p) {
+  if (p.collapsed) {
+    return createBoundaryTextRange({ node: p.startContainer, offset: p.startOffset }, true);
+  }
+  var startRange = createBoundaryTextRange({ node: p.startContainer, offset: p.startOffset }, true);
+  var endRange = createBoundaryTextRange({ node: p.endContainer, offset: p.endOffset }, false);
+  var textRange = body.createTextRange();
+  textRange.setEndPoint('StartToStart', startRange);
+  textRange.setEndPoint('EndToEnd', endRange);
+  return textRange;
+}
+
+function isCharacterDataNode (node) {
+  var t = node.nodeType;
+  return t === 3 || t === 4 || t === 8 ;
+}
+
+function createBoundaryTextRange (p, starting) {
+  var bound;
+  var parent;
+  var offset = p.offset;
+  var workingNode;
+  var childNodes;
+  var range = body.createTextRange();
+  var data = isCharacterDataNode(p.node);
+
+  if (data) {
+    bound = p.node;
+    parent = bound.parentNode;
+  } else {
+    childNodes = p.node.childNodes;
+    bound = offset < childNodes.length ? childNodes[offset] : null;
+    parent = p.node;
+  }
+
+  workingNode = doc.createElement('span');
+  workingNode.innerHTML = '&#feff;';
+
+  if (bound) {
+    parent.insertBefore(workingNode, bound);
+  } else {
+    parent.appendChild(workingNode);
+  }
+
+  range.moveToElementText(workingNode);
+  range.collapse(!starting);
+  parent.removeChild(workingNode);
+
+  if (data) {
+    range[starting ? 'moveStart' : 'moveEnd']('character', offset);
+  }
+  return range;
+}
+
+module.exports = rangeToTextRange;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 131 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var momentum = __webpack_require__(4);
+
+// naïve implementation, specifically meant to clone `options` objects
+function clone (thing) {
+  var copy = {};
+  var value;
+
+  for (var key in thing) {
+    value = thing[key];
+
+    if (!value) {
+      copy[key] = value;
+    } else if (momentum.isMoment(value)) {
+      copy[key] = value.clone();
+    } else if (value._isStylesConfiguration) {
+      copy[key] = clone(value);
+    } else {
+      copy[key] = value;
+    }
+  }
+
+  return copy;
+}
+
+module.exports = clone;
+
+
+/***/ }),
+/* 132 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var parse = __webpack_require__(11);
+var isInput = __webpack_require__(12);
+var momentum = __webpack_require__(4);
+
+function defaults (options, cal) {
+  var temp;
+  var no;
+  var o = options || {};
+  if (o.autoHideOnClick === no) { o.autoHideOnClick = true; }
+  if (o.autoHideOnBlur === no) { o.autoHideOnBlur = true; }
+  if (o.autoClose === no) { o.autoClose = true; }
+  if (o.appendTo === no) { o.appendTo = document.body; }
+  if (o.appendTo === 'parent') {
+    if (isInput(cal.associated)) {
+      o.appendTo = cal.associated.parentNode;
+    } else {
+      throw new Error('Inline calendars must be appended to a parent node explicitly.');
+    }
+  }
+  if (o.invalidate === no) { o.invalidate = true; }
+  if (o.required === no) { o.required = false; }
+  if (o.date === no) { o.date = true; }
+  if (o.time === no) { o.time = true; }
+  if (o.date === false && o.time === false) { throw new Error('At least one of `date` or `time` must be `true`.'); }
+  if (o.inputFormat === no) {
+    if (o.date && o.time) {
+      o.inputFormat = 'YYYY-MM-DD HH:mm';
+    } else if (o.date) {
+      o.inputFormat = 'YYYY-MM-DD';
+    } else {
+      o.inputFormat = 'HH:mm';
+    }
+  }
+  if (o.initialValue === no) {
+    o.initialValue = null;
+  } else {
+    o.initialValue = parse(o.initialValue, o.inputFormat);
+  }
+  if (o.min === no) { o.min = null; } else { o.min = parse(o.min, o.inputFormat); }
+  if (o.max === no) { o.max = null; } else { o.max = parse(o.max, o.inputFormat); }
+  if (o.timeInterval === no) { o.timeInterval = 60 * 30; } // 30 minutes by default
+  if (o.min && o.max) {
+    if (o.max.isBefore(o.min)) {
+      temp = o.max;
+      o.max = o.min;
+      o.min = temp;
+    }
+    if (o.date === true) {
+      if (o.max.clone().subtract(1, 'days').isBefore(o.min)) {
+        throw new Error('`max` must be at least one day after `min`');
+      }
+    } else if (o.timeInterval * 1000 - o.min % (o.timeInterval * 1000) > o.max - o.min) {
+      throw new Error('`min` to `max` range must allow for at least one time option that matches `timeInterval`');
+    }
+  }
+  if (o.dateValidator === no) { o.dateValidator = Function.prototype; }
+  if (o.timeValidator === no) { o.timeValidator = Function.prototype; }
+  if (o.timeFormat === no) { o.timeFormat = 'HH:mm'; }
+  if (o.weekStart === no) { o.weekStart = momentum.moment().weekday(0).day(); }
+  if (o.weekdayFormat === no) { o.weekdayFormat = 'min'; }
+  if (o.weekdayFormat === 'long') {
+    o.weekdayFormat = momentum.moment.weekdays();
+  } else if (o.weekdayFormat === 'short') {
+    o.weekdayFormat = momentum.moment.weekdaysShort();
+  } else if (o.weekdayFormat === 'min') {
+    o.weekdayFormat = momentum.moment.weekdaysMin();
+  } else if (!Array.isArray(o.weekdayFormat) || o.weekdayFormat.length < 7) {
+    throw new Error('`weekdays` must be `min`, `short`, or `long`');
+  }
+  if (o.monthsInCalendar === no) { o.monthsInCalendar = 1; }
+  if (o.monthFormat === no) { o.monthFormat = 'MMMM YYYY'; }
+  if (o.dayFormat === no) { o.dayFormat = 'DD'; }
+  if (o.styles === no) { o.styles = {}; }
+
+  o.styles._isStylesConfiguration = true;
+
+  var styl = o.styles;
+  if (styl.back === no) { styl.back = 'rd-back'; }
+  if (styl.container === no) { styl.container = 'rd-container'; }
+  if (styl.positioned === no) { styl.positioned = 'rd-container-attachment'; }
+  if (styl.date === no) { styl.date = 'rd-date'; }
+  if (styl.dayBody === no) { styl.dayBody = 'rd-days-body'; }
+  if (styl.dayBodyElem === no) { styl.dayBodyElem = 'rd-day-body'; }
+  if (styl.dayPrevMonth === no) { styl.dayPrevMonth = 'rd-day-prev-month'; }
+  if (styl.dayNextMonth === no) { styl.dayNextMonth = 'rd-day-next-month'; }
+  if (styl.dayDisabled === no) { styl.dayDisabled = 'rd-day-disabled'; }
+  if (styl.dayConcealed === no) { styl.dayConcealed = 'rd-day-concealed'; }
+  if (styl.dayHead === no) { styl.dayHead = 'rd-days-head'; }
+  if (styl.dayHeadElem === no) { styl.dayHeadElem = 'rd-day-head'; }
+  if (styl.dayRow === no) { styl.dayRow = 'rd-days-row'; }
+  if (styl.dayTable === no) { styl.dayTable = 'rd-days'; }
+  if (styl.month === no) { styl.month = 'rd-month'; }
+  if (styl.monthLabel === no) { styl.monthLabel = 'rd-month-label'; }
+  if (styl.next === no) { styl.next = 'rd-next'; }
+  if (styl.selectedDay === no) { styl.selectedDay = 'rd-day-selected'; }
+  if (styl.selectedTime === no) { styl.selectedTime = 'rd-time-selected'; }
+  if (styl.time === no) { styl.time = 'rd-time'; }
+  if (styl.timeList === no) { styl.timeList = 'rd-time-list'; }
+  if (styl.timeOption === no) { styl.timeOption = 'rd-time-option'; }
+
+  return o;
+}
+
+module.exports = defaults;
+
+
+/***/ }),
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var crossvent = __webpack_require__(6);
-var emitter = __webpack_require__(157);
-var dom = __webpack_require__(164);
-var text = __webpack_require__(179);
+var emitter = __webpack_require__(180);
+var dom = __webpack_require__(187);
+var text = __webpack_require__(188);
 var parse = __webpack_require__(11);
-var clone = __webpack_require__(132);
-var defaults = __webpack_require__(133);
+var clone = __webpack_require__(131);
+var defaults = __webpack_require__(132);
 var momentum = __webpack_require__(4);
-var classes = __webpack_require__(131);
-var noop = __webpack_require__(167);
+var classes = __webpack_require__(134);
+var noop = __webpack_require__(189);
 var no;
 
 function calendar (calendarOptions) {
@@ -17362,7 +17537,7 @@ module.exports = calendar;
 
 
 /***/ }),
-/* 131 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17407,12321 +17582,86 @@ module.exports = {
 
 
 /***/ }),
-/* 132 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var momentum = __webpack_require__(4);
-
-// naïve implementation, specifically meant to clone `options` objects
-function clone (thing) {
-  var copy = {};
-  var value;
-
-  for (var key in thing) {
-    value = thing[key];
-
-    if (!value) {
-      copy[key] = value;
-    } else if (momentum.isMoment(value)) {
-      copy[key] = value.clone();
-    } else if (value._isStylesConfiguration) {
-      copy[key] = clone(value);
-    } else {
-      copy[key] = value;
-    }
-  }
-
-  return copy;
-}
-
-module.exports = clone;
-
-
-/***/ }),
-/* 133 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var parse = __webpack_require__(11);
-var isInput = __webpack_require__(10);
-var momentum = __webpack_require__(4);
-
-function defaults (options, cal) {
-  var temp;
-  var no;
-  var o = options || {};
-  if (o.autoHideOnClick === no) { o.autoHideOnClick = true; }
-  if (o.autoHideOnBlur === no) { o.autoHideOnBlur = true; }
-  if (o.autoClose === no) { o.autoClose = true; }
-  if (o.appendTo === no) { o.appendTo = document.body; }
-  if (o.appendTo === 'parent') {
-    if (isInput(cal.associated)) {
-      o.appendTo = cal.associated.parentNode;
-    } else {
-      throw new Error('Inline calendars must be appended to a parent node explicitly.');
-    }
-  }
-  if (o.invalidate === no) { o.invalidate = true; }
-  if (o.required === no) { o.required = false; }
-  if (o.date === no) { o.date = true; }
-  if (o.time === no) { o.time = true; }
-  if (o.date === false && o.time === false) { throw new Error('At least one of `date` or `time` must be `true`.'); }
-  if (o.inputFormat === no) {
-    if (o.date && o.time) {
-      o.inputFormat = 'YYYY-MM-DD HH:mm';
-    } else if (o.date) {
-      o.inputFormat = 'YYYY-MM-DD';
-    } else {
-      o.inputFormat = 'HH:mm';
-    }
-  }
-  if (o.initialValue === no) {
-    o.initialValue = null;
-  } else {
-    o.initialValue = parse(o.initialValue, o.inputFormat);
-  }
-  if (o.min === no) { o.min = null; } else { o.min = parse(o.min, o.inputFormat); }
-  if (o.max === no) { o.max = null; } else { o.max = parse(o.max, o.inputFormat); }
-  if (o.timeInterval === no) { o.timeInterval = 60 * 30; } // 30 minutes by default
-  if (o.min && o.max) {
-    if (o.max.isBefore(o.min)) {
-      temp = o.max;
-      o.max = o.min;
-      o.min = temp;
-    }
-    if (o.date === true) {
-      if (o.max.clone().subtract(1, 'days').isBefore(o.min)) {
-        throw new Error('`max` must be at least one day after `min`');
-      }
-    } else if (o.timeInterval * 1000 - o.min % (o.timeInterval * 1000) > o.max - o.min) {
-      throw new Error('`min` to `max` range must allow for at least one time option that matches `timeInterval`');
-    }
-  }
-  if (o.dateValidator === no) { o.dateValidator = Function.prototype; }
-  if (o.timeValidator === no) { o.timeValidator = Function.prototype; }
-  if (o.timeFormat === no) { o.timeFormat = 'HH:mm'; }
-  if (o.weekStart === no) { o.weekStart = momentum.moment().weekday(0).day(); }
-  if (o.weekdayFormat === no) { o.weekdayFormat = 'min'; }
-  if (o.weekdayFormat === 'long') {
-    o.weekdayFormat = momentum.moment.weekdays();
-  } else if (o.weekdayFormat === 'short') {
-    o.weekdayFormat = momentum.moment.weekdaysShort();
-  } else if (o.weekdayFormat === 'min') {
-    o.weekdayFormat = momentum.moment.weekdaysMin();
-  } else if (!Array.isArray(o.weekdayFormat) || o.weekdayFormat.length < 7) {
-    throw new Error('`weekdays` must be `min`, `short`, or `long`');
-  }
-  if (o.monthsInCalendar === no) { o.monthsInCalendar = 1; }
-  if (o.monthFormat === no) { o.monthFormat = 'MMMM YYYY'; }
-  if (o.dayFormat === no) { o.dayFormat = 'DD'; }
-  if (o.styles === no) { o.styles = {}; }
-
-  o.styles._isStylesConfiguration = true;
-
-  var styl = o.styles;
-  if (styl.back === no) { styl.back = 'rd-back'; }
-  if (styl.container === no) { styl.container = 'rd-container'; }
-  if (styl.positioned === no) { styl.positioned = 'rd-container-attachment'; }
-  if (styl.date === no) { styl.date = 'rd-date'; }
-  if (styl.dayBody === no) { styl.dayBody = 'rd-days-body'; }
-  if (styl.dayBodyElem === no) { styl.dayBodyElem = 'rd-day-body'; }
-  if (styl.dayPrevMonth === no) { styl.dayPrevMonth = 'rd-day-prev-month'; }
-  if (styl.dayNextMonth === no) { styl.dayNextMonth = 'rd-day-next-month'; }
-  if (styl.dayDisabled === no) { styl.dayDisabled = 'rd-day-disabled'; }
-  if (styl.dayConcealed === no) { styl.dayConcealed = 'rd-day-concealed'; }
-  if (styl.dayHead === no) { styl.dayHead = 'rd-days-head'; }
-  if (styl.dayHeadElem === no) { styl.dayHeadElem = 'rd-day-head'; }
-  if (styl.dayRow === no) { styl.dayRow = 'rd-days-row'; }
-  if (styl.dayTable === no) { styl.dayTable = 'rd-days'; }
-  if (styl.month === no) { styl.month = 'rd-month'; }
-  if (styl.monthLabel === no) { styl.monthLabel = 'rd-month-label'; }
-  if (styl.next === no) { styl.next = 'rd-next'; }
-  if (styl.selectedDay === no) { styl.selectedDay = 'rd-day-selected'; }
-  if (styl.selectedTime === no) { styl.selectedTime = 'rd-time-selected'; }
-  if (styl.time === no) { styl.time = 'rd-time'; }
-  if (styl.timeList === no) { styl.timeList = 'rd-time-list'; }
-  if (styl.timeOption === no) { styl.timeOption = 'rd-time-option'; }
-
-  return o;
-}
-
-module.exports = defaults;
-
-
-/***/ }),
-/* 134 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var getSelection;
-var doc = global.document;
-var getSelectionRaw = __webpack_require__(184);
-var getSelectionNullOp = __webpack_require__(183);
-var getSelectionSynthetic = __webpack_require__(185);
-var isHost = __webpack_require__(186);
-if (isHost.method(global, 'getSelection')) {
-  getSelection = getSelectionRaw;
-} else if (typeof doc.selection === 'object' && doc.selection) {
-  getSelection = getSelectionSynthetic;
-} else {
-  getSelection = getSelectionNullOp;
-}
-
-module.exports = getSelection;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
 /* 135 */
-/***/ (function(module, exports, __webpack_require__) {
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
-var doc = global.document;
-var body = doc.body;
 
-function rangeToTextRange (p) {
-  if (p.collapsed) {
-    return createBoundaryTextRange({ node: p.startContainer, offset: p.startOffset }, true);
+
+
+class LabelClab extends Polymer.Element {
+        
+  static get is() { return 'label-clab'; }
+
+  static get properties() {
+    return {
+      type: {
+        type: String,
+        value: null
+      },
+      counter: {
+        type: Number,
+        value: null
+      },
+      remove: {
+        type: Boolean,
+        value: false
+      },
+      badge: {
+        type: Boolean,
+        value: false
+      }
+    }
   }
-  var startRange = createBoundaryTextRange({ node: p.startContainer, offset: p.startOffset }, true);
-  var endRange = createBoundaryTextRange({ node: p.endContainer, offset: p.endOffset }, false);
-  var textRange = body.createTextRange();
-  textRange.setEndPoint('StartToStart', startRange);
-  textRange.setEndPoint('EndToEnd', endRange);
-  return textRange;
+
+
+  /*----------
+  EVENT HANDLERS
+  ----------*/
+  _removeClicked(evt) {
+    this.dispatchEvent(new CustomEvent('remove',{
+      bubbles: true,
+      composed: true
+    }));
+  }
+
+
+  /*----------
+  COMPUTE
+  ----------*/
+  _computeClass(badge, type) {
+    let arr = [badge ? 'badge' : 'label'];
+    if(type != null) arr.push(type);
+    return arr.join(' ');
+  }
+
 }
 
-function isCharacterDataNode (node) {
-  var t = node.nodeType;
-  return t === 3 || t === 4 || t === 8 ;
-}
+customElements.define(LabelClab.is, LabelClab);
 
-function createBoundaryTextRange (p, starting) {
-  var bound;
-  var parent;
-  var offset = p.offset;
-  var workingNode;
-  var childNodes;
-  var range = body.createTextRange();
-  var data = isCharacterDataNode(p.node);
-
-  if (data) {
-    bound = p.node;
-    parent = bound.parentNode;
-  } else {
-    childNodes = p.node.childNodes;
-    bound = offset < childNodes.length ? childNodes[offset] : null;
-    parent = p.node;
-  }
-
-  workingNode = doc.createElement('span');
-  workingNode.innerHTML = '&#feff;';
-
-  if (bound) {
-    parent.insertBefore(workingNode, bound);
-  } else {
-    parent.appendChild(workingNode);
-  }
-
-  range.moveToElementText(workingNode);
-  range.collapse(!starting);
-  parent.removeChild(workingNode);
-
-  if (data) {
-    range[starting ? 'moveStart' : 'moveEnd']('character', offset);
-  }
-  return range;
-}
-
-module.exports = rangeToTextRange;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
 /* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html__ = __webpack_require__(193);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__template_html__);
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(224);
 
 
 
 
-class DemoElement extends Polymer.Element {
-        
-  static get is() { return 'demo-element'; }
 
-  static get properties() {
-    return {
-        
-    }
-  }
-
-
-  connectedCallback(){
-    super.connectedCallback();
-
-    setTimeout(() => {
-        // MODAL
-        this.modal1 = this.$.modalOne;
-        this.modal2 = this.$.modalTwo;
-        this.modal1.addEventListener('modal-primary', function () {
-          alert('Clicked');
-        });
-        this.modal1.addEventListener('modal-secondary', function (evt) {
-          evt.target.hide();
-        })
-        this.modal2.addEventListener('modal-primary', function () {
-          alert('Clicked');
-        });
-        this.modal2.addEventListener('modal-secondary', function (evt) {
-          evt.target.hide();
-        })
-        this.modal2.addEventListener('modal-warning', function (evt) {
-          if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
-        }.bind(this))
-        // Calendar
-        this.$.cal.options = {
-          time: false,
-          inputFormat: "DD/MM/YYYY"
-        };
-        Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function (el) {
-          el.addEventListener('change', function (evt) {
-            console.log('autocomplete-clab ', evt.detail)
-          });
-          el.addEventListener('sendRes', function (evt) {
-            console.log('autocomplete-clab ', evt.detail)
-          });
-          el.addEventListener('typing', function (evt) {
-            console.log('autocomplete-clab typing', evt)
-          });
-        });
-        Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function (dropdown) {
-          dropdown.addEventListener('change', function (evt) {
-            console.log('dropdown-clab ', evt.detail)
-          });
-        });
-        this.$.multi.addEventListener('change', function (evt) {
-          console.log('multiple-clab ', evt.detail.selected)
-        });
-      }, 200);
-
-      /*var menu = document.querySelector('menu-clab');
-      menu.menu = [{
-        "label": "Home",
-        "url": "#/home",
-        "visible": false
-      }, {
-        "label": "Plans",
-        "url": "#/plans",
-        "icon": "clab-icon icon-dashboard icon"
-      }, {
-        "label": "Segments",
-        "url": "#/segments",
-        "icon": "clab-icon icon-segment icon"
-      }, {
-        "label": "Reports",
-        "url": "#/reports",
-        "icon": "clab-icon icon-analytics icon"
-      }, {
-        "label": "Settings",
-        "url": "#/settings",
-        "icon": "clab-icon icon-settings icon",
-        "submenu": [{
-          "label": "Showed fields",
-          "url": "#/settings/fields"
-        }, {
-          "label": "Time zones & week",
-          "url": "#/settings/timezones"
-        }, {
-          "label": "Do Not Disturb Policy",
-          "url": "#/settings/dnd"
-        }, {
-          "label": "Users",
-          "url": "#/settings/users"
-        }]
-      }];*/
-    }
-  
-
-    _openModal1() {
-        this.modal1.show();
-    }
-
-    _openModal2() {
-      this.modal2.show();
-    }
-
-    _notify(evt) {
-      this.$.notify.visible = true;
-    }
-
-    _fire(evt) {
-      console.log('primary');
-    }
-
-    _checkboxChange(evt) {
-      console.log(evt.target);
-    }
-
-    _changeCurrentHash(evt) {
-      this.set('currentHash', evt.detail.href);
-    }
-
-    _dateChange(evt){
-      console.log(evt.detail)
-    }
-  
-}
-
-customElements.define(DemoElement.is, DemoElement);
 
 
 /***/ }),
 /* 137 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion___ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert___ = __webpack_require__(142);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__autocomplete___ = __webpack_require__(143);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button___ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group___ = __webpack_require__(144);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar___ = __webpack_require__(145);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__card___ = __webpack_require__(146);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__checkbox___ = __webpack_require__(147);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__curtain___ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropdown___ = __webpack_require__(148);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feature___ = __webpack_require__(149);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__file___ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__input___ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__label_badge___ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal___ = __webpack_require__(151);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__multiple___ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__note___ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pagination___ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__progress_bar___ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__radio___ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__range___ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__spinner___ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tabs___ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tags___ = __webpack_require__(225);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__tooltip___ = __webpack_require__(226);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/***/ }),
-/* 138 */
-/***/ (function(module, exports) {
-
-/******/ (function(modules) { // webpackBootstrap
-/******/ 	// The module cache
-/******/ 	var installedModules = {};
-/******/
-/******/ 	// The require function
-/******/ 	function __webpack_require__(moduleId) {
-/******/
-/******/ 		// Check if module is in cache
-/******/ 		if(installedModules[moduleId]) {
-/******/ 			return installedModules[moduleId].exports;
-/******/ 		}
-/******/ 		// Create a new module (and put it into the cache)
-/******/ 		var module = installedModules[moduleId] = {
-/******/ 			i: moduleId,
-/******/ 			l: false,
-/******/ 			exports: {}
-/******/ 		};
-/******/
-/******/ 		// Execute the module function
-/******/ 		modules[moduleId].call(module.exports, module, module.exports, __webpack_require__);
-/******/
-/******/ 		// Flag the module as loaded
-/******/ 		module.l = true;
-/******/
-/******/ 		// Return the exports of the module
-/******/ 		return module.exports;
-/******/ 	}
-/******/
-/******/
-/******/ 	// expose the modules object (__webpack_modules__)
-/******/ 	__webpack_require__.m = modules;
-/******/
-/******/ 	// expose the module cache
-/******/ 	__webpack_require__.c = installedModules;
-/******/
-/******/ 	// identity function for calling harmony imports with the correct context
-/******/ 	__webpack_require__.i = function(value) { return value; };
-/******/
-/******/ 	// define getter function for harmony exports
-/******/ 	__webpack_require__.d = function(exports, name, getter) {
-/******/ 		if(!__webpack_require__.o(exports, name)) {
-/******/ 			Object.defineProperty(exports, name, {
-/******/ 				configurable: false,
-/******/ 				enumerable: true,
-/******/ 				get: getter
-/******/ 			});
-/******/ 		}
-/******/ 	};
-/******/
-/******/ 	// getDefaultExport function for compatibility with non-harmony modules
-/******/ 	__webpack_require__.n = function(module) {
-/******/ 		var getter = module && module.__esModule ?
-/******/ 			function getDefault() { return module['default']; } :
-/******/ 			function getModuleExports() { return module; };
-/******/ 		__webpack_require__.d(getter, 'a', getter);
-/******/ 		return getter;
-/******/ 	};
-/******/
-/******/ 	// Object.prototype.hasOwnProperty.call
-/******/ 	__webpack_require__.o = function(object, property) { return Object.prototype.hasOwnProperty.call(object, property); };
-/******/
-/******/ 	// __webpack_public_path__
-/******/ 	__webpack_require__.p = "";
-/******/
-/******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 41);
-/******/ })
-/************************************************************************/
-/******/ ([
-/* 0 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/
-
-(function() {
-  'use strict';
-
-  const userPolymer = window.Polymer;
-
-  /**
-   * @namespace Polymer
-   * @summary Polymer is a lightweight library built on top of the web
-   * standards-based Web Components API's, and makes it easy to build your
-   * own custom HTML elements.
-   * @param {Object} info Prototype for the custom element. It must contain
-   * an `is` property to specify the element name. Other properties populate
-   * the element prototype. The `properties`, `observers`, `hostAttributes`,
-   * and `listeners` properties are processed to create element features.
-   * @return {Object} Returns a custom element class for the given provided
-   * prototype `info` object. The name of the element if given by `info.is`.
-   */
-  window.Polymer = function(info) {
-    return window.Polymer._polymerFn(info);
-  }
-
-  // support user settings on the Polymer object
-  if (userPolymer) {
-    Object.assign(Polymer, userPolymer);
-  }
-
-  // To be plugged by legacy implementation if loaded
-  /**
-   * @param {Object} info Prototype for the custom element. It must contain
-   * an `is` property to specify the element name. Other properties populate
-   * the element prototype. The `properties`, `observers`, `hostAttributes`,
-   * and `listeners` properties are processed to create element features.
-   */
-  window.Polymer._polymerFn = function(info) { // eslint-disable-line no-unused-vars
-    throw new Error('Load polymer.html to use the Polymer() function.');
-  }
-  window.Polymer.version = '2.0.1';
-
-  /* eslint-disable no-unused-vars */
-  /*
-  When using Closure Compiler, JSCompiler_renameProperty(property, object) is replaced by the munged name for object[property]
-  We cannot alias this function, so we have to use a small shim that has the same behavior when not compiling.
-  */
-  window.JSCompiler_renameProperty = function(prop, obj) {
-    return prop;
-  }
-  /* eslint-enable */
-
-})();
-
-
-
-/***/ }),
-/* 1 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-
-(function() {
-
-  'use strict';
-
-  // unique global id for deduping mixins.
-  let dedupeId = 0;
-
-  /**
-   * Given a mixin producing function, memoize applications of mixin to base
-   * @private
-   * @param {Function} mixin Mixin for which to create a caching mixin.
-   * @return {Function} Returns a mixin which when applied multiple times to the
-   * same base will always return the same extended class.
-   */
-  function cachingMixin(mixin) {
-    return function(base) {
-      if (!mixin.__mixinApplications) {
-        mixin.__mixinApplications = new WeakMap();
-      }
-      let map = mixin.__mixinApplications;
-      let application = map.get(base);
-      if (!application) {
-        application = mixin(base);
-        map.set(base, application);
-      }
-      return application;
-    };
-  }
-
-  /**
-   * Wraps an ES6 class expression mixin such that the mixin is only applied
-   * if it has not already been applied its base argument.  Also memoizes mixin
-   * applications.
-   *
-   * @memberof Polymer
-   * @param {Function} mixin ES6 class expression mixin to wrap
-   * @return {Function} Wrapped mixin that deduplicates and memoizes
-   *   mixin applications to base
-   */
-  Polymer.dedupingMixin = function(mixin) {
-    mixin = cachingMixin(mixin);
-    // maintain a unique id for each mixin
-    mixin.__dedupeId = ++dedupeId;
-    return function(base) {
-      let baseSet = base.__mixinSet;
-      if (baseSet && baseSet[mixin.__dedupeId]) {
-        return base;
-      }
-      let extended = mixin(base);
-      // copy inherited mixin set from the extended class, or the base class
-      // NOTE: we avoid use of Set here because some browser (IE11)
-      // cannot extend a base Set via the constructor.
-      extended.__mixinSet =
-        Object.create(extended.__mixinSet || baseSet || null);
-      extended.__mixinSet[mixin.__dedupeId] = true;
-      return extended;
-    }
-  };
-
-})();
-
-
-
-
-/***/ }),
-/* 2 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(1);
-
-
-(function() {
-  'use strict';
-
-  // Common implementation for mixin & behavior
-  function mutablePropertyChange(inst, property, value, old, mutableData) {
-    let isObject;
-    if (mutableData) {
-      isObject = (typeof value === 'object' && value !== null);
-      // Pull `old` for Objects from temp cache, but treat `null` as a primitive
-      if (isObject) {
-        old = inst.__dataTemp[property];
-      }
-    }
-    // Strict equality check, but return false for NaN===NaN
-    let shouldChange = (old !== value && (old === old || value === value));
-    // Objects are stored in temporary cache (cleared at end of
-    // turn), which is used for dirty-checking
-    if (isObject && shouldChange) {
-      inst.__dataTemp[property] = value;
-    }
-    return shouldChange;
-  }
-
-  /**
-   * Element class mixin to skip strict dirty-checking for objects and arrays
-   * (always consider them to be "dirty"), for use on elements utilizing
-   * `Polymer.PropertyEffects`
-   *
-   * By default, `Polymer.PropertyEffects` performs strict dirty checking on
-   * objects, which means that any deep modifications to an object or array will
-   * not be propagated unless "immutable" data patterns are used (i.e. all object
-   * references from the root to the mutation were changed).
-   *
-   * Polymer also provides a proprietary data mutation and path notification API
-   * (e.g. `notifyPath`, `set`, and array mutation API's) that allow efficient
-   * mutation and notification of deep changes in an object graph to all elements
-   * bound to the same object graph.
-   *
-   * In cases where neither immutable patterns nor the data mutation API can be
-   * used, applying this mixin will cause Polymer to skip dirty checking for
-   * objects and arrays (always consider them to be "dirty").  This allows a
-   * user to make a deep modification to a bound object graph, and then either
-   * simply re-set the object (e.g. `this.items = this.items`) or call `notifyPath`
-   * (e.g. `this.notifyPath('items')`) to update the tree.  Note that all
-   * elements that wish to be updated based on deep mutations must apply this
-   * mixin or otherwise skip strict dirty checking for objects/arrays.
-   *
-   * In order to make the dirty check strategy configurable, see
-   * `Polymer.OptionalMutableData`.
-   *
-   * Note, the performance characteristics of propagating large object graphs
-   * will be worse as opposed to using strict dirty checking with immutable
-   * patterns or Polymer's path notification API.
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   * @summary Element class mixin to skip strict dirty-checking for objects
-   *   and arrays
-   */
-  Polymer.MutableData = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_MutableData}
-     */
-    class MutableData extends superClass {
-      /**
-       * Overrides `Polymer.PropertyEffects` to provide option for skipping
-       * strict equality checking for Objects and Arrays.
-       *
-       * This method pulls the value to dirty check against from the `__dataTemp`
-       * cache (rather than the normal `__data` cache) for Objects.  Since the temp
-       * cache is cleared at the end of a turn, this implementation allows
-       * side-effects of deep object changes to be processed by re-setting the
-       * same object (using the temp cache as an in-turn backstop to prevent
-       * cycles due to 2-way notification).
-       *
-       * @param {string} property Property name
-       * @param {*} value New property value
-       * @param {*} old Previous property value
-       * @return {boolean} Whether the property should be considered a change
-       * @protected
-       */
-      _shouldPropertyChange(property, value, old) {
-        return mutablePropertyChange(this, property, value, old, true);
-      }
-
-    }
-
-    return MutableData;
-
-  });
-
-  /**
-   * Element class mixin to add the optional ability to skip strict
-   * dirty-checking for objects and arrays (always consider them to be
-   * "dirty") by setting a `mutable-data` attribute on an element instance.
-   *
-   * By default, `Polymer.PropertyEffects` performs strict dirty checking on
-   * objects, which means that any deep modifications to an object or array will
-   * not be propagated unless "immutable" data patterns are used (i.e. all object
-   * references from the root to the mutation were changed).
-   *
-   * Polymer also provides a proprietary data mutation and path notification API
-   * (e.g. `notifyPath`, `set`, and array mutation API's) that allow efficient
-   * mutation and notification of deep changes in an object graph to all elements
-   * bound to the same object graph.
-   *
-   * In cases where neither immutable patterns nor the data mutation API can be
-   * used, applying this mixin will allow Polymer to skip dirty checking for
-   * objects and arrays (always consider them to be "dirty").  This allows a
-   * user to make a deep modification to a bound object graph, and then either
-   * simply re-set the object (e.g. `this.items = this.items`) or call `notifyPath`
-   * (e.g. `this.notifyPath('items')`) to update the tree.  Note that all
-   * elements that wish to be updated based on deep mutations must apply this
-   * mixin or otherwise skip strict dirty checking for objects/arrays.
-   *
-   * While this mixin adds the ability to forgo Object/Array dirty checking,
-   * the `mutableData` flag defaults to false and must be set on the instance.
-   *
-   * Note, the performance characteristics of propagating large object graphs
-   * will be worse by relying on `mutableData: true` as opposed to using
-   * strict dirty checking with immutable patterns or Polymer's path notification
-   * API.
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   * @summary Element class mixin to optionally skip strict dirty-checking
-   *   for objects and arrays
-   */
-  Polymer.OptionalMutableData = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_OptionalMutableData}
-     */
-    class OptionalMutableData extends superClass {
-
-      static get properties() {
-        return {
-          /**
-           * Instance-level flag for configuring the dirty-checking strategy
-           * for this element.  When true, Objects and Arrays will skip dirty
-           * checking, otherwise strict equality checking will be used.
-           */
-          mutableData: Boolean
-        };
-      }
-
-      /**
-       * Overrides `Polymer.PropertyEffects` to provide option for skipping
-       * strict equality checking for Objects and Arrays.
-       *
-       * When `this.mutableData` is true on this instance, this method
-       * pulls the value to dirty check against from the `__dataTemp` cache
-       * (rather than the normal `__data` cache) for Objects.  Since the temp
-       * cache is cleared at the end of a turn, this implementation allows
-       * side-effects of deep object changes to be processed by re-setting the
-       * same object (using the temp cache as an in-turn backstop to prevent
-       * cycles due to 2-way notification).
-       *
-       * @param {string} property Property name
-       * @param {*} value New property value
-       * @param {*} old Previous property value
-       * @return {boolean} Whether the property should be considered a change
-       * @protected
-       */
-      _shouldPropertyChange(property, value, old) {
-        return mutablePropertyChange(this, property, value, old, this.mutableData);
-      }
-    }
-
-    return OptionalMutableData;
-
-  });
-
-  // Export for use by legacy behavior
-  Polymer.MutableData._mutablePropertyChange = mutablePropertyChange;
-
-})();
-
-
-
-/***/ }),
-/* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-
-  'use strict';
-
-  /** @typedef {{run: function(function(), number=):number, cancel: function(number)}} */
-  let AsyncInterface; // eslint-disable-line no-unused-vars
-
-  // Microtask implemented using Mutation Observer
-  let microtaskCurrHandle = 0;
-  let microtaskLastHandle = 0;
-  let microtaskCallbacks = [];
-  let microtaskNodeContent = 0;
-  let microtaskNode = document.createTextNode('');
-  new window.MutationObserver(microtaskFlush).observe(microtaskNode, {characterData: true});
-
-  function microtaskFlush() {
-    const len = microtaskCallbacks.length;
-    for (let i = 0; i < len; i++) {
-      let cb = microtaskCallbacks[i];
-      if (cb) {
-        try {
-          cb();
-        } catch (e) {
-          setTimeout(() => { throw e });
-        }
-      }
-    }
-    microtaskCallbacks.splice(0, len);
-    microtaskLastHandle += len;
-  }
-
-  /**
-   * Module that provides a number of strategies for enqueuing asynchronous
-   * tasks.  Each sub-module provides a standard `run(fn)` interface that returns a
-   * handle, and a `cancel(handle)` interface for canceling async tasks before
-   * they run.
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module that provides a number of strategies for enqueuing asynchronous
-   * tasks.
-   */
-  Polymer.Async = {
-
-    /**
-     * Async interface wrapper around `setTimeout`.
-     *
-     * @namespace
-     * @memberof Polymer.Async
-     * @summary Async interface wrapper around `setTimeout`.
-     */
-    timeOut: {
-      /**
-       * Returns a sub-module with the async interface providing the provided
-       * delay.
-       *
-       * @memberof Polymer.Async.timeOut
-       * @param {number} delay Time to wait before calling callbacks in ms
-       * @return {AsyncInterface} An async timeout interface
-       */
-      after(delay) {
-        return  {
-          run(fn) { return setTimeout(fn, delay) },
-          cancel: window.clearTimeout.bind(window)
-        }
-      },
-      /**
-       * Enqueues a function called in the next task.
-       *
-       * @memberof Polymer.Async.timeOut
-       * @param {Function} fn Callback to run
-       * @return {number} Handle used for canceling task
-       */
-      run: window.setTimeout.bind(window),
-      /**
-       * Cancels a previously enqueued `timeOut` callback.
-       *
-       * @memberof Polymer.Async.timeOut
-       * @param {number} handle Handle returned from `run` of callback to cancel
-       */
-      cancel: window.clearTimeout.bind(window)
-    },
-
-    /**
-     * Async interface wrapper around `requestAnimationFrame`.
-     *
-     * @namespace
-     * @memberof Polymer.Async
-     * @summary Async interface wrapper around `requestAnimationFrame`.
-     */
-    animationFrame: {
-      /**
-       * Enqueues a function called at `requestAnimationFrame` timing.
-       *
-       * @memberof Polymer.Async.animationFrame
-       * @param {Function} fn Callback to run
-       * @return {number} Handle used for canceling task
-       */
-      run: window.requestAnimationFrame.bind(window),
-      /**
-       * Cancels a previously enqueued `animationFrame` callback.
-       *
-       * @memberof Polymer.Async.timeOut
-       * @param {number} handle Handle returned from `run` of callback to cancel
-       */
-      cancel: window.cancelAnimationFrame.bind(window)
-    },
-
-    /**
-     * Async interface wrapper around `requestIdleCallback`.  Falls back to
-     * `setTimeout` on browsers that do not support `requestIdleCallback`.
-     *
-     * @namespace
-     * @memberof Polymer.Async
-     * @summary Async interface wrapper around `requestIdleCallback`.
-     */
-    idlePeriod: {
-      /**
-       * Enqueues a function called at `requestIdleCallback` timing.
-       *
-       * @memberof Polymer.Async.idlePeriod
-       * @param {function(IdleDeadline)} fn Callback to run
-       * @return {number} Handle used for canceling task
-       */
-      run(fn) {
-        return window.requestIdleCallback ?
-          window.requestIdleCallback(fn) :
-          window.setTimeout(fn, 16);
-      },
-      /**
-       * Cancels a previously enqueued `idlePeriod` callback.
-       *
-       * @memberof Polymer.Async.idlePeriod
-       * @param {number} handle Handle returned from `run` of callback to cancel
-       */
-      cancel(handle) {
-        window.cancelIdleCallback ?
-          window.cancelIdleCallback(handle) :
-          window.clearTimeout(handle);
-      }
-    },
-
-    /**
-     * Async interface for enqueueing callbacks that run at microtask timing.
-     *
-     * Note that microtask timing is achieved via a single `MutationObserver`,
-     * and thus callbacks enqueued with this API will all run in a single
-     * batch, and not interleaved with other microtasks such as promises.
-     * Promises are avoided as an implementation choice for the time being
-     * due to Safari bugs that cause Promises to lack microtask guarantees.
-     *
-     * @namespace
-     * @memberof Polymer.Async
-     * @summary Async interface for enqueueing callbacks that run at microtask
-     *   timing.
-     */
-    microTask: {
-
-      /**
-       * Enqueues a function called at microtask timing.
-       *
-       * @memberof Polymer.Async.microTask
-       * @param {Function} callback Callback to run
-       * @return {*} Handle used for canceling task
-       */
-      run(callback) {
-        microtaskNode.textContent = microtaskNodeContent++;
-        microtaskCallbacks.push(callback);
-        return microtaskCurrHandle++;
-      },
-
-      /**
-       * Cancels a previously enqueued `microTask` callback.
-       *
-       * @memberof Polymer.Async.microTask
-       * @param {number} handle Handle returned from `run` of callback to cancel
-       */
-      cancel(handle) {
-        const idx = handle - microtaskLastHandle;
-        if (idx >= 0) {
-          if (!microtaskCallbacks[idx]) {
-            throw new Error('invalid async handle: ' + handle);
-          }
-          microtaskCallbacks[idx] = null;
-        }
-      }
-
-    }
-  };
-
-})();
-
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-
-  (function() {
-    'use strict';
-
-    let CSS_URL_RX = /(url\()([^)]*)(\))/g;
-    let ABS_URL = /(^\/)|(^#)|(^[\w-\d]*:)/;
-    let workingURL;
-    let resolveDoc;
-    /**
-     * Resolves the given URL against the provided `baseUri'.
-     *
-     * @memberof Polymer.ResolveUrl
-     * @param {string} url Input URL to resolve
-     * @param {string} baseURI Base URI to resolve the URL against
-     * @return {string} resolved URL
-     */
-    function resolveUrl(url, baseURI) {
-      if (url && ABS_URL.test(url)) {
-        return url;
-      }
-      // Lazy feature detection.
-      if (workingURL === undefined) {
-        workingURL = false;
-        try {
-          const u = new URL('b', 'http://a');
-          u.pathname = 'c%20d';
-          workingURL = (u.href === 'http://a/c%20d');
-        } catch (e) {
-          // silently fail
-        }
-      }
-      if (!baseURI) {
-        baseURI = document.baseURI || window.location.href;
-      }
-      if (workingURL) {
-        return (new URL(url, baseURI)).href;
-      }
-      // Fallback to creating an anchor into a disconnected document.
-      if (!resolveDoc) {
-        resolveDoc = document.implementation.createHTMLDocument('temp');
-        resolveDoc.base = resolveDoc.createElement('base');
-        resolveDoc.head.appendChild(resolveDoc.base);
-        resolveDoc.anchor = resolveDoc.createElement('a');
-        resolveDoc.body.appendChild(resolveDoc.anchor);
-      }
-      resolveDoc.base.href = baseURI;
-      resolveDoc.anchor.href = url;
-      return resolveDoc.anchor.href || url;
-
-    }
-
-    /**
-     * Resolves any relative URL's in the given CSS text against the provided
-     * `ownerDocument`'s `baseURI`.
-     *
-     * @memberof Polymer.ResolveUrl
-     * @param {string} cssText CSS text to process
-     * @param {string} baseURI Base URI to resolve the URL against
-     * @return {string} Processed CSS text with resolved URL's
-     */
-    function resolveCss(cssText, baseURI) {
-      return cssText.replace(CSS_URL_RX, function(m, pre, url, post) {
-        return pre + '\'' +
-          resolveUrl(url.replace(/["']/g, ''), baseURI) +
-          '\'' + post;
-      });
-    }
-
-    /**
-     * Returns a path from a given `url`. The path includes the trailing
-     * `/` from the url.
-     *
-     * @memberof Polymer.ResolveUrl
-     * @param {string} url Input URL to transform
-     * @return {string} resolved path
-     */
-    function pathFromUrl(url) {
-      return url.substring(0, url.lastIndexOf('/') + 1);
-    }
-
-    /**
-     * Module with utilities for resolving relative URL's.
-     *
-     * @namespace
-     * @memberof Polymer
-     * @summary Module with utilities for resolving relative URL's.
-     */
-    Polymer.ResolveUrl = {
-      resolveCss: resolveCss,
-      resolveUrl: resolveUrl,
-      pathFromUrl: pathFromUrl
-    };
-
-  })();
-
-
-
-
-/***/ }),
-/* 5 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(1);
-
-__webpack_require__(36);
-
-__webpack_require__(6);
-
-__webpack_require__(31);
-
-__webpack_require__(32);
-
-
-(function() {
-
-  'use strict';
-
-  /** @const {Object} */
-  const CaseMap = Polymer.CaseMap;
-
-  // Monotonically increasing unique ID used for de-duping effects triggered
-  // from multiple properties in the same turn
-  let dedupeId = 0;
-
-  // Property effect types; effects are stored on the prototype using these keys
-  const TYPES = {
-    COMPUTE: '__computeEffects',
-    REFLECT: '__reflectEffects',
-    NOTIFY: '__notifyEffects',
-    PROPAGATE: '__propagateEffects',
-    OBSERVE: '__observeEffects',
-    READ_ONLY: '__readOnly'
-  }
-
-  /**
-   * Ensures that the model has an own-property map of effects for the given type.
-   * The model may be a prototype or an instance.
-   *
-   * Property effects are stored as arrays of effects by property in a map,
-   * by named type on the model. e.g.
-   *
-   *   __computeEffects: {
-   *     foo: [ ... ],
-   *     bar: [ ... ]
-   *   }
-   *
-   * If the model does not yet have an effect map for the type, one is created
-   * and returned.  If it does, but it is not an own property (i.e. the
-   * prototype had effects), the the map is deeply cloned and the copy is
-   * set on the model and returned, ready for new effects to be added.
-   *
-   * @param {Object} model Prototype or instance
-   * @param {string} type Property effect type
-   * @return {Object} The own-property map of effects for the given type
-   * @private
-   */
-  function ensureOwnEffectMap(model, type) {
-    let effects = model[type];
-    if (!effects) {
-      effects = model[type] = {};
-    } else if (!model.hasOwnProperty(type)) {
-      effects = model[type] = Object.create(model[type]);
-      for (let p in effects) {
-        let protoFx = effects[p];
-        let instFx = effects[p] = Array(protoFx.length);
-        for (let i=0; i<protoFx.length; i++) {
-          instFx[i] = protoFx[i];
-        }
-      }
-    }
-    return effects;
-  }
-
-  // -- effects ----------------------------------------------
-
-  /**
-   * Runs all effects of a given type for the given set of property changes
-   * on an instance.
-   *
-   * @param {Object} inst The instance with effects to run
-   * @param {Object} effects Object map of property-to-Array of effects
-   * @param {Object} props Bag of current property changes
-   * @param {Object=} oldProps Bag of previous values for changed properties
-   * @param {boolean=} hasPaths True with `props` contains one or more paths
-   * @param {*=} extraArgs Additional metadata to pass to effect function
-   * @return {boolean} True if an effect ran for this property
-   * @private
-   */
-  function runEffects(inst, effects, props, oldProps, hasPaths, extraArgs) {
-    if (effects) {
-      let ran = false;
-      let id = dedupeId++;
-      for (let prop in props) {
-        if (runEffectsForProperty(inst, effects, id, prop, props, oldProps, hasPaths, extraArgs)) {
-          ran = true;
-        }
-      }
-      return ran;
-    }
-    return false;
-  }
-
-  /**
-   * Runs a list of effects for a given property.
-   *
-   * @param {Object} inst The instance with effects to run
-   * @param {Object} effects Object map of property-to-Array of effects
-   * @param {number} dedupeId Counter used for de-duping effects
-   * @param {string} prop Name of changed property
-   * @param {*} props Changed properties
-   * @param {*} oldProps Old properties
-   * @param {boolean=} hasPaths True with `props` contains one or more paths
-   * @param {*=} extraArgs Additional metadata to pass to effect function
-   * @return {boolean} True if an effect ran for this property
-   * @private
-   */
-  function runEffectsForProperty(inst, effects, dedupeId, prop, props, oldProps, hasPaths, extraArgs) {
-    let ran = false;
-    let rootProperty = hasPaths ? Polymer.Path.root(prop) : prop;
-    let fxs = effects[rootProperty];
-    if (fxs) {
-      for (let i=0, l=fxs.length, fx; (i<l) && (fx=fxs[i]); i++) {
-        if ((!fx.info || fx.info.lastRun !== dedupeId) &&
-            (!hasPaths || pathMatchesTrigger(prop, fx.trigger))) {
-          if (fx.info) {
-            fx.info.lastRun = dedupeId;
-          }
-          fx.fn(inst, prop, props, oldProps, fx.info, hasPaths, extraArgs);
-          ran = true;
-        }
-      }
-    }
-    return ran;
-  }
-
-  /**
-   * Determines whether a property/path that has changed matches the trigger
-   * criteria for an effect.  A trigger is a descriptor with the following
-   * structure, which matches the descriptors returned from `parseArg`.
-   * e.g. for `foo.bar.*`:
-   * ```
-   * trigger: {
-   *   name: 'a.b',
-   *   structured: true,
-   *   wildcard: true
-   * }
-   * ```
-   * If no trigger is given, the path is deemed to match.
-   *
-   * @param {string} path Path or property that changed
-   * @param {Object} trigger Descriptor
-   * @return {boolean} Whether the path matched the trigger
-   */
-  function pathMatchesTrigger(path, trigger) {
-    if (trigger) {
-      let triggerPath = trigger.name;
-      return (triggerPath == path) ||
-        (trigger.structured && Polymer.Path.isAncestor(triggerPath, path)) ||
-        (trigger.wildcard && Polymer.Path.isDescendant(triggerPath, path));
-    } else {
-      return true;
-    }
-  }
-
-  /**
-   * Implements the "observer" effect.
-   *
-   * Calls the method with `info.methodName` on the instance, passing the
-   * new and old values.
-   *
-   * @param {Object} inst The instance the effect will be run on
-   * @param {string} property Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @private
-   */
-  function runObserverEffect(inst, property, props, oldProps, info) {
-    let fn = inst[info.methodName];
-    let changedProp = info.property;
-    if (fn) {
-      fn.call(inst, inst.__data[changedProp], oldProps[changedProp]);
-    } else if (!info.dynamicFn) {
-      console.warn('observer method `' + info.methodName + '` not defined');
-    }
-  }
-
-  /**
-   * Runs "notify" effects for a set of changed properties.
-   *
-   * This method differs from the generic `runEffects` method in that it
-   * will dispatch path notification events in the case that the property
-   * changed was a path and the root property for that path didn't have a
-   * "notify" effect.  This is to maintain 1.0 behavior that did not require
-   * `notify: true` to ensure object sub-property notifications were
-   * sent.
-   *
-   * @param {Element} inst The instance with effects to run
-   * @param {Object} notifyProps Bag of properties to notify
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {boolean} hasPaths True with `props` contains one or more paths
-   * @private
-   */
-  function runNotifyEffects(inst, notifyProps, props, oldProps, hasPaths) {
-    // Notify
-    let fxs = inst.__notifyEffects;
-    let notified;
-    let id = dedupeId++;
-    // Try normal notify effects; if none, fall back to try path notification
-    for (let prop in notifyProps) {
-      if (notifyProps[prop]) {
-        if (fxs && runEffectsForProperty(inst, fxs, id, prop, props, oldProps, hasPaths)) {
-          notified = true;
-        } else if (hasPaths && notifyPath(inst, prop, props)) {
-          notified = true;
-        }
-      }
-    }
-    // Flush host if we actually notified and host was batching
-    // And the host has already initialized clients; this prevents
-    // an issue with a host observing data changes before clients are ready.
-    let host;
-    if (notified && (host = inst.__dataHost) && host._invalidateProperties) {
-      host._invalidateProperties();
-    }
-  }
-
-  /**
-   * Dispatches {property}-changed events with path information in the detail
-   * object to indicate a sub-path of the property was changed.
-   *
-   * @param {Element} inst The element from which to fire the event
-   * @param {string} path The path that was changed
-   * @param {Object} props Bag of current property changes
-   * @return {boolean} Returns true if the path was notified
-   * @private
-   */
-  function notifyPath(inst, path, props) {
-    let rootProperty = Polymer.Path.root(path);
-    if (rootProperty !== path) {
-      let eventName = Polymer.CaseMap.camelToDashCase(rootProperty) + '-changed';
-      dispatchNotifyEvent(inst, eventName, props[path], path);
-      return true;
-    }
-  }
-
-  /**
-   * Dispatches {property}-changed events to indicate a property (or path)
-   * changed.
-   *
-   * @param {Element} inst The element from which to fire the event
-   * @param {string} eventName The name of the event to send ('{property}-changed')
-   * @param {*} value The value of the changed property
-   * @param {string | null | undefined} path If a sub-path of this property changed, the path
-   *   that changed (optional).
-   * @private
-   */
-  function dispatchNotifyEvent(inst, eventName, value, path) {
-    let detail = {
-      value: value,
-      queueProperty: true
-    };
-    if (path) {
-      detail.path = path;
-    }
-    inst.dispatchEvent(new CustomEvent(eventName, { detail }));
-  }
-
-  /**
-   * Implements the "notify" effect.
-   *
-   * Dispatches a non-bubbling event named `info.eventName` on the instance
-   * with a detail object containing the new `value`.
-   *
-   * @param {Element} inst The instance the effect will be run on
-   * @param {string} property Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @param {boolean} hasPaths True with `props` contains one or more paths
-   * @private
-   */
-  function runNotifyEffect(inst, property, props, oldProps, info, hasPaths) {
-    let rootProperty = hasPaths ? Polymer.Path.root(property) : property;
-    let path = rootProperty != property ? property : null;
-    let value = path ? Polymer.Path.get(inst, path) : inst.__data[property];
-    if (path && value === undefined) {
-      value = props[property];  // specifically for .splices
-    }
-    dispatchNotifyEvent(inst, info.eventName, value, path);
-  }
-
-  /**
-   * Handler function for 2-way notification events. Receives context
-   * information captured in the `addNotifyListener` closure from the
-   * `__notifyListeners` metadata.
-   *
-   * Sets the value of the notified property to the host property or path.  If
-   * the event contained path information, translate that path to the host
-   * scope's name for that path first.
-   *
-   * @param {Event} event Notification event (e.g. '<property>-changed')
-   * @param {Object} inst Host element instance handling the notification event
-   * @param {string} fromProp Child element property that was bound
-   * @param {string} toPath Host property/path that was bound
-   * @param {boolean} negate Whether the binding was negated
-   * @private
-   */
-  function handleNotification(event, inst, fromProp, toPath, negate) {
-    let value;
-    let detail = event.detail;
-    let fromPath = detail && detail.path;
-    if (fromPath) {
-      toPath = Polymer.Path.translate(fromProp, toPath, fromPath);
-      value = detail && detail.value;
-    } else {
-      value = event.target[fromProp];
-    }
-    value = negate ? !value : value;
-    if (!inst.__readOnly || !inst.__readOnly[toPath]) {
-      if (inst._setPendingPropertyOrPath(toPath, value, true, Boolean(fromPath))
-        && (!detail || !detail.queueProperty)) {
-        inst._invalidateProperties();
-      }
-    }
-  }
-
-  /**
-   * Implements the "reflect" effect.
-   *
-   * Sets the attribute named `info.attrName` to the given property value.
-   *
-   * @param {Object} inst The instance the effect will be run on
-   * @param {string} property Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @private
-   */
-  function runReflectEffect(inst, property, props, oldProps, info) {
-    let value = inst.__data[property];
-    if (Polymer.sanitizeDOMValue) {
-      value = Polymer.sanitizeDOMValue(value, info.attrName, 'attribute', inst);
-    }
-    inst._propertyToAttribute(property, info.attrName, value);
-  }
-
-  /**
-   * Runs "computed" effects for a set of changed properties.
-   *
-   * This method differs from the generic `runEffects` method in that it
-   * continues to run computed effects based on the output of each pass until
-   * there are no more newly computed properties.  This ensures that all
-   * properties that will be computed by the initial set of changes are
-   * computed before other effects (binding propagation, observers, and notify)
-   * run.
-   *
-   * @param {Element} inst The instance the effect will be run on
-   * @param {Object} changedProps Bag of changed properties
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {boolean} hasPaths True with `props` contains one or more paths
-   * @private
-   */
-  function runComputedEffects(inst, changedProps, oldProps, hasPaths) {
-    let computeEffects = inst.__computeEffects;
-    if (computeEffects) {
-      let inputProps = changedProps;
-      while (runEffects(inst, computeEffects, inputProps, oldProps, hasPaths)) {
-        Object.assign(oldProps, inst.__dataOld);
-        Object.assign(changedProps, inst.__dataPending);
-        inputProps = inst.__dataPending;
-        inst.__dataPending = null;
-      }
-    }
-  }
-
-  /**
-   * Implements the "computed property" effect by running the method with the
-   * values of the arguments specified in the `info` object and setting the
-   * return value to the computed property specified.
-   *
-   * @param {Object} inst The instance the effect will be run on
-   * @param {string} property Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @private
-   */
-  function runComputedEffect(inst, property, props, oldProps, info) {
-    let result = runMethodEffect(inst, property, props, oldProps, info);
-    let computedProp = info.methodInfo;
-    if (inst.__dataHasAccessor && inst.__dataHasAccessor[computedProp]) {
-      inst._setPendingProperty(computedProp, result, true);
-    } else {
-      inst[computedProp] = result;
-    }
-  }
-
-  /**
-   * Computes path changes based on path links set up using the `linkPaths`
-   * API.
-   *
-   * @param {Element} inst The instance whose props are changing
-   * @param {string} path Path that has changed
-   * @param {*} value Value of changed path
-   * @private
-   */
-  function computeLinkedPaths(inst, path, value) {
-    let links = inst.__dataLinkedPaths;
-    if (links) {
-      let link;
-      for (let a in links) {
-        let b = links[a];
-        if (Polymer.Path.isDescendant(a, path)) {
-          link = Polymer.Path.translate(a, b, path);
-          inst._setPendingPropertyOrPath(link, value, true, true);
-        } else if (Polymer.Path.isDescendant(b, path)) {
-          link = Polymer.Path.translate(b, a, path);
-          inst._setPendingPropertyOrPath(link, value, true, true);
-        }
-      }
-    }
-  }
-
-  // -- bindings ----------------------------------------------
-
-  /**
-   * Adds binding metadata to the current `nodeInfo`, and binding effects
-   * for all part dependencies to `templateInfo`.
-   *
-   * @param {Function} constructor Class that `_parseTemplate` is currently
-   *   running on
-   * @param {Object} templateInfo Template metadata for current template
-   * @param {Object} nodeInfo Node metadata for current template node
-   * @param {string} kind Binding kind, either 'property', 'attribute', or 'text'
-   * @param {string} target Target property name
-   * @param {Array<Object>} parts Array of binding part metadata
-   * @param {string} literal Literal text surrounding binding parts (specified
-   *   only for 'property' bindings, since these must be initialized as part
-   *   of boot-up)
-   * @private
-   */
-  function addBinding(constructor, templateInfo, nodeInfo, kind, target, parts, literal) {
-    // Create binding metadata and add to nodeInfo
-    nodeInfo.bindings = nodeInfo.bindings || [];
-    let binding = { kind, target, parts, literal, isCompound: (parts.length !== 1) };
-    nodeInfo.bindings.push(binding);
-    // Add listener info to binding metadata
-    if (shouldAddListener(binding)) {
-      let {event, negate} = binding.parts[0];
-      binding.listenerEvent = event || (CaseMap.camelToDashCase(target) + '-changed');
-      binding.listenerNegate = negate;
-    }
-    // Add "propagate" property effects to templateInfo
-    let index = templateInfo.nodeInfoList.length;
-    for (let i=0; i<binding.parts.length; i++) {
-      let part = binding.parts[i];
-      part.compoundIndex = i;
-      addEffectForBindingPart(constructor, templateInfo, binding, part, index);
-    }
-  }
-
-  /**
-   * Adds property effects to the given `templateInfo` for the given binding
-   * part.
-   *
-   * @param {Function} constructor Class that `_parseTemplate` is currently
-   *   running on
-   * @param {Object} templateInfo Template metadata for current template
-   * @param {Object} binding Binding metadata
-   * @param {Object} part Binding part metadata
-   * @param {number} index Index into `nodeInfoList` for this node
-   */
-  function addEffectForBindingPart(constructor, templateInfo, binding, part, index) {
-    if (!part.literal) {
-      if (binding.kind === 'attribute' && binding.target[0] === '-') {
-        console.warn('Cannot set attribute ' + binding.target +
-          ' because "-" is not a valid attribute starting character');
-      } else {
-        let dependencies = part.dependencies;
-        let info = { index, binding, part, evaluator: constructor };
-        for (let j=0; j<dependencies.length; j++) {
-          let trigger = dependencies[j];
-          if (typeof trigger == 'string') {
-            trigger = parseArg(trigger);
-            trigger.wildcard = true;
-          }
-          constructor._addTemplatePropertyEffect(templateInfo, trigger.rootProperty, {
-            fn: runBindingEffect,
-            info, trigger
-          });
-        }
-      }
-    }
-  }
-
-  /**
-   * Implements the "binding" (property/path binding) effect.
-   *
-   * Note that binding syntax is overridable via `_parseBindings` and
-   * `_evaluateBinding`.  This method will call `_evaluateBinding` for any
-   * non-literal parts returned from `_parseBindings`.  However,
-   * there is no support for _path_ bindings via custom binding parts,
-   * as this is specific to Polymer's path binding syntax.
-   *
-   * @param {Element} inst The instance the effect will be run on
-   * @param {string} path Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @param {boolean} hasPaths True with `props` contains one or more paths
-   * @param {Array} nodeList List of nodes associated with `nodeInfoList` template
-   *   metadata
-   * @private
-   */
-  function runBindingEffect(inst, path, props, oldProps, info, hasPaths, nodeList) {
-    let node = nodeList[info.index];
-    let binding = info.binding;
-    let part = info.part;
-    // Subpath notification: transform path and set to client
-    // e.g.: foo="{{obj.sub}}", path: 'obj.sub.prop', set 'foo.prop'=obj.sub.prop
-    if (hasPaths && part.source && (path.length > part.source.length) &&
-        (binding.kind == 'property') && !binding.isCompound &&
-        node.__dataHasAccessor && node.__dataHasAccessor[binding.target]) {
-      let value = props[path];
-      path = Polymer.Path.translate(part.source, binding.target, path);
-      if (node._setPendingPropertyOrPath(path, value, false, true)) {
-        inst._enqueueClient(node);
-      }
-    } else {
-      let value = info.evaluator._evaluateBinding(inst, part, path, props, oldProps, hasPaths);
-      // Propagate value to child
-      applyBindingValue(inst, node, binding, part, value);
-    }
-  }
-
-  /**
-   * Sets the value for an "binding" (binding) effect to a node,
-   * either as a property or attribute.
-   *
-   * @param {Object} inst The instance owning the binding effect
-   * @param {Node} node Target node for binding
-   * @param {Object} binding Binding metadata
-   * @param {Object} part Binding part metadata
-   * @param {*} value Value to set
-   * @private
-   */
-  function applyBindingValue(inst, node, binding, part, value) {
-    value = computeBindingValue(node, value, binding, part);
-    if (Polymer.sanitizeDOMValue) {
-      value = Polymer.sanitizeDOMValue(value, binding.target, binding.kind, node);
-    }
-    if (binding.kind == 'attribute') {
-      // Attribute binding
-      inst._valueToNodeAttribute(node, value, binding.target);
-    } else {
-      // Property binding
-      let prop = binding.target;
-      if (node.__dataHasAccessor && node.__dataHasAccessor[prop]) {
-        if (!node.__readOnly || !node.__readOnly[prop]) {
-          if (node._setPendingProperty(prop, value)) {
-            inst._enqueueClient(node);
-          }
-        }
-      } else  {
-        inst._setUnmanagedPropertyToNode(node, prop, value);
-      }
-    }
-  }
-
-  /**
-   * Transforms an "binding" effect value based on compound & negation
-   * effect metadata, as well as handling for special-case properties
-   *
-   * @param {Node} node Node the value will be set to
-   * @param {*} value Value to set
-   * @param {Object} binding Binding metadata
-   * @param {Object} part Binding part metadata
-   * @return {*} Transformed value to set
-   * @private
-   */
-  function computeBindingValue(node, value, binding, part) {
-    if (binding.isCompound) {
-      let storage = node.__dataCompoundStorage[binding.target];
-      storage[part.compoundIndex] = value;
-      value = storage.join('');
-    }
-    if (binding.kind !== 'attribute') {
-      // Some browsers serialize `undefined` to `"undefined"`
-      if (binding.target === 'textContent' ||
-          (node.localName == 'input' && binding.target == 'value')) {
-        value = value == undefined ? '' : value;
-      }
-    }
-    return value;
-  }
-
-  /**
-   * Returns true if a binding's metadata meets all the requirements to allow
-   * 2-way binding, and therefore a `<property>-changed` event listener should be
-   * added:
-   * - used curly braces
-   * - is a property (not attribute) binding
-   * - is not a textContent binding
-   * - is not compound
-   *
-   * @param {Object} binding Binding metadata
-   * @return {boolean} True if 2-way listener should be added
-   * @private
-   */
-  function shouldAddListener(binding) {
-    return binding.target &&
-           binding.kind != 'attribute' &&
-           binding.kind != 'text' &&
-           !binding.isCompound &&
-           binding.parts[0].mode === '{';
-  }
-
-  /**
-   * Setup compound binding storage structures, notify listeners, and dataHost
-   * references onto the bound nodeList.
-   *
-   * @param {Object} inst Instance that bas been previously bound
-   * @param {Object} templateInfo Template metadata
-   * @private
-   */
-  function setupBindings(inst, templateInfo) {
-    // Setup compound storage, dataHost, and notify listeners
-    let {nodeList, nodeInfoList} = templateInfo;
-    if (nodeInfoList.length) {
-      for (let i=0; i < nodeInfoList.length; i++) {
-        let info = nodeInfoList[i];
-        let node = nodeList[i];
-        let bindings = info.bindings;
-        if (bindings) {
-          for (let i=0; i<bindings.length; i++) {
-            let binding = bindings[i];
-            setupCompoundStorage(node, binding);
-            addNotifyListener(node, inst, binding);
-          }
-        }
-        node.__dataHost = inst;
-      }
-    }
-  }
-
-  /**
-   * Initializes `__dataCompoundStorage` local storage on a bound node with
-   * initial literal data for compound bindings, and sets the joined
-   * literal parts to the bound property.
-   *
-   * When changes to compound parts occur, they are first set into the compound
-   * storage array for that property, and then the array is joined to result in
-   * the final value set to the property/attribute.
-   *
-   * @param {Node} node Bound node to initialize
-   * @param {Object} binding Binding metadata
-   * @private
-   */
-  function setupCompoundStorage(node, binding) {
-    if (binding.isCompound) {
-      // Create compound storage map
-      let storage = node.__dataCompoundStorage ||
-        (node.__dataCompoundStorage = {});
-      let parts = binding.parts;
-      // Copy literals from parts into storage for this binding
-      let literals = new Array(parts.length);
-      for (let j=0; j<parts.length; j++) {
-        literals[j] = parts[j].literal;
-      }
-      let target = binding.target;
-      storage[target] = literals;
-      // Configure properties with their literal parts
-      if (binding.literal && binding.kind == 'property') {
-        node[target] = binding.literal;
-      }
-    }
-  }
-
-  /**
-   * Adds a 2-way binding notification event listener to the node specified
-   *
-   * @param {Object} node Child element to add listener to
-   * @param {Object} inst Host element instance to handle notification event
-   * @param {Object} binding Binding metadata
-   * @private
-   */
-  function addNotifyListener(node, inst, binding) {
-    if (binding.listenerEvent) {
-      let part = binding.parts[0];
-      node.addEventListener(binding.listenerEvent, function(e) {
-        handleNotification(e, inst, binding.target, part.source, part.negate);
-      });
-    }
-  }
-
-  // -- for method-based effects (complexObserver & computed) --------------
-
-  /**
-   * Adds property effects for each argument in the method signature (and
-   * optionally, for the method name if `dynamic` is true) that calls the
-   * provided effect function.
-   *
-   * @param {Element | Object} model Prototype or instance
-   * @param {Object} sig Method signature metadata
-   * @param {string} type Type of property effect to add
-   * @param {Function} effectFn Function to run when arguments change
-   * @param {*=} methodInfo Effect-specific information to be included in
-   *   method effect metadata
-   * @param {boolean|Object=} dynamicFn Boolean or object map indicating whether
-   *   method names should be included as a dependency to the effect. Note,
-   *   defaults to true if the signature is static (sig.static is true).
-   * @private
-   */
-  function createMethodEffect(model, sig, type, effectFn, methodInfo, dynamicFn) {
-    dynamicFn = sig.static || (dynamicFn &&
-      (typeof dynamicFn !== 'object' || dynamicFn[sig.methodName]));
-    let info = {
-      methodName: sig.methodName,
-      args: sig.args,
-      methodInfo,
-      dynamicFn
-    };
-    for (let i=0, arg; (i<sig.args.length) && (arg=sig.args[i]); i++) {
-      if (!arg.literal) {
-        model._addPropertyEffect(arg.rootProperty, type, {
-          fn: effectFn, info: info, trigger: arg
-        });
-      }
-    }
-    if (dynamicFn) {
-      model._addPropertyEffect(sig.methodName, type, {
-        fn: effectFn, info: info
-      });
-    }
-  }
-
-  /**
-   * Calls a method with arguments marshaled from properties on the instance
-   * based on the method signature contained in the effect metadata.
-   *
-   * Multi-property observers, computed properties, and inline computing
-   * functions call this function to invoke the method, then use the return
-   * value accordingly.
-   *
-   * @param {Object} inst The instance the effect will be run on
-   * @param {string} property Name of property
-   * @param {Object} props Bag of current property changes
-   * @param {Object} oldProps Bag of previous values for changed properties
-   * @param {Object} info Effect metadata
-   * @return {*} Returns the return value from the method invocation
-   * @private
-   */
-  function runMethodEffect(inst, property, props, oldProps, info) {
-    // Instances can optionally have a _methodHost which allows redirecting where
-    // to find methods. Currently used by `templatize`.
-    let context = inst._methodHost || inst;
-    let fn = context[info.methodName];
-    if (fn) {
-      let args = marshalArgs(inst.__data, info.args, property, props);
-      return fn.apply(context, args);
-    } else if (!info.dynamicFn) {
-      console.warn('method `' + info.methodName + '` not defined');
-    }
-  }
-
-  const emptyArray = [];
-
-  // Regular expressions used for binding
-  const IDENT  = '(?:' + '[a-zA-Z_$][\\w.:$\\-*]*' + ')';
-  const NUMBER = '(?:' + '[-+]?[0-9]*\\.?[0-9]+(?:[eE][-+]?[0-9]+)?' + ')';
-  const SQUOTE_STRING = '(?:' + '\'(?:[^\'\\\\]|\\\\.)*\'' + ')';
-  const DQUOTE_STRING = '(?:' + '"(?:[^"\\\\]|\\\\.)*"' + ')';
-  const STRING = '(?:' + SQUOTE_STRING + '|' + DQUOTE_STRING + ')';
-  const ARGUMENT = '(?:(' + IDENT + '|' + NUMBER + '|' +  STRING + ')\\s*' + ')';
-  const ARGUMENTS = '(?:' + ARGUMENT + '(?:,\\s*' + ARGUMENT + ')*' + ')';
-  const ARGUMENT_LIST = '(?:' + '\\(\\s*' +
-                                '(?:' + ARGUMENTS + '?' + ')' +
-                              '\\)\\s*' + ')';
-  const BINDING = '(' + IDENT + '\\s*' + ARGUMENT_LIST + '?' + ')'; // Group 3
-  const OPEN_BRACKET = '(\\[\\[|{{)' + '\\s*';
-  const CLOSE_BRACKET = '(?:]]|}})';
-  const NEGATE = '(?:(!)\\s*)?'; // Group 2
-  const EXPRESSION = OPEN_BRACKET + NEGATE + BINDING + CLOSE_BRACKET;
-  const bindingRegex = new RegExp(EXPRESSION, "g");
-
-  function literalFromParts(parts) {
-    let s = '';
-    for (let i=0; i<parts.length; i++) {
-      let literal = parts[i].literal;
-      s += literal || '';
-    }
-    return s;
-  }
-
-  /**
-   * Parses an expression string for a method signature, and returns a metadata
-   * describing the method in terms of `methodName`, `static` (whether all the
-   * arguments are literals), and an array of `args`
-   *
-   * @param {string} expression The expression to parse
-   * @return {?Object} The method metadata object if a method expression was
-   *   found, otherwise `undefined`
-   * @private
-   */
-  function parseMethod(expression) {
-    // tries to match valid javascript property names
-    let m = expression.match(/([^\s]+?)\(([\s\S]*)\)/);
-    if (m) {
-      let methodName = m[1];
-      let sig = { methodName, static: true };
-      if (m[2].trim()) {
-        // replace escaped commas with comma entity, split on un-escaped commas
-        let args = m[2].replace(/\\,/g, '&comma;').split(',');
-        return parseArgs(args, sig);
-      } else {
-        sig.args = emptyArray;
-        return sig;
-      }
-    }
-    return null;
-  }
-
-  /**
-   * Parses an array of arguments and sets the `args` property of the supplied
-   * signature metadata object. Sets the `static` property to false if any
-   * argument is a non-literal.
-   *
-   * @param {Array<string>} argList Array of argument names
-   * @param {Object} sig Method signature metadata object
-   * @return {Object} The updated signature metadata object
-   * @private
-   */
-  function parseArgs(argList, sig) {
-    sig.args = argList.map(function(rawArg) {
-      let arg = parseArg(rawArg);
-      if (!arg.literal) {
-        sig.static = false;
-      }
-      return arg;
-    }, this);
-    return sig;
-  }
-
-  /**
-   * Parses an individual argument, and returns an argument metadata object
-   * with the following fields:
-   *
-   *   {
-   *     value: 'prop',        // property/path or literal value
-   *     literal: false,       // whether argument is a literal
-   *     structured: false,    // whether the property is a path
-   *     rootProperty: 'prop', // the root property of the path
-   *     wildcard: false       // whether the argument was a wildcard '.*' path
-   *   }
-   *
-   * @param {string} rawArg The string value of the argument
-   * @return {Object} Argument metadata object
-   * @private
-   */
-  function parseArg(rawArg) {
-    // clean up whitespace
-    let arg = rawArg.trim()
-      // replace comma entity with comma
-      .replace(/&comma;/g, ',')
-      // repair extra escape sequences; note only commas strictly need
-      // escaping, but we allow any other char to be escaped since its
-      // likely users will do this
-      .replace(/\\(.)/g, '\$1')
-      ;
-    // basic argument descriptor
-    let a = {
-      name: arg
-    };
-    // detect literal value (must be String or Number)
-    let fc = arg[0];
-    if (fc === '-') {
-      fc = arg[1];
-    }
-    if (fc >= '0' && fc <= '9') {
-      fc = '#';
-    }
-    switch(fc) {
-      case "'":
-      case '"':
-        a.value = arg.slice(1, -1);
-        a.literal = true;
-        break;
-      case '#':
-        a.value = Number(arg);
-        a.literal = true;
-        break;
-    }
-    // if not literal, look for structured path
-    if (!a.literal) {
-      a.rootProperty = Polymer.Path.root(arg);
-      // detect structured path (has dots)
-      a.structured = Polymer.Path.isPath(arg);
-      if (a.structured) {
-        a.wildcard = (arg.slice(-2) == '.*');
-        if (a.wildcard) {
-          a.name = arg.slice(0, -2);
-        }
-      }
-    }
-    return a;
-  }
-
-  /**
-   * Gather the argument values for a method specified in the provided array
-   * of argument metadata.
-   *
-   * The `path` and `value` arguments are used to fill in wildcard descriptor
-   * when the method is being called as a result of a path notification.
-   *
-   * @param {Object} data Instance data storage object to read properties from
-   * @param {Array<Object>} args Array of argument metadata
-   * @param {string} path Property/path name that triggered the method effect
-   * @param {Object} props Bag of current property changes
-   * @return {Array<*>} Array of argument values
-   * @private
-   */
-  function marshalArgs(data, args, path, props) {
-    let values = [];
-    for (let i=0, l=args.length; i<l; i++) {
-      let arg = args[i];
-      let name = arg.name;
-      let v;
-      if (arg.literal) {
-        v = arg.value;
-      } else {
-        if (arg.structured) {
-          v = Polymer.Path.get(data, name);
-          // when data is not stored e.g. `splices`
-          if (v === undefined) {
-            v = props[name];
-          }
-        } else {
-          v = data[name];
-        }
-      }
-      if (arg.wildcard) {
-        // Only send the actual path changed info if the change that
-        // caused the observer to run matched the wildcard
-        let baseChanged = (name.indexOf(path + '.') === 0);
-        let matches = (path.indexOf(name) === 0 && !baseChanged);
-        values[i] = {
-          path: matches ? path : name,
-          value: matches ? props[path] : v,
-          base: v
-        };
-      } else {
-        values[i] = v;
-      }
-    }
-    return values;
-  }
-
-  // data api
-
-  /**
-   * Sends array splice notifications (`.splices` and `.length`)
-   *
-   * Note: this implementation only accepts normalized paths
-   *
-   * @param {Element} inst Instance to send notifications to
-   * @param {Array} array The array the mutations occurred on
-   * @param {string} path The path to the array that was mutated
-   * @param {Array} splices Array of splice records
-   * @private
-   */
-  function notifySplices(inst, array, path, splices) {
-    let splicesPath = path + '.splices';
-    inst.notifyPath(splicesPath, { indexSplices: splices });
-    inst.notifyPath(path + '.length', array.length);
-    // Null here to allow potentially large splice records to be GC'ed.
-    inst.__data[splicesPath] = {indexSplices: null};
-  }
-
-  /**
-   * Creates a splice record and sends an array splice notification for
-   * the described mutation
-   *
-   * Note: this implementation only accepts normalized paths
-   *
-   * @param {Element} inst Instance to send notifications to
-   * @param {Array} array The array the mutations occurred on
-   * @param {string} path The path to the array that was mutated
-   * @param {number} index Index at which the array mutation occurred
-   * @param {number} addedCount Number of added items
-   * @param {Array} removed Array of removed items
-   * @private
-   */
-  function notifySplice(inst, array, path, index, addedCount, removed) {
-    notifySplices(inst, array, path, [{
-      index: index,
-      addedCount: addedCount,
-      removed: removed,
-      object: array,
-      type: 'splice'
-    }]);
-  }
-
-  /**
-   * Returns an upper-cased version of the string.
-   *
-   * @param {string} name String to uppercase
-   * @return {string} Uppercased string
-   * @private
-   */
-  function upper(name) {
-    return name[0].toUpperCase() + name.substring(1);
-  }
-
-  /**
-   * Element class mixin that provides meta-programming for Polymer's template
-   * binding and data observation (collectively, "property effects") system.
-   *
-   * This mixin uses provides the following key static methods for adding
-   * property effects to an element class:
-   * - `addPropertyEffect`
-   * - `createPropertyObserver`
-   * - `createMethodObserver`
-   * - `createNotifyingProperty`
-   * - `createReadOnlyProperty`
-   * - `createReflectedProperty`
-   * - `createComputedProperty`
-   * - `bindTemplate`
-   *
-   * Each method creates one or more property accessors, along with metadata
-   * used by this mixin's implementation of `_propertiesChanged` to perform
-   * the property effects.
-   *
-   * Underscored versions of the above methods also exist on the element
-   * prototype for adding property effects on instances at runtime.
-   *
-   * Note that this mixin overrides several `PropertyAccessors` methods, in
-   * many cases to maintain guarantees provided by the Polymer 1.x features;
-   * notably it changes property accessors to be synchronous by default
-   * whereas the default when using `PropertyAccessors` standalone is to be
-   * async by default.
-   *
-   * @polymerMixin
-   * @mixes Polymer.TemplateStamp
-   * @mixes Polymer.PropertyAccessors
-   * @memberof Polymer
-   * @summary Element class mixin that provides meta-programming for Polymer's
-   * template binding and data observation system.
-   */
-  Polymer.PropertyEffects = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @constructor
-     * @extends {superClass}
-     * @implements {Polymer_PropertyAccessors}
-     * @implements {Polymer_TemplateStamp}
-     */
-    const propertyEffectsBase = Polymer.TemplateStamp(Polymer.PropertyAccessors(superClass));
-
-    /**
-     * @polymerMixinClass
-     * @unrestricted
-     * @implements {Polymer_PropertyEffects}
-     */
-    class PropertyEffects extends propertyEffectsBase {
-
-      get PROPERTY_EFFECT_TYPES() {
-        return TYPES;
-      }
-
-      /**
-       * Overrides `Polymer.PropertyAccessors` implementation to initialize
-       * additional property-effect related properties.
-       *
-       * @override
-       */
-      _initializeProperties() {
-        super._initializeProperties();
-        hostStack.registerHost(this);
-        this.__dataClientsReady = false;
-        this.__dataPendingClients = null;
-        this.__dataToNotify = null;
-        this.__dataLinkedPaths = null;
-        this.__dataHasPaths = false;
-        // May be set on instance prior to upgrade
-        this.__dataCompoundStorage = this.__dataCompoundStorage || null;
-        this.__dataHost = this.__dataHost || null;
-        this.__dataTemp = {};
-      }
-
-      /**
-       * Overrides `Polymer.PropertyAccessors` implementation to provide a
-       * more efficient implementation of initializing properties from
-       * the prototype on the instance.
-       *
-       * @override
-       */
-      _initializeProtoProperties(props) {
-        this.__data = Object.create(props);
-        this.__dataPending = Object.create(props);
-        this.__dataOld = {};
-      }
-
-      /**
-       * Overrides `Polymer.PropertyAccessors` implementation to avoid setting
-       * `_setProperty`'s `shouldNotify: true`.
-       *
-       * @override
-       */
-      _initializeInstanceProperties(props) {
-        let readOnly = this.__readOnly;
-        for (let prop in props) {
-          if (!readOnly || !readOnly[prop]) {
-            this.__dataPending = this.__dataPending || {};
-            this.__dataOld = this.__dataOld || {};
-            this.__data[prop] = this.__dataPending[prop] = props[prop];
-          }
-        }
-      }
-
-      // Prototype setup ----------------------------------------
-
-      /**
-       * Equivalent to static `addPropertyEffect` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Property that should trigger the effect
-       * @param {string} type Effect type, from this.PROPERTY_EFFECT_TYPES
-       * @param {Object=} effect Effect metadata object
-       * @protected
-       */
-      _addPropertyEffect(property, type, effect) {
-        this._createPropertyAccessor(property, type == TYPES.READ_ONLY);
-        // effects are accumulated into arrays per property based on type
-        let effects = ensureOwnEffectMap(this, type)[property];
-        if (!effects) {
-          effects = this[type][property] = [];
-        }
-        effects.push(effect);
-      }
-
-      /**
-       * Removes the given property effect.
-       *
-       * @param {string} property Property the effect was associated with
-       * @param {string} type Effect type, from this.PROPERTY_EFFECT_TYPES
-       * @param {Object=} effect Effect metadata object to remove
-       */
-      _removePropertyEffect(property, type, effect) {
-        let effects = ensureOwnEffectMap(this, type)[property];
-        let idx = effects.indexOf(effect);
-        if (idx >= 0) {
-          effects.splice(idx, 1);
-        }
-      }
-
-      /**
-       * Returns whether the current prototype/instance has a property effect
-       * of a certain type.
-       *
-       * @param {string} property Property name
-       * @param {string=} type Effect type, from this.PROPERTY_EFFECT_TYPES
-       * @return {boolean} True if the prototype/instance has an effect of this type
-       * @protected
-       */
-      _hasPropertyEffect(property, type) {
-        let effects = this[type];
-        return Boolean(effects && effects[property]);
-      }
-
-      /**
-       * Returns whether the current prototype/instance has a "read only"
-       * accessor for the given property.
-       *
-       * @param {string} property Property name
-       * @return {boolean} True if the prototype/instance has an effect of this type
-       * @protected
-       */
-      _hasReadOnlyEffect(property) {
-        return this._hasPropertyEffect(property, TYPES.READ_ONLY);
-      }
-
-      /**
-       * Returns whether the current prototype/instance has a "notify"
-       * property effect for the given property.
-       *
-       * @param {string} property Property name
-       * @return {boolean} True if the prototype/instance has an effect of this type
-       * @protected
-       */
-      _hasNotifyEffect(property) {
-        return this._hasPropertyEffect(property, TYPES.NOTIFY);
-      }
-
-      /**
-       * Returns whether the current prototype/instance has a "reflect to attribute"
-       * property effect for the given property.
-       *
-       * @param {string} property Property name
-       * @return {boolean} True if the prototype/instance has an effect of this type
-       * @protected
-       */
-      _hasReflectEffect(property) {
-        return this._hasPropertyEffect(property, TYPES.REFLECT);
-      }
-
-      /**
-       * Returns whether the current prototype/instance has a "computed"
-       * property effect for the given property.
-       *
-       * @param {string} property Property name
-       * @return {boolean} True if the prototype/instance has an effect of this type
-       * @protected
-       */
-      _hasComputedEffect(property) {
-        return this._hasPropertyEffect(property, TYPES.COMPUTE);
-      }
-
-      // Runtime ----------------------------------------
-
-      /**
-       * Sets a pending property or path.  If the root property of the path in
-       * question had no accessor, the path is set, otherwise it is enqueued
-       * via `_setPendingProperty`.
-       *
-       * This function isolates relatively expensive functionality necessary
-       * for the public API (`set`, `setProperties`, `notifyPath`, and property
-       * change listeners via {{...}} bindings), such that it is only done
-       * when paths enter the system, and not at every propagation step.  It
-       * also sets a `__dataHasPaths` flag on the instance which is used to
-       * fast-path slower path-matching code in the property effects host paths.
-       *
-       * `path` can be a path string or array of path parts as accepted by the
-       * public API.
-       *
-       * @param {string | !Array<number|string>} path Path to set
-       * @param {*} value Value to set
-       * @param {boolean=} shouldNotify Set to true if this change should
-       *  cause a property notification event dispatch
-       * @param {boolean=} isPathNotification If the path being set is a path
-       *   notification of an already changed value, as opposed to a request
-       *   to set and notify the change.  In the latter `false` case, a dirty
-       *   check is performed and then the value is set to the path before
-       *   enqueuing the pending property change.
-       * @return {boolean} Returns true if the property/path was enqueued in
-       *   the pending changes bag.
-       * @protected
-       */
-      _setPendingPropertyOrPath(path, value, shouldNotify, isPathNotification) {
-        if (isPathNotification ||
-            Polymer.Path.root(Array.isArray(path) ? path[0] : path) !== path) {
-          // Dirty check changes being set to a path against the actual object,
-          // since this is the entry point for paths into the system; from here
-          // the only dirty checks are against the `__dataTemp` cache to prevent
-          // duplicate work in the same turn only. Note, if this was a notification
-          // of a change already set to a path (isPathNotification: true),
-          // we always let the change through and skip the `set` since it was
-          // already dirty checked at the point of entry and the underlying
-          // object has already been updated
-          if (!isPathNotification) {
-            let old = Polymer.Path.get(this, path);
-            path = /** @type {string} */ (Polymer.Path.set(this, path, value));
-            // Use property-accessor's simpler dirty check
-            if (!path || !super._shouldPropertyChange(path, value, old)) {
-              return false;
-            }
-          }
-          this.__dataHasPaths = true;
-          if (this._setPendingProperty(path, value, shouldNotify)) {
-            computeLinkedPaths(this, path, value);
-            return true;
-          }
-        } else {
-          if (this.__dataHasAccessor && this.__dataHasAccessor[path]) {
-            return this._setPendingProperty(path, value, shouldNotify);
-          } else {
-            this[path] = value;
-          }
-        }
-        return false;
-      }
-
-      /**
-       * Applies a value to a non-Polymer element/node's property.
-       *
-       * The implementation makes a best-effort at binding interop:
-       * Some native element properties have side-effects when
-       * re-setting the same value (e.g. setting `<input>.value` resets the
-       * cursor position), so we do a dirty-check before setting the value.
-       * However, for better interop with non-Polymer custom elements that
-       * accept objects, we explicitly re-set object changes coming from the
-       * Polymer world (which may include deep object changes without the
-       * top reference changing), erring on the side of providing more
-       * information.
-       *
-       * Users may override this method to provide alternate approaches.
-       *
-       * @param {Node} node The node to set a property on
-       * @param {string} prop The property to set
-       * @param {*} value The value to set
-       * @protected
-       */
-      _setUnmanagedPropertyToNode(node, prop, value) {
-        // It is a judgment call that resetting primitives is
-        // "bad" and resettings objects is also "good"; alternatively we could
-        // implement a whitelist of tag & property values that should never
-        // be reset (e.g. <input>.value && <select>.value)
-        if (value !== node[prop] || typeof value == 'object') {
-          node[prop] = value;
-        }
-      }
-
-      /**
-       * Overrides the `PropertyAccessors` implementation to introduce special
-       * dirty check logic depending on the property & value being set:
-       *
-       * 1. Any value set to a path (e.g. 'obj.prop': 42 or 'obj.prop': {...})
-       *    Stored in `__dataTemp`, dirty checked against `__dataTemp`
-       * 2. Object set to simple property (e.g. 'prop': {...})
-       *    Stored in `__dataTemp` and `__data`, dirty checked against
-       *    `__dataTemp` by default implementation of `_shouldPropertyChange`
-       * 3. Primitive value set to simple property (e.g. 'prop': 42)
-       *    Stored in `__data`, dirty checked against `__data`
-       *
-       * The dirty-check is important to prevent cycles due to two-way
-       * notification, but paths and objects are only dirty checked against any
-       * previous value set during this turn via a "temporary cache" that is
-       * cleared when the last `_propertiesChaged` exits. This is so:
-       * a. any cached array paths (e.g. 'array.3.prop') may be invalidated
-       *    due to array mutations like shift/unshift/splice; this is fine
-       *    since path changes are dirty-checked at user entry points like `set`
-       * b. dirty-checking for objects only lasts one turn to allow the user
-       *    to mutate the object in-place and re-set it with the same identity
-       *    and have all sub-properties re-propagated in a subsequent turn.
-       *
-       * The temp cache is not necessarily sufficient to prevent invalid array
-       * paths, since a splice can happen during the same turn (with pathological
-       * user code); we could introduce a "fixup" for temporarily cached array
-       * paths if needed: https://github.com/Polymer/polymer/issues/4227
-       *
-       * @override
-       */
-      _setPendingProperty(property, value, shouldNotify) {
-        let isPath = this.__dataHasPaths && Polymer.Path.isPath(property);
-        let prevProps = isPath ? this.__dataTemp : this.__data;
-        if (this._shouldPropertyChange(property, value, prevProps[property])) {
-          if (!this.__dataPending) {
-            this.__dataPending = {};
-            this.__dataOld = {};
-          }
-          // Ensure old is captured from the last turn
-          if (!(property in this.__dataOld)) {
-            this.__dataOld[property] = this.__data[property];
-          }
-          // Paths are stored in temporary cache (cleared at end of turn),
-          // which is used for dirty-checking, all others stored in __data
-          if (isPath) {
-            this.__dataTemp[property] = value;
-          } else {
-            this.__data[property] = value;
-          }
-          // All changes go into pending property bag, passed to _propertiesChanged
-          this.__dataPending[property] = value;
-          // Track properties that should notify separately
-          if (isPath || (this.__notifyEffects && this.__notifyEffects[property])) {
-            this.__dataToNotify = this.__dataToNotify || {};
-            this.__dataToNotify[property] = shouldNotify;
-          }
-          return true;
-        }
-      }
-
-      /**
-       * Overrides base implementation to ensure all accessors set `shouldNotify`
-       * to true, for per-property notification tracking.
-       *
-       * @override
-       */
-      _setProperty(property, value) {
-        if (this._setPendingProperty(property, value, true)) {
-          this._invalidateProperties();
-        }
-      }
-
-      /**
-       * Overrides `PropertyAccessor`'s default async queuing of
-       * `_propertiesChanged`: if `__dataReady` is false (has not yet been
-       * manually flushed), the function no-ops; otherwise flushes
-       * `_propertiesChanged` synchronously.
-       *
-       * @override
-       */
-      _invalidateProperties() {
-        if (this.__dataReady) {
-          this._flushProperties();
-        }
-      }
-
-      /**
-       * Enqueues the given client on a list of pending clients, whose
-       * pending property changes can later be flushed via a call to
-       * `_flushClients`.
-       *
-       * @param {Object} client PropertyEffects client to enqueue
-       * @protected
-       */
-      _enqueueClient(client) {
-        this.__dataPendingClients = this.__dataPendingClients || [];
-        if (client !== this) {
-          this.__dataPendingClients.push(client);
-        }
-      }
-
-      /**
-       * Flushes any clients previously enqueued via `_enqueueClient`, causing
-       * their `_flushProperties` method to run.
-       *
-       * @protected
-       */
-      _flushClients() {
-        if (!this.__dataClientsReady) {
-          this.__dataClientsReady = true;
-          this._readyClients();
-          // Override point where accessors are turned on; importantly,
-          // this is after clients have fully readied, providing a guarantee
-          // that any property effects occur only after all clients are ready.
-          this.__dataReady = true;
-        } else {
-          this.__enableOrFlushClients();
-        }
-      }
-
-      // NOTE: We ensure clients either enable or flush as appropriate. This
-      // handles two corner cases:
-      // (1) clients flush properly when connected/enabled before the host
-      // enables; e.g.
-      //   (a) Templatize stamps with no properties and does not flush and
-      //   (b) the instance is inserted into dom and
-      //   (c) then the instance flushes.
-      // (2) clients enable properly when not connected/enabled when the host
-      // flushes; e.g.
-      //   (a) a template is runtime stamped and not yet connected/enabled
-      //   (b) a host sets a property, causing stamped dom to flush
-      //   (c) the stamped dom enables.
-      __enableOrFlushClients() {
-        let clients = this.__dataPendingClients;
-        if (clients) {
-          this.__dataPendingClients = null;
-          for (let i=0; i < clients.length; i++) {
-            let client = clients[i];
-            if (!client.__dataEnabled) {
-              client._enableProperties();
-            } else if (client.__dataPending) {
-              client._flushProperties();
-            }
-          }
-        }
-      }
-
-      /**
-       * Perform any initial setup on client dom. Called before the first
-       * `_flushProperties` call on client dom and before any element
-       * observers are called.
-       *
-       * @protected
-       */
-      _readyClients() {
-        this.__enableOrFlushClients();
-      }
-
-      /**
-       * Sets a bag of property changes to this instance, and
-       * synchronously processes all effects of the properties as a batch.
-       *
-       * Property names must be simple properties, not paths.  Batched
-       * path propagation is not supported.
-       *
-       * @param {Object} props Bag of one or more key-value pairs whose key is
-       *   a property and value is the new value to set for that property.
-       * @param {boolean=} setReadOnly When true, any private values set in
-       *   `props` will be set. By default, `setProperties` will not set
-       *   `readOnly: true` root properties.
-       * @public
-       */
-      setProperties(props, setReadOnly) {
-        for (let path in props) {
-          if (setReadOnly || !this.__readOnly || !this.__readOnly[path]) {
-            //TODO(kschaaf): explicitly disallow paths in setProperty?
-            // wildcard observers currently only pass the first changed path
-            // in the `info` object, and you could do some odd things batching
-            // paths, e.g. {'foo.bar': {...}, 'foo': null}
-            this._setPendingPropertyOrPath(path, props[path], true);
-          }
-        }
-        this._invalidateProperties();
-      }
-
-      /**
-       * Overrides `PropertyAccessors` so that property accessor
-       * side effects are not enabled until after client dom is fully ready.
-       * Also calls `_flushClients` callback to ensure client dom is enabled
-       * that was not enabled as a result of flushing properties.
-       *
-       * @override
-       */
-      ready() {
-        // It is important that `super.ready()` is not called here as it
-        // immediately turns on accessors. Instead, we wait until `readyClients`
-        // to enable accessors to provide a guarantee that clients are ready
-        // before processing any accessors side effects.
-        this._flushProperties();
-        // If no data was pending, `_flushProperties` will not `flushClients`
-        // so ensure this is done.
-        if (!this.__dataClientsReady) {
-          this._flushClients();
-        }
-        // Before ready, client notifications do not trigger _flushProperties.
-        // Therefore a flush is necessary here if data has been set.
-        if (this.__dataPending) {
-          this._flushProperties();
-        }
-      }
-
-      /**
-       * Implements `PropertyAccessors`'s properties changed callback.
-       *
-       * Runs each class of effects for the batch of changed properties in
-       * a specific order (compute, propagate, reflect, observe, notify).
-       *
-       * @override
-       */
-      _propertiesChanged(currentProps, changedProps, oldProps) {
-        // ----------------------------
-        // let c = Object.getOwnPropertyNames(changedProps || {});
-        // window.debug && console.group(this.localName + '#' + this.id + ': ' + c);
-        // if (window.debug) { debugger; }
-        // ----------------------------
-        let hasPaths = this.__dataHasPaths;
-        this.__dataHasPaths = false;
-        // Compute properties
-        runComputedEffects(this, changedProps, oldProps, hasPaths);
-        // Clear notify properties prior to possible reentry (propagate, observe),
-        // but after computing effects have a chance to add to them
-        let notifyProps = this.__dataToNotify;
-        this.__dataToNotify = null;
-        // Propagate properties to clients
-        this._propagatePropertyChanges(changedProps, oldProps, hasPaths);
-        // Flush clients
-        this._flushClients();
-        // Reflect properties
-        runEffects(this, this.__reflectEffects, changedProps, oldProps, hasPaths);
-        // Observe properties
-        runEffects(this, this.__observeEffects, changedProps, oldProps, hasPaths);
-        // Notify properties to host
-        if (notifyProps) {
-          runNotifyEffects(this, notifyProps, changedProps, oldProps, hasPaths);
-        }
-        // Clear temporary cache at end of turn
-        if (this.__dataCounter == 1) {
-          this.__dataTemp = {};
-        }
-        // ----------------------------
-        // window.debug && console.groupEnd(this.localName + '#' + this.id + ': ' + c);
-        // ----------------------------
-      }
-
-      /**
-       * Called to propagate any property changes to stamped template nodes
-       * managed by this element.
-       *
-       * @param {Object} changedProps Bag of changed properties
-       * @param {Object} oldProps Bag of previous values for changed properties
-       * @param {boolean} hasPaths True with `props` contains one or more paths
-       * @protected
-       */
-      _propagatePropertyChanges(changedProps, oldProps, hasPaths) {
-        if (this.__propagateEffects) {
-          runEffects(this, this.__propagateEffects, changedProps, oldProps, hasPaths);
-        }
-        let templateInfo = this.__templateInfo;
-        while (templateInfo) {
-          runEffects(this, templateInfo.propertyEffects, changedProps, oldProps,
-            hasPaths, templateInfo.nodeList);
-          templateInfo = templateInfo.nextTemplateInfo;
-        }
-      }
-
-      /**
-       * Aliases one data path as another, such that path notifications from one
-       * are routed to the other.
-       *
-       * @param {string | !Array<string|number>} to Target path to link.
-       * @param {string | !Array<string|number>} from Source path to link.
-       * @public
-       */
-      linkPaths(to, from) {
-        to = Polymer.Path.normalize(to);
-        from = Polymer.Path.normalize(from);
-        this.__dataLinkedPaths = this.__dataLinkedPaths || {};
-        this.__dataLinkedPaths[to] = from;
-      }
-
-      /**
-       * Removes a data path alias previously established with `_linkPaths`.
-       *
-       * Note, the path to unlink should be the target (`to`) used when
-       * linking the paths.
-       *
-       * @param {string | !Array<string|number>} path Target path to unlink.
-       * @public
-       */
-      unlinkPaths(path) {
-        path = Polymer.Path.normalize(path);
-        if (this.__dataLinkedPaths) {
-          delete this.__dataLinkedPaths[path];
-        }
-      }
-
-      /**
-       * Notify that an array has changed.
-       *
-       * Example:
-       *
-       *     this.items = [ {name: 'Jim'}, {name: 'Todd'}, {name: 'Bill'} ];
-       *     ...
-       *     this.items.splice(1, 1, {name: 'Sam'});
-       *     this.items.push({name: 'Bob'});
-       *     this.notifySplices('items', [
-       *       { index: 1, removed: [{name: 'Todd'}], addedCount: 1, obect: this.items, type: 'splice' },
-       *       { index: 3, removed: [], addedCount: 1, object: this.items, type: 'splice'}
-       *     ]);
-       *
-       * @param {string} path Path that should be notified.
-       * @param {Array} splices Array of splice records indicating ordered
-       *   changes that occurred to the array. Each record should have the
-       *   following fields:
-       *    * index: index at which the change occurred
-       *    * removed: array of items that were removed from this index
-       *    * addedCount: number of new items added at this index
-       *    * object: a reference to the array in question
-       *    * type: the string literal 'splice'
-       *
-       *   Note that splice records _must_ be normalized such that they are
-       *   reported in index order (raw results from `Object.observe` are not
-       *   ordered and must be normalized/merged before notifying).
-       * @public
-      */
-      notifySplices(path, splices) {
-        let info = {};
-        let array = /** @type {Array} */(Polymer.Path.get(this, path, info));
-        notifySplices(this, array, info.path, splices);
-      }
-
-      /**
-       * Convenience method for reading a value from a path.
-       *
-       * Note, if any part in the path is undefined, this method returns
-       * `undefined` (this method does not throw when dereferencing undefined
-       * paths).
-       *
-       * @param {(string|!Array<(string|number)>)} path Path to the value
-       *   to read.  The path may be specified as a string (e.g. `foo.bar.baz`)
-       *   or an array of path parts (e.g. `['foo.bar', 'baz']`).  Note that
-       *   bracketed expressions are not supported; string-based path parts
-       *   *must* be separated by dots.  Note that when dereferencing array
-       *   indices, the index may be used as a dotted part directly
-       *   (e.g. `users.12.name` or `['users', 12, 'name']`).
-       * @param {Object=} root Root object from which the path is evaluated.
-       * @return {*} Value at the path, or `undefined` if any part of the path
-       *   is undefined.
-       * @public
-       */
-      get(path, root) {
-        return Polymer.Path.get(root || this, path);
-      }
-
-      /**
-       * Convenience method for setting a value to a path and notifying any
-       * elements bound to the same path.
-       *
-       * Note, if any part in the path except for the last is undefined,
-       * this method does nothing (this method does not throw when
-       * dereferencing undefined paths).
-       *
-       * @param {(string|!Array<(string|number)>)} path Path to the value
-       *   to write.  The path may be specified as a string (e.g. `'foo.bar.baz'`)
-       *   or an array of path parts (e.g. `['foo.bar', 'baz']`).  Note that
-       *   bracketed expressions are not supported; string-based path parts
-       *   *must* be separated by dots.  Note that when dereferencing array
-       *   indices, the index may be used as a dotted part directly
-       *   (e.g. `'users.12.name'` or `['users', 12, 'name']`).
-       * @param {*} value Value to set at the specified path.
-       * @param {Object=} root Root object from which the path is evaluated.
-       *   When specified, no notification will occur.
-       * @public
-      */
-      set(path, value, root) {
-        if (root) {
-          Polymer.Path.set(root, path, value);
-        } else {
-          if (!this.__readOnly || !this.__readOnly[/** @type {string} */(path)]) {
-            if (this._setPendingPropertyOrPath(path, value, true)) {
-              this._invalidateProperties();
-            }
-          }
-        }
-      }
-
-      /**
-       * Adds items onto the end of the array at the path specified.
-       *
-       * The arguments after `path` and return value match that of
-       * `Array.prototype.push`.
-       *
-       * This method notifies other paths to the same array that a
-       * splice occurred to the array.
-       *
-       * @param {string} path Path to array.
-       * @param {...*} items Items to push onto array
-       * @return {number} New length of the array.
-       * @public
-       */
-      push(path, ...items) {
-        let info = {};
-        let array = /** @type {Array}*/(Polymer.Path.get(this, path, info));
-        let len = array.length;
-        let ret = array.push(...items);
-        if (items.length) {
-          notifySplice(this, array, info.path, len, items.length, []);
-        }
-        return ret;
-      }
-
-      /**
-       * Removes an item from the end of array at the path specified.
-       *
-       * The arguments after `path` and return value match that of
-       * `Array.prototype.pop`.
-       *
-       * This method notifies other paths to the same array that a
-       * splice occurred to the array.
-       *
-       * @param {string} path Path to array.
-       * @return {*} Item that was removed.
-       * @public
-       */
-      pop(path) {
-        let info = {};
-        let array = /** @type {Array} */(Polymer.Path.get(this, path, info));
-        let hadLength = Boolean(array.length);
-        let ret = array.pop();
-        if (hadLength) {
-          notifySplice(this, array, info.path, array.length, 0, [ret]);
-        }
-        return ret;
-      }
-
-      /**
-       * Starting from the start index specified, removes 0 or more items
-       * from the array and inserts 0 or more new items in their place.
-       *
-       * The arguments after `path` and return value match that of
-       * `Array.prototype.splice`.
-       *
-       * This method notifies other paths to the same array that a
-       * splice occurred to the array.
-       *
-       * @param {string} path Path to array.
-       * @param {number} start Index from which to start removing/inserting.
-       * @param {number} deleteCount Number of items to remove.
-       * @param {...*} items Items to insert into array.
-       * @return {Array} Array of removed items.
-       * @public
-       */
-      splice(path, start, deleteCount, ...items) {
-        let info = {};
-        let array = /** @type {Array} */(Polymer.Path.get(this, path, info));
-        // Normalize fancy native splice handling of crazy start values
-        if (start < 0) {
-          start = array.length - Math.floor(-start);
-        } else {
-          start = Math.floor(start);
-        }
-        if (!start) {
-          start = 0;
-        }
-        let ret = array.splice(start, deleteCount, ...items);
-        if (items.length || ret.length) {
-          notifySplice(this, array, info.path, start, items.length, ret);
-        }
-        return ret;
-      }
-
-      /**
-       * Removes an item from the beginning of array at the path specified.
-       *
-       * The arguments after `path` and return value match that of
-       * `Array.prototype.pop`.
-       *
-       * This method notifies other paths to the same array that a
-       * splice occurred to the array.
-       *
-       * @param {string} path Path to array.
-       * @return {*} Item that was removed.
-       * @public
-       */
-      shift(path) {
-        let info = {};
-        let array = /** @type {Array} */(Polymer.Path.get(this, path, info));
-        let hadLength = Boolean(array.length);
-        let ret = array.shift();
-        if (hadLength) {
-          notifySplice(this, array, info.path, 0, 0, [ret]);
-        }
-        return ret;
-      }
-
-      /**
-       * Adds items onto the beginning of the array at the path specified.
-       *
-       * The arguments after `path` and return value match that of
-       * `Array.prototype.push`.
-       *
-       * This method notifies other paths to the same array that a
-       * splice occurred to the array.
-       *
-       * @param {string} path Path to array.
-       * @param {...*} items Items to insert info array
-       * @return {number} New length of the array.
-       * @public
-       */
-      unshift(path, ...items) {
-        let info = {};
-        let array = /** @type {Array} */(Polymer.Path.get(this, path, info));
-        let ret = array.unshift(...items);
-        if (items.length) {
-          notifySplice(this, array, info.path, 0, items.length, []);
-        }
-        return ret;
-      }
-
-      /**
-       * Notify that a path has changed.
-       *
-       * Example:
-       *
-       *     this.item.user.name = 'Bob';
-       *     this.notifyPath('item.user.name');
-       *
-       * @param {string} path Path that should be notified.
-       * @param {*=} value Value at the path (optional).
-       * @public
-      */
-      notifyPath(path, value) {
-        /** @type {string} */
-        let propPath;
-        if (arguments.length == 1) {
-          // Get value if not supplied
-          let info = {};
-          value = Polymer.Path.get(this, path, info);
-          propPath = info.path;
-        } else if (Array.isArray(path)) {
-          // Normalize path if needed
-          propPath = Polymer.Path.normalize(path);
-        } else {
-          propPath = /** @type{string} */(path);
-        }
-        if (this._setPendingPropertyOrPath(propPath, value, true, true)) {
-          this._invalidateProperties();
-        }
-      }
-
-      /**
-       * Equivalent to static `createReadOnlyProperty` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Property name
-       * @param {boolean=} protectedSetter Creates a custom protected setter
-       *   when `true`.
-       * @protected
-       */
-      _createReadOnlyProperty(property, protectedSetter) {
-        this._addPropertyEffect(property, TYPES.READ_ONLY);
-        if (protectedSetter) {
-          this['_set' + upper(property)] = function(value) {
-            this._setProperty(property, value);
-          }
-        }
-      }
-
-      /**
-       * Equivalent to static `createPropertyObserver` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Property name
-       * @param {string} methodName Name of observer method to call
-       * @param {boolean=} dynamicFn Whether the method name should be included as
-       *   a dependency to the effect.
-       * @protected
-       */
-      _createPropertyObserver(property, methodName, dynamicFn) {
-        let info = { property, methodName, dynamicFn };
-        this._addPropertyEffect(property, TYPES.OBSERVE, {
-          fn: runObserverEffect, info, trigger: {name: property}
-        });
-        if (dynamicFn) {
-          this._addPropertyEffect(methodName, TYPES.OBSERVE, {
-            fn: runObserverEffect, info, trigger: {name: methodName}
-          });
-        }
-      }
-
-      /**
-       * Equivalent to static `createMethodObserver` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} expression Method expression
-       * @param {boolean|Object=} dynamicFn Boolean or object map indicating
-       *   whether method names should be included as a dependency to the effect.
-       * @protected
-       */
-      _createMethodObserver(expression, dynamicFn) {
-        let sig = parseMethod(expression);
-        if (!sig) {
-          throw new Error("Malformed observer expression '" + expression + "'");
-        }
-        createMethodEffect(this, sig, TYPES.OBSERVE, runMethodEffect, null, dynamicFn);
-      }
-
-      /**
-       * Equivalent to static `createNotifyingProperty` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Property name
-       * @protected
-       */
-      _createNotifyingProperty(property) {
-        this._addPropertyEffect(property, TYPES.NOTIFY, {
-          fn: runNotifyEffect,
-          info: {
-            eventName: CaseMap.camelToDashCase(property) + '-changed',
-            property: property
-          }
-        });
-      }
-
-      /**
-       * Equivalent to static `createReflectedProperty` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Property name
-       * @protected
-       */
-      _createReflectedProperty(property) {
-        let attr = CaseMap.camelToDashCase(property);
-        if (attr[0] === '-') {
-          console.warn('Property ' + property + ' cannot be reflected to attribute ' +
-            attr + ' because "-" is not a valid starting attribute name. Use a lowercase first letter for the property thisead.');
-        } else {
-          this._addPropertyEffect(property, TYPES.REFLECT, {
-            fn: runReflectEffect,
-            info: {
-              attrName: attr
-            }
-          });
-        }
-      }
-
-      /**
-       * Equivalent to static `createComputedProperty` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * @param {string} property Name of computed property to set
-       * @param {string} expression Method expression
-       * @param {boolean|Object=} dynamicFn Boolean or object map indicating
-       *   whether method names should be included as a dependency to the effect.
-       * @protected
-       */
-      _createComputedProperty(property, expression, dynamicFn) {
-        let sig = parseMethod(expression);
-        if (!sig) {
-          throw new Error("Malformed computed expression '" + expression + "'");
-        }
-        createMethodEffect(this, sig, TYPES.COMPUTE, runComputedEffect, property, dynamicFn);
-      }
-
-      // -- static class methods ------------
-
-      /**
-       * Ensures an accessor exists for the specified property, and adds
-       * to a list of "property effects" that will run when the accessor for
-       * the specified property is set.  Effects are grouped by "type", which
-       * roughly corresponds to a phase in effect processing.  The effect
-       * metadata should be in the following form:
-       *
-       *   {
-       *     fn: effectFunction, // Reference to function to call to perform effect
-       *     info: { ... }       // Effect metadata passed to function
-       *     trigger: {          // Optional triggering metadata; if not provided
-       *       name: string      // the property is treated as a wildcard
-       *       structured: boolean
-       *       wildcard: boolean
-       *     }
-       *   }
-       *
-       * Effects are called from `_propertiesChanged` in the following order by
-       * type:
-       *
-       * 1. COMPUTE
-       * 2. PROPAGATE
-       * 3. REFLECT
-       * 4. OBSERVE
-       * 5. NOTIFY
-       *
-       * Effect functions are called with the following signature:
-       *
-       *   effectFunction(inst, path, props, oldProps, info, hasPaths)
-       *
-       * @param {string} property Property that should trigger the effect
-       * @param {string} type Effect type, from this.PROPERTY_EFFECT_TYPES
-       * @param {Object=} effect Effect metadata object
-       * @protected
-       */
-      static addPropertyEffect(property, type, effect) {
-        this.prototype._addPropertyEffect(property, type, effect);
-      }
-
-      /**
-       * Creates a single-property observer for the given property.
-       *
-       * @param {string} property Property name
-       * @param {string} methodName Name of observer method to call
-       * @param {boolean=} dynamicFn Whether the method name should be included as
-       *   a dependency to the effect.
-       * @protected
-       */
-      static createPropertyObserver(property, methodName, dynamicFn) {
-        this.prototype._createPropertyObserver(property, methodName, dynamicFn);
-      }
-
-      /**
-       * Creates a multi-property "method observer" based on the provided
-       * expression, which should be a string in the form of a normal Javascript
-       * function signature: `'methodName(arg1, [..., argn])'`.  Each argument
-       * should correspond to a property or path in the context of this
-       * prototype (or instance), or may be a literal string or number.
-       *
-       * @param {string} expression Method expression
-       * @param {boolean|Object=} dynamicFn Boolean or object map indicating
-       *   whether method names should be included as a dependency to the effect.
-       * @protected
-       */
-      static createMethodObserver(expression, dynamicFn) {
-        this.prototype._createMethodObserver(expression, dynamicFn);
-      }
-
-      /**
-       * Causes the setter for the given property to dispatch `<property>-changed`
-       * events to notify of changes to the property.
-       *
-       * @param {string} property Property name
-       * @protected
-       */
-      static createNotifyingProperty(property) {
-        this.prototype._createNotifyingProperty(property);
-      }
-
-      /**
-       * Creates a read-only accessor for the given property.
-       *
-       * To set the property, use the protected `_setProperty` API.
-       * To create a custom protected setter (e.g. `_setMyProp()` for
-       * property `myProp`), pass `true` for `protectedSetter`.
-       *
-       * Note, if the property will have other property effects, this method
-       * should be called first, before adding other effects.
-       *
-       * @param {string} property Property name
-       * @param {boolean=} protectedSetter Creates a custom protected setter
-       *   when `true`.
-       * @protected
-       */
-      static createReadOnlyProperty(property, protectedSetter) {
-        this.prototype._createReadOnlyProperty(property, protectedSetter);
-      }
-
-      /**
-       * Causes the setter for the given property to reflect the property value
-       * to a (dash-cased) attribute of the same name.
-       *
-       * @param {string} property Property name
-       * @protected
-       */
-      static createReflectedProperty(property) {
-        this.prototype._createReflectedProperty(property);
-      }
-
-      /**
-       * Creates a computed property whose value is set to the result of the
-       * method described by the given `expression` each time one or more
-       * arguments to the method changes.  The expression should be a string
-       * in the form of a normal Javascript function signature:
-       * `'methodName(arg1, [..., argn])'`
-       *
-       * @param {string} property Name of computed property to set
-       * @param {string} expression Method expression
-       * @param {boolean|Object=} dynamicFn Boolean or object map indicating whether
-       *   method names should be included as a dependency to the effect.
-       * @protected
-       */
-      static createComputedProperty(property, expression, dynamicFn) {
-        this.prototype._createComputedProperty(property, expression, dynamicFn);
-      }
-
-      /**
-       * Parses the provided template to ensure binding effects are created
-       * for them, and then ensures property accessors are created for any
-       * dependent properties in the template.  Binding effects for bound
-       * templates are stored in a linked list on the instance so that
-       * templates can be efficiently stamped and unstamped.
-       *
-       * @param {HTMLTemplateElement} template Template containing binding
-       *   bindings
-       * @return {Object} Template metadata object
-       * @protected
-       */
-      static bindTemplate(template) {
-        return this.prototype._bindTemplate(template);
-      }
-
-      // -- binding ----------------------------------------------
-
-      /**
-       * Equivalent to static `bindTemplate` API but can be called on
-       * an instance to add effects at runtime.  See that method for
-       * full API docs.
-       *
-       * This method may be called on the prototype (for prototypical template
-       * binding, to avoid creating accessors every instance) once per prototype,
-       * and will be called with `runtimeBinding: true` by `_stampTemplate` to
-       * create and link an instance of the template metadata associated with a
-       * particular stamping.
-       *
-       * @param {HTMLTemplateElement} template Template containing binding
-       *   bindings
-       * @param {boolean=} instanceBinding When false (default), performs
-       *   "prototypical" binding of the template and overwrites any previously
-       *   bound template for the class. When true (as passed from
-       *   `_stampTemplate`), the template info is instanced and linked into
-       *   the list of bound templates.
-       * @return {Object} Template metadata object; for `runtimeBinding`,
-       *   this is an instance of the prototypical template info
-       * @protected
-       */
-      _bindTemplate(template, instanceBinding) {
-        let templateInfo = this.constructor._parseTemplate(template);
-        let wasPreBound = this.__templateInfo == templateInfo;
-        // Optimization: since this is called twice for proto-bound templates,
-        // don't attempt to recreate accessors if this template was pre-bound
-        if (!wasPreBound) {
-          for (let prop in templateInfo.propertyEffects) {
-            this._createPropertyAccessor(prop);
-          }
-        }
-        if (instanceBinding) {
-          // For instance-time binding, create instance of template metadata
-          // and link into list of templates if necessary
-          templateInfo = Object.create(templateInfo);
-          templateInfo.wasPreBound = wasPreBound;
-          if (!wasPreBound && this.__templateInfo) {
-            let last = this.__templateInfoLast || this.__templateInfo;
-            this.__templateInfoLast = last.nextTemplateInfo = templateInfo;
-            templateInfo.previousTemplateInfo = last;
-            return templateInfo;
-          }
-        }
-        return this.__templateInfo = templateInfo;
-      }
-
-      /**
-       * Adds a property effect to the given template metadata, which is run
-       * at the "propagate" stage of `_propertiesChanged` when the template
-       * has been bound to the element via `_bindTemplate`.
-       *
-       * The `effect` object should match the format in `_addPropertyEffect`.
-       *
-       * @param {Object} templateInfo Template metadata to add effect to
-       * @param {string} prop Property that should trigger the effect
-       * @param {Object=} effect Effect metadata object
-       * @protected
-       */
-      static _addTemplatePropertyEffect(templateInfo, prop, effect) {
-        let hostProps = templateInfo.hostProps = templateInfo.hostProps || {};
-        hostProps[prop] = true;
-        let effects = templateInfo.propertyEffects = templateInfo.propertyEffects || {};
-        let propEffects = effects[prop] = effects[prop] || [];
-        propEffects.push(effect);
-      }
-
-      /**
-       * Stamps the provided template and performs instance-time setup for
-       * Polymer template features, including data bindings, declarative event
-       * listeners, and the `this.$` map of `id`'s to nodes.  A document fragment
-       * is returned containing the stamped DOM, ready for insertion into the
-       * DOM.
-       *
-       * This method may be called more than once; however note that due to
-       * `shadycss` polyfill limitations, only styles from templates prepared
-       * using `ShadyCSS.prepareTemplate` will be correctly polyfilled (scoped
-       * to the shadow root and support CSS custom properties), and note that
-       * `ShadyCSS.prepareTemplate` may only be called once per element. As such,
-       * any styles required by in runtime-stamped templates must be included
-       * in the main element template.
-       *
-       * @param {HTMLTemplateElement} template Template to stamp
-       * @return {DocumentFragment} Cloned template content
-       * @protected
-       */
-      _stampTemplate(template) {
-        // Ensures that created dom is `_enqueueClient`'d to this element so
-        // that it can be flushed on next call to `_flushProperties`
-        hostStack.beginHosting(this);
-        let dom = super._stampTemplate(template);
-        hostStack.endHosting(this);
-        let templateInfo = this._bindTemplate(template, true);
-        // Add template-instance-specific data to instanced templateInfo
-        templateInfo.nodeList = dom.nodeList;
-        // Capture child nodes to allow unstamping of non-prototypical templates
-        if (!templateInfo.wasPreBound) {
-          let nodes = templateInfo.childNodes = [];
-          for (let n=dom.firstChild; n; n=n.nextSibling) {
-            nodes.push(n);
-          }
-        }
-        dom.templateInfo = templateInfo;
-        // Setup compound storage, 2-way listeners, and dataHost for bindings
-        setupBindings(this, templateInfo);
-        // Flush properties into template nodes if already booted
-        if (this.__dataReady) {
-          runEffects(this, templateInfo.propertyEffects, this.__data, null,
-            false, templateInfo.nodeList);
-        }
-        return dom;
-      }
-
-      /**
-       * Removes and unbinds the nodes previously contained in the provided
-       * DocumentFragment returned from `_stampTemplate`.
-       *
-       * @param {DocumentFragment} dom DocumentFragment previously returned
-       *   from `_stampTemplate` associated with the nodes to be removed
-       * @protected
-       */
-      _removeBoundDom(dom) {
-        // Unlink template info
-        let templateInfo = dom.templateInfo;
-        if (templateInfo.previousTemplateInfo) {
-          templateInfo.previousTemplateInfo.nextTemplateInfo =
-            templateInfo.nextTemplateInfo;
-        }
-        if (templateInfo.nextTemplateInfo) {
-          templateInfo.nextTemplateInfo.previousTemplateInfo =
-            templateInfo.previousTemplateInfo;
-        }
-        if (this.__templateInfoLast == templateInfo) {
-          this.__templateInfoLast = templateInfo.previousTemplateInfo;
-        }
-        templateInfo.previousTemplateInfo = templateInfo.nextTemplateInfo = null;
-        // Remove stamped nodes
-        let nodes = templateInfo.childNodes;
-        for (let i=0; i<nodes.length; i++) {
-          let node = nodes[i];
-          node.parentNode.removeChild(node);
-        }
-      }
-
-      /**
-       * Overrides default `TemplateStamp` implementation to add support for
-       * parsing bindings from `TextNode`'s' `textContent`.  A `bindings`
-       * array is added to `nodeInfo` and populated with binding metadata
-       * with information capturing the binding target, and a `parts` array
-       * with one or more metadata objects capturing the source(s) of the
-       * binding.
-       *
-       * @override
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template node
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       * @protected
-       */
-      static _parseTemplateNode(node, templateInfo, nodeInfo) {
-        let noted = super._parseTemplateNode(node, templateInfo, nodeInfo);
-        if (node.nodeType === Node.TEXT_NODE) {
-          let parts = this._parseBindings(node.textContent, templateInfo);
-          if (parts) {
-            // Initialize the textContent with any literal parts
-            // NOTE: default to a space here so the textNode remains; some browsers
-            // (IE) evacipate an empty textNode following cloneNode/importNode.
-            node.textContent = literalFromParts(parts) || ' ';
-            addBinding(this, templateInfo, nodeInfo, 'text', 'textContent', parts);
-            noted = true;
-          }
-        }
-        return noted;
-      }
-
-      /**
-       * Overrides default `TemplateStamp` implementation to add support for
-       * parsing bindings from attributes.  A `bindings`
-       * array is added to `nodeInfo` and populated with binding metadata
-       * with information capturing the binding target, and a `parts` array
-       * with one or more metadata objects capturing the source(s) of the
-       * binding.
-       *
-       * @override
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template node
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       * @protected
-       */
-      static _parseTemplateNodeAttribute(node, templateInfo, nodeInfo, name, value) {
-        let parts = this._parseBindings(value, templateInfo);
-        if (parts) {
-          // Attribute or property
-          let origName = name;
-          let kind = 'property';
-          if (name[name.length-1] == '$') {
-            name = name.slice(0, -1);
-            kind = 'attribute';
-          }
-          // Initialize attribute bindings with any literal parts
-          let literal = literalFromParts(parts);
-          if (literal && kind == 'attribute') {
-            node.setAttribute(name, literal);
-          }
-          // Clear attribute before removing, since IE won't allow removing
-          // `value` attribute if it previously had a value (can't
-          // unconditionally set '' before removing since attributes with `$`
-          // can't be set using setAttribute)
-          if (node.localName === 'input' && origName === 'value') {
-            node.setAttribute(origName, '');
-          }
-          // Remove annotation
-          node.removeAttribute(origName);
-          // Case hackery: attributes are lower-case, but bind targets
-          // (properties) are case sensitive. Gambit is to map dash-case to
-          // camel-case: `foo-bar` becomes `fooBar`.
-          // Attribute bindings are excepted.
-          if (kind === 'property') {
-            name = Polymer.CaseMap.dashToCamelCase(name);
-          }
-          addBinding(this, templateInfo, nodeInfo, kind, name, parts, literal);
-          return true;
-        } else {
-          return super._parseTemplateNodeAttribute(node, templateInfo, nodeInfo, name, value);
-        }
-      }
-
-      /**
-       * Overrides default `TemplateStamp` implementation to add support for
-       * binding the properties that a nested template depends on to the template
-       * as `_host_<property>`.
-       *
-       * @override
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template node
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       * @protected
-       */
-      static _parseTemplateNestedTemplate(node, templateInfo, nodeInfo) {
-        let noted = super._parseTemplateNestedTemplate(node, templateInfo, nodeInfo);
-        // Merge host props into outer template and add bindings
-        let hostProps = nodeInfo.templateInfo.hostProps;
-        let mode = '{';
-        for (let source in hostProps) {
-          let parts = [{ mode, source, dependencies: [source] }];
-          addBinding(this, templateInfo, nodeInfo, 'property', '_host_' + source, parts);
-        }
-        return noted;
-      }
-
-      /**
-       * Called to parse text in a template (either attribute values or
-       * textContent) into binding metadata.
-       *
-       * Any overrides of this method should return an array of binding part
-       * metadata  representing one or more bindings found in the provided text
-       * and any "literal" text in between.  Any non-literal parts will be passed
-       * to `_evaluateBinding` when any dependencies change.  The only required
-       * fields of each "part" in the returned array are as follows:
-       *
-       * - `dependencies` - Array containing trigger metadata for each property
-       *   that should trigger the binding to update
-       * - `literal` - String containing text if the part represents a literal;
-       *   in this case no `dependencies` are needed
-       *
-       * Additional metadata for use by `_evaluateBinding` may be provided in
-       * each part object as needed.
-       *
-       * The default implementation handles the following types of bindings
-       * (one or more may be intermixed with literal strings):
-       * - Property binding: `[[prop]]`
-       * - Path binding: `[[object.prop]]`
-       * - Negated property or path bindings: `[[!prop]]` or `[[!object.prop]]`
-       * - Two-way property or path bindings (supports negation):
-       *   `{{prop}}`, `{{object.prop}}`, `{{!prop}}` or `{{!object.prop}}`
-       * - Inline computed method (supports negation):
-       *   `[[compute(a, 'literal', b)]]`, `[[!compute(a, 'literal', b)]]`
-       *
-       * @param {string} text Text to parse from attribute or textContent
-       * @param {Object} templateInfo Current template metadata
-       * @return {Array<Object>} Array of binding part metadata
-       * @protected
-       */
-      static _parseBindings(text, templateInfo) {
-        let parts = [];
-        let lastIndex = 0;
-        let m;
-        // Example: "literal1{{prop}}literal2[[!compute(foo,bar)]]final"
-        // Regex matches:
-        //        Iteration 1:  Iteration 2:
-        // m[1]: '{{'          '[['
-        // m[2]: ''            '!'
-        // m[3]: 'prop'        'compute(foo,bar)'
-        while ((m = bindingRegex.exec(text)) !== null) {
-          // Add literal part
-          if (m.index > lastIndex) {
-            parts.push({literal: text.slice(lastIndex, m.index)});
-          }
-          // Add binding part
-          let mode = m[1][0];
-          let negate = Boolean(m[2]);
-          let source = m[3].trim();
-          let customEvent, notifyEvent, colon;
-          if (mode == '{' && (colon = source.indexOf('::')) > 0) {
-            notifyEvent = source.substring(colon + 2);
-            source = source.substring(0, colon);
-            customEvent = true;
-          }
-          let signature = parseMethod(source);
-          let dependencies = [];
-          if (signature) {
-            // Inline computed function
-            let {args, methodName} = signature;
-            for (let i=0; i<args.length; i++) {
-              let arg = args[i];
-              if (!arg.literal) {
-                dependencies.push(arg);
-              }
-            }
-            let dynamicFns = templateInfo.dynamicFns;
-            if (dynamicFns && dynamicFns[methodName] || signature.static) {
-              dependencies.push(methodName);
-              signature.dynamicFn = true;
-            }
-          } else {
-            // Property or path
-            dependencies.push(source);
-          }
-          parts.push({
-            source, mode, negate, customEvent, signature, dependencies,
-            event: notifyEvent
-          });
-          lastIndex = bindingRegex.lastIndex;
-        }
-        // Add a final literal part
-        if (lastIndex && lastIndex < text.length) {
-          let literal = text.substring(lastIndex);
-          if (literal) {
-            parts.push({
-              literal: literal
-            });
-          }
-        }
-        if (parts.length) {
-          return parts;
-        }
-      }
-
-      /**
-       * Called to evaluate a previously parsed binding part based on a set of
-       * one or more changed dependencies.
-       *
-       * @param {HTMLElement} inst Element that should be used as scope for
-       *   binding dependencies
-       * @param {Object} part Binding part metadata
-       * @param {string} path Property/path that triggered this effect
-       * @param {Object} props Bag of current property changes
-       * @param {Object} oldProps Bag of previous values for changed properties
-       * @param {boolean} hasPaths True with `props` contains one or more paths
-       * @return {*} Value the binding part evaluated to
-       * @protected
-       */
-      static _evaluateBinding(inst, part, path, props, oldProps, hasPaths) {
-        let value;
-        if (part.signature) {
-          value = runMethodEffect(inst, path, props, oldProps, part.signature);
-        } else if (path != part.source) {
-          value = Polymer.Path.get(inst, part.source);
-        } else {
-          if (hasPaths && Polymer.Path.isPath(path)) {
-            value = Polymer.Path.get(inst, path);
-          } else {
-            value = inst.__data[path];
-          }
-        }
-        if (part.negate) {
-          value = !value;
-        }
-        return value;
-      }
-
-    }
-
-    return PropertyEffects;
-  });
-
-  /**
-   * Helper api for enqueing client dom created by a host element.
-   *
-   * By default elements are flushed via `_flushProperties` when
-   * `connectedCallback` is called. Elements attach their client dom to
-   * themselves at `ready` time which results from this first flush.
-   * This provides an ordering guarantee that the client dom an element
-   * creates is flushed before the element itself (i.e. client `ready`
-   * fires before host `ready`).
-   *
-   * However, if `_flushProperties` is called *before* an element is connected,
-   * as for example `Templatize` does, this ordering guarantee cannot be
-   * satisfied because no elements are connected. (Note: Bound elements that
-   * receive data do become enqueued clients and are properly ordered but
-   * unbound elements are not.)
-   *
-   * To maintain the desired "client before host" ordering guarantee for this
-   * case we rely on the "host stack. Client nodes registers themselves with
-   * the creating host element when created. This ensures that all client dom
-   * is readied in the proper order, maintaining the desired guarantee.
-   *
-   * @private
-   */
-  let hostStack = {
-
-    stack: [],
-
-    registerHost(inst) {
-      if (this.stack.length) {
-        let host = this.stack[this.stack.length-1];
-        host._enqueueClient(inst);
-      }
-    },
-
-    beginHosting(inst) {
-      this.stack.push(inst);
-    },
-
-    endHosting(inst) {
-      let stackLen = this.stack.length;
-      if (stackLen && this.stack[stackLen-1] == inst) {
-        this.stack.pop();
-      }
-    }
-
-  }
-
-})();
-
-
-
-/***/ }),
-/* 6 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-  'use strict';
-
-  const caseMap = {};
-  const DASH_TO_CAMEL = /-[a-z]/g;
-  const CAMEL_TO_DASH = /([A-Z])/g;
-
-  /**
-   * Module with utilities for converting between "dash-case" and "camelCase"
-   * identifiers.
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module that provides utilities for converting between "dash-case"
-   *   and "camelCase".
-   */
-  const CaseMap = {
-
-    /**
-     * Converts "dash-case" identifier (e.g. `foo-bar-baz`) to "camelCase"
-     * (e.g. `fooBarBaz`).
-     *
-     * @memberof Polymer.CaseMap
-     * @param {string} dash Dash-case identifier
-     * @return {string} Camel-case representation of the identifier
-     */
-    dashToCamelCase(dash) {
-      return caseMap[dash] || (
-        caseMap[dash] = dash.indexOf('-') < 0 ? dash : dash.replace(DASH_TO_CAMEL,
-          (m) => m[1].toUpperCase()
-        )
-      );
-    },
-
-    /**
-     * Converts "camelCase" identifier (e.g. `fooBarBaz`) to "dash-case"
-     * (e.g. `foo-bar-baz`).
-     *
-     * @memberof Polymer.CaseMap
-     * @param {string} camel Camel-case identifier
-     * @return {string} Dash-case representation of the identifier
-     */
-    camelToDashCase(camel) {
-      return caseMap[camel] || (
-        caseMap[camel] = camel.replace(CAMEL_TO_DASH, '-$1').toLowerCase()
-      );
-    }
-
-  };
-
-  Polymer.CaseMap = CaseMap;
-})();
-
-
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(1);
-
-__webpack_require__(3);
-
-
-(function() {
-  'use strict';
-
-  /** @typedef {{run: function(function(), number=):number, cancel: function(number)}} */
-  let AsyncModule; // eslint-disable-line no-unused-vars
-
-  class Debouncer {
-    constructor() {
-      this._asyncModule = null;
-      this._callback = null;
-      this._timer = null;
-    }
-    /**
-     * Sets the scheduler; that is, a module with the Async interface,
-     * a callback and optional arguments to be passed to the run function
-     * from the async module.
-     *
-     * @param {!AsyncModule} asyncModule Object with Async interface.
-     * @param {function()} callback Callback to run.
-     */
-    setConfig(asyncModule, callback) {
-      this._asyncModule = asyncModule;
-      this._callback = callback;
-      this._timer = this._asyncModule.run(() => {
-        this._timer = null;
-        this._callback()
-      });
-    }
-    /**
-     * Cancels an active debouncer and returns a reference to itself.
-     */
-    cancel() {
-      if (this.isActive()) {
-        this._asyncModule.cancel(this._timer);
-        this._timer = null;
-      }
-    }
-    /**
-     * Flushes an active debouncer and returns a reference to itself.
-     */
-    flush() {
-      if (this.isActive()) {
-        this.cancel();
-        this._callback();
-      }
-    }
-    /**
-     * Returns true if the debouncer is active.
-     *
-     * @return {boolean} True if active.
-     */
-    isActive() {
-      return this._timer != null;
-    }
-  /**
-   * Creates a debouncer if no debouncer is passed as a parameter
-   * or it cancels an active debouncer otherwise. The following
-   * example shows how a debouncer can be called multiple times within a
-   * microtask and "debounced" such that the provided callback function is
-   * called once. Add this method to a custom element:
-   *
-   * _debounceWork() {
-   *   this._debounceJob = Polymer.Debouncer.debounce(this._debounceJob,
-   *       Polymer.Async.microTask, () => {
-   *     this._doWork();
-   *   });
-   * }
-   *
-   * If the `_debounceWork` method is called multiple times within the same
-   * microtask, the `_doWork` function will be called only once at the next
-   * microtask checkpoint.
-   *
-   * Note: In testing it is often convenient to avoid asynchrony. To accomplish
-   * this with a debouncer, you can use `Polymer.enqueueDebouncer` and
-   * `Polymer.flush`. For example, extend the above example by adding
-   * `Polymer.enqueueDebouncer(this._debounceJob)` at the end of the
-   * `_debounceWork` method. Then in a test, call `Polymer.flush` to ensure
-   * the debouncer has completed.
-   *
-   * @param {Polymer.Debouncer?} debouncer Debouncer object.
-   * @param {!AsyncModule} asyncModule Object with Async interface
-   * @param {function()} callback Callback to run.
-   * @return {!Debouncer} Returns a debouncer object.
-   */
-    static debounce(debouncer, asyncModule, callback) {
-      if (debouncer instanceof Debouncer) {
-        debouncer.cancel();
-      } else {
-        debouncer = new Debouncer();
-      }
-      debouncer.setConfig(asyncModule, callback);
-      return debouncer;
-    }
-  }
-
-  /**
-   * @memberof Polymer
-   */
-  Polymer.Debouncer = Debouncer;
-})();
-
-
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-  'use strict';
-
-  let debouncerQueue = [];
-
-  /**
-   * Adds a `Polymer.Debouncer` to a list of globally flushable tasks.
-   *
-   * @memberof Polymer
-   * @param {Polymer.Debouncer} debouncer Debouncer to enqueue
-   */
-  Polymer.enqueueDebouncer = function(debouncer) {
-    debouncerQueue.push(debouncer);
-  }
-
-  function flushDebouncers() {
-    const didFlush = Boolean(debouncerQueue.length);
-    while (debouncerQueue.length) {
-      try {
-        debouncerQueue.shift().flush();
-      } catch(e) {
-        setTimeout(() => {
-          throw e;
-        });
-      }
-    }
-    return didFlush;
-  }
-
-  /**
-   * Forces several classes of asynchronously queued tasks to flush:
-   * - Debouncers added via `enqueueDebouncer`
-   * - ShadyDOM distribution
-   *
-   * @memberof Polymer
-   */
-  Polymer.flush = function() {
-    let shadyDOM, debouncers;
-    do {
-      shadyDOM = window.ShadyDOM && ShadyDOM.flush();
-      if (window.ShadyCSS && window.ShadyCSS.ScopingShim) {
-        window.ShadyCSS.ScopingShim.flush();
-      }
-      debouncers = flushDebouncers();
-    } while (shadyDOM || debouncers);
-  }
-
-})();
-
-
-
-/***/ }),
-/* 9 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(5);
-
-__webpack_require__(2);
-
-
-  (function() {
-    'use strict';
-
-    // Base class for HTMLTemplateElement extension that has property effects
-    // machinery for propagating host properties to children. This is an ES5
-    // class only because Babel (incorrectly) requires super() in the class
-    // constructor even though no `this` is used and it returns an instance.
-    let newInstance = null;
-    function HTMLTemplateElementExtension() { return newInstance; }
-    HTMLTemplateElementExtension.prototype = Object.create(HTMLTemplateElement.prototype, {
-      constructor: {
-        value: HTMLTemplateElementExtension,
-        writable: true
-      }
-    });
-    const DataTemplate = Polymer.PropertyEffects(HTMLTemplateElementExtension);
-    const MutableDataTemplate = Polymer.MutableData(DataTemplate);
-
-    // Applies a DataTemplate subclass to a <template> instance
-    function upgradeTemplate(template, constructor) {
-      newInstance = template;
-      Object.setPrototypeOf(template, constructor.prototype);
-      new constructor();
-      newInstance = null;
-    }
-
-    // Base class for TemplateInstance's
-    /**
-     * @constructor
-     * @implements {Polymer_PropertyEffects}
-     */
-    const base = Polymer.PropertyEffects(class {});
-    class TemplateInstanceBase extends base {
-      constructor(props) {
-        super();
-        this._configureProperties(props);
-        this.root = this._stampTemplate(this.__dataHost);
-        // Save list of stamped children
-        let children = this.children = [];
-        for (let n = this.root.firstChild; n; n=n.nextSibling) {
-          children.push(n);
-          n.__templatizeInstance = this;
-        }
-        if (this.__templatizeOwner.__hideTemplateChildren__) {
-          this._showHideChildren(true);
-        }
-        // Flush props only when props are passed if instance props exist
-        // or when there isn't instance props.
-        let options = this.__templatizeOptions;
-        if ((props && options.instanceProps) || !options.instanceProps) {
-          this._enableProperties();
-        }
-      }
-      /**
-       * Configure the given `props` by calling `_setPendingProperty`. Also
-       * sets any properties stored in `__hostProps`.
-       * @private
-       * @param {Object} props Object of property name-value pairs to set.
-       */
-      _configureProperties(props) {
-        let options = this.__templatizeOptions;
-        if (props) {
-          for (let iprop in options.instanceProps) {
-            if (iprop in props) {
-              this._setPendingProperty(iprop, props[iprop]);
-            }
-          }
-        }
-        for (let hprop in this.__hostProps) {
-          this._setPendingProperty(hprop, this.__dataHost['_host_' + hprop]);
-        }
-      }
-      /**
-       * Forwards a host property to this instance.  This method should be
-       * called on instances from the `options.forwardHostProp` callback
-       * to propagate changes of host properties to each instance.
-       *
-       * Note this method enqueues the change, which are flushed as a batch.
-       *
-       * @param {string} prop Property or path name
-       * @param {*} value Value of the property to forward
-       */
-      forwardHostProp(prop, value) {
-        if (this._setPendingPropertyOrPath(prop, value, false, true)) {
-          this.__dataHost._enqueueClient(this);
-        }
-      }
-      /**
-       * @override
-       */
-      _addEventListenerToNode(node, eventName, handler) {
-        if (this._methodHost && this.__templatizeOptions.parentModel) {
-          // If this instance should be considered a parent model, decorate
-          // events this template instance as `model`
-          this._methodHost._addEventListenerToNode(node, eventName, (e) => {
-            e.model = this;
-            handler(e);
-          });
-        } else {
-          // Otherwise delegate to the template's host (which could be)
-          // another template instance
-          let templateHost = this.__dataHost.__dataHost;
-          if (templateHost) {
-            templateHost._addEventListenerToNode(node, eventName, handler);
-          }
-        }
-      }
-      /**
-       * Shows or hides the template instance top level child elements. For
-       * text nodes, `textContent` is removed while "hidden" and replaced when
-       * "shown."
-       * @param {boolean} hide Set to true to hide the children;
-       * set to false to show them.
-       * @protected
-       */
-      _showHideChildren(hide) {
-        let c = this.children;
-        for (let i=0; i<c.length; i++) {
-          let n = c[i];
-          // Ignore non-changes
-          if (Boolean(hide) != Boolean(n.__hideTemplateChildren__)) {
-            if (n.nodeType === Node.TEXT_NODE) {
-              if (hide) {
-                n.__polymerTextContent__ = n.textContent;
-                n.textContent = '';
-              } else {
-                n.textContent = n.__polymerTextContent__;
-              }
-            } else if (n.style) {
-              if (hide) {
-                n.__polymerDisplay__ = n.style.display;
-                n.style.display = 'none';
-              } else {
-                n.style.display = n.__polymerDisplay__;
-              }
-            }
-          }
-          n.__hideTemplateChildren__ = hide;
-          if (n._showHideChildren) {
-            n._showHideChildren(hide);
-          }
-        }
-      }
-      /**
-       * Overrides default property-effects implementation to intercept
-       * textContent bindings while children are "hidden" and cache in
-       * private storage for later retrieval.
-       *
-       * @override
-       */
-      _setUnmanagedPropertyToNode(node, prop, value) {
-        if (node.__hideTemplateChildren__ &&
-            node.nodeType == Node.TEXT_NODE && prop == 'textContent') {
-          node.__polymerTextContent__ = value;
-        } else {
-          super._setUnmanagedPropertyToNode(node, prop, value);
-        }
-      }
-      /**
-       * Find the parent model of this template instance.  The parent model
-       * is either another templatize instance that had option `parentModel: true`,
-       * or else the host element.
-       *
-       * @return {Polymer.PropertyEffectsInterface} The parent model of this instance
-       */
-      get parentModel() {
-        let model = this.__parentModel;
-        if (!model) {
-          let options;
-          model = this
-          do {
-            // A template instance's `__dataHost` is a <template>
-            // `model.__dataHost.__dataHost` is the template's host
-            model = model.__dataHost.__dataHost;
-          } while ((options = model.__templatizeOptions) && !options.parentModel)
-          this.__parentModel = model;
-        }
-        return model;
-      }
-    }
-
-    const MutableTemplateInstanceBase = Polymer.MutableData(TemplateInstanceBase);
-
-    function findMethodHost(template) {
-      // Technically this should be the owner of the outermost template.
-      // In shadow dom, this is always getRootNode().host, but we can
-      // approximate this via cooperation with our dataHost always setting
-      // `_methodHost` as long as there were bindings (or id's) on this
-      // instance causing it to get a dataHost.
-      let templateHost = template.__dataHost;
-      return templateHost && templateHost._methodHost || templateHost;
-    }
-
-    function createTemplatizerClass(template, templateInfo, options) {
-      // Anonymous class created by the templatize
-      /**
-       * @unrestricted
-       */
-      let base = options.mutableData ?
-        MutableTemplateInstanceBase : TemplateInstanceBase;
-      let klass = class extends base { }
-      klass.prototype.__templatizeOptions = options;
-      klass.prototype._bindTemplate(template);
-      addNotifyEffects(klass, template, templateInfo, options);
-      return klass;
-    }
-
-    function addPropagateEffects(template, templateInfo, options) {
-      let userForwardHostProp = options.forwardHostProp;
-      if (userForwardHostProp) {
-        // Provide data API and property effects on memoized template class
-        let klass = templateInfo.templatizeTemplateClass;
-        if (!klass) {
-          let base = options.mutableData ? MutableDataTemplate : DataTemplate;
-          klass = templateInfo.templatizeTemplateClass =
-            class TemplatizedTemplate extends base {}
-          // Add template - >instances effects
-          // and host <- template effects
-          let hostProps = templateInfo.hostProps;
-          for (let prop in hostProps) {
-            klass.prototype._addPropertyEffect('_host_' + prop,
-              klass.prototype.PROPERTY_EFFECT_TYPES.PROPAGATE,
-              {fn: createForwardHostPropEffect(prop, userForwardHostProp)});
-            klass.prototype._createNotifyingProperty('_host_' + prop);
-          }
-        }
-        upgradeTemplate(template, klass);
-        // Mix any pre-bound data into __data; no need to flush this to
-        // instances since they pull from the template at instance-time
-        if (template.__dataProto) {
-          // Note, generally `__dataProto` could be chained, but it's guaranteed
-          // to not be since this is a vanilla template we just added effects to
-          Object.assign(template.__data, template.__dataProto);
-        }
-        // Clear any pending data for performance
-        template.__dataTemp = {};
-        template.__dataPending = null;
-        template.__dataOld = null;
-        template._enableProperties();
-      }
-    }
-
-    function createForwardHostPropEffect(hostProp, userForwardHostProp) {
-      return function forwardHostProp(template, prop, props) {
-        userForwardHostProp.call(template.__templatizeOwner,
-          prop.substring('_host_'.length), props[prop]);
-      }
-    }
-
-    function addNotifyEffects(klass, template, templateInfo, options) {
-      let hostProps = templateInfo.hostProps || {};
-      for (let iprop in options.instanceProps) {
-        delete hostProps[iprop];
-        let userNotifyInstanceProp = options.notifyInstanceProp;
-        if (userNotifyInstanceProp) {
-          klass.prototype._addPropertyEffect(iprop,
-            klass.prototype.PROPERTY_EFFECT_TYPES.NOTIFY,
-            {fn: createNotifyInstancePropEffect(iprop, userNotifyInstanceProp)});
-        }
-      }
-      if (options.forwardHostProp && template.__dataHost) {
-        for (let hprop in hostProps) {
-          klass.prototype._addPropertyEffect(hprop,
-            klass.prototype.PROPERTY_EFFECT_TYPES.NOTIFY,
-            {fn: createNotifyHostPropEffect()})
-        }
-      }
-    }
-
-    function createNotifyInstancePropEffect(instProp, userNotifyInstanceProp) {
-      return function notifyInstanceProp(inst, prop, props) {
-        userNotifyInstanceProp.call(inst.__templatizeOwner,
-          inst, prop, props[prop]);
-      }
-    }
-
-    function createNotifyHostPropEffect() {
-      return function notifyHostProp(inst, prop, props) {
-        inst.__dataHost._setPendingPropertyOrPath('_host_' + prop, props[prop], true, true);
-      }
-    }
-
-    /**
-     * Module for preparing and stamping instances of templates that utilize
-     * Polymer's data-binding and declarative event listener features.
-     *
-     * Example:
-     *
-     *     // Get a template from somewhere, e.g. light DOM
-     *     let template = this.querySelector('template');
-     *     // Prepare the template
-     *     let TemplateClass = Polymer.Templatize.templatize(template);
-     *     // Instance the template with an initial data model
-     *     let instance = new TemplateClass({myProp: 'initial'});
-     *     // Insert the instance's DOM somewhere, e.g. element's shadow DOM
-     *     this.shadowRoot.appendChild(instance.root);
-     *     // Changing a property on the instance will propagate to bindings
-     *     // in the template
-     *     instance.myProp = 'new value';
-     *
-     * The `options` dictionary passed to `templatize` allows for customizing
-     * features of the generated template class, including how outer-scope host
-     * properties should be forwarded into template instances, how any instance
-     * properties added into the template's scope should be notified out to
-     * the host, and whether the instance should be decorated as a "parent model"
-     * of any event handlers.
-     *
-     *     // Customze property forwarding and event model decoration
-     *     let TemplateClass = Polymer.Tempaltize.templatize(template, this, {
-     *       parentModel: true,
-     *       instanceProps: {...},
-     *       forwardHostProp(property, value) {...},
-     *       notifyInstanceProp(instance, property, value) {...},
-     *     });
-     *
-     *
-     * @namespace
-     * @memberof Polymer
-     * @summary Module for preparing and stamping instances of templates
-     *   utilizing Polymer templating features.
-     */
-    const Templatize = {
-
-      /**
-       * Returns an anonymous `Polymer.PropertyEffects` class bound to the
-       * `<template>` provided.  Instancing the class will result in the
-       * template being stamped into document fragment stored as the instance's
-       * `root` property, after which it can be appended to the DOM.
-       *
-       * Templates may utilize all Polymer data-binding features as well as
-       * declarative event listeners.  Event listeners and inline computing
-       * functions in the template will be called on the host of the template.
-       *
-       * The constructor returned takes a single argument dictionary of initial
-       * property values to propagate into template bindings.  Additionally
-       * host properties can be forwarded in, and instance properties can be
-       * notified out by providing optional callbacks in the `options` dictionary.
-       *
-       * Valid configuration in `options` are as follows:
-       *
-       * - `forwardHostProp(property, value)`: Called when a property referenced
-       *   in the template changed on the template's host. As this library does
-       *   not retain references to templates instanced by the user, it is the
-       *   templatize owner's responsibility to forward host property changes into
-       *   user-stamped instances.  The `instance.forwardHostProp(property, value)`
-       *    method on the generated class should be called to forward host
-       *   properties into the template to prevent unnecessary property-changed
-       *   notifications. Any properties referenced in the template that are not
-       *   defined in `instanceProps` will be notified up to the template's host
-       *   automatically.
-       * - `instanceProps`: Dictionary of property names that will be added
-       *   to the instance by the templatize owner.  These properties shadow any
-       *   host properties, and changes within the template to these properties
-       *   will result in `notifyInstanceProp` being called.
-       * - `mutableData`: When `true`, the generated class will skip strict
-       *   dirty-checking for objects and arrays (always consider them to be
-       *   "dirty").
-       * - `notifyInstanceProp(instance, property, value)`: Called when
-       *   an instance property changes.  Users may choose to call `notifyPath`
-       *   on e.g. the owner to notify the change.
-       * - `parentModel`: When `true`, events handled by declarative event listeners
-       *   (`on-event="handler"`) will be decorated with a `model` property pointing
-       *   to the template instance that stamped it.  It will also be returned
-       *   from `instance.parentModel` in cases where template instance nesting
-       *   causes an inner model to shadow an outer model.
-       *
-       * Note that the class returned from `templatize` is generated only once
-       * for a given `<template>` using `options` from the first call for that
-       * template, and the cached class is returned for all subsequent calls to
-       * `templatize` for that template.  As such, `options` callbacks should not
-       * close over owner-specific properties since only the first `options` is
-       * used; rather, callbacks are called bound to the `owner`, and so context
-       * needed from the callbacks (such as references to `instances` stamped)
-       * should be stored on the `owner` such that they can be retrieved via `this`.
-       *
-       * @memberof Polymer.Templatize
-       * @param {HTMLTemplateElement} template Template to templatize
-       * @param {*} owner Owner of the template instances; any optional callbacks
-       *   will be bound to this owner.
-       * @param {*=} options Options dictionary (see summary for details)
-       * @return {TemplateInstanceBase} Generated class bound to the template
-       *   provided
-       */
-      templatize(template, owner, options) {
-        options = options || {};
-        if (template.__templatizeOwner) {
-          throw new Error('A <template> can only be templatized once');
-        }
-        template.__templatizeOwner = owner;
-        let templateInfo = owner.constructor._parseTemplate(template);
-        // Get memoized base class for the prototypical template, which
-        // includes property effects for binding template & forwarding
-        let baseClass = templateInfo.templatizeInstanceClass;
-        if (!baseClass) {
-          baseClass = createTemplatizerClass(template, templateInfo, options);
-          templateInfo.templatizeInstanceClass = baseClass;
-        }
-        // Host property forwarding must be installed onto template instance
-        addPropagateEffects(template, templateInfo, options);
-        // Subclass base class and add reference for this specific template
-        let klass = class TemplateInstance extends baseClass {};
-        klass.prototype._methodHost = findMethodHost(template);
-        klass.prototype.__dataHost = template;
-        klass.prototype.__templatizeOwner = owner;
-        klass.prototype.__hostProps = templateInfo.hostProps;
-        return klass;
-      },
-
-      /**
-       * Returns the template "model" associated with a given element, which
-       * serves as the binding scope for the template instance the element is
-       * contained in. A template model is an instance of
-       * `TemplateInstanceBase`, and should be used to manipulate data
-       * associated with this template instance.
-       *
-       * Example:
-       *
-       *   let model = modelForElement(el);
-       *   if (model.index < 10) {
-       *     model.set('item.checked', true);
-       *   }
-       *
-       * @memberof Polymer.Templatize
-       * @param {HTMLTemplateElement} template The model will be returned for
-       *   elements stamped from this template
-       * @param {HTMLElement} el Element for which to return a template model.
-       * @return {TemplateInstanceBase} Template instance representing the
-       *   binding scope for the element
-       */
-      modelForElement(template, el) {
-        let model;
-        while (el) {
-          // An element with a __templatizeInstance marks the top boundary
-          // of a scope; walk up until we find one, and then ensure that
-          // its __dataHost matches `this`, meaning this dom-repeat stamped it
-          if ((model = el.__templatizeInstance)) {
-            // Found an element stamped by another template; keep walking up
-            // from its __dataHost
-            if (model.__dataHost != template) {
-              el = model.__dataHost;
-            } else {
-              return model;
-            }
-          } else {
-            // Still in a template scope, keep going up until
-            // a __templatizeInstance is found
-            el = el.parentNode;
-          }
-        }
-        return null;
-      }
-    }
-
-    Polymer.Templatize = Templatize;
-
-  })();
-
-
-
-
-/***/ }),
-/* 10 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(12);
-
-
-(function() {
-  'use strict';
-
-  /**
-   * Base class that provides the core API for Polymer's meta-programming
-   * features including template stamping, data-binding, attribute deserialization,
-   * and property change observation.
-   *
-   * @polymerElement
-   * @memberof Polymer
-   * @constructor
-   * @implements {Polymer_ElementMixin}
-   * @extends HTMLElement
-   * @mixes Polymer.ElementMixin
-   * @summary Custom element base class that provides the core API for Polymer's
-   *   key meta-programming features including template stamping, data-binding,
-   *   attribute deserialization, and property change observation
-   */
-  const Element = Polymer.ElementMixin(HTMLElement);
-  Polymer.Element = Element;
-})();
-
-
-
-/***/ }),
-/* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(39);
-
-__webpack_require__(12);
-
-__webpack_require__(13);
-
-__webpack_require__(1);
-
-__webpack_require__(35);
-
-__webpack_require__(37);
-
-__webpack_require__(38);
-
-__webpack_require__(29);
-
-
-(function() {
-
-  'use strict';
-
-  let styleInterface = window.ShadyCSS;
-
-  /**
-   * Element class mixin that provides Polymer's "legacy" API intended to be
-   * backward-compatible to the greatest extent possible with the API
-   * found on the Polymer 1.x `Polymer.Base` prototype applied to all elements
-   * defined using the `Polymer({...})` function.
-   *
-   * @polymerMixin
-   * @mixes Polymer.ElementMixin
-   * @mixes Polymer.GestureEventListeners
-   * @property isAttached {boolean} Set to `true` in this element's
-   *   `connectedCallback` and `false` in `disconnectedCallback`
-   * @memberof Polymer
-   * @summary Element class mixin that provides Polymer's "legacy" API
-   */
-  Polymer.LegacyElementMixin = Polymer.dedupingMixin(base => {
-
-    /**
-     * @constructor
-     * @extends {base}
-     * @implements {Polymer_ElementMixin}
-     * @implements {Polymer_GestureEventListeners}
-     */
-    const legacyElementBase = Polymer.GestureEventListeners(Polymer.ElementMixin(base));
-
-    /**
-     * Map of simple names to touch action names
-     * @dict
-     */
-    const DIRECTION_MAP = {
-      'x': 'pan-x',
-      'y': 'pan-y',
-      'none': 'none',
-      'all': 'auto'
-    };
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_LegacyElement}
-     */
-    class LegacyElement extends legacyElementBase {
-
-      constructor() {
-        super();
-        this.root = this;
-        this.created();
-      }
-
-      /**
-       * Legacy callback called during the `constructor`, for overriding
-       * by the user.
-       */
-      created() {}
-
-      connectedCallback() {
-        super.connectedCallback();
-        this.isAttached = true;
-        this.attached();
-      }
-
-      /**
-       * Legacy callback called during `connectedCallback`, for overriding
-       * by the user.
-       */
-      attached() {}
-
-      disconnectedCallback() {
-        super.disconnectedCallback();
-        this.isAttached = false;
-        this.detached();
-      }
-
-      /**
-       * Legacy callback called during `disconnectedCallback`, for overriding
-       * by the user.
-       */
-      detached() {}
-
-      attributeChangedCallback(name, old, value) {
-        if (old !== value) {
-          super.attributeChangedCallback(name, old, value);
-          this.attributeChanged(name, old, value);
-        }
-      }
-
-      /**
-       * Legacy callback called during `attributeChangedChallback`, for overriding
-       * by the user.
-       */
-      attributeChanged() {}
-
-      /**
-       * Overrides the default `Polymer.PropertyEffects` implementation to
-       * add support for class initialization via the `_registered` callback.
-       * This is called only when the first instance of the element is created.
-       *
-       * @override
-       */
-      _initializeProperties() {
-        let proto = Object.getPrototypeOf(this);
-        if (!proto.hasOwnProperty('__hasRegisterFinished')) {
-          proto.__hasRegisterFinished = true;
-          this._registered();
-        }
-        super._initializeProperties();
-      }
-
-      /**
-       * Called automatically when an element is initializing.
-       * Users may override this method to perform class registration time
-       * work. The implementation should ensure the work is performed
-       * only once for the class.
-       * @protected
-       */
-      _registered() {}
-
-      /**
-       * Overrides the default `Polymer.PropertyEffects` implementation to
-       * add support for installing `hostAttributes` and `listeners`.
-       *
-       * @override
-       */
-      ready() {
-        this._ensureAttributes();
-        this._applyListeners();
-        super.ready();
-      }
-
-      /**
-       * Ensures an element has required attributes. Called when the element
-       * is being readied via `ready`. Users should override to set the
-       * element's required attributes. The implementation should be sure
-       * to check and not override existing attributes added by
-       * the user of the element. Typically, setting attributes should be left
-       * to the element user and not done here; reasonable exceptions include
-       * setting aria roles and focusability.
-       * @protected
-       */
-      _ensureAttributes() {}
-
-      /**
-       * Adds element event listeners. Called when the element
-       * is being readied via `ready`. Users should override to
-       * add any required element event listeners.
-       * In performance critical elements, the work done here should be kept
-       * to a minimum since it is done before the element is rendered. In
-       * these elements, consider adding listeners asychronously so as not to
-       * block render.
-       * @protected
-       */
-      _applyListeners() {}
-
-      /**
-       * Converts a typed JavaScript value to a string.
-       *
-       * Note this method is provided as backward-compatible legacy API
-       * only.  It is not directly called by any Polymer features. To customize
-       * how properties are serialized to attributes for attribute bindings and
-       * `reflectToAttribute: true` properties as well as this method, override
-       * the `_serializeValue` method provided by `Polymer.PropertyAccessors`.
-       *
-       * @param {*} value Value to deserialize
-       * @return {string} Serialized value
-       */
-      serialize(value) {
-        return this._serializeValue(value);
-      }
-
-      /**
-       * Converts a string to a typed JavaScript value.
-       *
-       * Note this method is provided as backward-compatible legacy API
-       * only.  It is not directly called by any Polymer features.  To customize
-       * how attributes are deserialized to properties for in
-       * `attributeChangedCallback`, override `_deserializeValue` method
-       * provided by `Polymer.PropertyAccessors`.
-       *
-       * @param {string} value String to deserialize
-       * @param {*} type Type to deserialize the string to
-       * @return {*} Returns the deserialized value in the `type` given.
-       */
-      deserialize(value, type) {
-        return this._deserializeValue(value, type);
-      }
-
-      /**
-       * Serializes a property to its associated attribute.
-       *
-       * Note this method is provided as backward-compatible legacy API
-       * only.  It is not directly called by any Polymer features.
-       *
-       * @param {string} property Property name to reflect.
-       * @param {string=} attribute Attribute name to reflect.
-       * @param {*=} value Property value to refect.
-       */
-      reflectPropertyToAttribute(property, attribute, value) {
-        this._propertyToAttribute(property, attribute, value);
-      }
-
-      /**
-       * Sets a typed value to an HTML attribute on a node.
-       *
-       * Note this method is provided as backward-compatible legacy API
-       * only.  It is not directly called by any Polymer features.
-       *
-       * @param {*} value Value to serialize.
-       * @param {string} attribute Attribute name to serialize to.
-       * @param {Element} node Element to set attribute to.
-       */
-      serializeValueToAttribute(value, attribute, node) {
-        this._valueToNodeAttribute(node || this, value, attribute);
-      }
-
-      /**
-       * Copies own properties (including accessor descriptors) from a source
-       * object to a target object.
-       *
-       * @param {Object} prototype Target object to copy properties to.
-       * @param {Object} api Source object to copy properties from.
-       * @return {Object} prototype object that was passed as first argument.
-       */
-      extend(prototype, api) {
-        if (!(prototype && api)) {
-          return prototype || api;
-        }
-        let n$ = Object.getOwnPropertyNames(api);
-        for (let i=0, n; (i<n$.length) && (n=n$[i]); i++) {
-          let pd = Object.getOwnPropertyDescriptor(api, n);
-          if (pd) {
-            Object.defineProperty(prototype, n, pd);
-          }
-        }
-        return prototype;
-      }
-
-      /**
-       * Copies props from a source object to a target object.
-       *
-       * Note, this method uses a simple `for...in` strategy for enumerating
-       * properties.  To ensure only `ownProperties` are copied from source
-       * to target and that accessor implementations are copied, use `extend`.
-       *
-       * @param {Object} target Target object to copy properties to.
-       * @param {Object} source Source object to copy properties from.
-       * @return {Object} Target object that was passed as first argument.
-       */
-      mixin(target, source) {
-        for (let i in source) {
-          target[i] = source[i];
-        }
-        return target;
-      }
-
-      /**
-       * Sets the prototype of an object.
-       *
-       * Note this method is provided as backward-compatible legacy API
-       * only.  It is not directly called by any Polymer features.
-       * @param {Object} object The object on which to set the prototype.
-       * @param {Object} prototype The prototype that will be set on the given
-       * `object`.
-       * @return {Object} Returns the given `object` with its prototype set
-       * to the given `prototype` object.
-       */
-      chainObject(object, prototype) {
-        if (object && prototype && object !== prototype) {
-          object.__proto__ = prototype;
-        }
-        return object;
-      }
-
-      /* **** Begin Template **** */
-
-      /**
-       * Calls `importNode` on the `content` of the `template` specified and
-       * returns a document fragment containing the imported content.
-       *
-       * @param {HTMLTemplateElement} template HTML template element to instance.
-       * @return {DocumentFragment} Document fragment containing the imported
-       *   template content.
-      */
-      instanceTemplate(template) {
-        let content = this.constructor._contentForTemplate(template);
-        let dom = /** @type {DocumentFragment} */
-          (document.importNode(content, true));
-        return dom;
-      }
-
-      /* **** Begin Events **** */
-
-      /**
-       * Dispatches a custom event with an optional detail value.
-       *
-       * @param {string} type Name of event type.
-       * @param {*=} detail Detail value containing event-specific
-       *   payload.
-       * @param {Object=} options Object specifying options.  These may include:
-       *  `bubbles` (boolean, defaults to `true`),
-       *  `cancelable` (boolean, defaults to false), and
-       *  `node` on which to fire the event (HTMLElement, defaults to `this`).
-       * @return {Event} The new event that was fired.
-       */
-      fire(type, detail, options) {
-        options = options || {};
-        detail = (detail === null || detail === undefined) ? {} : detail;
-        let event = new Event(type, {
-          bubbles: options.bubbles === undefined ? true : options.bubbles,
-          cancelable: Boolean(options.cancelable),
-          composed: options.composed === undefined ? true: options.composed
-        });
-        event.detail = detail;
-        let node = options.node || this;
-        node.dispatchEvent(event)
-        return event;
-      }
-
-      /**
-       * Convenience method to add an event listener on a given element,
-       * late bound to a named method on this element.
-       *
-       * @param {Element} node Element to add event listener to.
-       * @param {string} eventName Name of event to listen for.
-       * @param {string} methodName Name of handler method on `this` to call.
-       */
-      listen(node, eventName, methodName) {
-        node = node || this;
-        let hbl = this.__boundListeners ||
-          (this.__boundListeners = new WeakMap());
-        let bl = hbl.get(node);
-        if (!bl) {
-          bl = {};
-          hbl.set(node, bl);
-        }
-        let key = eventName + methodName;
-        if (!bl[key]) {
-          bl[key] = this._addMethodEventListenerToNode(
-            node, eventName, methodName, this);
-        }
-      }
-
-      /**
-       * Convenience method to remove an event listener from a given element,
-       * late bound to a named method on this element.
-       *
-       * @param {Element} node Element to remove event listener from.
-       * @param {string} eventName Name of event to stop listening to.
-       * @param {string} methodName Name of handler method on `this` to not call
-       anymore.
-       */
-      unlisten(node, eventName, methodName) {
-        node = node || this;
-        let bl = this.__boundListeners && this.__boundListeners.get(node);
-        let key = eventName + methodName;
-        let handler = bl && bl[key];
-        if (handler) {
-          this._removeEventListenerFromNode(node, eventName, handler);
-          bl[key] = null;
-        }
-      }
-
-      /**
-       * Override scrolling behavior to all direction, one direction, or none.
-       *
-       * Valid scroll directions:
-       *   - 'all': scroll in any direction
-       *   - 'x': scroll only in the 'x' direction
-       *   - 'y': scroll only in the 'y' direction
-       *   - 'none': disable scrolling for this node
-       *
-       * @param {string=} direction Direction to allow scrolling
-       * Defaults to `all`.
-       * @param {HTMLElement=} node Element to apply scroll direction setting.
-       * Defaults to `this`.
-       */
-      setScrollDirection(direction, node) {
-        Polymer.Gestures.setTouchAction(node || this, DIRECTION_MAP[direction] || 'auto');
-      }
-      /* **** End Events **** */
-
-      /**
-       * Convenience method to run `querySelector` on this local DOM scope.
-       *
-       * This function calls `Polymer.dom(this.root).querySelector(slctr)`.
-       *
-       * @param {string} slctr Selector to run on this local DOM scope
-       * @return {Element} Element found by the selector, or null if not found.
-       */
-      $$(slctr) {
-        return this.root.querySelector(slctr);
-      }
-
-      /**
-       * Return the element whose local dom within which this element
-       * is contained. This is a shorthand for
-       * `this.getRootNode().host`.
-       */
-      get domHost() {
-        let root = this.getRootNode();
-        return (root instanceof DocumentFragment) ? root.host : root;
-      }
-
-      /**
-       * Force this element to distribute its children to its local dom.
-       * This is necessary only when ShadyDOM is used and only in cases that
-       * are not automatically handled. For example,
-       * a user should call `distributeContent` if distribution has been
-       * invalidated due to an element being added or removed from the shadowRoot
-       * that contains an insertion point (`<slot>`) inside its subtree.
-       */
-      distributeContent() {
-        if (window.ShadyDOM && this.shadowRoot) {
-          this.shadowRoot.forceRender();
-        }
-      }
-
-      /**
-       * Returns a list of nodes that are the effective childNodes. The effective
-       * childNodes list is the same as the element's childNodes except that
-       * any `<content>` elements are replaced with the list of nodes distributed
-       * to the `<content>`, the result of its `getDistributedNodes` method.
-       *
-       * @return {Array<Node>} List of effctive child nodes.
-       */
-      getEffectiveChildNodes() {
-        return Polymer.dom(this).getEffectiveChildNodes();
-      }
-
-      /**
-       * Returns a list of nodes distributed within this element that match
-       * `selector`. These can be dom children or elements distributed to
-       * children that are insertion points.
-       * @param {string} selector Selector to run.
-       * @return {Array<Node>} List of distributed elements that match selector.
-       */
-      queryDistributedElements(selector) {
-        return Polymer.dom(this).queryDistributedElements(selector);
-      }
-
-      /**
-       * Returns a list of elements that are the effective children. The effective
-       * children list is the same as the element's children except that
-       * any `<content>` elements are replaced with the list of elements
-       * distributed to the `<content>`.
-       *
-       * @return {Array<Node>} List of effctive children.
-       */
-      getEffectiveChildren() {
-        let list = this.getEffectiveChildNodes();
-        return list.filter(function(n) {
-          return (n.nodeType === Node.ELEMENT_NODE);
-        });
-      }
-
-      /**
-       * Returns a string of text content that is the concatenation of the
-       * text content's of the element's effective childNodes (the elements
-       * returned by <a href="#getEffectiveChildNodes>getEffectiveChildNodes</a>.
-       *
-       * @return {string} List of effctive children.
-       */
-      getEffectiveTextContent() {
-        let cn = this.getEffectiveChildNodes();
-        let tc = [];
-        for (let i=0, c; (c = cn[i]); i++) {
-          if (c.nodeType !== Node.COMMENT_NODE) {
-            tc.push(c.textContent);
-          }
-        }
-        return tc.join('');
-      }
-
-      /**
-       * Returns the first effective childNode within this element that
-       * match `selector`. These can be dom child nodes or elements distributed
-       * to children that are insertion points.
-       * @param {string} selector Selector to run.
-       * @return {Object<Node>} First effective child node that matches selector.
-       */
-      queryEffectiveChildren(selector) {
-        let e$ = this.queryDistributedElements(selector);
-        return e$ && e$[0];
-      }
-
-      /**
-       * Returns a list of effective childNodes within this element that
-       * match `selector`. These can be dom child nodes or elements distributed
-       * to children that are insertion points.
-       * @param {string} selector Selector to run.
-       * @return {Array<Node>} List of effective child nodes that match selector.
-       */
-      queryAllEffectiveChildren(selector) {
-        return this.queryDistributedElements(selector);
-      }
-
-      /**
-       * Returns a list of nodes distributed to this element's `<slot>`.
-       *
-       * If this element contains more than one `<slot>` in its local DOM,
-       * an optional selector may be passed to choose the desired content.
-       *
-       * @param {string=} slctr CSS selector to choose the desired
-       *   `<slot>`.  Defaults to `content`.
-       * @return {Array<Node>} List of distributed nodes for the `<slot>`.
-       */
-      getContentChildNodes(slctr) {
-        let content = this.root.querySelector(slctr || 'slot');
-        return content ? Polymer.dom(content).getDistributedNodes() : [];
-      }
-
-      /**
-       * Returns a list of element children distributed to this element's
-       * `<slot>`.
-       *
-       * If this element contains more than one `<slot>` in its
-       * local DOM, an optional selector may be passed to choose the desired
-       * content.  This method differs from `getContentChildNodes` in that only
-       * elements are returned.
-       *
-       * @param {string=} slctr CSS selector to choose the desired
-       *   `<content>`.  Defaults to `content`.
-       * @return {Array<HTMLElement>} List of distributed nodes for the
-       *   `<slot>`.
-       */
-      getContentChildren(slctr) {
-        return this.getContentChildNodes(slctr).filter(function(n) {
-          return (n.nodeType === Node.ELEMENT_NODE);
-        });
-      }
-
-      /**
-       * Checks whether an element is in this element's light DOM tree.
-       *
-       * @param {?Node} node The element to be checked.
-       * @return {boolean} true if node is in this element's light DOM tree.
-       */
-      isLightDescendant(node) {
-        return this !== node && this.contains(node) &&
-            this.getRootNode() === node.getRootNode();
-      }
-
-      /**
-       * Checks whether an element is in this element's local DOM tree.
-       *
-       * @param {HTMLElement=} node The element to be checked.
-       * @return {boolean} true if node is in this element's local DOM tree.
-       */
-      isLocalDescendant(node) {
-        return this.root === node.getRootNode();
-      }
-
-      // NOTE: should now be handled by ShadyCss library.
-      scopeSubtree(container, shouldObserve) { // eslint-disable-line no-unused-vars
-      }
-
-      /**
-       * Returns the computed style value for the given property.
-       * @param {string} property The css property name.
-       * @return {string} Returns the computed css property value for the given
-       * `property`.
-       */
-      getComputedStyleValue(property) {
-        return styleInterface.getComputedStyleValue(this, property);
-      }
-
-      // debounce
-
-      /**
-       * Call `debounce` to collapse multiple requests for a named task into
-       * one invocation which is made after the wait time has elapsed with
-       * no new request.  If no wait time is given, the callback will be called
-       * at microtask timing (guaranteed before paint).
-       *
-       *     debouncedClickAction(e) {
-       *       // will not call `processClick` more than once per 100ms
-       *       this.debounce('click', function() {
-       *        this.processClick();
-       *       } 100);
-       *     }
-       *
-       * @param {string} jobName String to indentify the debounce job.
-       * @param {function()} callback Function that is called (with `this`
-       *   context) when the wait time elapses.
-       * @param {number} wait Optional wait time in milliseconds (ms) after the
-       *   last signal that must elapse before invoking `callback`
-       * @return {Object} Returns a debouncer object on which exists the
-       * following methods: `isActive()` returns true if the debouncer is
-       * active; `cancel()` cancels the debouncer if it is active;
-       * `flush()` immediately invokes the debounced callback if the debouncer
-       * is active.
-       */
-      debounce(jobName, callback, wait) {
-        this._debouncers = this._debouncers || {};
-        return this._debouncers[jobName] = Polymer.Debouncer.debounce(
-              this._debouncers[jobName]
-            , wait > 0 ? Polymer.Async.timeOut.after(wait) : Polymer.Async.microTask
-            , callback.bind(this));
-      }
-
-      /**
-       * Returns whether a named debouncer is active.
-       *
-       * @param {string} jobName The name of the debouncer started with `debounce`
-       * @return {boolean} Whether the debouncer is active (has not yet fired).
-       */
-      isDebouncerActive(jobName) {
-        this._debouncers = this._debouncers || {};
-        let debouncer = this._debouncers[jobName];
-        return !!(debouncer && debouncer.isActive());
-      }
-
-      /**
-       * Immediately calls the debouncer `callback` and inactivates it.
-       *
-       * @param {string} jobName The name of the debouncer started with `debounce`
-       */
-      flushDebouncer(jobName) {
-        this._debouncers = this._debouncers || {};
-        let debouncer = this._debouncers[jobName];
-        if (debouncer) {
-          debouncer.flush();
-        }
-      }
-
-      /**
-       * Cancels an active debouncer.  The `callback` will not be called.
-       *
-       * @param {string} jobName The name of the debouncer started with `debounce`
-       */
-      cancelDebouncer(jobName) {
-        this._debouncers = this._debouncers || {}
-        let debouncer = this._debouncers[jobName];
-        if (debouncer) {
-          debouncer.cancel();
-        }
-      }
-
-      /**
-       * Runs a callback function asyncronously.
-       *
-       * By default (if no waitTime is specified), async callbacks are run at
-       * microtask timing, which will occur before paint.
-       *
-       * @param {Function} callback The callback function to run, bound to `this`.
-       * @param {number=} waitTime Time to wait before calling the
-       *   `callback`.  If unspecified or 0, the callback will be run at microtask
-       *   timing (before paint).
-       * @return {number} Handle that may be used to cancel the async job.
-       */
-      async(callback, waitTime) {
-        return waitTime > 0 ? Polymer.Async.timeOut.run(callback.bind(this), waitTime) :
-            ~Polymer.Async.microTask.run(callback.bind(this));
-      }
-
-      /**
-       * Cancels an async operation started with `async`.
-       *
-       * @param {number} handle Handle returned from original `async` call to
-       *   cancel.
-       */
-      cancelAsync(handle) {
-        handle < 0 ? Polymer.Async.microTask.cancel(~handle) :
-            Polymer.Async.timeOut.cancel(handle);
-      }
-
-      // other
-
-      /**
-       * Convenience method for creating an element and configuring it.
-       *
-       * @param {string} tag HTML element tag to create.
-       * @param {Object} props Object of properties to configure on the
-       *    instance.
-       * @return {Element} Newly created and configured element.
-       */
-      create(tag, props) {
-        let elt = document.createElement(tag);
-        if (props) {
-          if (elt.setProperties) {
-            elt.setProperties(props);
-          } else {
-            for (let n in props) {
-              elt[n] = props[n];
-            }
-          }
-        }
-        return elt;
-      }
-
-      /**
-       * Convenience method for importing an HTML document imperatively.
-       *
-       * This method creates a new `<link rel="import">` element with
-       * the provided URL and appends it to the document to start loading.
-       * In the `onload` callback, the `import` property of the `link`
-       * element will contain the imported document contents.
-       *
-       * @param {string} href URL to document to load.
-       * @param {Function} onload Callback to notify when an import successfully
-       *   loaded.
-       * @param {Function} onerror Callback to notify when an import
-       *   unsuccessfully loaded.
-       * @param {boolean} optAsync True if the import should be loaded `async`.
-       *   Defaults to `false`.
-       * @return {HTMLLinkElement} The link element for the URL to be loaded.
-       */
-      importHref(href, onload, onerror, optAsync) { // eslint-disable-line no-unused-vars
-        let loadFn = onload ? onload.bind(this) : null;
-        let errorFn = onerror ? onerror.bind(this) : null;
-        return Polymer.importHref(href, loadFn, errorFn, optAsync);
-      }
-
-      /**
-       * Polyfill for Element.prototype.matches, which is sometimes still
-       * prefixed.
-       *
-       * @param {string} selector Selector to test.
-       * @param {Element=} node Element to test the selector against.
-       * @return {boolean} Whether the element matches the selector.
-       */
-      elementMatches(selector, node) {
-        return Polymer.dom.matchesSelector(node || this, selector);
-      }
-
-      /**
-       * Toggles an HTML attribute on or off.
-       *
-       * @param {string} name HTML attribute name
-       * @param {boolean=} bool Boolean to force the attribute on or off.
-       *    When unspecified, the state of the attribute will be reversed.
-       * @param {HTMLElement=} node Node to target.  Defaults to `this`.
-       */
-      toggleAttribute(name, bool, node) {
-        node = node || this;
-        if (arguments.length == 1) {
-          bool = !node.hasAttribute(name);
-        }
-        if (bool) {
-          node.setAttribute(name, '');
-        } else {
-          node.removeAttribute(name);
-        }
-      }
-
-
-      /**
-       * Toggles a CSS class on or off.
-       *
-       * @param {string} name CSS class name
-       * @param {boolean=} bool Boolean to force the class on or off.
-       *    When unspecified, the state of the class will be reversed.
-       * @param {HTMLElement=} node Node to target.  Defaults to `this`.
-       */
-      toggleClass(name, bool, node) {
-        node = node || this;
-        if (arguments.length == 1) {
-          bool = !node.classList.contains(name);
-        }
-        if (bool) {
-          node.classList.add(name);
-        } else {
-          node.classList.remove(name);
-        }
-      }
-
-      /**
-       * Cross-platform helper for setting an element's CSS `transform` property.
-       *
-       * @param {string} transformText Transform setting.
-       * @param {HTMLElement=} node Element to apply the transform to.
-       * Defaults to `this`
-       */
-      transform(transformText, node) {
-        node = node || this;
-        node.style.webkitTransform = transformText;
-        node.style.transform = transformText;
-      }
-
-      /**
-       * Cross-platform helper for setting an element's CSS `translate3d`
-       * property.
-       *
-       * @param {number} x X offset.
-       * @param {number} y Y offset.
-       * @param {number} z Z offset.
-       * @param {HTMLElement=} node Element to apply the transform to.
-       * Defaults to `this`.
-       */
-      translate3d(x, y, z, node) {
-        node = node || this;
-        this.transform('translate3d(' + x + ',' + y + ',' + z + ')', node);
-      }
-
-      /**
-       * Removes an item from an array, if it exists.
-       *
-       * If the array is specified by path, a change notification is
-       * generated, so that observers, data bindings and computed
-       * properties watching that path can update.
-       *
-       * If the array is passed directly, **no change
-       * notification is generated**.
-       *
-       * @param {string | !Array<number|string>} arrayOrPath Path to array from which to remove the item
-       *   (or the array itself).
-       * @param {*} item Item to remove.
-       * @return {Array} Array containing item removed.
-       */
-      arrayDelete(arrayOrPath, item) {
-        let index;
-        if (Array.isArray(arrayOrPath)) {
-          index = arrayOrPath.indexOf(item);
-          if (index >= 0) {
-            return arrayOrPath.splice(index, 1);
-          }
-        } else {
-          let arr = Polymer.Path.get(this, arrayOrPath);
-          index = arr.indexOf(item);
-          if (index >= 0) {
-            return this.splice(arrayOrPath, index, 1);
-          }
-        }
-        return null;
-      }
-
-      // logging
-
-      /**
-       * Facades `console.log`/`warn`/`error` as override point.
-       *
-       * @param {string} level One of 'log', 'warn', 'error'
-       * @param {Array} args Array of strings or objects to log
-       */
-      _logger(level, args) {
-        // accept ['foo', 'bar'] and [['foo', 'bar']]
-        if (Array.isArray(args) && args.length === 1) {
-          args = args[0];
-        }
-        switch(level) {
-          case 'log':
-          case 'warn':
-          case 'error':
-            console[level](...args);
-        }
-      }
-
-      /**
-       * Facades `console.log` as an override point.
-       *
-       * @param {...*} var_args Array of strings or objects to log
-       */
-      _log(...args) {
-        this._logger('log', args);
-      }
-
-      /**
-       * Facades `console.warn` as an override point.
-       *
-       * @param {...*} var_args Array of strings or objects to log
-       */
-      _warn(...args) {
-        this._logger('warn', args);
-      }
-
-      /**
-       * Facades `console.error` as an override point.
-       *
-       * @param {...*} var_args Array of strings or objects to log
-       */
-      _error(...args) {
-        this._logger('error', args)
-      }
-
-      /**
-       * Formats a message using the element type an a method name.
-       *
-       * @param {string} methodName Method name to associate with message
-       * @param {...*} var_args Array of strings or objects to log
-       * @return {string} String with formatting information for `console`
-       *   logging.
-       */
-      _logf(...args) {
-        return ['[%s::%s]', this.is, ...args];
-      }
-
-    }
-
-    return LegacyElement;
-
-  });
-
-})();
-
-
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(15);
-
-__webpack_require__(1);
-
-__webpack_require__(6);
-
-__webpack_require__(16);
-
-__webpack_require__(4);
-
-__webpack_require__(24);
-
-__webpack_require__(5);
-
-
-(function() {
-  'use strict';
-  /**
-   * @typedef Object<string, {
-   *   value: *,
-   *   type: (Function | undefined),
-   *   readOnly: (boolean | undefined),
-   *   computed: (string | undefined),
-   *   reflectToAttribute: (boolean | undefined),
-   *   notify: (boolean | undefined),
-   *   observer: (string | undefined)
-   * }>)
-   */
-  let PolymerElementProperties; // eslint-disable-line no-unused-vars
-
-  /** @record */
-  let PolymerElementConstructor = function(){}; // eslint-disable-line no-unused-vars
-  /** @type {(string | undefined)} */
-  PolymerElementConstructor.is;
-  /** @type {(string | undefined)} */
-  PolymerElementConstructor.extends;
-  /** @type {(!PolymerElementProperties | undefined)} */
-  PolymerElementConstructor.properties;
-  /** @type {(!Array<string> | undefined)} */
-  PolymerElementConstructor.observers;
-  /** @type {(!HTMLTemplateElement | string | undefined)} */
-  PolymerElementConstructor.template;
-
-  /**
-   * Element class mixin that provides the core API for Polymer's meta-programming
-   * features including template stamping, data-binding, attribute deserialization,
-   * and property change observation.
-   *
-   * Subclassers may provide the following static getters to return metadata
-   * used to configure Polymer's features for the class:
-   *
-   * - `static get is()`: When the template is provided via a `dom-module`,
-   *   users should return the `dom-module` id from a static `is` getter.  If
-   *   no template is needed or the template is provided directly via the
-   *   `template` getter, there is no need to define `is` for the element.
-   *
-   * - `static get template()`: Users may provide the template directly (as
-   *   opposed to via `dom-module`) by implementing a static `template` getter.
-   *   The getter may return an `HTMLTemplateElement` or a string, which will
-   *   automatically be parsed into a template.
-   *
-   * - `static get properties()`: Should return an object describing
-   *   property-related metadata used by Polymer features (key: property name
-   *   value: object containing property metadata). Valid keys in per-property
-   *   metadata include:
-   *   - `type` (String|Number|Object|Array|...): Used by
-   *     `attributeChangedCallback` to determine how string-based attributes
-   *     are deserialized to JavaScript property values.
-   *   - `notify` (boolean): Causes a change in the property to fire a
-   *     non-bubbling event called `<property>-changed`. Elements that have
-   *     enabled two-way binding to the property use this event to observe changes.
-   *   - `readOnly` (boolean): Creates a getter for the property, but no setter.
-   *     To set a read-only property, use the private setter method
-   *     `_setProperty(property, value)`.
-   *   - `observer` (string): Observer method name that will be called when
-   *     the property changes. The arguments of the method are
-   *     `(value, previousValue)`.
-   *   - `computed` (string): String describing method and dependent properties
-   *     for computing the value of this property (e.g. `'computeFoo(bar, zot)'`).
-   *     Computed properties are read-only by default and can only be changed
-   *     via the return value of the computing method.
-   *
-   * - `static get observers()`: Array of strings describing multi-property
-   *   observer methods and their dependent properties (e.g.
-   *   `'observeABC(a, b, c)'`).
-   *
-   * The base class provides default implementations for the following standard
-   * custom element lifecycle callbacks; users may override these, but should
-   * call the super method to ensure
-   * - `constructor`: Run when the element is created or upgraded
-   * - `connectedCallback`: Run each time the element is connected to the
-   *   document
-   * - `disconnectedCallback`: Run each time the element is disconnected from
-   *   the document
-   * - `attributeChangedCallback`: Run each time an attribute in
-   *   `observedAttributes` is set or removed (note: this element's default
-   *   `observedAttributes` implementation will automatically return an array
-   *   of dash-cased attributes based on `properties`)
-   *
-   * @polymerMixin
-   * @mixes Polymer.PropertyEffects
-   * @memberof Polymer
-   * @property rootPath {string} Set to the value of `Polymer.rootPath`,
-   *   which defaults to the main document path
-   * @property importPath {string} Set to the value of the class's static
-   *   `importPath` property, which defaults to the path of this element's
-   *   `dom-module` (when `is` is used), but can be overridden for other
-   *   import strategies.
-   * @summary Element class mixin that provides the core API for Polymer's
-   * meta-programming features.
-   */
-  Polymer.ElementMixin = Polymer.dedupingMixin(base => {
-
-    /**
-     * @constructor
-     * @extends {base}
-     * @implements {Polymer_PropertyEffects}
-     */
-    const polymerElementBase = Polymer.PropertyEffects(base);
-
-    let caseMap = Polymer.CaseMap;
-
-    /**
-     * Returns the `properties` object specifically on `klass`. Use for:
-     * (1) super chain mixes togther to make `propertiesForClass` which is
-     * then used to make `observedAttributes`.
-     * (2) properties effects and observers are created from it at `finalize` time.
-     *
-     * @param {HTMLElement} klass Element class
-     * @return {Object} Object containing own properties for this class
-     * @private
-     */
-    function ownPropertiesForClass(klass) {
-      if (!klass.hasOwnProperty(
-        JSCompiler_renameProperty('__ownProperties', klass))) {
-        klass.__ownProperties =
-          klass.hasOwnProperty(JSCompiler_renameProperty('properties', klass)) ?
-          klass.properties : {};
-      }
-      return klass.__ownProperties;
-    }
-
-    /**
-     * Returns the `observers` array specifically on `klass`. Use for
-     * setting up observers.
-     *
-     * @param {HTMLElement} klass Element class
-     * @return {Array} Array containing own observers for this class
-     * @private
-     */
-    function ownObserversForClass(klass) {
-      if (!klass.hasOwnProperty(
-        JSCompiler_renameProperty('__ownObservers', klass))) {
-        klass.__ownObservers =
-          klass.hasOwnProperty(JSCompiler_renameProperty('observers', klass)) ?
-          klass.observers : [];
-      }
-      return klass.__ownObservers;
-    }
-
-    /**
-     * Mixes `props` into `flattenedProps` but upgrades shorthand type
-     * syntax to { type: Type}.
-     *
-     * @param {Object} flattenedProps Bag to collect flattened properties into
-     * @param {Object} props Bag of properties to add to `flattenedProps`
-     * @return {Objecg} The input `flattenedProps` bag
-     * @private
-     */
-    function flattenProperties(flattenedProps, props) {
-      for (let p in props) {
-        let o = props[p];
-        if (typeof o == 'function') {
-          o = { type: o };
-        }
-        flattenedProps[p] = o;
-      }
-      return flattenedProps;
-    }
-
-    /**
-     * Returns a flattened list of properties mixed together from the chain of all
-     * constructor's `config.properties`. This list is used to create
-     * (1) observedAttributes,
-     * (2) class property default values
-     *
-     * @param {HTMLElement} klass Element class
-     * @return {PolymerElementProperties} Flattened properties for this class
-     * @private
-     */
-    function propertiesForClass(klass) {
-      if (!klass.hasOwnProperty(
-        JSCompiler_renameProperty('__classProperties', klass))) {
-        klass.__classProperties =
-        flattenProperties({}, ownPropertiesForClass(klass));
-        let superCtor = Object.getPrototypeOf(klass.prototype).constructor;
-        if (superCtor.prototype instanceof PolymerElement) {
-          klass.__classProperties = Object.assign(
-            Object.create(propertiesForClass(superCtor)),
-            klass.__classProperties);
-        }
-      }
-      return klass.__classProperties;
-    }
-
-    /**
-     * Returns a list of properties with default values.
-     * This list is created as an optimization since it is a subset of
-     * the list returned from `propertiesForClass`.
-     * This list is used in `_initializeProperties` to set property defaults.
-     *
-     * @param {HTMLElement} klass Element class
-     * @return {PolymerElementProperties} Flattened properties for this class
-     *   that have default values
-     * @private
-     */
-    function propertyDefaultsForClass(klass) {
-      if (!klass.hasOwnProperty(
-        JSCompiler_renameProperty('__classPropertyDefaults', klass))) {
-        klass.__classPropertyDefaults = null;
-        let props = propertiesForClass(klass);
-        for (let p in props) {
-          let info = props[p];
-          if ('value' in info) {
-            klass.__classPropertyDefaults = klass.__classPropertyDefaults || {};
-            klass.__classPropertyDefaults[p] = info;
-          }
-        }
-      }
-      return klass.__classPropertyDefaults;
-    }
-
-    /**
-     * Returns true if a `klass` has finalized. Called in `ElementClass.finalize()`
-     * @param {HTMLElement} klass Element class
-     * @return {boolean} True if all metaprogramming for this class has been
-     *   completed
-     * @private
-     */
-    function hasClassFinalized(klass) {
-      return klass.hasOwnProperty(JSCompiler_renameProperty('__finalized', klass));
-    }
-
-    /**
-     * Called by `ElementClass.finalize()`. Ensures this `klass` and
-     * *all superclasses* are finalized by traversing the prototype chain
-     * and calling `klass.finalize()`.
-     *
-     * @param {HTMLElement} klass Element class
-     * @private
-     */
-    function finalizeClassAndSuper(klass) {
-      let proto = klass.prototype;
-      let superCtor = Object.getPrototypeOf(proto).constructor;
-      if (superCtor.prototype instanceof PolymerElement) {
-        superCtor.finalize();
-      }
-      finalizeClass(klass);
-    }
-
-    /**
-     * Configures a `klass` based on a staic `klass.config` object and
-     * a `template`. This includes creating accessors and effects
-     * for properties in `config` and the `template` as well as preparing the
-     * `template` for stamping.
-     *
-     * @param {HTMLElement} klass Element class
-     * @private
-     */
-    function finalizeClass(klass) {
-      klass.__finalized = true;
-      let proto = klass.prototype;
-      if (klass.hasOwnProperty(
-        JSCompiler_renameProperty('is', klass)) && klass.is) {
-        Polymer.telemetry.register(proto);
-      }
-      let props = ownPropertiesForClass(klass);
-      if (props) {
-        finalizeProperties(proto, props);
-      }
-      let observers = ownObserversForClass(klass);
-      if (observers) {
-        finalizeObservers(proto, observers, props);
-      }
-      // note: create "working" template that is finalized at instance time
-      let template = klass.template;
-      if (template) {
-        if (typeof template === 'string') {
-          let t = document.createElement('template');
-          t.innerHTML = template;
-          template = t;
-        } else {
-          template = template.cloneNode(true);
-        }
-        proto._template = template;
-      }
-    }
-
-    /**
-     * Configures a `proto` based on a `properties` object.
-     * Leverages `PropertyEffects` to create property accessors and effects
-     * supporting, observers, reflecting to attributes, change notification,
-     * computed properties, and read only properties.
-     * @param {HTMLElement} proto Element class prototype to add accessors
-     *    and effects to
-     * @param {Object} properties Flattened bag of property descriptors for
-     *    this class
-     * @private
-     */
-    function finalizeProperties(proto, properties) {
-      for (let p in properties) {
-        createPropertyFromConfig(proto, p, properties[p], properties);
-      }
-    }
-
-    /**
-     * Configures a `proto` based on a `observers` array.
-     * Leverages `PropertyEffects` to create observers.
-     * @param {HTMLElement} proto Element class prototype to add accessors
-     *   and effects to
-     * @param {Object} observers Flattened array of observer descriptors for
-     *   this class
-     * @param {Object} dynamicFns Object containing keys for any properties
-     *   that are functions and should trigger the effect when the function
-     *   reference is changed
-     * @private
-     */
-    function finalizeObservers(proto, observers, dynamicFns) {
-      for (let i=0; i < observers.length; i++) {
-        proto._createMethodObserver(observers[i], dynamicFns);
-      }
-    }
-
-    /**
-     * Creates effects for a property.
-     *
-     * Note, once a property has been set to
-     * `readOnly`, `computed`, `reflectToAttribute`, or `notify`
-     * these values may not be changed. For example, a subclass cannot
-     * alter these settings. However, additional `observers` may be added
-     * by subclasses.
-     *
-     * The info object should may contain property metadata as follows:
-     *
-     * * `type`: {function} type to which an attribute matching the property
-     * is deserialized. Note the property is camel-cased from a dash-cased
-     * attribute. For example, 'foo-bar' attribute is dersialized to a
-     * property named 'fooBar'.
-     *
-     * * `readOnly`: {boolean} creates a readOnly property and
-     * makes a private setter for the private of the form '_setFoo' for a
-     * property 'foo',
-     *
-     * * `computed`: {string} creates a computed property. A computed property
-     * also automatically is set to `readOnly: true`. The value is calculated
-     * by running a method and arguments parsed from the given string. For
-     * example 'compute(foo)' will compute a given property when the
-     * 'foo' property changes by executing the 'compute' method. This method
-     * must return the computed value.
-     *
-     * * `reflectToAttriute`: {boolean} If true, the property value is reflected
-     * to an attribute of the same name. Note, the attribute is dash-cased
-     * so a property named 'fooBar' is reflected as 'foo-bar'.
-     *
-     * * `notify`: {boolean} sends a non-bubbling notification event when
-     * the property changes. For example, a property named 'foo' sends an
-     * event named 'foo-changed' with `event.detail` set to the value of
-     * the property.
-     *
-     * * observer: {string} name of a method that runs when the property
-     * changes. The arguments of the method are (value, previousValue).
-     *
-     * Note: Users may want control over modifying property
-     * effects via subclassing. For example, a user might want to make a
-     * reflectToAttribute property not do so in a subclass. We've chosen to
-     * disable this because it leads to additional complication.
-     * For example, a readOnly effect generates a special setter. If a subclass
-     * disables the effect, the setter would fail unexpectedly.
-     * Based on feedback, we may want to try to make effects more malleable
-     * and/or provide an advanced api for manipulating them.
-     * Also consider adding warnings when an effect cannot be changed.
-     *
-     * @param {HTMLElement} proto Element class prototype to add accessors
-     *   and effects to
-     * @param {string} name Name of the property.
-     * @param {Object} info Info object from which to create property effects.
-     * Supported keys:
-     * @param {Object} allProps Flattened map of all properties defined in this
-     *   element (including inherited properties)
-     * @private
-     */
-    function createPropertyFromConfig(proto, name, info, allProps) {
-      // computed forces readOnly...
-      if (info.computed) {
-        info.readOnly = true;
-      }
-      // Note, since all computed properties are readOnly, this prevents
-      // adding additional computed property effects (which leads to a confusing
-      // setup where multiple triggers for setting a property)
-      // While we do have `hasComputedEffect` this is set on the property's
-      // dependencies rather than itself.
-      if (info.computed  && !proto._hasReadOnlyEffect(name)) {
-        proto._createComputedProperty(name, info.computed, allProps);
-      }
-      if (info.readOnly && !proto._hasReadOnlyEffect(name)) {
-        proto._createReadOnlyProperty(name, !info.computed);
-      }
-      if (info.reflectToAttribute && !proto._hasReflectEffect(name)) {
-        proto._createReflectedProperty(name);
-      }
-      if (info.notify && !proto._hasNotifyEffect(name)) {
-        proto._createNotifyingProperty(name);
-      }
-      // always add observer
-      if (info.observer) {
-        proto._createPropertyObserver(name, info.observer, allProps[info.observer]);
-      }
-    }
-
-    /**
-     * Configures an element `proto` to function with a given `template`.
-     * The element name `is` and extends `ext` must be specified for ShadyCSS
-     * style scoping.
-     *
-     * @param {HTMLElement} proto Element class prototype to add accessors
-     *   and effects to
-     * @param {HTMLTemplateElement} template Template to process and bind
-     * @param {string} baseURI URL against which to resolve urls in
-     *   style element cssText
-     * @param {string} is Tag name (or type extension name) for this element
-     * @param {string=} ext For type extensions, the tag name that was extended
-     * @private
-     */
-    function finalizeTemplate(proto, template, baseURI, is, ext) {
-      // support `include="module-name"`
-      let cssText =
-        Polymer.StyleGather.cssFromTemplate(template, baseURI) +
-        Polymer.StyleGather.cssFromModuleImports(is);
-      if (cssText) {
-        let style = document.createElement('style');
-        style.textContent = cssText;
-        template.content.insertBefore(style, template.content.firstChild);
-      }
-      if (window.ShadyCSS) {
-        window.ShadyCSS.prepareTemplate(template, is, ext);
-      }
-      proto._bindTemplate(template);
-    }
-
-    /**
-     * @polymerMixinClass
-     * @unrestricted
-     * @implements {Polymer_ElementMixin}
-     */
-    class PolymerElement extends polymerElementBase {
-
-      /**
-       * Standard Custom Elements V1 API.  The default implementation returns
-       * a list of dash-cased attributes based on a flattening of all properties
-       * declared in `static get properties()` for this element and any
-       * superclasses.
-       *
-       * @return {Array} Observed attribute list
-       */
-      static get observedAttributes() {
-        if (!this.hasOwnProperty(JSCompiler_renameProperty('__observedAttributes', this))) {
-          let list = [];
-          let properties = propertiesForClass(this);
-          for (let prop in properties) {
-            list.push(Polymer.CaseMap.camelToDashCase(prop));
-          }
-          this.__observedAttributes = list;
-        }
-        return this.__observedAttributes;
-      }
-
-      /**
-       * Called automatically when the first element instance is created to
-       * ensure that class finalization work has been completed.
-       * May be called by users to eagerly perform class finalization work
-       * prior to the creation of the first element instance.
-       *
-       * Class finalization work generally includes meta-programming such as
-       * creating property accessors and any property effect metadata needed for
-       * the features used.
-       *
-       * @public
-       */
-      static finalize() {
-        if (!hasClassFinalized(this)) {
-          finalizeClassAndSuper(this);
-        }
-      }
-
-      /**
-       * Returns the template that will be stamped into this element's shadow root.
-       *
-       * If a `static get is()` getter is defined, the default implementation
-       * will return the first `<template>` in a `dom-module` whose `id`
-       * matches this element's `is`.
-       *
-       * Users may override this getter to return an arbitrary template
-       * (in which case the `is` getter is unnecessary). The template returned
-       * may be either an `HTMLTemplateElement` or a string that will be
-       * automatically parsed into a template.
-       *
-       * Note that when subclassing, if the super class overrode the default
-       * implementation and the subclass would like to provide an alternate
-       * template via a `dom-module`, it should override this getter and
-       * return `Polymer.DomModule.import(this.is, 'template')`.
-       *
-       * If a subclass would like to modify the super class template, it should
-       * clone it rather than modify it in place.  If the getter does expensive
-       * work such as cloning/modifying a template, it should memoize the
-       * template for maximum performance:
-       *
-       *   let memoizedTemplate;
-       *   class MySubClass extends MySuperClass {
-       *     static get template() {
-       *       if (!memoizedTemplate) {
-       *         memoizedTemplate = super.template.cloneNode(true);
-       *         let subContent = document.createElement('div');
-       *         subContent.textContent = 'This came from MySubClass';
-       *         memoizedTemplate.content.appendChild(subContent);
-       *       }
-       *       return memoizedTemplate;
-       *     }
-       *   }
-       *
-       * @return {HTMLTemplateElement|string} Template to be stamped
-       */
-      static get template() {
-        if (!this.hasOwnProperty(JSCompiler_renameProperty('_template', this))) {
-          this._template = Polymer.DomModule.import(this.is, 'template') ||
-            // note: implemented so a subclass can retrieve the super
-            // template; call the super impl this way so that `this` points
-            // to the superclass.
-            Object.getPrototypeOf(this.prototype).constructor.template;
-        }
-        return this._template;
-      }
-
-      /**
-       * Path matching the url from which the element was imported.
-       * This path is used to resolve url's in template style cssText.
-       * The `importPath` property is also set on element instances and can be
-       * used to create bindings relative to the import path.
-       * Defaults to the path matching the url containing a `dom-module` element
-       * matching this element's static `is` property.
-       * Note, this path should contain a trailing `/`.
-       *
-       * @return {string} The import path for this element class
-       */
-      static get importPath() {
-        if (!this.hasOwnProperty(JSCompiler_renameProperty('_importPath', this))) {
-            const module = Polymer.DomModule.import(this.is);
-            this._importPath = module ? module.assetpath : '' ||
-            Object.getPrototypeOf(this.prototype).constructor.importPath;
-        }
-        return this._importPath;
-      }
-
-      /**
-       * Overrides the default `Polymer.PropertyAccessors` to ensure class
-       * metaprogramming related to property accessors and effects has
-       * completed (calls `finalize`).
-       *
-       * It also initializes any property defaults provided via `value` in
-       * `properties` metadata.
-       *
-       * @override
-       */
-      _initializeProperties() {
-        Polymer.telemetry.instanceCount++;
-        this.constructor.finalize();
-        const importPath = this.constructor.importPath;
-        // note: finalize template when we have access to `localName` to
-        // avoid dependence on `is` for polyfilling styling.
-        if (this._template && !this._template.__polymerFinalized) {
-          this._template.__polymerFinalized = true;
-          const baseURI =
-            importPath ? Polymer.ResolveUrl.resolveUrl(importPath) : '';
-          finalizeTemplate(this.__proto__, this._template, baseURI,
-            this.localName);
-        }
-        super._initializeProperties();
-        // set path defaults
-        this.rootPath = Polymer.rootPath;
-        this.importPath = importPath;
-        // apply property defaults...
-        let p$ = propertyDefaultsForClass(this.constructor);
-        if (!p$) {
-          return;
-        }
-        for (let p in p$) {
-          let info = p$[p];
-          // Don't set default value if there is already an own property, which
-          // happens when a `properties` property with default but no effects had
-          // a property set (e.g. bound) by its host before upgrade
-          if (!this.hasOwnProperty(p)) {
-            let value = typeof info.value == 'function' ?
-              info.value.call(this) :
-              info.value;
-            // Set via `_setProperty` if there is an accessor, to enable
-            // initializing readOnly property defaults
-            if (this._hasAccessor(p)) {
-              this._setPendingProperty(p, value, true);
-            } else {
-              this[p] = value;
-            }
-          }
-        }
-      }
-
-      /**
-       * Provides a default implementation of the standard Custom Elements
-       * `connectedCallback`.
-       *
-       * The default implementation enables the property effects system and
-       * flushes any pending properties, and updates shimmed CSS properties
-       * when using the ShadyCSS scoping/custom properties polyfill.
-       *
-       * @override
-       */
-      connectedCallback() {
-        if (window.ShadyCSS && this._template) {
-          window.ShadyCSS.styleElement(this);
-        }
-        this._enableProperties();
-      }
-
-      /**
-       * Provides a default implementation of the standard Custom Elements
-       * `disconnectedCallback`.
-       *
-       * @override
-       */
-      disconnectedCallback() {}
-
-      /**
-       * Stamps the element template.
-       *
-       * @override
-       */
-      ready() {
-        if (this._template) {
-          this.root = this._stampTemplate(this._template);
-          this.$ = this.root.$;
-        }
-        super.ready();
-      }
-
-      /**
-       * Implements `PropertyEffects`'s `_readyClients` call. Attaches
-       * element dom by calling `_attachDom` with the dom stamped from the
-       * element's template via `_stampTemplate`. Note that this allows
-       * client dom to be attached to the element prior to any observers
-       * running.
-       *
-       * @override
-       */
-      _readyClients() {
-        if (this._template) {
-          this.root = this._attachDom(this.root);
-        }
-        // The super._readyClients here sets the clients initialized flag.
-        // We must wait to do this until after client dom is created/attached
-        // so that this flag can be checked to prevent notifications fired
-        // during this process from being handled before clients are ready.
-        super._readyClients();
-      }
-
-
-      /**
-       * Attaches an element's stamped dom to itself. By default,
-       * this method creates a `shadowRoot` and adds the dom to it.
-       * However, this method may be overridden to allow an element
-       * to put its dom in another location.
-       *
-       * @throws {Error}
-       * @suppress {missingReturn}
-       * @param {NodeList} dom to attach to the element.
-       * @return {Node} node to which the dom has been attached.
-       */
-      _attachDom(dom) {
-        if (this.attachShadow) {
-          if (dom) {
-            if (!this.shadowRoot) {
-              this.attachShadow({mode: 'open'});
-            }
-            this.shadowRoot.appendChild(dom);
-            return this.shadowRoot;
-          }
-        } else {
-          throw new Error('ShadowDOM not available. ' +
-            // TODO(sorvell): move to compile-time conditional when supported
-          'Polymer.Element can create dom as children instead of in ' +
-          'ShadowDOM by setting `this.root = this;\` before \`ready\`.');
-        }
-      }
-
-      /**
-       * Provides a default implementation of the standard Custom Elements
-       * `attributeChangedCallback`.
-       *
-       * By default, attributes declared in `properties` metadata are
-       * deserialized using their `type` information to properties of the
-       * same name.  "Dash-cased" attributes are deserialzed to "camelCase"
-       * properties.
-       *
-       * @override
-       */
-      attributeChangedCallback(name, old, value) {
-        if (old !== value) {
-          let property = caseMap.dashToCamelCase(name);
-          let type = propertiesForClass(this.constructor)[property].type;
-          if (!this._hasReadOnlyEffect(property)) {
-            this._attributeToProperty(name, value, type);
-          }
-        }
-      }
-
-      /**
-       * When using the ShadyCSS scoping and custom property shim, causes all
-       * shimmed styles in this element (and its subtree) to be updated
-       * based on current custom property values.
-       *
-       * The optional parameter overrides inline custom property styles with an
-       * object of properties where the keys are CSS properties, and the values
-       * are strings.
-       *
-       * Example: `this.updateStyles({'--color': 'blue'})`
-       *
-       * These properties are retained unless a value of `null` is set.
-       *
-       * @param {Object=} properties Bag of custom property key/values to
-       *   apply to this element.
-       */
-      updateStyles(properties) {
-        if (window.ShadyCSS) {
-          window.ShadyCSS.styleSubtree(this, properties);
-        }
-      }
-
-      /**
-       * Rewrites a given URL relative to a base URL. The base URL defaults to
-       * the original location of the document containing the `dom-module` for
-       * this element. This method will return the same URL before and after
-       * bundling.
-       *
-       * @param {string} url URL to resolve.
-       * @param {string=} base Optional base URL to resolve against, defaults
-       * to the element's `importPath`
-       * @return {string} Rewritten URL relative to base
-       */
-      resolveUrl(url, base) {
-        if (!base && this.importPath) {
-          base = Polymer.ResolveUrl.resolveUrl(this.importPath);
-        }
-        return Polymer.ResolveUrl.resolveUrl(url, base);
-      }
-
-      /**
-       * Overrides `PropertyAccessors` to add map of dynamic functions on
-       * template info, for consumption by `PropertyEffects` template binding
-       * code. This map determines which method templates should have accessors
-       * created for them.
-       *
-       * @override
-       */
-      static _parseTemplateContent(template, templateInfo, nodeInfo) {
-        templateInfo.dynamicFns = templateInfo.dynamicFns || propertiesForClass(this);
-        return super._parseTemplateContent(template, templateInfo, nodeInfo);
-      }
-
-    }
-
-    return PolymerElement;
-  });
-
-  /**
-   * Provides basic tracking of element definitions (registrations) and
-   * instance counts.
-   *
-   * @namespace
-   * @summary Provides basic tracking of element definitions (registrations) and
-   * instance counts.
-   */
-  Polymer.telemetry = {
-    /**
-     * Total number of Polymer element instances created.
-     * @type {number}
-     */
-    instanceCount: 0,
-    /**
-     * Array of Polymer element classes that have been finalized.
-     * @type {Array<Polymer.Element>}
-     */
-    registrations: [],
-    /**
-     * @param {HTMLElement} prototype Element prototype to log
-     * @private
-     */
-    _regLog: function(prototype) {
-      console.log('[' + prototype.is + ']: registered')
-    },
-    /**
-     * Registers a class prototype for telemetry purposes.
-     * @param {HTMLElement} prototype Element prototype to register
-     * @protected
-     */
-    register: function(prototype) {
-      this.registrations.push(prototype);
-      Polymer.log && this._regLog(prototype);
-    },
-    /**
-     * Logs all elements registered with an `is` to the console.
-     * @public
-     */
-    dumpRegistrations: function() {
-      this.registrations.forEach(this._regLog);
-    }
-  };
-
-  /**
-   * When using the ShadyCSS scoping and custom property shim, causes all
-   * shimmed `styles` (via `custom-style`) in the document (and its subtree)
-   * to be updated based on current custom property values.
-   *
-   * The optional parameter overrides inline custom property styles with an
-   * object of properties where the keys are CSS properties, and the values
-   * are strings.
-   *
-   * Example: `Polymer.updateStyles({'--color': 'blue'})`
-   *
-   * These properties are retained unless a value of `null` is set.
-   *
-   * @param {Object=} props Bag of custom property key/values to
-   *   apply to the document.
-   */
-  Polymer.updateStyles = function(props) {
-    if (window.ShadyCSS) {
-      window.ShadyCSS.styleDocument(props);
-    }
-  };
-
-})();
-
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(34);
-
-
-(function() {
-
-  'use strict';
-
-  const gestures = Polymer.Gestures;
-
-  /**
-   * Element class mixin that provides API for adding Polymer's cross-platform
-   * gesture events to nodes.
-   *
-   * The API is designed to be compatible with override points implemented
-   * in `Polymer.TemplateStamp` such that declarative event listeners in
-   * templates will support gesture events when this mixin is applied along with
-   * `Polymer.TemplateStamp`.
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   * @summary Element class mixin that provides API for adding Polymer's cross-platform
-   * gesture events to nodes
-   */
-  Polymer.GestureEventListeners = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_GestureEventListeners}
-     */
-    class GestureEventListeners extends superClass {
-
-      _addEventListenerToNode(node, eventName, handler) {
-        if (!gestures.addListener(node, eventName, handler)) {
-          super._addEventListenerToNode(node, eventName, handler);
-        }
-      }
-
-      _removeEventListenerFromNode(node, eventName, handler) {
-        if (!gestures.removeListener(node, eventName, handler)) {
-          super._removeEventListenerFromNode(node, eventName, handler);
-        }
-      }
-
-    }
-
-    return GestureEventListeners;
-
-  });
-
-})();
-
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-
-  'use strict';
-
-  function newSplice(index, removed, addedCount) {
-    return {
-      index: index,
-      removed: removed,
-      addedCount: addedCount
-    };
-  }
-
-  const EDIT_LEAVE = 0;
-  const EDIT_UPDATE = 1;
-  const EDIT_ADD = 2;
-  const EDIT_DELETE = 3;
-
-  const ArraySplice = {
-
-    // Note: This function is *based* on the computation of the Levenshtein
-    // "edit" distance. The one change is that "updates" are treated as two
-    // edits - not one. With Array splices, an update is really a delete
-    // followed by an add. By retaining this, we optimize for "keeping" the
-    // maximum array items in the original array. For example:
-    //
-    //   'xxxx123' -> '123yyyy'
-    //
-    // With 1-edit updates, the shortest path would be just to update all seven
-    // characters. With 2-edit updates, we delete 4, leave 3, and add 4. This
-    // leaves the substring '123' intact.
-    calcEditDistances(current, currentStart, currentEnd,
-                                old, oldStart, oldEnd) {
-      // "Deletion" columns
-      let rowCount = oldEnd - oldStart + 1;
-      let columnCount = currentEnd - currentStart + 1;
-      let distances = new Array(rowCount);
-
-      // "Addition" rows. Initialize null column.
-      for (let i = 0; i < rowCount; i++) {
-        distances[i] = new Array(columnCount);
-        distances[i][0] = i;
-      }
-
-      // Initialize null row
-      for (let j = 0; j < columnCount; j++)
-        distances[0][j] = j;
-
-      for (let i = 1; i < rowCount; i++) {
-        for (let j = 1; j < columnCount; j++) {
-          if (this.equals(current[currentStart + j - 1], old[oldStart + i - 1]))
-            distances[i][j] = distances[i - 1][j - 1];
-          else {
-            let north = distances[i - 1][j] + 1;
-            let west = distances[i][j - 1] + 1;
-            distances[i][j] = north < west ? north : west;
-          }
-        }
-      }
-
-      return distances;
-    },
-
-    // This starts at the final weight, and walks "backward" by finding
-    // the minimum previous weight recursively until the origin of the weight
-    // matrix.
-    spliceOperationsFromEditDistances(distances) {
-      let i = distances.length - 1;
-      let j = distances[0].length - 1;
-      let current = distances[i][j];
-      let edits = [];
-      while (i > 0 || j > 0) {
-        if (i == 0) {
-          edits.push(EDIT_ADD);
-          j--;
-          continue;
-        }
-        if (j == 0) {
-          edits.push(EDIT_DELETE);
-          i--;
-          continue;
-        }
-        let northWest = distances[i - 1][j - 1];
-        let west = distances[i - 1][j];
-        let north = distances[i][j - 1];
-
-        let min;
-        if (west < north)
-          min = west < northWest ? west : northWest;
-        else
-          min = north < northWest ? north : northWest;
-
-        if (min == northWest) {
-          if (northWest == current) {
-            edits.push(EDIT_LEAVE);
-          } else {
-            edits.push(EDIT_UPDATE);
-            current = northWest;
-          }
-          i--;
-          j--;
-        } else if (min == west) {
-          edits.push(EDIT_DELETE);
-          i--;
-          current = west;
-        } else {
-          edits.push(EDIT_ADD);
-          j--;
-          current = north;
-        }
-      }
-
-      edits.reverse();
-      return edits;
-    },
-
-    /**
-     * Splice Projection functions:
-     *
-     * A splice map is a representation of how a previous array of items
-     * was transformed into a new array of items. Conceptually it is a list of
-     * tuples of
-     *
-     *   <index, removed, addedCount>
-     *
-     * which are kept in ascending index order of. The tuple represents that at
-     * the |index|, |removed| sequence of items were removed, and counting forward
-     * from |index|, |addedCount| items were added.
-     */
-
-    /**
-     * Lacking individual splice mutation information, the minimal set of
-     * splices can be synthesized given the previous state and final state of an
-     * array. The basic approach is to calculate the edit distance matrix and
-     * choose the shortest path through it.
-     *
-     * Complexity: O(l * p)
-     *   l: The length of the current array
-     *   p: The length of the old array
-     *
-     * @param {Array} current The current "changed" array for which to
-     * calculate splices.
-     * @param {number} currentStart Starting index in the `current` array for
-     * which splices are calculated.
-     * @param {number} currentEnd Ending index in the `current` array for
-     * which splices are calculated.
-     * @param {Array} old The original "unchanged" array to compare `current`
-     * against to determine splices.
-     * @param {number} oldStart Starting index in the `old` array for
-     * which splices are calculated.
-     * @param {number} oldEnd Ending index in the `old` array for
-     * which splices are calculated.
-     * @return {Array} Returns an array of splice record objects. Each of these
-     * contains: `index` the location where the splice occurred; `removed`
-     * the array of removed items from this location; `addedCount` the number
-     * of items added at this location.
-     */
-    calcSplices(current, currentStart, currentEnd,
-                          old, oldStart, oldEnd) {
-      let prefixCount = 0;
-      let suffixCount = 0;
-      let splice;
-
-      let minLength = Math.min(currentEnd - currentStart, oldEnd - oldStart);
-      if (currentStart == 0 && oldStart == 0)
-        prefixCount = this.sharedPrefix(current, old, minLength);
-
-      if (currentEnd == current.length && oldEnd == old.length)
-        suffixCount = this.sharedSuffix(current, old, minLength - prefixCount);
-
-      currentStart += prefixCount;
-      oldStart += prefixCount;
-      currentEnd -= suffixCount;
-      oldEnd -= suffixCount;
-
-      if (currentEnd - currentStart == 0 && oldEnd - oldStart == 0)
-        return [];
-
-      if (currentStart == currentEnd) {
-        splice = newSplice(currentStart, [], 0);
-        while (oldStart < oldEnd)
-          splice.removed.push(old[oldStart++]);
-
-        return [ splice ];
-      } else if (oldStart == oldEnd)
-        return [ newSplice(currentStart, [], currentEnd - currentStart) ];
-
-      let ops = this.spliceOperationsFromEditDistances(
-          this.calcEditDistances(current, currentStart, currentEnd,
-                                 old, oldStart, oldEnd));
-
-      splice = undefined;
-      let splices = [];
-      let index = currentStart;
-      let oldIndex = oldStart;
-      for (let i = 0; i < ops.length; i++) {
-        switch(ops[i]) {
-          case EDIT_LEAVE:
-            if (splice) {
-              splices.push(splice);
-              splice = undefined;
-            }
-
-            index++;
-            oldIndex++;
-            break;
-          case EDIT_UPDATE:
-            if (!splice)
-              splice = newSplice(index, [], 0);
-
-            splice.addedCount++;
-            index++;
-
-            splice.removed.push(old[oldIndex]);
-            oldIndex++;
-            break;
-          case EDIT_ADD:
-            if (!splice)
-              splice = newSplice(index, [], 0);
-
-            splice.addedCount++;
-            index++;
-            break;
-          case EDIT_DELETE:
-            if (!splice)
-              splice = newSplice(index, [], 0);
-
-            splice.removed.push(old[oldIndex]);
-            oldIndex++;
-            break;
-        }
-      }
-
-      if (splice) {
-        splices.push(splice);
-      }
-      return splices;
-    },
-
-    sharedPrefix(current, old, searchLength) {
-      for (let i = 0; i < searchLength; i++)
-        if (!this.equals(current[i], old[i]))
-          return i;
-      return searchLength;
-    },
-
-    sharedSuffix(current, old, searchLength) {
-      let index1 = current.length;
-      let index2 = old.length;
-      let count = 0;
-      while (count < searchLength && this.equals(current[--index1], old[--index2]))
-        count++;
-
-      return count;
-    },
-
-    calculateSplices(current, previous) {
-      return this.calcSplices(current, 0, current.length, previous, 0,
-                              previous.length);
-    },
-
-    equals(currentValue, previousValue) {
-      return currentValue === previousValue;
-    }
-
-  };
-
-  /**
-   * @namespace
-   * @memberof Polymer
-   * @summary Module that provides utilities for diffing arrays.
-   */
-  Polymer.ArraySplice = {
-    /**
-     * Returns an array of splice records indicating the minimum edits required
-     * to transform the `previous` array into the `current` array.
-     *
-     * Splice records are ordered by index and contain the following fields:
-     * - `index`: index where edit started
-     * - `removed`: array of removed items from this index
-     * - `addedCount`: number of items added at this index
-     *
-     * This function is based on the Levenshtein "minimum edit distance"
-     * algorithm. Note that updates are treated as removal followed by addition.
-     *
-     * The worst-case time complexity of this algorithm is `O(l * p)`
-     *   l: The length of the current array
-     *   p: The length of the previous array
-     *
-     * However, the worst-case complexity is reduced by an `O(n)` optimization
-     * to detect any shared prefix & suffix between the two arrays and only
-     * perform the more expensive minimum edit distance calculation over the
-     * non-shared portions of the arrays.
-     *
-     * @memberof Polymer.ArraySplice
-     * @param {Array} current The "changed" array for which splices will be
-     * calculated.
-     * @param {Array} previous The "unchanged" original array to compare
-     * `current` against to determine the splices.
-     * @return {Array} Returns an array of splice record objects. Each of these
-     * contains: `index` the location where the splice occurred; `removed`
-     * the array of removed items from this location; `addedCount` the number
-     * of items added at this location.
-     */
-    calculateSplices(current, previous) {
-      return ArraySplice.calculateSplices(current, previous);
-    }
-  }
-
-})();
-
-
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(4);
-
-
-(function() {
-  'use strict';
-
-  /**
-   * Legacy settings.
-   * @namespace
-   * @memberof Polymer
-   */
-  const settings = Polymer.Settings || {};
-  settings.useShadow = !(window.ShadyDOM);
-  settings.useNativeCSSProperties =
-    Boolean(!window.ShadyCSS || window.ShadyCSS.nativeCss);
-  settings.useNativeCustomElements =
-    !(window.customElements.polyfillWrapFlushCallback);
-
-  /**
-   * Sets the global, legacy settings.
-   *
-   * @deprecated
-   * @memberof Polymer
-   */
-  Polymer.Settings = settings;
-
-  /**
-   * Globally settable property that is automatically assigned to
-   * `Polymer.ElementMixin` instances, useful for binding in templates to
-   * make URL's relative to an application's root.  Defaults to the main
-   * document URL, but can be overridden by users.  It may be useful to set
-   * `Polymer.rootPath` to provide a stable application mount path when
-   * using client side routing.
-   *
-   * @memberof Polymer
-   */
-  let rootPath = Polymer.rootPath ||
-    Polymer.ResolveUrl.pathFromUrl(document.baseURI || window.location.href);
-
-  Polymer.rootPath = rootPath;
-
-  /**
-   * Sets the global rootPath property used by `Polymer.ElementMixin` and
-   * available via `Polymer.rootPath`.
-   * 
-   * @memberof Polymer
-   * @param {string} path The new root path
-   */
-  Polymer.setRootPath = function(path) {
-    Polymer.rootPath = path;
-  }
-})();
-
-
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(4);
-
-
-(function() {
-  'use strict';
-
-  const MODULE_STYLE_LINK_SELECTOR = 'link[rel=import][type~=css]';
-  const INCLUDE_ATTR = 'include';
-
-  function importModule(moduleId) {
-    if (!Polymer.DomModule) {
-      return null;
-    }
-    return Polymer.DomModule.import(moduleId);
-  }
-
-  /**
-   * Module with utilities for collection CSS text from `<templates>`, external
-   * stylesheets, and `dom-module`s.
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module with utilities for collection CSS text from various sources.
-   */
-  const StyleGather = {
-
-    /**
-     * Returns CSS text of styles in a space-separated list of `dom-module`s.
-     *
-     * @memberof Polymer.StyleGather
-     * @param {string} moduleIds List of dom-module id's within which to
-     * search for css.
-     * @return {string} Concatenated CSS content from specified `dom-module`s
-     */
-    cssFromModules(moduleIds) {
-      let modules = moduleIds.trim().split(' ');
-      let cssText = '';
-      for (let i=0; i < modules.length; i++) {
-        cssText += this.cssFromModule(modules[i]);
-      }
-      return cssText;
-    },
-
-    /**
-     * Returns CSS text of styles in a given `dom-module`.  CSS in a `dom-module`
-     * can come either from `<style>`s within the first `<template>`, or else
-     * from one or more `<link rel="import" type="css">` links outside the
-     * template.
-     *
-     * Any `<styles>` processed are removed from their original location.
-     *
-     * @memberof Polymer.StyleGather
-     * @param {string} moduleId dom-module id to gather styles from
-     * @return {string} Concatenated CSS content from specified `dom-module`
-     */
-    cssFromModule(moduleId) {
-      let m = importModule(moduleId);
-      if (m && m._cssText === undefined) {
-        let cssText = '';
-        // include css from the first template in the module
-        let t = m.querySelector('template');
-        if (t) {
-          cssText += this.cssFromTemplate(t, m.assetpath);
-        }
-        // module imports: <link rel="import" type="css">
-        cssText += this.cssFromModuleImports(moduleId);
-        m._cssText = cssText || null;
-      }
-      if (!m) {
-        console.warn('Could not find style data in module named', moduleId);
-      }
-      return m && m._cssText || '';
-    },
-
-    /**
-     * Returns CSS text of `<styles>` within a given template.
-     *
-     * Any `<styles>` processed are removed from their original location.
-     *
-     * @memberof Polymer.StyleGather
-     * @param {HTMLTemplateElement} template Template to gather styles from
-     * @param {string} baseURI Base URI to resolve the URL against
-     * @return {string} Concatenated CSS content from specified template
-     */
-    cssFromTemplate(template, baseURI) {
-      let cssText = '';
-      // if element is a template, get content from its .content
-      let e$ = template.content.querySelectorAll('style');
-      for (let i=0; i < e$.length; i++) {
-        let e = e$[i];
-        // support style sharing by allowing styles to "include"
-        // other dom-modules that contain styling
-        let include = e.getAttribute(INCLUDE_ATTR);
-        if (include) {
-          cssText += this.cssFromModules(include);
-        }
-        e.parentNode.removeChild(e);
-        cssText += baseURI ?
-          Polymer.ResolveUrl.resolveCss(e.textContent, baseURI) : e.textContent;
-      }
-      return cssText;
-    },
-
-    /**
-     * Returns CSS text from stylsheets loaded via `<link rel="import" type="css">`
-     * links within the specified `dom-module`.
-     *
-     * @memberof Polymer.StyleGather
-     * @param {string} moduleId Id of `dom-module` to gather CSS from
-     * @return {string} Concatenated CSS content from links in specified `dom-module`
-     */
-    cssFromModuleImports(moduleId) {
-      let cssText = '';
-      let m = importModule(moduleId);
-      if (!m) {
-        return cssText;
-      }
-      let p$ = m.querySelectorAll(MODULE_STYLE_LINK_SELECTOR);
-      for (let i=0; i < p$.length; i++) {
-        let p = p$[i];
-        if (p.import) {
-          let importDoc = p.import;
-          // NOTE: polyfill affordance.
-          // under the HTMLImports polyfill, there will be no 'body',
-          // but the import pseudo-doc can be used directly.
-          let container = importDoc.body ? importDoc.body : importDoc;
-          cssText +=
-            Polymer.ResolveUrl.resolveCss(container.textContent,
-              importDoc.baseURI);
-        }
-      }
-      return cssText;
-    }
-  };
-
-  Polymer.StyleGather = StyleGather;
-})();
-
-
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(11);
-
-__webpack_require__(28);
-
-__webpack_require__(30);
-
-__webpack_require__(22);
-
-__webpack_require__(25);
-
-__webpack_require__(23);
-
-__webpack_require__(20);
-
-__webpack_require__(21);
-
-__webpack_require__(27);
-
-
-  // bc
-  Polymer.Base = Polymer.LegacyElementMixin(HTMLElement).prototype;
-
-
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports) {
-
-(function(){/*
-
-Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-'use strict';var k={};function n(){this.end=this.start=0;this.rules=this.parent=this.previous=null;this.cssText=this.parsedCssText="";this.atRule=!1;this.type=0;this.parsedSelector=this.selector=this.keyframesName=""}
-function p(a){a=a.replace(aa,"").replace(ba,"");var b=q,c=a,d=new n;d.start=0;d.end=c.length;for(var e=d,f=0,h=c.length;f<h;f++)if("{"===c[f]){e.rules||(e.rules=[]);var g=e,m=g.rules[g.rules.length-1]||null,e=new n;e.start=f+1;e.parent=g;e.previous=m;g.rules.push(e)}else"}"===c[f]&&(e.end=f+1,e=e.parent||d);return b(d,a)}
-function q(a,b){var c=b.substring(a.start,a.end-1);a.parsedCssText=a.cssText=c.trim();a.parent&&((c=b.substring(a.previous?a.previous.end:a.parent.start,a.start-1),c=ca(c),c=c.replace(r," "),c=c.substring(c.lastIndexOf(";")+1),c=a.parsedSelector=a.selector=c.trim(),a.atRule=!c.indexOf("@"),a.atRule)?c.indexOf("@media")?c.match(da)&&(a.type=u,a.keyframesName=a.selector.split(r).pop()):a.type=t:a.type=c.indexOf("--")?v:x);if(c=a.rules)for(var d=0,e=c.length,f;d<e&&(f=c[d]);d++)q(f,b);return a}
-function ca(a){return a.replace(/\\([0-9a-f]{1,6})\s/gi,function(a,c){a=c;for(c=6-a.length;c--;)a="0"+a;return"\\"+a})}
-function y(a,b,c){c=void 0===c?"":c;var d="";if(a.cssText||a.rules){var e=a.rules,f;if(f=e)f=e[0],f=!(f&&f.selector&&0===f.selector.indexOf("--"));if(f){f=0;for(var h=e.length,g;f<h&&(g=e[f]);f++)d=y(g,b,d)}else b?b=a.cssText:(b=a.cssText,b=b.replace(ea,"").replace(fa,""),b=b.replace(ga,"").replace(ha,"")),(d=b.trim())&&(d="  "+d+"\n")}d&&(a.selector&&(c+=a.selector+" {\n"),c+=d,a.selector&&(c+="}\n\n"));return c}
-var v=1,u=7,t=4,x=1E3,aa=/\/\*[^*]*\*+([^/*][^*]*\*+)*\//gim,ba=/@import[^;]*;/gim,ea=/(?:^[^;\-\s}]+)?--[^;{}]*?:[^{};]*?(?:[;\n]|$)/gim,fa=/(?:^[^;\-\s}]+)?--[^;{}]*?:[^{};]*?{[^}]*?}(?:[;\n]|$)?/gim,ga=/@apply\s*\(?[^);]*\)?\s*(?:[;\n]|$)?/gim,ha=/[^;:]*?:[^;]*?var\([^;]*\)(?:[;\n]|$)?/gim,da=/^@[^\s]*keyframes/,r=/\s+/g;var ia=Promise.resolve();function ja(a){if(a=k[a])a._applyShimCurrentVersion=a._applyShimCurrentVersion||0,a._applyShimValidatingVersion=a._applyShimValidatingVersion||0,a._applyShimNextVersion=(a._applyShimNextVersion||0)+1}function z(a){return a._applyShimCurrentVersion===a._applyShimNextVersion}function ka(a){a._applyShimValidatingVersion=a._applyShimNextVersion;a.a||(a.a=!0,ia.then(function(){a._applyShimCurrentVersion=a._applyShimNextVersion;a.a=!1}))};var A=/(?:^|[;\s{]\s*)(--[\w-]*?)\s*:\s*(?:((?:'(?:\\'|.)*?'|"(?:\\"|.)*?"|\([^\)]*?\)|[^};{])+)|\{([^\}]*)\}(?:(?=[;\s}])|$))/gi,B=/(?:^|\W+)@apply\s*\(?([^);\n]*)\)?/gi,la=/@media[^(]*(\([^)]*\))/;var C=!(window.ShadyDOM&&window.ShadyDOM.inUse),E;function F(a){E=a&&a.shimcssproperties?!1:C||!(navigator.userAgent.match("AppleWebKit/601")||!window.CSS||!CSS.supports||!CSS.supports("box-shadow","0 0 0 var(--foo)"))}window.ShadyCSS&&void 0!==window.ShadyCSS.nativeCss?E=window.ShadyCSS.nativeCss:window.ShadyCSS?(F(window.ShadyCSS),window.ShadyCSS=void 0):F(window.WebComponents&&window.WebComponents.flags);var G=E;function H(a){if(!a)return"";"string"===typeof a&&(a=p(a));return y(a,G)}function I(a){!a.__cssRules&&a.textContent&&(a.__cssRules=p(a.textContent));return a.__cssRules||null}function J(a,b,c,d){if(a){var e=!1,f=a.type;if(d&&f===t){var h=a.selector.match(la);h&&(window.matchMedia(h[1]).matches||(e=!0))}f===v?b(a):c&&f===u?c(a):f===x&&(e=!0);if((a=a.rules)&&!e)for(var e=0,f=a.length,g;e<f&&(g=a[e]);e++)J(g,b,c,d)}}
-function K(a,b){var c=a.indexOf("var(");if(-1===c)return b(a,"","","");a:{var d=0;var e=c+3;for(var f=a.length;e<f;e++)if("("===a[e])d++;else if(")"===a[e]&&!--d)break a;e=-1}d=a.substring(c+4,e);c=a.substring(0,c);a=K(a.substring(e+1),b);e=d.indexOf(",");return-1===e?b(c,d.trim(),"",a):b(c,d.substring(0,e).trim(),d.substring(e+1).trim(),a)};var ma=/;\s*/m,na=/^\s*(initial)|(inherit)\s*$/;function L(){this.a={}}L.prototype.set=function(a,b){a=a.trim();this.a[a]={h:b,i:{}}};L.prototype.get=function(a){a=a.trim();return this.a[a]||null};var M=null;function N(){this.b=this.c=null;this.a=new L}N.prototype.o=function(a){a=B.test(a)||A.test(a);B.lastIndex=0;A.lastIndex=0;return a};N.prototype.m=function(a,b){a=a.content.querySelector("style");var c=null;a&&(c=this.j(a,b));return c};
-N.prototype.j=function(a,b){b=void 0===b?"":b;var c=I(a);this.l(c,b);a.textContent=H(c);return c};N.prototype.f=function(a){var b=this,c=I(a);J(c,function(a){":root"===a.selector&&(a.selector="html");b.g(a)});a.textContent=H(c);return c};N.prototype.l=function(a,b){var c=this;this.c=b;J(a,function(a){c.g(a)});this.c=null};N.prototype.g=function(a){a.cssText=oa(this,a.parsedCssText);":root"===a.selector&&(a.selector=":host > *")};
-function oa(a,b){b=b.replace(A,function(b,d,e,f){return pa(a,b,d,e,f)});return O(a,b)}function O(a,b){for(var c;c=B.exec(b);){var d=c[0],e=c[1];c=c.index;var f=b.slice(0,c+d.indexOf("@apply"));b=b.slice(c+d.length);var h=P(a,f),d=void 0;var g=a;var e=e.replace(ma,""),m=[];var l=g.a.get(e);l||(g.a.set(e,{}),l=g.a.get(e));if(l)for(d in g.c&&(l.i[g.c]=!0),l.h)g=h&&h[d],l=[d,": var(",e,"_-_",d],g&&l.push(",",g),l.push(")"),m.push(l.join(""));d=m.join("; ");b=""+f+d+b;B.lastIndex=c+d.length}return b}
-function P(a,b){b=b.split(";");for(var c,d,e={},f=0,h;f<b.length;f++)if(c=b[f])if(h=c.split(":"),1<h.length){c=h[0].trim();var g=a;d=c;h=h.slice(1).join(":");var m=na.exec(h);m&&(m[1]?(g.b||(g.b=document.createElement("meta"),g.b.setAttribute("apply-shim-measure",""),g.b.style.all="initial",document.head.appendChild(g.b)),d=window.getComputedStyle(g.b).getPropertyValue(d)):d="apply-shim-inherit",h=d);d=h;e[c]=d}return e}function qa(a,b){if(M)for(var c in b.i)c!==a.c&&M(c)}
-function pa(a,b,c,d,e){d&&K(d,function(b,c){c&&a.a.get(c)&&(e="@apply "+c+";")});if(!e)return b;var f=O(a,e),h=b.slice(0,b.indexOf("--")),g=f=P(a,f),m=a.a.get(c),l=m&&m.h;l?g=Object.assign(Object.create(l),f):a.a.set(c,g);var X=[],w,Y=!1;for(w in g){var D=f[w];void 0===D&&(D="initial");!l||w in l||(Y=!0);X.push(""+c+"_-_"+w+": "+D)}Y&&qa(a,m);m&&(m.h=g);d&&(h=b+";"+h);return""+h+X.join("; ")+";"}N.prototype.detectMixin=N.prototype.o;N.prototype.transformStyle=N.prototype.j;
-N.prototype.transformCustomStyle=N.prototype.f;N.prototype.transformRules=N.prototype.l;N.prototype.transformRule=N.prototype.g;N.prototype.transformTemplate=N.prototype.m;N.prototype._separator="_-_";Object.defineProperty(N.prototype,"invalidCallback",{get:function(){return M},set:function(a){M=a}});var Q=null,R=window.HTMLImports&&window.HTMLImports.whenReady||null,S;function ra(a){requestAnimationFrame(function(){R?R(a):(Q||(Q=new Promise(function(a){S=a}),"complete"===document.readyState?S():document.addEventListener("readystatechange",function(){"complete"===document.readyState&&S()})),Q.then(function(){a&&a()}))})};var T=new N;function U(){var a=this;this.a=null;ra(function(){V(a)});T.invalidCallback=ja}function V(a){a.a||(a.a=window.ShadyCSS.CustomStyleInterface,a.a&&(a.a.transformCallback=function(a){T.f(a)},a.a.validateCallback=function(){requestAnimationFrame(function(){a.a.enqueued&&W(a)})}))}U.prototype.prepareTemplate=function(a,b){V(this);k[b]=a;b=T.m(a,b);a._styleAst=b};
-function W(a){V(a);if(a.a){var b=a.a.processStyles();if(a.a.enqueued){for(var c=0;c<b.length;c++){var d=a.a.getStyleForCustomStyle(b[c]);d&&T.f(d)}a.a.enqueued=!1}}}U.prototype.styleSubtree=function(a,b){V(this);if(b)for(var c in b)null===c?a.style.removeProperty(c):a.style.setProperty(c,b[c]);if(a.shadowRoot)for(this.styleElement(a),a=a.shadowRoot.children||a.shadowRoot.childNodes,b=0;b<a.length;b++)this.styleSubtree(a[b]);else for(a=a.children||a.childNodes,b=0;b<a.length;b++)this.styleSubtree(a[b])};
-U.prototype.styleElement=function(a){V(this);var b=a.localName,c;b?-1<b.indexOf("-")?c=b:c=a.getAttribute&&a.getAttribute("is")||"":c=a.is;if((b=k[c])&&!z(b)){if(z(b)||b._applyShimValidatingVersion!==b._applyShimNextVersion)this.prepareTemplate(b,c),ka(b);if(a=a.shadowRoot)if(a=a.querySelector("style"))a.__cssRules=b._styleAst,a.textContent=H(b._styleAst)}};U.prototype.styleDocument=function(a){V(this);this.styleSubtree(document.body,a)};
-if(!window.ShadyCSS||!window.ShadyCSS.ScopingShim){var Z=new U,sa=window.ShadyCSS&&window.ShadyCSS.CustomStyleInterface;window.ShadyCSS={prepareTemplate:function(a,b){W(Z);Z.prepareTemplate(a,b)},styleSubtree:function(a,b){W(Z);Z.styleSubtree(a,b)},styleElement:function(a){W(Z);Z.styleElement(a)},styleDocument:function(a){W(Z);Z.styleDocument(a)},getComputedStyleValue:function(a,b){return(a=window.getComputedStyle(a).getPropertyValue(b))?a.trim():""},nativeCss:G,nativeShadow:C};sa&&(window.ShadyCSS.CustomStyleInterface=
-sa)}window.ShadyCSS.ApplyShim=T;}).call(this);
-
-//# sourceMappingURL=apply-shim.min.js.map
-
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports) {
-
-(function(){/*
-
-Copyright (c) 2017 The Polymer Project Authors. All rights reserved.
-This code may only be used under the BSD style license found at http://polymer.github.io/LICENSE.txt
-The complete set of authors may be found at http://polymer.github.io/AUTHORS.txt
-The complete set of contributors may be found at http://polymer.github.io/CONTRIBUTORS.txt
-Code distributed by Google as part of the polymer project is also
-subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
-*/
-'use strict';var c=!(window.ShadyDOM&&window.ShadyDOM.inUse),f;function g(a){f=a&&a.shimcssproperties?!1:c||!(navigator.userAgent.match("AppleWebKit/601")||!window.CSS||!CSS.supports||!CSS.supports("box-shadow","0 0 0 var(--foo)"))}window.ShadyCSS&&void 0!==window.ShadyCSS.nativeCss?f=window.ShadyCSS.nativeCss:window.ShadyCSS?(g(window.ShadyCSS),window.ShadyCSS=void 0):g(window.WebComponents&&window.WebComponents.flags);var h=f;function k(a,b){for(var d in b)null===d?a.style.removeProperty(d):a.style.setProperty(d,b[d])};var l=null,m=window.HTMLImports&&window.HTMLImports.whenReady||null,q;function r(){var a=t;requestAnimationFrame(function(){m?m(a):(l||(l=new Promise(function(a){q=a}),"complete"===document.readyState?q():document.addEventListener("readystatechange",function(){"complete"===document.readyState&&q()})),l.then(function(){a&&a()}))})};var u=null,t=null;function v(){this.customStyles=[];this.enqueued=!1}function x(a){!a.enqueued&&t&&(a.enqueued=!0,r())}v.prototype.c=function(a){a.__seenByShadyCSS||(a.__seenByShadyCSS=!0,this.customStyles.push(a),x(this))};v.prototype.b=function(a){if(a.__shadyCSSCachedStyle)return a.__shadyCSSCachedStyle;var b;a.getStyle?b=a.getStyle():b=a;return b};
-v.prototype.a=function(){for(var a=this.customStyles,b=0;b<a.length;b++){var d=a[b];if(!d.__shadyCSSCachedStyle){var e=this.b(d);if(e){var n=e.__appliedElement;if(n)for(var p=0;p<e.attributes.length;p++){var w=e.attributes[p];n.setAttribute(w.name,w.value)}e=n||e;u&&u(e);d.__shadyCSSCachedStyle=e}}}return a};v.prototype.addCustomStyle=v.prototype.c;v.prototype.getStyleForCustomStyle=v.prototype.b;v.prototype.processStyles=v.prototype.a;
-Object.defineProperties(v.prototype,{transformCallback:{get:function(){return u},set:function(a){u=a}},validateCallback:{get:function(){return t},set:function(a){var b=!1;t||(b=!0);t=a;b&&x(this)}}});var y=new v;window.ShadyCSS||(window.ShadyCSS={prepareTemplate:function(){},styleSubtree:function(a,b){y.a();k(a,b)},styleElement:function(){y.a()},styleDocument:function(a){y.a();k(document.body,a)},getComputedStyleValue:function(a,b){return(a=window.getComputedStyle(a).getPropertyValue(b))?a.trim():""},nativeCss:h,nativeShadow:c});window.ShadyCSS.CustomStyleInterface=y;}).call(this);
-
-//# sourceMappingURL=custom-style-interface.min.js.map
-
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(10);
-
-__webpack_require__(1);
-
-__webpack_require__(14);
-
-
-(function() {
-  'use strict';
-
-  /**
-   * Element mixin for recording  dynamic associations between item paths in a
-   * master `items` array and a `selected` array such that path changes to the
-   * master array (at the host) element or elsewhere via data-binding) are
-   * correctly propagated to items in the selected array and vice-versa.
-   *
-   * The `items` property accepts an array of user data, and via the
-   * `select(item)` and `deselect(item)` API, updates the `selected` property
-   * which may be bound to other parts of the application, and any changes to
-   * sub-fields of `selected` item(s) will be kept in sync with items in the
-   * `items` array.  When `multi` is false, `selected` is a property
-   * representing the last selected item.  When `multi` is true, `selected`
-   * is an array of multiply selected items.
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   */
-  let ArraySelectorMixin = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_ArraySelectorMixin}
-     */
-    class ArraySelectorMixin extends superClass {
-
-      static get properties() {
-
-        return {
-
-          /**
-           * An array containing items from which selection will be made.
-           */
-          items: {
-            type: Array,
-          },
-
-          /**
-           * When `true`, multiple items may be selected at once (in this case,
-           * `selected` is an array of currently selected items).  When `false`,
-           * only one item may be selected at a time.
-           */
-          multi: {
-            type: Boolean,
-            value: false,
-          },
-
-          /**
-           * When `multi` is true, this is an array that contains any selected.
-           * When `multi` is false, this is the currently selected item, or `null`
-           * if no item is selected.
-           */
-          selected: {
-            type: Object,
-            notify: true
-          },
-
-          /**
-           * When `multi` is false, this is the currently selected item, or `null`
-           * if no item is selected.
-           */
-          selectedItem: {
-            type: Object,
-            notify: true
-          },
-
-          /**
-           * When `true`, calling `select` on an item that is already selected
-           * will deselect the item.
-           */
-          toggle: {
-            type: Boolean,
-            value: false
-          }
-
-        }
-      }
-
-      static get observers() {
-        return ['__updateSelection(multi, items.*)']
-      }
-
-      constructor() {
-        super();
-        this.__lastItems = null;
-        this.__lastMulti = null;
-        this.__selectedMap = null;
-      }
-
-      __updateSelection(multi, itemsInfo) {
-        let path = itemsInfo.path;
-        if (path == 'items') {
-          // Case 1 - items array changed, so diff against previous array and
-          // deselect any removed items and adjust selected indices
-          let newItems = itemsInfo.base || [];
-          let lastItems = this.__lastItems;
-          let lastMulti = this.__lastMulti;
-          if (multi !== lastMulti) {
-            this.clearSelection();
-          }
-          if (lastItems) {
-            let splices = Polymer.ArraySplice.calculateSplices(newItems, lastItems);
-            this.__applySplices(splices);
-          }
-          this.__lastItems = newItems;
-          this.__lastMulti = multi;
-        } else if (itemsInfo.path == 'items.splices') {
-          // Case 2 - got specific splice information describing the array mutation:
-          // deselect any removed items and adjust selected indices
-          this.__applySplices(itemsInfo.value.indexSplices);
-        } else {
-          // Case 3 - an array element was changed, so deselect the previous
-          // item for that index if it was previously selected
-          let part = path.slice('items.'.length);
-          let idx = parseInt(part, 10);
-          if ((part.indexOf('.') < 0) && part == idx) {
-            this.__deselectChangedIdx(idx);
-          }
-        }
-      }
-
-      __applySplices(splices) {
-        let selected = this.__selectedMap;
-        // Adjust selected indices and mark removals
-        for (let i=0; i<splices.length; i++) {
-          let s = splices[i];
-          selected.forEach((idx, item) => {
-            if (idx < s.index) {
-              // no change
-            } else if (idx >= s.index + s.removed.length) {
-              // adjust index
-              selected.set(item, idx + s.addedCount - s.removed.length);
-            } else {
-              // remove index
-              selected.set(item, -1);
-            }
-          });
-          for (let j=0; j<s.addedCount; j++) {
-            let idx = s.index + j;
-            if (selected.has(this.items[idx])) {
-              selected.set(this.items[idx], idx);
-            }
-          }
-        }
-        // Update linked paths
-        this.__updateLinks();
-        // Remove selected items that were removed from the items array
-        let sidx = 0;
-        selected.forEach((idx, item) => {
-          if (idx < 0) {
-            if (this.multi) {
-              this.splice('selected', sidx, 1);
-            } else {
-              this.selected = this.selectedItem = null;
-            }
-            selected.delete(item);
-          } else {
-            sidx++;
-          }
-        });
-      }
-
-      __updateLinks() {
-        this.__dataLinkedPaths = {};
-        if (this.multi) {
-          let sidx = 0;
-          this.__selectedMap.forEach(idx => {
-            if (idx >= 0) {
-              this.linkPaths('items.' + idx, 'selected.' + sidx++);
-            }
-          });
-        } else {
-          this.__selectedMap.forEach(idx => {
-            this.linkPaths('selected', 'items.' + idx);
-            this.linkPaths('selectedItem', 'items.' + idx);
-          });
-        }
-      }
-
-      /**
-       * Clears the selection state.
-       *
-       */
-      clearSelection() {
-        // Unbind previous selection
-        this.__dataLinkedPaths = {};
-        // The selected map stores 3 pieces of information:
-        // key: items array object
-        // value: items array index
-        // order: selected array index
-        this.__selectedMap = new Map();
-        // Initialize selection
-        this.selected = this.multi ? [] : null
-        this.selectedItem = null;
-      }
-
-      /**
-       * Returns whether the item is currently selected.
-       *
-       * @param {*} item Item from `items` array to test
-       * @return {boolean} Whether the item is selected
-       */
-      isSelected(item) {
-        return this.__selectedMap.has(item);
-      }
-
-      /**
-       * Returns whether the item is currently selected.
-       *
-       * @param {*} idx Index from `items` array to test
-       * @return {boolean} Whether the item is selected
-       */
-      isIndexSelected(idx) {
-        return this.isSelected(this.items[idx]);
-      }
-
-      __deselectChangedIdx(idx) {
-        let sidx = this.__selectedIndexForItemIndex(idx);
-        if (sidx >= 0) {
-          let i = 0;
-          this.__selectedMap.forEach((idx, item) => {
-            if (sidx == i++) {
-              this.deselect(item);
-            }
-          });
-        }
-      }
-
-      __selectedIndexForItemIndex(idx) {
-        let selected = this.__dataLinkedPaths['items.' + idx];
-        if (selected) {
-          return parseInt(selected.slice('selected.'.length), 10);
-        }
-      }
-
-      /**
-       * Deselects the given item if it is already selected.
-       *
-       * @param {*} item Item from `items` array to deselect
-       */
-      deselect(item) {
-        let idx = this.__selectedMap.get(item);
-        if (idx >= 0) {
-          this.__selectedMap.delete(item);
-          let sidx;
-          if (this.multi) {
-            sidx = this.__selectedIndexForItemIndex(idx);
-          }
-          this.__updateLinks();
-          if (this.multi) {
-            this.splice('selected', sidx, 1);
-          } else {
-            this.selected = this.selectedItem = null;
-          }
-        }
-      }
-
-      /**
-       * Deselects the given index if it is already selected.
-       *
-       * @param {number} idx Index from `items` array to deselect
-       */
-      deselectIndex(idx) {
-        this.deselect(this.items[idx]);
-      }
-
-      /**
-       * Selects the given item.  When `toggle` is true, this will automatically
-       * deselect the item if already selected.
-       *
-       * @param {*} item Item from `items` array to select
-       */
-      select(item) {
-        this.selectIndex(this.items.indexOf(item));
-      }
-
-      /**
-       * Selects the given index.  When `toggle` is true, this will automatically
-       * deselect the item if already selected.
-       *
-       * @param {number} idx Index from `items` array to select
-       */
-      selectIndex(idx) {
-        let item = this.items[idx];
-        if (!this.isSelected(item)) {
-          if (!this.multi) {
-            this.__selectedMap.clear();
-          }
-          this.__selectedMap.set(item, idx);
-          this.__updateLinks();
-          if (this.multi) {
-            this.push('selected', item);
-          } else {
-            this.selected = this.selectedItem = item;
-          }
-        } else if (this.toggle) {
-          this.deselectIndex(idx);
-        }
-      }
-
-    }
-
-    return ArraySelectorMixin;
-
-  });
-
-  // export mixin
-  Polymer.ArraySelectorMixin = ArraySelectorMixin;
-
-  /**
-   * @constructor
-   * @extends {Polymer.Element}
-   * @implements {Polymer_ArraySelectorMixin}
-   */
-  let baseArraySelector = ArraySelectorMixin(Polymer.Element);
-
-  /**
-   * Element implementing the `Polymer.ArraySelector` mixin, which records
-   * dynamic associations between item paths in a master `items` array and a
-   * `selected` array such that path changes to the master array (at the host)
-   * element or elsewhere via data-binding) are correctly propagated to items
-   * in the selected array and vice-versa.
-   *
-   * The `items` property accepts an array of user data, and via the
-   * `select(item)` and `deselect(item)` API, updates the `selected` property
-   * which may be bound to other parts of the application, and any changes to
-   * sub-fields of `selected` item(s) will be kept in sync with items in the
-   * `items` array.  When `multi` is false, `selected` is a property
-   * representing the last selected item.  When `multi` is true, `selected`
-   * is an array of multiply selected items.
-   *
-   * Example:
-   *
-   * ```html
-   * <dom-module id="employee-list">
-   *
-   *   <template>
-   *
-   *     <div> Employee list: </div>
-   *     <template is="dom-repeat" id="employeeList" items="{{employees}}">
-   *         <div>First name: <span>{{item.first}}</span></div>
-   *         <div>Last name: <span>{{item.last}}</span></div>
-   *         <button on-click="toggleSelection">Select</button>
-   *     </template>
-   *
-   *     <array-selector id="selector" items="{{employees}}" selected="{{selected}}" multi toggle></array-selector>
-   *
-   *     <div> Selected employees: </div>
-   *     <template is="dom-repeat" items="{{selected}}">
-   *         <div>First name: <span>{{item.first}}</span></div>
-   *         <div>Last name: <span>{{item.last}}</span></div>
-   *     </template>
-   *
-   *   </template>
-   *
-   * </dom-module>
-   * ```
-   *
-   * ```js
-   * Polymer({
-   *   is: 'employee-list',
-   *   ready() {
-   *     this.employees = [
-   *         {first: 'Bob', last: 'Smith'},
-   *         {first: 'Sally', last: 'Johnson'},
-   *         ...
-   *     ];
-   *   },
-   *   toggleSelection(e) {
-   *     let item = this.$.employeeList.itemForElement(e.target);
-   *     this.$.selector.select(item);
-   *   }
-   * });
-   * ```
-   *
-   * @polymerElement
-   * @extends Polymer.Element
-   * @mixes Polymer.ArraySelectorMixin
-   * @memberof Polymer
-   * @summary Custom element that links paths between an input `items` array and
-   *   an output `selected` item or array based on calls to its selection API.
-   */
-  class ArraySelector extends baseArraySelector {
-    // Not needed to find template; can be removed once the analyzer
-    // can find the tag name from customElements.define call
-    static get is() { return 'array-selector' }
-  }
-  customElements.define(ArraySelector.is, ArraySelector);
-  Polymer.ArraySelector = ArraySelector;
-
-})();
-
-
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(40);
-
-__webpack_require__(16);
-
-
-(function() {
-  'use strict';
-
-  const attr = 'include';
-
-  const CustomStyleInterface = window.ShadyCSS.CustomStyleInterface;
-
-  /**
-   * Custom element for defining styles in the main document that can take
-   * advantage of several special features of Polymer's styling system:
-   *
-   * - Document styles defined in a custom-style are shimmed to ensure they
-   *   do not leak into local DOM when running on browsers without native
-   *   Shadow DOM.
-   * - Custom properties used by Polymer's shim for cross-scope styling may
-   *   be defined in an custom-style. Use the :root selector to define custom
-   *   properties that apply to all custom elements.
-   *
-   * To use, simply wrap an inline `<style>` tag in the main document whose
-   * CSS uses these features with a `<custom-style>` element.
-   *
-   * @extends HTMLElement
-   * @memberof Polymer
-   * @summary Custom element for defining styles in the main document that can
-   *   take advantage of Polymer's style scoping and custom properties shims.
-   */
-  class CustomStyle extends HTMLElement {
-    constructor() {
-      super();
-      this._style = null;
-      CustomStyleInterface.addCustomStyle(this);
-    }
-    /**
-     * Returns the light-DOM `<style>` child this element wraps.  Upon first
-     * call any style modules referenced via the `include` attribute will be
-     * concatenated to this element's `<style>`.
-     *
-     * @return {HTMLStyleElement} This element's light-DOM `<style>`
-     */
-    getStyle() {
-      if (this._style) {
-        return this._style;
-      }
-      const style = this.querySelector('style');
-      if (!style) {
-        return;
-      }
-      this._style = style;
-      const include = style.getAttribute(attr);
-      if (include) {
-        style.removeAttribute(attr);
-        style.textContent = Polymer.StyleGather.cssFromModules(include) + style.textContent;
-      }
-      return this._style;
-    }
-  }
-
-  window.customElements.define('custom-style', CustomStyle);
-  Polymer.CustomStyle = CustomStyle;
-})();
-
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(5);
-
-__webpack_require__(2);
-
-__webpack_require__(13);
-
-
-
-  (function() {
-    'use strict';
-
-    /**
-     * @constructor
-     * @implements {Polymer_PropertyEffects}
-     * @implements {Polymer_OptionalMutableData}
-     * @implements {Polymer_GestureEventListener}
-     * @extends {HTMLElement}
-     */
-    const domBindBase =
-      Polymer.GestureEventListeners(
-        Polymer.OptionalMutableData(
-          Polymer.PropertyEffects(HTMLElement)));
-
-    /**
-     * Custom element to allow using Polymer's template features (data binding,
-     * declarative event listeners, etc.) in the main document without defining
-     * a new custom element.
-     *
-     * `<template>` tags utilizing bindings may be wrapped with the `<dom-bind>`
-     * element, which will immediately stamp the wrapped template into the main
-     * document and bind elements to the `dom-bind` element itself as the
-     * binding scope.
-     *
-     * @extends HTMLElement
-     * @mixes Polymer.PropertyEffects
-     * @memberof Polymer
-     * @summary Custom element to allow using Polymer's template features (data
-     *   binding, declarative event listeners, etc.) in the main document.
-     */
-    class DomBind extends domBindBase {
-
-      static get observedAttributes() { return ['mutable-data'] }
-
-      // assumes only one observed attribute
-      attributeChangedCallback() {
-        this.mutableData = true;
-      }
-
-      connectedCallback() {
-        this.render();
-      }
-
-      disconnectedCallback() {
-        this.__removeChildren();
-      }
-
-      __insertChildren() {
-        this.parentNode.insertBefore(this.root, this);
-      }
-
-      __removeChildren() {
-        if (this.__children) {
-          for (let i=0; i<this.__children.length; i++) {
-            this.root.appendChild(this.__children[i]);
-          }
-        }
-      }
-
-      /**
-       * Forces the element to render its content. This is typically only
-       * necessary to call if HTMLImports with the async attribute are used.
-       */
-      render() {
-        let template;
-        if (!this.__children) {
-          template = template || this.querySelector('template');
-          if (!template) {
-            // Wait until childList changes and template should be there by then
-            let observer = new MutationObserver(() => {
-              template = this.querySelector('template');
-              if (template) {
-                observer.disconnect();
-                this.render(template);
-              } else {
-                throw new Error('dom-bind requires a <template> child');
-              }
-            })
-            observer.observe(this, {childList: true});
-            return;
-          }
-          this.root = this._stampTemplate(template);
-          this.$ = this.root.$;
-          this.__children = [];
-          for (let n=this.root.firstChild; n; n=n.nextSibling) {
-            this.__children[this.__children.length] = n;
-          }
-          this._enableProperties();
-        }
-        this.__insertChildren();
-        this.dispatchEvent(new CustomEvent('dom-change', {
-          bubbles: true,
-          composed: true
-        }));
-      }
-
-    }
-
-    customElements.define('dom-bind', DomBind);
-
-  })();
-
-
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(10);
-
-__webpack_require__(9);
-
-__webpack_require__(7);
-
-__webpack_require__(8);
-
-
-
-(function() {
-  'use strict';
-
-  /**
-   * The `<dom-if>` element will stamp a light-dom `<template>` child when
-   * the `if` property becomes truthy, and the template can use Polymer
-   * data-binding and declarative event features when used in the context of
-   * a Polymer element's template.
-   *
-   * When `if` becomes falsey, the stamped content is hidden but not
-   * removed from dom. When `if` subsequently becomes truthy again, the content
-   * is simply re-shown. This approach is used due to its favorable performance
-   * characteristics: the expense of creating template content is paid only
-   * once and lazily.
-   *
-   * Set the `restamp` property to true to force the stamped content to be
-   * created / destroyed when the `if` condition changes.
-   *
-   * @polymerElement
-   * @extends Polymer.Element
-   * @memberof Polymer
-   * @summary Custom element that conditionally stamps and hides or removes
-   *   template content based on a boolean flag.
-   */
-  class DomIf extends Polymer.Element {
-
-    // Not needed to find template; can be removed once the analyzer
-    // can find the tag name from customElements.define call
-    static get is() { return 'dom-if'; }
-
-    static get template() { return null; }
-
-    static get properties() {
-
-      return {
-
-        /**
-         * Fired whenever DOM is added or removed/hidden by this template (by
-         * default, rendering occurs lazily).  To force immediate rendering, call
-         * `render`.
-         *
-         * @event dom-change
-         */
-
-        /**
-         * A boolean indicating whether this template should stamp.
-         */
-        if: {
-          type: Boolean,
-          observer: '__debounceRender'
-        },
-
-        /**
-         * When true, elements will be removed from DOM and discarded when `if`
-         * becomes false and re-created and added back to the DOM when `if`
-         * becomes true.  By default, stamped elements will be hidden but left
-         * in the DOM when `if` becomes false, which is generally results
-         * in better performance.
-         */
-        restamp: {
-          type: Boolean,
-          observer: '__debounceRender'
-        }
-
-      }
-
-    }
-
-    constructor() {
-      super();
-      this.__renderDebouncer = null;
-      this.__invalidProps = null;
-      this.__instance = null;
-    }
-
-    __debounceRender() {
-      // Render is async for 2 reasons:
-      // 1. To eliminate dom creation trashing if user code thrashes `if` in the
-      //    same turn. This was more common in 1.x where a compound computed
-      //    property could result in the result changing multiple times, but is
-      //    mitigated to a large extent by batched property processing in 2.x.
-      // 2. To avoid double object propagation when a bag including values bound
-      //    to the `if` property as well as one or more hostProps could enqueue
-      //    the <dom-if> to flush before the <template>'s host property
-      //    forwarding. In that scenario creating an instance would result in
-      //    the host props being set once, and then the enqueued changes on the
-      //    template would set properties a second time, potentially causing an
-      //    object to be set to an instance more than once.  Creating the
-      //    instance async from flushing data ensures this doesn't happen. If
-      //    we wanted a sync option in the future, simply having <dom-if> flush
-      //    (or clear) its template's pending host properties before creating
-      //    the instance would also avoid the problem.
-      this.__renderDebouncer = Polymer.Debouncer.debounce(
-            this.__renderDebouncer
-          , Polymer.Async.microTask
-          , () => this.__render());
-      Polymer.enqueueDebouncer(this.__renderDebouncer);
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback();
-      if (!this.parentNode ||
-          (this.parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE &&
-           !this.parentNode.host)) {
-        this.__teardownInstance();
-      }
-    }
-
-    connectedCallback() {
-      super.connectedCallback();
-      if (this.if) {
-        this.__debounceRender();
-      }
-    }
-
-    /**
-     * Forces the element to render its content. Normally rendering is
-     * asynchronous to a provoking change. This is done for efficiency so
-     * that multiple changes trigger only a single render. The render method
-     * should be called if, for example, template rendering is required to
-     * validate application state.
-     */
-    render() {
-      Polymer.flush();
-    }
-
-    __render() {
-      if (this.if) {
-        if (!this.__ensureInstance()) {
-          // No template found yet
-          return;
-        }
-        this._showHideChildren();
-      } else if (this.restamp) {
-        this.__teardownInstance();
-      }
-      if (!this.restamp && this.__instance) {
-        this._showHideChildren();
-      }
-      if (this.if != this._lastIf) {
-        this.dispatchEvent(new CustomEvent('dom-change', {
-          bubbles: true,
-          composed: true
-        }));
-        this._lastIf = this.if;
-      }
-    }
-
-    __ensureInstance() {
-      let parentNode = this.parentNode;
-      // Guard against element being detached while render was queued
-      if (parentNode) {
-        if (!this.__ctor) {
-          let template = this.querySelector('template');
-          if (!template) {
-            // Wait until childList changes and template should be there by then
-            let observer = new MutationObserver(() => {
-              if (this.querySelector('template')) {
-                observer.disconnect();
-                this.__render();
-              } else {
-                throw new Error('dom-if requires a <template> child');
-              }
-            })
-            observer.observe(this, {childList: true});
-            return false;
-          }
-          this.__ctor = Polymer.Templatize.templatize(template, this, {
-            // dom-if templatizer instances require `mutable: true`, as
-            // `__syncHostProperties` relies on that behavior to sync objects
-            mutableData: true,
-            forwardHostProp: function(prop, value) {
-              if (this.__instance) {
-                if (this.if) {
-                  this.__instance.forwardHostProp(prop, value);
-                } else {
-                  // If we have an instance but are squelching host property
-                  // forwarding due to if being false, note the invalidated
-                  // properties so `__syncHostProperties` can sync them the next
-                  // time `if` becomes true
-                  this.__invalidProps = this.__invalidProps || Object.create(null);
-                  this.__invalidProps[Polymer.Path.root(prop)] = true;
-                }
-              }
-            }
-          });
-        }
-        if (!this.__instance) {
-          this.__instance = new this.__ctor();
-          parentNode.insertBefore(this.__instance.root, this);
-        } else {
-          this.__syncHostProperties();
-          let c$ = this.__instance.children;
-          if (c$ && c$.length) {
-            // Detect case where dom-if was re-attached in new position
-            let lastChild = this.previousSibling;
-            if (lastChild !== c$[c$.length-1]) {
-              for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
-                parentNode.insertBefore(n, this);
-              }
-            }
-          }
-        }
-      }
-      return true;
-    }
-
-    __syncHostProperties() {
-      let props = this.__invalidProps;
-      if (props) {
-        for (let prop in props) {
-          this.__instance._setPendingProperty(prop, this.__dataHost[prop]);
-        }
-        this.__invalidProps = null;
-        this.__instance._flushProperties();
-      }
-    }
-
-    __teardownInstance() {
-      if (this.__instance) {
-        let c$ = this.__instance.children;
-        if (c$ && c$.length) {
-          // use first child parent, for case when dom-if may have been detached
-          let parent = c$[0].parentNode;
-          for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
-            parent.removeChild(n);
-          }
-        }
-        this.__instance = null;
-        this.__invalidProps = null;
-      }
-    }
-
-    _showHideChildren() {
-      let hidden = this.__hideTemplateChildren__ || !this.if;
-      if (this.__instance) {
-        this.__instance._showHideChildren(hidden);
-      }
-    }
-
-  }
-
-  customElements.define(DomIf.is, DomIf);
-
-  Polymer.DomIf = DomIf;
-
-})();
-
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(4);
-
-
-(function() {
-  'use strict';
-
-  let modules = {};
-  let lcModules = {};
-  function findModule(id) {
-    return modules[id] || lcModules[id.toLowerCase()];
-  }
-
-  function styleOutsideTemplateCheck(inst) {
-    if (inst.querySelector('style')) {
-      console.warn('dom-module %s has style outside template', inst.id);
-    }
-  }
-
-  /**
-   * The `dom-module` element registers the dom it contains to the name given
-   * by the module's id attribute. It provides a unified database of dom
-   * accessible via its static `import` API.
-   *
-   * A key use case of `dom-module` is for providing custom element `<template>`s
-   * via HTML imports that are parsed by the native HTML parser, that can be
-   * relocated during a bundling pass and still looked up by `id`.
-   *
-   * Example:
-   *
-   *     <dom-module id="foo">
-   *       <img src="stuff.png">
-   *     </dom-module>
-   *
-   * Then in code in some other location that cannot access the dom-module above
-   *
-   *     let img = document.createElement('dom-module').import('foo', 'img');
-   *
-   * @extends HTMLElement
-   * @memberof Polymer
-   * @summary Custom element that provides a registry of relocatable DOM content
-   *   by `id` that is agnostic to bundling.
-   */
-  class DomModule extends HTMLElement {
-
-    static get observedAttributes() { return ['id'] }
-
-    /**
-     * Retrieves the element specified by the css `selector` in the module
-     * registered by `id`. For example, this.import('foo', 'img');
-     * @param {string} id The id of the dom-module in which to search.
-     * @param {string=} selector The css selector by which to find the element.
-     * @return {Element} Returns the element which matches `selector` in the
-     * module registered at the specified `id`.
-     */
-    static import(id, selector) {
-      if (id) {
-        let m = findModule(id);
-        if (m && selector) {
-          return m.querySelector(selector);
-        }
-        return m;
-      }
-      return null;
-    }
-
-    attributeChangedCallback(name, old, value) {
-      if (old !== value) {
-        this.register();
-      }
-    }
-
-    /**
-     * The absolute URL of the original location of this `dom-module`.
-     *
-     * This value will differ from this element's `ownerDocument` in the
-     * following ways:
-     * - Takes into account any `assetpath` attribute added during bundling
-     *   to indicate the original location relative to the bundled location
-     * - Uses the HTMLImports polyfill's `importForElement` API to ensure
-     *   the path is relative to the import document's location since
-     *   `ownerDocument` is not currently polyfilled
-     */
-    get assetpath() {
-      // Don't override existing assetpath.
-      if (!this.__assetpath) {
-        // note: assetpath set via an attribute must be relative to this
-        // element's location; accomodate polyfilled HTMLImports
-        const owner = window.HTMLImports && HTMLImports.importForElement ?
-          HTMLImports.importForElement(this) || document : this.ownerDocument;
-        const url = Polymer.ResolveUrl.resolveUrl(
-          this.getAttribute('assetpath') || '', owner.baseURI);
-        this.__assetpath = Polymer.ResolveUrl.pathFromUrl(url);
-      }
-      return this.__assetpath;
-    }
-
-    /**
-     * Registers the dom-module at a given id. This method should only be called
-     * when a dom-module is imperatively created. For
-     * example, `document.createElement('dom-module').register('foo')`.
-     * @param {string=} id The id at which to register the dom-module.
-     */
-    register(id) {
-      id = id || this.id;
-      if (id) {
-        this.id = id;
-        // store id separate from lowercased id so that
-        // in all cases mixedCase id will stored distinctly
-        // and lowercase version is a fallback
-        modules[id] = this;
-        lcModules[id.toLowerCase()] = this;
-        styleOutsideTemplateCheck(this);
-      }
-    }
-  }
-
-  DomModule.prototype['modules'] = modules;
-
-  customElements.define('dom-module', DomModule);
-
-  // export
-  Polymer.DomModule = DomModule;
-
-})();
-
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(10);
-
-__webpack_require__(9);
-
-__webpack_require__(7);
-
-__webpack_require__(8);
-
-__webpack_require__(2);
-
-
-(function() {
-  'use strict';
-
-  /**
-   * @constructor
-   * @implements {Polymer_OptionalMutableData}
-   * @extends {Polymer.Element}
-   */
-  const domRepeatBase = Polymer.OptionalMutableData(Polymer.Element);
-
-  /**
-   * The `<dom-repeat>` element will automatically stamp and binds one instance
-   * of template content to each object in a user-provided array.
-   * `dom-repeat` accepts an `items` property, and one instance of the template
-   * is stamped for each item into the DOM at the location of the `dom-repeat`
-   * element.  The `item` property will be set on each instance's binding
-   * scope, thus templates should bind to sub-properties of `item`.
-   *
-   * Example:
-   *
-   * ```html
-   * <dom-module id="employee-list">
-   *
-   *   <template>
-   *
-   *     <div> Employee list: </div>
-   *     <template is="dom-repeat" items="{{employees}}">
-   *         <div>First name: <span>{{item.first}}</span></div>
-   *         <div>Last name: <span>{{item.last}}</span></div>
-   *     </template>
-   *
-   *   </template>
-   *
-   *   <script>
-   *     Polymer({
-   *       is: 'employee-list',
-   *       ready: function() {
-   *         this.employees = [
-   *             {first: 'Bob', last: 'Smith'},
-   *             {first: 'Sally', last: 'Johnson'},
-   *             ...
-   *         ];
-   *       }
-   *     });
-   *   < /script>
-   *
-   * </dom-module>
-   * ```
-   *
-   * Notifications for changes to items sub-properties will be forwarded to template
-   * instances, which will update via the normal structured data notification system.
-   *
-   * Mutations to the `items` array itself should be made using the Array
-   * mutation API's on `Polymer.Base` (`push`, `pop`, `splice`, `shift`,
-   * `unshift`), and template instances will be kept in sync with the data in the
-   * array.
-   *
-   * Events caught by event handlers within the `dom-repeat` template will be
-   * decorated with a `model` property, which represents the binding scope for
-   * each template instance.  The model is an instance of Polymer.Base, and should
-   * be used to manipulate data on the instance, for example
-   * `event.model.set('item.checked', true);`.
-   *
-   * Alternatively, the model for a template instance for an element stamped by
-   * a `dom-repeat` can be obtained using the `modelForElement` API on the
-   * `dom-repeat` that stamped it, for example
-   * `this.$.domRepeat.modelForElement(event.target).set('item.checked', true);`.
-   * This may be useful for manipulating instance data of event targets obtained
-   * by event handlers on parents of the `dom-repeat` (event delegation).
-   *
-   * A view-specific filter/sort may be applied to each `dom-repeat` by supplying a
-   * `filter` and/or `sort` property.  This may be a string that names a function on
-   * the host, or a function may be assigned to the property directly.  The functions
-   * should implemented following the standard `Array` filter/sort API.
-   *
-   * In order to re-run the filter or sort functions based on changes to sub-fields
-   * of `items`, the `observe` property may be set as a space-separated list of
-   * `item` sub-fields that should cause a re-filter/sort when modified.  If
-   * the filter or sort function depends on properties not contained in `items`,
-   * the user should observe changes to those properties and call `render` to update
-   * the view based on the dependency change.
-   *
-   * For example, for an `dom-repeat` with a filter of the following:
-   *
-   * ```js
-   * isEngineer: function(item) {
-   *     return item.type == 'engineer' || item.manager.type == 'engineer';
-   * }
-   * ```
-   *
-   * Then the `observe` property should be configured as follows:
-   *
-   * ```html
-   * <template is="dom-repeat" items="{{employees}}"
-   *           filter="isEngineer" observe="type manager.type">
-   * ```
-   *
-   * @polymerElement
-   * @memberof Polymer
-   * @extends Polymer.Element
-   * @mixes Polymer.MutableData
-   * @summary Custom element for stamping instance of a template bound to
-   *   items in an array.
-   */
-  class DomRepeat extends domRepeatBase {
-
-    // Not needed to find template; can be removed once the analyzer
-    // can find the tag name from customElements.define call
-    static get is() { return 'dom-repeat'; }
-
-    static get template() { return null; }
-
-    static get properties() {
-
-      /**
-       * Fired whenever DOM is added or removed by this template (by
-       * default, rendering occurs lazily).  To force immediate rendering, call
-       * `render`.
-       *
-       * @event dom-change
-       */
-      return {
-
-        /**
-         * An array containing items determining how many instances of the template
-         * to stamp and that that each template instance should bind to.
-         */
-        items: {
-          type: Array
-        },
-
-        /**
-         * The name of the variable to add to the binding scope for the array
-         * element associated with a given template instance.
-         */
-        as: {
-          type: String,
-          value: 'item'
-        },
-
-        /**
-         * The name of the variable to add to the binding scope with the index
-         * of the instance in the sorted and filtered list of rendered items.
-         * Note, for the index in the `this.items` array, use the value of the
-         * `itemsIndexAs` property.
-         */
-        indexAs: {
-          type: String,
-          value: 'index'
-        },
-
-        /**
-         * The name of the variable to add to the binding scope with the index
-         * of the instance in the `this.items` array. Note, for the index of
-         * this instance in the sorted and filtered list of rendered items,
-         * use the value of the `indexAs` property.
-         */
-        itemsIndexAs: {
-          type: String,
-          value: 'itemsIndex'
-        },
-
-        /**
-         * A function that should determine the sort order of the items.  This
-         * property should either be provided as a string, indicating a method
-         * name on the element's host, or else be an actual function.  The
-         * function should match the sort function passed to `Array.sort`.
-         * Using a sort function has no effect on the underlying `items` array.
-         */
-        sort: {
-          type: Function,
-          observer: '__sortChanged'
-        },
-
-        /**
-         * A function that can be used to filter items out of the view.  This
-         * property should either be provided as a string, indicating a method
-         * name on the element's host, or else be an actual function.  The
-         * function should match the sort function passed to `Array.filter`.
-         * Using a filter function has no effect on the underlying `items` array.
-         */
-        filter: {
-          type: Function,
-          observer: '__filterChanged'
-        },
-
-        /**
-         * When using a `filter` or `sort` function, the `observe` property
-         * should be set to a space-separated list of the names of item
-         * sub-fields that should trigger a re-sort or re-filter when changed.
-         * These should generally be fields of `item` that the sort or filter
-         * function depends on.
-         */
-        observe: {
-          type: String,
-          observer: '__observeChanged'
-        },
-
-        /**
-         * When using a `filter` or `sort` function, the `delay` property
-         * determines a debounce time after a change to observed item
-         * properties that must pass before the filter or sort is re-run.
-         * This is useful in rate-limiting shuffing of the view when
-         * item changes may be frequent.
-         */
-        delay: Number,
-
-        /**
-         * Count of currently rendered items after `filter` (if any) has been applied.
-         * If "chunking mode" is enabled, `renderedItemCount` is updated each time a
-         * set of template instances is rendered.
-         *
-         */
-        renderedItemCount: {
-          type: Number,
-          notify: true,
-          readOnly: true
-        },
-
-        /**
-         * Defines an initial count of template instances to render after setting
-         * the `items` array, before the next paint, and puts the `dom-repeat`
-         * into "chunking mode".  The remaining items will be created and rendered
-         * incrementally at each animation frame therof until all instances have
-         * been rendered.
-         */
-        initialCount: {
-          type: Number,
-          observer: '__initializeChunking'
-        },
-
-        /**
-         * When `initialCount` is used, this property defines a frame rate to
-         * target by throttling the number of instances rendered each frame to
-         * not exceed the budget for the target frame rate.  Setting this to a
-         * higher number will allow lower latency and higher throughput for
-         * things like event handlers, but will result in a longer time for the
-         * remaining items to complete rendering.
-         */
-        targetFramerate: {
-          type: Number,
-          value: 20
-        },
-
-        _targetFrameTime: {
-          type: Number,
-          computed: '__computeFrameTime(targetFramerate)'
-        }
-
-      }
-
-    }
-
-    static get observers() {
-      return [ '__itemsChanged(items.*)' ]
-    }
-
-    constructor() {
-      super();
-      this.__instances = [];
-      this.__limit = Infinity;
-      this.__pool = [];
-      this.__renderDebouncer = null;
-      this.__itemsIdxToInstIdx = {};
-      this.__chunkCount = null;
-      this.__lastChunkTime = null;
-      this.__needFullRefresh = false;
-      this.__sortFn = null;
-      this.__filterFn = null;
-      this.__observePaths = null;
-      this.__ctor = null;
-    }
-
-    disconnectedCallback() {
-      super.disconnectedCallback();
-      this.__isDetached = true;
-      for (let i=0; i<this.__instances.length; i++) {
-        this.__detachInstance(i);
-      }
-    }
-
-    connectedCallback() {
-      super.connectedCallback();
-      // only perform attachment if the element was previously detached.
-      if (this.__isDetached) {
-        this.__isDetached = false;
-        let parent = this.parentNode;
-        for (let i=0; i<this.__instances.length; i++) {
-          this.__attachInstance(i, parent);
-        }
-      }
-    }
-
-    __ensureTemplatized() {
-      // Templatizing (generating the instance constructor) needs to wait
-      // until ready, since won't have its template content handed back to
-      // it until then
-      if (!this.__ctor) {
-        let template = this.template = this.querySelector('template');
-        if (!template) {
-          // // Wait until childList changes and template should be there by then
-          let observer = new MutationObserver(() => {
-            if (this.querySelector('template')) {
-              observer.disconnect();
-              this.__render();
-            } else {
-              throw new Error('dom-repeat requires a <template> child');
-            }
-          })
-          observer.observe(this, {childList: true});
-          return false;
-        }
-        // Template instance props that should be excluded from forwarding
-        let instanceProps = {};
-        instanceProps[this.as] = true;
-        instanceProps[this.indexAs] = true;
-        instanceProps[this.itemsIndexAs] = true;
-        this.__ctor = Polymer.Templatize.templatize(template, this, {
-          mutableData: this.mutableData,
-          parentModel: true,
-          instanceProps: instanceProps,
-          forwardHostProp: function(prop, value) {
-            let i$ = this.__instances;
-            for (let i=0, inst; (i<i$.length) && (inst=i$[i]); i++) {
-              inst.forwardHostProp(prop, value);
-            }
-          },
-          notifyInstanceProp: function(inst, prop, value) {
-            if (Polymer.Path.matches(this.as, prop)) {
-              let idx = inst[this.itemsIndexAs];
-              if (prop == this.as) {
-                this.items[idx] = value;
-              }
-              let path = Polymer.Path.translate(this.as, 'items.' + idx, prop);
-              this.notifyPath(path, value);
-            }
-          }
-        });
-      }
-      return true;
-    }
-
-    __getMethodHost() {
-      // Technically this should be the owner of the outermost template.
-      // In shadow dom, this is always getRootNode().host, but we can
-      // approximate this via cooperation with our dataHost always setting
-      // `_methodHost` as long as there were bindings (or id's) on this
-      // instance causing it to get a dataHost.
-      return this.__dataHost._methodHost || this.__dataHost;
-    }
-
-    __sortChanged(sort) {
-      let methodHost = this.__getMethodHost();
-      this.__sortFn = sort && (typeof sort == 'function' ? sort :
-        function() { return methodHost[sort].apply(methodHost, arguments); });
-      this.__needFullRefresh = true;
-      if (this.items) {
-        this.__debounceRender(this.__render);
-      }
-    }
-
-    __filterChanged(filter) {
-      let methodHost = this.__getMethodHost();
-      this.__filterFn = filter && (typeof filter == 'function' ? filter :
-        function() { return methodHost[filter].apply(methodHost, arguments); });
-      this.__needFullRefresh = true;
-      if (this.items) {
-        this.__debounceRender(this.__render);
-      }
-    }
-
-    __computeFrameTime(rate) {
-      return Math.ceil(1000/rate);
-    }
-
-    __initializeChunking() {
-      if (this.initialCount) {
-        this.__limit = this.initialCount;
-        this.__chunkCount = this.initialCount;
-        this.__lastChunkTime = performance.now();
-      }
-    }
-
-    __tryRenderChunk() {
-      // Debounced so that multiple calls through `_render` between animation
-      // frames only queue one new rAF (e.g. array mutation & chunked render)
-      if (this.items && this.__limit < this.items.length) {
-        this.__debounceRender(this.__requestRenderChunk);
-      }
-    }
-
-    __requestRenderChunk() {
-      requestAnimationFrame(()=>this.__renderChunk());
-    }
-
-    __renderChunk() {
-      // Simple auto chunkSize throttling algorithm based on feedback loop:
-      // measure actual time between frames and scale chunk count by ratio
-      // of target/actual frame time
-      let currChunkTime = performance.now();
-      let ratio = this._targetFrameTime / (currChunkTime - this.__lastChunkTime);
-      this.__chunkCount = Math.round(this.__chunkCount * ratio) || 1;
-      this.__limit += this.__chunkCount;
-      this.__lastChunkTime = currChunkTime;
-      this.__debounceRender(this.__render);
-    }
-
-    __observeChanged() {
-      this.__observePaths = this.observe &&
-        this.observe.replace('.*', '.').split(' ');
-    }
-
-    __itemsChanged(change) {
-      if (this.items && !Array.isArray(this.items)) {
-        console.warn('dom-repeat expected array for `items`, found', this.items);
-      }
-      // If path was to an item (e.g. 'items.3' or 'items.3.foo'), forward the
-      // path to that instance synchronously (retuns false for non-item paths)
-      if (!this.__handleItemPath(change.path, change.value)) {
-        // Otherwise, the array was reset ('items') or spliced ('items.splices'),
-        // so queue a full refresh
-        this.__needFullRefresh = true;
-        this.__initializeChunking();
-        this.__debounceRender(this.__render);
-      }
-    }
-
-    __handleObservedPaths(path) {
-      if (this.__observePaths) {
-        path = path.substring(path.indexOf('.') + 1);
-        let paths = this.__observePaths;
-        for (let i=0; i<paths.length; i++) {
-          if (path.indexOf(paths[i]) === 0) {
-            this.__needFullRefresh = true;
-            this.__debounceRender(this.__render, this.delay);
-            return true;
-          }
-        }
-      }
-    }
-
-    /**
-     * @param {function()} fn Function to debounce.
-     * @param {number=} delay Delay in ms to debounce by.
-     */
-    __debounceRender(fn, delay) {
-      this.__renderDebouncer = Polymer.Debouncer.debounce(
-            this.__renderDebouncer
-          , delay > 0 ? Polymer.Async.timeOut.after(delay) : Polymer.Async.microTask
-          , fn.bind(this));
-      Polymer.enqueueDebouncer(this.__renderDebouncer);
-    }
-
-    /**
-     * Forces the element to render its content. Normally rendering is
-     * asynchronous to a provoking change. This is done for efficiency so
-     * that multiple changes trigger only a single render. The render method
-     * should be called if, for example, template rendering is required to
-     * validate application state.
-     */
-    render() {
-      // Queue this repeater, then flush all in order
-      this.__needFullRefresh = true;
-      this.__debounceRender(this.__render);
-      Polymer.flush();
-    }
-
-    __render() {
-      if (!this.__ensureTemplatized()) {
-        // No template found yet
-        return;
-      }
-      this.__applyFullRefresh();
-      // Reset the pool
-      // TODO(kschaaf): Reuse pool across turns and nested templates
-      // Now that objects/arrays are re-evaluated when set, we can safely
-      // reuse pooled instances across turns, however we still need to decide
-      // semantics regarding how long to hold, how many to hold, etc.
-      this.__pool.length = 0;
-      // Set rendered item count
-      this._setRenderedItemCount(this.__instances.length);
-      // Notify users
-      this.dispatchEvent(new CustomEvent('dom-change', {
-        bubbles: true,
-        composed: true
-      }));
-      // Check to see if we need to render more items
-      this.__tryRenderChunk();
-    }
-
-    __applyFullRefresh() {
-      const items = this.items || [];
-      let isntIdxToItemsIdx = new Array(items.length);
-      for (let i=0; i<items.length; i++) {
-        isntIdxToItemsIdx[i] = i;
-      }
-      // Apply user filter
-      if (this.__filterFn) {
-        isntIdxToItemsIdx = isntIdxToItemsIdx.filter((i, idx, array) =>
-          this.__filterFn(items[i], idx, array));
-      }
-      // Apply user sort
-      if (this.__sortFn) {
-        isntIdxToItemsIdx.sort((a, b) => this.__sortFn(items[a], items[b]));
-      }
-      // items->inst map kept for item path forwarding
-      const itemsIdxToInstIdx = this.__itemsIdxToInstIdx = {};
-      let instIdx = 0;
-      // Generate instances and assign items
-      const limit = Math.min(isntIdxToItemsIdx.length, this.__limit);
-      for (; instIdx<limit; instIdx++) {
-        let inst = this.__instances[instIdx];
-        let itemIdx = isntIdxToItemsIdx[instIdx];
-        let item = items[itemIdx];
-        itemsIdxToInstIdx[itemIdx] = instIdx;
-        if (inst && instIdx < this.__limit) {
-          inst._setPendingProperty(this.as, item);
-          inst._setPendingProperty(this.indexAs, instIdx);
-          inst._setPendingProperty(this.itemsIndexAs, itemIdx);
-          inst._flushProperties();
-        } else {
-          this.__insertInstance(item, instIdx, itemIdx);
-        }
-      }
-      // Remove any extra instances from previous state
-      for (let i=this.__instances.length-1; i>=instIdx; i--) {
-        this.__detachAndRemoveInstance(i);
-      }
-    }
-
-    __detachInstance(idx) {
-      let inst = this.__instances[idx];
-      for (let i=0; i<inst.children.length; i++) {
-        let el = inst.children[i];
-        inst.root.appendChild(el);
-      }
-      return inst;
-    }
-
-    __attachInstance(idx, parent) {
-      let inst = this.__instances[idx];
-      parent.insertBefore(inst.root, this);
-    }
-
-    __detachAndRemoveInstance(idx) {
-      let inst = this.__detachInstance(idx);
-      if (inst) {
-        this.__pool.push(inst);
-      }
-      this.__instances.splice(idx, 1);
-    }
-
-    __stampInstance(item, instIdx, itemIdx) {
-      let model = {};
-      model[this.as] = item;
-      model[this.indexAs] = instIdx;
-      model[this.itemsIndexAs] = itemIdx;
-      return new this.__ctor(model);
-    }
-
-    __insertInstance(item, instIdx, itemIdx) {
-      let inst = this.__pool.pop();
-      if (inst) {
-        // TODO(kschaaf): If the pool is shared across turns, hostProps
-        // need to be re-set to reused instances in addition to item
-        inst._setPendingProperty(this.as, item);
-        inst._setPendingProperty(this.indexAs, instIdx);
-        inst._setPendingProperty(this.itemsIndexAs, itemIdx);
-        inst._flushProperties();
-      } else {
-        inst = this.__stampInstance(item, instIdx, itemIdx);
-      }
-      let beforeRow = this.__instances[instIdx + 1];
-      let beforeNode = beforeRow ? beforeRow.children[0] : this;
-      this.parentNode.insertBefore(inst.root, beforeNode);
-      this.__instances[instIdx] = inst;
-      return inst;
-    }
-
-    // Implements extension point from Templatize mixin
-    _showHideChildren(hidden) {
-      for (let i=0; i<this.__instances.length; i++) {
-        this.__instances[i]._showHideChildren(hidden);
-      }
-    }
-
-    // Called as a side effect of a host items.<key>.<path> path change,
-    // responsible for notifying item.<path> changes to inst for key
-    __handleItemPath(path, value) {
-      let itemsPath = path.slice(6); // 'items.'.length == 6
-      let dot = itemsPath.indexOf('.');
-      let itemsIdx = dot < 0 ? itemsPath : itemsPath.substring(0, dot);
-      // If path was index into array...
-      if (itemsIdx == parseInt(itemsIdx, 10)) {
-        let itemSubPath = dot < 0 ? '' : itemsPath.substring(dot+1);
-        // See if the item subpath should trigger a full refresh...
-        if (!this.__handleObservedPaths(itemSubPath)) {
-          // If not, forward to the instance for that index
-          let instIdx = this.__itemsIdxToInstIdx[itemsIdx];
-          let inst = this.__instances[instIdx];
-          if (inst) {
-            let itemPath = this.as + (itemSubPath ? '.' + itemSubPath : '');
-            // This is effectively `notifyPath`, but avoids some of the overhead
-            // of the public API
-            inst._setPendingPropertyOrPath(itemPath, value, false, true);
-            inst._flushProperties();
-          }
-        }
-        return true;
-      }
-    }
-
-    /**
-     * Returns the item associated with a given element stamped by
-     * this `dom-repeat`.
-     *
-     * Note, to modify sub-properties of the item,
-     * `modelForElement(el).set('item.<sub-prop>', value)`
-     * should be used.
-     *
-     * @param {HTMLElement} el Element for which to return the item.
-     * @return {*} Item associated with the element.
-     */
-    itemForElement(el) {
-      let instance = this.modelForElement(el);
-      return instance && instance[this.as];
-    }
-
-    /**
-     * Returns the inst index for a given element stamped by this `dom-repeat`.
-     * If `sort` is provided, the index will reflect the sorted order (rather
-     * than the original array order).
-     *
-     * @param {HTMLElement} el Element for which to return the index.
-     * @return {*} Row index associated with the element (note this may
-     *   not correspond to the array index if a user `sort` is applied).
-     */
-    indexForElement(el) {
-      let instance = this.modelForElement(el);
-      return instance && instance[this.indexAs];
-    }
-
-    /**
-     * Returns the template "model" associated with a given element, which
-     * serves as the binding scope for the template instance the element is
-     * contained in. A template model is an instance of `Polymer.Base`, and
-     * should be used to manipulate data associated with this template instance.
-     *
-     * Example:
-     *
-     *   let model = modelForElement(el);
-     *   if (model.index < 10) {
-     *     model.set('item.checked', true);
-     *   }
-     *
-     * @param {HTMLElement} el Element for which to return a template model.
-     * @return {TemplateInstanceBase} Model representing the binding scope for
-     *   the element.
-     */
-    modelForElement(el) {
-      return Polymer.Templatize.modelForElement(this.template, el);
-    }
-
-  }
-
-  customElements.define(DomRepeat.is, DomRepeat);
-
-  Polymer.DomRepeat = DomRepeat;
-
-})();
-
-
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(11);
-
-
-
-  (function() {
-
-    'use strict';
-
-    let LegacyElementMixin = Polymer.LegacyElementMixin;
-
-    let metaProps = {
-      attached: true,
-      detached: true,
-      ready: true,
-      created: true,
-      beforeRegister: true,
-      registered: true,
-      attributeChanged: true,
-      // meta objects
-      behaviors: true
-    }
-
-    /**
-     * Applies a "legacy" behavior or array of behaviors to the provided class.
-     *
-     * Note: this method will automatically also apply the `Polymer.LegacyElementMixin`
-     * to ensure that any legacy behaviors can rely on legacy Polymer API on
-     * the underlying element.
-     *
-     * @param {Object|Array} behaviors Behavior object or array of behaviors.
-     * @param {HTMLElement} klass Element class.
-     * @return {HTMLElement} Returns a new Element class extended by the
-     * passed in `behaviors` and also by `Polymer.LegacyElementMixin`.
-     * @memberof Polymer
-     */
-    function mixinBehaviors(behaviors, klass) {
-      if (!behaviors) {
-        return klass;
-      }
-      // NOTE: ensure the bahevior is extending a class with
-      // legacy element api. This is necessary since behaviors expect to be able
-      // to access 1.x legacy api.
-      klass = LegacyElementMixin(klass);
-      if (!Array.isArray(behaviors)) {
-        behaviors = [behaviors];
-      }
-      let superBehaviors = klass.prototype.behaviors;
-      // get flattened, deduped list of behaviors *not* already on super class
-      behaviors = flattenBehaviors(behaviors, null, superBehaviors);
-      // mixin new behaviors
-      klass = _mixinBehaviors(behaviors, klass);
-      if (superBehaviors) {
-        behaviors = superBehaviors.concat(behaviors);
-      }
-      // Set behaviors on prototype for BC...
-      klass.prototype.behaviors = behaviors;
-      return klass;
-    }
-
-    // NOTE:
-    // 1.x
-    // Behaviors were mixed in *in reverse order* and de-duped on the fly.
-    // The rule was that behavior properties were copied onto the element
-    // prototype if and only if the property did not already exist.
-    // Given: Polymer{ behaviors: [A, B, C, A, B]}, property copy order was:
-    // (1), B, (2), A, (3) C. This means prototype properties win over
-    // B properties win over A win over C. This mirrors what would happen
-    // with inheritance if element extended B extended A extended C.
-    //
-    // Again given, Polymer{ behaviors: [A, B, C, A, B]}, the resulting
-    // `behaviors` array was [C, A, B].
-    // Behavior lifecycle methods were called in behavior array order
-    // followed by the element, e.g. (1) C.created, (2) A.created,
-    // (3) B.created, (4) element.created. There was no support for
-    // super, and "super-behavior" methods were callable only by name).
-    //
-    // 2.x
-    // Behaviors are made into proper mixins which live in the
-    // element's prototype chain. Behaviors are placed in the element prototype
-    // eldest to youngest and de-duped youngest to oldest:
-    // So, first [A, B, C, A, B] becomes [C, A, B] then,
-    // the element prototype becomes (oldest) (1) Polymer.Element, (2) class(C),
-    // (3) class(A), (4) class(B), (5) class(Polymer({...})).
-    // Result:
-    // This means element properties win over B properties win over A win
-    // over C. (same as 1.x)
-    // If lifecycle is called (super then me), order is
-    // (1) C.created, (2) A.created, (3) B.created, (4) element.created
-    // (again same as 1.x)
-    function _mixinBehaviors(behaviors, klass) {
-      for (let i=0; i<behaviors.length; i++) {
-        let b = behaviors[i];
-        if (b) {
-          klass = Array.isArray(b) ? _mixinBehaviors(b, klass) :
-            GenerateClassFromInfo(b, klass);
-        }
-      }
-      return klass;
-    }
-
-    /**
-     * @param {Array} behaviors List of behaviors to flatten.
-     * @param {Array=} list Target list to flatten behaviors into.
-     * @param {Array=} exclude List of behaviors to exclude from the list.
-     * @return {Array} Returns the list of flattened behaviors.
-     */
-    function flattenBehaviors(behaviors, list, exclude) {
-      list = list || [];
-      for (let i=behaviors.length-1; i >= 0; i--) {
-        let b = behaviors[i];
-        if (b) {
-          if (Array.isArray(b)) {
-            flattenBehaviors(b, list);
-          } else {
-            // dedup
-            if (list.indexOf(b) < 0 && (!exclude || exclude.indexOf(b) < 0)) {
-              list.unshift(b);
-            }
-          }
-        } else {
-          console.warn('behavior is null, check for missing or 404 import');
-        }
-      }
-      return list;
-    }
-
-    function GenerateClassFromInfo(info, Base) {
-
-      class PolymerGenerated extends Base {
-
-        static get properties() {
-          return info.properties;
-        }
-
-        static get observers() {
-          return info.observers;
-        }
-
-        static get template() {
-          // get template first from any imperative set in `info._template`
-          return info._template ||
-            // next look in dom-module associated with this element's is.
-            Polymer.DomModule.import(this.is, 'template') ||
-            // next look for superclass template (note: use superclass symbol
-            // to ensure correct `this.is`)
-            Base.template ||
-            // finally fall back to `_template` in element's protoype.
-            this.prototype._template;
-        }
-
-        created() {
-          super.created();
-          if (info.created) {
-            info.created.call(this);
-          }
-        }
-
-        _registered() {
-          super._registered();
-          /* NOTE: `beforeRegister` is called here for bc, but the behavior
-           is different than in 1.x. In 1.0, the method was called *after*
-           mixing prototypes together but *before* processing of meta-objects.
-           However, dynamic effects can still be set here and can be done either
-           in `beforeRegister` or `registered`. It is no longer possible to set
-           `is` in `beforeRegister` as you could in 1.x.
-          */
-          if (info.beforeRegister) {
-            info.beforeRegister.call(Object.getPrototypeOf(this));
-          }
-          if (info.registered) {
-            info.registered.call(Object.getPrototypeOf(this));
-          }
-        }
-
-        _applyListeners() {
-          super._applyListeners();
-          if (info.listeners) {
-            for (let l in info.listeners) {
-              this._addMethodEventListenerToNode(this, l, info.listeners[l]);
-            }
-          }
-        }
-
-        // note: exception to "super then me" rule;
-        // do work before calling super so that super attributes
-        // only apply if not already set.
-        _ensureAttributes() {
-          if (info.hostAttributes) {
-            for (let a in info.hostAttributes) {
-              this._ensureAttribute(a, info.hostAttributes[a]);
-            }
-          }
-          super._ensureAttributes();
-        }
-
-        ready() {
-          super.ready();
-          if (info.ready) {
-            info.ready.call(this);
-          }
-        }
-
-        attached() {
-          super.attached();
-          if (info.attached) {
-            info.attached.call(this);
-          }
-        }
-
-        detached() {
-          super.detached();
-          if (info.detached) {
-            info.detached.call(this);
-          }
-        }
-
-        attributeChanged(name, old, value) {
-          super.attributeChanged(name, old, value);
-          if (info.attributeChanged) {
-            info.attributeChanged.call(this, name, old, value);
-          }
-       }
-      }
-
-      PolymerGenerated.generatedFrom =  info
-
-      for (let p in info) {
-        // NOTE: cannot copy `metaProps` methods onto prototype at least because
-        // `super.ready` must be called and is not included in the user fn.
-        if (!(p in metaProps)) {
-          let pd = Object.getOwnPropertyDescriptor(info, p);
-          if (pd) {
-            Object.defineProperty(PolymerGenerated.prototype, p, pd);
-          }
-        }
-      }
-
-      return PolymerGenerated;
-    }
-
-    /**
-     * Generates a class that extends `Polymer.LegacyElement` based on the
-     * provided info object.  Metadata objects on the `info` object
-     * (`properties`, `observers`, `listeners`, `behaviors`, `is`) are used
-     * for Polymer's meta-programming systems, and any functions are copied
-     * to the generated class.
-     *
-     * Valid "metadata" values are as follows:
-     *
-     * `is`: String providing the tag name to register the element under. In
-     * addition, if a `dom-module` with the same id exists, the first template
-     * in that `dom-module` will be stamped into the shadow root of this element,
-     * with support for declarative event listeners (`on-...`), Polymer data
-     * bindings (`[[...]]` and `{{...}}`), and id-based node finding into
-     * `this.$`.
-     *
-     * `properties`: Object describing property-related metadata used by Polymer
-     * features (key: property names, value: object containing property metadata).
-     * Valid keys in per-property metadata include:
-     * - `type` (String|Number|Object|Array|...): Used by
-     *   `attributeChangedCallback` to determine how string-based attributes
-     *   are deserialized to JavaScript property values.
-     * - `notify` (boolean): Causes a change in the property to fire a
-     *   non-bubbling event called `<property>-changed`. Elements that have
-     *   enabled two-way binding to the property use this event to observe changes.
-     * - `readOnly` (boolean): Creates a getter for the property, but no setter.
-     *   To set a read-only property, use the private setter method
-     *   `_setProperty(property, value)`.
-     * - `observer` (string): Observer method name that will be called when
-     *   the property changes. The arguments of the method are
-     *   `(value, previousValue)`.
-     * - `computed` (string): String describing method and dependent properties
-     *   for computing the value of this property (e.g. `'computeFoo(bar, zot)'`).
-     *   Computed properties are read-only by default and can only be changed
-     *   via the return value of the computing method.
-     *
-     * `observers`: Array of strings describing multi-property observer methods
-     *  and their dependent properties (e.g. `'observeABC(a, b, c)'`).
-     *
-     * `listeners`: Object describing event listeners to be added to each
-     *  instance of this element (key: event name, value: method name).
-     *
-     * `behaviors`: Array of additional `info` objects containing metadata
-     * and callbacks in the same format as the `info` object here which are
-     * merged into this element.
-     *
-     * `hostAttributes`: Object listing attributes to be applied to the host
-     *  once created (key: attribute name, value: attribute value).  Values
-     *  are serialized based on the type of the value.  Host attributes should
-     *  generally be limited to attributes such as `tabIndex` and `aria-...`.
-     *  Attributes in `hostAttributes` are only applied if a user-supplied
-     *  attribute is not already present (attributes in markup override
-     *  `hostAttributes`).
-     *
-     * In addition, the following Polymer-specific callbacks may be provided:
-     * - `registered`: called after first instance of this element,
-     * - `created`: called during `constructor`
-     * - `attached`: called during `connectedCallback`
-     * - `detached`: called during `disconnectedCallback`
-     * - `ready`: called before first `attached`, after all properties of
-     *   this element have been propagated to its template and all observers
-     *   have run
-     *
-     * @param {Object} info Object containing Polymer metadata and functions
-     *   to become class methods.
-     * @return {Polymer.LegacyElement} Generated class
-     * @memberof Polymer
-     */
-    Polymer.Class = function(info) {
-      if (!info) {
-        console.warn('Polymer.Class requires `info` argument');
-      }
-      let klass = GenerateClassFromInfo(info, info.behaviors ?
-        // note: mixinBehaviors ensures `LegacyElementMixin`.
-        mixinBehaviors(info.behaviors, HTMLElement) :
-        LegacyElementMixin(HTMLElement));
-      // decorate klass with registration info
-      klass.is = info.is;
-      return klass;
-    }
-
-    Polymer.mixinBehaviors = mixinBehaviors;
-
-  })();
-
-
-
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(2);
-
-
-(function() {
-  'use strict';
-
-  let mutablePropertyChange = Polymer.MutableData._mutablePropertyChange;
-
-  /**
-   * Legacy element behavior to skip strict dirty-checking for objects and arrays,
-   * (always consider them to be "dirty") for use on legacy API Polymer elements.
-   *
-   * By default, `Polymer.PropertyEffects` performs strict dirty checking on
-   * objects, which means that any deep modifications to an object or array will
-   * not be propagated unless "immutable" data patterns are used (i.e. all object
-   * references from the root to the mutation were changed).
-   *
-   * Polymer also provides a proprietary data mutation and path notification API
-   * (e.g. `notifyPath`, `set`, and array mutation API's) that allow efficient
-   * mutation and notification of deep changes in an object graph to all elements
-   * bound to the same object graph.
-   *
-   * In cases where neither immutable patterns nor the data mutation API can be
-   * used, applying this mixin will cause Polymer to skip dirty checking for
-   * objects and arrays (always consider them to be "dirty").  This allows a
-   * user to make a deep modification to a bound object graph, and then either
-   * simply re-set the object (e.g. `this.items = this.items`) or call `notifyPath`
-   * (e.g. `this.notifyPath('items')`) to update the tree.  Note that all
-   * elements that wish to be updated based on deep mutations must apply this
-   * mixin or otherwise skip strict dirty checking for objects/arrays.
-   *
-   * In order to make the dirty check strategy configurable, see
-   * `Polymer.OptionalMutableDataBehavior`.
-   *
-   * Note, the performance characteristics of propagating large object graphs
-   * will be worse as opposed to using strict dirty checking with immutable
-   * patterns or Polymer's path notification API.
-   *
-   * @polymerBehavior
-   * @memberof Polymer
-   * @summary Behavior to skip strict dirty-checking for objects and
-   *   arrays
-   */
-  Polymer.MutableDataBehavior = {
-
-    /**
-     * Overrides `Polymer.PropertyEffects` to provide option for skipping
-     * strict equality checking for Objects and Arrays.
-     *
-     * This method pulls the value to dirty check against from the `__dataTemp`
-     * cache (rather than the normal `__data` cache) for Objects.  Since the temp
-     * cache is cleared at the end of a turn, this implementation allows
-     * side-effects of deep object changes to be processed by re-setting the
-     * same object (using the temp cache as an in-turn backstop to prevent
-     * cycles due to 2-way notification).
-     *
-     * @param {string} property Property name
-     * @param {*} value New property value
-     * @param {*} old Previous property value
-     * @return {boolean} Whether the property should be considered a change
-     * @protected
-     */
-    _shouldPropertyChange(property, value, old) {
-      return mutablePropertyChange(this, property, value, old, true);
-    }
-  };
-
-  /**
-   * Legacy element behavior to add the optional ability to skip strict
-   * dirty-checking for objects and arrays (always consider them to be
-   * "dirty") by setting a `mutable-data` attribute on an element instance.
-   *
-   * By default, `Polymer.PropertyEffects` performs strict dirty checking on
-   * objects, which means that any deep modifications to an object or array will
-   * not be propagated unless "immutable" data patterns are used (i.e. all object
-   * references from the root to the mutation were changed).
-   *
-   * Polymer also provides a proprietary data mutation and path notification API
-   * (e.g. `notifyPath`, `set`, and array mutation API's) that allow efficient
-   * mutation and notification of deep changes in an object graph to all elements
-   * bound to the same object graph.
-   *
-   * In cases where neither immutable patterns nor the data mutation API can be
-   * used, applying this mixin will allow Polymer to skip dirty checking for
-   * objects and arrays (always consider them to be "dirty").  This allows a
-   * user to make a deep modification to a bound object graph, and then either
-   * simply re-set the object (e.g. `this.items = this.items`) or call `notifyPath`
-   * (e.g. `this.notifyPath('items')`) to update the tree.  Note that all
-   * elements that wish to be updated based on deep mutations must apply this
-   * mixin or otherwise skip strict dirty checking for objects/arrays.
-   *
-   * While this behavior adds the ability to forgo Object/Array dirty checking,
-   * the `mutableData` flag defaults to false and must be set on the instance.
-   *
-   * Note, the performance characteristics of propagating large object graphs
-   * will be worse by relying on `mutableData: true` as opposed to using
-   * strict dirty checking with immutable patterns or Polymer's path notification
-   * API.
-   *
-   * @polymerBehavior
-   * @memberof Polymer
-   * @summary Behavior to optionally skip strict dirty-checking for objects and
-   *   arrays
-   */
-  Polymer.OptionalMutableDataBehavior = {
-
-    properties: {
-      /**
-       * Instance-level flag for configuring the dirty-checking strategy
-       * for this element.  When true, Objects and Arrays will skip dirty
-       * checking, otherwise strict equality checking will be used.
-       */
-      mutableData: Boolean
-    },
-
-    /**
-     * Overrides `Polymer.PropertyEffects` to skip strict equality checking
-     * for Objects and Arrays.
-     *
-     * Pulls the value to dirty check against from the `__dataTemp` cache
-     * (rather than the normal `__data` cache) for Objects.  Since the temp
-     * cache is cleared at the end of a turn, this implementation allows
-     * side-effects of deep object changes to be processed by re-setting the
-     * same object (using the temp cache as an in-turn backstop to prevent
-     * cycles due to 2-way notification).
-     *
-     * @param {string} property Property name
-     * @param {*} value New property value
-     * @param {*} old Previous property value
-     * @return {boolean} Whether the property should be considered a change
-     * @protected
-     */
-    _shouldPropertyChange(property, value, old) {
-      return mutablePropertyChange(this, property, value, old, this.mutableData);
-    }
-  };
-
-})();
-
-
-
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(26);
-
-
-
-  (function() {
-    'use strict';
-
-    /**
-     * Legacy class factory and registration helper for defining Polymer
-     * elements.
-     *
-     * This method is equivalent to
-     * `customElements.define(info.is, Polymer.Class(info));`
-     *
-     * See `Polymer.Class` for details on valid legacy metadata format for `info`.
-     *
-     * @override
-     * @function Polymer
-     * @param {Object} info Object containing Polymer metadata and functions
-     *   to become class methods.
-     * @return {Polymer.LegacyElement} Generated class
-     */
-    window.Polymer._polymerFn = function(info) {
-      // if input is a `class` (aka a function with a prototype), use the prototype
-      // remember that the `constructor` will never be called
-      let klass;
-      if (typeof info === 'function') {
-        klass = info;
-      } else {
-        klass = Polymer.Class(info);
-      }
-      customElements.define(klass.is, klass);
-      return klass;
-    };
-
-  })();
-
-
-
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(15);
-
-__webpack_require__(33);
-
-__webpack_require__(8);
-
-
-(function() {
-  'use strict';
-
-  const p = Element.prototype;
-  const normalizedMatchesSelector = p.matches || p.matchesSelector ||
-    p.mozMatchesSelector || p.msMatchesSelector ||
-    p.oMatchesSelector || p.webkitMatchesSelector;
-
-  /**
-   * Cross-platform `element.matches` shim.
-   *
-   * @function matchesSelector
-   * @memberof Polymer.dom
-   * @param {Node} node Node to check selector against
-   * @param {string} selector Selector to match
-   * @return {boolean} True if node matched selector
-   */
-  const matchesSelector = function(node, selector) {
-    return normalizedMatchesSelector.call(node, selector);
-  }
-
-  /**
-   * Node API wrapper class returned from `Polymer.dom.(target)` when
-   * `target` is a `Node`.
-   */
-  class DomApi {
-
-    constructor(node) {
-      this.node = node;
-    }
-
-    /**
-     * Returns an instance of `Polymer.FlattenedNodesObserver` that
-     * listens for node changes on this element.
-     *
-     * @param {Function} callback Called when direct or distributed children
-     *   of this element changes
-     * @return {Polymer.FlattenedNodesObserver} Observer instance
-     */
-    observeNodes(callback) {
-      return new Polymer.FlattenedNodesObserver(this.node, callback);
-    }
-
-    /**
-     * Disconnects an observer previously created via `observeNodes`
-     *
-     * @param {Polymer.FlattenedNodesObserver} observerHandle Observer instance
-     *   to disconnect.
-     */
-    unobserveNodes(observerHandle) {
-      observerHandle.disconnect();
-    }
-
-    /**
-     * Provided as a backwards-compatible API only.  This method does nothing.
-     */
-    notifyObserver() {}
-
-    /**
-     * Returns true if the provided node is contained with this element's
-     * light-DOM children or shadow root, including any nested shadow roots
-     * of children therein.
-     *
-     * @param {Node} node Node to test
-     * @return {boolean} Returns true if the given `node` is contained within
-     *   this element's light or shadow DOM.
-     */
-    deepContains(node) {
-      if (this.node.contains(node)) {
-        return true;
-      }
-      let n = node;
-      let doc = node.ownerDocument;
-      // walk from node to `this` or `document`
-      while (n && n !== doc && n !== this.node) {
-        // use logical parentnode, or native ShadowRoot host
-        n = n.parentNode || n.host;
-      }
-      return n === this.node;
-    }
-
-    /**
-     * Returns the root node of this node.  Equivalent to `getRoodNode()`.
-     *
-     * @return {Node} Top most element in the dom tree in which the node
-     * exists. If the node is connected to a document this is either a
-     * shadowRoot or the document; otherwise, it may be the node
-     * itself or a node or document fragment containing it.
-     */
-    getOwnerRoot() {
-      return this.node.getRootNode();
-    }
-
-    /**
-     * For slot elements, returns the nodes assigned to the slot; otherwise
-     * an empty array. It is equivalent to `<slot>.addignedNodes({flatten:true})`.
-     *
-     * @return {Array<Node>} Array of assigned nodes
-     */
-    getDistributedNodes() {
-      return (this.node.localName === 'slot') ?
-        this.node.assignedNodes({flatten: true}) :
-        [];
-    }
-
-    /**
-     * Returns an array of all slots this element was distributed to.
-     *
-     * @return {Array<HTMLSlotElement>} Description
-     */
-    getDestinationInsertionPoints() {
-      let ip$ = [];
-      let n = this.node.assignedSlot;
-      while (n) {
-        ip$.push(n);
-        n = n.assignedSlot;
-      }
-      return ip$;
-    }
-
-    /**
-     * Calls `importNode` on the `ownerDocument` for this node.
-     *
-     * @param {Node} node Node to import
-     * @param {boolean} deep True if the node should be cloned deeply during
-     *   import
-     * @return {Node} Clone of given node imported to this owner document
-     */
-    importNode(node, deep) {
-      let doc = this.node instanceof Document ? this.node :
-        this.node.ownerDocument;
-      return doc.importNode(node, deep);
-    }
-
-    /**
-     * Returns a flattened list of all child nodes and nodes distributed
-     * to child slots.
-     *
-     * @return {type} Description
-     */
-    getEffectiveChildNodes() {
-      return Polymer.FlattenedNodesObserver.getFlattenedNodes(this.node);
-    }
-
-    /**
-     * Returns a filtered list of flattened child elements for this element based
-     * on the given selector.
-     *
-     * @param {string} selector Selector to filter nodes against
-     * @return {Array<HTMLElement>} List of flattened child elements
-     */
-    queryDistributedElements(selector) {
-      let c$ = this.getEffectiveChildNodes();
-      let list = [];
-      for (let i=0, l=c$.length, c; (i<l) && (c=c$[i]); i++) {
-        if ((c.nodeType === Node.ELEMENT_NODE) &&
-            matchesSelector(c, selector)) {
-          list.push(c);
-        }
-      }
-      return list;
-    }
-
-    /**
-     * For shadow roots, returns the currently focused element within this
-     * shadow root.
-     *
-     * @return {Node|undefined} Currently focused element
-     */
-    get activeElement() {
-      let node = this.node;
-      return node._activeElement !== undefined ? node._activeElement : node.activeElement;
-    }
-  }
-
-  function forwardMethods(proto, methods) {
-    for (let i=0; i < methods.length; i++) {
-      let method = methods[i];
-      proto[method] = function() {
-        return this.node[method].apply(this.node, arguments);
-      }
-    }
-  }
-
-  function forwardReadOnlyProperties(proto, properties) {
-    for (let i=0; i < properties.length; i++) {
-      let name = properties[i];
-      Object.defineProperty(proto, name, {
-        get: function() {
-          return this.node[name];
-        },
-        configurable: true
-      });
-    }
-  }
-
-  function forwardProperties(proto, properties) {
-    for (let i=0; i < properties.length; i++) {
-      let name = properties[i];
-      Object.defineProperty(proto, name, {
-        get: function() {
-          return this.node[name];
-        },
-        set: function(value) {
-          this.node[name] = value;
-        },
-        configurable: true
-      });
-    }
-  }
-
-  forwardMethods(DomApi.prototype, [
-    'cloneNode', 'appendChild', 'insertBefore', 'removeChild',
-    'replaceChild', 'setAttribute', 'removeAttribute',
-    'querySelector', 'querySelectorAll'
-  ]);
-
-  forwardReadOnlyProperties(DomApi.prototype, [
-    'parentNode', 'firstChild', 'lastChild',
-    'nextSibling', 'previousSibling', 'firstElementChild',
-    'lastElementChild', 'nextElementSibling', 'previousElementSibling',
-    'childNodes', 'children', 'classList'
-  ]);
-
-  forwardProperties(DomApi.prototype, [
-    'textContent', 'innerHTML'
-  ]);
-
-
-  /**
-   * Event API wrapper class returned from `Polymer.dom.(target)` when
-   * `target` is an `Event`.
-   */
-  class EventApi {
-    constructor(event) {
-      this.event = event;
-    }
-
-    /**
-     * Returns the first node on the `composedPath` of this event.
-     *
-     * @return {Node} The node this event was dispatched to
-     */
-    get rootTarget() {
-      return this.event.composedPath()[0];
-    }
-
-    /**
-     * Returns the local (re-targeted) target for this event.
-     *
-     * @return {Node} The local (re-targeted) target for this event.
-     */
-    get localTarget() {
-      return this.event.target;
-    }
-
-    /**
-     * Returns the `composedPath` for this event.
-     */
-    get path() {
-      return this.event.composedPath();
-    }
-  }
-
-  /**
-   * Legacy DOM and Event manipulation API wrapper factory used to abstract
-   * differences between native Shadow DOM and "Shady DOM" when polyfilling on
-   * older browsers.
-   *
-   * Note that in Polymer 2.x use of `Polymer.dom` is no longer required and
-   * in the majority of cases simply facades directly to the standard native
-   * API.
-   *
-   * @namespace
-   * @summary Legacy DOM and Event manipulation API wrapper factory used to
-   * abstract differences between native Shadow DOM and "Shady DOM."
-   * @memberof Polymer
-   * @param {Node|Event} obj Node or event to operate on
-   * @return {DomApi|EventApi} Wrapper providing either node API or event API
-   */
-  Polymer.dom = function(obj) {
-    obj = obj || document;
-    let ctor = obj instanceof Event ? EventApi : DomApi;
-    if (!obj.__domApi) {
-      obj.__domApi = new ctor(obj);
-    }
-    return obj.__domApi;
-  };
-
-  Polymer.dom.matchesSelector = matchesSelector;
-
-  /**
-   * Forces several classes of asynchronously queued tasks to flush:
-   * - Debouncers added via `Polymer.enqueueDebouncer`
-   * - ShadyDOM distribution
-   *
-   * This method facades to `Polymer.flush`.
-   *
-   * @memberof Polymer.dom
-   */
-  Polymer.dom.flush = Polymer.flush;
-
-  /**
-   * Adds a `Polymer.Debouncer` to a list of globally flushable tasks.
-   *
-   * This method facades to `Polymer.enqueueDebouncer`.
-   *
-   * @memberof Polymer.dom
-   * @param {Polymer.Debouncer} debouncer Debouncer to enqueue
-   */
-  Polymer.dom.addDebouncer = Polymer.enqueueDebouncer;
-})();
-
-
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(9);
-
-
-  (function() {
-    'use strict';
-
-    /**
-     * The `Polymer.Templatizer` behavior adds methods to generate instances of
-     * templates that are each managed by an anonymous `Polymer.PropertyEffects`
-     * instance where data-bindings in the stamped template content are bound to
-     * accessors on itself.
-     *
-     * This behavior is provided in Polymer 2.x as a hybrid-element convenience
-     * only.  For non-hybrid usage, the `Polymer.Templatize` library
-     * should be used instead.
-     *
-     * Example:
-     *
-     *     // Get a template from somewhere, e.g. light DOM
-     *     let template = this.querySelector('template');
-     *     // Prepare the template
-     *     this.templatize(template);
-     *     // Instance the template with an initial data model
-     *     let instance = this.stamp({myProp: 'initial'});
-     *     // Insert the instance's DOM somewhere, e.g. light DOM
-     *     Polymer.dom(this).appendChild(instance.root);
-     *     // Changing a property on the instance will propagate to bindings
-     *     // in the template
-     *     instance.myProp = 'new value';
-     *
-     * Users of `Templatizer` may need to implement the following abstract
-     * API's to determine how properties and paths from the host should be
-     * forwarded into to instances:
-     *
-     *     _forwardHostPropV2: function(prop, value)
-     *
-     * Likewise, users may implement these additional abstract API's to determine
-     * how instance-specific properties that change on the instance should be
-     * forwarded out to the host, if necessary.
-     *
-     *     _notifyInstancePropV2: function(inst, prop, value)
-     *
-     * In order to determine which properties are instance-specific and require
-     * custom notification via `_notifyInstanceProp`, define an `_instanceProps`
-     * object containing keys for each instance prop, for example:
-     *
-     *     _instanceProps: {
-     *       item: true,
-     *       index: true
-     *     }
-     *
-     * Any properties used in the template that are not defined in _instanceProp
-     * will be forwarded out to the Templatize `owner` automatically.
-     *
-     * Users may also implement the following abstract function to show or
-     * hide any DOM generated using `stamp`:
-     *
-     *     _showHideChildren: function(shouldHide)
-     *
-     * Note that some callbacks are suffixed with `V2` in the Polymer 2.x behavior
-     * as the implementations will need to differ from the callbacks required
-     * by the 1.x Templatizer API due to changes in the `TemplateInstance` API
-     * between versions 1.x and 2.x.
-     *
-     * @polymerBehavior
-     * @memberof Polymer
-     */
-    let Templatizer = {
-
-      /**
-       * Generates an anonymous `TemplateInstance` class (stored as `this.ctor`)
-       * for the provided template.  This method should be called once per
-       * template to prepare an element for stamping the template, followed
-       * by `stamp` to create new instances of the template.
-       *
-       * @param {HTMLTemplateElement} template Template to prepare
-       * @param {boolean=} mutableData When `true`, the generated class will skip
-       *   strict dirty-checking for objects and arrays (always consider them to
-       *   be "dirty"). Defaults to false.
-       */
-      templatize(template, mutableData) {
-        this._templatizerTemplate = template;
-        this.ctor = Polymer.Templatize.templatize(template, this, {
-          mutableData: Boolean(mutableData),
-          parentModel: this._parentModel,
-          instanceProps: this._instanceProps,
-          forwardHostProp: this._forwardHostPropV2,
-          notifyInstanceProp: this._notifyInstancePropV2
-        });
-      },
-
-      /**
-       * Creates an instance of the template prepared by `templatize`.  The object
-       * returned is an instance of the anonymous class generated by `templatize`
-       * whose `root` property is a document fragment containing newly cloned
-       * template content, and which has property accessors corresponding to
-       * properties referenced in template bindings.
-       *
-       * @param {Object=} model Object containing initial property values to
-       *   populate into the template bindings.
-       * @return {TemplateInstanceBase} Returns the created instance of
-       * the template prepared by `templatize`.
-       */
-      stamp(model) {
-        return new this.ctor(model);
-      },
-
-      /**
-       * Returns the template "model" (`TemplateInstance`) associated with
-       * a given element, which serves as the binding scope for the template
-       * instance the element is contained in.  A template model should be used
-       * to manipulate data associated with this template instance.
-       *
-       * @param {HTMLElement} el Element for which to return a template model.
-       * @return {TemplateInstanceBase} Model representing the binding scope for
-       *   the element.
-       */
-      modelForElement(el) {
-        return Polymer.Templatize.modelForElement(this._templatizerTemplate, el);
-      }
-    };
-
-    Polymer.Templatizer = Templatizer;
-
-  })();
-
-
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(1);
-
-__webpack_require__(6);
-
-__webpack_require__(3);
-
-
-(function() {
-
-  'use strict';
-
-  let caseMap = Polymer.CaseMap;
-
-  let microtask = Polymer.Async.microTask;
-
-  // Save map of native properties; this forms a blacklist or properties
-  // that won't have their values "saved" by `saveAccessorValue`, since
-  // reading from an HTMLElement accessor from the context of a prototype throws
-  const nativeProperties = {};
-  let proto = HTMLElement.prototype;
-  while (proto) {
-    let props = Object.getOwnPropertyNames(proto);
-    for (let i=0; i<props.length; i++) {
-      nativeProperties[props[i]] = true;
-    }
-    proto = Object.getPrototypeOf(proto);
-  }
-
-  /**
-   * Used to save the value of a property that will be overridden with
-   * an accessor. If the `model` is a prototype, the values will be saved
-   * in `__dataProto`, and it's up to the user (or downstream mixin) to
-   * decide how/when to set these values back into the accessors.
-   * If `model` is already an instance (it has a `__data` property), then
-   * the value will be set as a pending property, meaning the user should
-   * call `_invalidateProperties` or `_flushProperties` to take effect
-   *
-   * @param {Object} model Prototype or instance
-   * @param {string} property Name of property
-   * @private
-   */
-  function saveAccessorValue(model, property) {
-    // Don't read/store value for any native properties since they could throw
-    if (!nativeProperties[property]) {
-      let value = model[property];
-      if (value !== undefined) {
-        if (model.__data) {
-          // Adding accessor to instance; update the property
-          // It is the user's responsibility to call _flushProperties
-          model._setPendingProperty(property, value);
-        } else {
-          // Adding accessor to proto; save proto's value for instance-time use
-          if (!model.__dataProto) {
-            model.__dataProto = {};
-          } else if (!model.hasOwnProperty(JSCompiler_renameProperty('__dataProto', model))) {
-            model.__dataProto = Object.create(model.__dataProto);
-          }
-          model.__dataProto[property] = value;
-        }
-      }
-    }
-  }
-
-  /**
-   * Element class mixin that provides basic meta-programming for creating one
-   * or more property accessors (getter/setter pair) that enqueue an async
-   * (batched) `_propertiesChanged` callback.
-   *
-   * For basic usage of this mixin, simply declare attributes to observe via
-   * the standard `static get observedAttributes()`, implement `_propertiesChanged`
-   * on the class, and then call `MyClass.createPropertiesForAttributes()` once
-   * on the class to generate property accessors for each observed attribute
-   * prior to instancing.  Last, call `this._flushProperties()` once to enable
-   * the accessors.
-   *
-   * Any `observedAttributes` will automatically be
-   * deserialized via `attributeChangedCallback` and set to the associated
-   * property using `dash-case`-to-`camelCase` convention.
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   * @summary Element class mixin for reacting to property changes from
-   *   generated property accessors.
-   */
-  Polymer.PropertyAccessors = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_PropertyAccessors}
-     * @unrestricted
-     */
-    class PropertyAccessors extends superClass {
-
-      /**
-       * Generates property accessors for all attributes in the standard
-       * static `observedAttributes` array.
-       *
-       * Attribute names are mapped to property names using the `dash-case` to
-       * `camelCase` convention
-       *
-       */
-      static createPropertiesForAttributes() {
-        let a$ = this.observedAttributes;
-        for (let i=0; i < a$.length; i++) {
-          this.prototype._createPropertyAccessor(caseMap.dashToCamelCase(a$[i]));
-        }
-      }
-
-      constructor() {
-        super();
-        this._initializeProperties();
-      }
-
-      attributeChangedCallback(name, old, value) {
-        if (old !== value) {
-          this._attributeToProperty(name, value);
-        }
-      }
-
-      /**
-       * Initializes the local storage for property accessors.
-       *
-       * Provided as an override point for performing any setup work prior
-       * to initializing the property accessor system.
-       *
-       * @protected
-       */
-      _initializeProperties() {
-        this.__serializing = false;
-        this.__dataCounter = 0;
-        this.__dataEnabled = false;
-        this.__dataReady = false;
-        this.__dataInvalid = false;
-        // initialize data with prototype values saved when creating accessors
-        this.__data = {};
-        this.__dataPending = null;
-        this.__dataOld = null;
-        if (this.__dataProto) {
-          this._initializeProtoProperties(this.__dataProto);
-          this.__dataProto = null;
-        }
-        // Capture instance properties; these will be set into accessors
-        // during first flush. Don't set them here, since we want
-        // these to overwrite defaults/constructor assignments
-        for (let p in this.__dataHasAccessor) {
-          if (this.hasOwnProperty(p)) {
-            this.__dataInstanceProps = this.__dataInstanceProps || {};
-            this.__dataInstanceProps[p] = this[p];
-            delete this[p];
-          }
-        }
-      }
-
-      /**
-       * Called at instance time with bag of properties that were overwritten
-       * by accessors on the prototype when accessors were created.
-       *
-       * The default implementation sets these properties back into the
-       * setter at instance time.  This method is provided as an override
-       * point for customizing or providing more efficient initialization.
-       *
-       * @param {Object} props Bag of property values that were overwritten
-       *   when creating property accessors.
-       * @protected
-       */
-      _initializeProtoProperties(props) {
-        for (let p in props) {
-          this._setProperty(p, props[p]);
-        }
-      }
-
-      /**
-       * Called at ready time with bag of instance properties that overwrote
-       * accessors when the element upgraded.
-       *
-       * The default implementation sets these properties back into the
-       * setter at ready time.  This method is provided as an override
-       * point for customizing or providing more efficient initialization.
-       *
-       * @param {Object} props Bag of property values that were overwritten
-       *   when creating property accessors.
-       * @protected
-       */
-      _initializeInstanceProperties(props) {
-        Object.assign(this, props);
-      }
-
-      /**
-       * Ensures the element has the given attribute. If it does not,
-       * assigns the given value to the attribute.
-       *
-       *
-       * @param {string} attribute Name of attribute to ensure is set.
-       * @param {string} value of the attribute.
-       */
-      _ensureAttribute(attribute, value) {
-        if (!this.hasAttribute(attribute)) {
-          this._valueToNodeAttribute(this, value, attribute);
-        }
-      }
-
-      /**
-       * Deserializes an attribute to its associated property.
-       *
-       * This method calls the `_deserializeValue` method to convert the string to
-       * a typed value.
-       *
-       * @param {string} attribute Name of attribute to deserialize.
-       * @param {string} value of the attribute.
-       * @param {*} type type to deserialize to.
-       */
-      _attributeToProperty(attribute, value, type) {
-        // Don't deserialize back to property if currently reflecting
-        if (!this.__serializing) {
-          let property = caseMap.dashToCamelCase(attribute);
-          this[property] = this._deserializeValue(value, type);
-        }
-      }
-
-      /**
-       * Serializes a property to its associated attribute.
-       *
-       * @param {string} property Property name to reflect.
-       * @param {string=} attribute Attribute name to reflect.
-       * @param {*=} value Property value to refect.
-       */
-      _propertyToAttribute(property, attribute, value) {
-        this.__serializing = true;
-        value = (arguments.length < 3) ? this[property] : value;
-        this._valueToNodeAttribute(this, value,
-          attribute || caseMap.camelToDashCase(property));
-        this.__serializing = false;
-      }
-
-      /**
-       * Sets a typed value to an HTML attribute on a node.
-       *
-       * This method calls the `_serializeValue` method to convert the typed
-       * value to a string.  If the `_serializeValue` method returns `undefined`,
-       * the attribute will be removed (this is the default for boolean
-       * type `false`).
-       *
-       * @param {Element} node Element to set attribute to.
-       * @param {*} value Value to serialize.
-       * @param {string} attribute Attribute name to serialize to.
-       */
-      _valueToNodeAttribute(node, value, attribute) {
-        let str = this._serializeValue(value);
-        if (str === undefined) {
-          node.removeAttribute(attribute);
-        } else {
-          node.setAttribute(attribute, str);
-        }
-      }
-
-      /**
-       * Converts a typed JavaScript value to a string.
-       *
-       * This method is called by Polymer when setting JS property values to
-       * HTML attributes.  Users may override this method on Polymer element
-       * prototypes to provide serialization for custom types.
-       *
-       * @param {*} value Property value to serialize.
-       * @return {string | undefined} String serialized from the provided property value.
-       */
-      _serializeValue(value) {
-        /* eslint-disable no-fallthrough */
-        switch (typeof value) {
-          case 'boolean':
-            return value ? '' : undefined;
-
-          case 'object':
-            if (value instanceof Date) {
-              return value.toString();
-            } else if (value) {
-              try {
-                return JSON.stringify(value);
-              } catch(x) {
-                return '';
-              }
-            }
-
-          default:
-            return value != null ? value.toString() : undefined;
-        }
-      }
-
-      /**
-       * Converts a string to a typed JavaScript value.
-       *
-       * This method is called by Polymer when reading HTML attribute values to
-       * JS properties.  Users may override this method on Polymer element
-       * prototypes to provide deserialization for custom `type`s.  Note,
-       * the `type` argument is the value of the `type` field provided in the
-       * `properties` configuration object for a given property, and is
-       * by convention the constructor for the type to deserialize.
-       *
-       * Note: The return value of `undefined` is used as a sentinel value to
-       * indicate the attribute should be removed.
-       *
-       * @param {string} value Attribute value to deserialize.
-       * @param {*} type Type to deserialize the string to.
-       * @return {*} Typed value deserialized from the provided string.
-       */
-      _deserializeValue(value, type) {
-        /**
-         * @type {*}
-         */
-        let outValue;
-        switch (type) {
-          case Number:
-            outValue = Number(value);
-            break;
-
-          case Boolean:
-            outValue = (value !== null);
-            break;
-
-          case Object:
-            try {
-              outValue = JSON.parse(value);
-            } catch(x) {
-              // allow non-JSON literals like Strings and Numbers
-            }
-            break;
-
-          case Array:
-            try {
-              outValue = JSON.parse(value);
-            } catch(x) {
-              outValue = null;
-              console.warn(`Polymer::Attributes: couldn't decode Array as JSON: ${value}`);
-            }
-            break;
-
-          case Date:
-            outValue = new Date(value);
-            break;
-
-          case String:
-          default:
-            outValue = value;
-            break;
-        }
-
-        return outValue;
-      }
-      /* eslint-enable no-fallthrough */
-
-      /**
-       * Creates a setter/getter pair for the named property with its own
-       * local storage.  The getter returns the value in the local storage,
-       * and the setter calls `_setProperty`, which updates the local storage
-       * for the property and enqueues a `_propertiesChanged` callback.
-       *
-       * This method may be called on a prototype or an instance.  Calling
-       * this method may overwrite a property value that already exists on
-       * the prototype/instance by creating the accessor.  When calling on
-       * a prototype, any overwritten values are saved in `__dataProto`,
-       * and it is up to the subclasser to decide how/when to set those
-       * properties back into the accessor.  When calling on an instance,
-       * the overwritten value is set via `_setPendingProperty`, and the
-       * user should call `_invalidateProperties` or `_flushProperties`
-       * for the values to take effect.
-       *
-       * @param {string} property Name of the property
-       * @param {boolean=} readOnly When true, no setter is created; the
-       *   protected `_setProperty` function must be used to set the property
-       * @protected
-       */
-      _createPropertyAccessor(property, readOnly) {
-        if (!this.hasOwnProperty('__dataHasAccessor')) {
-          this.__dataHasAccessor = Object.assign({}, this.__dataHasAccessor);
-        }
-        if (!this.__dataHasAccessor[property]) {
-          this.__dataHasAccessor[property] = true;
-          saveAccessorValue(this, property);
-          Object.defineProperty(this, property, {
-            get: function() {
-              return this.__data[property];
-            },
-            set: readOnly ? function() { } : function(value) {
-              this._setProperty(property, value);
-            }
-          });
-        }
-      }
-
-      /**
-       * Returns true if this library created an accessor for the given property.
-       *
-       * @param {string} property Property name
-       * @return {boolean} True if an accessor was created
-       */
-      _hasAccessor(property) {
-        return this.__dataHasAccessor && this.__dataHasAccessor[property];
-      }
-
-      /**
-       * Updates the local storage for a property (via `_setPendingProperty`)
-       * and enqueues a `_proeprtiesChanged` callback.
-       *
-       * @param {string} property Name of the property
-       * @param {*} value Value to set
-       * @protected
-       */
-      _setProperty(property, value) {
-        if (this._setPendingProperty(property, value)) {
-          this._invalidateProperties();
-        }
-      }
-
-      /**
-       * Updates the local storage for a property, records the previous value,
-       * and adds it to the set of "pending changes" that will be passed to the
-       * `_propertiesChanged` callback.  This method does not enqueue the
-       * `_propertiesChanged` callback.
-       *
-       * @param {string} property Name of the property
-       * @param {*} value Value to set
-       * @return {boolean} Returns true if the property changed
-       * @protected
-       */
-      _setPendingProperty(property, value) {
-        let old = this.__data[property];
-        if (this._shouldPropertyChange(property, value, old)) {
-          if (!this.__dataPending) {
-            this.__dataPending = {};
-            this.__dataOld = {};
-          }
-          // Ensure old is captured from the last turn
-          if (!(property in this.__dataOld)) {
-            this.__dataOld[property] = old;
-          }
-          this.__data[property] = value;
-          this.__dataPending[property] = value;
-          return true;
-        }
-      }
-
-      /**
-       * Returns true if the specified property has a pending change.
-       *
-       * @param {string} prop Property name
-       * @return {boolean} True if property has a pending change
-       * @protected
-       */
-      _isPropertyPending(prop) {
-        return this.__dataPending && (prop in this.__dataPending);
-      }
-
-      /**
-       * Marks the properties as invalid, and enqueues an async
-       * `_propertiesChanged` callback.
-       *
-       * @protected
-       */
-      _invalidateProperties() {
-        if (!this.__dataInvalid && this.__dataReady) {
-          this.__dataInvalid = true;
-          microtask.run(() => {
-            if (this.__dataInvalid) {
-              this.__dataInvalid = false;
-              this._flushProperties();
-            }
-          });
-        }
-      }
-
-      /**
-       * Call to enable property accessor processing. Before this method is
-       * called accessor values will be set but side effects are
-       * queued. When called, any pending side effects occur immediately.
-       * For elements, generally `connectedCallback` is a normal spot to do so.
-       * It is safe to call this method multiple times as it only turns on
-       * property accessors once.
-       */
-      _enableProperties() {
-        if (!this.__dataEnabled) {
-          this.__dataEnabled = true;
-          if (this.__dataInstanceProps) {
-            this._initializeInstanceProperties(this.__dataInstanceProps);
-            this.__dataInstanceProps = null;
-          }
-          this.ready()
-        }
-      }
-
-      /**
-       * Calls the `_propertiesChanged` callback with the current set of
-       * pending changes (and old values recorded when pending changes were
-       * set), and resets the pending set of changes. Generally, this method
-       * should not be called in user code.
-       *
-       *
-       * @protected
-       */
-      _flushProperties() {
-        if (this.__dataPending) {
-          let changedProps = this.__dataPending;
-          this.__dataPending = null;
-          this.__dataCounter++;
-          this._propertiesChanged(this.__data, changedProps, this.__dataOld);
-          this.__dataCounter--;
-        }
-      }
-
-      /**
-       * Lifecycle callback called the first time properties are being flushed.
-       * Prior to `ready`, all property sets through accessors are queued and
-       * their effects are flushed after this method returns.
-       *
-       * Users may override this function to implement behavior that is
-       * dependent on the element having its properties initialized, e.g.
-       * from defaults (initialized from `constructor`, `_initializeProperties`),
-       * `attributeChangedCallback`, or values propagated from host e.g. via
-       * bindings.  `super.ready()` must be called to ensure the data system
-       * becomes enabled.
-       *
-       * @public
-       */
-      ready() {
-        this.__dataReady = true;
-        // Run normal flush
-        this._flushProperties();
-      }
-
-      /**
-       * Callback called when any properties with accessors created via
-       * `_createPropertyAccessor` have been set.
-       *
-       * @param {Object} currentProps Bag of all current accessor values
-       * @param {Object} changedProps Bag of properties changed since the last
-       *   call to `_propertiesChanged`
-       * @param {Object} oldProps Bag of previous values for each property
-       *   in `changedProps`
-       * @protected
-       */
-      _propertiesChanged(currentProps, changedProps, oldProps) { // eslint-disable-line no-unused-vars
-      }
-
-      /**
-       * Method called to determine whether a property value should be
-       * considered as a change and cause the `_propertiesChanged` callback
-       * to be enqueued.
-       *
-       * The default implementation returns `true` for primitive types if a
-       * strict equality check fails, and returns `true` for all Object/Arrays.
-       * The method always returns false for `NaN`.
-       *
-       * Override this method to e.g. provide stricter checking for
-       * Objects/Arrays when using immutable patterns.
-       *
-       * @param {string} property Property name
-       * @param {*} value New property value
-       * @param {*} old Previous property value
-       * @return {boolean} Whether the property should be considered a change
-       *   and enqueue a `_proeprtiesChanged` callback
-       * @protected
-       */
-      _shouldPropertyChange(property, value, old) {
-        return (
-          // Strict equality check
-          (old !== value &&
-           // This ensures (old==NaN, value==NaN) always returns false
-           (old === old || value === value))
-        );
-      }
-
-    }
-
-    return PropertyAccessors;
-
-  });
-
-})();
-
-
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(1);
-
-
-(function() {
-
-  'use strict';
-
-  // 1.x backwards-compatible auto-wrapper for template type extensions
-  // This is a clear layering violation and gives favored-nation status to
-  // dom-if and dom-repeat templates.  This is a conceit we're choosing to keep
-  // a.) to ease 1.x backwards-compatibility due to loss of `is`, and
-  // b.) to maintain if/repeat capability in parser-constrained elements
-  //     (e.g. table, select) in lieu of native CE type extensions without
-  //     massive new invention in this space (e.g. directive system)
-  const templateExtensions = {
-    'dom-if': true,
-    'dom-repeat': true
-  };
-  function wrapTemplateExtension(node) {
-    let is = node.getAttribute('is');
-    if (is && templateExtensions[is]) {
-      let t = node;
-      t.removeAttribute('is');
-      node = t.ownerDocument.createElement(is);
-      t.parentNode.replaceChild(node, t);
-      node.appendChild(t);
-      while(t.attributes.length) {
-        node.setAttribute(t.attributes[0].name, t.attributes[0].value);
-        t.removeAttribute(t.attributes[0].name);
-      }
-    }
-    return node;
-  }
-
-  function findTemplateNode(root, nodeInfo) {
-    // recursively ascend tree until we hit root
-    let parent = nodeInfo.parentInfo && findTemplateNode(root, nodeInfo.parentInfo);
-    // unwind the stack, returning the indexed node at each level
-    if (parent) {
-      // note: marginally faster than indexing via childNodes
-      // (http://jsperf.com/childnodes-lookup)
-      for (let n=parent.firstChild, i=0; n; n=n.nextSibling) {
-        if (nodeInfo.parentIndex === i++) {
-          return n;
-        }
-      }
-    } else {
-      return root;
-    }
-  }
-
-  // construct `$` map (from id annotations)
-  function applyIdToMap(inst, map, node, nodeInfo) {
-    if (nodeInfo.id) {
-      map[nodeInfo.id] = node;
-    }
-  }
-
-  // install event listeners (from event annotations)
-  function applyEventListener(inst, node, nodeInfo) {
-    if (nodeInfo.events && nodeInfo.events.length) {
-      for (let j=0, e$=nodeInfo.events, e; (j<e$.length) && (e=e$[j]); j++) {
-        inst._addMethodEventListenerToNode(node, e.name, e.value, inst);
-      }
-    }
-  }
-
-  // push configuration references at configure time
-  function applyTemplateContent(inst, node, nodeInfo) {
-    if (nodeInfo.templateInfo) {
-      node._templateInfo = nodeInfo.templateInfo;
-    }
-  }
-
-  function createNodeEventHandler(context, eventName, methodName) {
-    // Instances can optionally have a _methodHost which allows redirecting where
-    // to find methods. Currently used by `templatize`.
-    context = context._methodHost || context;
-    let handler = function(e) {
-      if (context[methodName]) {
-        context[methodName](e, e.detail);
-      } else {
-        console.warn('listener method `' + methodName + '` not defined');
-      }
-    };
-    return handler;
-  }
-
-  /**
-   * Element mixin that provides basic template parsing and stamping, including
-   * the following template-related features for stamped templates:
-   *
-   * - Declarative event listeners (`on-eventname="listener"`)
-   * - Map of node id's to stamped node instances (`this.$.id`)
-   * - Nested template content caching/removal and re-installation (performance
-   *   optimization)
-   *
-   * @polymerMixin
-   * @memberof Polymer
-   * @summary Element class mixin that provides basic template parsing and stamping
-   */
-  Polymer.TemplateStamp = Polymer.dedupingMixin(superClass => {
-
-    /**
-     * @polymerMixinClass
-     * @implements {Polymer_TemplateStamp}
-     */
-    class TemplateStamp extends superClass {
-
-      /**
-       * Scans a template to produce template metadata.
-       *
-       * Template-specific metadata are stored in the object returned, and node-
-       * specific metadata are stored in objects in its flattened `nodeInfoList`
-       * array.  Only nodes in the template that were parsed as nodes of
-       * interest contain an object in `nodeInfoList`.  Each `nodeInfo` object
-       * contains an `index` (`childNodes` index in parent) and optionally
-       * `parent`, which points to node info of its parent (including its index).
-       *
-       * The template metadata object returned from this method has the following
-       * structure (many fields optional):
-       *
-       * ```js
-       *   {
-       *     // Flattened list of node metadata (for nodes that generated metadata)
-       *     nodeInfoList: [
-       *       {
-       *         // `id` attribute for any nodes with id's for generating `$` map
-       *         id: {string},
-       *         // `on-event="handler"` metadata
-       *         events: [
-       *           {
-       *             name: {string},   // event name
-       *             value: {string},  // handler method name
-       *           }, ...
-       *         ],
-       *         // Notes when the template contained a `<slot>` for shady DOM
-       *         // optimization purposes
-       *         hasInsertionPoint: {boolean},
-       *         // For nested `<template>`` nodes, nested template metadata
-       *         templateInfo: {object}, // nested template metadata
-       *         // Metadata to allow efficient retrieval of instanced node
-       *         // corresponding to this metadata
-       *         parentInfo: {number},   // reference to parent nodeInfo>
-       *         parentIndex: {number},  // index in parent's `childNodes` collection
-       *         infoIndex: {number},    // index of this `nodeInfo` in `templateInfo.nodeInfoList`
-       *       },
-       *       ...
-       *     ],
-       *     // When true, the template had the `strip-whitespace` attribute
-       *     // or was nested in a template with that setting
-       *     stripWhitespace: {boolean},
-       *     // For nested templates, nested template content is moved into
-       *     // a document fragment stored here; this is an optimization to
-       *     // avoid the cost of nested template cloning
-       *     content: {DocumentFragment}
-       *   }
-       * ```
-       *
-       * This method kicks off a recursive treewalk as follows:
-       *
-       * ```
-       *    _parseTemplate <---------------------+
-       *      _parseTemplateContent              |
-       *        _parseTemplateNode  <------------|--+
-       *          _parseTemplateNestedTemplate --+  |
-       *          _parseTemplateChildNodes ---------+
-       *          _parseTemplateNodeAttributes
-       *            _parseTemplateNodeAttribute
-       *
-       * ```
-       *
-       * These methods may be overridden to add custom metadata about templates
-       * to either `templateInfo` or `nodeInfo`.
-       *
-       * Note that this method may be destructive to the template, in that
-       * e.g. event annotations may be removed after being noted in the
-       * template metadata.
-       *
-       * @param {HTMLTemplateElement} template Template to parse
-       * @param {Object=} outerTemplateInfo Template metadata from the outer
-       *   template, for parsing nested templates
-       * @return {Object} Parsed template metadata
-       */
-      static _parseTemplate(template, outerTemplateInfo) {
-        // since a template may be re-used, memo-ize metadata
-        if (!template._templateInfo) {
-          let templateInfo = template._templateInfo = {};
-          templateInfo.nodeInfoList = [];
-          templateInfo.stripWhiteSpace =
-            (outerTemplateInfo && outerTemplateInfo.stripWhiteSpace) ||
-            template.hasAttribute('strip-whitespace');
-          this._parseTemplateContent(template, templateInfo, {parent: null});
-        }
-        return template._templateInfo;
-      }
-
-      static _parseTemplateContent(template, templateInfo, nodeInfo) {
-        return this._parseTemplateNode(template.content, templateInfo, nodeInfo);
-      }
-
-      /**
-       * Parses template node and adds template and node metadata based on
-       * the current node, and its `childNodes` and `attributes`.
-       *
-       * This method may be overridden to add custom node or template specific
-       * metadata based on this node.
-       *
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template.
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       */
-      static _parseTemplateNode(node, templateInfo, nodeInfo) {
-        let noted;
-        if (node.localName == 'template' && !node.hasAttribute('preserve-content')) {
-          noted = this._parseTemplateNestedTemplate(node, templateInfo, nodeInfo) || noted;
-        } else if (node.localName === 'slot') {
-          // For ShadyDom optimization, indicating there is an insertion point
-          templateInfo.hasInsertionPoint = true;
-        }
-        if (node.firstChild) {
-          noted = this._parseTemplateChildNodes(node, templateInfo, nodeInfo) || noted;
-        }
-        if (node.hasAttributes && node.hasAttributes()) {
-          noted = this._parseTemplateNodeAttributes(node, templateInfo, nodeInfo) || noted;
-        }
-        return noted;
-      }
-
-      /**
-       * Parses template child nodes for the given root node.
-       *
-       * This method also wraps whitelisted legacy template extensions
-       * (`is="dom-if"` and `is="dom-repeat"`) with their equivalent element
-       * wrappers, collapses text nodes, and strips whitespace from the template
-       * if the `templateInfo.stripWhitespace` setting was provided.
-       *
-       * @param {Node} root Root node whose `childNodes` will be parsed
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template.
-       */
-      static _parseTemplateChildNodes(root, templateInfo, nodeInfo) {
-        for (let node=root.firstChild, parentIndex=0, next; node; node=next) {
-          // Wrap templates
-          if (node.localName == 'template') {
-            node = wrapTemplateExtension(node);
-          }
-          // collapse adjacent textNodes: fixes an IE issue that can cause
-          // text nodes to be inexplicably split =(
-          // note that root.normalize() should work but does not so we do this
-          // manually.
-          next = node.nextSibling;
-          if (node.nodeType === Node.TEXT_NODE) {
-            let n = next;
-            while (n && (n.nodeType === Node.TEXT_NODE)) {
-              node.textContent += n.textContent;
-              next = n.nextSibling;
-              root.removeChild(n);
-              n = next;
-            }
-            // optionally strip whitespace
-            if (templateInfo.stripWhiteSpace && !node.textContent.trim()) {
-              root.removeChild(node);
-              continue;
-            }
-          }
-          let childInfo = { parentIndex, parentInfo: nodeInfo };
-          if (this._parseTemplateNode(node, templateInfo, childInfo)) {
-            childInfo.infoIndex = templateInfo.nodeInfoList.push(childInfo) - 1;
-          }
-          // Increment if not removed
-          if (node.parentNode) {
-            parentIndex++;
-          }
-        }
-      }
-
-      /**
-       * Parses template content for the given nested `<template>`.
-       *
-       * Nested template info is stored as `templateInfo` in the current node's
-       * `nodeInfo`. `template.content` is removed and stored in `templateInfo`.
-       * It will then be the responsibility of the host to set it back to the
-       * template and for users stamping nested templates to use the
-       * `_contentForTemplate` method to retrieve the content for this template
-       * (an optimization to avoid the cost of cloning nested template content).
-       *
-       * @param {HTMLTemplateElement} node Node to parse (a <template>)
-       * @param {Object} outerTemplateInfo Template metadata for current template
-       *   that includes the template `node`
-       * @param {Object} nodeInfo Node metadata for current template.
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       */
-      static _parseTemplateNestedTemplate(node, outerTemplateInfo, nodeInfo) {
-        let templateInfo = this._parseTemplate(node, outerTemplateInfo);
-        let content = templateInfo.content =
-          node.content.ownerDocument.createDocumentFragment();
-        content.appendChild(node.content);
-        nodeInfo.templateInfo = templateInfo;
-        return true;
-      }
-
-      /**
-       * Parses template node attributes and adds node metadata to `nodeInfo`
-       * for nodes of interest.
-       *
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template.
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       */
-      static _parseTemplateNodeAttributes(node, templateInfo, nodeInfo) {
-        // Make copy of original attribute list, since the order may change
-        // as attributes are added and removed
-        let noted;
-        let attrs = Array.from(node.attributes);
-        for (let i=attrs.length-1, a; (a=attrs[i]); i--) {
-          noted = this._parseTemplateNodeAttribute(node, templateInfo, nodeInfo, a.name, a.value) || noted;
-        }
-        return noted;
-      }
-
-      /**
-       * Parses a single template node attribute and adds node metadata to
-       * `nodeInfo` for attributes of interest.
-       *
-       * This implementation adds metadata for `on-event="handler"` attributes
-       * and `id` attributes.
-       *
-       * @param {Node} node Node to parse
-       * @param {Object} templateInfo Template metadata for current template
-       * @param {Object} nodeInfo Node metadata for current template.
-       * @param {string} name Attribute name
-       * @param {*} value Attribute value
-       * @return {boolean} `true` if the visited node added node-specific
-       *   metadata to `nodeInfo`
-       */
-      static _parseTemplateNodeAttribute(node, templateInfo, nodeInfo, name, value) {
-        // events (on-*)
-        if (name.slice(0, 3) === 'on-') {
-          node.removeAttribute(name);
-          nodeInfo.events = nodeInfo.events || [];
-          nodeInfo.events.push({
-            name: name.slice(3),
-            value
-          });
-          return true;
-        }
-        // static id
-        else if (name === 'id') {
-          nodeInfo.id = value;
-          return true;
-        }
-      }
-
-      /**
-       * Returns the `content` document fragment for a given template.
-       *
-       * For nested templates, Polymer performs an optimization to cache nested
-       * template content to avoid the cost of cloning deeply nested templates.
-       * This method retrieves the cached content for a given template.
-       *
-       * @param {HTMLTemplateElement} template Template to retrieve `content` for
-       * @return {DocumentFragment} Content fragment
-       */
-      static _contentForTemplate(template) {
-        let templateInfo = template._templateInfo;
-        return (templateInfo && templateInfo.content) || template.content;
-      }
-
-      /**
-       * Clones the provided template content and returns a document fragment
-       * containing the cloned dom.
-       *
-       * The template is parsed (once and memoized) using this library's
-       * template parsing features, and provides the following value-added
-       * features:
-       * * Adds declarative event listeners for `on-event="handler"` attributes
-       * * Generates an "id map" for all nodes with id's under `$` on returned
-       *   document fragment
-       * * Passes template info including `content` back to templates as
-       *   `_templateInfo` (a performance optimization to avoid deep template
-       *   cloning)
-       *
-       * Note that the memoized template parsing process is destructive to the
-       * template: attributes for bindings and declarative event listeners are
-       * removed after being noted in notes, and any nested `<template>.content`
-       * is removed and stored in notes as well.
-       *
-       * @param {HTMLTemplateElement} template Template to stamp
-       * @return {DocumentFragment} Cloned template content
-       */
-      _stampTemplate(template) {
-        // Polyfill support: bootstrap the template if it has not already been
-        if (template && !template.content &&
-            window.HTMLTemplateElement && HTMLTemplateElement.decorate) {
-          HTMLTemplateElement.decorate(template);
-        }
-        let templateInfo = this.constructor._parseTemplate(template);
-        let nodeInfo = templateInfo.nodeInfoList;
-        let content = templateInfo.content || template.content;
-        let dom = document.importNode(content, true);
-        // NOTE: ShadyDom optimization indicating there is an insertion point
-        dom.__noInsertionPoint = !templateInfo.hasInsertionPoint;
-        let nodes = dom.nodeList = new Array(nodeInfo.length);
-        dom.$ = {};
-        for (let i=0, l=nodeInfo.length, info; (i<l) && (info=nodeInfo[i]); i++) {
-          let node = nodes[i] = findTemplateNode(dom, info);
-          applyIdToMap(this, dom.$, node, info);
-          applyTemplateContent(this, node, info);
-          applyEventListener(this, node, info);
-        }
-        return dom;
-      }
-
-      /**
-       * Adds an event listener by method name for the event provided.
-       *
-       * This method generates a handler function that looks up the method
-       * name at handling time.
-       *
-       * @param {Node} node Node to add listener on
-       * @param {string} eventName Name of event
-       * @param {string} methodName Name of method
-       * @param {*=} context Context the method will be called on (defaults
-       *   to `node`)
-       * @return {Function} Generated handler function
-       */
-      _addMethodEventListenerToNode(node, eventName, methodName, context) {
-        context = context || node;
-        let handler = createNodeEventHandler(context, eventName, methodName);
-        this._addEventListenerToNode(node, eventName, handler);
-        return handler;
-      }
-
-      /**
-       * Override point for adding custom or simulated event handling.
-       *
-       * @param {Node} node Node to add event listener to
-       * @param {string} eventName Name of event
-       * @param {Function} handler Listener function to add
-       */
-      _addEventListenerToNode(node, eventName, handler) {
-        node.addEventListener(eventName, handler);
-      }
-
-      /**
-       * Override point for adding custom or simulated event handling.
-       *
-       * @param {Node} node Node to remove event listener from
-       * @param {string} eventName Name of event
-       * @param {Function} handler Listener function to remove
-       */
-      _removeEventListenerFromNode(node, eventName, handler) {
-        node.removeEventListener(eventName, handler);
-      }
-
-    }
-
-    return TemplateStamp;
-
-  });
-
-})();
-
-
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(14);
-
-__webpack_require__(3);
-
-
-(function() {
-  'use strict';
-
-  function isSlot(node) {
-    return (node.localName === 'slot');
-  }
-
-  /**
-   * Class that listens for changes (additions or removals) to
-   * "flattened nodes" on a given `node`. The list of flattened nodes consists
-   * of a node's children and, for any children that are `<slot>` elements,
-   * the expanded flattened list of `assignedNodes`.
-   * For example, if the observed node has children `<a></a><slot></slot><b></b>`
-   * and the `<slot>` has one `<div>` assigned to it, then the flattened
-   * nodes list is `<a></a><div></div><b></b>`. If the `<slot>` has other
-   * `<slot>` elements assigned to it, these are flattened as well.
-   *
-   * The provided `callback` is called whenever any change to this list
-   * of flattened nodes occurs, where an addition or removal of a node is
-   * considered a change. The `callback` is called with one argument, an object
-   * containing an array of any `addedNodes` and `removedNodes`.
-   *
-   * Note: the callback is called asynchronous to any changes
-   * at a microtask checkpoint. This is because observation is performed using
-   * `MutationObserver` and the `<slot>` element's `slotchange` event which
-   * are asynchronous.
-   *
-   * @memberof Polymer
-   * @param {Node} target Node on which to listen for changes.
-   * @param {Function} callback Function called when there are additions
-   * or removals from the target's list of flattened nodes.
-   * @summary Class that listens for changes (additions or removals) to
-   * "flattened nodes" on a given `node`.
-   */
-  class FlattenedNodesObserver {
-
-    /**
-     * Returns the list of flattened nodes for the given `node`.
-     * This list consists of a node's children and, for any children
-     * that are `<slot>` elements, the expanded flattened list of `assignedNodes`.
-     * For example, if the observed node has children `<a></a><slot></slot><b></b>`
-     * and the `<slot>` has one `<div>` assigned to it, then the flattened
-     * nodes list is `<a></a><div></div><b></b>`. If the `<slot>` has other
-     * `<slot>` elements assigned to it, these are flattened as well.
-     *
-     * @param {Node} node The node for which to return the list of flattened nodes.
-     * @return {Array} The list of flattened nodes for the given `node`.
-    */
-    static getFlattenedNodes(node) {
-      if (isSlot(node)) {
-        return node.assignedNodes({flatten: true});
-      } else {
-        return Array.from(node.childNodes).map(node => {
-          if (isSlot(node)) {
-            return node.assignedNodes({flatten: true});
-          } else {
-            return [node];
-          }
-        }).reduce((a, b) => a.concat(b), []);
-      }
-    }
-
-    constructor(target, callback) {
-      /** @type {MutationObserver} */
-      this._shadyChildrenObserver = null;
-      /** @type {MutationObserver} */
-      this._nativeChildrenObserver = null;
-      this._connected = false;
-      this._target = target;
-      this.callback = callback;
-      this._effectiveNodes = [];
-      this._observer = null;
-      this._scheduled = false;
-      this._boundSchedule = () => {
-        this._schedule();
-      }
-      this.connect();
-      this._schedule();
-    }
-
-    /**
-     * Activates an observer. This method is automatically called when
-     * a `FlattenedNodesObserver` is created. It should only be called to
-     * re-activate an observer that has been deactivated via the `disconnect` method.
-     */
-    connect() {
-      if (isSlot(this._target)) {
-        this._listenSlots([this._target]);
-      } else {
-        this._listenSlots(this._target.children);
-        if (window.ShadyDOM) {
-          this._shadyChildrenObserver =
-            ShadyDOM.observeChildren(this._target, (mutations) => {
-              this._processMutations(mutations);
-            });
-        } else {
-          this._nativeChildrenObserver =
-            new MutationObserver((mutations) => {
-              this._processMutations(mutations);
-            });
-          this._nativeChildrenObserver.observe(this._target, {childList: true});
-        }
-      }
-      this._connected = true;
-    }
-
-    /**
-     * Deactivates the flattened nodes observer. After calling this method
-     * the observer callback will not be called when changes to flattened nodes
-     * occur. The `connect` method may be subsequently called to reactivate
-     * the observer.
-     */
-    disconnect() {
-      if (isSlot(this._target)) {
-        this._unlistenSlots([this._target]);
-      } else {
-        this._unlistenSlots(this._target.children);
-        if (window.ShadyDOM && this._shadyChildrenObserver) {
-          ShadyDOM.unobserveChildren(this._shadyChildrenObserver);
-          this._shadyChildrenObserver = null;
-        } else if (this._nativeChildrenObserver) {
-          this._nativeChildrenObserver.disconnect();
-          this._nativeChildrenObserver = null;
-        }
-      }
-      this._connected = false;
-    }
-
-    _schedule() {
-      if (!this._scheduled) {
-        this._scheduled = true;
-        Polymer.Async.microTask.run(() => this.flush());
-      }
-    }
-
-    _processMutations(mutations) {
-      this._processSlotMutations(mutations);
-      this.flush();
-    }
-
-    _processSlotMutations(mutations) {
-      if (mutations) {
-        for (let i=0; i < mutations.length; i++) {
-          let mutation = mutations[i];
-          if (mutation.addedNodes) {
-            this._listenSlots(mutation.addedNodes);
-          }
-          if (mutation.removedNodes) {
-            this._unlistenSlots(mutation.removedNodes);
-          }
-        }
-      }
-    }
-
-    /**
-     * Flushes the observer causing any pending changes to be immediately
-     * delivered the observer callback. By default these changes are delivered
-     * asynchronously at the next microtask checkpoint.
-     *
-     * @return {boolean} Returns true if any pending changes caused the observer
-     * callback to run.
-     */
-    flush() {
-      if (!this._connected) {
-        return;
-      }
-      if (window.ShadyDOM) {
-        ShadyDOM.flush();
-      }
-      if (this._nativeChildrenObserver) {
-        this._processSlotMutations(this._nativeChildrenObserver.takeRecords());
-      } else if (this._shadyChildrenObserver) {
-        this._processSlotMutations(this._shadyChildrenObserver.takeRecords());
-      }
-      this._scheduled = false;
-      let info = {
-        target: this._target,
-        addedNodes: [],
-        removedNodes: []
-      };
-      let newNodes = this.constructor.getFlattenedNodes(this._target);
-      let splices = Polymer.ArraySplice.calculateSplices(newNodes,
-        this._effectiveNodes);
-      // process removals
-      for (let i=0, s; (i<splices.length) && (s=splices[i]); i++) {
-        for (let j=0, n; (j < s.removed.length) && (n=s.removed[j]); j++) {
-          info.removedNodes.push(n);
-        }
-      }
-      // process adds
-      for (let i=0, s; (i<splices.length) && (s=splices[i]); i++) {
-        for (let j=s.index; j < s.index + s.addedCount; j++) {
-          info.addedNodes.push(newNodes[j]);
-        }
-      }
-      // update cache
-      this._effectiveNodes = newNodes;
-      let didFlush = false;
-      if (info.addedNodes.length || info.removedNodes.length) {
-        didFlush = true;
-        this.callback.call(this._target, info);
-      }
-      return didFlush;
-    }
-
-    _listenSlots(nodeList) {
-      for (let i=0; i < nodeList.length; i++) {
-        let n = nodeList[i];
-        if (isSlot(n)) {
-          n.addEventListener('slotchange', this._boundSchedule);
-        }
-      }
-    }
-
-    _unlistenSlots(nodeList) {
-      for (let i=0; i < nodeList.length; i++) {
-        let n = nodeList[i];
-        if (isSlot(n)) {
-          n.removeEventListener('slotchange', this._boundSchedule);
-        }
-      }
-    }
-
-  }
-
-  Polymer.FlattenedNodesObserver = FlattenedNodesObserver;
-
-})();
-
-
-
-/***/ }),
-/* 34 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-__webpack_require__(3);
-
-__webpack_require__(7);
-
-
-(function() {
-
-  'use strict';
-
-  // detect native touch action support
-  let HAS_NATIVE_TA = typeof document.head.style.touchAction === 'string';
-  let GESTURE_KEY = '__polymerGestures';
-  let HANDLED_OBJ = '__polymerGesturesHandled';
-  let TOUCH_ACTION = '__polymerGesturesTouchAction';
-  // radius for tap and track
-  let TAP_DISTANCE = 25;
-  let TRACK_DISTANCE = 5;
-  // number of last N track positions to keep
-  let TRACK_LENGTH = 2;
-
-  // Disabling "mouse" handlers for 2500ms is enough
-  let MOUSE_TIMEOUT = 2500;
-  let MOUSE_EVENTS = ['mousedown', 'mousemove', 'mouseup', 'click'];
-  // an array of bitmask values for mapping MouseEvent.which to MouseEvent.buttons
-  let MOUSE_WHICH_TO_BUTTONS = [0, 1, 4, 2];
-  let MOUSE_HAS_BUTTONS = (function() {
-    try {
-      return new MouseEvent('test', {buttons: 1}).buttons === 1;
-    } catch (e) {
-      return false;
-    }
-  })();
-
-  /* eslint no-empty: ["error", { "allowEmptyCatch": true }] */
-  // check for passive event listeners
-  let SUPPORTS_PASSIVE = false;
-  (function() {
-    try {
-      let opts = Object.defineProperty({}, 'passive', {get: function() {SUPPORTS_PASSIVE = true;}})
-      window.addEventListener('test', null, opts);
-      window.removeEventListener('test', null, opts);
-    } catch(e) {}
-  })();
-
-  // Check for touch-only devices
-  let IS_TOUCH_ONLY = navigator.userAgent.match(/iP(?:[oa]d|hone)|Android/);
-
-  // touch will make synthetic mouse events
-  // `preventDefault` on touchend will cancel them,
-  // but this breaks `<input>` focus and link clicks
-  // disable mouse handlers for MOUSE_TIMEOUT ms after
-  // a touchend to ignore synthetic mouse events
-  let mouseCanceller = function(mouseEvent) {
-    // Check for sourceCapabilities, used to distinguish synthetic events
-    // if mouseEvent did not come from a device that fires touch events,
-    // it was made by a real mouse and should be counted
-    // http://wicg.github.io/InputDeviceCapabilities/#dom-inputdevicecapabilities-firestouchevents
-    let sc = mouseEvent.sourceCapabilities;
-    if (sc && !sc.firesTouchEvents) {
-      return;
-    }
-    // skip synthetic mouse events
-    mouseEvent[HANDLED_OBJ] = {skip: true};
-    // disable "ghost clicks"
-    if (mouseEvent.type === 'click') {
-      let path = mouseEvent.composedPath && mouseEvent.composedPath();
-      if (path) {
-        for (let i = 0; i < path.length; i++) {
-          if (path[i] === POINTERSTATE.mouse.target) {
-            return;
-          }
-        }
-      }
-      mouseEvent.preventDefault();
-      mouseEvent.stopPropagation();
-    }
-  };
-
-  /**
-   * @param {boolean=} setup True to add, false to remove.
-   */
-  function setupTeardownMouseCanceller(setup) {
-    let events = IS_TOUCH_ONLY ? ['click'] : MOUSE_EVENTS;
-    for (let i = 0, en; i < events.length; i++) {
-      en = events[i];
-      if (setup) {
-        document.addEventListener(en, mouseCanceller, true);
-      } else {
-        document.removeEventListener(en, mouseCanceller, true);
-      }
-    }
-  }
-
-  function ignoreMouse(e) {
-    if (!POINTERSTATE.mouse.mouseIgnoreJob) {
-      setupTeardownMouseCanceller(true);
-    }
-    let unset = function() {
-      setupTeardownMouseCanceller();
-      POINTERSTATE.mouse.target = null;
-      POINTERSTATE.mouse.mouseIgnoreJob = null;
-    };
-    POINTERSTATE.mouse.target = e.composedPath()[0];
-    POINTERSTATE.mouse.mouseIgnoreJob = Polymer.Debouncer.debounce(
-          POINTERSTATE.mouse.mouseIgnoreJob
-        , Polymer.Async.timeOut.after(MOUSE_TIMEOUT)
-        , unset);
-  }
-
-  function hasLeftMouseButton(ev) {
-    let type = ev.type;
-    // exit early if the event is not a mouse event
-    if (MOUSE_EVENTS.indexOf(type) === -1) {
-      return false;
-    }
-    // ev.button is not reliable for mousemove (0 is overloaded as both left button and no buttons)
-    // instead we use ev.buttons (bitmask of buttons) or fall back to ev.which (deprecated, 0 for no buttons, 1 for left button)
-    if (type === 'mousemove') {
-      // allow undefined for testing events
-      let buttons = ev.buttons === undefined ? 1 : ev.buttons;
-      if ((ev instanceof window.MouseEvent) && !MOUSE_HAS_BUTTONS) {
-        buttons = MOUSE_WHICH_TO_BUTTONS[ev.which] || 0;
-      }
-      // buttons is a bitmask, check that the left button bit is set (1)
-      return Boolean(buttons & 1);
-    } else {
-      // allow undefined for testing events
-      let button = ev.button === undefined ? 0 : ev.button;
-      // ev.button is 0 in mousedown/mouseup/click for left button activation
-      return button === 0;
-    }
-  }
-
-  function isSyntheticClick(ev) {
-    if (ev.type === 'click') {
-      // ev.detail is 0 for HTMLElement.click in most browsers
-      if (ev.detail === 0) {
-        return true;
-      }
-      // in the worst case, check that the x/y position of the click is within
-      // the bounding box of the target of the event
-      // Thanks IE 10 >:(
-      let t = Gestures._findOriginalTarget(ev);
-      // make sure the target of the event is an element so we can use getBoundingClientRect,
-      // if not, just assume it is a synthetic click
-      if (t.nodeType !== Node.ELEMENT_NODE) {
-        return true;
-      }
-      let bcr = t.getBoundingClientRect();
-      // use page x/y to account for scrolling
-      let x = ev.pageX, y = ev.pageY;
-      // ev is a synthetic click if the position is outside the bounding box of the target
-      return !((x >= bcr.left && x <= bcr.right) && (y >= bcr.top && y <= bcr.bottom));
-    }
-    return false;
-  }
-
-  let POINTERSTATE = {
-    mouse: {
-      target: null,
-      mouseIgnoreJob: null
-    },
-    touch: {
-      x: 0,
-      y: 0,
-      id: -1,
-      scrollDecided: false
-    }
-  };
-
-  function firstTouchAction(ev) {
-    let ta = 'auto';
-    let path = ev.composedPath && ev.composedPath();
-    if (path) {
-      for (let i = 0, n; i < path.length; i++) {
-        n = path[i];
-        if (n[TOUCH_ACTION]) {
-          ta = n[TOUCH_ACTION];
-          break;
-        }
-      }
-    }
-    return ta;
-  }
-
-  function trackDocument(stateObj, movefn, upfn) {
-    stateObj.movefn = movefn;
-    stateObj.upfn = upfn;
-    document.addEventListener('mousemove', movefn);
-    document.addEventListener('mouseup', upfn);
-  }
-
-  function untrackDocument(stateObj) {
-    document.removeEventListener('mousemove', stateObj.movefn);
-    document.removeEventListener('mouseup', stateObj.upfn);
-    stateObj.movefn = null;
-    stateObj.upfn = null;
-  }
-
-  // use a document-wide touchend listener to start the ghost-click prevention mechanism
-  // Use passive event listeners, if supported, to not affect scrolling performance
-  document.addEventListener('touchend', ignoreMouse, SUPPORTS_PASSIVE ? {passive: true} : false);
-
-  /**
-   * Module for adding listeners to a node for the following normalized
-   * cross-platform "gesture" events:
-   * - `down` - mouse or touch went down
-   * - `up` - mouse or touch went up
-   * - `tap` - mouse click or finger tap
-   * - `track` - mouse drag or touch move
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module for adding cross-platform gesture event listeners.
-   */
-  const Gestures = {
-    gestures: {},
-    recognizers: [],
-
-    /**
-     * Finds the element rendered on the screen at the provided coordinates.
-     *
-     * Similar to `document.elementFromPoint`, but pierces through
-     * shadow roots.
-     *
-     * @memberof Polymer.Gestures
-     * @param {number} x Horizontal pixel coordinate
-     * @param {number} y Vertical pixel coordinate
-     * @return {HTMLElement} Returns the deepest shadowRoot inclusive element
-     * found at the screen position given.
-     */
-    deepTargetFind: function(x, y) {
-      let node = document.elementFromPoint(x, y);
-      let next = node;
-      // this code path is only taken when native ShadowDOM is used
-      // if there is a shadowroot, it may have a node at x/y
-      // if there is not a shadowroot, exit the loop
-      while (next && next.shadowRoot && !window.ShadyDOM) {
-        // if there is a node at x/y in the shadowroot, look deeper
-        let oldNext = next;
-        next = next.shadowRoot.elementFromPoint(x, y);
-        // on Safari, elementFromPoint may return the shadowRoot host
-        if (oldNext === next) {
-          break;
-        }
-        if (next) {
-          node = next;
-        }
-      }
-      return node;
-    },
-    /**
-     * a cheaper check than ev.composedPath()[0];
-     *
-     * @private
-     * @param {Event} ev Event.
-     * @return {HTMLElement} Returns the event target.
-     */
-    _findOriginalTarget: function(ev) {
-      // shadowdom
-      if (ev.composedPath) {
-        return ev.composedPath()[0];
-      }
-      // shadydom
-      return ev.target;
-    },
-
-    /**
-     * @private
-     * @param {Event} ev Event.
-     */
-    _handleNative: function(ev) {
-      let handled;
-      let type = ev.type;
-      let node = ev.currentTarget;
-      let gobj = node[GESTURE_KEY];
-      if (!gobj) {
-        return;
-      }
-      let gs = gobj[type];
-      if (!gs) {
-        return;
-      }
-      if (!ev[HANDLED_OBJ]) {
-        ev[HANDLED_OBJ] = {};
-        if (type.slice(0, 5) === 'touch') {
-          let t = ev.changedTouches[0];
-          if (type === 'touchstart') {
-            // only handle the first finger
-            if (ev.touches.length === 1) {
-              POINTERSTATE.touch.id = t.identifier;
-            }
-          }
-          if (POINTERSTATE.touch.id !== t.identifier) {
-            return;
-          }
-          if (!HAS_NATIVE_TA) {
-            if (type === 'touchstart' || type === 'touchmove') {
-              Gestures._handleTouchAction(ev);
-            }
-          }
-        }
-      }
-      handled = ev[HANDLED_OBJ];
-      // used to ignore synthetic mouse events
-      if (handled.skip) {
-        return;
-      }
-      let recognizers = Gestures.recognizers;
-      // reset recognizer state
-      for (let i = 0, r; i < recognizers.length; i++) {
-        r = recognizers[i];
-        if (gs[r.name] && !handled[r.name]) {
-          if (r.flow && r.flow.start.indexOf(ev.type) > -1 && r.reset) {
-            r.reset();
-          }
-        }
-      }
-      // enforce gesture recognizer order
-      for (let i = 0, r; i < recognizers.length; i++) {
-        r = recognizers[i];
-        if (gs[r.name] && !handled[r.name]) {
-          handled[r.name] = true;
-          r[type](ev);
-        }
-      }
-    },
-
-    /**
-     * @private
-     * @param {Event} ev Event.
-     */
-    _handleTouchAction: function(ev) {
-      let t = ev.changedTouches[0];
-      let type = ev.type;
-      if (type === 'touchstart') {
-        POINTERSTATE.touch.x = t.clientX;
-        POINTERSTATE.touch.y = t.clientY;
-        POINTERSTATE.touch.scrollDecided = false;
-      } else if (type === 'touchmove') {
-        if (POINTERSTATE.touch.scrollDecided) {
-          return;
-        }
-        POINTERSTATE.touch.scrollDecided = true;
-        let ta = firstTouchAction(ev);
-        let prevent = false;
-        let dx = Math.abs(POINTERSTATE.touch.x - t.clientX);
-        let dy = Math.abs(POINTERSTATE.touch.y - t.clientY);
-        if (!ev.cancelable) {
-          // scrolling is happening
-        } else if (ta === 'none') {
-          prevent = true;
-        } else if (ta === 'pan-x') {
-          prevent = dy > dx;
-        } else if (ta === 'pan-y') {
-          prevent = dx > dy;
-        }
-        if (prevent) {
-          ev.preventDefault();
-        } else {
-          Gestures.prevent('track');
-        }
-      }
-    },
-
-    /**
-     * Adds an event listener to a node for the given gesture type.
-     *
-     * @memberof Polymer.Gestures
-     * @param {Node} node Node to add listener on
-     * @param {string} evType Gesture type: `down`, `up`, `track`, or `tap`
-     * @param {Function} handler Event listener function to call
-     * @return {boolean} Returns true if a gesture event listener was added.
-     */
-    addListener: function(node, evType, handler) {
-      if (this.gestures[evType]) {
-        this._add(node, evType, handler);
-        return true;
-      }
-    },
-
-    /**
-     * Removes an event listener from a node for the given gesture type.
-     *
-     * @memberof Polymer.Gestures
-     * @param {Node} node Node to remove listener from
-     * @param {string} evType Gesture type: `down`, `up`, `track`, or `tap`
-     * @param {Function} handler Event listener function previously passed to
-     *  `addListener`.
-     * @return {boolean} Returns true if a gesture event listener was removed.
-     */
-    removeListener: function(node, evType, handler) {
-      if (this.gestures[evType]) {
-        this._remove(node, evType, handler);
-        return true;
-      }
-    },
-
-    /**
-     * automate the event listeners for the native events
-     *
-     * @private
-     * @param {HTMLElement} node Node on which to add the event.
-     * @param {string} evType Event type to add.
-     * @param {function} handler Event handler function.
-     */
-    _add: function(node, evType, handler) {
-      let recognizer = this.gestures[evType];
-      let deps = recognizer.deps;
-      let name = recognizer.name;
-      let gobj = node[GESTURE_KEY];
-      if (!gobj) {
-        node[GESTURE_KEY] = gobj = {};
-      }
-      for (let i = 0, dep, gd; i < deps.length; i++) {
-        dep = deps[i];
-        // don't add mouse handlers on iOS because they cause gray selection overlays
-        if (IS_TOUCH_ONLY && MOUSE_EVENTS.indexOf(dep) > -1 && dep !== 'click') {
-          continue;
-        }
-        gd = gobj[dep];
-        if (!gd) {
-          gobj[dep] = gd = {_count: 0};
-        }
-        if (gd._count === 0) {
-          node.addEventListener(dep, this._handleNative);
-        }
-        gd[name] = (gd[name] || 0) + 1;
-        gd._count = (gd._count || 0) + 1;
-      }
-      node.addEventListener(evType, handler);
-      if (recognizer.touchAction) {
-        this.setTouchAction(node, recognizer.touchAction);
-      }
-    },
-
-    /**
-     * automate event listener removal for native events
-     *
-     * @private
-     * @param {HTMLElement} node Node on which to remove the event.
-     * @param {string} evType Event type to remove.
-     * @param {function} handler Event handler function.
-     */
-    _remove: function(node, evType, handler) {
-      let recognizer = this.gestures[evType];
-      let deps = recognizer.deps;
-      let name = recognizer.name;
-      let gobj = node[GESTURE_KEY];
-      if (gobj) {
-        for (let i = 0, dep, gd; i < deps.length; i++) {
-          dep = deps[i];
-          gd = gobj[dep];
-          if (gd && gd[name]) {
-            gd[name] = (gd[name] || 1) - 1;
-            gd._count = (gd._count || 1) - 1;
-            if (gd._count === 0) {
-              node.removeEventListener(dep, this._handleNative);
-            }
-          }
-        }
-      }
-      node.removeEventListener(evType, handler);
-    },
-
-    /**
-     * Registers a new gesture event recognizer for adding new custom
-     * gesture event types.
-     *
-     * @memberof Polymer.Gestures
-     * @param {Object} recog Gesture recognizer descriptor
-     */
-    register: function(recog) {
-      this.recognizers.push(recog);
-      for (let i = 0; i < recog.emits.length; i++) {
-        this.gestures[recog.emits[i]] = recog;
-      }
-    },
-
-    /**
-     * @private
-     * @param {string} evName Event name.
-     * @return {Object} Returns the gesture for the given event name.
-     */
-    _findRecognizerByEvent: function(evName) {
-      for (let i = 0, r; i < this.recognizers.length; i++) {
-        r = this.recognizers[i];
-        for (let j = 0, n; j < r.emits.length; j++) {
-          n = r.emits[j];
-          if (n === evName) {
-            return r;
-          }
-        }
-      }
-      return null;
-    },
-
-    /**
-     * Sets scrolling direction on node.
-     *
-     * This value is checked on first move, thus it should be called prior to
-     * adding event listeners.
-     *
-     * @memberof Polymer.Gestures
-     * @param {Node} node Node to set touch action setting on
-     * @param {string} value Touch action value
-     */
-    setTouchAction: function(node, value) {
-      if (HAS_NATIVE_TA) {
-        node.style.touchAction = value;
-      }
-      node[TOUCH_ACTION] = value;
-    },
-
-    /**
-     * Dispatches an event on the `target` element of `type` with the given
-     * `detail`.
-     * @private
-     * @param {HTMLElement} target The element on which to fire an event.
-     * @param {string} type The type of event to fire.
-     * @param {Object=} detail The detail object to populate on the event.
-     */
-    _fire: function(target, type, detail) {
-      let ev = new Event(type, { bubbles: true, cancelable: true, composed: true });
-      ev.detail = detail;
-      target.dispatchEvent(ev);
-      // forward `preventDefault` in a clean way
-      if (ev.defaultPrevented) {
-        let preventer = detail.preventer || detail.sourceEvent;
-        if (preventer && preventer.preventDefault) {
-          preventer.preventDefault();
-        }
-      }
-    },
-
-    /**
-     * Prevents the dispatch and default action of the given event name.
-     *
-     * @memberof Polymer.Gestures
-     * @param {string} evName Event name.
-     */
-    prevent: function(evName) {
-      let recognizer = this._findRecognizerByEvent(evName);
-      if (recognizer.info) {
-        recognizer.info.prevent = true;
-      }
-    },
-
-    /**
-     * Reset the 2500ms timeout on processing mouse input after detecting touch input.
-     *
-     * Touch inputs create synthesized mouse inputs anywhere from 0 to 2000ms after the touch.
-     * This method should only be called during testing with simulated touch inputs.
-     * Calling this method in production may cause duplicate taps or other Gestures.
-     *
-     * @memberof Polymer.Gestures
-     */
-    resetMouseCanceller: function() {
-      if (POINTERSTATE.mouse.mouseIgnoreJob) {
-        POINTERSTATE.mouse.mouseIgnoreJob.flush();
-      }
-    }
-  };
-
-  Gestures.register({
-    name: 'downup',
-    deps: ['mousedown', 'touchstart', 'touchend'],
-    flow: {
-      start: ['mousedown', 'touchstart'],
-      end: ['mouseup', 'touchend']
-    },
-    emits: ['down', 'up'],
-
-    info: {
-      movefn: null,
-      upfn: null
-    },
-
-    reset: function() {
-      untrackDocument(this.info);
-    },
-
-    mousedown: function(e) {
-      if (!hasLeftMouseButton(e)) {
-        return;
-      }
-      let t = Gestures._findOriginalTarget(e);
-      let self = this;
-      let movefn = function movefn(e) {
-        if (!hasLeftMouseButton(e)) {
-          self._fire('up', t, e);
-          untrackDocument(self.info);
-        }
-      };
-      let upfn = function upfn(e) {
-        if (hasLeftMouseButton(e)) {
-          self._fire('up', t, e);
-        }
-        untrackDocument(self.info);
-      };
-      trackDocument(this.info, movefn, upfn);
-      this._fire('down', t, e);
-    },
-    touchstart: function(e) {
-      this._fire('down', Gestures._findOriginalTarget(e), e.changedTouches[0], e);
-    },
-    touchend: function(e) {
-      this._fire('up', Gestures._findOriginalTarget(e), e.changedTouches[0], e);
-    },
-    _fire: function(type, target, event, preventer) {
-      Gestures._fire(target, type, {
-        x: event.clientX,
-        y: event.clientY,
-        sourceEvent: event,
-        preventer: preventer,
-        prevent: function(e) {
-          return Gestures.prevent(e);
-        }
-      });
-    }
-  });
-
-  Gestures.register({
-    name: 'track',
-    touchAction: 'none',
-    deps: ['mousedown', 'touchstart', 'touchmove', 'touchend'],
-    flow: {
-      start: ['mousedown', 'touchstart'],
-      end: ['mouseup', 'touchend']
-    },
-    emits: ['track'],
-
-    info: {
-      x: 0,
-      y: 0,
-      state: 'start',
-      started: false,
-      moves: [],
-      addMove: function(move) {
-        if (this.moves.length > TRACK_LENGTH) {
-          this.moves.shift();
-        }
-        this.moves.push(move);
-      },
-      movefn: null,
-      upfn: null,
-      prevent: false
-    },
-
-    reset: function() {
-      this.info.state = 'start';
-      this.info.started = false;
-      this.info.moves = [];
-      this.info.x = 0;
-      this.info.y = 0;
-      this.info.prevent = false;
-      untrackDocument(this.info);
-    },
-
-    hasMovedEnough: function(x, y) {
-      if (this.info.prevent) {
-        return false;
-      }
-      if (this.info.started) {
-        return true;
-      }
-      let dx = Math.abs(this.info.x - x);
-      let dy = Math.abs(this.info.y - y);
-      return (dx >= TRACK_DISTANCE || dy >= TRACK_DISTANCE);
-    },
-
-    mousedown: function(e) {
-      if (!hasLeftMouseButton(e)) {
-        return;
-      }
-      let t = Gestures._findOriginalTarget(e);
-      let self = this;
-      let movefn = function movefn(e) {
-        let x = e.clientX, y = e.clientY;
-        if (self.hasMovedEnough(x, y)) {
-          // first move is 'start', subsequent moves are 'move', mouseup is 'end'
-          self.info.state = self.info.started ? (e.type === 'mouseup' ? 'end' : 'track') : 'start';
-          if (self.info.state === 'start') {
-            // if and only if tracking, always prevent tap
-            Gestures.prevent('tap');
-          }
-          self.info.addMove({x: x, y: y});
-          if (!hasLeftMouseButton(e)) {
-            // always _fire "end"
-            self.info.state = 'end';
-            untrackDocument(self.info);
-          }
-          self._fire(t, e);
-          self.info.started = true;
-        }
-      };
-      let upfn = function upfn(e) {
-        if (self.info.started) {
-          movefn(e);
-        }
-
-        // remove the temporary listeners
-        untrackDocument(self.info);
-      };
-      // add temporary document listeners as mouse retargets
-      trackDocument(this.info, movefn, upfn);
-      this.info.x = e.clientX;
-      this.info.y = e.clientY;
-    },
-
-    touchstart: function(e) {
-      let ct = e.changedTouches[0];
-      this.info.x = ct.clientX;
-      this.info.y = ct.clientY;
-    },
-
-    touchmove: function(e) {
-      let t = Gestures._findOriginalTarget(e);
-      let ct = e.changedTouches[0];
-      let x = ct.clientX, y = ct.clientY;
-      if (this.hasMovedEnough(x, y)) {
-        if (this.info.state === 'start') {
-          // if and only if tracking, always prevent tap
-          Gestures.prevent('tap');
-        }
-        this.info.addMove({x: x, y: y});
-        this._fire(t, ct);
-        this.info.state = 'track';
-        this.info.started = true;
-      }
-    },
-
-    touchend: function(e) {
-      let t = Gestures._findOriginalTarget(e);
-      let ct = e.changedTouches[0];
-      // only trackend if track was started and not aborted
-      if (this.info.started) {
-        // reset started state on up
-        this.info.state = 'end';
-        this.info.addMove({x: ct.clientX, y: ct.clientY});
-        this._fire(t, ct, e);
-      }
-    },
-
-    _fire: function(target, touch) {
-      let secondlast = this.info.moves[this.info.moves.length - 2];
-      let lastmove = this.info.moves[this.info.moves.length - 1];
-      let dx = lastmove.x - this.info.x;
-      let dy = lastmove.y - this.info.y;
-      let ddx, ddy = 0;
-      if (secondlast) {
-        ddx = lastmove.x - secondlast.x;
-        ddy = lastmove.y - secondlast.y;
-      }
-      return Gestures._fire(target, 'track', {
-        state: this.info.state,
-        x: touch.clientX,
-        y: touch.clientY,
-        dx: dx,
-        dy: dy,
-        ddx: ddx,
-        ddy: ddy,
-        sourceEvent: touch,
-        hover: function() {
-          return Gestures.deepTargetFind(touch.clientX, touch.clientY);
-        }
-      });
-    }
-
-  });
-
-  Gestures.register({
-    name: 'tap',
-    deps: ['mousedown', 'click', 'touchstart', 'touchend'],
-    flow: {
-      start: ['mousedown', 'touchstart'],
-      end: ['click', 'touchend']
-    },
-    emits: ['tap'],
-    info: {
-      x: NaN,
-      y: NaN,
-      prevent: false
-    },
-    reset: function() {
-      this.info.x = NaN;
-      this.info.y = NaN;
-      this.info.prevent = false;
-    },
-    save: function(e) {
-      this.info.x = e.clientX;
-      this.info.y = e.clientY;
-    },
-
-    mousedown: function(e) {
-      if (hasLeftMouseButton(e)) {
-        this.save(e);
-      }
-    },
-    click: function(e) {
-      if (hasLeftMouseButton(e)) {
-        this.forward(e);
-      }
-    },
-
-    touchstart: function(e) {
-      this.save(e.changedTouches[0], e);
-    },
-    touchend: function(e) {
-      this.forward(e.changedTouches[0], e);
-    },
-
-    forward: function(e, preventer) {
-      let dx = Math.abs(e.clientX - this.info.x);
-      let dy = Math.abs(e.clientY - this.info.y);
-      let t = Gestures._findOriginalTarget(e);
-      // dx,dy can be NaN if `click` has been simulated and there was no `down` for `start`
-      if (isNaN(dx) || isNaN(dy) || (dx <= TAP_DISTANCE && dy <= TAP_DISTANCE) || isSyntheticClick(e)) {
-        // prevent taps from being generated if an event has canceled them
-        if (!this.info.prevent) {
-          Gestures._fire(t, 'tap', {
-            x: e.clientX,
-            y: e.clientY,
-            sourceEvent: e,
-            preventer: preventer
-          });
-        }
-      }
-    }
-  });
-
-  /** @deprecated */
-  Gestures.findOriginalTarget = Gestures._findOriginalTarget;
-
-  /** @deprecated */
-  Gestures.add = Gestures.addListener;
-
-  /** @deprecated */
-  Gestures.remove = Gestures.removeListener;
-
-  Polymer.Gestures = Gestures;
-
-})();
-
-
-
-/***/ }),
-/* 35 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-
-(function() {
-
-  'use strict';
-
-  // run a callback when HTMLImports are ready or immediately if
-  // this api is not available.
-  function whenImportsReady(cb) {
-    if (window.HTMLImports) {
-      HTMLImports.whenReady(cb);
-    } else {
-      cb();
-    }
-  }
-
-  /**
-   * Convenience method for importing an HTML document imperatively.
-   *
-   * This method creates a new `<link rel="import">` element with
-   * the provided URL and appends it to the document to start loading.
-   * In the `onload` callback, the `import` property of the `link`
-   * element will contain the imported document contents.
-   *
-   * @memberof Polymer
-   * @param {string} href URL to document to load.
-   * @param {Function=} onload Callback to notify when an import successfully
-   *   loaded.
-   * @param {Function=} onerror Callback to notify when an import
-   *   unsuccessfully loaded.
-   * @param {boolean=} optAsync True if the import should be loaded `async`.
-   *   Defaults to `false`.
-   * @return {HTMLLinkElement} The link element for the URL to be loaded.
-   */
-  Polymer.importHref = function(href, onload, onerror, optAsync) {
-    let link =
-      document.head.querySelector('link[href="' + href + '"][import-href]');
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = 'import';
-      link.href = href;
-      link.setAttribute('import-href', '');
-    }
-    // always ensure link has `async` attribute if user specified one,
-    // even if it was previously not async. This is considered less confusing.
-    if (optAsync) {
-      link.setAttribute('async', '');
-    }
-    // NOTE: the link may now be in 3 states: (1) pending insertion,
-    // (2) inflight, (3) already laoded. In each case, we need to add
-    // event listeners to process callbacks.
-    let cleanup = function() {
-      link.removeEventListener('load', loadListener);
-      link.removeEventListener('error', errorListener);
-    }
-    let loadListener = function(event) {
-      cleanup();
-      // In case of a successful load, cache the load event on the link so
-      // that it can be used to short-circuit this method in the future when
-      // it is called with the same href param.
-      link.__dynamicImportLoaded = true;
-      if (onload) {
-        whenImportsReady(() => {
-          onload(event);
-        });
-      }
-    };
-    let errorListener = function(event) {
-      cleanup();
-      // In case of an error, remove the link from the document so that it
-      // will be automatically created again the next time `importHref` is
-      // called.
-      if (link.parentNode) {
-        link.parentNode.removeChild(link);
-      }
-      if (onerror) {
-        whenImportsReady(() => {
-          onerror(event);
-        });
-      }
-    };
-    link.addEventListener('load', loadListener);
-    link.addEventListener('error', errorListener);
-    if (link.parentNode == null) {
-      document.head.appendChild(link);
-    // if the link already loaded, dispatch a fake load event
-    // so that listeners are called and get a proper event argument.
-    } else if (link.__dynamicImportLoaded) {
-      link.dispatchEvent(new Event('load'));
-    }
-    return link;
-  };
-
-})();
-
-
-
-/***/ }),
-/* 36 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-  'use strict';
-
-  /**
-   * Module with utilities for manipulating structured data path strings.
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module with utilities for manipulating structured data path strings.
-   */
-  const Path = {
-
-    /**
-     * Returns true if the given string is a structured data path (has dots).
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.isPath('foo.bar.baz') // true
-     * Polymer.Path.isPath('foo')         // false
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string} path Path string
-     * @return {boolean} True if the string contained one or more dots
-     */
-    isPath: function(path) {
-      return path.indexOf('.') >= 0;
-    },
-
-    /**
-     * Returns the root property name for the given path.
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.root('foo.bar.baz') // 'foo'
-     * Polymer.Path.root('foo')         // 'foo'
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string} path Path string
-     * @return {string} Root property name
-     */
-    root: function(path) {
-      let dotIndex = path.indexOf('.');
-      if (dotIndex === -1) {
-        return path;
-      }
-      return path.slice(0, dotIndex);
-    },
-
-    /**
-     * Given `base` is `foo.bar`, `foo` is an ancestor, `foo.bar` is not
-     * Returns true if the given path is an ancestor of the base path.
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.isAncestor('foo.bar', 'foo')         // true
-     * Polymer.Path.isAncestor('foo.bar', 'foo.bar')     // false
-     * Polymer.Path.isAncestor('foo.bar', 'foo.bar.baz') // false
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string} base Path string to test against.
-     * @param {string} path Path string to test.
-     * @return {boolean} True if `path` is an ancestor of `base`.
-     */
-    isAncestor: function(base, path) {
-      //     base.startsWith(path + '.');
-      return base.indexOf(path + '.') === 0;
-    },
-
-    /**
-     * Given `base` is `foo.bar`, `foo.bar.baz` is an descendant
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.isDescendant('foo.bar', 'foo.bar.baz') // true
-     * Polymer.Path.isDescendant('foo.bar', 'foo.bar')     // false
-     * Polymer.Path.isDescendant('foo.bar', 'foo')         // false
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string} base Path string to test against.
-     * @param {string} path Path string to test.
-     * @return {boolean} True if `path` is a descendant of `base`.
-     */
-    isDescendant: function(base, path) {
-      //     path.startsWith(base + '.');
-      return path.indexOf(base + '.') === 0;
-    },
-
-    /**
-     * Replaces a previous base path with a new base path, preserving the
-     * remainder of the path.
-     *
-     * User must ensure `path` has a prefix of `base`.
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.translate('foo.bar', 'zot' 'foo.bar.baz') // 'zot.baz'
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string} base Current base string to remove
-     * @param {string} newBase New base string to replace with
-     * @param {string} path Path to translate
-     * @return {string} Translated string
-     */
-    translate: function(base, newBase, path) {
-      return newBase + path.slice(base.length);
-    },
-
-    matches: function(base, path) {
-      return (base === path) ||
-             this.isAncestor(base, path) ||
-             this.isDescendant(base, path);
-    },
-
-    /**
-     * Converts array-based paths to flattened path.  String-based paths
-     * are returned as-is.
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.normalize(['foo.bar', 0, 'baz'])  // 'foo.bar.0.baz'
-     * Polymer.Path.normalize('foo.bar.0.baz')        // 'foo.bar.0.baz'
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string | !Array<string|number>} path Input path
-     * @return {string} Flattened path
-     */
-    normalize: function(path) {
-      if (Array.isArray(path)) {
-        let parts = [];
-        for (let i=0; i<path.length; i++) {
-          let args = path[i].toString().split('.');
-          for (let j=0; j<args.length; j++) {
-            parts.push(args[j]);
-          }
-        }
-        return parts.join('.');
-      } else {
-        return path;
-      }
-    },
-
-    /**
-     * Splits a path into an array of property names. Accepts either arrays
-     * of path parts or strings.
-     *
-     * Example:
-     *
-     * ```
-     * Polymer.Path.split(['foo.bar', 0, 'baz'])  // ['foo', 'bar', '0', 'baz']
-     * Polymer.Path.split('foo.bar.0.baz')        // ['foo', 'bar', '0', 'baz']
-     * ```
-     *
-     * @memberof Polymer.Path
-     * @param {string | !Array<string|number>} path Input path
-     * @return {!Array<string>} Array of path parts
-     */
-    split: function(path) {
-      if (Array.isArray(path)) {
-        return this.normalize(path).split('.');
-      }
-      return path.toString().split('.');
-    },
-
-    /**
-     * Reads a value from a path.  If any sub-property in the path is `undefined`,
-     * this method returns `undefined` (will never throw.
-     *
-     * @memberof Polymer.Path
-     * @param {Object} root Object from which to dereference path from
-     * @param {string | !Array<string|number>} path Path to read
-     * @param {Object=} info If an object is provided to `info`, the normalized
-     *  (flattened) path will be set to `info.path`.
-     * @return {*} Value at path, or `undefined` if the path could not be
-     *  fully dereferenced.
-     */
-    get: function(root, path, info) {
-      let prop = root;
-      let parts = this.split(path);
-      // Loop over path parts[0..n-1] and dereference
-      for (let i=0; i<parts.length; i++) {
-        if (!prop) {
-          return;
-        }
-        let part = parts[i];
-        prop = prop[part];
-      }
-      if (info) {
-        info.path = parts.join('.');
-      }
-      return prop;
-    },
-
-    /**
-     * Sets a value to a path.  If any sub-property in the path is `undefined`,
-     * this method will no-op.
-     *
-     * @memberof Polymer.Path
-     * @param {Object} root Object from which to dereference path from
-     * @param {string | !Array<string|number>} path Path to set
-     * @param {*} value Value to set to path
-     * @return {string | undefined} The normalized version of the input path
-     */
-    set: function(root, path, value) {
-      let prop = root;
-      let parts = this.split(path);
-      let last = parts[parts.length-1];
-      if (parts.length > 1) {
-        // Loop over path parts[0..n-2] and dereference
-        for (let i=0; i<parts.length-1; i++) {
-          let part = parts[i];
-          prop = prop[part];
-          if (!prop) {
-            return;
-          }
-        }
-        // Set value to object at end of path
-        prop[last] = value;
-      } else {
-        // Simple property set
-        prop[path] = value;
-      }
-      return parts.join('.');
-    }
-
-  };
-
-  /**
-   * Returns true if the given string is a structured data path (has dots).
-   *
-   * This function is deprecated.  Use `Polymer.Path.isPath` instead.
-   *
-   * Example:
-   *
-   * ```
-   * Polymer.Path.isDeep('foo.bar.baz') // true
-   * Polymer.Path.isDeep('foo')         // false
-   * ```
-   *
-   * @deprecated
-   * @memberof Polymer.Path
-   * @param {string} path Path string
-   * @return {boolean} True if the string contained one or more dots
-   */
-  Path.isDeep = Path.isPath;
-
-  Polymer.Path = Path;
-
-})();
-
-
-
-/***/ }),
-/* 37 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(0);
-
-
-(function() {
-
-  'use strict';
-
-  let scheduled = false;
-  let beforeRenderQueue = [];
-  let afterRenderQueue = [];
-
-  function schedule() {
-    scheduled = true;
-    // before next render
-    requestAnimationFrame(function() {
-      scheduled = false;
-      flushQueue(beforeRenderQueue);
-      // after the render
-      setTimeout(function() {
-        runQueue(afterRenderQueue);
-      });
-    });
-  }
-
-  function flushQueue(queue) {
-    while (queue.length) {
-      callMethod(queue.shift());
-    }
-  }
-
-  function runQueue(queue) {
-    for (let i=0, l=queue.length; i < l; i++) {
-      callMethod(queue.shift());
-    }
-  }
-
-  function callMethod(info) {
-    const context = info[0];
-    const callback = info[1];
-    const args = info[2];
-    try {
-      callback.apply(context, args);
-    } catch(e) {
-      setTimeout(() => {
-        throw e;
-      })
-    }
-  }
-
-  function flush() {
-    while (beforeRenderQueue.length || afterRenderQueue.length) {
-      flushQueue(beforeRenderQueue);
-      flushQueue(afterRenderQueue);
-    }
-    scheduled = false;
-  }
-
-  /**
-   * Module for scheduling flushable pre-render and post-render tasks.
-   *
-   * @namespace
-   * @memberof Polymer
-   * @summary Module for scheduling flushable pre-render and post-render tasks.
-   */
-  Polymer.RenderStatus = {
-
-    /**
-     * Enqueues a callback which will be run before the next render, at
-     * `requestAnimationFrame` timing.
-     *
-     * This method is useful for enqueuing work that requires DOM measurement,
-     * since measurement may not be reliable in custom element callbacks before
-     * the first render, as well as for batching measurement tasks in general.
-     *
-     * Tasks in this queue may be flushed by calling `Polymer.RenderStatus.flush()`.
-     *
-     * @memberof Polymer.RenderStatus
-     * @param {*} context Context object the callback function will be bound to
-     * @param {function()} callback Callback function
-     * @param {Array} args An array of arguments to call the callback function with
-     */
-    beforeNextRender: function(context, callback, args) {
-      if (!scheduled) {
-        schedule();
-      }
-      beforeRenderQueue.push([context, callback, args]);
-    },
-
-    /**
-     * Enqueues a callback which will be run after the next render, equivalent
-     * to one task (`setTimeout`) after the next `requestAnimationFrame`.
-     *
-     * This method is useful for tuning the first-render performance of an
-     * element or application by deferring non-critical work until after the
-     * first paint.  Typical non-render-critical work may include adding UI
-     * event listeners and aria attributes.
-     *
-     * @memberof Polymer.RenderStatus
-     * @param {*} context Context object the callback function will be bound to
-     * @param {function()} callback Callback function
-     * @param {Array} args An array of arguments to call the callback function with
-     */
-    afterNextRender: function(context, callback, args) {
-      if (!scheduled) {
-        schedule();
-      }
-      afterRenderQueue.push([context, callback, args]);
-    },
-
-    /**
-     * Flushes all `beforeNextRender` tasks, followed by all `afterNextRender`
-     * tasks.
-     *
-     * @memberof Polymer.RenderStatus
-     */
-    flush: flush
-
-  };
-
-})();
-
-
-
-/***/ }),
-/* 38 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/
-
-(function() {
-  'use strict';
-
-  // unresolved
-
-  function resolve() {
-    document.body.removeAttribute('unresolved');
-  }
-
-  if (window.WebComponents) {
-    window.addEventListener('WebComponentsReady', resolve);
-  } else {
-    if (document.readyState === 'interactive' || document.readyState === 'complete') {
-      resolve();
-    } else {
-      window.addEventListener('DOMContentLoaded', resolve);
-    }
-  }
-
-})();
-
-
-
-/***/ }),
-/* 39 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(18);
-
-
-/***/ }),
-/* 40 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*__wc__loader*/
-__webpack_require__(19);
-
-
-/***/ }),
-/* 41 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(17);
-
-
-/***/ })
-/******/ ]);
-//# sourceMappingURL=polymer.js.map
-
-/***/ }),
-/* 139 */
 /***/ (function(module, exports) {
 
 // Copyright 2014 Google Inc. All rights reserved.
@@ -29738,21 +17678,60 @@ module.exports = __webpack_require__(17);
 //     See the License for the specific language governing permissions and
 // limitations under the License.
 
-!function(a,b){var c={},d={},e={},f=null;!function(a,b){function c(a){if("number"==typeof a)return a;var b={};for(var c in a)b[c]=a[c];return b}function d(){this._delay=0,this._endDelay=0,this._fill="none",this._iterationStart=0,this._iterations=1,this._duration=0,this._playbackRate=1,this._direction="normal",this._easing="linear",this._easingFunction=x}function e(){return a.isDeprecated("Invalid timing inputs","2016-03-02","TypeError exceptions will be thrown instead.",!0)}function f(b,c,e){var f=new d;return c&&(f.fill="both",f.duration="auto"),"number"!=typeof b||isNaN(b)?void 0!==b&&Object.getOwnPropertyNames(b).forEach(function(c){if("auto"!=b[c]){if(("number"==typeof f[c]||"duration"==c)&&("number"!=typeof b[c]||isNaN(b[c])))return;if("fill"==c&&-1==v.indexOf(b[c]))return;if("direction"==c&&-1==w.indexOf(b[c]))return;if("playbackRate"==c&&1!==b[c]&&a.isDeprecated("AnimationEffectTiming.playbackRate","2014-11-28","Use Animation.playbackRate instead."))return;f[c]=b[c]}}):f.duration=b,f}function g(a){return"number"==typeof a&&(a=isNaN(a)?{duration:0}:{duration:a}),a}function h(b,c){return b=a.numericTimingToObject(b),f(b,c)}function i(a,b,c,d){return a<0||a>1||c<0||c>1?x:function(e){function f(a,b,c){return 3*a*(1-c)*(1-c)*c+3*b*(1-c)*c*c+c*c*c}if(e<=0){var g=0;return a>0?g=b/a:!b&&c>0&&(g=d/c),g*e}if(e>=1){var h=0;return c<1?h=(d-1)/(c-1):1==c&&a<1&&(h=(b-1)/(a-1)),1+h*(e-1)}for(var i=0,j=1;i<j;){var k=(i+j)/2,l=f(a,c,k);if(Math.abs(e-l)<1e-5)return f(b,d,k);l<e?i=k:j=k}return f(b,d,k)}}function j(a,b){return function(c){if(c>=1)return 1;var d=1/a;return(c+=b*d)-c%d}}function k(a){C||(C=document.createElement("div").style),C.animationTimingFunction="",C.animationTimingFunction=a;var b=C.animationTimingFunction;if(""==b&&e())throw new TypeError(a+" is not a valid value for easing");return b}function l(a){if("linear"==a)return x;var b=E.exec(a);if(b)return i.apply(this,b.slice(1).map(Number));var c=F.exec(a);return c?j(Number(c[1]),{start:y,middle:z,end:A}[c[2]]):B[a]||x}function m(a){return Math.abs(n(a)/a.playbackRate)}function n(a){return 0===a.duration||0===a.iterations?0:a.duration*a.iterations}function o(a,b,c){if(null==b)return G;var d=c.delay+a+c.endDelay;return b<Math.min(c.delay,d)?H:b>=Math.min(c.delay+a,d)?I:J}function p(a,b,c,d,e){switch(d){case H:return"backwards"==b||"both"==b?0:null;case J:return c-e;case I:return"forwards"==b||"both"==b?a:null;case G:return null}}function q(a,b,c,d,e){var f=e;return 0===a?b!==H&&(f+=c):f+=d/a,f}function r(a,b,c,d,e,f){var g=a===1/0?b%1:a%1;return 0!==g||c!==I||0===d||0===e&&0!==f||(g=1),g}function s(a,b,c,d){return a===I&&b===1/0?1/0:1===c?Math.floor(d)-1:Math.floor(d)}function t(a,b,c){var d=a;if("normal"!==a&&"reverse"!==a){var e=b;"alternate-reverse"===a&&(e+=1),d="normal",e!==1/0&&e%2!=0&&(d="reverse")}return"normal"===d?c:1-c}function u(a,b,c){var d=o(a,b,c),e=p(a,c.fill,b,d,c.delay);if(null===e)return null;var f=q(c.duration,d,c.iterations,e,c.iterationStart),g=r(f,c.iterationStart,d,c.iterations,e,c.duration),h=s(d,c.iterations,g,f),i=t(c.direction,h,g);return c._easingFunction(i)}var v="backwards|forwards|both|none".split("|"),w="reverse|alternate|alternate-reverse".split("|"),x=function(a){return a};d.prototype={_setMember:function(b,c){this["_"+b]=c,this._effect&&(this._effect._timingInput[b]=c,this._effect._timing=a.normalizeTimingInput(this._effect._timingInput),this._effect.activeDuration=a.calculateActiveDuration(this._effect._timing),this._effect._animation&&this._effect._animation._rebuildUnderlyingAnimation())},get playbackRate(){return this._playbackRate},set delay(a){this._setMember("delay",a)},get delay(){return this._delay},set endDelay(a){this._setMember("endDelay",a)},get endDelay(){return this._endDelay},set fill(a){this._setMember("fill",a)},get fill(){return this._fill},set iterationStart(a){if((isNaN(a)||a<0)&&e())throw new TypeError("iterationStart must be a non-negative number, received: "+timing.iterationStart);this._setMember("iterationStart",a)},get iterationStart(){return this._iterationStart},set duration(a){if("auto"!=a&&(isNaN(a)||a<0)&&e())throw new TypeError("duration must be non-negative or auto, received: "+a);this._setMember("duration",a)},get duration(){return this._duration},set direction(a){this._setMember("direction",a)},get direction(){return this._direction},set easing(a){this._easingFunction=l(k(a)),this._setMember("easing",a)},get easing(){return this._easing},set iterations(a){if((isNaN(a)||a<0)&&e())throw new TypeError("iterations must be non-negative, received: "+a);this._setMember("iterations",a)},get iterations(){return this._iterations}};var y=1,z=.5,A=0,B={ease:i(.25,.1,.25,1),"ease-in":i(.42,0,1,1),"ease-out":i(0,0,.58,1),"ease-in-out":i(.42,0,.58,1),"step-start":j(1,y),"step-middle":j(1,z),"step-end":j(1,A)},C=null,D="\\s*(-?\\d+\\.?\\d*|-?\\.\\d+)\\s*",E=new RegExp("cubic-bezier\\("+D+","+D+","+D+","+D+"\\)"),F=/steps\(\s*(\d+)\s*,\s*(start|middle|end)\s*\)/,G=0,H=1,I=2,J=3;a.cloneTimingInput=c,a.makeTiming=f,a.numericTimingToObject=g,a.normalizeTimingInput=h,a.calculateActiveDuration=m,a.calculateIterationProgress=u,a.calculatePhase=o,a.normalizeEasing=k,a.parseEasingFunction=l}(c),function(a,b){function c(a,b){return a in k?k[a][b]||b:b}function d(a){return"display"===a||0===a.lastIndexOf("animation",0)||0===a.lastIndexOf("transition",0)}function e(a,b,e){if(!d(a)){var f=h[a];if(f){i.style[a]=b;for(var g in f){var j=f[g],k=i.style[j];e[j]=c(j,k)}}else e[a]=c(a,b)}}function f(a){var b=[];for(var c in a)if(!(c in["easing","offset","composite"])){var d=a[c];Array.isArray(d)||(d=[d]);for(var e,f=d.length,g=0;g<f;g++)e={},e.offset="offset"in a?a.offset:1==f?1:g/(f-1),"easing"in a&&(e.easing=a.easing),"composite"in a&&(e.composite=a.composite),e[c]=d[g],b.push(e)}return b.sort(function(a,b){return a.offset-b.offset}),b}function g(b){function c(){var a=d.length;null==d[a-1].offset&&(d[a-1].offset=1),a>1&&null==d[0].offset&&(d[0].offset=0);for(var b=0,c=d[0].offset,e=1;e<a;e++){var f=d[e].offset;if(null!=f){for(var g=1;g<e-b;g++)d[b+g].offset=c+(f-c)*g/(e-b);b=e,c=f}}}if(null==b)return[];window.Symbol&&Symbol.iterator&&Array.prototype.from&&b[Symbol.iterator]&&(b=Array.from(b)),Array.isArray(b)||(b=f(b));for(var d=b.map(function(b){var c={};for(var d in b){var f=b[d];if("offset"==d){if(null!=f){if(f=Number(f),!isFinite(f))throw new TypeError("Keyframe offsets must be numbers.");if(f<0||f>1)throw new TypeError("Keyframe offsets must be between 0 and 1.")}}else if("composite"==d){if("add"==f||"accumulate"==f)throw{type:DOMException.NOT_SUPPORTED_ERR,name:"NotSupportedError",message:"add compositing is not supported"};if("replace"!=f)throw new TypeError("Invalid composite mode "+f+".")}else f="easing"==d?a.normalizeEasing(f):""+f;e(d,f,c)}return void 0==c.offset&&(c.offset=null),void 0==c.easing&&(c.easing="linear"),c}),g=!0,h=-1/0,i=0;i<d.length;i++){var j=d[i].offset;if(null!=j){if(j<h)throw new TypeError("Keyframes are not loosely sorted by offset. Sort or specify offsets.");h=j}else g=!1}return d=d.filter(function(a){return a.offset>=0&&a.offset<=1}),g||c(),d}var h={background:["backgroundImage","backgroundPosition","backgroundSize","backgroundRepeat","backgroundAttachment","backgroundOrigin","backgroundClip","backgroundColor"],border:["borderTopColor","borderTopStyle","borderTopWidth","borderRightColor","borderRightStyle","borderRightWidth","borderBottomColor","borderBottomStyle","borderBottomWidth","borderLeftColor","borderLeftStyle","borderLeftWidth"],borderBottom:["borderBottomWidth","borderBottomStyle","borderBottomColor"],borderColor:["borderTopColor","borderRightColor","borderBottomColor","borderLeftColor"],borderLeft:["borderLeftWidth","borderLeftStyle","borderLeftColor"],borderRadius:["borderTopLeftRadius","borderTopRightRadius","borderBottomRightRadius","borderBottomLeftRadius"],borderRight:["borderRightWidth","borderRightStyle","borderRightColor"],borderTop:["borderTopWidth","borderTopStyle","borderTopColor"],borderWidth:["borderTopWidth","borderRightWidth","borderBottomWidth","borderLeftWidth"],flex:["flexGrow","flexShrink","flexBasis"],font:["fontFamily","fontSize","fontStyle","fontVariant","fontWeight","lineHeight"],margin:["marginTop","marginRight","marginBottom","marginLeft"],outline:["outlineColor","outlineStyle","outlineWidth"],padding:["paddingTop","paddingRight","paddingBottom","paddingLeft"]},i=document.createElementNS("http://www.w3.org/1999/xhtml","div"),j={thin:"1px",medium:"3px",thick:"5px"},k={borderBottomWidth:j,borderLeftWidth:j,borderRightWidth:j,borderTopWidth:j,fontSize:{"xx-small":"60%","x-small":"75%",small:"89%",medium:"100%",large:"120%","x-large":"150%","xx-large":"200%"},fontWeight:{normal:"400",bold:"700"},outlineWidth:j,textShadow:{none:"0px 0px 0px transparent"},boxShadow:{none:"0px 0px 0px 0px transparent"}};a.convertToArrayForm=f,a.normalizeKeyframes=g}(c),function(a){var b={};a.isDeprecated=function(a,c,d,e){var f=e?"are":"is",g=new Date,h=new Date(c);return h.setMonth(h.getMonth()+3),!(g<h&&(a in b||console.warn("Web Animations: "+a+" "+f+" deprecated and will stop working on "+h.toDateString()+". "+d),b[a]=!0,1))},a.deprecated=function(b,c,d,e){var f=e?"are":"is";if(a.isDeprecated(b,c,d,e))throw new Error(b+" "+f+" no longer supported. "+d)}}(c),function(){if(document.documentElement.animate){var a=document.documentElement.animate([],0),b=!0;if(a&&(b=!1,"play|currentTime|pause|reverse|playbackRate|cancel|finish|startTime|playState".split("|").forEach(function(c){void 0===a[c]&&(b=!0)})),!b)return}!function(a,b,c){function d(a){for(var b={},c=0;c<a.length;c++)for(var d in a[c])if("offset"!=d&&"easing"!=d&&"composite"!=d){var e={offset:a[c].offset,easing:a[c].easing,value:a[c][d]};b[d]=b[d]||[],b[d].push(e)}for(var f in b){var g=b[f];if(0!=g[0].offset||1!=g[g.length-1].offset)throw{type:DOMException.NOT_SUPPORTED_ERR,name:"NotSupportedError",message:"Partial keyframes are not supported"}}return b}function e(c){var d=[];for(var e in c)for(var f=c[e],g=0;g<f.length-1;g++){var h=g,i=g+1,j=f[h].offset,k=f[i].offset,l=j,m=k;0==g&&(l=-1/0,0==k&&(i=h)),g==f.length-2&&(m=1/0,1==j&&(h=i)),d.push({applyFrom:l,applyTo:m,startOffset:f[h].offset,endOffset:f[i].offset,easingFunction:a.parseEasingFunction(f[h].easing),property:e,interpolation:b.propertyInterpolation(e,f[h].value,f[i].value)})}return d.sort(function(a,b){return a.startOffset-b.startOffset}),d}b.convertEffectInput=function(c){var f=a.normalizeKeyframes(c),g=d(f),h=e(g);return function(a,c){if(null!=c)h.filter(function(a){return c>=a.applyFrom&&c<a.applyTo}).forEach(function(d){var e=c-d.startOffset,f=d.endOffset-d.startOffset,g=0==f?0:d.easingFunction(e/f);b.apply(a,d.property,d.interpolation(g))});else for(var d in g)"offset"!=d&&"easing"!=d&&"composite"!=d&&b.clear(a,d)}}}(c,d),function(a,b,c){function d(a){return a.replace(/-(.)/g,function(a,b){return b.toUpperCase()})}function e(a,b,c){h[c]=h[c]||[],h[c].push([a,b])}function f(a,b,c){for(var f=0;f<c.length;f++){e(a,b,d(c[f]))}}function g(c,e,f){var g=c;/-/.test(c)&&!a.isDeprecated("Hyphenated property names","2016-03-22","Use camelCase instead.",!0)&&(g=d(c)),"initial"!=e&&"initial"!=f||("initial"==e&&(e=i[g]),"initial"==f&&(f=i[g]));for(var j=e==f?[]:h[g],k=0;j&&k<j.length;k++){var l=j[k][0](e),m=j[k][0](f);if(void 0!==l&&void 0!==m){var n=j[k][1](l,m);if(n){var o=b.Interpolation.apply(null,n);return function(a){return 0==a?e:1==a?f:o(a)}}}}return b.Interpolation(!1,!0,function(a){return a?f:e})}var h={};b.addPropertiesHandler=f;var i={backgroundColor:"transparent",backgroundPosition:"0% 0%",borderBottomColor:"currentColor",borderBottomLeftRadius:"0px",borderBottomRightRadius:"0px",borderBottomWidth:"3px",borderLeftColor:"currentColor",borderLeftWidth:"3px",borderRightColor:"currentColor",borderRightWidth:"3px",borderSpacing:"2px",borderTopColor:"currentColor",borderTopLeftRadius:"0px",borderTopRightRadius:"0px",borderTopWidth:"3px",bottom:"auto",clip:"rect(0px, 0px, 0px, 0px)",color:"black",fontSize:"100%",fontWeight:"400",height:"auto",left:"auto",letterSpacing:"normal",lineHeight:"120%",marginBottom:"0px",marginLeft:"0px",marginRight:"0px",marginTop:"0px",maxHeight:"none",maxWidth:"none",minHeight:"0px",minWidth:"0px",opacity:"1.0",outlineColor:"invert",outlineOffset:"0px",outlineWidth:"3px",paddingBottom:"0px",paddingLeft:"0px",paddingRight:"0px",paddingTop:"0px",right:"auto",strokeDasharray:"none",strokeDashoffset:"0px",textIndent:"0px",textShadow:"0px 0px 0px transparent",top:"auto",transform:"",verticalAlign:"0px",visibility:"visible",width:"auto",wordSpacing:"normal",zIndex:"auto"};b.propertyInterpolation=g}(c,d),function(a,b,c){function d(b){var c=a.calculateActiveDuration(b),d=function(d){return a.calculateIterationProgress(c,d,b)};return d._totalDuration=b.delay+c+b.endDelay,d}b.KeyframeEffect=function(c,e,f,g){var h,i=d(a.normalizeTimingInput(f)),j=b.convertEffectInput(e),k=function(){j(c,h)};return k._update=function(a){return null!==(h=i(a))},k._clear=function(){j(c,null)},k._hasSameTarget=function(a){return c===a},k._target=c,k._totalDuration=i._totalDuration,k._id=g,k}}(c,d),function(a,b){function c(a,b,c){c.enumerable=!0,c.configurable=!0,Object.defineProperty(a,b,c)}function d(a){this._surrogateStyle=document.createElementNS("http://www.w3.org/1999/xhtml","div").style,this._style=a.style,this._length=0,this._isAnimatedProperty={};for(var b=0;b<this._style.length;b++){var c=this._style[b];this._surrogateStyle[c]=this._style[c]}this._updateIndices()}function e(a){if(!a._webAnimationsPatchedStyle){var b=new d(a);try{c(a,"style",{get:function(){return b}})}catch(b){a.style._set=function(b,c){a.style[b]=c},a.style._clear=function(b){a.style[b]=""}}a._webAnimationsPatchedStyle=a.style}}var f={cssText:1,length:1,parentRule:1},g={getPropertyCSSValue:1,getPropertyPriority:1,getPropertyValue:1,item:1,removeProperty:1,setProperty:1},h={removeProperty:1,setProperty:1};d.prototype={get cssText(){return this._surrogateStyle.cssText},set cssText(a){for(var b={},c=0;c<this._surrogateStyle.length;c++)b[this._surrogateStyle[c]]=!0;this._surrogateStyle.cssText=a,this._updateIndices();for(var c=0;c<this._surrogateStyle.length;c++)b[this._surrogateStyle[c]]=!0;for(var d in b)this._isAnimatedProperty[d]||this._style.setProperty(d,this._surrogateStyle.getPropertyValue(d))},get length(){return this._surrogateStyle.length},get parentRule(){return this._style.parentRule},_updateIndices:function(){for(;this._length<this._surrogateStyle.length;)Object.defineProperty(this,this._length,{configurable:!0,enumerable:!1,get:function(a){return function(){return this._surrogateStyle[a]}}(this._length)}),this._length++;for(;this._length>this._surrogateStyle.length;)this._length--,Object.defineProperty(this,this._length,{configurable:!0,enumerable:!1,value:void 0})},_set:function(a,b){this._style[a]=b,this._isAnimatedProperty[a]=!0},_clear:function(a){this._style[a]=this._surrogateStyle[a],delete this._isAnimatedProperty[a]}};for(var i in g)d.prototype[i]=function(a,b){return function(){var c=this._surrogateStyle[a].apply(this._surrogateStyle,arguments);return b&&(this._isAnimatedProperty[arguments[0]]||this._style[a].apply(this._style,arguments),this._updateIndices()),c}}(i,i in h);for(var j in document.documentElement.style)j in f||j in g||function(a){c(d.prototype,a,{get:function(){return this._surrogateStyle[a]},set:function(b){this._surrogateStyle[a]=b,this._updateIndices(),this._isAnimatedProperty[a]||(this._style[a]=b)}})}(j);a.apply=function(b,c,d){e(b),b.style._set(a.propertyName(c),d)},a.clear=function(b,c){b._webAnimationsPatchedStyle&&b.style._clear(a.propertyName(c))}}(d),function(a){window.Element.prototype.animate=function(b,c){var d="";return c&&c.id&&(d=c.id),a.timeline._play(a.KeyframeEffect(this,b,c,d))}}(d),function(a,b){function c(a,b,d){if("number"==typeof a&&"number"==typeof b)return a*(1-d)+b*d;if("boolean"==typeof a&&"boolean"==typeof b)return d<.5?a:b;if(a.length==b.length){for(var e=[],f=0;f<a.length;f++)e.push(c(a[f],b[f],d));return e}throw"Mismatched interpolation arguments "+a+":"+b}a.Interpolation=function(a,b,d){return function(e){return d(c(a,b,e))}}}(d),function(a,b){function c(a,b,c){return Math.max(Math.min(a,c),b)}function d(b,d,e){var f=a.dot(b,d);f=c(f,-1,1);var g=[];if(1===f)g=b;else for(var h=Math.acos(f),i=1*Math.sin(e*h)/Math.sqrt(1-f*f),j=0;j<4;j++)g.push(b[j]*(Math.cos(e*h)-f*i)+d[j]*i);return g}var e=function(){function a(a,b){for(var c=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],d=0;d<4;d++)for(var e=0;e<4;e++)for(var f=0;f<4;f++)c[d][e]+=b[d][f]*a[f][e];return c}function b(a){return 0==a[0][2]&&0==a[0][3]&&0==a[1][2]&&0==a[1][3]&&0==a[2][0]&&0==a[2][1]&&1==a[2][2]&&0==a[2][3]&&0==a[3][2]&&1==a[3][3]}function c(c,d,e,f,g){for(var h=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],i=0;i<4;i++)h[i][3]=g[i];for(var i=0;i<3;i++)for(var j=0;j<3;j++)h[3][i]+=c[j]*h[j][i];var k=f[0],l=f[1],m=f[2],n=f[3],o=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];o[0][0]=1-2*(l*l+m*m),o[0][1]=2*(k*l-m*n),o[0][2]=2*(k*m+l*n),o[1][0]=2*(k*l+m*n),o[1][1]=1-2*(k*k+m*m),o[1][2]=2*(l*m-k*n),o[2][0]=2*(k*m-l*n),o[2][1]=2*(l*m+k*n),o[2][2]=1-2*(k*k+l*l),h=a(h,o);var p=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];e[2]&&(p[2][1]=e[2],h=a(h,p)),e[1]&&(p[2][1]=0,p[2][0]=e[0],h=a(h,p)),e[0]&&(p[2][0]=0,p[1][0]=e[0],h=a(h,p));for(var i=0;i<3;i++)for(var j=0;j<3;j++)h[i][j]*=d[i];return b(h)?[h[0][0],h[0][1],h[1][0],h[1][1],h[3][0],h[3][1]]:h[0].concat(h[1],h[2],h[3])}return c}();a.composeMatrix=e,a.quat=d}(d),function(a,b,c){a.sequenceNumber=0;var d=function(a,b,c){this.target=a,this.currentTime=b,this.timelineTime=c,this.type="finish",this.bubbles=!1,this.cancelable=!1,this.currentTarget=a,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,this.timeStamp=Date.now()};b.Animation=function(b){this.id="",b&&b._id&&(this.id=b._id),this._sequenceNumber=a.sequenceNumber++,this._currentTime=0,this._startTime=null,this._paused=!1,this._playbackRate=1,this._inTimeline=!0,this._finishedFlag=!0,this.onfinish=null,this._finishHandlers=[],this._effect=b,this._inEffect=this._effect._update(0),this._idle=!0,this._currentTimePending=!1},b.Animation.prototype={_ensureAlive:function(){this.playbackRate<0&&0===this.currentTime?this._inEffect=this._effect._update(-1):this._inEffect=this._effect._update(this.currentTime),this._inTimeline||!this._inEffect&&this._finishedFlag||(this._inTimeline=!0,b.timeline._animations.push(this))},_tickCurrentTime:function(a,b){a!=this._currentTime&&(this._currentTime=a,this._isFinished&&!b&&(this._currentTime=this._playbackRate>0?this._totalDuration:0),this._ensureAlive())},get currentTime(){return this._idle||this._currentTimePending?null:this._currentTime},set currentTime(a){a=+a,isNaN(a)||(b.restart(),this._paused||null==this._startTime||(this._startTime=this._timeline.currentTime-a/this._playbackRate),this._currentTimePending=!1,this._currentTime!=a&&(this._idle&&(this._idle=!1,this._paused=!0),this._tickCurrentTime(a,!0),b.applyDirtiedAnimation(this)))},get startTime(){return this._startTime},set startTime(a){a=+a,isNaN(a)||this._paused||this._idle||(this._startTime=a,this._tickCurrentTime((this._timeline.currentTime-this._startTime)*this.playbackRate),b.applyDirtiedAnimation(this))},get playbackRate(){return this._playbackRate},set playbackRate(a){if(a!=this._playbackRate){var c=this.currentTime;this._playbackRate=a,this._startTime=null,"paused"!=this.playState&&"idle"!=this.playState&&(this._finishedFlag=!1,this._idle=!1,this._ensureAlive(),b.applyDirtiedAnimation(this)),null!=c&&(this.currentTime=c)}},get _isFinished(){return!this._idle&&(this._playbackRate>0&&this._currentTime>=this._totalDuration||this._playbackRate<0&&this._currentTime<=0)},get _totalDuration(){return this._effect._totalDuration},get playState(){return this._idle?"idle":null==this._startTime&&!this._paused&&0!=this.playbackRate||this._currentTimePending?"pending":this._paused?"paused":this._isFinished?"finished":"running"},_rewind:function(){if(this._playbackRate>=0)this._currentTime=0;else{if(!(this._totalDuration<1/0))throw new DOMException("Unable to rewind negative playback rate animation with infinite duration","InvalidStateError");this._currentTime=this._totalDuration}},play:function(){this._paused=!1,(this._isFinished||this._idle)&&(this._rewind(),this._startTime=null),this._finishedFlag=!1,this._idle=!1,this._ensureAlive(),b.applyDirtiedAnimation(this)},pause:function(){this._isFinished||this._paused||this._idle?this._idle&&(this._rewind(),this._idle=!1):this._currentTimePending=!0,this._startTime=null,this._paused=!0},finish:function(){this._idle||(this.currentTime=this._playbackRate>0?this._totalDuration:0,this._startTime=this._totalDuration-this.currentTime,this._currentTimePending=!1,b.applyDirtiedAnimation(this))},cancel:function(){this._inEffect&&(this._inEffect=!1,this._idle=!0,this._paused=!1,this._isFinished=!0,this._finishedFlag=!0,this._currentTime=0,this._startTime=null,this._effect._update(null),b.applyDirtiedAnimation(this))},reverse:function(){this.playbackRate*=-1,this.play()},addEventListener:function(a,b){"function"==typeof b&&"finish"==a&&this._finishHandlers.push(b)},removeEventListener:function(a,b){if("finish"==a){var c=this._finishHandlers.indexOf(b);c>=0&&this._finishHandlers.splice(c,1)}},_fireEvents:function(a){if(this._isFinished){if(!this._finishedFlag){var b=new d(this,this._currentTime,a),c=this._finishHandlers.concat(this.onfinish?[this.onfinish]:[]);setTimeout(function(){c.forEach(function(a){a.call(b.target,b)})},0),this._finishedFlag=!0}}else this._finishedFlag=!1},_tick:function(a,b){this._idle||this._paused||(null==this._startTime?b&&(this.startTime=a-this._currentTime/this.playbackRate):this._isFinished||this._tickCurrentTime((a-this._startTime)*this.playbackRate)),b&&(this._currentTimePending=!1,this._fireEvents(a))},get _needsTick(){return this.playState in{pending:1,running:1}||!this._finishedFlag},_targetAnimations:function(){var a=this._effect._target;return a._activeAnimations||(a._activeAnimations=[]),a._activeAnimations},_markTarget:function(){var a=this._targetAnimations();-1===a.indexOf(this)&&a.push(this)},_unmarkTarget:function(){var a=this._targetAnimations(),b=a.indexOf(this);-1!==b&&a.splice(b,1)}}}(c,d),function(a,b,c){function d(a){var b=j;j=[],a<q.currentTime&&(a=q.currentTime),q._animations.sort(e),q._animations=h(a,!0,q._animations)[0],b.forEach(function(b){b[1](a)}),g(),l=void 0}function e(a,b){return a._sequenceNumber-b._sequenceNumber}function f(){this._animations=[],this.currentTime=window.performance&&performance.now?performance.now():0}function g(){o.forEach(function(a){a()}),o.length=0}function h(a,c,d){p=!0,n=!1,b.timeline.currentTime=a,m=!1;var e=[],f=[],g=[],h=[];return d.forEach(function(b){b._tick(a,c),b._inEffect?(f.push(b._effect),b._markTarget()):(e.push(b._effect),b._unmarkTarget()),b._needsTick&&(m=!0);var d=b._inEffect||b._needsTick;b._inTimeline=d,d?g.push(b):h.push(b)}),o.push.apply(o,e),o.push.apply(o,f),m&&requestAnimationFrame(function(){}),p=!1,[g,h]}var i=window.requestAnimationFrame,j=[],k=0;window.requestAnimationFrame=function(a){var b=k++;return 0==j.length&&i(d),j.push([b,a]),b},window.cancelAnimationFrame=function(a){j.forEach(function(b){b[0]==a&&(b[1]=function(){})})},f.prototype={_play:function(c){c._timing=a.normalizeTimingInput(c.timing);var d=new b.Animation(c);return d._idle=!1,d._timeline=this,this._animations.push(d),b.restart(),b.applyDirtiedAnimation(d),d}};var l=void 0,m=!1,n=!1;b.restart=function(){return m||(m=!0,requestAnimationFrame(function(){}),n=!0),n},b.applyDirtiedAnimation=function(a){if(!p){a._markTarget();var c=a._targetAnimations();c.sort(e),h(b.timeline.currentTime,!1,c.slice())[1].forEach(function(a){var b=q._animations.indexOf(a);-1!==b&&q._animations.splice(b,1)}),g()}};var o=[],p=!1,q=new f;b.timeline=q}(c,d),function(a,b){function c(a,b){for(var c=0,d=0;d<a.length;d++)c+=a[d]*b[d];return c}function d(a,b){return[a[0]*b[0]+a[4]*b[1]+a[8]*b[2]+a[12]*b[3],a[1]*b[0]+a[5]*b[1]+a[9]*b[2]+a[13]*b[3],a[2]*b[0]+a[6]*b[1]+a[10]*b[2]+a[14]*b[3],a[3]*b[0]+a[7]*b[1]+a[11]*b[2]+a[15]*b[3],a[0]*b[4]+a[4]*b[5]+a[8]*b[6]+a[12]*b[7],a[1]*b[4]+a[5]*b[5]+a[9]*b[6]+a[13]*b[7],a[2]*b[4]+a[6]*b[5]+a[10]*b[6]+a[14]*b[7],a[3]*b[4]+a[7]*b[5]+a[11]*b[6]+a[15]*b[7],a[0]*b[8]+a[4]*b[9]+a[8]*b[10]+a[12]*b[11],a[1]*b[8]+a[5]*b[9]+a[9]*b[10]+a[13]*b[11],a[2]*b[8]+a[6]*b[9]+a[10]*b[10]+a[14]*b[11],a[3]*b[8]+a[7]*b[9]+a[11]*b[10]+a[15]*b[11],a[0]*b[12]+a[4]*b[13]+a[8]*b[14]+a[12]*b[15],a[1]*b[12]+a[5]*b[13]+a[9]*b[14]+a[13]*b[15],a[2]*b[12]+a[6]*b[13]+a[10]*b[14]+a[14]*b[15],a[3]*b[12]+a[7]*b[13]+a[11]*b[14]+a[15]*b[15]]}function e(a){var b=a.rad||0;return((a.deg||0)/360+(a.grad||0)/400+(a.turn||0))*(2*Math.PI)+b}function f(a){switch(a.t){case"rotatex":var b=e(a.d[0]);return[1,0,0,0,0,Math.cos(b),Math.sin(b),0,0,-Math.sin(b),Math.cos(b),0,0,0,0,1];case"rotatey":var b=e(a.d[0]);return[Math.cos(b),0,-Math.sin(b),0,0,1,0,0,Math.sin(b),0,Math.cos(b),0,0,0,0,1];case"rotate":case"rotatez":var b=e(a.d[0]);return[Math.cos(b),Math.sin(b),0,0,-Math.sin(b),Math.cos(b),0,0,0,0,1,0,0,0,0,1];case"rotate3d":var c=a.d[0],d=a.d[1],f=a.d[2],b=e(a.d[3]),g=c*c+d*d+f*f;if(0===g)c=1,d=0,f=0;else if(1!==g){var h=Math.sqrt(g);c/=h,d/=h,f/=h}var i=Math.sin(b/2),j=i*Math.cos(b/2),k=i*i;return[1-2*(d*d+f*f)*k,2*(c*d*k+f*j),2*(c*f*k-d*j),0,2*(c*d*k-f*j),1-2*(c*c+f*f)*k,2*(d*f*k+c*j),0,2*(c*f*k+d*j),2*(d*f*k-c*j),1-2*(c*c+d*d)*k,0,0,0,0,1];case"scale":return[a.d[0],0,0,0,0,a.d[1],0,0,0,0,1,0,0,0,0,1];case"scalex":return[a.d[0],0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];case"scaley":return[1,0,0,0,0,a.d[0],0,0,0,0,1,0,0,0,0,1];case"scalez":return[1,0,0,0,0,1,0,0,0,0,a.d[0],0,0,0,0,1];case"scale3d":return[a.d[0],0,0,0,0,a.d[1],0,0,0,0,a.d[2],0,0,0,0,1];case"skew":var l=e(a.d[0]),m=e(a.d[1]);return[1,Math.tan(m),0,0,Math.tan(l),1,0,0,0,0,1,0,0,0,0,1];case"skewx":var b=e(a.d[0]);return[1,0,0,0,Math.tan(b),1,0,0,0,0,1,0,0,0,0,1];case"skewy":var b=e(a.d[0]);return[1,Math.tan(b),0,0,0,1,0,0,0,0,1,0,0,0,0,1];case"translate":var c=a.d[0].px||0,d=a.d[1].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,d,0,1];case"translatex":var c=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,0,0,1];case"translatey":var d=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,0,d,0,1];case"translatez":var f=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,0,0,f,1];case"translate3d":var c=a.d[0].px||0,d=a.d[1].px||0,f=a.d[2].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,d,f,1];case"perspective":return[1,0,0,0,0,1,0,0,0,0,1,a.d[0].px?-1/a.d[0].px:0,0,0,0,1];case"matrix":return[a.d[0],a.d[1],0,0,a.d[2],a.d[3],0,0,0,0,1,0,a.d[4],a.d[5],0,1];case"matrix3d":return a.d}}function g(a){return 0===a.length?[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]:a.map(f).reduce(d)}function h(a){return[i(g(a))]}var i=function(){function a(a){return a[0][0]*a[1][1]*a[2][2]+a[1][0]*a[2][1]*a[0][2]+a[2][0]*a[0][1]*a[1][2]-a[0][2]*a[1][1]*a[2][0]-a[1][2]*a[2][1]*a[0][0]-a[2][2]*a[0][1]*a[1][0]}function b(b){for(var c=1/a(b),d=b[0][0],e=b[0][1],f=b[0][2],g=b[1][0],h=b[1][1],i=b[1][2],j=b[2][0],k=b[2][1],l=b[2][2],m=[[(h*l-i*k)*c,(f*k-e*l)*c,(e*i-f*h)*c,0],[(i*j-g*l)*c,(d*l-f*j)*c,(f*g-d*i)*c,0],[(g*k-h*j)*c,(j*e-d*k)*c,(d*h-e*g)*c,0]],n=[],o=0;o<3;o++){for(var p=0,q=0;q<3;q++)p+=b[3][q]*m[q][o];n.push(p)}return n.push(1),m.push(n),m}function d(a){return[[a[0][0],a[1][0],a[2][0],a[3][0]],[a[0][1],a[1][1],a[2][1],a[3][1]],[a[0][2],a[1][2],a[2][2],a[3][2]],[a[0][3],a[1][3],a[2][3],a[3][3]]]}function e(a,b){for(var c=[],d=0;d<4;d++){for(var e=0,f=0;f<4;f++)e+=a[f]*b[f][d];c.push(e)}return c}function f(a){var b=g(a);return[a[0]/b,a[1]/b,a[2]/b]}function g(a){return Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2])}function h(a,b,c,d){return[c*a[0]+d*b[0],c*a[1]+d*b[1],c*a[2]+d*b[2]]}function i(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]}function j(j){var k=[j.slice(0,4),j.slice(4,8),j.slice(8,12),j.slice(12,16)];if(1!==k[3][3])return null;for(var l=[],m=0;m<4;m++)l.push(k[m].slice());for(var m=0;m<3;m++)l[m][3]=0;if(0===a(l))return null;var n,o=[];k[0][3]||k[1][3]||k[2][3]?(o.push(k[0][3]),o.push(k[1][3]),o.push(k[2][3]),o.push(k[3][3]),n=e(o,d(b(l)))):n=[0,0,0,1];var p=k[3].slice(0,3),q=[];q.push(k[0].slice(0,3));var r=[];r.push(g(q[0])),q[0]=f(q[0]);var s=[];q.push(k[1].slice(0,3)),s.push(c(q[0],q[1])),q[1]=h(q[1],q[0],1,-s[0]),r.push(g(q[1])),q[1]=f(q[1]),s[0]/=r[1],q.push(k[2].slice(0,3)),s.push(c(q[0],q[2])),q[2]=h(q[2],q[0],1,-s[1]),s.push(c(q[1],q[2])),q[2]=h(q[2],q[1],1,-s[2]),r.push(g(q[2])),q[2]=f(q[2]),s[1]/=r[2],s[2]/=r[2];var t=i(q[1],q[2]);if(c(q[0],t)<0)for(var m=0;m<3;m++)r[m]*=-1,q[m][0]*=-1,q[m][1]*=-1,q[m][2]*=-1;var u,v,w=q[0][0]+q[1][1]+q[2][2]+1;return w>1e-4?(u=.5/Math.sqrt(w),v=[(q[2][1]-q[1][2])*u,(q[0][2]-q[2][0])*u,(q[1][0]-q[0][1])*u,.25/u]):q[0][0]>q[1][1]&&q[0][0]>q[2][2]?(u=2*Math.sqrt(1+q[0][0]-q[1][1]-q[2][2]),v=[.25*u,(q[0][1]+q[1][0])/u,(q[0][2]+q[2][0])/u,(q[2][1]-q[1][2])/u]):q[1][1]>q[2][2]?(u=2*Math.sqrt(1+q[1][1]-q[0][0]-q[2][2]),v=[(q[0][1]+q[1][0])/u,.25*u,(q[1][2]+q[2][1])/u,(q[0][2]-q[2][0])/u]):(u=2*Math.sqrt(1+q[2][2]-q[0][0]-q[1][1]),v=[(q[0][2]+q[2][0])/u,(q[1][2]+q[2][1])/u,.25*u,(q[1][0]-q[0][1])/u]),[p,r,s,v,n]}return j}();a.dot=c,a.makeMatrixDecomposition=h}(d),function(a){function b(a,b){var c=a.exec(b);if(c)return c=a.ignoreCase?c[0].toLowerCase():c[0],[c,b.substr(c.length)]}function c(a,b){b=b.replace(/^\s*/,"");var c=a(b);if(c)return[c[0],c[1].replace(/^\s*/,"")]}function d(a,d,e){a=c.bind(null,a);for(var f=[];;){var g=a(e);if(!g)return[f,e];if(f.push(g[0]),e=g[1],!(g=b(d,e))||""==g[1])return[f,e];e=g[1]}}function e(a,b){for(var c=0,d=0;d<b.length&&(!/\s|,/.test(b[d])||0!=c);d++)if("("==b[d])c++;else if(")"==b[d]&&(c--,0==c&&d++,c<=0))break;var e=a(b.substr(0,d));return void 0==e?void 0:[e,b.substr(d)]}function f(a,b){for(var c=a,d=b;c&&d;)c>d?c%=d:d%=c;return c=a*b/(c+d)}function g(a){return function(b){var c=a(b);return c&&(c[0]=void 0),c}}function h(a,b){return function(c){return a(c)||[b,c]}}function i(b,c){for(var d=[],e=0;e<b.length;e++){var f=a.consumeTrimmed(b[e],c);if(!f||""==f[0])return;void 0!==f[0]&&d.push(f[0]),c=f[1]}if(""==c)return d}function j(a,b,c,d,e){for(var g=[],h=[],i=[],j=f(d.length,e.length),k=0;k<j;k++){var l=b(d[k%d.length],e[k%e.length]);if(!l)return;g.push(l[0]),h.push(l[1]),i.push(l[2])}return[g,h,function(b){var d=b.map(function(a,b){return i[b](a)}).join(c);return a?a(d):d}]}function k(a,b,c){for(var d=[],e=[],f=[],g=0,h=0;h<c.length;h++)if("function"==typeof c[h]){var i=c[h](a[g],b[g++]);d.push(i[0]),e.push(i[1]),f.push(i[2])}else!function(a){d.push(!1),e.push(!1),f.push(function(){return c[a]})}(h);return[d,e,function(a){for(var b="",c=0;c<a.length;c++)b+=f[c](a[c]);return b}]}a.consumeToken=b,a.consumeTrimmed=c,a.consumeRepeated=d,a.consumeParenthesised=e,a.ignore=g,a.optional=h,a.consumeList=i,a.mergeNestedRepeated=j.bind(null,null),a.mergeWrappedNestedRepeated=j,a.mergeList=k}(d),function(a){function b(b){function c(b){var c=a.consumeToken(/^inset/i,b);if(c)return d.inset=!0,c;var c=a.consumeLengthOrPercent(b);if(c)return d.lengths.push(c[0]),c;var c=a.consumeColor(b);return c?(d.color=c[0],c):void 0}var d={inset:!1,lengths:[],color:null},e=a.consumeRepeated(c,/^/,b);if(e&&e[0].length)return[d,e[1]]}function c(c){var d=a.consumeRepeated(b,/^,/,c);if(d&&""==d[1])return d[0]}function d(b,c){for(;b.lengths.length<Math.max(b.lengths.length,c.lengths.length);)b.lengths.push({px:0});for(;c.lengths.length<Math.max(b.lengths.length,c.lengths.length);)c.lengths.push({px:0});if(b.inset==c.inset&&!!b.color==!!c.color){for(var d,e=[],f=[[],0],g=[[],0],h=0;h<b.lengths.length;h++){var i=a.mergeDimensions(b.lengths[h],c.lengths[h],2==h);f[0].push(i[0]),g[0].push(i[1]),e.push(i[2])}if(b.color&&c.color){var j=a.mergeColors(b.color,c.color);f[1]=j[0],g[1]=j[1],d=j[2]}return[f,g,function(a){for(var c=b.inset?"inset ":" ",f=0;f<e.length;f++)c+=e[f](a[0][f])+" ";return d&&(c+=d(a[1])),c}]}}function e(b,c,d,e){function f(a){return{inset:a,color:[0,0,0,0],lengths:[{px:0},{px:0},{px:0},{px:0}]}}for(var g=[],h=[],i=0;i<d.length||i<e.length;i++){var j=d[i]||f(e[i].inset),k=e[i]||f(d[i].inset);g.push(j),h.push(k)}return a.mergeNestedRepeated(b,c,g,h)}var f=e.bind(null,d,", ");a.addPropertiesHandler(c,f,["box-shadow","text-shadow"])}(d),function(a,b){function c(a){return a.toFixed(3).replace(/0+$/,"").replace(/\.$/,"")}function d(a,b,c){return Math.min(b,Math.max(a,c))}function e(a){if(/^\s*[-+]?(\d*\.)?\d+\s*$/.test(a))return Number(a)}function f(a,b){return[a,b,c]}function g(a,b){if(0!=a)return i(0,1/0)(a,b)}function h(a,b){return[a,b,function(a){return Math.round(d(1,1/0,a))}]}function i(a,b){return function(e,f){return[e,f,function(e){return c(d(a,b,e))}]}}function j(a){var b=a.trim().split(/\s*[\s,]\s*/);if(0!==b.length){for(var c=[],d=0;d<b.length;d++){var f=e(b[d]);if(void 0===f)return;c.push(f)}return c}}function k(a,b){if(a.length==b.length)return[a,b,function(a){return a.map(c).join(" ")}]}function l(a,b){return[a,b,Math.round]}a.clamp=d,a.addPropertiesHandler(j,k,["stroke-dasharray"]),a.addPropertiesHandler(e,i(0,1/0),["border-image-width","line-height"]),a.addPropertiesHandler(e,i(0,1),["opacity","shape-image-threshold"]),a.addPropertiesHandler(e,g,["flex-grow","flex-shrink"]),a.addPropertiesHandler(e,h,["orphans","widows"]),a.addPropertiesHandler(e,l,["z-index"]),a.parseNumber=e,a.parseNumberList=j,a.mergeNumbers=f,a.numberToString=c}(d),function(a,b){function c(a,b){if("visible"==a||"visible"==b)return[0,1,function(c){return c<=0?a:c>=1?b:"visible"}]}a.addPropertiesHandler(String,c,["visibility"])}(d),function(a,b){function c(a){a=a.trim(),f.fillStyle="#000",f.fillStyle=a;var b=f.fillStyle;if(f.fillStyle="#fff",f.fillStyle=a,b==f.fillStyle){f.fillRect(0,0,1,1);var c=f.getImageData(0,0,1,1).data;f.clearRect(0,0,1,1);var d=c[3]/255;return[c[0]*d,c[1]*d,c[2]*d,d]}}function d(b,c){return[b,c,function(b){function c(a){return Math.max(0,Math.min(255,a))}if(b[3])for(var d=0;d<3;d++)b[d]=Math.round(c(b[d]/b[3]));return b[3]=a.numberToString(a.clamp(0,1,b[3])),"rgba("+b.join(",")+")"}]}var e=document.createElementNS("http://www.w3.org/1999/xhtml","canvas");e.width=e.height=1;var f=e.getContext("2d");a.addPropertiesHandler(c,d,["background-color","border-bottom-color","border-left-color","border-right-color","border-top-color","color","fill","flood-color","lighting-color","outline-color","stop-color","stroke","text-decoration-color"]),a.consumeColor=a.consumeParenthesised.bind(null,c),a.mergeColors=d}(d),function(a,b){function c(a,b){if("0"==(b=b.trim().toLowerCase())&&"px".search(a)>=0)return{px:0};if(/^[^(]*$|^calc/.test(b)){b=b.replace(/calc\(/g,"(");var c={};b=b.replace(a,function(a){return c[a]=null,"U"+a});for(var d="U("+a.source+")",e=b.replace(/[-+]?(\d*\.)?\d+/g,"N").replace(new RegExp("N"+d,"g"),"D").replace(/\s[+-]\s/g,"O").replace(/\s/g,""),f=[/N\*(D)/g,/(N|D)[*\/]N/g,/(N|D)O\1/g,/\((N|D)\)/g],g=0;g<f.length;)f[g].test(e)?(e=e.replace(f[g],"$1"),g=0):g++;if("D"==e){for(var h in c){var i=eval(b.replace(new RegExp("U"+h,"g"),"").replace(new RegExp(d,"g"),"*0"));if(!isFinite(i))return;c[h]=i}return c}}}function d(a,b){return e(a,b,!0)}function e(b,c,d){var e,f=[];for(e in b)f.push(e);for(e in c)f.indexOf(e)<0&&f.push(e);return b=f.map(function(a){return b[a]||0}),c=f.map(function(a){return c[a]||0}),[b,c,function(b){var c=b.map(function(c,e){return 1==b.length&&d&&(c=Math.max(c,0)),a.numberToString(c)+f[e]}).join(" + ");return b.length>1?"calc("+c+")":c}]}var f="px|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc",g=c.bind(null,new RegExp(f,"g")),h=c.bind(null,new RegExp(f+"|%","g")),i=c.bind(null,/deg|rad|grad|turn/g);a.parseLength=g,a.parseLengthOrPercent=h,a.consumeLengthOrPercent=a.consumeParenthesised.bind(null,h),a.parseAngle=i,a.mergeDimensions=e;var j=a.consumeParenthesised.bind(null,g),k=a.consumeRepeated.bind(void 0,j,/^/),l=a.consumeRepeated.bind(void 0,k,/^,/);a.consumeSizePairList=l;var m=function(a){var b=l(a);if(b&&""==b[1])return b[0]},n=a.mergeNestedRepeated.bind(void 0,d," "),o=a.mergeNestedRepeated.bind(void 0,n,",");a.mergeNonNegativeSizePair=n,a.addPropertiesHandler(m,o,["background-size"]),a.addPropertiesHandler(h,d,["border-bottom-width","border-image-width","border-left-width","border-right-width","border-top-width","flex-basis","font-size","height","line-height","max-height","max-width","outline-width","width"]),a.addPropertiesHandler(h,e,["border-bottom-left-radius","border-bottom-right-radius","border-top-left-radius","border-top-right-radius","bottom","left","letter-spacing","margin-bottom","margin-left","margin-right","margin-top","min-height","min-width","outline-offset","padding-bottom","padding-left","padding-right","padding-top","perspective","right","shape-margin","stroke-dashoffset","text-indent","top","vertical-align","word-spacing"])}(d,f),function(a,b){function c(b){return a.consumeLengthOrPercent(b)||a.consumeToken(/^auto/,b)}function d(b){var d=a.consumeList([a.ignore(a.consumeToken.bind(null,/^rect/)),a.ignore(a.consumeToken.bind(null,/^\(/)),a.consumeRepeated.bind(null,c,/^,/),a.ignore(a.consumeToken.bind(null,/^\)/))],b);if(d&&4==d[0].length)return d[0]}function e(b,c){return"auto"==b||"auto"==c?[!0,!1,function(d){var e=d?b:c;if("auto"==e)return"auto";var f=a.mergeDimensions(e,e);return f[2](f[0])}]:a.mergeDimensions(b,c)}function f(a){return"rect("+a+")"}var g=a.mergeWrappedNestedRepeated.bind(null,f,e,", ");a.parseBox=d,a.mergeBoxes=g,a.addPropertiesHandler(d,g,["clip"])}(d),function(a,b){function c(a){return function(b){var c=0;return a.map(function(a){return a===k?b[c++]:a})}}function d(a){return a}function e(b){if("none"==(b=b.toLowerCase().trim()))return[];for(var c,d=/\s*(\w+)\(([^)]*)\)/g,e=[],f=0;c=d.exec(b);){if(c.index!=f)return;f=c.index+c[0].length;var g=c[1],h=n[g];if(!h)return;var i=c[2].split(","),j=h[0];if(j.length<i.length)return;for(var k=[],o=0;o<j.length;o++){var p,q=i[o],r=j[o];if(void 0===(p=q?{A:function(b){return"0"==b.trim()?m:a.parseAngle(b)},N:a.parseNumber,T:a.parseLengthOrPercent,L:a.parseLength}[r.toUpperCase()](q):{a:m,n:k[0],t:l}[r]))return;k.push(p)}if(e.push({t:g,d:k}),d.lastIndex==b.length)return e}}function f(a){return a.toFixed(6).replace(".000000","")}function g(b,c){if(b.decompositionPair!==c){b.decompositionPair=c;var d=a.makeMatrixDecomposition(b)}if(c.decompositionPair!==b){c.decompositionPair=b;var e=a.makeMatrixDecomposition(c)}return null==d[0]||null==e[0]?[[!1],[!0],function(a){return a?c[0].d:b[0].d}]:(d[0].push(0),e[0].push(1),[d,e,function(b){var c=a.quat(d[0][3],e[0][3],b[5]);return a.composeMatrix(b[0],b[1],b[2],c,b[4]).map(f).join(",")}])}function h(a){return a.replace(/[xy]/,"")}function i(a){return a.replace(/(x|y|z|3d)?$/,"3d")}function j(b,c){var d=a.makeMatrixDecomposition&&!0,e=!1;if(!b.length||!c.length){b.length||(e=!0,b=c,c=[]);for(var f=0;f<b.length;f++){var j=b[f].t,k=b[f].d,l="scale"==j.substr(0,5)?1:0;c.push({t:j,d:k.map(function(a){if("number"==typeof a)return l;var b={};for(var c in a)b[c]=l;return b})})}}var m=function(a,b){return"perspective"==a&&"perspective"==b||("matrix"==a||"matrix3d"==a)&&("matrix"==b||"matrix3d"==b)},o=[],p=[],q=[];if(b.length!=c.length){if(!d)return;var r=g(b,c);o=[r[0]],p=[r[1]],q=[["matrix",[r[2]]]]}else for(var f=0;f<b.length;f++){var j,s=b[f].t,t=c[f].t,u=b[f].d,v=c[f].d,w=n[s],x=n[t];if(m(s,t)){if(!d)return;var r=g([b[f]],[c[f]]);o.push(r[0]),p.push(r[1]),q.push(["matrix",[r[2]]])}else{if(s==t)j=s;else if(w[2]&&x[2]&&h(s)==h(t))j=h(s),u=w[2](u),v=x[2](v);else{if(!w[1]||!x[1]||i(s)!=i(t)){if(!d)return;var r=g(b,c);o=[r[0]],p=[r[1]],q=[["matrix",[r[2]]]];break}j=i(s),u=w[1](u),v=x[1](v)}for(var y=[],z=[],A=[],B=0;B<u.length;B++){var C="number"==typeof u[B]?a.mergeNumbers:a.mergeDimensions,r=C(u[B],v[B]);y[B]=r[0],z[B]=r[1],A.push(r[2])}o.push(y),p.push(z),q.push([j,A])}}if(e){var D=o;o=p,p=D}return[o,p,function(a){return a.map(function(a,b){var c=a.map(function(a,c){return q[b][1][c](a)}).join(",");return"matrix"==q[b][0]&&16==c.split(",").length&&(q[b][0]="matrix3d"),q[b][0]+"("+c+")"}).join(" ")}]}var k=null,l={px:0},m={deg:0},n={matrix:["NNNNNN",[k,k,0,0,k,k,0,0,0,0,1,0,k,k,0,1],d],matrix3d:["NNNNNNNNNNNNNNNN",d],rotate:["A"],rotatex:["A"],rotatey:["A"],rotatez:["A"],rotate3d:["NNNA"],perspective:["L"],scale:["Nn",c([k,k,1]),d],scalex:["N",c([k,1,1]),c([k,1])],scaley:["N",c([1,k,1]),c([1,k])],scalez:["N",c([1,1,k])],scale3d:["NNN",d],skew:["Aa",null,d],skewx:["A",null,c([k,m])],skewy:["A",null,c([m,k])],translate:["Tt",c([k,k,l]),d],translatex:["T",c([k,l,l]),c([k,l])],translatey:["T",c([l,k,l]),c([l,k])],translatez:["L",c([l,l,k])],translate3d:["TTL",d]};a.addPropertiesHandler(e,j,["transform"])}(d),function(a){function b(a){var b=Number(a);if(!(isNaN(b)||b<100||b>900||b%100!=0))return b}function c(b){return b=100*Math.round(b/100),b=a.clamp(100,900,b),400===b?"normal":700===b?"bold":String(b)}function d(a,b){return[a,b,c]}a.addPropertiesHandler(b,d,["font-weight"])}(d),function(a){function b(a){var b={};for(var c in a)b[c]=-a[c];return b}function c(b){return a.consumeToken(/^(left|center|right|top|bottom)\b/i,b)||a.consumeLengthOrPercent(b)}function d(b,d){var e=a.consumeRepeated(c,/^/,d);if(e&&""==e[1]){var f=e[0];if(f[0]=f[0]||"center",f[1]=f[1]||"center",3==b&&(f[2]=f[2]||{px:0}),f.length==b){if(/top|bottom/.test(f[0])||/left|right/.test(f[1])){var h=f[0];f[0]=f[1],f[1]=h}if(/left|right|center|Object/.test(f[0])&&/top|bottom|center|Object/.test(f[1]))return f.map(function(a){return"object"==typeof a?a:g[a]})}}}function e(d){var e=a.consumeRepeated(c,/^/,d);if(e){for(var f=e[0],h=[{"%":50},{"%":50}],i=0,j=!1,k=0;k<f.length;k++){var l=f[k];"string"==typeof l?(j=/bottom|right/.test(l),i={left:0,right:0,center:i,top:1,bottom:1}[l],h[i]=g[l],"center"==l&&i++):(j&&(l=b(l),l["%"]=(l["%"]||0)+100),h[i]=l,i++,j=!1)}return[h,e[1]]}}function f(b){var c=a.consumeRepeated(e,/^,/,b);if(c&&""==c[1])return c[0]}var g={left:{"%":0},center:{"%":50},right:{"%":100},top:{"%":0},bottom:{"%":100}},h=a.mergeNestedRepeated.bind(null,a.mergeDimensions," ");a.addPropertiesHandler(d.bind(null,3),h,["transform-origin"]),a.addPropertiesHandler(d.bind(null,2),h,["perspective-origin"]),a.consumePosition=e,a.mergeOffsetList=h;var i=a.mergeNestedRepeated.bind(null,h,", ");a.addPropertiesHandler(f,i,["background-position","object-position"])}(d),function(a){function b(b){var c=a.consumeToken(/^circle/,b);if(c&&c[0])return["circle"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),d,a.ignore(a.consumeToken.bind(void 0,/^at/)),a.consumePosition,a.ignore(a.consumeToken.bind(void 0,/^\)/))],c[1]));var f=a.consumeToken(/^ellipse/,b);if(f&&f[0])return["ellipse"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),e,a.ignore(a.consumeToken.bind(void 0,/^at/)),a.consumePosition,a.ignore(a.consumeToken.bind(void 0,/^\)/))],f[1]));var g=a.consumeToken(/^polygon/,b);return g&&g[0]?["polygon"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),a.optional(a.consumeToken.bind(void 0,/^nonzero\s*,|^evenodd\s*,/),"nonzero,"),a.consumeSizePairList,a.ignore(a.consumeToken.bind(void 0,/^\)/))],g[1])):void 0}function c(b,c){if(b[0]===c[0])return"circle"==b[0]?a.mergeList(b.slice(1),c.slice(1),["circle(",a.mergeDimensions," at ",a.mergeOffsetList,")"]):"ellipse"==b[0]?a.mergeList(b.slice(1),c.slice(1),["ellipse(",a.mergeNonNegativeSizePair," at ",a.mergeOffsetList,")"]):"polygon"==b[0]&&b[1]==c[1]?a.mergeList(b.slice(2),c.slice(2),["polygon(",b[1],g,")"]):void 0}var d=a.consumeParenthesised.bind(null,a.parseLengthOrPercent),e=a.consumeRepeated.bind(void 0,d,/^/),f=a.mergeNestedRepeated.bind(void 0,a.mergeDimensions," "),g=a.mergeNestedRepeated.bind(void 0,f,",");a.addPropertiesHandler(b,c,["shape-outside"])}(d),function(a,b){function c(a,b){b.concat([a]).forEach(function(b){b in document.documentElement.style&&(d[a]=b)})}var d={};c("transform",["webkitTransform","msTransform"]),c("transformOrigin",["webkitTransformOrigin"]),c("perspective",["webkitPerspective"]),c("perspectiveOrigin",["webkitPerspectiveOrigin"]),a.propertyName=function(a){return d[a]||a}}(d)}(),function(){if(void 0===document.createElement("div").animate([]).oncancel){var a;if(window.performance&&performance.now)var a=function(){return performance.now()};else var a=function(){return Date.now()};var b=function(a,b,c){this.target=a,this.currentTime=b,this.timelineTime=c,this.type="cancel",this.bubbles=!1,this.cancelable=!1,this.currentTarget=a,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,this.timeStamp=Date.now()},c=window.Element.prototype.animate;window.Element.prototype.animate=function(d,e){var f=c.call(this,d,e);f._cancelHandlers=[],f.oncancel=null;var g=f.cancel;f.cancel=function(){g.call(this);var c=new b(this,null,a()),d=this._cancelHandlers.concat(this.oncancel?[this.oncancel]:[]);setTimeout(function(){d.forEach(function(a){a.call(c.target,c)})},0)};var h=f.addEventListener;f.addEventListener=function(a,b){"function"==typeof b&&"cancel"==a?this._cancelHandlers.push(b):h.call(this,a,b)};var i=f.removeEventListener;return f.removeEventListener=function(a,b){if("cancel"==a){var c=this._cancelHandlers.indexOf(b);c>=0&&this._cancelHandlers.splice(c,1)}else i.call(this,a,b)},f}}}(),function(a){var b=document.documentElement,c=null,d=!1;try{var e=getComputedStyle(b).getPropertyValue("opacity"),f="0"==e?"1":"0";c=b.animate({opacity:[f,f]},{duration:1}),c.currentTime=0,d=getComputedStyle(b).getPropertyValue("opacity")==f}catch(a){}finally{c&&c.cancel()}if(!d){var g=window.Element.prototype.animate;window.Element.prototype.animate=function(b,c){return window.Symbol&&Symbol.iterator&&Array.prototype.from&&b[Symbol.iterator]&&(b=Array.from(b)),Array.isArray(b)||null===b||(b=a.convertToArrayForm(b)),g.call(this,b,c)}}}(c),function(a,b,c){function d(a){var c=b.timeline;c.currentTime=a,c._discardAnimations(),0==c._animations.length?f=!1:requestAnimationFrame(d)}var e=window.requestAnimationFrame;window.requestAnimationFrame=function(a){return e(function(c){b.timeline._updateAnimationsPromises(),a(c),b.timeline._updateAnimationsPromises()})},b.AnimationTimeline=function(){this._animations=[],this.currentTime=void 0},b.AnimationTimeline.prototype={getAnimations:function(){return this._discardAnimations(),this._animations.slice()},_updateAnimationsPromises:function(){b.animationsWithPromises=b.animationsWithPromises.filter(function(a){return a._updatePromises()})},_discardAnimations:function(){this._updateAnimationsPromises(),this._animations=this._animations.filter(function(a){return"finished"!=a.playState&&"idle"!=a.playState})},_play:function(a){var c=new b.Animation(a,this);return this._animations.push(c),b.restartWebAnimationsNextTick(),c._updatePromises(),c._animation.play(),c._updatePromises(),c},play:function(a){return a&&a.remove(),this._play(a)}};var f=!1;b.restartWebAnimationsNextTick=function(){f||(f=!0,requestAnimationFrame(d))};var g=new b.AnimationTimeline;b.timeline=g;try{Object.defineProperty(window.document,"timeline",{configurable:!0,get:function(){return g}})}catch(a){}try{window.document.timeline=g}catch(a){}}(0,e),function(a,b,c){b.animationsWithPromises=[],b.Animation=function(b,c){if(this.id="",b&&b._id&&(this.id=b._id),this.effect=b,b&&(b._animation=this),!c)throw new Error("Animation with null timeline is not supported");this._timeline=c,this._sequenceNumber=a.sequenceNumber++,this._holdTime=0,this._paused=!1,this._isGroup=!1,this._animation=null,this._childAnimations=[],this._callback=null,this._oldPlayState="idle",this._rebuildUnderlyingAnimation(),this._animation.cancel(),this._updatePromises()},b.Animation.prototype={_updatePromises:function(){var a=this._oldPlayState,b=this.playState;return this._readyPromise&&b!==a&&("idle"==b?(this._rejectReadyPromise(),this._readyPromise=void 0):"pending"==a?this._resolveReadyPromise():"pending"==b&&(this._readyPromise=void 0)),this._finishedPromise&&b!==a&&("idle"==b?(this._rejectFinishedPromise(),this._finishedPromise=void 0):"finished"==b?this._resolveFinishedPromise():"finished"==a&&(this._finishedPromise=void 0)),this._oldPlayState=this.playState,this._readyPromise||this._finishedPromise},_rebuildUnderlyingAnimation:function(){this._updatePromises();var a,c,d,e,f=!!this._animation;f&&(a=this.playbackRate,c=this._paused,d=this.startTime,e=this.currentTime,this._animation.cancel(),this._animation._wrapper=null,this._animation=null),(!this.effect||this.effect instanceof window.KeyframeEffect)&&(this._animation=b.newUnderlyingAnimationForKeyframeEffect(this.effect),b.bindAnimationForKeyframeEffect(this)),(this.effect instanceof window.SequenceEffect||this.effect instanceof window.GroupEffect)&&(this._animation=b.newUnderlyingAnimationForGroup(this.effect),b.bindAnimationForGroup(this)),this.effect&&this.effect._onsample&&b.bindAnimationForCustomEffect(this),f&&(1!=a&&(this.playbackRate=a),null!==d?this.startTime=d:null!==e?this.currentTime=e:null!==this._holdTime&&(this.currentTime=this._holdTime),c&&this.pause()),this._updatePromises()},_updateChildren:function(){if(this.effect&&"idle"!=this.playState){var a=this.effect._timing.delay;this._childAnimations.forEach(function(c){this._arrangeChildren(c,a),this.effect instanceof window.SequenceEffect&&(a+=b.groupChildDuration(c.effect))}.bind(this))}},_setExternalAnimation:function(a){if(this.effect&&this._isGroup)for(var b=0;b<this.effect.children.length;b++)this.effect.children[b]._animation=a,this._childAnimations[b]._setExternalAnimation(a)},_constructChildAnimations:function(){if(this.effect&&this._isGroup){var a=this.effect._timing.delay;this._removeChildAnimations(),this.effect.children.forEach(function(c){var d=b.timeline._play(c);this._childAnimations.push(d),d.playbackRate=this.playbackRate,this._paused&&d.pause(),c._animation=this.effect._animation,this._arrangeChildren(d,a),this.effect instanceof window.SequenceEffect&&(a+=b.groupChildDuration(c))}.bind(this))}},_arrangeChildren:function(a,b){null===this.startTime?a.currentTime=this.currentTime-b/this.playbackRate:a.startTime!==this.startTime+b/this.playbackRate&&(a.startTime=this.startTime+b/this.playbackRate)},get timeline(){return this._timeline},get playState(){return this._animation?this._animation.playState:"idle"},get finished(){return window.Promise?(this._finishedPromise||(-1==b.animationsWithPromises.indexOf(this)&&b.animationsWithPromises.push(this),this._finishedPromise=new Promise(function(a,b){this._resolveFinishedPromise=function(){a(this)},this._rejectFinishedPromise=function(){b({type:DOMException.ABORT_ERR,name:"AbortError"})}}.bind(this)),"finished"==this.playState&&this._resolveFinishedPromise()),this._finishedPromise):(console.warn("Animation Promises require JavaScript Promise constructor"),null)},get ready(){return window.Promise?(this._readyPromise||(-1==b.animationsWithPromises.indexOf(this)&&b.animationsWithPromises.push(this),this._readyPromise=new Promise(function(a,b){this._resolveReadyPromise=function(){a(this)},this._rejectReadyPromise=function(){b({type:DOMException.ABORT_ERR,name:"AbortError"})}}.bind(this)),"pending"!==this.playState&&this._resolveReadyPromise()),this._readyPromise):(console.warn("Animation Promises require JavaScript Promise constructor"),null)},get onfinish(){return this._animation.onfinish},set onfinish(a){this._animation.onfinish="function"==typeof a?function(b){b.target=this,a.call(this,b)}.bind(this):a},get oncancel(){return this._animation.oncancel},set oncancel(a){this._animation.oncancel="function"==typeof a?function(b){b.target=this,a.call(this,b)}.bind(this):a},get currentTime(){this._updatePromises();var a=this._animation.currentTime;return this._updatePromises(),a},set currentTime(a){this._updatePromises(),this._animation.currentTime=isFinite(a)?a:Math.sign(a)*Number.MAX_VALUE,this._register(),this._forEachChild(function(b,c){b.currentTime=a-c}),this._updatePromises()},get startTime(){return this._animation.startTime},set startTime(a){this._updatePromises(),this._animation.startTime=isFinite(a)?a:Math.sign(a)*Number.MAX_VALUE,this._register(),this._forEachChild(function(b,c){b.startTime=a+c}),this._updatePromises()},get playbackRate(){return this._animation.playbackRate},set playbackRate(a){this._updatePromises();var b=this.currentTime;this._animation.playbackRate=a,this._forEachChild(function(b){b.playbackRate=a}),null!==b&&(this.currentTime=b),this._updatePromises()},play:function(){this._updatePromises(),this._paused=!1,this._animation.play(),-1==this._timeline._animations.indexOf(this)&&this._timeline._animations.push(this),this._register(),b.awaitStartTime(this),this._forEachChild(function(a){var b=a.currentTime;a.play(),a.currentTime=b}),this._updatePromises()},pause:function(){this._updatePromises(),this.currentTime&&(this._holdTime=this.currentTime),this._animation.pause(),this._register(),this._forEachChild(function(a){a.pause()}),this._paused=!0,this._updatePromises()},finish:function(){this._updatePromises(),this._animation.finish(),this._register(),this._updatePromises()},cancel:function(){this._updatePromises(),this._animation.cancel(),this._register(),this._removeChildAnimations(),this._updatePromises()},reverse:function(){this._updatePromises();var a=this.currentTime;this._animation.reverse(),this._forEachChild(function(a){a.reverse()}),null!==a&&(this.currentTime=a),this._updatePromises()},addEventListener:function(a,b){var c=b;"function"==typeof b&&(c=function(a){a.target=this,b.call(this,a)}.bind(this),b._wrapper=c),this._animation.addEventListener(a,c)},removeEventListener:function(a,b){this._animation.removeEventListener(a,b&&b._wrapper||b)},_removeChildAnimations:function(){for(;this._childAnimations.length;)this._childAnimations.pop().cancel()},_forEachChild:function(b){var c=0;if(this.effect.children&&this._childAnimations.length<this.effect.children.length&&this._constructChildAnimations(),this._childAnimations.forEach(function(a){b.call(this,a,c),this.effect instanceof window.SequenceEffect&&(c+=a.effect.activeDuration)}.bind(this)),"pending"!=this.playState){var d=this.effect._timing,e=this.currentTime;null!==e&&(e=a.calculateIterationProgress(a.calculateActiveDuration(d),e,d)),(null==e||isNaN(e))&&this._removeChildAnimations()}}},window.Animation=b.Animation}(c,e),function(a,b,c){function d(b){this._frames=a.normalizeKeyframes(b)}function e(){for(var a=!1;i.length;)i.shift()._updateChildren(),a=!0;return a}var f=function(a){if(a._animation=void 0,a instanceof window.SequenceEffect||a instanceof window.GroupEffect)for(var b=0;b<a.children.length;b++)f(a.children[b])};b.removeMulti=function(a){for(var b=[],c=0;c<a.length;c++){var d=a[c];d._parent?(-1==b.indexOf(d._parent)&&b.push(d._parent),d._parent.children.splice(d._parent.children.indexOf(d),1),d._parent=null,f(d)):d._animation&&d._animation.effect==d&&(d._animation.cancel(),d._animation.effect=new KeyframeEffect(null,[]),d._animation._callback&&(d._animation._callback._animation=null),d._animation._rebuildUnderlyingAnimation(),f(d))}for(c=0;c<b.length;c++)b[c]._rebuild()},b.KeyframeEffect=function(b,c,e,f){return this.target=b,this._parent=null,e=a.numericTimingToObject(e),this._timingInput=a.cloneTimingInput(e),this._timing=a.normalizeTimingInput(e),this.timing=a.makeTiming(e,!1,this),this.timing._effect=this,"function"==typeof c?(a.deprecated("Custom KeyframeEffect","2015-06-22","Use KeyframeEffect.onsample instead."),this._normalizedKeyframes=c):this._normalizedKeyframes=new d(c),this._keyframes=c,this.activeDuration=a.calculateActiveDuration(this._timing),this._id=f,this},b.KeyframeEffect.prototype={getFrames:function(){return"function"==typeof this._normalizedKeyframes?this._normalizedKeyframes:this._normalizedKeyframes._frames},set onsample(a){if("function"==typeof this.getFrames())throw new Error("Setting onsample on custom effect KeyframeEffect is not supported.");this._onsample=a,this._animation&&this._animation._rebuildUnderlyingAnimation()},get parent(){return this._parent},clone:function(){if("function"==typeof this.getFrames())throw new Error("Cloning custom effects is not supported.");var b=new KeyframeEffect(this.target,[],a.cloneTimingInput(this._timingInput),this._id);return b._normalizedKeyframes=this._normalizedKeyframes,b._keyframes=this._keyframes,b},remove:function(){b.removeMulti([this])}};var g=Element.prototype.animate;Element.prototype.animate=function(a,c){var d="";return c&&c.id&&(d=c.id),b.timeline._play(new b.KeyframeEffect(this,a,c,d))};var h=document.createElementNS("http://www.w3.org/1999/xhtml","div");b.newUnderlyingAnimationForKeyframeEffect=function(a){if(a){var b=a.target||h,c=a._keyframes;"function"==typeof c&&(c=[]);var d=a._timingInput;d.id=a._id}else var b=h,c=[],d=0;return g.apply(b,[c,d])},b.bindAnimationForKeyframeEffect=function(a){a.effect&&"function"==typeof a.effect._normalizedKeyframes&&b.bindAnimationForCustomEffect(a)};var i=[];b.awaitStartTime=function(a){null===a.startTime&&a._isGroup&&(0==i.length&&requestAnimationFrame(e),i.push(a))};var j=window.getComputedStyle;Object.defineProperty(window,"getComputedStyle",{configurable:!0,enumerable:!0,value:function(){b.timeline._updateAnimationsPromises();var a=j.apply(this,arguments);return e()&&(a=j.apply(this,arguments)),b.timeline._updateAnimationsPromises(),a}}),window.KeyframeEffect=b.KeyframeEffect,window.Element.prototype.getAnimations=function(){return document.timeline.getAnimations().filter(function(a){return null!==a.effect&&a.effect.target==this}.bind(this))}}(c,e),function(a,b,c){function d(a){a._registered||(a._registered=!0,g.push(a),h||(h=!0,requestAnimationFrame(e)))}function e(a){var b=g;g=[],b.sort(function(a,b){return a._sequenceNumber-b._sequenceNumber}),b=b.filter(function(a){a();var b=a._animation?a._animation.playState:"idle";return"running"!=b&&"pending"!=b&&(a._registered=!1),a._registered}),g.push.apply(g,b),g.length?(h=!0,requestAnimationFrame(e)):h=!1}var f=(document.createElementNS("http://www.w3.org/1999/xhtml","div"),0);b.bindAnimationForCustomEffect=function(b){var c,e=b.effect.target,g="function"==typeof b.effect.getFrames();c=g?b.effect.getFrames():b.effect._onsample;var h=b.effect.timing,i=null;h=a.normalizeTimingInput(h);var j=function(){var d=j._animation?j._animation.currentTime:null;null!==d&&(d=a.calculateIterationProgress(a.calculateActiveDuration(h),d,h),isNaN(d)&&(d=null)),d!==i&&(g?c(d,e,b.effect):c(d,b.effect,b.effect._animation)),i=d};j._animation=b,j._registered=!1,j._sequenceNumber=f++,b._callback=j,d(j)};var g=[],h=!1;b.Animation.prototype._register=function(){this._callback&&d(this._callback)}}(c,e),function(a,b,c){function d(a){return a._timing.delay+a.activeDuration+a._timing.endDelay}function e(b,c,d){this._id=d,this._parent=null,this.children=b||[],this._reparent(this.children),c=a.numericTimingToObject(c),this._timingInput=a.cloneTimingInput(c),this._timing=a.normalizeTimingInput(c,!0),this.timing=a.makeTiming(c,!0,this),this.timing._effect=this,"auto"===this._timing.duration&&(this._timing.duration=this.activeDuration)}window.SequenceEffect=function(){e.apply(this,arguments)},window.GroupEffect=function(){e.apply(this,arguments)},e.prototype={_isAncestor:function(a){for(var b=this;null!==b;){if(b==a)return!0;b=b._parent}return!1},_rebuild:function(){for(var a=this;a;)"auto"===a.timing.duration&&(a._timing.duration=a.activeDuration),a=a._parent;this._animation&&this._animation._rebuildUnderlyingAnimation()},_reparent:function(a){b.removeMulti(a);for(var c=0;c<a.length;c++)a[c]._parent=this},_putChild:function(a,b){for(var c=b?"Cannot append an ancestor or self":"Cannot prepend an ancestor or self",d=0;d<a.length;d++)if(this._isAncestor(a[d]))throw{type:DOMException.HIERARCHY_REQUEST_ERR,name:"HierarchyRequestError",message:c};for(var d=0;d<a.length;d++)b?this.children.push(a[d]):this.children.unshift(a[d]);this._reparent(a),this._rebuild()},append:function(){this._putChild(arguments,!0)},prepend:function(){this._putChild(arguments,!1)},get parent(){return this._parent},get firstChild(){return this.children.length?this.children[0]:null},get lastChild(){return this.children.length?this.children[this.children.length-1]:null},clone:function(){for(var b=a.cloneTimingInput(this._timingInput),c=[],d=0;d<this.children.length;d++)c.push(this.children[d].clone());return this instanceof GroupEffect?new GroupEffect(c,b):new SequenceEffect(c,b)},remove:function(){b.removeMulti([this])}},window.SequenceEffect.prototype=Object.create(e.prototype),Object.defineProperty(window.SequenceEffect.prototype,"activeDuration",{get:function(){var a=0;return this.children.forEach(function(b){a+=d(b)}),Math.max(a,0)}}),window.GroupEffect.prototype=Object.create(e.prototype),Object.defineProperty(window.GroupEffect.prototype,"activeDuration",{get:function(){var a=0;return this.children.forEach(function(b){a=Math.max(a,d(b))}),a}}),b.newUnderlyingAnimationForGroup=function(c){var d,e=null,f=function(b){var c=d._wrapper;if(c&&"pending"!=c.playState&&c.effect)return null==b?void c._removeChildAnimations():0==b&&c.playbackRate<0&&(e||(e=a.normalizeTimingInput(c.effect.timing)),b=a.calculateIterationProgress(a.calculateActiveDuration(e),-1,e),isNaN(b)||null==b)?(c._forEachChild(function(a){a.currentTime=-1}),void c._removeChildAnimations()):void 0},g=new KeyframeEffect(null,[],c._timing,c._id);return g.onsample=f,d=b.timeline._play(g)},b.bindAnimationForGroup=function(a){a._animation._wrapper=a,a._isGroup=!0,b.awaitStartTime(a),a._constructChildAnimations(),a._setExternalAnimation(a)},b.groupChildDuration=d}(c,e),b.true=a}({},function(){return this}());
+!function(a,b){var c={},d={},e={};!function(a,b){function c(a){if("number"==typeof a)return a;var b={};for(var c in a)b[c]=a[c];return b}function d(){this._delay=0,this._endDelay=0,this._fill="none",this._iterationStart=0,this._iterations=1,this._duration=0,this._playbackRate=1,this._direction="normal",this._easing="linear",this._easingFunction=x}function e(){return a.isDeprecated("Invalid timing inputs","2016-03-02","TypeError exceptions will be thrown instead.",!0)}function f(b,c,e){var f=new d;return c&&(f.fill="both",f.duration="auto"),"number"!=typeof b||isNaN(b)?void 0!==b&&Object.getOwnPropertyNames(b).forEach(function(c){if("auto"!=b[c]){if(("number"==typeof f[c]||"duration"==c)&&("number"!=typeof b[c]||isNaN(b[c])))return;if("fill"==c&&-1==v.indexOf(b[c]))return;if("direction"==c&&-1==w.indexOf(b[c]))return;if("playbackRate"==c&&1!==b[c]&&a.isDeprecated("AnimationEffectTiming.playbackRate","2014-11-28","Use Animation.playbackRate instead."))return;f[c]=b[c]}}):f.duration=b,f}function g(a){return"number"==typeof a&&(a=isNaN(a)?{duration:0}:{duration:a}),a}function h(b,c){return b=a.numericTimingToObject(b),f(b,c)}function i(a,b,c,d){return a<0||a>1||c<0||c>1?x:function(e){function f(a,b,c){return 3*a*(1-c)*(1-c)*c+3*b*(1-c)*c*c+c*c*c}if(e<=0){var g=0;return a>0?g=b/a:!b&&c>0&&(g=d/c),g*e}if(e>=1){var h=0;return c<1?h=(d-1)/(c-1):1==c&&a<1&&(h=(b-1)/(a-1)),1+h*(e-1)}for(var i=0,j=1;i<j;){var k=(i+j)/2,l=f(a,c,k);if(Math.abs(e-l)<1e-5)return f(b,d,k);l<e?i=k:j=k}return f(b,d,k)}}function j(a,b){return function(c){if(c>=1)return 1;var d=1/a;return(c+=b*d)-c%d}}function k(a){C||(C=document.createElement("div").style),C.animationTimingFunction="",C.animationTimingFunction=a;var b=C.animationTimingFunction;if(""==b&&e())throw new TypeError(a+" is not a valid value for easing");return b}function l(a){if("linear"==a)return x;var b=E.exec(a);if(b)return i.apply(this,b.slice(1).map(Number));var c=F.exec(a);return c?j(Number(c[1]),{start:y,middle:z,end:A}[c[2]]):B[a]||x}function m(a){return Math.abs(n(a)/a.playbackRate)}function n(a){return 0===a.duration||0===a.iterations?0:a.duration*a.iterations}function o(a,b,c){if(null==b)return G;var d=c.delay+a+c.endDelay;return b<Math.min(c.delay,d)?H:b>=Math.min(c.delay+a,d)?I:J}function p(a,b,c,d,e){switch(d){case H:return"backwards"==b||"both"==b?0:null;case J:return c-e;case I:return"forwards"==b||"both"==b?a:null;case G:return null}}function q(a,b,c,d,e){var f=e;return 0===a?b!==H&&(f+=c):f+=d/a,f}function r(a,b,c,d,e,f){var g=a===1/0?b%1:a%1;return 0!==g||c!==I||0===d||0===e&&0!==f||(g=1),g}function s(a,b,c,d){return a===I&&b===1/0?1/0:1===c?Math.floor(d)-1:Math.floor(d)}function t(a,b,c){var d=a;if("normal"!==a&&"reverse"!==a){var e=b;"alternate-reverse"===a&&(e+=1),d="normal",e!==1/0&&e%2!=0&&(d="reverse")}return"normal"===d?c:1-c}function u(a,b,c){var d=o(a,b,c),e=p(a,c.fill,b,d,c.delay);if(null===e)return null;var f=q(c.duration,d,c.iterations,e,c.iterationStart),g=r(f,c.iterationStart,d,c.iterations,e,c.duration),h=s(d,c.iterations,g,f),i=t(c.direction,h,g);return c._easingFunction(i)}var v="backwards|forwards|both|none".split("|"),w="reverse|alternate|alternate-reverse".split("|"),x=function(a){return a};d.prototype={_setMember:function(b,c){this["_"+b]=c,this._effect&&(this._effect._timingInput[b]=c,this._effect._timing=a.normalizeTimingInput(this._effect._timingInput),this._effect.activeDuration=a.calculateActiveDuration(this._effect._timing),this._effect._animation&&this._effect._animation._rebuildUnderlyingAnimation())},get playbackRate(){return this._playbackRate},set delay(a){this._setMember("delay",a)},get delay(){return this._delay},set endDelay(a){this._setMember("endDelay",a)},get endDelay(){return this._endDelay},set fill(a){this._setMember("fill",a)},get fill(){return this._fill},set iterationStart(a){if((isNaN(a)||a<0)&&e())throw new TypeError("iterationStart must be a non-negative number, received: "+timing.iterationStart);this._setMember("iterationStart",a)},get iterationStart(){return this._iterationStart},set duration(a){if("auto"!=a&&(isNaN(a)||a<0)&&e())throw new TypeError("duration must be non-negative or auto, received: "+a);this._setMember("duration",a)},get duration(){return this._duration},set direction(a){this._setMember("direction",a)},get direction(){return this._direction},set easing(a){this._easingFunction=l(k(a)),this._setMember("easing",a)},get easing(){return this._easing},set iterations(a){if((isNaN(a)||a<0)&&e())throw new TypeError("iterations must be non-negative, received: "+a);this._setMember("iterations",a)},get iterations(){return this._iterations}};var y=1,z=.5,A=0,B={ease:i(.25,.1,.25,1),"ease-in":i(.42,0,1,1),"ease-out":i(0,0,.58,1),"ease-in-out":i(.42,0,.58,1),"step-start":j(1,y),"step-middle":j(1,z),"step-end":j(1,A)},C=null,D="\\s*(-?\\d+\\.?\\d*|-?\\.\\d+)\\s*",E=new RegExp("cubic-bezier\\("+D+","+D+","+D+","+D+"\\)"),F=/steps\(\s*(\d+)\s*,\s*(start|middle|end)\s*\)/,G=0,H=1,I=2,J=3;a.cloneTimingInput=c,a.makeTiming=f,a.numericTimingToObject=g,a.normalizeTimingInput=h,a.calculateActiveDuration=m,a.calculateIterationProgress=u,a.calculatePhase=o,a.normalizeEasing=k,a.parseEasingFunction=l}(c),function(a,b){function c(a,b){return a in k?k[a][b]||b:b}function d(a){return"display"===a||0===a.lastIndexOf("animation",0)||0===a.lastIndexOf("transition",0)}function e(a,b,e){if(!d(a)){var f=h[a];if(f){i.style[a]=b;for(var g in f){var j=f[g],k=i.style[j];e[j]=c(j,k)}}else e[a]=c(a,b)}}function f(a){var b=[];for(var c in a)if(!(c in["easing","offset","composite"])){var d=a[c];Array.isArray(d)||(d=[d]);for(var e,f=d.length,g=0;g<f;g++)e={},e.offset="offset"in a?a.offset:1==f?1:g/(f-1),"easing"in a&&(e.easing=a.easing),"composite"in a&&(e.composite=a.composite),e[c]=d[g],b.push(e)}return b.sort(function(a,b){return a.offset-b.offset}),b}function g(b){function c(){var a=d.length;null==d[a-1].offset&&(d[a-1].offset=1),a>1&&null==d[0].offset&&(d[0].offset=0);for(var b=0,c=d[0].offset,e=1;e<a;e++){var f=d[e].offset;if(null!=f){for(var g=1;g<e-b;g++)d[b+g].offset=c+(f-c)*g/(e-b);b=e,c=f}}}if(null==b)return[];window.Symbol&&Symbol.iterator&&Array.prototype.from&&b[Symbol.iterator]&&(b=Array.from(b)),Array.isArray(b)||(b=f(b));for(var d=b.map(function(b){var c={};for(var d in b){var f=b[d];if("offset"==d){if(null!=f){if(f=Number(f),!isFinite(f))throw new TypeError("Keyframe offsets must be numbers.");if(f<0||f>1)throw new TypeError("Keyframe offsets must be between 0 and 1.")}}else if("composite"==d){if("add"==f||"accumulate"==f)throw{type:DOMException.NOT_SUPPORTED_ERR,name:"NotSupportedError",message:"add compositing is not supported"};if("replace"!=f)throw new TypeError("Invalid composite mode "+f+".")}else f="easing"==d?a.normalizeEasing(f):""+f;e(d,f,c)}return void 0==c.offset&&(c.offset=null),void 0==c.easing&&(c.easing="linear"),c}),g=!0,h=-1/0,i=0;i<d.length;i++){var j=d[i].offset;if(null!=j){if(j<h)throw new TypeError("Keyframes are not loosely sorted by offset. Sort or specify offsets.");h=j}else g=!1}return d=d.filter(function(a){return a.offset>=0&&a.offset<=1}),g||c(),d}var h={background:["backgroundImage","backgroundPosition","backgroundSize","backgroundRepeat","backgroundAttachment","backgroundOrigin","backgroundClip","backgroundColor"],border:["borderTopColor","borderTopStyle","borderTopWidth","borderRightColor","borderRightStyle","borderRightWidth","borderBottomColor","borderBottomStyle","borderBottomWidth","borderLeftColor","borderLeftStyle","borderLeftWidth"],borderBottom:["borderBottomWidth","borderBottomStyle","borderBottomColor"],borderColor:["borderTopColor","borderRightColor","borderBottomColor","borderLeftColor"],borderLeft:["borderLeftWidth","borderLeftStyle","borderLeftColor"],borderRadius:["borderTopLeftRadius","borderTopRightRadius","borderBottomRightRadius","borderBottomLeftRadius"],borderRight:["borderRightWidth","borderRightStyle","borderRightColor"],borderTop:["borderTopWidth","borderTopStyle","borderTopColor"],borderWidth:["borderTopWidth","borderRightWidth","borderBottomWidth","borderLeftWidth"],flex:["flexGrow","flexShrink","flexBasis"],font:["fontFamily","fontSize","fontStyle","fontVariant","fontWeight","lineHeight"],margin:["marginTop","marginRight","marginBottom","marginLeft"],outline:["outlineColor","outlineStyle","outlineWidth"],padding:["paddingTop","paddingRight","paddingBottom","paddingLeft"]},i=document.createElementNS("http://www.w3.org/1999/xhtml","div"),j={thin:"1px",medium:"3px",thick:"5px"},k={borderBottomWidth:j,borderLeftWidth:j,borderRightWidth:j,borderTopWidth:j,fontSize:{"xx-small":"60%","x-small":"75%",small:"89%",medium:"100%",large:"120%","x-large":"150%","xx-large":"200%"},fontWeight:{normal:"400",bold:"700"},outlineWidth:j,textShadow:{none:"0px 0px 0px transparent"},boxShadow:{none:"0px 0px 0px 0px transparent"}};a.convertToArrayForm=f,a.normalizeKeyframes=g}(c),function(a){var b={};a.isDeprecated=function(a,c,d,e){var f=e?"are":"is",g=new Date,h=new Date(c);return h.setMonth(h.getMonth()+3),!(g<h&&(a in b||console.warn("Web Animations: "+a+" "+f+" deprecated and will stop working on "+h.toDateString()+". "+d),b[a]=!0,1))},a.deprecated=function(b,c,d,e){var f=e?"are":"is";if(a.isDeprecated(b,c,d,e))throw new Error(b+" "+f+" no longer supported. "+d)}}(c),function(){if(document.documentElement.animate){var a=document.documentElement.animate([],0),b=!0;if(a&&(b=!1,"play|currentTime|pause|reverse|playbackRate|cancel|finish|startTime|playState".split("|").forEach(function(c){void 0===a[c]&&(b=!0)})),!b)return}!function(a,b,c){function d(a){for(var b={},c=0;c<a.length;c++)for(var d in a[c])if("offset"!=d&&"easing"!=d&&"composite"!=d){var e={offset:a[c].offset,easing:a[c].easing,value:a[c][d]};b[d]=b[d]||[],b[d].push(e)}for(var f in b){var g=b[f];if(0!=g[0].offset||1!=g[g.length-1].offset)throw{type:DOMException.NOT_SUPPORTED_ERR,name:"NotSupportedError",message:"Partial keyframes are not supported"}}return b}function e(c){var d=[];for(var e in c)for(var f=c[e],g=0;g<f.length-1;g++){var h=g,i=g+1,j=f[h].offset,k=f[i].offset,l=j,m=k;0==g&&(l=-1/0,0==k&&(i=h)),g==f.length-2&&(m=1/0,1==j&&(h=i)),d.push({applyFrom:l,applyTo:m,startOffset:f[h].offset,endOffset:f[i].offset,easingFunction:a.parseEasingFunction(f[h].easing),property:e,interpolation:b.propertyInterpolation(e,f[h].value,f[i].value)})}return d.sort(function(a,b){return a.startOffset-b.startOffset}),d}b.convertEffectInput=function(c){var f=a.normalizeKeyframes(c),g=d(f),h=e(g);return function(a,c){if(null!=c)h.filter(function(a){return c>=a.applyFrom&&c<a.applyTo}).forEach(function(d){var e=c-d.startOffset,f=d.endOffset-d.startOffset,g=0==f?0:d.easingFunction(e/f);b.apply(a,d.property,d.interpolation(g))});else for(var d in g)"offset"!=d&&"easing"!=d&&"composite"!=d&&b.clear(a,d)}}}(c,d),function(a,b,c){function d(a){return a.replace(/-(.)/g,function(a,b){return b.toUpperCase()})}function e(a,b,c){h[c]=h[c]||[],h[c].push([a,b])}function f(a,b,c){for(var f=0;f<c.length;f++){e(a,b,d(c[f]))}}function g(c,e,f){var g=c;/-/.test(c)&&!a.isDeprecated("Hyphenated property names","2016-03-22","Use camelCase instead.",!0)&&(g=d(c)),"initial"!=e&&"initial"!=f||("initial"==e&&(e=i[g]),"initial"==f&&(f=i[g]));for(var j=e==f?[]:h[g],k=0;j&&k<j.length;k++){var l=j[k][0](e),m=j[k][0](f);if(void 0!==l&&void 0!==m){var n=j[k][1](l,m);if(n){var o=b.Interpolation.apply(null,n);return function(a){return 0==a?e:1==a?f:o(a)}}}}return b.Interpolation(!1,!0,function(a){return a?f:e})}var h={};b.addPropertiesHandler=f;var i={backgroundColor:"transparent",backgroundPosition:"0% 0%",borderBottomColor:"currentColor",borderBottomLeftRadius:"0px",borderBottomRightRadius:"0px",borderBottomWidth:"3px",borderLeftColor:"currentColor",borderLeftWidth:"3px",borderRightColor:"currentColor",borderRightWidth:"3px",borderSpacing:"2px",borderTopColor:"currentColor",borderTopLeftRadius:"0px",borderTopRightRadius:"0px",borderTopWidth:"3px",bottom:"auto",clip:"rect(0px, 0px, 0px, 0px)",color:"black",fontSize:"100%",fontWeight:"400",height:"auto",left:"auto",letterSpacing:"normal",lineHeight:"120%",marginBottom:"0px",marginLeft:"0px",marginRight:"0px",marginTop:"0px",maxHeight:"none",maxWidth:"none",minHeight:"0px",minWidth:"0px",opacity:"1.0",outlineColor:"invert",outlineOffset:"0px",outlineWidth:"3px",paddingBottom:"0px",paddingLeft:"0px",paddingRight:"0px",paddingTop:"0px",right:"auto",strokeDasharray:"none",strokeDashoffset:"0px",textIndent:"0px",textShadow:"0px 0px 0px transparent",top:"auto",transform:"",verticalAlign:"0px",visibility:"visible",width:"auto",wordSpacing:"normal",zIndex:"auto"};b.propertyInterpolation=g}(c,d),function(a,b,c){function d(b){var c=a.calculateActiveDuration(b),d=function(d){return a.calculateIterationProgress(c,d,b)};return d._totalDuration=b.delay+c+b.endDelay,d}b.KeyframeEffect=function(c,e,f,g){var h,i=d(a.normalizeTimingInput(f)),j=b.convertEffectInput(e),k=function(){j(c,h)};return k._update=function(a){return null!==(h=i(a))},k._clear=function(){j(c,null)},k._hasSameTarget=function(a){return c===a},k._target=c,k._totalDuration=i._totalDuration,k._id=g,k}}(c,d),function(a,b){function c(a,b){return!(!b.namespaceURI||-1==b.namespaceURI.indexOf("/svg"))&&(g in a||(a[g]=/Trident|MSIE|IEMobile|Edge|Android 4/i.test(a.navigator.userAgent)),a[g])}function d(a,b,c){c.enumerable=!0,c.configurable=!0,Object.defineProperty(a,b,c)}function e(a){this._element=a,this._surrogateStyle=document.createElementNS("http://www.w3.org/1999/xhtml","div").style,this._style=a.style,this._length=0,this._isAnimatedProperty={},this._updateSvgTransformAttr=c(window,a),this._savedTransformAttr=null;for(var b=0;b<this._style.length;b++){var d=this._style[b];this._surrogateStyle[d]=this._style[d]}this._updateIndices()}function f(a){if(!a._webAnimationsPatchedStyle){var b=new e(a);try{d(a,"style",{get:function(){return b}})}catch(b){a.style._set=function(b,c){a.style[b]=c},a.style._clear=function(b){a.style[b]=""}}a._webAnimationsPatchedStyle=a.style}}var g="_webAnimationsUpdateSvgTransformAttr",h={cssText:1,length:1,parentRule:1},i={getPropertyCSSValue:1,getPropertyPriority:1,getPropertyValue:1,item:1,removeProperty:1,setProperty:1},j={removeProperty:1,setProperty:1};e.prototype={get cssText(){return this._surrogateStyle.cssText},set cssText(a){for(var b={},c=0;c<this._surrogateStyle.length;c++)b[this._surrogateStyle[c]]=!0;this._surrogateStyle.cssText=a,this._updateIndices();for(var c=0;c<this._surrogateStyle.length;c++)b[this._surrogateStyle[c]]=!0;for(var d in b)this._isAnimatedProperty[d]||this._style.setProperty(d,this._surrogateStyle.getPropertyValue(d))},get length(){return this._surrogateStyle.length},get parentRule(){return this._style.parentRule},_updateIndices:function(){for(;this._length<this._surrogateStyle.length;)Object.defineProperty(this,this._length,{configurable:!0,enumerable:!1,get:function(a){return function(){return this._surrogateStyle[a]}}(this._length)}),this._length++;for(;this._length>this._surrogateStyle.length;)this._length--,Object.defineProperty(this,this._length,{configurable:!0,enumerable:!1,value:void 0})},_set:function(b,c){this._style[b]=c,this._isAnimatedProperty[b]=!0,this._updateSvgTransformAttr&&"transform"==a.unprefixedPropertyName(b)&&(null==this._savedTransformAttr&&(this._savedTransformAttr=this._element.getAttribute("transform")),this._element.setAttribute("transform",a.transformToSvgMatrix(c)))},_clear:function(b){this._style[b]=this._surrogateStyle[b],this._updateSvgTransformAttr&&"transform"==a.unprefixedPropertyName(b)&&(this._savedTransformAttr?this._element.setAttribute("transform",this._savedTransformAttr):this._element.removeAttribute("transform"),this._savedTransformAttr=null),delete this._isAnimatedProperty[b]}};for(var k in i)e.prototype[k]=function(a,b){return function(){var c=this._surrogateStyle[a].apply(this._surrogateStyle,arguments);return b&&(this._isAnimatedProperty[arguments[0]]||this._style[a].apply(this._style,arguments),this._updateIndices()),c}}(k,k in j);for(var l in document.documentElement.style)l in h||l in i||function(a){d(e.prototype,a,{get:function(){return this._surrogateStyle[a]},set:function(b){this._surrogateStyle[a]=b,this._updateIndices(),this._isAnimatedProperty[a]||(this._style[a]=b)}})}(l);a.apply=function(b,c,d){f(b),b.style._set(a.propertyName(c),d)},a.clear=function(b,c){b._webAnimationsPatchedStyle&&b.style._clear(a.propertyName(c))}}(d),function(a){window.Element.prototype.animate=function(b,c){var d="";return c&&c.id&&(d=c.id),a.timeline._play(a.KeyframeEffect(this,b,c,d))}}(d),function(a,b){function c(a,b,d){if("number"==typeof a&&"number"==typeof b)return a*(1-d)+b*d;if("boolean"==typeof a&&"boolean"==typeof b)return d<.5?a:b;if(a.length==b.length){for(var e=[],f=0;f<a.length;f++)e.push(c(a[f],b[f],d));return e}throw"Mismatched interpolation arguments "+a+":"+b}a.Interpolation=function(a,b,d){return function(e){return d(c(a,b,e))}}}(d),function(a,b){function c(a,b,c){return Math.max(Math.min(a,c),b)}function d(b,d,e){var f=a.dot(b,d);f=c(f,-1,1);var g=[];if(1===f)g=b;else for(var h=Math.acos(f),i=1*Math.sin(e*h)/Math.sqrt(1-f*f),j=0;j<4;j++)g.push(b[j]*(Math.cos(e*h)-f*i)+d[j]*i);return g}var e=function(){function a(a,b){for(var c=[[0,0,0,0],[0,0,0,0],[0,0,0,0],[0,0,0,0]],d=0;d<4;d++)for(var e=0;e<4;e++)for(var f=0;f<4;f++)c[d][e]+=b[d][f]*a[f][e];return c}function b(a){return 0==a[0][2]&&0==a[0][3]&&0==a[1][2]&&0==a[1][3]&&0==a[2][0]&&0==a[2][1]&&1==a[2][2]&&0==a[2][3]&&0==a[3][2]&&1==a[3][3]}function c(c,d,e,f,g){for(var h=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]],i=0;i<4;i++)h[i][3]=g[i];for(var i=0;i<3;i++)for(var j=0;j<3;j++)h[3][i]+=c[j]*h[j][i];var k=f[0],l=f[1],m=f[2],n=f[3],o=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];o[0][0]=1-2*(l*l+m*m),o[0][1]=2*(k*l-m*n),o[0][2]=2*(k*m+l*n),o[1][0]=2*(k*l+m*n),o[1][1]=1-2*(k*k+m*m),o[1][2]=2*(l*m-k*n),o[2][0]=2*(k*m-l*n),o[2][1]=2*(l*m+k*n),o[2][2]=1-2*(k*k+l*l),h=a(h,o);var p=[[1,0,0,0],[0,1,0,0],[0,0,1,0],[0,0,0,1]];e[2]&&(p[2][1]=e[2],h=a(h,p)),e[1]&&(p[2][1]=0,p[2][0]=e[0],h=a(h,p)),e[0]&&(p[2][0]=0,p[1][0]=e[0],h=a(h,p));for(var i=0;i<3;i++)for(var j=0;j<3;j++)h[i][j]*=d[i];return b(h)?[h[0][0],h[0][1],h[1][0],h[1][1],h[3][0],h[3][1]]:h[0].concat(h[1],h[2],h[3])}return c}();a.composeMatrix=e,a.quat=d}(d),function(a,b,c){a.sequenceNumber=0;var d=function(a,b,c){this.target=a,this.currentTime=b,this.timelineTime=c,this.type="finish",this.bubbles=!1,this.cancelable=!1,this.currentTarget=a,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,this.timeStamp=Date.now()};b.Animation=function(b){this.id="",b&&b._id&&(this.id=b._id),this._sequenceNumber=a.sequenceNumber++,this._currentTime=0,this._startTime=null,this._paused=!1,this._playbackRate=1,this._inTimeline=!0,this._finishedFlag=!0,this.onfinish=null,this._finishHandlers=[],this._effect=b,this._inEffect=this._effect._update(0),this._idle=!0,this._currentTimePending=!1},b.Animation.prototype={_ensureAlive:function(){this.playbackRate<0&&0===this.currentTime?this._inEffect=this._effect._update(-1):this._inEffect=this._effect._update(this.currentTime),this._inTimeline||!this._inEffect&&this._finishedFlag||(this._inTimeline=!0,b.timeline._animations.push(this))},_tickCurrentTime:function(a,b){a!=this._currentTime&&(this._currentTime=a,this._isFinished&&!b&&(this._currentTime=this._playbackRate>0?this._totalDuration:0),this._ensureAlive())},get currentTime(){return this._idle||this._currentTimePending?null:this._currentTime},set currentTime(a){a=+a,isNaN(a)||(b.restart(),this._paused||null==this._startTime||(this._startTime=this._timeline.currentTime-a/this._playbackRate),this._currentTimePending=!1,this._currentTime!=a&&(this._idle&&(this._idle=!1,this._paused=!0),this._tickCurrentTime(a,!0),b.applyDirtiedAnimation(this)))},get startTime(){return this._startTime},set startTime(a){a=+a,isNaN(a)||this._paused||this._idle||(this._startTime=a,this._tickCurrentTime((this._timeline.currentTime-this._startTime)*this.playbackRate),b.applyDirtiedAnimation(this))},get playbackRate(){return this._playbackRate},set playbackRate(a){if(a!=this._playbackRate){var c=this.currentTime;this._playbackRate=a,this._startTime=null,"paused"!=this.playState&&"idle"!=this.playState&&(this._finishedFlag=!1,this._idle=!1,this._ensureAlive(),b.applyDirtiedAnimation(this)),null!=c&&(this.currentTime=c)}},get _isFinished(){return!this._idle&&(this._playbackRate>0&&this._currentTime>=this._totalDuration||this._playbackRate<0&&this._currentTime<=0)},get _totalDuration(){return this._effect._totalDuration},get playState(){return this._idle?"idle":null==this._startTime&&!this._paused&&0!=this.playbackRate||this._currentTimePending?"pending":this._paused?"paused":this._isFinished?"finished":"running"},_rewind:function(){if(this._playbackRate>=0)this._currentTime=0;else{if(!(this._totalDuration<1/0))throw new DOMException("Unable to rewind negative playback rate animation with infinite duration","InvalidStateError");this._currentTime=this._totalDuration}},play:function(){this._paused=!1,(this._isFinished||this._idle)&&(this._rewind(),this._startTime=null),this._finishedFlag=!1,this._idle=!1,this._ensureAlive(),b.applyDirtiedAnimation(this)},pause:function(){this._isFinished||this._paused||this._idle?this._idle&&(this._rewind(),this._idle=!1):this._currentTimePending=!0,this._startTime=null,this._paused=!0},finish:function(){this._idle||(this.currentTime=this._playbackRate>0?this._totalDuration:0,this._startTime=this._totalDuration-this.currentTime,this._currentTimePending=!1,b.applyDirtiedAnimation(this))},cancel:function(){this._inEffect&&(this._inEffect=!1,this._idle=!0,this._paused=!1,this._isFinished=!0,this._finishedFlag=!0,this._currentTime=0,this._startTime=null,this._effect._update(null),b.applyDirtiedAnimation(this))},reverse:function(){this.playbackRate*=-1,this.play()},addEventListener:function(a,b){"function"==typeof b&&"finish"==a&&this._finishHandlers.push(b)},removeEventListener:function(a,b){if("finish"==a){var c=this._finishHandlers.indexOf(b);c>=0&&this._finishHandlers.splice(c,1)}},_fireEvents:function(a){if(this._isFinished){if(!this._finishedFlag){var b=new d(this,this._currentTime,a),c=this._finishHandlers.concat(this.onfinish?[this.onfinish]:[]);setTimeout(function(){c.forEach(function(a){a.call(b.target,b)})},0),this._finishedFlag=!0}}else this._finishedFlag=!1},_tick:function(a,b){this._idle||this._paused||(null==this._startTime?b&&(this.startTime=a-this._currentTime/this.playbackRate):this._isFinished||this._tickCurrentTime((a-this._startTime)*this.playbackRate)),b&&(this._currentTimePending=!1,this._fireEvents(a))},get _needsTick(){return this.playState in{pending:1,running:1}||!this._finishedFlag},_targetAnimations:function(){var a=this._effect._target;return a._activeAnimations||(a._activeAnimations=[]),a._activeAnimations},_markTarget:function(){var a=this._targetAnimations();-1===a.indexOf(this)&&a.push(this)},_unmarkTarget:function(){var a=this._targetAnimations(),b=a.indexOf(this);-1!==b&&a.splice(b,1)}}}(c,d),function(a,b,c){function d(a){var b=j;j=[],a<q.currentTime&&(a=q.currentTime),q._animations.sort(e),q._animations=h(a,!0,q._animations)[0],b.forEach(function(b){b[1](a)}),g(),l=void 0}function e(a,b){return a._sequenceNumber-b._sequenceNumber}function f(){this._animations=[],this.currentTime=window.performance&&performance.now?performance.now():0}function g(){o.forEach(function(a){a()}),o.length=0}function h(a,c,d){p=!0,n=!1,b.timeline.currentTime=a,m=!1;var e=[],f=[],g=[],h=[];return d.forEach(function(b){b._tick(a,c),b._inEffect?(f.push(b._effect),b._markTarget()):(e.push(b._effect),b._unmarkTarget()),b._needsTick&&(m=!0);var d=b._inEffect||b._needsTick;b._inTimeline=d,d?g.push(b):h.push(b)}),o.push.apply(o,e),o.push.apply(o,f),m&&requestAnimationFrame(function(){}),p=!1,[g,h]}var i=window.requestAnimationFrame,j=[],k=0;window.requestAnimationFrame=function(a){var b=k++;return 0==j.length&&i(d),j.push([b,a]),b},window.cancelAnimationFrame=function(a){j.forEach(function(b){b[0]==a&&(b[1]=function(){})})},f.prototype={_play:function(c){c._timing=a.normalizeTimingInput(c.timing);var d=new b.Animation(c);return d._idle=!1,d._timeline=this,this._animations.push(d),b.restart(),b.applyDirtiedAnimation(d),d}};var l=void 0,m=!1,n=!1;b.restart=function(){return m||(m=!0,requestAnimationFrame(function(){}),n=!0),n},b.applyDirtiedAnimation=function(a){if(!p){a._markTarget();var c=a._targetAnimations();c.sort(e),h(b.timeline.currentTime,!1,c.slice())[1].forEach(function(a){var b=q._animations.indexOf(a);-1!==b&&q._animations.splice(b,1)}),g()}};var o=[],p=!1,q=new f;b.timeline=q}(c,d),function(a,b){function c(a,b){for(var c=0,d=0;d<a.length;d++)c+=a[d]*b[d];return c}function d(a,b){return[a[0]*b[0]+a[4]*b[1]+a[8]*b[2]+a[12]*b[3],a[1]*b[0]+a[5]*b[1]+a[9]*b[2]+a[13]*b[3],a[2]*b[0]+a[6]*b[1]+a[10]*b[2]+a[14]*b[3],a[3]*b[0]+a[7]*b[1]+a[11]*b[2]+a[15]*b[3],a[0]*b[4]+a[4]*b[5]+a[8]*b[6]+a[12]*b[7],a[1]*b[4]+a[5]*b[5]+a[9]*b[6]+a[13]*b[7],a[2]*b[4]+a[6]*b[5]+a[10]*b[6]+a[14]*b[7],a[3]*b[4]+a[7]*b[5]+a[11]*b[6]+a[15]*b[7],a[0]*b[8]+a[4]*b[9]+a[8]*b[10]+a[12]*b[11],a[1]*b[8]+a[5]*b[9]+a[9]*b[10]+a[13]*b[11],a[2]*b[8]+a[6]*b[9]+a[10]*b[10]+a[14]*b[11],a[3]*b[8]+a[7]*b[9]+a[11]*b[10]+a[15]*b[11],a[0]*b[12]+a[4]*b[13]+a[8]*b[14]+a[12]*b[15],a[1]*b[12]+a[5]*b[13]+a[9]*b[14]+a[13]*b[15],a[2]*b[12]+a[6]*b[13]+a[10]*b[14]+a[14]*b[15],a[3]*b[12]+a[7]*b[13]+a[11]*b[14]+a[15]*b[15]]}function e(a){var b=a.rad||0;return((a.deg||0)/360+(a.grad||0)/400+(a.turn||0))*(2*Math.PI)+b}function f(a){switch(a.t){case"rotatex":var b=e(a.d[0]);return[1,0,0,0,0,Math.cos(b),Math.sin(b),0,0,-Math.sin(b),Math.cos(b),0,0,0,0,1];case"rotatey":var b=e(a.d[0]);return[Math.cos(b),0,-Math.sin(b),0,0,1,0,0,Math.sin(b),0,Math.cos(b),0,0,0,0,1];case"rotate":case"rotatez":var b=e(a.d[0]);return[Math.cos(b),Math.sin(b),0,0,-Math.sin(b),Math.cos(b),0,0,0,0,1,0,0,0,0,1];case"rotate3d":var c=a.d[0],d=a.d[1],f=a.d[2],b=e(a.d[3]),g=c*c+d*d+f*f;if(0===g)c=1,d=0,f=0;else if(1!==g){var h=Math.sqrt(g);c/=h,d/=h,f/=h}var i=Math.sin(b/2),j=i*Math.cos(b/2),k=i*i;return[1-2*(d*d+f*f)*k,2*(c*d*k+f*j),2*(c*f*k-d*j),0,2*(c*d*k-f*j),1-2*(c*c+f*f)*k,2*(d*f*k+c*j),0,2*(c*f*k+d*j),2*(d*f*k-c*j),1-2*(c*c+d*d)*k,0,0,0,0,1];case"scale":return[a.d[0],0,0,0,0,a.d[1],0,0,0,0,1,0,0,0,0,1];case"scalex":return[a.d[0],0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];case"scaley":return[1,0,0,0,0,a.d[0],0,0,0,0,1,0,0,0,0,1];case"scalez":return[1,0,0,0,0,1,0,0,0,0,a.d[0],0,0,0,0,1];case"scale3d":return[a.d[0],0,0,0,0,a.d[1],0,0,0,0,a.d[2],0,0,0,0,1];case"skew":var l=e(a.d[0]),m=e(a.d[1]);return[1,Math.tan(m),0,0,Math.tan(l),1,0,0,0,0,1,0,0,0,0,1];case"skewx":var b=e(a.d[0]);return[1,0,0,0,Math.tan(b),1,0,0,0,0,1,0,0,0,0,1];case"skewy":var b=e(a.d[0]);return[1,Math.tan(b),0,0,0,1,0,0,0,0,1,0,0,0,0,1];case"translate":var c=a.d[0].px||0,d=a.d[1].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,d,0,1];case"translatex":var c=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,0,0,1];case"translatey":var d=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,0,d,0,1];case"translatez":var f=a.d[0].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,0,0,f,1];case"translate3d":var c=a.d[0].px||0,d=a.d[1].px||0,f=a.d[2].px||0;return[1,0,0,0,0,1,0,0,0,0,1,0,c,d,f,1];case"perspective":return[1,0,0,0,0,1,0,0,0,0,1,a.d[0].px?-1/a.d[0].px:0,0,0,0,1];case"matrix":return[a.d[0],a.d[1],0,0,a.d[2],a.d[3],0,0,0,0,1,0,a.d[4],a.d[5],0,1];case"matrix3d":return a.d}}function g(a){return 0===a.length?[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]:a.map(f).reduce(d)}function h(a){return[i(g(a))]}var i=function(){function a(a){return a[0][0]*a[1][1]*a[2][2]+a[1][0]*a[2][1]*a[0][2]+a[2][0]*a[0][1]*a[1][2]-a[0][2]*a[1][1]*a[2][0]-a[1][2]*a[2][1]*a[0][0]-a[2][2]*a[0][1]*a[1][0]}function b(b){for(var c=1/a(b),d=b[0][0],e=b[0][1],f=b[0][2],g=b[1][0],h=b[1][1],i=b[1][2],j=b[2][0],k=b[2][1],l=b[2][2],m=[[(h*l-i*k)*c,(f*k-e*l)*c,(e*i-f*h)*c,0],[(i*j-g*l)*c,(d*l-f*j)*c,(f*g-d*i)*c,0],[(g*k-h*j)*c,(j*e-d*k)*c,(d*h-e*g)*c,0]],n=[],o=0;o<3;o++){for(var p=0,q=0;q<3;q++)p+=b[3][q]*m[q][o];n.push(p)}return n.push(1),m.push(n),m}function d(a){return[[a[0][0],a[1][0],a[2][0],a[3][0]],[a[0][1],a[1][1],a[2][1],a[3][1]],[a[0][2],a[1][2],a[2][2],a[3][2]],[a[0][3],a[1][3],a[2][3],a[3][3]]]}function e(a,b){for(var c=[],d=0;d<4;d++){for(var e=0,f=0;f<4;f++)e+=a[f]*b[f][d];c.push(e)}return c}function f(a){var b=g(a);return[a[0]/b,a[1]/b,a[2]/b]}function g(a){return Math.sqrt(a[0]*a[0]+a[1]*a[1]+a[2]*a[2])}function h(a,b,c,d){return[c*a[0]+d*b[0],c*a[1]+d*b[1],c*a[2]+d*b[2]]}function i(a,b){return[a[1]*b[2]-a[2]*b[1],a[2]*b[0]-a[0]*b[2],a[0]*b[1]-a[1]*b[0]]}function j(j){var k=[j.slice(0,4),j.slice(4,8),j.slice(8,12),j.slice(12,16)];if(1!==k[3][3])return null;for(var l=[],m=0;m<4;m++)l.push(k[m].slice());for(var m=0;m<3;m++)l[m][3]=0;if(0===a(l))return null;var n,o=[];k[0][3]||k[1][3]||k[2][3]?(o.push(k[0][3]),o.push(k[1][3]),o.push(k[2][3]),o.push(k[3][3]),n=e(o,d(b(l)))):n=[0,0,0,1];var p=k[3].slice(0,3),q=[];q.push(k[0].slice(0,3));var r=[];r.push(g(q[0])),q[0]=f(q[0]);var s=[];q.push(k[1].slice(0,3)),s.push(c(q[0],q[1])),q[1]=h(q[1],q[0],1,-s[0]),r.push(g(q[1])),q[1]=f(q[1]),s[0]/=r[1],q.push(k[2].slice(0,3)),s.push(c(q[0],q[2])),q[2]=h(q[2],q[0],1,-s[1]),s.push(c(q[1],q[2])),q[2]=h(q[2],q[1],1,-s[2]),r.push(g(q[2])),q[2]=f(q[2]),s[1]/=r[2],s[2]/=r[2];var t=i(q[1],q[2]);if(c(q[0],t)<0)for(var m=0;m<3;m++)r[m]*=-1,q[m][0]*=-1,q[m][1]*=-1,q[m][2]*=-1;var u,v,w=q[0][0]+q[1][1]+q[2][2]+1;return w>1e-4?(u=.5/Math.sqrt(w),v=[(q[2][1]-q[1][2])*u,(q[0][2]-q[2][0])*u,(q[1][0]-q[0][1])*u,.25/u]):q[0][0]>q[1][1]&&q[0][0]>q[2][2]?(u=2*Math.sqrt(1+q[0][0]-q[1][1]-q[2][2]),v=[.25*u,(q[0][1]+q[1][0])/u,(q[0][2]+q[2][0])/u,(q[2][1]-q[1][2])/u]):q[1][1]>q[2][2]?(u=2*Math.sqrt(1+q[1][1]-q[0][0]-q[2][2]),v=[(q[0][1]+q[1][0])/u,.25*u,(q[1][2]+q[2][1])/u,(q[0][2]-q[2][0])/u]):(u=2*Math.sqrt(1+q[2][2]-q[0][0]-q[1][1]),v=[(q[0][2]+q[2][0])/u,(q[1][2]+q[2][1])/u,.25*u,(q[1][0]-q[0][1])/u]),[p,r,s,v,n]}return j}();a.dot=c,a.makeMatrixDecomposition=h,a.transformListToMatrix=g}(d),function(a){function b(a,b){var c=a.exec(b);if(c)return c=a.ignoreCase?c[0].toLowerCase():c[0],[c,b.substr(c.length)]}function c(a,b){b=b.replace(/^\s*/,"");var c=a(b);if(c)return[c[0],c[1].replace(/^\s*/,"")]}function d(a,d,e){a=c.bind(null,a);for(var f=[];;){var g=a(e);if(!g)return[f,e];if(f.push(g[0]),e=g[1],!(g=b(d,e))||""==g[1])return[f,e];e=g[1]}}function e(a,b){for(var c=0,d=0;d<b.length&&(!/\s|,/.test(b[d])||0!=c);d++)if("("==b[d])c++;else if(")"==b[d]&&(c--,0==c&&d++,c<=0))break;var e=a(b.substr(0,d));return void 0==e?void 0:[e,b.substr(d)]}function f(a,b){for(var c=a,d=b;c&&d;)c>d?c%=d:d%=c;return c=a*b/(c+d)}function g(a){return function(b){var c=a(b);return c&&(c[0]=void 0),c}}function h(a,b){return function(c){return a(c)||[b,c]}}function i(b,c){for(var d=[],e=0;e<b.length;e++){var f=a.consumeTrimmed(b[e],c);if(!f||""==f[0])return;void 0!==f[0]&&d.push(f[0]),c=f[1]}if(""==c)return d}function j(a,b,c,d,e){for(var g=[],h=[],i=[],j=f(d.length,e.length),k=0;k<j;k++){var l=b(d[k%d.length],e[k%e.length]);if(!l)return;g.push(l[0]),h.push(l[1]),i.push(l[2])}return[g,h,function(b){var d=b.map(function(a,b){return i[b](a)}).join(c);return a?a(d):d}]}function k(a,b,c){for(var d=[],e=[],f=[],g=0,h=0;h<c.length;h++)if("function"==typeof c[h]){var i=c[h](a[g],b[g++]);d.push(i[0]),e.push(i[1]),f.push(i[2])}else!function(a){d.push(!1),e.push(!1),f.push(function(){return c[a]})}(h);return[d,e,function(a){for(var b="",c=0;c<a.length;c++)b+=f[c](a[c]);return b}]}a.consumeToken=b,a.consumeTrimmed=c,a.consumeRepeated=d,a.consumeParenthesised=e,a.ignore=g,a.optional=h,a.consumeList=i,a.mergeNestedRepeated=j.bind(null,null),a.mergeWrappedNestedRepeated=j,a.mergeList=k}(d),function(a){function b(b){function c(b){var c=a.consumeToken(/^inset/i,b);if(c)return d.inset=!0,c;var c=a.consumeLengthOrPercent(b);if(c)return d.lengths.push(c[0]),c;var c=a.consumeColor(b);return c?(d.color=c[0],c):void 0}var d={inset:!1,lengths:[],color:null},e=a.consumeRepeated(c,/^/,b);if(e&&e[0].length)return[d,e[1]]}function c(c){var d=a.consumeRepeated(b,/^,/,c);if(d&&""==d[1])return d[0]}function d(b,c){for(;b.lengths.length<Math.max(b.lengths.length,c.lengths.length);)b.lengths.push({px:0});for(;c.lengths.length<Math.max(b.lengths.length,c.lengths.length);)c.lengths.push({px:0});if(b.inset==c.inset&&!!b.color==!!c.color){for(var d,e=[],f=[[],0],g=[[],0],h=0;h<b.lengths.length;h++){var i=a.mergeDimensions(b.lengths[h],c.lengths[h],2==h);f[0].push(i[0]),g[0].push(i[1]),e.push(i[2])}if(b.color&&c.color){var j=a.mergeColors(b.color,c.color);f[1]=j[0],g[1]=j[1],d=j[2]}return[f,g,function(a){for(var c=b.inset?"inset ":" ",f=0;f<e.length;f++)c+=e[f](a[0][f])+" ";return d&&(c+=d(a[1])),c}]}}function e(b,c,d,e){function f(a){return{inset:a,color:[0,0,0,0],lengths:[{px:0},{px:0},{px:0},{px:0}]}}for(var g=[],h=[],i=0;i<d.length||i<e.length;i++){var j=d[i]||f(e[i].inset),k=e[i]||f(d[i].inset);g.push(j),h.push(k)}return a.mergeNestedRepeated(b,c,g,h)}var f=e.bind(null,d,", ");a.addPropertiesHandler(c,f,["box-shadow","text-shadow"])}(d),function(a,b){function c(a){return a.toFixed(3).replace(/0+$/,"").replace(/\.$/,"")}function d(a,b,c){return Math.min(b,Math.max(a,c))}function e(a){if(/^\s*[-+]?(\d*\.)?\d+\s*$/.test(a))return Number(a)}function f(a,b){return[a,b,c]}function g(a,b){if(0!=a)return i(0,1/0)(a,b)}function h(a,b){return[a,b,function(a){return Math.round(d(1,1/0,a))}]}function i(a,b){return function(e,f){return[e,f,function(e){return c(d(a,b,e))}]}}function j(a){var b=a.trim().split(/\s*[\s,]\s*/);if(0!==b.length){for(var c=[],d=0;d<b.length;d++){var f=e(b[d]);if(void 0===f)return;c.push(f)}return c}}function k(a,b){if(a.length==b.length)return[a,b,function(a){return a.map(c).join(" ")}]}function l(a,b){return[a,b,Math.round]}a.clamp=d,a.addPropertiesHandler(j,k,["stroke-dasharray"]),a.addPropertiesHandler(e,i(0,1/0),["border-image-width","line-height"]),a.addPropertiesHandler(e,i(0,1),["opacity","shape-image-threshold"]),a.addPropertiesHandler(e,g,["flex-grow","flex-shrink"]),a.addPropertiesHandler(e,h,["orphans","widows"]),a.addPropertiesHandler(e,l,["z-index"]),a.parseNumber=e,a.parseNumberList=j,a.mergeNumbers=f,a.numberToString=c}(d),function(a,b){function c(a,b){if("visible"==a||"visible"==b)return[0,1,function(c){return c<=0?a:c>=1?b:"visible"}]}a.addPropertiesHandler(String,c,["visibility"])}(d),function(a,b){function c(a){a=a.trim(),f.fillStyle="#000",f.fillStyle=a;var b=f.fillStyle;if(f.fillStyle="#fff",f.fillStyle=a,b==f.fillStyle){f.fillRect(0,0,1,1);var c=f.getImageData(0,0,1,1).data;f.clearRect(0,0,1,1);var d=c[3]/255;return[c[0]*d,c[1]*d,c[2]*d,d]}}function d(b,c){return[b,c,function(b){function c(a){return Math.max(0,Math.min(255,a))}if(b[3])for(var d=0;d<3;d++)b[d]=Math.round(c(b[d]/b[3]));return b[3]=a.numberToString(a.clamp(0,1,b[3])),"rgba("+b.join(",")+")"}]}var e=document.createElementNS("http://www.w3.org/1999/xhtml","canvas");e.width=e.height=1;var f=e.getContext("2d");a.addPropertiesHandler(c,d,["background-color","border-bottom-color","border-left-color","border-right-color","border-top-color","color","fill","flood-color","lighting-color","outline-color","stop-color","stroke","text-decoration-color"]),a.consumeColor=a.consumeParenthesised.bind(null,c),a.mergeColors=d}(d),function(a,b){function c(a){function b(){var b=h.exec(a);g=b?b[0]:void 0}function c(){var a=Number(g);return b(),a}function d(){if("("!==g)return c();b();var a=f();return")"!==g?NaN:(b(),a)}function e(){for(var a=d();"*"===g||"/"===g;){var c=g;b();var e=d();"*"===c?a*=e:a/=e}return a}function f(){for(var a=e();"+"===g||"-"===g;){var c=g;b();var d=e();"+"===c?a+=d:a-=d}return a}var g,h=/([\+\-\w\.]+|[\(\)\*\/])/g;return b(),f()}function d(a,b){if("0"==(b=b.trim().toLowerCase())&&"px".search(a)>=0)return{px:0};if(/^[^(]*$|^calc/.test(b)){b=b.replace(/calc\(/g,"(");var d={};b=b.replace(a,function(a){return d[a]=null,"U"+a});for(var e="U("+a.source+")",f=b.replace(/[-+]?(\d*\.)?\d+([Ee][-+]?\d+)?/g,"N").replace(new RegExp("N"+e,"g"),"D").replace(/\s[+-]\s/g,"O").replace(/\s/g,""),g=[/N\*(D)/g,/(N|D)[*\/]N/g,/(N|D)O\1/g,/\((N|D)\)/g],h=0;h<g.length;)g[h].test(f)?(f=f.replace(g[h],"$1"),h=0):h++;if("D"==f){for(var i in d){var j=c(b.replace(new RegExp("U"+i,"g"),"").replace(new RegExp(e,"g"),"*0"));if(!isFinite(j))return;d[i]=j}return d}}}function e(a,b){return f(a,b,!0)}function f(b,c,d){var e,f=[];for(e in b)f.push(e);for(e in c)f.indexOf(e)<0&&f.push(e);return b=f.map(function(a){return b[a]||0}),c=f.map(function(a){return c[a]||0}),[b,c,function(b){var c=b.map(function(c,e){return 1==b.length&&d&&(c=Math.max(c,0)),a.numberToString(c)+f[e]}).join(" + ");return b.length>1?"calc("+c+")":c}]}var g="px|em|ex|ch|rem|vw|vh|vmin|vmax|cm|mm|in|pt|pc",h=d.bind(null,new RegExp(g,"g")),i=d.bind(null,new RegExp(g+"|%","g")),j=d.bind(null,/deg|rad|grad|turn/g);a.parseLength=h,a.parseLengthOrPercent=i,a.consumeLengthOrPercent=a.consumeParenthesised.bind(null,i),a.parseAngle=j,a.mergeDimensions=f;var k=a.consumeParenthesised.bind(null,h),l=a.consumeRepeated.bind(void 0,k,/^/),m=a.consumeRepeated.bind(void 0,l,/^,/);a.consumeSizePairList=m;var n=function(a){var b=m(a);if(b&&""==b[1])return b[0]},o=a.mergeNestedRepeated.bind(void 0,e," "),p=a.mergeNestedRepeated.bind(void 0,o,",");a.mergeNonNegativeSizePair=o,a.addPropertiesHandler(n,p,["background-size"]),a.addPropertiesHandler(i,e,["border-bottom-width","border-image-width","border-left-width","border-right-width","border-top-width","flex-basis","font-size","height","line-height","max-height","max-width","outline-width","width"]),a.addPropertiesHandler(i,f,["border-bottom-left-radius","border-bottom-right-radius","border-top-left-radius","border-top-right-radius","bottom","left","letter-spacing","margin-bottom","margin-left","margin-right","margin-top","min-height","min-width","outline-offset","padding-bottom","padding-left","padding-right","padding-top","perspective","right","shape-margin","stroke-dashoffset","text-indent","top","vertical-align","word-spacing"])}(d),function(a,b){function c(b){return a.consumeLengthOrPercent(b)||a.consumeToken(/^auto/,b)}function d(b){var d=a.consumeList([a.ignore(a.consumeToken.bind(null,/^rect/)),a.ignore(a.consumeToken.bind(null,/^\(/)),a.consumeRepeated.bind(null,c,/^,/),a.ignore(a.consumeToken.bind(null,/^\)/))],b);if(d&&4==d[0].length)return d[0]}function e(b,c){return"auto"==b||"auto"==c?[!0,!1,function(d){var e=d?b:c;if("auto"==e)return"auto";var f=a.mergeDimensions(e,e);return f[2](f[0])}]:a.mergeDimensions(b,c)}function f(a){return"rect("+a+")"}var g=a.mergeWrappedNestedRepeated.bind(null,f,e,", ");a.parseBox=d,a.mergeBoxes=g,a.addPropertiesHandler(d,g,["clip"])}(d),function(a,b){function c(a){return function(b){var c=0;return a.map(function(a){return a===k?b[c++]:a})}}function d(a){return a}function e(b){if("none"==(b=b.toLowerCase().trim()))return[];for(var c,d=/\s*(\w+)\(([^)]*)\)/g,e=[],f=0;c=d.exec(b);){if(c.index!=f)return;f=c.index+c[0].length;var g=c[1],h=n[g];if(!h)return;var i=c[2].split(","),j=h[0];if(j.length<i.length)return;for(var k=[],o=0;o<j.length;o++){var p,q=i[o],r=j[o];if(void 0===(p=q?{A:function(b){return"0"==b.trim()?m:a.parseAngle(b)},N:a.parseNumber,T:a.parseLengthOrPercent,L:a.parseLength}[r.toUpperCase()](q):{a:m,n:k[0],t:l}[r]))return;k.push(p)}if(e.push({t:g,d:k}),d.lastIndex==b.length)return e}}function f(a){return a.toFixed(6).replace(".000000","")}function g(b,c){if(b.decompositionPair!==c){b.decompositionPair=c;var d=a.makeMatrixDecomposition(b)}if(c.decompositionPair!==b){c.decompositionPair=b;var e=a.makeMatrixDecomposition(c)}return null==d[0]||null==e[0]?[[!1],[!0],function(a){return a?c[0].d:b[0].d}]:(d[0].push(0),e[0].push(1),[d,e,function(b){var c=a.quat(d[0][3],e[0][3],b[5]);return a.composeMatrix(b[0],b[1],b[2],c,b[4]).map(f).join(",")}])}function h(a){return a.replace(/[xy]/,"")}function i(a){return a.replace(/(x|y|z|3d)?$/,"3d")}function j(b,c){var d=a.makeMatrixDecomposition&&!0,e=!1;if(!b.length||!c.length){b.length||(e=!0,b=c,c=[]);for(var f=0;f<b.length;f++){var j=b[f].t,k=b[f].d,l="scale"==j.substr(0,5)?1:0;c.push({t:j,d:k.map(function(a){if("number"==typeof a)return l;var b={};for(var c in a)b[c]=l;return b})})}}var m=function(a,b){return"perspective"==a&&"perspective"==b||("matrix"==a||"matrix3d"==a)&&("matrix"==b||"matrix3d"==b)},o=[],p=[],q=[];if(b.length!=c.length){if(!d)return;var r=g(b,c);o=[r[0]],p=[r[1]],q=[["matrix",[r[2]]]]}else for(var f=0;f<b.length;f++){var j,s=b[f].t,t=c[f].t,u=b[f].d,v=c[f].d,w=n[s],x=n[t];if(m(s,t)){if(!d)return;var r=g([b[f]],[c[f]]);o.push(r[0]),p.push(r[1]),q.push(["matrix",[r[2]]])}else{if(s==t)j=s;else if(w[2]&&x[2]&&h(s)==h(t))j=h(s),u=w[2](u),v=x[2](v);else{if(!w[1]||!x[1]||i(s)!=i(t)){if(!d)return;var r=g(b,c);o=[r[0]],p=[r[1]],q=[["matrix",[r[2]]]];break}j=i(s),u=w[1](u),v=x[1](v)}for(var y=[],z=[],A=[],B=0;B<u.length;B++){var C="number"==typeof u[B]?a.mergeNumbers:a.mergeDimensions,r=C(u[B],v[B]);y[B]=r[0],z[B]=r[1],A.push(r[2])}o.push(y),p.push(z),q.push([j,A])}}if(e){var D=o;o=p,p=D}return[o,p,function(a){return a.map(function(a,b){var c=a.map(function(a,c){return q[b][1][c](a)}).join(",");return"matrix"==q[b][0]&&16==c.split(",").length&&(q[b][0]="matrix3d"),q[b][0]+"("+c+")"}).join(" ")}]}var k=null,l={px:0},m={deg:0},n={matrix:["NNNNNN",[k,k,0,0,k,k,0,0,0,0,1,0,k,k,0,1],d],matrix3d:["NNNNNNNNNNNNNNNN",d],rotate:["A"],rotatex:["A"],rotatey:["A"],rotatez:["A"],rotate3d:["NNNA"],perspective:["L"],scale:["Nn",c([k,k,1]),d],scalex:["N",c([k,1,1]),c([k,1])],scaley:["N",c([1,k,1]),c([1,k])],scalez:["N",c([1,1,k])],scale3d:["NNN",d],skew:["Aa",null,d],skewx:["A",null,c([k,m])],skewy:["A",null,c([m,k])],translate:["Tt",c([k,k,l]),d],translatex:["T",c([k,l,l]),c([k,l])],translatey:["T",c([l,k,l]),c([l,k])],translatez:["L",c([l,l,k])],translate3d:["TTL",d]};a.addPropertiesHandler(e,j,["transform"]),a.transformToSvgMatrix=function(b){var c=a.transformListToMatrix(e(b));return"matrix("+f(c[0])+" "+f(c[1])+" "+f(c[4])+" "+f(c[5])+" "+f(c[12])+" "+f(c[13])+")"}}(d),function(a){function b(a){var b=Number(a);if(!(isNaN(b)||b<100||b>900||b%100!=0))return b}function c(b){return b=100*Math.round(b/100),b=a.clamp(100,900,b),400===b?"normal":700===b?"bold":String(b)}function d(a,b){return[a,b,c]}a.addPropertiesHandler(b,d,["font-weight"])}(d),function(a){function b(a){var b={};for(var c in a)b[c]=-a[c];return b}function c(b){return a.consumeToken(/^(left|center|right|top|bottom)\b/i,b)||a.consumeLengthOrPercent(b)}function d(b,d){var e=a.consumeRepeated(c,/^/,d);if(e&&""==e[1]){var f=e[0];if(f[0]=f[0]||"center",f[1]=f[1]||"center",3==b&&(f[2]=f[2]||{px:0}),f.length==b){if(/top|bottom/.test(f[0])||/left|right/.test(f[1])){var h=f[0];f[0]=f[1],f[1]=h}if(/left|right|center|Object/.test(f[0])&&/top|bottom|center|Object/.test(f[1]))return f.map(function(a){return"object"==typeof a?a:g[a]})}}}function e(d){var e=a.consumeRepeated(c,/^/,d);if(e){for(var f=e[0],h=[{"%":50},{"%":50}],i=0,j=!1,k=0;k<f.length;k++){var l=f[k];"string"==typeof l?(j=/bottom|right/.test(l),i={left:0,right:0,center:i,top:1,bottom:1}[l],h[i]=g[l],"center"==l&&i++):(j&&(l=b(l),l["%"]=(l["%"]||0)+100),h[i]=l,i++,j=!1)}return[h,e[1]]}}function f(b){var c=a.consumeRepeated(e,/^,/,b);if(c&&""==c[1])return c[0]}var g={left:{"%":0},center:{"%":50},right:{"%":100},top:{"%":0},bottom:{"%":100}},h=a.mergeNestedRepeated.bind(null,a.mergeDimensions," ");a.addPropertiesHandler(d.bind(null,3),h,["transform-origin"]),a.addPropertiesHandler(d.bind(null,2),h,["perspective-origin"]),a.consumePosition=e,a.mergeOffsetList=h;var i=a.mergeNestedRepeated.bind(null,h,", ");a.addPropertiesHandler(f,i,["background-position","object-position"])}(d),function(a){function b(b){var c=a.consumeToken(/^circle/,b);if(c&&c[0])return["circle"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),d,a.ignore(a.consumeToken.bind(void 0,/^at/)),a.consumePosition,a.ignore(a.consumeToken.bind(void 0,/^\)/))],c[1]));var f=a.consumeToken(/^ellipse/,b);if(f&&f[0])return["ellipse"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),e,a.ignore(a.consumeToken.bind(void 0,/^at/)),a.consumePosition,a.ignore(a.consumeToken.bind(void 0,/^\)/))],f[1]));var g=a.consumeToken(/^polygon/,b);return g&&g[0]?["polygon"].concat(a.consumeList([a.ignore(a.consumeToken.bind(void 0,/^\(/)),a.optional(a.consumeToken.bind(void 0,/^nonzero\s*,|^evenodd\s*,/),"nonzero,"),a.consumeSizePairList,a.ignore(a.consumeToken.bind(void 0,/^\)/))],g[1])):void 0}function c(b,c){if(b[0]===c[0])return"circle"==b[0]?a.mergeList(b.slice(1),c.slice(1),["circle(",a.mergeDimensions," at ",a.mergeOffsetList,")"]):"ellipse"==b[0]?a.mergeList(b.slice(1),c.slice(1),["ellipse(",a.mergeNonNegativeSizePair," at ",a.mergeOffsetList,")"]):"polygon"==b[0]&&b[1]==c[1]?a.mergeList(b.slice(2),c.slice(2),["polygon(",b[1],g,")"]):void 0}var d=a.consumeParenthesised.bind(null,a.parseLengthOrPercent),e=a.consumeRepeated.bind(void 0,d,/^/),f=a.mergeNestedRepeated.bind(void 0,a.mergeDimensions," "),g=a.mergeNestedRepeated.bind(void 0,f,",");a.addPropertiesHandler(b,c,["shape-outside"])}(d),function(a,b){function c(a,b){b.concat([a]).forEach(function(b){b in document.documentElement.style&&(d[a]=b),e[b]=a})}var d={},e={};c("transform",["webkitTransform","msTransform"]),c("transformOrigin",["webkitTransformOrigin"]),c("perspective",["webkitPerspective"]),c("perspectiveOrigin",["webkitPerspectiveOrigin"]),a.propertyName=function(a){return d[a]||a},a.unprefixedPropertyName=function(a){return e[a]||a}}(d)}(),function(){if(void 0===document.createElement("div").animate([]).oncancel){var a;if(window.performance&&performance.now)var a=function(){return performance.now()};else var a=function(){return Date.now()};var b=function(a,b,c){this.target=a,this.currentTime=b,this.timelineTime=c,this.type="cancel",this.bubbles=!1,this.cancelable=!1,this.currentTarget=a,this.defaultPrevented=!1,this.eventPhase=Event.AT_TARGET,this.timeStamp=Date.now()},c=window.Element.prototype.animate;window.Element.prototype.animate=function(d,e){var f=c.call(this,d,e);f._cancelHandlers=[],f.oncancel=null;var g=f.cancel;f.cancel=function(){g.call(this);var c=new b(this,null,a()),d=this._cancelHandlers.concat(this.oncancel?[this.oncancel]:[]);setTimeout(function(){d.forEach(function(a){a.call(c.target,c)})},0)};var h=f.addEventListener;f.addEventListener=function(a,b){"function"==typeof b&&"cancel"==a?this._cancelHandlers.push(b):h.call(this,a,b)};var i=f.removeEventListener;return f.removeEventListener=function(a,b){if("cancel"==a){var c=this._cancelHandlers.indexOf(b);c>=0&&this._cancelHandlers.splice(c,1)}else i.call(this,a,b)},f}}}(),function(a){var b=document.documentElement,c=null,d=!1;try{var e=getComputedStyle(b).getPropertyValue("opacity"),f="0"==e?"1":"0";c=b.animate({opacity:[f,f]},{duration:1}),c.currentTime=0,d=getComputedStyle(b).getPropertyValue("opacity")==f}catch(a){}finally{c&&c.cancel()}if(!d){var g=window.Element.prototype.animate;window.Element.prototype.animate=function(b,c){return window.Symbol&&Symbol.iterator&&Array.prototype.from&&b[Symbol.iterator]&&(b=Array.from(b)),Array.isArray(b)||null===b||(b=a.convertToArrayForm(b)),g.call(this,b,c)}}}(c),function(a,b,c){function d(a){var c=b.timeline;c.currentTime=a,c._discardAnimations(),0==c._animations.length?f=!1:requestAnimationFrame(d)}var e=window.requestAnimationFrame;window.requestAnimationFrame=function(a){return e(function(c){b.timeline._updateAnimationsPromises(),a(c),b.timeline._updateAnimationsPromises()})},b.AnimationTimeline=function(){this._animations=[],this.currentTime=void 0},b.AnimationTimeline.prototype={getAnimations:function(){return this._discardAnimations(),this._animations.slice()},_updateAnimationsPromises:function(){b.animationsWithPromises=b.animationsWithPromises.filter(function(a){return a._updatePromises()})},_discardAnimations:function(){this._updateAnimationsPromises(),this._animations=this._animations.filter(function(a){return"finished"!=a.playState&&"idle"!=a.playState})},_play:function(a){var c=new b.Animation(a,this);return this._animations.push(c),b.restartWebAnimationsNextTick(),c._updatePromises(),c._animation.play(),c._updatePromises(),c},play:function(a){return a&&a.remove(),this._play(a)}};var f=!1;b.restartWebAnimationsNextTick=function(){f||(f=!0,requestAnimationFrame(d))};var g=new b.AnimationTimeline;b.timeline=g;try{Object.defineProperty(window.document,"timeline",{configurable:!0,get:function(){return g}})}catch(a){}try{window.document.timeline=g}catch(a){}}(0,e),function(a,b,c){b.animationsWithPromises=[],b.Animation=function(b,c){if(this.id="",b&&b._id&&(this.id=b._id),this.effect=b,b&&(b._animation=this),!c)throw new Error("Animation with null timeline is not supported");this._timeline=c,this._sequenceNumber=a.sequenceNumber++,this._holdTime=0,this._paused=!1,this._isGroup=!1,this._animation=null,this._childAnimations=[],this._callback=null,this._oldPlayState="idle",this._rebuildUnderlyingAnimation(),this._animation.cancel(),this._updatePromises()},b.Animation.prototype={_updatePromises:function(){var a=this._oldPlayState,b=this.playState;return this._readyPromise&&b!==a&&("idle"==b?(this._rejectReadyPromise(),this._readyPromise=void 0):"pending"==a?this._resolveReadyPromise():"pending"==b&&(this._readyPromise=void 0)),this._finishedPromise&&b!==a&&("idle"==b?(this._rejectFinishedPromise(),this._finishedPromise=void 0):"finished"==b?this._resolveFinishedPromise():"finished"==a&&(this._finishedPromise=void 0)),this._oldPlayState=this.playState,this._readyPromise||this._finishedPromise},_rebuildUnderlyingAnimation:function(){this._updatePromises();var a,c,d,e,f=!!this._animation;f&&(a=this.playbackRate,c=this._paused,d=this.startTime,e=this.currentTime,this._animation.cancel(),this._animation._wrapper=null,this._animation=null),(!this.effect||this.effect instanceof window.KeyframeEffect)&&(this._animation=b.newUnderlyingAnimationForKeyframeEffect(this.effect),b.bindAnimationForKeyframeEffect(this)),(this.effect instanceof window.SequenceEffect||this.effect instanceof window.GroupEffect)&&(this._animation=b.newUnderlyingAnimationForGroup(this.effect),b.bindAnimationForGroup(this)),this.effect&&this.effect._onsample&&b.bindAnimationForCustomEffect(this),f&&(1!=a&&(this.playbackRate=a),null!==d?this.startTime=d:null!==e?this.currentTime=e:null!==this._holdTime&&(this.currentTime=this._holdTime),c&&this.pause()),this._updatePromises()},_updateChildren:function(){if(this.effect&&"idle"!=this.playState){var a=this.effect._timing.delay;this._childAnimations.forEach(function(c){this._arrangeChildren(c,a),this.effect instanceof window.SequenceEffect&&(a+=b.groupChildDuration(c.effect))}.bind(this))}},_setExternalAnimation:function(a){if(this.effect&&this._isGroup)for(var b=0;b<this.effect.children.length;b++)this.effect.children[b]._animation=a,this._childAnimations[b]._setExternalAnimation(a)},_constructChildAnimations:function(){if(this.effect&&this._isGroup){var a=this.effect._timing.delay;this._removeChildAnimations(),this.effect.children.forEach(function(c){var d=b.timeline._play(c);this._childAnimations.push(d),d.playbackRate=this.playbackRate,this._paused&&d.pause(),c._animation=this.effect._animation,this._arrangeChildren(d,a),this.effect instanceof window.SequenceEffect&&(a+=b.groupChildDuration(c))}.bind(this))}},_arrangeChildren:function(a,b){null===this.startTime?a.currentTime=this.currentTime-b/this.playbackRate:a.startTime!==this.startTime+b/this.playbackRate&&(a.startTime=this.startTime+b/this.playbackRate)},get timeline(){return this._timeline},get playState(){return this._animation?this._animation.playState:"idle"},get finished(){return window.Promise?(this._finishedPromise||(-1==b.animationsWithPromises.indexOf(this)&&b.animationsWithPromises.push(this),this._finishedPromise=new Promise(function(a,b){this._resolveFinishedPromise=function(){a(this)},this._rejectFinishedPromise=function(){b({type:DOMException.ABORT_ERR,name:"AbortError"})}}.bind(this)),"finished"==this.playState&&this._resolveFinishedPromise()),this._finishedPromise):(console.warn("Animation Promises require JavaScript Promise constructor"),null)},get ready(){return window.Promise?(this._readyPromise||(-1==b.animationsWithPromises.indexOf(this)&&b.animationsWithPromises.push(this),this._readyPromise=new Promise(function(a,b){this._resolveReadyPromise=function(){a(this)},this._rejectReadyPromise=function(){b({type:DOMException.ABORT_ERR,name:"AbortError"})}}.bind(this)),"pending"!==this.playState&&this._resolveReadyPromise()),this._readyPromise):(console.warn("Animation Promises require JavaScript Promise constructor"),null)},get onfinish(){return this._animation.onfinish},set onfinish(a){this._animation.onfinish="function"==typeof a?function(b){b.target=this,a.call(this,b)}.bind(this):a},get oncancel(){return this._animation.oncancel},set oncancel(a){this._animation.oncancel="function"==typeof a?function(b){b.target=this,a.call(this,b)}.bind(this):a},get currentTime(){this._updatePromises();var a=this._animation.currentTime;return this._updatePromises(),a},set currentTime(a){this._updatePromises(),this._animation.currentTime=isFinite(a)?a:Math.sign(a)*Number.MAX_VALUE,this._register(),this._forEachChild(function(b,c){b.currentTime=a-c}),this._updatePromises()},get startTime(){return this._animation.startTime},set startTime(a){this._updatePromises(),this._animation.startTime=isFinite(a)?a:Math.sign(a)*Number.MAX_VALUE,this._register(),this._forEachChild(function(b,c){b.startTime=a+c}),this._updatePromises()},get playbackRate(){return this._animation.playbackRate},set playbackRate(a){this._updatePromises();var b=this.currentTime;this._animation.playbackRate=a,this._forEachChild(function(b){b.playbackRate=a}),null!==b&&(this.currentTime=b),this._updatePromises()},play:function(){this._updatePromises(),this._paused=!1,this._animation.play(),-1==this._timeline._animations.indexOf(this)&&this._timeline._animations.push(this),this._register(),b.awaitStartTime(this),this._forEachChild(function(a){var b=a.currentTime;a.play(),a.currentTime=b}),this._updatePromises()},pause:function(){this._updatePromises(),this.currentTime&&(this._holdTime=this.currentTime),this._animation.pause(),this._register(),this._forEachChild(function(a){a.pause()}),this._paused=!0,this._updatePromises()},finish:function(){this._updatePromises(),this._animation.finish(),this._register(),this._updatePromises()},cancel:function(){this._updatePromises(),this._animation.cancel(),this._register(),this._removeChildAnimations(),this._updatePromises()},reverse:function(){this._updatePromises();var a=this.currentTime;this._animation.reverse(),this._forEachChild(function(a){a.reverse()}),null!==a&&(this.currentTime=a),this._updatePromises()},addEventListener:function(a,b){var c=b;"function"==typeof b&&(c=function(a){a.target=this,b.call(this,a)}.bind(this),b._wrapper=c),this._animation.addEventListener(a,c)},removeEventListener:function(a,b){this._animation.removeEventListener(a,b&&b._wrapper||b)},_removeChildAnimations:function(){for(;this._childAnimations.length;)this._childAnimations.pop().cancel()},_forEachChild:function(b){var c=0;if(this.effect.children&&this._childAnimations.length<this.effect.children.length&&this._constructChildAnimations(),this._childAnimations.forEach(function(a){b.call(this,a,c),this.effect instanceof window.SequenceEffect&&(c+=a.effect.activeDuration)}.bind(this)),"pending"!=this.playState){var d=this.effect._timing,e=this.currentTime;null!==e&&(e=a.calculateIterationProgress(a.calculateActiveDuration(d),e,d)),(null==e||isNaN(e))&&this._removeChildAnimations()}}},window.Animation=b.Animation}(c,e),function(a,b,c){function d(b){this._frames=a.normalizeKeyframes(b)}function e(){for(var a=!1;i.length;)i.shift()._updateChildren(),a=!0;return a}var f=function(a){if(a._animation=void 0,a instanceof window.SequenceEffect||a instanceof window.GroupEffect)for(var b=0;b<a.children.length;b++)f(a.children[b])};b.removeMulti=function(a){for(var b=[],c=0;c<a.length;c++){var d=a[c];d._parent?(-1==b.indexOf(d._parent)&&b.push(d._parent),d._parent.children.splice(d._parent.children.indexOf(d),1),d._parent=null,f(d)):d._animation&&d._animation.effect==d&&(d._animation.cancel(),d._animation.effect=new KeyframeEffect(null,[]),d._animation._callback&&(d._animation._callback._animation=null),d._animation._rebuildUnderlyingAnimation(),f(d))}for(c=0;c<b.length;c++)b[c]._rebuild()},b.KeyframeEffect=function(b,c,e,f){return this.target=b,this._parent=null,e=a.numericTimingToObject(e),this._timingInput=a.cloneTimingInput(e),this._timing=a.normalizeTimingInput(e),this.timing=a.makeTiming(e,!1,this),this.timing._effect=this,"function"==typeof c?(a.deprecated("Custom KeyframeEffect","2015-06-22","Use KeyframeEffect.onsample instead."),this._normalizedKeyframes=c):this._normalizedKeyframes=new d(c),this._keyframes=c,this.activeDuration=a.calculateActiveDuration(this._timing),this._id=f,this},b.KeyframeEffect.prototype={getFrames:function(){return"function"==typeof this._normalizedKeyframes?this._normalizedKeyframes:this._normalizedKeyframes._frames},set onsample(a){if("function"==typeof this.getFrames())throw new Error("Setting onsample on custom effect KeyframeEffect is not supported.");this._onsample=a,this._animation&&this._animation._rebuildUnderlyingAnimation()},get parent(){return this._parent},clone:function(){if("function"==typeof this.getFrames())throw new Error("Cloning custom effects is not supported.");var b=new KeyframeEffect(this.target,[],a.cloneTimingInput(this._timingInput),this._id);return b._normalizedKeyframes=this._normalizedKeyframes,b._keyframes=this._keyframes,b},remove:function(){b.removeMulti([this])}};var g=Element.prototype.animate;Element.prototype.animate=function(a,c){var d="";return c&&c.id&&(d=c.id),b.timeline._play(new b.KeyframeEffect(this,a,c,d))};var h=document.createElementNS("http://www.w3.org/1999/xhtml","div");b.newUnderlyingAnimationForKeyframeEffect=function(a){if(a){var b=a.target||h,c=a._keyframes;"function"==typeof c&&(c=[]);var d=a._timingInput;d.id=a._id}else var b=h,c=[],d=0;return g.apply(b,[c,d])},b.bindAnimationForKeyframeEffect=function(a){a.effect&&"function"==typeof a.effect._normalizedKeyframes&&b.bindAnimationForCustomEffect(a)};var i=[];b.awaitStartTime=function(a){null===a.startTime&&a._isGroup&&(0==i.length&&requestAnimationFrame(e),i.push(a))};var j=window.getComputedStyle;Object.defineProperty(window,"getComputedStyle",{configurable:!0,enumerable:!0,value:function(){b.timeline._updateAnimationsPromises();var a=j.apply(this,arguments);return e()&&(a=j.apply(this,arguments)),b.timeline._updateAnimationsPromises(),a}}),window.KeyframeEffect=b.KeyframeEffect,window.Element.prototype.getAnimations=function(){return document.timeline.getAnimations().filter(function(a){return null!==a.effect&&a.effect.target==this}.bind(this))}}(c,e),function(a,b,c){function d(a){a._registered||(a._registered=!0,g.push(a),h||(h=!0,requestAnimationFrame(e)))}function e(a){var b=g;g=[],b.sort(function(a,b){return a._sequenceNumber-b._sequenceNumber}),b=b.filter(function(a){a();var b=a._animation?a._animation.playState:"idle";return"running"!=b&&"pending"!=b&&(a._registered=!1),a._registered}),g.push.apply(g,b),g.length?(h=!0,requestAnimationFrame(e)):h=!1}var f=(document.createElementNS("http://www.w3.org/1999/xhtml","div"),0);b.bindAnimationForCustomEffect=function(b){var c,e=b.effect.target,g="function"==typeof b.effect.getFrames();c=g?b.effect.getFrames():b.effect._onsample;var h=b.effect.timing,i=null;h=a.normalizeTimingInput(h);var j=function(){var d=j._animation?j._animation.currentTime:null;null!==d&&(d=a.calculateIterationProgress(a.calculateActiveDuration(h),d,h),isNaN(d)&&(d=null)),d!==i&&(g?c(d,e,b.effect):c(d,b.effect,b.effect._animation)),i=d};j._animation=b,j._registered=!1,j._sequenceNumber=f++,b._callback=j,d(j)};var g=[],h=!1;b.Animation.prototype._register=function(){this._callback&&d(this._callback)}}(c,e),function(a,b,c){function d(a){return a._timing.delay+a.activeDuration+a._timing.endDelay}function e(b,c,d){this._id=d,this._parent=null,this.children=b||[],this._reparent(this.children),c=a.numericTimingToObject(c),this._timingInput=a.cloneTimingInput(c),this._timing=a.normalizeTimingInput(c,!0),this.timing=a.makeTiming(c,!0,this),this.timing._effect=this,"auto"===this._timing.duration&&(this._timing.duration=this.activeDuration)}window.SequenceEffect=function(){e.apply(this,arguments)},window.GroupEffect=function(){e.apply(this,arguments)},e.prototype={_isAncestor:function(a){for(var b=this;null!==b;){if(b==a)return!0;b=b._parent}return!1},_rebuild:function(){for(var a=this;a;)"auto"===a.timing.duration&&(a._timing.duration=a.activeDuration),a=a._parent;this._animation&&this._animation._rebuildUnderlyingAnimation()},_reparent:function(a){b.removeMulti(a);for(var c=0;c<a.length;c++)a[c]._parent=this},_putChild:function(a,b){for(var c=b?"Cannot append an ancestor or self":"Cannot prepend an ancestor or self",d=0;d<a.length;d++)if(this._isAncestor(a[d]))throw{type:DOMException.HIERARCHY_REQUEST_ERR,name:"HierarchyRequestError",message:c};for(var d=0;d<a.length;d++)b?this.children.push(a[d]):this.children.unshift(a[d]);this._reparent(a),this._rebuild()},append:function(){this._putChild(arguments,!0)},prepend:function(){this._putChild(arguments,!1)},get parent(){return this._parent},get firstChild(){return this.children.length?this.children[0]:null},get lastChild(){return this.children.length?this.children[this.children.length-1]:null},clone:function(){for(var b=a.cloneTimingInput(this._timingInput),c=[],d=0;d<this.children.length;d++)c.push(this.children[d].clone());return this instanceof GroupEffect?new GroupEffect(c,b):new SequenceEffect(c,b)},remove:function(){b.removeMulti([this])}},window.SequenceEffect.prototype=Object.create(e.prototype),Object.defineProperty(window.SequenceEffect.prototype,"activeDuration",{get:function(){var a=0;return this.children.forEach(function(b){a+=d(b)}),Math.max(a,0)}}),window.GroupEffect.prototype=Object.create(e.prototype),Object.defineProperty(window.GroupEffect.prototype,"activeDuration",{get:function(){var a=0;return this.children.forEach(function(b){a=Math.max(a,d(b))}),a}}),b.newUnderlyingAnimationForGroup=function(c){var d,e=null,f=function(b){var c=d._wrapper;if(c&&"pending"!=c.playState&&c.effect)return null==b?void c._removeChildAnimations():0==b&&c.playbackRate<0&&(e||(e=a.normalizeTimingInput(c.effect.timing)),b=a.calculateIterationProgress(a.calculateActiveDuration(e),-1,e),isNaN(b)||null==b)?(c._forEachChild(function(a){a.currentTime=-1}),void c._removeChildAnimations()):void 0},g=new KeyframeEffect(null,[],c._timing,c._id);return g.onsample=f,d=b.timeline._play(g)},b.bindAnimationForGroup=function(a){a._animation._wrapper=a,a._isGroup=!0,b.awaitStartTime(a),a._constructChildAnimations(),a._setExternalAnimation(a)},b.groupChildDuration=d}(c,e),b.true=a}({},function(){return this}());
 //# sourceMappingURL=web-animations-next.min.js.map
 
 /***/ }),
-/* 140 */
+/* 138 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__index__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__demo_element__ = __webpack_require__(136);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion___ = __webpack_require__(139);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert___ = __webpack_require__(141);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__autocomplete___ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button___ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group___ = __webpack_require__(150);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar___ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__card___ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__checkbox___ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__curtain___ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropdown___ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feature___ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__file___ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__input___ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__label_badge___ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal___ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__multiple___ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__note___ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pagination___ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__progress_bar___ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__radio___ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__range___ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__spinner___ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tabs___ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tags___ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__tooltip___ = __webpack_require__(222);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -29761,11 +17740,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 141 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(140);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -29875,12 +17854,18 @@ customElements.define(AccordionClab.is, AccordionClab);
 
 
 /***/ }),
-/* 142 */
+/* 140 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"accordion-clab\"><template><style>.accordion-title.active{\t\t\t\tfont-weight:600;\t\t\t}\t\t\t.accordion-title.active::before{\t\t\t\tcontent:\"\\e60f\";\t\t\t}</style><div class=\"accordion\"><div class$=\"[[_computeType(type)]]\" id=\"block\"><div class=\"accordion-title\" on-click=\"_toggleActive\"><span>[[title]]</span></div><div class=\"accordion-content\" id=\"content\"><slot></slot></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 141 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__behaviors__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(142);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
 
@@ -29889,7 +17874,7 @@ customElements.define(AccordionClab.is, AccordionClab);
 
 
 
-class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__behaviors__["b" /* AnimationsBehavior */]], Polymer.Element) {
+class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__behaviors__["a" /* AnimationsBehavior */]], Polymer.Element) {
         
   static get is() { return 'alert-clab'; }
 
@@ -30060,16 +18045,28 @@ customElements.define(AlertClab.is, AlertClab);
 
 
 /***/ }),
+/* 142 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"alert-clab\"><template><style>.alert{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}</style><template is=\"dom-if\" if=\"[[!notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\"><div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div><h3>[[title]]</h3><p><slot></slot></p><button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab><button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab></div></template><template is=\"dom-if\" if=\"[[notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\"><div class=\"close\"><i class=\"clab-icon icon-close\"></i></div><p><slot></slot></p></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
 /* 143 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"button-clab\"><template><button class$=\"[[_computeClass(type, appearance, size, block)]]\" disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\"><template is=\"dom-if\" if=\"[[icon]]\"><i class$=\"[[_computeIconClass(icon)]]\"></i></template><slot></slot></button></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 144 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__curtain__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__curtain__ = __webpack_require__(9);
 
 
 
@@ -30078,7 +18075,7 @@ customElements.define(AlertClab.is, AlertClab);
 
 
 
-class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element) {
+class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
         
   static get is() { return 'autocomplete-clab'; }
 
@@ -30407,12 +18404,42 @@ customElements.define(AutoCompleteClab.is,AutoCompleteClab);
 
 
 /***/ }),
-/* 144 */
+/* 145 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 146 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 147 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"note-clab\"><template><div class$=\"[[classes]]\"><slot></slot></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 148 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"spinner-clab\"><template><template is=\"dom-if\" if=\"[[visible]]\"><div class$=\"[[_computeClass(big,dark)]]\" style$=\"[[_computeBgColor(background)]]\"><div class=\"spinner\"><div class=\"rect1\"></div><div class=\"rect2\"></div><div class=\"rect3\"></div><div class=\"rect4\"></div><div class=\"rect5\"></div></div></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 149 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 150 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button___ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(151);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 
 
@@ -30526,15 +18553,21 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 /***/ }),
-/* 145 */
+/* 151 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"group-clab\" class=\"buttons-group\"><template><div class$=\"buttons-group [[_computeGroupClass(type, size)]]\"><template is=\"dom-repeat\" items=\"[[options]]\"><button-clab appearance$=\"[[_computeItemClass(index,value)]]\" class=\"'group-item'\" data-i$=\"[[index]]\" disabled=\"[[disabled]]\" on-click=\"_selectElement\">[[item]]</button-clab></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 152 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rome__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__note__ = __webpack_require__(5);
@@ -30546,12 +18579,12 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 
-class CalendarClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_3__behaviors__["a" /* UtilBehavior */]], Polymer.Element){
+class CalendarClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_3__behaviors__["c" /* UtilBehavior */]], Polymer.Element){
         
   static get is() { return 'calendar-clab'; }
 
   get behaviors() {
-    return [__WEBPACK_IMPORTED_MODULE_3__behaviors__["a" /* UtilBehavior */]];
+    return [__WEBPACK_IMPORTED_MODULE_3__behaviors__["c" /* UtilBehavior */]];
   }
 
   static get properties() {
@@ -30754,11 +18787,2407 @@ customElements.define(CalendarClab.is, CalendarClab);
 
 
 /***/ }),
-/* 146 */
+/* 153 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var moment = __webpack_require__(0);
+var rome = __webpack_require__(156);
+
+rome.use(moment);
+
+module.exports = rome;
+
+
+/***/ }),
+/* 154 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 155 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 13,
+	"./af.js": 13,
+	"./ar": 14,
+	"./ar-dz": 15,
+	"./ar-dz.js": 15,
+	"./ar-kw": 16,
+	"./ar-kw.js": 16,
+	"./ar-ly": 17,
+	"./ar-ly.js": 17,
+	"./ar-ma": 18,
+	"./ar-ma.js": 18,
+	"./ar-sa": 19,
+	"./ar-sa.js": 19,
+	"./ar-tn": 20,
+	"./ar-tn.js": 20,
+	"./ar.js": 14,
+	"./az": 21,
+	"./az.js": 21,
+	"./be": 22,
+	"./be.js": 22,
+	"./bg": 23,
+	"./bg.js": 23,
+	"./bn": 24,
+	"./bn.js": 24,
+	"./bo": 25,
+	"./bo.js": 25,
+	"./br": 26,
+	"./br.js": 26,
+	"./bs": 27,
+	"./bs.js": 27,
+	"./ca": 28,
+	"./ca.js": 28,
+	"./cs": 29,
+	"./cs.js": 29,
+	"./cv": 30,
+	"./cv.js": 30,
+	"./cy": 31,
+	"./cy.js": 31,
+	"./da": 32,
+	"./da.js": 32,
+	"./de": 33,
+	"./de-at": 34,
+	"./de-at.js": 34,
+	"./de-ch": 35,
+	"./de-ch.js": 35,
+	"./de.js": 33,
+	"./dv": 36,
+	"./dv.js": 36,
+	"./el": 37,
+	"./el.js": 37,
+	"./en-au": 38,
+	"./en-au.js": 38,
+	"./en-ca": 39,
+	"./en-ca.js": 39,
+	"./en-gb": 40,
+	"./en-gb.js": 40,
+	"./en-ie": 41,
+	"./en-ie.js": 41,
+	"./en-nz": 42,
+	"./en-nz.js": 42,
+	"./eo": 43,
+	"./eo.js": 43,
+	"./es": 44,
+	"./es-do": 45,
+	"./es-do.js": 45,
+	"./es.js": 44,
+	"./et": 46,
+	"./et.js": 46,
+	"./eu": 47,
+	"./eu.js": 47,
+	"./fa": 48,
+	"./fa.js": 48,
+	"./fi": 49,
+	"./fi.js": 49,
+	"./fo": 50,
+	"./fo.js": 50,
+	"./fr": 51,
+	"./fr-ca": 52,
+	"./fr-ca.js": 52,
+	"./fr-ch": 53,
+	"./fr-ch.js": 53,
+	"./fr.js": 51,
+	"./fy": 54,
+	"./fy.js": 54,
+	"./gd": 55,
+	"./gd.js": 55,
+	"./gl": 56,
+	"./gl.js": 56,
+	"./gom-latn": 57,
+	"./gom-latn.js": 57,
+	"./he": 58,
+	"./he.js": 58,
+	"./hi": 59,
+	"./hi.js": 59,
+	"./hr": 60,
+	"./hr.js": 60,
+	"./hu": 61,
+	"./hu.js": 61,
+	"./hy-am": 62,
+	"./hy-am.js": 62,
+	"./id": 63,
+	"./id.js": 63,
+	"./is": 64,
+	"./is.js": 64,
+	"./it": 65,
+	"./it.js": 65,
+	"./ja": 66,
+	"./ja.js": 66,
+	"./jv": 67,
+	"./jv.js": 67,
+	"./ka": 68,
+	"./ka.js": 68,
+	"./kk": 69,
+	"./kk.js": 69,
+	"./km": 70,
+	"./km.js": 70,
+	"./kn": 71,
+	"./kn.js": 71,
+	"./ko": 72,
+	"./ko.js": 72,
+	"./ky": 73,
+	"./ky.js": 73,
+	"./lb": 74,
+	"./lb.js": 74,
+	"./lo": 75,
+	"./lo.js": 75,
+	"./lt": 76,
+	"./lt.js": 76,
+	"./lv": 77,
+	"./lv.js": 77,
+	"./me": 78,
+	"./me.js": 78,
+	"./mi": 79,
+	"./mi.js": 79,
+	"./mk": 80,
+	"./mk.js": 80,
+	"./ml": 81,
+	"./ml.js": 81,
+	"./mr": 82,
+	"./mr.js": 82,
+	"./ms": 83,
+	"./ms-my": 84,
+	"./ms-my.js": 84,
+	"./ms.js": 83,
+	"./my": 85,
+	"./my.js": 85,
+	"./nb": 86,
+	"./nb.js": 86,
+	"./ne": 87,
+	"./ne.js": 87,
+	"./nl": 88,
+	"./nl-be": 89,
+	"./nl-be.js": 89,
+	"./nl.js": 88,
+	"./nn": 90,
+	"./nn.js": 90,
+	"./pa-in": 91,
+	"./pa-in.js": 91,
+	"./pl": 92,
+	"./pl.js": 92,
+	"./pt": 93,
+	"./pt-br": 94,
+	"./pt-br.js": 94,
+	"./pt.js": 93,
+	"./ro": 95,
+	"./ro.js": 95,
+	"./ru": 96,
+	"./ru.js": 96,
+	"./sd": 97,
+	"./sd.js": 97,
+	"./se": 98,
+	"./se.js": 98,
+	"./si": 99,
+	"./si.js": 99,
+	"./sk": 100,
+	"./sk.js": 100,
+	"./sl": 101,
+	"./sl.js": 101,
+	"./sq": 102,
+	"./sq.js": 102,
+	"./sr": 103,
+	"./sr-cyrl": 104,
+	"./sr-cyrl.js": 104,
+	"./sr.js": 103,
+	"./ss": 105,
+	"./ss.js": 105,
+	"./sv": 106,
+	"./sv.js": 106,
+	"./sw": 107,
+	"./sw.js": 107,
+	"./ta": 108,
+	"./ta.js": 108,
+	"./te": 109,
+	"./te.js": 109,
+	"./tet": 110,
+	"./tet.js": 110,
+	"./th": 111,
+	"./th.js": 111,
+	"./tl-ph": 112,
+	"./tl-ph.js": 112,
+	"./tlh": 113,
+	"./tlh.js": 113,
+	"./tr": 114,
+	"./tr.js": 114,
+	"./tzl": 115,
+	"./tzl.js": 115,
+	"./tzm": 116,
+	"./tzm-latn": 117,
+	"./tzm-latn.js": 117,
+	"./tzm.js": 116,
+	"./uk": 118,
+	"./uk.js": 118,
+	"./ur": 119,
+	"./ur.js": 119,
+	"./uz": 120,
+	"./uz-latn": 121,
+	"./uz-latn.js": 121,
+	"./uz.js": 120,
+	"./vi": 122,
+	"./vi.js": 122,
+	"./x-pseudo": 123,
+	"./x-pseudo.js": 123,
+	"./yo": 124,
+	"./yo.js": 124,
+	"./zh-cn": 125,
+	"./zh-cn.js": 125,
+	"./zh-hk": 126,
+	"./zh-hk.js": 126,
+	"./zh-tw": 127,
+	"./zh-tw.js": 127
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 155;
+
+/***/ }),
+/* 156 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+// these are only required for IE < 9
+// maybe move to IE-specific distro?
+__webpack_require__(157);
+__webpack_require__(158);
+__webpack_require__(159);
+__webpack_require__(160);
+__webpack_require__(161);
+__webpack_require__(162);
+__webpack_require__(163);
+__webpack_require__(164);
+__webpack_require__(165);
+
+var core = __webpack_require__(166);
+var index = __webpack_require__(10);
+var use = __webpack_require__(191);
+
+core.use = use.bind(core);
+core.find = index.find;
+core.val = __webpack_require__(192);
+
+module.exports = core;
+
+
+/***/ }),
+/* 157 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Function.prototype.bind) {
+  Function.prototype.bind = function (context) {
+    if (typeof this !== 'function') {
+      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
+    }
+    var curried = Array.prototype.slice.call(arguments, 1);
+    var original = this;
+    var NoOp = function () {};
+    var bound = function () {
+      var ctx = this instanceof NoOp && context ? this : context;
+      var args = curried.concat(Array.prototype.slice.call(arguments));
+      return original.apply(ctx, args);
+    };
+    NoOp.prototype = this.prototype;
+    bound.prototype = new NoOp();
+    return bound;
+  };
+}
+
+
+/***/ }),
+/* 158 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Array.prototype.forEach) {
+  Array.prototype.forEach = function (fn, ctx) {
+    if (this === void 0 || this === null || typeof fn !== 'function') {
+      throw new TypeError();
+    }
+    var t = this;
+    var len = t.length;
+    for (var i = 0; i < len; i++) {
+      if (i in t) { fn.call(ctx, t[i], i, t); }
+    }
+  };
+}
+
+
+/***/ }),
+/* 159 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Array.prototype.map) {
+  Array.prototype.map = function (fn, ctx) {
+    var context, result, i;
+
+    if (this == null) {
+      throw new TypeError('this is null or not defined');
+    }
+
+    var source = Object(this);
+    var len = source.length >>> 0;
+
+    if (typeof fn !== 'function') {
+      throw new TypeError(fn + ' is not a function');
+    }
+
+    if (arguments.length > 1) {
+      context = ctx;
+    }
+
+    result = new Array(len);
+    i = 0;
+
+    while (i < len) {
+      if (i in source) {
+        result[i] = fn.call(context, source[i], i, source);
+      }
+      i++;
+    }
+    return result;
+  };
+}
+
+
+/***/ }),
+/* 160 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Array.prototype.filter) {
+  Array.prototype.filter = function (fn, ctx) {
+    var f = [];
+    this.forEach(function (v, i, t) {
+      if (fn.call(ctx, v, i, t)) { f.push(v); }
+    }, ctx);
+    return f;
+  };
+}
+
+
+/***/ }),
+/* 161 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Array.isArray || (Array.isArray = function (a) {
+  return '' + a !== a && Object.prototype.toString.call(a) === '[object Array]';
+});
+
+
+/***/ }),
+/* 162 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Array.prototype.indexOf) {
+  Array.prototype.indexOf = function (what, start) {
+    if (this === undefined || this === null) {
+      throw new TypeError();
+    }
+    var length = this.length;
+    start = +start || 0;
+    if (Math.abs(start) === Infinity) {
+      start = 0;
+    } else if (start < 0) {
+      start += length;
+      if (start < 0) { start = 0; }
+    }
+    for (; start < length; start++) {
+      if (this[start] === what) {
+        return start;
+      }
+    }
+    return -1;
+  };
+}
+
+
+/***/ }),
+/* 163 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!Array.prototype.some) {
+  Array.prototype.some = function (fn, ctx) {
+    var context, i;
+
+    if (this == null) {
+      throw new TypeError('this is null or not defined');
+    }
+
+    var source = Object(this);
+    var len = source.length >>> 0;
+
+    if (typeof fn !== 'function') {
+      throw new TypeError(fn + ' is not a function');
+    }
+
+    if (arguments.length > 1) {
+      context = ctx;
+    }
+
+    i = 0;
+
+    while (i < len) {
+      if (i in source) {
+        var test = fn.call(context, source[i], i, source);
+        if (test) {
+          return true;
+        }
+      }
+      i++;
+    }
+    return false;
+  };
+}
+
+
+/***/ }),
+/* 164 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+if (!String.prototype.trim) {
+  String.prototype.trim = function () {
+    return this.replace(/^\s+|\s+$/g, '');
+  };
+}
+
+
+/***/ }),
+/* 165 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var hasOwn = Object.prototype.hasOwnProperty;
+var hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString');
+var dontEnums = [
+  'toString',
+  'toLocaleString',
+  'valueOf',
+  'hasOwnProperty',
+  'isPrototypeOf',
+  'propertyIsEnumerable',
+  'constructor'
+];
+var dontEnumsLength = dontEnums.length;
+
+if (!Object.keys) {
+  Object.keys = function(obj) {
+    if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
+      throw new TypeError('Object.keys called on non-object');
+    }
+
+    var result = [], prop, i;
+
+    for (prop in obj) {
+      if (hasOwn.call(obj, prop)) {
+        result.push(prop);
+      }
+    }
+
+    if (hasDontEnumBug) {
+      for (i = 0; i < dontEnumsLength; i++) {
+        if (hasOwn.call(obj, dontEnums[i])) {
+          result.push(dontEnums[i]);
+        }
+      }
+    }
+    return result;
+  };
+}
+
+
+/***/ }),
+/* 166 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var index = __webpack_require__(10);
+var input = __webpack_require__(167);
+var inline = __webpack_require__(190);
+var isInput = __webpack_require__(12);
+
+function core (elem, options) {
+  var cal;
+  var existing = index.find(elem);
+  if (existing) {
+    return existing;
+  }
+
+  if (isInput(elem)) {
+    cal = input(elem, options);
+  } else {
+    cal = inline(elem, options);
+  }
+  index.assign(elem, cal);
+
+  return cal;
+}
+
+module.exports = core;
+
+
+/***/ }),
+/* 167 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var crossvent = __webpack_require__(6);
+var bullseye = __webpack_require__(170);
+var throttle = __webpack_require__(179);
+var clone = __webpack_require__(131);
+var defaults = __webpack_require__(132);
+var calendar = __webpack_require__(133);
+var momentum = __webpack_require__(4);
+var classes = __webpack_require__(134);
+
+function inputCalendar (input, calendarOptions) {
+  var o = calendarOptions || {};
+
+  o.associated = input;
+
+  var api = calendar(o);
+  var throttledTakeInput = throttle(takeInput, 30);
+  var ignoreInvalidation;
+  var ignoreShow;
+  var eye;
+
+  init(o);
+
+  return api;
+
+  function init (initOptions) {
+    o = defaults(initOptions || o, api);
+
+    classes.add(api.container, o.styles.positioned);
+    crossvent.add(api.container, 'mousedown', containerMouseDown);
+    crossvent.add(api.container, 'click', containerClick);
+
+    api.getDate = unrequire(api.getDate);
+    api.getDateString = unrequire(api.getDateString);
+    api.getMoment = unrequire(api.getMoment);
+
+    if (o.initialValue) {
+      input.value = o.initialValue.format(o.inputFormat);
+    }
+
+    eye = bullseye(api.container, input);
+    api.on('data', updateInput);
+    api.on('show', eye.refresh);
+
+    eventListening();
+    throttledTakeInput();
+  }
+
+  function destroy () {
+    eventListening(true);
+    eye.destroy();
+    eye = null;
+  }
+
+  function eventListening (remove) {
+    var op = remove ? 'remove' : 'add';
+    crossvent[op](input, 'click', show);
+    crossvent[op](input, 'touchend', show);
+    crossvent[op](input, 'focusin', show);
+    crossvent[op](input, 'change', throttledTakeInput);
+    crossvent[op](input, 'keypress', throttledTakeInput);
+    crossvent[op](input, 'keydown', throttledTakeInput);
+    crossvent[op](input, 'input', throttledTakeInput);
+    if (o.invalidate) { crossvent[op](input, 'blur', invalidateInput); }
+
+    if (remove) {
+      api.once('ready', init);
+      api.off('destroyed', destroy);
+    } else {
+      api.off('ready', init);
+      api.once('destroyed', destroy);
+    }
+  }
+
+  function containerClick () {
+    ignoreShow = true;
+    input.focus();
+    ignoreShow = false;
+  }
+
+  function containerMouseDown () {
+    ignoreInvalidation = true;
+    setTimeout(unignore, 0);
+
+    function unignore () {
+      ignoreInvalidation = false;
+    }
+  }
+
+  function invalidateInput () {
+    if (!ignoreInvalidation && !isEmpty()) {
+      api.emitValues();
+    }
+  }
+
+  function show () {
+    if (ignoreShow) {
+      return;
+    }
+    api.show();
+  }
+
+  function takeInput () {
+    var value = input.value.trim();
+    if (isEmpty()) {
+      return;
+    }
+    var date = momentum.moment(value, o.inputFormat, o.strictParse);
+    api.setValue(date);
+  }
+
+  function updateInput (data) {
+    input.value = data;
+  }
+
+  function isEmpty () {
+    return o.required === false && input.value.trim() === '';
+  }
+
+  function unrequire (fn) {
+    return function maybe () {
+      return isEmpty() ? null : fn.apply(this, arguments);
+    };
+  }
+}
+
+module.exports = inputCalendar;
+
+
+/***/ }),
+/* 168 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global) {
+var NativeCustomEvent = global.CustomEvent;
+
+function useNative () {
+  try {
+    var p = new NativeCustomEvent('cat', { detail: { foo: 'bar' } });
+    return  'cat' === p.type && 'bar' === p.detail.foo;
+  } catch (e) {
+  }
+  return false;
+}
+
+/**
+ * Cross-browser `CustomEvent` constructor.
+ *
+ * https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent.CustomEvent
+ *
+ * @public
+ */
+
+module.exports = useNative() ? NativeCustomEvent :
+
+// IE >= 9
+'function' === typeof document.createEvent ? function CustomEvent (type, params) {
+  var e = document.createEvent('CustomEvent');
+  if (params) {
+    e.initCustomEvent(type, params.bubbles, params.cancelable, params.detail);
+  } else {
+    e.initCustomEvent(type, false, false, void 0);
+  }
+  return e;
+} :
+
+// IE <= 8
+function CustomEvent (type, params) {
+  var e = document.createEventObject();
+  e.type = type;
+  if (params) {
+    e.bubbles = Boolean(params.bubbles);
+    e.cancelable = Boolean(params.cancelable);
+    e.detail = params.detail;
+  } else {
+    e.bubbles = false;
+    e.cancelable = false;
+    e.detail = void 0;
+  }
+  return e;
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 169 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var eventmap = [];
+var eventname = '';
+var ron = /^on/;
+
+for (eventname in global) {
+  if (ron.test(eventname)) {
+    eventmap.push(eventname.slice(2));
+  }
+}
+
+module.exports = eventmap;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 170 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var crossvent = __webpack_require__(6);
+var throttle = __webpack_require__(128);
+var tailormade = __webpack_require__(171);
+
+function bullseye (el, target, options) {
+  var o = options;
+  var domTarget = target && target.tagName;
+
+  if (!domTarget && arguments.length === 2) {
+    o = target;
+  }
+  if (!domTarget) {
+    target = el;
+  }
+  if (!o) { o = {}; }
+
+  var destroyed = false;
+  var throttledWrite = throttle(write, 30);
+  var tailorOptions = { update: o.autoupdateToCaret !== false && update };
+  var tailor = o.caret && tailormade(target, tailorOptions);
+
+  write();
+
+  if (o.tracking !== false) {
+    crossvent.add(window, 'resize', throttledWrite);
+  }
+
+  return {
+    read: readNull,
+    refresh: write,
+    destroy: destroy,
+    sleep: sleep
+  };
+
+  function sleep () {
+    tailorOptions.sleeping = true;
+  }
+
+  function readNull () { return read(); }
+
+  function read (readings) {
+    var bounds = target.getBoundingClientRect();
+    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
+    if (tailor) {
+      readings = tailor.read();
+      return {
+        x: (readings.absolute ? 0 : bounds.left) + readings.x,
+        y: (readings.absolute ? 0 : bounds.top) + scrollTop + readings.y + 20
+      };
+    }
+    return {
+      x: bounds.left,
+      y: bounds.top + scrollTop
+    };
+  }
+
+  function update (readings) {
+    write(readings);
+  }
+
+  function write (readings) {
+    if (destroyed) {
+      throw new Error('Bullseye can\'t refresh after being destroyed. Create another instance instead.');
+    }
+    if (tailor && !readings) {
+      tailorOptions.sleeping = false;
+      tailor.refresh(); return;
+    }
+    var p = read(readings);
+    if (!tailor && target !== el) {
+      p.y += target.offsetHeight;
+    }
+    el.style.left = p.x + 'px';
+    el.style.top = p.y + 'px';
+  }
+
+  function destroy () {
+    if (tailor) { tailor.destroy(); }
+    crossvent.remove(window, 'resize', throttledWrite);
+    destroyed = true;
+  }
+}
+
+module.exports = bullseye;
+
+
+/***/ }),
+/* 171 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var sell = __webpack_require__(172);
+var crossvent = __webpack_require__(6);
+var seleccion = __webpack_require__(173);
+var throttle = __webpack_require__(128);
+var getSelection = seleccion.get;
+var props = [
+  'direction',
+  'boxSizing',
+  'width',
+  'height',
+  'overflowX',
+  'overflowY',
+  'borderTopWidth',
+  'borderRightWidth',
+  'borderBottomWidth',
+  'borderLeftWidth',
+  'paddingTop',
+  'paddingRight',
+  'paddingBottom',
+  'paddingLeft',
+  'fontStyle',
+  'fontVariant',
+  'fontWeight',
+  'fontStretch',
+  'fontSize',
+  'fontSizeAdjust',
+  'lineHeight',
+  'fontFamily',
+  'textAlign',
+  'textTransform',
+  'textIndent',
+  'textDecoration',
+  'letterSpacing',
+  'wordSpacing'
+];
+var win = global;
+var doc = document;
+var ff = win.mozInnerScreenX !== null && win.mozInnerScreenX !== void 0;
+
+function tailormade (el, options) {
+  var textInput = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
+  var throttledRefresh = throttle(refresh, 30);
+  var o = options || {};
+
+  bind();
+
+  return {
+    read: readPosition,
+    refresh: throttledRefresh,
+    destroy: destroy
+  };
+
+  function noop () {}
+  function readPosition () { return (textInput ? coordsText : coordsHTML)(); }
+
+  function refresh () {
+    if (o.sleeping) {
+      return;
+    }
+    return (o.update || noop)(readPosition());
+  }
+
+  function coordsText () {
+    var p = sell(el);
+    var context = prepare();
+    var readings = readTextCoords(context, p.start);
+    doc.body.removeChild(context.mirror);
+    return readings;
+  }
+
+  function coordsHTML () {
+    var sel = getSelection();
+    if (sel.rangeCount) {
+      var range = sel.getRangeAt(0);
+      var needsToWorkAroundNewlineBug = range.startContainer.nodeName === 'P' && range.startOffset === 0;
+      if (needsToWorkAroundNewlineBug) {
+        return {
+          x: range.startContainer.offsetLeft,
+          y: range.startContainer.offsetTop,
+          absolute: true
+        };
+      }
+      if (range.getClientRects) {
+        var rects = range.getClientRects();
+        if (rects.length > 0) {
+          return {
+            x: rects[0].left,
+            y: rects[0].top,
+            absolute: true
+          };
+        }
+      }
+    }
+    return { x: 0, y: 0 };
+  }
+
+  function readTextCoords (context, p) {
+    var rest = doc.createElement('span');
+    var mirror = context.mirror;
+    var computed = context.computed;
+
+    write(mirror, read(el).substring(0, p));
+
+    if (el.tagName === 'INPUT') {
+      mirror.textContent = mirror.textContent.replace(/\s/g, '\u00a0');
+    }
+
+    write(rest, read(el).substring(p) || '.');
+
+    mirror.appendChild(rest);
+
+    return {
+      x: rest.offsetLeft + parseInt(computed['borderLeftWidth']),
+      y: rest.offsetTop + parseInt(computed['borderTopWidth'])
+    };
+  }
+
+  function read (el) {
+    return textInput ? el.value : el.innerHTML;
+  }
+
+  function prepare () {
+    var computed = win.getComputedStyle ? getComputedStyle(el) : el.currentStyle;
+    var mirror = doc.createElement('div');
+    var style = mirror.style;
+
+    doc.body.appendChild(mirror);
+
+    if (el.tagName !== 'INPUT') {
+      style.wordWrap = 'break-word';
+    }
+    style.whiteSpace = 'pre-wrap';
+    style.position = 'absolute';
+    style.visibility = 'hidden';
+    props.forEach(copy);
+
+    if (ff) {
+      style.width = parseInt(computed.width) - 2 + 'px';
+      if (el.scrollHeight > parseInt(computed.height)) {
+        style.overflowY = 'scroll';
+      }
+    } else {
+      style.overflow = 'hidden';
+    }
+    return { mirror: mirror, computed: computed };
+
+    function copy (prop) {
+      style[prop] = computed[prop];
+    }
+  }
+
+  function write (el, value) {
+    if (textInput) {
+      el.textContent = value;
+    } else {
+      el.innerHTML = value;
+    }
+  }
+
+  function bind (remove) {
+    var op = remove ? 'remove' : 'add';
+    crossvent[op](el, 'keydown', throttledRefresh);
+    crossvent[op](el, 'keyup', throttledRefresh);
+    crossvent[op](el, 'input', throttledRefresh);
+    crossvent[op](el, 'paste', throttledRefresh);
+    crossvent[op](el, 'change', throttledRefresh);
+  }
+
+  function destroy () {
+    bind(true);
+  }
+}
+
+module.exports = tailormade;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 172 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var get = easyGet;
+var set = easySet;
+
+if (document.selection && document.selection.createRange) {
+  get = hardGet;
+  set = hardSet;
+}
+
+function easyGet (el) {
+  return {
+    start: el.selectionStart,
+    end: el.selectionEnd
+  };
+}
+
+function hardGet (el) {
+  var active = document.activeElement;
+  if (active !== el) {
+    el.focus();
+  }
+
+  var range = document.selection.createRange();
+  var bookmark = range.getBookmark();
+  var original = el.value;
+  var marker = getUniqueMarker(original);
+  var parent = range.parentElement();
+  if (parent === null || !inputs(parent)) {
+    return result(0, 0);
+  }
+  range.text = marker + range.text + marker;
+
+  var contents = el.value;
+
+  el.value = original;
+  range.moveToBookmark(bookmark);
+  range.select();
+
+  return result(contents.indexOf(marker), contents.lastIndexOf(marker) - marker.length);
+
+  function result (start, end) {
+    if (active !== el) { // don't disrupt pre-existing state
+      if (active) {
+        active.focus();
+      } else {
+        el.blur();
+      }
+    }
+    return { start: start, end: end };
+  }
+}
+
+function getUniqueMarker (contents) {
+  var marker;
+  do {
+    marker = '@@marker.' + Math.random() * new Date();
+  } while (contents.indexOf(marker) !== -1);
+  return marker;
+}
+
+function inputs (el) {
+  return ((el.tagName === 'INPUT' && el.type === 'text') || el.tagName === 'TEXTAREA');
+}
+
+function easySet (el, p) {
+  el.selectionStart = parse(el, p.start);
+  el.selectionEnd = parse(el, p.end);
+}
+
+function hardSet (el, p) {
+  var range = el.createTextRange();
+
+  if (p.start === 'end' && p.end === 'end') {
+    range.collapse(false);
+    range.select();
+  } else {
+    range.collapse(true);
+    range.moveEnd('character', parse(el, p.end));
+    range.moveStart('character', parse(el, p.start));
+    range.select();
+  }
+}
+
+function parse (el, value) {
+  return value === 'end' ? el.value.length : value || 0;
+}
+
+function sell (el, p) {
+  if (arguments.length === 2) {
+    set(el, p);
+  }
+  return get(el);
+}
+
+module.exports = sell;
+
+
+/***/ }),
+/* 173 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var getSelection = __webpack_require__(129);
+var setSelection = __webpack_require__(178);
+
+module.exports = {
+  get: getSelection,
+  set: setSelection
+};
+
+
+/***/ }),
+/* 174 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+function getSelectionRaw () {
+  return global.getSelection();
+}
+
+module.exports = getSelectionRaw;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 175 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function noop () {}
+
+function getSelectionNullOp () {
+  return {
+    removeAllRanges: noop,
+    addRange: noop
+  };
+}
+
+module.exports = getSelectionNullOp;
+
+
+/***/ }),
+/* 176 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var rangeToTextRange = __webpack_require__(130);
+var doc = global.document;
+var body = doc.body;
+var GetSelectionProto = GetSelection.prototype;
+
+function GetSelection (selection) {
+  var self = this;
+  var range = selection.createRange();
+
+  this._selection = selection;
+  this._ranges = [];
+
+  if (selection.type === 'Control') {
+    updateControlSelection(self);
+  } else if (isTextRange(range)) {
+    updateFromTextRange(self, range);
+  } else {
+    updateEmptySelection(self);
+  }
+}
+
+GetSelectionProto.removeAllRanges = function () {
+  var textRange;
+  try {
+    this._selection.empty();
+    if (this._selection.type !== 'None') {
+      textRange = body.createTextRange();
+      textRange.select();
+      this._selection.empty();
+    }
+  } catch (e) {
+  }
+  updateEmptySelection(this);
+};
+
+GetSelectionProto.addRange = function (range) {
+  if (this._selection.type === 'Control') {
+    addRangeToControlSelection(this, range);
+  } else {
+    rangeToTextRange(range).select();
+    this._ranges[0] = range;
+    this.rangeCount = 1;
+    this.isCollapsed = this._ranges[0].collapsed;
+    updateAnchorAndFocusFromRange(this, range, false);
+  }
+};
+
+GetSelectionProto.setRanges = function (ranges) {
+  this.removeAllRanges();
+  var rangeCount = ranges.length;
+  if (rangeCount > 1) {
+    createControlSelection(this, ranges);
+  } else if (rangeCount) {
+    this.addRange(ranges[0]);
+  }
+};
+
+GetSelectionProto.getRangeAt = function (index) {
+  if (index < 0 || index >= this.rangeCount) {
+    throw new Error('getRangeAt(): index out of bounds');
+  } else {
+    return this._ranges[index].cloneRange();
+  }
+};
+
+GetSelectionProto.removeRange = function (range) {
+  if (this._selection.type !== 'Control') {
+    removeRangeManually(this, range);
+    return;
+  }
+  var controlRange = this._selection.createRange();
+  var rangeElement = getSingleElementFromRange(range);
+  var newControlRange = body.createControlRange();
+  var el;
+  var removed = false;
+  for (var i = 0, len = controlRange.length; i < len; ++i) {
+    el = controlRange.item(i);
+    if (el !== rangeElement || removed) {
+      newControlRange.add(controlRange.item(i));
+    } else {
+      removed = true;
+    }
+  }
+  newControlRange.select();
+  updateControlSelection(this);
+};
+
+GetSelectionProto.eachRange = function (fn, returnValue) {
+  var i = 0;
+  var len = this._ranges.length;
+  for (i = 0; i < len; ++i) {
+    if (fn(this.getRangeAt(i))) {
+      return returnValue;
+    }
+  }
+};
+
+GetSelectionProto.getAllRanges = function () {
+  var ranges = [];
+  this.eachRange(function (range) {
+    ranges.push(range);
+  });
+  return ranges;
+};
+
+GetSelectionProto.setSingleRange = function (range) {
+  this.removeAllRanges();
+  this.addRange(range);
+};
+
+function createControlSelection (sel, ranges) {
+  var controlRange = body.createControlRange();
+  for (var i = 0, el, len = ranges.length; i < len; ++i) {
+    el = getSingleElementFromRange(ranges[i]);
+    try {
+      controlRange.add(el);
+    } catch (e) {
+      throw new Error('setRanges(): Element could not be added to control selection');
+    }
+  }
+  controlRange.select();
+  updateControlSelection(sel);
+}
+
+function removeRangeManually (sel, range) {
+  var ranges = sel.getAllRanges();
+  sel.removeAllRanges();
+  for (var i = 0, len = ranges.length; i < len; ++i) {
+    if (!isSameRange(range, ranges[i])) {
+      sel.addRange(ranges[i]);
+    }
+  }
+  if (!sel.rangeCount) {
+    updateEmptySelection(sel);
+  }
+}
+
+function updateAnchorAndFocusFromRange (sel, range) {
+  var anchorPrefix = 'start';
+  var focusPrefix = 'end';
+  sel.anchorNode = range[anchorPrefix + 'Container'];
+  sel.anchorOffset = range[anchorPrefix + 'Offset'];
+  sel.focusNode = range[focusPrefix + 'Container'];
+  sel.focusOffset = range[focusPrefix + 'Offset'];
+}
+
+function updateEmptySelection (sel) {
+  sel.anchorNode = sel.focusNode = null;
+  sel.anchorOffset = sel.focusOffset = 0;
+  sel.rangeCount = 0;
+  sel.isCollapsed = true;
+  sel._ranges.length = 0;
+}
+
+function rangeContainsSingleElement (rangeNodes) {
+  if (!rangeNodes.length || rangeNodes[0].nodeType !== 1) {
+    return false;
+  }
+  for (var i = 1, len = rangeNodes.length; i < len; ++i) {
+    if (!isAncestorOf(rangeNodes[0], rangeNodes[i])) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function getSingleElementFromRange (range) {
+  var nodes = range.getNodes();
+  if (!rangeContainsSingleElement(nodes)) {
+    throw new Error('getSingleElementFromRange(): range did not consist of a single element');
+  }
+  return nodes[0];
+}
+
+function isTextRange (range) {
+  return range && range.text !== void 0;
+}
+
+function updateFromTextRange (sel, range) {
+  sel._ranges = [range];
+  updateAnchorAndFocusFromRange(sel, range, false);
+  sel.rangeCount = 1;
+  sel.isCollapsed = range.collapsed;
+}
+
+function updateControlSelection (sel) {
+  sel._ranges.length = 0;
+  if (sel._selection.type === 'None') {
+    updateEmptySelection(sel);
+  } else {
+    var controlRange = sel._selection.createRange();
+    if (isTextRange(controlRange)) {
+      updateFromTextRange(sel, controlRange);
+    } else {
+      sel.rangeCount = controlRange.length;
+      var range;
+      for (var i = 0; i < sel.rangeCount; ++i) {
+        range = doc.createRange();
+        range.selectNode(controlRange.item(i));
+        sel._ranges.push(range);
+      }
+      sel.isCollapsed = sel.rangeCount === 1 && sel._ranges[0].collapsed;
+      updateAnchorAndFocusFromRange(sel, sel._ranges[sel.rangeCount - 1], false);
+    }
+  }
+}
+
+function addRangeToControlSelection (sel, range) {
+  var controlRange = sel._selection.createRange();
+  var rangeElement = getSingleElementFromRange(range);
+  var newControlRange = body.createControlRange();
+  for (var i = 0, len = controlRange.length; i < len; ++i) {
+    newControlRange.add(controlRange.item(i));
+  }
+  try {
+    newControlRange.add(rangeElement);
+  } catch (e) {
+    throw new Error('addRange(): Element could not be added to control selection');
+  }
+  newControlRange.select();
+  updateControlSelection(sel);
+}
+
+function isSameRange (left, right) {
+  return (
+    left.startContainer === right.startContainer &&
+    left.startOffset === right.startOffset &&
+    left.endContainer === right.endContainer &&
+    left.endOffset === right.endOffset
+  );
+}
+
+function isAncestorOf (ancestor, descendant) {
+  var node = descendant;
+  while (node.parentNode) {
+    if (node.parentNode === ancestor) {
+      return true;
+    }
+    node = node.parentNode;
+  }
+  return false;
+}
+
+function getSelection () {
+  return new GetSelection(global.document.selection);
+}
+
+module.exports = getSelection;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 177 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function isHostMethod (host, prop) {
+  var type = typeof host[prop];
+  return type === 'function' || !!(type === 'object' && host[prop]) || type === 'unknown';
+}
+
+function isHostProperty (host, prop) {
+  return typeof host[prop] !== 'undefined';
+}
+
+function many (fn) {
+  return function areHosted (host, props) {
+    var i = props.length;
+    while (i--) {
+      if (!fn(host, props[i])) {
+        return false;
+      }
+    }
+    return true;
+  };
+}
+
+module.exports = {
+  method: isHostMethod,
+  methods: many(isHostMethod),
+  property: isHostProperty,
+  properties: many(isHostProperty)
+};
+
+
+/***/ }),
+/* 178 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {
+
+var getSelection = __webpack_require__(129);
+var rangeToTextRange = __webpack_require__(130);
+var doc = global.document;
+
+function setSelection (p) {
+  if (doc.createRange) {
+    modernSelection();
+  } else {
+    oldSelection();
+  }
+
+  function modernSelection () {
+    var sel = getSelection();
+    var range = doc.createRange();
+    if (!p.startContainer) {
+      return;
+    }
+    if (p.endContainer) {
+      range.setEnd(p.endContainer, p.endOffset);
+    } else {
+      range.setEnd(p.startContainer, p.startOffset);
+    }
+    range.setStart(p.startContainer, p.startOffset);
+    sel.removeAllRanges();
+    sel.addRange(range);
+  }
+
+  function oldSelection () {
+    rangeToTextRange(p).select();
+  }
+}
+
+module.exports = setSelection;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 179 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function throttle (fn, boundary) {
+  var last = -Infinity;
+  var timer;
+  return function bounced () {
+    if (timer) {
+      return;
+    }
+    unbound();
+
+    function unbound () {
+      clearTimeout(timer);
+      timer = null;
+      var next = last + boundary;
+      var now = +new Date();
+      if (now > next) {
+        last = now;
+        fn.apply(this, arguments);
+      } else {
+        timer = setTimeout(unbound, next - now);
+      }
+    }
+  };
+};
+
+
+/***/ }),
+/* 180 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var atoa = __webpack_require__(181);
+var debounce = __webpack_require__(182);
+
+module.exports = function emitter (thing, options) {
+  var opts = options || {};
+  var evt = {};
+  if (thing === undefined) { thing = {}; }
+  thing.on = function (type, fn) {
+    if (!evt[type]) {
+      evt[type] = [fn];
+    } else {
+      evt[type].push(fn);
+    }
+    return thing;
+  };
+  thing.once = function (type, fn) {
+    fn._once = true; // thing.off(fn) still works!
+    thing.on(type, fn);
+    return thing;
+  };
+  thing.off = function (type, fn) {
+    var c = arguments.length;
+    if (c === 1) {
+      delete evt[type];
+    } else if (c === 0) {
+      evt = {};
+    } else {
+      var et = evt[type];
+      if (!et) { return thing; }
+      et.splice(et.indexOf(fn), 1);
+    }
+    return thing;
+  };
+  thing.emit = function () {
+    var args = atoa(arguments);
+    return thing.emitterSnapshot(args.shift()).apply(this, args);
+  };
+  thing.emitterSnapshot = function (type) {
+    var et = (evt[type] || []).slice(0);
+    return function () {
+      var args = atoa(arguments);
+      var ctx = this || thing;
+      if (type === 'error' && opts.throws !== false && !et.length) { throw args.length === 1 ? args[0] : args; }
+      et.forEach(function emitter (listen) {
+        if (opts.async) { debounce(listen, args, ctx); } else { listen.apply(ctx, args); }
+        if (listen._once) { thing.off(type, listen); }
+      });
+      return thing;
+    };
+  };
+  return thing;
+};
+
+
+/***/ }),
+/* 181 */
+/***/ (function(module, exports) {
+
+module.exports = function atoa (a, n) { return Array.prototype.slice.call(a, n); }
+
+
+/***/ }),
+/* 182 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var ticky = __webpack_require__(183);
+
+module.exports = function debounce (fn, args, ctx) {
+  if (!fn) { return; }
+  ticky(function run () {
+    fn.apply(ctx || null, args || []);
+  });
+};
+
+
+/***/ }),
+/* 183 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(setImmediate) {var si = typeof setImmediate === 'function', tick;
+if (si) {
+  tick = function (fn) { setImmediate(fn); };
+} else {
+  tick = function (fn) { setTimeout(fn, 0); };
+}
+
+module.exports = tick;
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(184).setImmediate))
+
+/***/ }),
+/* 184 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var apply = Function.prototype.apply;
+
+// DOM APIs, for completeness
+
+exports.setTimeout = function() {
+  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
+};
+exports.setInterval = function() {
+  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
+};
+exports.clearTimeout =
+exports.clearInterval = function(timeout) {
+  if (timeout) {
+    timeout.close();
+  }
+};
+
+function Timeout(id, clearFn) {
+  this._id = id;
+  this._clearFn = clearFn;
+}
+Timeout.prototype.unref = Timeout.prototype.ref = function() {};
+Timeout.prototype.close = function() {
+  this._clearFn.call(window, this._id);
+};
+
+// Does not start the time, just sets up the members needed.
+exports.enroll = function(item, msecs) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = msecs;
+};
+
+exports.unenroll = function(item) {
+  clearTimeout(item._idleTimeoutId);
+  item._idleTimeout = -1;
+};
+
+exports._unrefActive = exports.active = function(item) {
+  clearTimeout(item._idleTimeoutId);
+
+  var msecs = item._idleTimeout;
+  if (msecs >= 0) {
+    item._idleTimeoutId = setTimeout(function onTimeout() {
+      if (item._onTimeout)
+        item._onTimeout();
+    }, msecs);
+  }
+};
+
+// setimmediate attaches itself to the global object
+__webpack_require__(185);
+exports.setImmediate = setImmediate;
+exports.clearImmediate = clearImmediate;
+
+
+/***/ }),
+/* 185 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
+    "use strict";
+
+    if (global.setImmediate) {
+        return;
+    }
+
+    var nextHandle = 1; // Spec says greater than zero
+    var tasksByHandle = {};
+    var currentlyRunningATask = false;
+    var doc = global.document;
+    var registerImmediate;
+
+    function setImmediate(callback) {
+      // Callback can either be a function or a string
+      if (typeof callback !== "function") {
+        callback = new Function("" + callback);
+      }
+      // Copy function arguments
+      var args = new Array(arguments.length - 1);
+      for (var i = 0; i < args.length; i++) {
+          args[i] = arguments[i + 1];
+      }
+      // Store and register the task
+      var task = { callback: callback, args: args };
+      tasksByHandle[nextHandle] = task;
+      registerImmediate(nextHandle);
+      return nextHandle++;
+    }
+
+    function clearImmediate(handle) {
+        delete tasksByHandle[handle];
+    }
+
+    function run(task) {
+        var callback = task.callback;
+        var args = task.args;
+        switch (args.length) {
+        case 0:
+            callback();
+            break;
+        case 1:
+            callback(args[0]);
+            break;
+        case 2:
+            callback(args[0], args[1]);
+            break;
+        case 3:
+            callback(args[0], args[1], args[2]);
+            break;
+        default:
+            callback.apply(undefined, args);
+            break;
+        }
+    }
+
+    function runIfPresent(handle) {
+        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
+        // So if we're currently running a task, we'll need to delay this invocation.
+        if (currentlyRunningATask) {
+            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
+            // "too much recursion" error.
+            setTimeout(runIfPresent, 0, handle);
+        } else {
+            var task = tasksByHandle[handle];
+            if (task) {
+                currentlyRunningATask = true;
+                try {
+                    run(task);
+                } finally {
+                    clearImmediate(handle);
+                    currentlyRunningATask = false;
+                }
+            }
+        }
+    }
+
+    function installNextTickImplementation() {
+        registerImmediate = function(handle) {
+            process.nextTick(function () { runIfPresent(handle); });
+        };
+    }
+
+    function canUsePostMessage() {
+        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
+        // where `global.postMessage` means something completely different and can't be used for this purpose.
+        if (global.postMessage && !global.importScripts) {
+            var postMessageIsAsynchronous = true;
+            var oldOnMessage = global.onmessage;
+            global.onmessage = function() {
+                postMessageIsAsynchronous = false;
+            };
+            global.postMessage("", "*");
+            global.onmessage = oldOnMessage;
+            return postMessageIsAsynchronous;
+        }
+    }
+
+    function installPostMessageImplementation() {
+        // Installs an event handler on `global` for the `message` event: see
+        // * https://developer.mozilla.org/en/DOM/window.postMessage
+        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
+
+        var messagePrefix = "setImmediate$" + Math.random() + "$";
+        var onGlobalMessage = function(event) {
+            if (event.source === global &&
+                typeof event.data === "string" &&
+                event.data.indexOf(messagePrefix) === 0) {
+                runIfPresent(+event.data.slice(messagePrefix.length));
+            }
+        };
+
+        if (global.addEventListener) {
+            global.addEventListener("message", onGlobalMessage, false);
+        } else {
+            global.attachEvent("onmessage", onGlobalMessage);
+        }
+
+        registerImmediate = function(handle) {
+            global.postMessage(messagePrefix + handle, "*");
+        };
+    }
+
+    function installMessageChannelImplementation() {
+        var channel = new MessageChannel();
+        channel.port1.onmessage = function(event) {
+            var handle = event.data;
+            runIfPresent(handle);
+        };
+
+        registerImmediate = function(handle) {
+            channel.port2.postMessage(handle);
+        };
+    }
+
+    function installReadyStateChangeImplementation() {
+        var html = doc.documentElement;
+        registerImmediate = function(handle) {
+            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
+            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
+            var script = doc.createElement("script");
+            script.onreadystatechange = function () {
+                runIfPresent(handle);
+                script.onreadystatechange = null;
+                html.removeChild(script);
+                script = null;
+            };
+            html.appendChild(script);
+        };
+    }
+
+    function installSetTimeoutImplementation() {
+        registerImmediate = function(handle) {
+            setTimeout(runIfPresent, 0, handle);
+        };
+    }
+
+    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
+    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
+    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
+
+    // Don't get fooled by e.g. browserify environments.
+    if ({}.toString.call(global.process) === "[object process]") {
+        // For Node.js before 0.9
+        installNextTickImplementation();
+
+    } else if (canUsePostMessage()) {
+        // For non-IE10 modern browsers
+        installPostMessageImplementation();
+
+    } else if (global.MessageChannel) {
+        // For web workers, where supported
+        installMessageChannelImplementation();
+
+    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
+        // For IE 6–8
+        installReadyStateChangeImplementation();
+
+    } else {
+        // For older browsers
+        installSetTimeoutImplementation();
+    }
+
+    attachTo.setImmediate = setImmediate;
+    attachTo.clearImmediate = clearImmediate;
+}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(186)))
+
+/***/ }),
+/* 186 */
+/***/ (function(module, exports) {
+
+// shim for using process in browser
+var process = module.exports = {};
+
+// cached from whatever global is present so that test runners that stub it
+// don't break things.  But we need to wrap it in a try catch in case it is
+// wrapped in strict mode code which doesn't define any globals.  It's inside a
+// function because try/catches deoptimize in certain engines.
+
+var cachedSetTimeout;
+var cachedClearTimeout;
+
+function defaultSetTimout() {
+    throw new Error('setTimeout has not been defined');
+}
+function defaultClearTimeout () {
+    throw new Error('clearTimeout has not been defined');
+}
+(function () {
+    try {
+        if (typeof setTimeout === 'function') {
+            cachedSetTimeout = setTimeout;
+        } else {
+            cachedSetTimeout = defaultSetTimout;
+        }
+    } catch (e) {
+        cachedSetTimeout = defaultSetTimout;
+    }
+    try {
+        if (typeof clearTimeout === 'function') {
+            cachedClearTimeout = clearTimeout;
+        } else {
+            cachedClearTimeout = defaultClearTimeout;
+        }
+    } catch (e) {
+        cachedClearTimeout = defaultClearTimeout;
+    }
+} ())
+function runTimeout(fun) {
+    if (cachedSetTimeout === setTimeout) {
+        //normal enviroments in sane situations
+        return setTimeout(fun, 0);
+    }
+    // if setTimeout wasn't available but was latter defined
+    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
+        cachedSetTimeout = setTimeout;
+        return setTimeout(fun, 0);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedSetTimeout(fun, 0);
+    } catch(e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
+            return cachedSetTimeout.call(null, fun, 0);
+        } catch(e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
+            return cachedSetTimeout.call(this, fun, 0);
+        }
+    }
+
+
+}
+function runClearTimeout(marker) {
+    if (cachedClearTimeout === clearTimeout) {
+        //normal enviroments in sane situations
+        return clearTimeout(marker);
+    }
+    // if clearTimeout wasn't available but was latter defined
+    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
+        cachedClearTimeout = clearTimeout;
+        return clearTimeout(marker);
+    }
+    try {
+        // when when somebody has screwed with setTimeout but no I.E. maddness
+        return cachedClearTimeout(marker);
+    } catch (e){
+        try {
+            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
+            return cachedClearTimeout.call(null, marker);
+        } catch (e){
+            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
+            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
+            return cachedClearTimeout.call(this, marker);
+        }
+    }
+
+
+
+}
+var queue = [];
+var draining = false;
+var currentQueue;
+var queueIndex = -1;
+
+function cleanUpNextTick() {
+    if (!draining || !currentQueue) {
+        return;
+    }
+    draining = false;
+    if (currentQueue.length) {
+        queue = currentQueue.concat(queue);
+    } else {
+        queueIndex = -1;
+    }
+    if (queue.length) {
+        drainQueue();
+    }
+}
+
+function drainQueue() {
+    if (draining) {
+        return;
+    }
+    var timeout = runTimeout(cleanUpNextTick);
+    draining = true;
+
+    var len = queue.length;
+    while(len) {
+        currentQueue = queue;
+        queue = [];
+        while (++queueIndex < len) {
+            if (currentQueue) {
+                currentQueue[queueIndex].run();
+            }
+        }
+        queueIndex = -1;
+        len = queue.length;
+    }
+    currentQueue = null;
+    draining = false;
+    runClearTimeout(timeout);
+}
+
+process.nextTick = function (fun) {
+    var args = new Array(arguments.length - 1);
+    if (arguments.length > 1) {
+        for (var i = 1; i < arguments.length; i++) {
+            args[i - 1] = arguments[i];
+        }
+    }
+    queue.push(new Item(fun, args));
+    if (queue.length === 1 && !draining) {
+        runTimeout(drainQueue);
+    }
+};
+
+// v8 likes predictible objects
+function Item(fun, array) {
+    this.fun = fun;
+    this.array = array;
+}
+Item.prototype.run = function () {
+    this.fun.apply(null, this.array);
+};
+process.title = 'browser';
+process.browser = true;
+process.env = {};
+process.argv = [];
+process.version = ''; // empty string to avoid regexp issues
+process.versions = {};
+
+function noop() {}
+
+process.on = noop;
+process.addListener = noop;
+process.once = noop;
+process.off = noop;
+process.removeListener = noop;
+process.removeAllListeners = noop;
+process.emit = noop;
+
+process.binding = function (name) {
+    throw new Error('process.binding is not supported');
+};
+
+process.cwd = function () { return '/' };
+process.chdir = function (dir) {
+    throw new Error('process.chdir is not supported');
+};
+process.umask = function() { return 0; };
+
+
+/***/ }),
+/* 187 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function dom (options) {
+  var o = options || {};
+  if (!o.type) { o.type = 'div'; }
+  var elem = document.createElement(o.type);
+  if (o.className) { elem.className = o.className; }
+  if (o.text) { elem.innerText = elem.textContent = o.text; }
+  if (o.attributes) {
+    Object.keys(o.attributes).forEach(function(key) {
+      elem.setAttribute(key, o.attributes[key]);
+    });
+  }
+  if (o.parent) { o.parent.appendChild(elem); }
+  return elem;
+}
+
+module.exports = dom;
+
+
+/***/ }),
+/* 188 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function text (elem, value) {
+  if (arguments.length === 2) {
+    elem.innerText = elem.textContent = value;
+  }
+  return elem.innerText || elem.textContent;
+}
+
+module.exports = text;
+
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+function noop () {}
+
+module.exports = noop;
+
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var calendar = __webpack_require__(133);
+
+function inline (elem, calendarOptions) {
+  var o = calendarOptions || {};
+
+  o.appendTo = elem;
+  o.associated = elem;
+
+  var cal = calendar(o);
+  cal.show();
+  return cal;
+}
+
+module.exports = inline;
+
+
+/***/ }),
+/* 191 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var momentum = __webpack_require__(4);
+
+function use (moment) {
+  this.moment = momentum.moment = moment;
+}
+
+module.exports = use;
+
+
+/***/ }),
+/* 192 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var index = __webpack_require__(10);
+var parse = __webpack_require__(11);
+var association = __webpack_require__(193);
+
+function compareBuilder (compare) {
+  return function factory (value) {
+    var fixed = parse(value);
+
+    return function validate (date) {
+      var cal = index.find(value);
+      var left = parse(date);
+      var right = fixed || cal && cal.getMoment();
+      if (!right) {
+        return true;
+      }
+      if (cal) {
+        association.add(this, cal);
+      }
+      return compare(left, right);
+    };
+  };
+}
+
+function rangeBuilder (how, compare) {
+  return function factory (start, end) {
+    var dates;
+    var len = arguments.length;
+
+    if (Array.isArray(start)) {
+      dates = start;
+    } else {
+      if (len === 1) {
+        dates = [start];
+      } else if (len === 2) {
+        dates = [[start, end]];
+      }
+    }
+
+    return function validate (date) {
+      return dates.map(expand.bind(this))[how](compare.bind(this, date));
+    };
+
+    function expand (value) {
+      var start, end;
+      var cal = index.find(value);
+      if (cal) {
+        start = end = cal.getMoment();
+      } else if (Array.isArray(value)) {
+        start = value[0]; end = value[1];
+      } else {
+        start = end = value;
+      }
+      if (cal) {
+        association.add(cal, this);
+      }
+      return {
+        start: parse(start).startOf('day').toDate(),
+        end: parse(end).endOf('day').toDate()
+      };
+    }
+  };
+}
+
+var afterEq  = compareBuilder(function (left, right) { return left >= right; });
+var after    = compareBuilder(function (left, right) { return left  > right; });
+var beforeEq = compareBuilder(function (left, right) { return left <= right; });
+var before   = compareBuilder(function (left, right) { return left  < right; });
+
+var except   = rangeBuilder('every', function (left, right) { return right.start  > left || right.end  < left; });
+var only     = rangeBuilder('some',  function (left, right) { return right.start <= left && right.end >= left; });
+
+module.exports = {
+  afterEq: afterEq,
+  after: after,
+  beforeEq: beforeEq,
+  before: before,
+  except: except,
+  only: only
+};
+
+
+/***/ }),
+/* 193 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var isInput = __webpack_require__(12);
+var bindings = {};
+
+function has (source, target) {
+  var binding = bindings[source.id];
+  return binding && binding[target.id];
+}
+
+function insert (source, target) {
+  var binding = bindings[source.id];
+  if (!binding) {
+    binding = bindings[source.id] = {};
+  }
+  var invalidate = invalidator(target);
+  binding[target.id] = invalidate;
+  source.on('data', invalidate);
+  source.on('destroyed', remove.bind(null, source, target));
+}
+
+function remove (source, target) {
+  var binding = bindings[source.id];
+  if (!binding) {
+    return;
+  }
+  var invalidate = binding[target.id];
+  source.off('data', invalidate);
+  delete binding[target.id];
+}
+
+function invalidator (target) {
+  return function invalidate () {
+    target.refresh();
+  };
+}
+
+function add (source, target) {
+  if (isInput(target.associated) || has(source, target)) {
+    return;
+  }
+  insert(source, target);
+}
+
+module.exports = {
+  add: add,
+  remove: remove
+};
+
+
+/***/ }),
+/* 194 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(200);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button__ = __webpack_require__(3);
 
@@ -30903,11 +21332,17 @@ customElements.define(CardClab.is, CardClab);
 
 
 /***/ }),
-/* 147 */
+/* 196 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"card-clab\"><template><div class$=\"[[_computeEffectClass(effect)]]\"><template is=\"dom-if\" if=\"[[!figure]]\"><div class$=\"[[_computeCardClass(big)]]\"><template is=\"dom-if\" if=\"[[!big]]\"><i class$=\"[[icon]]\"></i></template><span>[[title]]</span><template is=\"dom-if\" if=\"[[big]]\"><div class=\"circle\"><i class=\"fa fa-circle\"></i></div><div class=\"icon\"><i class$=\"[[icon]]\"></i></div></template></div></template><template is=\"dom-if\" if=\"[[figure]]\"><figure><img src=\"[[figure]]\"><template is=\"dom-if\" if=\"[[_showTitle(title)]]\"><h2>[[title]]</h2></template></figure></template><template is=\"dom-if\" if=\"[[!table]]\"><div class=\"card-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[table]]\"><slot></slot></template><div class=\"card-actions\"><template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\"><button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab><button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab></template><template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\"><a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 197 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -30915,12 +21350,12 @@ customElements.define(CardClab.is, CardClab);
 
 
 
-class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element) {
+class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
         
   static get is() { return 'checkbox-clab'; }
 
   get behaviors() {
-    return [__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]];
+    return [__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]];
   }
 
   static get properties() {
@@ -31044,15 +21479,22 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 
 /***/ }),
-/* 148 */
+/* 198 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"checkbox-clab\"><template><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(label)]]\" type=\"checkbox\" value=\"[[_dashify(label)]]\" checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(label)]]\">[[label]]</label></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 199 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__curtain__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__curtain__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input__ = __webpack_require__(7);
 
 
 
@@ -31060,8 +21502,9 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 
 
-class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */], __WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* DropdownBehavior */]], Polymer.Element) {
-        
+
+class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */], __WEBPACK_IMPORTED_MODULE_1__behaviors__["b" /* DropdownBehavior */]], Polymer.Element) {
+
   static get is() { return 'dropdown-clab'; }
 
   static get properties() {
@@ -31105,7 +21548,12 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
             value: 'B',
             label: 'Option 2'
           }
-				]
+        ],
+        observer: '_updateList'
+      },
+      optionsList: {
+        type: Array,
+        value: []
       },
       optionsFn: {
         type: Function,
@@ -31116,6 +21564,10 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         observer: '_observUrl'
       },
       inline: {
+        type: Boolean,
+        value: false
+      },
+      open: {
         type: Boolean,
         value: false
       },
@@ -31146,7 +21598,15 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       maxHeight: {
         type: Number,
         value: 28
-      }
+      },
+      search: {
+        type: Boolean,
+        value: false
+      },
+      searchValue: {
+        type: String,
+        value: ''
+      },
       /*_liHeight:{
       	type:String,
       	value:null,
@@ -31176,8 +21636,7 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
   ----------*/
   _toggleList(evt) {
     if(!this.disabled) {
-      this.$.curtain.open = !this.$.curtain.open;
-      this.$.ddWrap.classList.toggle('active');
+      this.open = !this.open;
     }
 
     let windowClick = (evt) => {
@@ -31191,8 +21650,7 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         window.removeEventListener('mousedown', windowClick);
         return;
       } else {
-        this.$.curtain.open = false;
-        this.$.ddWrap.classList.remove('active');
+        this.open = false;
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -31200,14 +21658,19 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
   }
 
   handleSelect(evt) {
-    this._setSelected(this.options[evt.detail.index]);
+    this._setSelected(this.optionsList[evt.detail.index]);
   }
 
   _handleHighlight(evt) {
     this.set('highlighted', this.options[evt.detail.index]);
   }
 
-
+  _filter(evt) {
+    this.searchValue = evt.target.value;
+    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e, i) => {
+      return e[this.labelField].search(this.searchValue) > -1;
+    }) : this.optionsList = this.options.slice();
+  }
 
 
   /*----------
@@ -31235,10 +21698,11 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
 
   _setSelected(item) {
     let old = this.selected;
+    this.optionsList = this.options.slice();
     this.set('selected', item);
     this.set('highlighted', item);
-    this.$.curtain.open = false;
-    this.$.ddWrap.classList.remove('active');
+    this.open = false;
+    this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
       if(this.resultAsObj){
@@ -31280,6 +21744,11 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     if(newv != undefined) this._fetchOptions();
   }
 
+  _updateList(newValue, oldValue) {
+    const selected = this.selected;
+    this.optionsList = newValue ? newValue.slice() : this.optionsList;
+    this.searchValue = selected ? selected[this.labelField] : null;
+  }
 
 
   /*----------
@@ -31309,12 +21778,13 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     return arr.join(' ');
   }
 
-  _compType(str, disabled, type, id) {
+  _compType(str, disabled, type, id, open) {
     let arr = [];
     if(str != undefined && str.length > 0) arr.push(str);
     if(id != undefined && id.length > 0) arr.push(id);
     if(disabled) arr.push('disabled');
     if(type != undefined && type.length > 0) arr.push(type);
+    open ? arr.push('active') : null;
     return arr.join(' ');
   }
 
@@ -31339,11 +21809,17 @@ customElements.define(DropdownClab.is, DropdownClab);
 
 
 /***/ }),
-/* 149 */
+/* 200 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><template><style>.dropdown-clab .options-list,.options-list li{display:block !important;}</style><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -31405,11 +21881,17 @@ customElements.define(FeatureClab.is, FeatureClab);
 
 
 /***/ }),
-/* 150 */
+/* 202 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"feature-clab\"><template><div class$=\"[[_computeFeatureClass(size, vertical)]]\"><template is=\"dom-if\" if=\"[[link]]\"><a href$=\"[[link]]\" target$=\"[[linkTarget]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></a></template><template is=\"dom-if\" if=\"[[!link]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -31417,7 +21899,7 @@ customElements.define(FeatureClab.is, FeatureClab);
 
 
 
-class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'file-clab'; }
   
@@ -31532,11 +22014,23 @@ customElements.define(FileClab.is, FileClab);
 
 
 /***/ }),
-/* 151 */
+/* 204 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"file-clab\"><template><style>input[type=file]{\t\t\t\tdisplay:none;\t\t\t}\t\t\tinput[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\" on-click=\"_selection\"><input class$=\"[[type]]\" type=\"text\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\"> <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button></div><note-clab type=\"[[noteType]]\"><content select=\".note\"></content></note-clab><input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\"><div id=\"preview\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 205 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"label-clab\"><template><span class$=\"[[_computeClass(badge,type)]]\"><slot></slot><template is=\"dom-if\" if=\"[[counter]]\"><span class=\"counter\">[[counter]]</span></template><template is=\"dom-if\" if=\"[[remove]]\"><span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span></template></span></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button___ = __webpack_require__(3);
@@ -31546,8 +22040,8 @@ customElements.define(FileClab.is, FileClab);
 
 
 
-class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["b" /* AnimationsBehavior */]], Polymer.Element)  {
-        
+class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* AnimationsBehavior */]], Polymer.Element)  {
+
   static get is() { return 'modal-clab'; }
 
   static get properties() {
@@ -31713,7 +22207,9 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
       } else {
         target.style.opacity = 1;
       }
-    } else {
+    // Check if was a previously attached modal to avoid to remove the "no-scroll" class from the body needed for another modal.
+    // The oldval should be "false"
+    } else if (typeof oldval !== 'undefined') {
       document.querySelector('body').classList.remove('no-scroll');
       if (!this.noAnimation && this.modalExit) {
         let animation = this.modalExit(target);
@@ -31746,7 +22242,13 @@ customElements.define(ModalClab.is, ModalClab);
 
 
 /***/ }),
-/* 152 */
+/* 207 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"modal-clab\"><template><style>.modal-overlay{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}\t\t\t.third{\t\t\t\tfloat:left;\t\t\t\tclear:none;\t\t\t}</style><div class=\"modal-overlay\"><div class=\"close-overlay\" on-click=\"_closeModal\"><i class=\"clab-icon icon-close\"></i></div><div class=\"modal\"><div class=\"modal-wrapper\" style$=\"[[_computeWidth(width)]]\"><div class=\"modal-title\">[[title]]</div><template is=\"dom-if\" if=\"[[content]]\"><div class=\"modal-body\"><p>[[content]]</p></div></template><template is=\"dom-if\" if=\"[[!content]]\"><div class=\"modal-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[!noActions]]\"><div class=\"main-actions\"><div class=\"primary\"><template is=\"dom-if\" if=\"[[warning]]\"><button-clab type=\"error third\" on-btnclick=\"_warningAction\">[[warning]]</button-clab></template><template is=\"dom-if\" if=\"[[secondary]]\"><button-clab type=\"secondary\" appearance=\"flat\" on-btnclick=\"_secondaryAction\">[[secondary]]</button-clab></template><template is=\"dom-if\" if=\"[[primary]]\"><button-clab type=\"primary\" disabled=\"[[primaryDisabled]]\" on-btnclick=\"_primaryAction\">[[primary]]</button-clab></template></div></div></template></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 208 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -31754,7 +22256,7 @@ customElements.define(ModalClab.is, ModalClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(12);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(8);
 
 
 
@@ -31762,7 +22264,7 @@ customElements.define(ModalClab.is, ModalClab);
 
 
 
-class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'multiple-clab'; }
 
@@ -32088,2464 +22590,6 @@ customElements.define(MultipleClab.is, MultipleClab);
 
 
 /***/ }),
-/* 153 */
-/***/ (function(module, exports) {
-
-module.exports = function atoa (a, n) { return Array.prototype.slice.call(a, n); }
-
-
-/***/ }),
-/* 154 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var crossvent = __webpack_require__(6);
-var throttle = __webpack_require__(14);
-var tailormade = __webpack_require__(155);
-
-function bullseye (el, target, options) {
-  var o = options;
-  var domTarget = target && target.tagName;
-
-  if (!domTarget && arguments.length === 2) {
-    o = target;
-  }
-  if (!domTarget) {
-    target = el;
-  }
-  if (!o) { o = {}; }
-
-  var destroyed = false;
-  var throttledWrite = throttle(write, 30);
-  var tailorOptions = { update: o.autoupdateToCaret !== false && update };
-  var tailor = o.caret && tailormade(target, tailorOptions);
-
-  write();
-
-  if (o.tracking !== false) {
-    crossvent.add(window, 'resize', throttledWrite);
-  }
-
-  return {
-    read: readNull,
-    refresh: write,
-    destroy: destroy,
-    sleep: sleep
-  };
-
-  function sleep () {
-    tailorOptions.sleeping = true;
-  }
-
-  function readNull () { return read(); }
-
-  function read (readings) {
-    var bounds = target.getBoundingClientRect();
-    var scrollTop = document.body.scrollTop || document.documentElement.scrollTop;
-    if (tailor) {
-      readings = tailor.read();
-      return {
-        x: (readings.absolute ? 0 : bounds.left) + readings.x,
-        y: (readings.absolute ? 0 : bounds.top) + scrollTop + readings.y + 20
-      };
-    }
-    return {
-      x: bounds.left,
-      y: bounds.top + scrollTop
-    };
-  }
-
-  function update (readings) {
-    write(readings);
-  }
-
-  function write (readings) {
-    if (destroyed) {
-      throw new Error('Bullseye can\'t refresh after being destroyed. Create another instance instead.');
-    }
-    if (tailor && !readings) {
-      tailorOptions.sleeping = false;
-      tailor.refresh(); return;
-    }
-    var p = read(readings);
-    if (!tailor && target !== el) {
-      p.y += target.offsetHeight;
-    }
-    el.style.left = p.x + 'px';
-    el.style.top = p.y + 'px';
-  }
-
-  function destroy () {
-    if (tailor) { tailor.destroy(); }
-    crossvent.remove(window, 'resize', throttledWrite);
-    destroyed = true;
-  }
-}
-
-module.exports = bullseye;
-
-
-/***/ }),
-/* 155 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var sell = __webpack_require__(189);
-var crossvent = __webpack_require__(6);
-var seleccion = __webpack_require__(187);
-var throttle = __webpack_require__(14);
-var getSelection = seleccion.get;
-var props = [
-  'direction',
-  'boxSizing',
-  'width',
-  'height',
-  'overflowX',
-  'overflowY',
-  'borderTopWidth',
-  'borderRightWidth',
-  'borderBottomWidth',
-  'borderLeftWidth',
-  'paddingTop',
-  'paddingRight',
-  'paddingBottom',
-  'paddingLeft',
-  'fontStyle',
-  'fontVariant',
-  'fontWeight',
-  'fontStretch',
-  'fontSize',
-  'fontSizeAdjust',
-  'lineHeight',
-  'fontFamily',
-  'textAlign',
-  'textTransform',
-  'textIndent',
-  'textDecoration',
-  'letterSpacing',
-  'wordSpacing'
-];
-var win = global;
-var doc = document;
-var ff = win.mozInnerScreenX !== null && win.mozInnerScreenX !== void 0;
-
-function tailormade (el, options) {
-  var textInput = el.tagName === 'INPUT' || el.tagName === 'TEXTAREA';
-  var throttledRefresh = throttle(refresh, 30);
-  var o = options || {};
-
-  bind();
-
-  return {
-    read: readPosition,
-    refresh: throttledRefresh,
-    destroy: destroy
-  };
-
-  function noop () {}
-  function readPosition () { return (textInput ? coordsText : coordsHTML)(); }
-
-  function refresh () {
-    if (o.sleeping) {
-      return;
-    }
-    return (o.update || noop)(readPosition());
-  }
-
-  function coordsText () {
-    var p = sell(el);
-    var context = prepare();
-    var readings = readTextCoords(context, p.start);
-    doc.body.removeChild(context.mirror);
-    return readings;
-  }
-
-  function coordsHTML () {
-    var sel = getSelection();
-    if (sel.rangeCount) {
-      var range = sel.getRangeAt(0);
-      var needsToWorkAroundNewlineBug = range.startContainer.nodeName === 'P' && range.startOffset === 0;
-      if (needsToWorkAroundNewlineBug) {
-        return {
-          x: range.startContainer.offsetLeft,
-          y: range.startContainer.offsetTop,
-          absolute: true
-        };
-      }
-      if (range.getClientRects) {
-        var rects = range.getClientRects();
-        if (rects.length > 0) {
-          return {
-            x: rects[0].left,
-            y: rects[0].top,
-            absolute: true
-          };
-        }
-      }
-    }
-    return { x: 0, y: 0 };
-  }
-
-  function readTextCoords (context, p) {
-    var rest = doc.createElement('span');
-    var mirror = context.mirror;
-    var computed = context.computed;
-
-    write(mirror, read(el).substring(0, p));
-
-    if (el.tagName === 'INPUT') {
-      mirror.textContent = mirror.textContent.replace(/\s/g, '\u00a0');
-    }
-
-    write(rest, read(el).substring(p) || '.');
-
-    mirror.appendChild(rest);
-
-    return {
-      x: rest.offsetLeft + parseInt(computed['borderLeftWidth']),
-      y: rest.offsetTop + parseInt(computed['borderTopWidth'])
-    };
-  }
-
-  function read (el) {
-    return textInput ? el.value : el.innerHTML;
-  }
-
-  function prepare () {
-    var computed = win.getComputedStyle ? getComputedStyle(el) : el.currentStyle;
-    var mirror = doc.createElement('div');
-    var style = mirror.style;
-
-    doc.body.appendChild(mirror);
-
-    if (el.tagName !== 'INPUT') {
-      style.wordWrap = 'break-word';
-    }
-    style.whiteSpace = 'pre-wrap';
-    style.position = 'absolute';
-    style.visibility = 'hidden';
-    props.forEach(copy);
-
-    if (ff) {
-      style.width = parseInt(computed.width) - 2 + 'px';
-      if (el.scrollHeight > parseInt(computed.height)) {
-        style.overflowY = 'scroll';
-      }
-    } else {
-      style.overflow = 'hidden';
-    }
-    return { mirror: mirror, computed: computed };
-
-    function copy (prop) {
-      style[prop] = computed[prop];
-    }
-  }
-
-  function write (el, value) {
-    if (textInput) {
-      el.textContent = value;
-    } else {
-      el.innerHTML = value;
-    }
-  }
-
-  function bind (remove) {
-    var op = remove ? 'remove' : 'add';
-    crossvent[op](el, 'keydown', throttledRefresh);
-    crossvent[op](el, 'keyup', throttledRefresh);
-    crossvent[op](el, 'input', throttledRefresh);
-    crossvent[op](el, 'paste', throttledRefresh);
-    crossvent[op](el, 'change', throttledRefresh);
-  }
-
-  function destroy () {
-    bind(true);
-  }
-}
-
-module.exports = tailormade;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 156 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var ticky = __webpack_require__(191);
-
-module.exports = function debounce (fn, args, ctx) {
-  if (!fn) { return; }
-  ticky(function run () {
-    fn.apply(ctx || null, args || []);
-  });
-};
-
-
-/***/ }),
-/* 157 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var atoa = __webpack_require__(153);
-var debounce = __webpack_require__(156);
-
-module.exports = function emitter (thing, options) {
-  var opts = options || {};
-  var evt = {};
-  if (thing === undefined) { thing = {}; }
-  thing.on = function (type, fn) {
-    if (!evt[type]) {
-      evt[type] = [fn];
-    } else {
-      evt[type].push(fn);
-    }
-    return thing;
-  };
-  thing.once = function (type, fn) {
-    fn._once = true; // thing.off(fn) still works!
-    thing.on(type, fn);
-    return thing;
-  };
-  thing.off = function (type, fn) {
-    var c = arguments.length;
-    if (c === 1) {
-      delete evt[type];
-    } else if (c === 0) {
-      evt = {};
-    } else {
-      var et = evt[type];
-      if (!et) { return thing; }
-      et.splice(et.indexOf(fn), 1);
-    }
-    return thing;
-  };
-  thing.emit = function () {
-    var args = atoa(arguments);
-    return thing.emitterSnapshot(args.shift()).apply(this, args);
-  };
-  thing.emitterSnapshot = function (type) {
-    var et = (evt[type] || []).slice(0);
-    return function () {
-      var args = atoa(arguments);
-      var ctx = this || thing;
-      if (type === 'error' && opts.throws !== false && !et.length) { throw args.length === 1 ? args[0] : args; }
-      et.forEach(function emitter (listen) {
-        if (opts.async) { debounce(listen, args, ctx); } else { listen.apply(ctx, args); }
-        if (listen._once) { thing.off(type, listen); }
-      });
-      return thing;
-    };
-  };
-  return thing;
-};
-
-
-/***/ }),
-/* 158 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var eventmap = [];
-var eventname = '';
-var ron = /^on/;
-
-for (eventname in global) {
-  if (ron.test(eventname)) {
-    eventmap.push(eventname.slice(2));
-  }
-}
-
-module.exports = eventmap;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 159 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global) {
-var NativeCustomEvent = global.CustomEvent;
-
-function useNative () {
-  try {
-    var p = new NativeCustomEvent('cat', { detail: { foo: 'bar' } });
-    return  'cat' === p.type && 'bar' === p.detail.foo;
-  } catch (e) {
-  }
-  return false;
-}
-
-/**
- * Cross-browser `CustomEvent` constructor.
- *
- * https://developer.mozilla.org/en-US/docs/Web/API/CustomEvent.CustomEvent
- *
- * @public
- */
-
-module.exports = useNative() ? NativeCustomEvent :
-
-// IE >= 9
-'function' === typeof document.createEvent ? function CustomEvent (type, params) {
-  var e = document.createEvent('CustomEvent');
-  if (params) {
-    e.initCustomEvent(type, params.bubbles, params.cancelable, params.detail);
-  } else {
-    e.initCustomEvent(type, false, false, void 0);
-  }
-  return e;
-} :
-
-// IE <= 8
-function CustomEvent (type, params) {
-  var e = document.createEventObject();
-  e.type = type;
-  if (params) {
-    e.bubbles = Boolean(params.bubbles);
-    e.cancelable = Boolean(params.cancelable);
-    e.detail = params.detail;
-  } else {
-    e.bubbles = false;
-    e.cancelable = false;
-    e.detail = void 0;
-  }
-  return e;
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 160 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 15,
-	"./af.js": 15,
-	"./ar": 22,
-	"./ar-dz": 16,
-	"./ar-dz.js": 16,
-	"./ar-kw": 17,
-	"./ar-kw.js": 17,
-	"./ar-ly": 18,
-	"./ar-ly.js": 18,
-	"./ar-ma": 19,
-	"./ar-ma.js": 19,
-	"./ar-sa": 20,
-	"./ar-sa.js": 20,
-	"./ar-tn": 21,
-	"./ar-tn.js": 21,
-	"./ar.js": 22,
-	"./az": 23,
-	"./az.js": 23,
-	"./be": 24,
-	"./be.js": 24,
-	"./bg": 25,
-	"./bg.js": 25,
-	"./bn": 26,
-	"./bn.js": 26,
-	"./bo": 27,
-	"./bo.js": 27,
-	"./br": 28,
-	"./br.js": 28,
-	"./bs": 29,
-	"./bs.js": 29,
-	"./ca": 30,
-	"./ca.js": 30,
-	"./cs": 31,
-	"./cs.js": 31,
-	"./cv": 32,
-	"./cv.js": 32,
-	"./cy": 33,
-	"./cy.js": 33,
-	"./da": 34,
-	"./da.js": 34,
-	"./de": 37,
-	"./de-at": 35,
-	"./de-at.js": 35,
-	"./de-ch": 36,
-	"./de-ch.js": 36,
-	"./de.js": 37,
-	"./dv": 38,
-	"./dv.js": 38,
-	"./el": 39,
-	"./el.js": 39,
-	"./en-au": 40,
-	"./en-au.js": 40,
-	"./en-ca": 41,
-	"./en-ca.js": 41,
-	"./en-gb": 42,
-	"./en-gb.js": 42,
-	"./en-ie": 43,
-	"./en-ie.js": 43,
-	"./en-nz": 44,
-	"./en-nz.js": 44,
-	"./eo": 45,
-	"./eo.js": 45,
-	"./es": 47,
-	"./es-do": 46,
-	"./es-do.js": 46,
-	"./es.js": 47,
-	"./et": 48,
-	"./et.js": 48,
-	"./eu": 49,
-	"./eu.js": 49,
-	"./fa": 50,
-	"./fa.js": 50,
-	"./fi": 51,
-	"./fi.js": 51,
-	"./fo": 52,
-	"./fo.js": 52,
-	"./fr": 55,
-	"./fr-ca": 53,
-	"./fr-ca.js": 53,
-	"./fr-ch": 54,
-	"./fr-ch.js": 54,
-	"./fr.js": 55,
-	"./fy": 56,
-	"./fy.js": 56,
-	"./gd": 57,
-	"./gd.js": 57,
-	"./gl": 58,
-	"./gl.js": 58,
-	"./gom-latn": 59,
-	"./gom-latn.js": 59,
-	"./he": 60,
-	"./he.js": 60,
-	"./hi": 61,
-	"./hi.js": 61,
-	"./hr": 62,
-	"./hr.js": 62,
-	"./hu": 63,
-	"./hu.js": 63,
-	"./hy-am": 64,
-	"./hy-am.js": 64,
-	"./id": 65,
-	"./id.js": 65,
-	"./is": 66,
-	"./is.js": 66,
-	"./it": 67,
-	"./it.js": 67,
-	"./ja": 68,
-	"./ja.js": 68,
-	"./jv": 69,
-	"./jv.js": 69,
-	"./ka": 70,
-	"./ka.js": 70,
-	"./kk": 71,
-	"./kk.js": 71,
-	"./km": 72,
-	"./km.js": 72,
-	"./kn": 73,
-	"./kn.js": 73,
-	"./ko": 74,
-	"./ko.js": 74,
-	"./ky": 75,
-	"./ky.js": 75,
-	"./lb": 76,
-	"./lb.js": 76,
-	"./lo": 77,
-	"./lo.js": 77,
-	"./lt": 78,
-	"./lt.js": 78,
-	"./lv": 79,
-	"./lv.js": 79,
-	"./me": 80,
-	"./me.js": 80,
-	"./mi": 81,
-	"./mi.js": 81,
-	"./mk": 82,
-	"./mk.js": 82,
-	"./ml": 83,
-	"./ml.js": 83,
-	"./mr": 84,
-	"./mr.js": 84,
-	"./ms": 86,
-	"./ms-my": 85,
-	"./ms-my.js": 85,
-	"./ms.js": 86,
-	"./my": 87,
-	"./my.js": 87,
-	"./nb": 88,
-	"./nb.js": 88,
-	"./ne": 89,
-	"./ne.js": 89,
-	"./nl": 91,
-	"./nl-be": 90,
-	"./nl-be.js": 90,
-	"./nl.js": 91,
-	"./nn": 92,
-	"./nn.js": 92,
-	"./pa-in": 93,
-	"./pa-in.js": 93,
-	"./pl": 94,
-	"./pl.js": 94,
-	"./pt": 96,
-	"./pt-br": 95,
-	"./pt-br.js": 95,
-	"./pt.js": 96,
-	"./ro": 97,
-	"./ro.js": 97,
-	"./ru": 98,
-	"./ru.js": 98,
-	"./sd": 99,
-	"./sd.js": 99,
-	"./se": 100,
-	"./se.js": 100,
-	"./si": 101,
-	"./si.js": 101,
-	"./sk": 102,
-	"./sk.js": 102,
-	"./sl": 103,
-	"./sl.js": 103,
-	"./sq": 104,
-	"./sq.js": 104,
-	"./sr": 106,
-	"./sr-cyrl": 105,
-	"./sr-cyrl.js": 105,
-	"./sr.js": 106,
-	"./ss": 107,
-	"./ss.js": 107,
-	"./sv": 108,
-	"./sv.js": 108,
-	"./sw": 109,
-	"./sw.js": 109,
-	"./ta": 110,
-	"./ta.js": 110,
-	"./te": 111,
-	"./te.js": 111,
-	"./tet": 112,
-	"./tet.js": 112,
-	"./th": 113,
-	"./th.js": 113,
-	"./tl-ph": 114,
-	"./tl-ph.js": 114,
-	"./tlh": 115,
-	"./tlh.js": 115,
-	"./tr": 116,
-	"./tr.js": 116,
-	"./tzl": 117,
-	"./tzl.js": 117,
-	"./tzm": 119,
-	"./tzm-latn": 118,
-	"./tzm-latn.js": 118,
-	"./tzm.js": 119,
-	"./uk": 120,
-	"./uk.js": 120,
-	"./ur": 121,
-	"./ur.js": 121,
-	"./uz": 123,
-	"./uz-latn": 122,
-	"./uz-latn.js": 122,
-	"./uz.js": 123,
-	"./vi": 124,
-	"./vi.js": 124,
-	"./x-pseudo": 125,
-	"./x-pseudo.js": 125,
-	"./yo": 126,
-	"./yo.js": 126,
-	"./zh-cn": 127,
-	"./zh-cn.js": 127,
-	"./zh-hk": 128,
-	"./zh-hk.js": 128,
-	"./zh-tw": 129,
-	"./zh-tw.js": 129
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 160;
-
-/***/ }),
-/* 161 */
-/***/ (function(module, exports) {
-
-// shim for using process in browser
-var process = module.exports = {};
-
-// cached from whatever global is present so that test runners that stub it
-// don't break things.  But we need to wrap it in a try catch in case it is
-// wrapped in strict mode code which doesn't define any globals.  It's inside a
-// function because try/catches deoptimize in certain engines.
-
-var cachedSetTimeout;
-var cachedClearTimeout;
-
-function defaultSetTimout() {
-    throw new Error('setTimeout has not been defined');
-}
-function defaultClearTimeout () {
-    throw new Error('clearTimeout has not been defined');
-}
-(function () {
-    try {
-        if (typeof setTimeout === 'function') {
-            cachedSetTimeout = setTimeout;
-        } else {
-            cachedSetTimeout = defaultSetTimout;
-        }
-    } catch (e) {
-        cachedSetTimeout = defaultSetTimout;
-    }
-    try {
-        if (typeof clearTimeout === 'function') {
-            cachedClearTimeout = clearTimeout;
-        } else {
-            cachedClearTimeout = defaultClearTimeout;
-        }
-    } catch (e) {
-        cachedClearTimeout = defaultClearTimeout;
-    }
-} ())
-function runTimeout(fun) {
-    if (cachedSetTimeout === setTimeout) {
-        //normal enviroments in sane situations
-        return setTimeout(fun, 0);
-    }
-    // if setTimeout wasn't available but was latter defined
-    if ((cachedSetTimeout === defaultSetTimout || !cachedSetTimeout) && setTimeout) {
-        cachedSetTimeout = setTimeout;
-        return setTimeout(fun, 0);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedSetTimeout(fun, 0);
-    } catch(e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't trust the global object when called normally
-            return cachedSetTimeout.call(null, fun, 0);
-        } catch(e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error
-            return cachedSetTimeout.call(this, fun, 0);
-        }
-    }
-
-
-}
-function runClearTimeout(marker) {
-    if (cachedClearTimeout === clearTimeout) {
-        //normal enviroments in sane situations
-        return clearTimeout(marker);
-    }
-    // if clearTimeout wasn't available but was latter defined
-    if ((cachedClearTimeout === defaultClearTimeout || !cachedClearTimeout) && clearTimeout) {
-        cachedClearTimeout = clearTimeout;
-        return clearTimeout(marker);
-    }
-    try {
-        // when when somebody has screwed with setTimeout but no I.E. maddness
-        return cachedClearTimeout(marker);
-    } catch (e){
-        try {
-            // When we are in I.E. but the script has been evaled so I.E. doesn't  trust the global object when called normally
-            return cachedClearTimeout.call(null, marker);
-        } catch (e){
-            // same as above but when it's a version of I.E. that must have the global object for 'this', hopfully our context correct otherwise it will throw a global error.
-            // Some versions of I.E. have different rules for clearTimeout vs setTimeout
-            return cachedClearTimeout.call(this, marker);
-        }
-    }
-
-
-
-}
-var queue = [];
-var draining = false;
-var currentQueue;
-var queueIndex = -1;
-
-function cleanUpNextTick() {
-    if (!draining || !currentQueue) {
-        return;
-    }
-    draining = false;
-    if (currentQueue.length) {
-        queue = currentQueue.concat(queue);
-    } else {
-        queueIndex = -1;
-    }
-    if (queue.length) {
-        drainQueue();
-    }
-}
-
-function drainQueue() {
-    if (draining) {
-        return;
-    }
-    var timeout = runTimeout(cleanUpNextTick);
-    draining = true;
-
-    var len = queue.length;
-    while(len) {
-        currentQueue = queue;
-        queue = [];
-        while (++queueIndex < len) {
-            if (currentQueue) {
-                currentQueue[queueIndex].run();
-            }
-        }
-        queueIndex = -1;
-        len = queue.length;
-    }
-    currentQueue = null;
-    draining = false;
-    runClearTimeout(timeout);
-}
-
-process.nextTick = function (fun) {
-    var args = new Array(arguments.length - 1);
-    if (arguments.length > 1) {
-        for (var i = 1; i < arguments.length; i++) {
-            args[i - 1] = arguments[i];
-        }
-    }
-    queue.push(new Item(fun, args));
-    if (queue.length === 1 && !draining) {
-        runTimeout(drainQueue);
-    }
-};
-
-// v8 likes predictible objects
-function Item(fun, array) {
-    this.fun = fun;
-    this.array = array;
-}
-Item.prototype.run = function () {
-    this.fun.apply(null, this.array);
-};
-process.title = 'browser';
-process.browser = true;
-process.env = {};
-process.argv = [];
-process.version = ''; // empty string to avoid regexp issues
-process.versions = {};
-
-function noop() {}
-
-process.on = noop;
-process.addListener = noop;
-process.once = noop;
-process.off = noop;
-process.removeListener = noop;
-process.removeAllListeners = noop;
-process.emit = noop;
-
-process.binding = function (name) {
-    throw new Error('process.binding is not supported');
-};
-
-process.cwd = function () { return '/' };
-process.chdir = function (dir) {
-    throw new Error('process.chdir is not supported');
-};
-process.umask = function() { return 0; };
-
-
-/***/ }),
-/* 162 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var isInput = __webpack_require__(10);
-var bindings = {};
-
-function has (source, target) {
-  var binding = bindings[source.id];
-  return binding && binding[target.id];
-}
-
-function insert (source, target) {
-  var binding = bindings[source.id];
-  if (!binding) {
-    binding = bindings[source.id] = {};
-  }
-  var invalidate = invalidator(target);
-  binding[target.id] = invalidate;
-  source.on('data', invalidate);
-  source.on('destroyed', remove.bind(null, source, target));
-}
-
-function remove (source, target) {
-  var binding = bindings[source.id];
-  if (!binding) {
-    return;
-  }
-  var invalidate = binding[target.id];
-  source.off('data', invalidate);
-  delete binding[target.id];
-}
-
-function invalidator (target) {
-  return function invalidate () {
-    target.refresh();
-  };
-}
-
-function add (source, target) {
-  if (isInput(target.associated) || has(source, target)) {
-    return;
-  }
-  insert(source, target);
-}
-
-module.exports = {
-  add: add,
-  remove: remove
-};
-
-
-/***/ }),
-/* 163 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var index = __webpack_require__(9);
-var input = __webpack_require__(166);
-var inline = __webpack_require__(165);
-var isInput = __webpack_require__(10);
-
-function core (elem, options) {
-  var cal;
-  var existing = index.find(elem);
-  if (existing) {
-    return existing;
-  }
-
-  if (isInput(elem)) {
-    cal = input(elem, options);
-  } else {
-    cal = inline(elem, options);
-  }
-  index.assign(elem, cal);
-
-  return cal;
-}
-
-module.exports = core;
-
-
-/***/ }),
-/* 164 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function dom (options) {
-  var o = options || {};
-  if (!o.type) { o.type = 'div'; }
-  var elem = document.createElement(o.type);
-  if (o.className) { elem.className = o.className; }
-  if (o.text) { elem.innerText = elem.textContent = o.text; }
-  if (o.attributes) {
-    Object.keys(o.attributes).forEach(function(key) {
-      elem.setAttribute(key, o.attributes[key]);
-    });
-  }
-  if (o.parent) { o.parent.appendChild(elem); }
-  return elem;
-}
-
-module.exports = dom;
-
-
-/***/ }),
-/* 165 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var calendar = __webpack_require__(130);
-
-function inline (elem, calendarOptions) {
-  var o = calendarOptions || {};
-
-  o.appendTo = elem;
-  o.associated = elem;
-
-  var cal = calendar(o);
-  cal.show();
-  return cal;
-}
-
-module.exports = inline;
-
-
-/***/ }),
-/* 166 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var crossvent = __webpack_require__(6);
-var bullseye = __webpack_require__(154);
-var throttle = __webpack_require__(180);
-var clone = __webpack_require__(132);
-var defaults = __webpack_require__(133);
-var calendar = __webpack_require__(130);
-var momentum = __webpack_require__(4);
-var classes = __webpack_require__(131);
-
-function inputCalendar (input, calendarOptions) {
-  var o = calendarOptions || {};
-
-  o.associated = input;
-
-  var api = calendar(o);
-  var throttledTakeInput = throttle(takeInput, 30);
-  var ignoreInvalidation;
-  var ignoreShow;
-  var eye;
-
-  init(o);
-
-  return api;
-
-  function init (initOptions) {
-    o = defaults(initOptions || o, api);
-
-    classes.add(api.container, o.styles.positioned);
-    crossvent.add(api.container, 'mousedown', containerMouseDown);
-    crossvent.add(api.container, 'click', containerClick);
-
-    api.getDate = unrequire(api.getDate);
-    api.getDateString = unrequire(api.getDateString);
-    api.getMoment = unrequire(api.getMoment);
-
-    if (o.initialValue) {
-      input.value = o.initialValue.format(o.inputFormat);
-    }
-
-    eye = bullseye(api.container, input);
-    api.on('data', updateInput);
-    api.on('show', eye.refresh);
-
-    eventListening();
-    throttledTakeInput();
-  }
-
-  function destroy () {
-    eventListening(true);
-    eye.destroy();
-    eye = null;
-  }
-
-  function eventListening (remove) {
-    var op = remove ? 'remove' : 'add';
-    crossvent[op](input, 'click', show);
-    crossvent[op](input, 'touchend', show);
-    crossvent[op](input, 'focusin', show);
-    crossvent[op](input, 'change', throttledTakeInput);
-    crossvent[op](input, 'keypress', throttledTakeInput);
-    crossvent[op](input, 'keydown', throttledTakeInput);
-    crossvent[op](input, 'input', throttledTakeInput);
-    if (o.invalidate) { crossvent[op](input, 'blur', invalidateInput); }
-
-    if (remove) {
-      api.once('ready', init);
-      api.off('destroyed', destroy);
-    } else {
-      api.off('ready', init);
-      api.once('destroyed', destroy);
-    }
-  }
-
-  function containerClick () {
-    ignoreShow = true;
-    input.focus();
-    ignoreShow = false;
-  }
-
-  function containerMouseDown () {
-    ignoreInvalidation = true;
-    setTimeout(unignore, 0);
-
-    function unignore () {
-      ignoreInvalidation = false;
-    }
-  }
-
-  function invalidateInput () {
-    if (!ignoreInvalidation && !isEmpty()) {
-      api.emitValues();
-    }
-  }
-
-  function show () {
-    if (ignoreShow) {
-      return;
-    }
-    api.show();
-  }
-
-  function takeInput () {
-    var value = input.value.trim();
-    if (isEmpty()) {
-      return;
-    }
-    var date = momentum.moment(value, o.inputFormat, o.strictParse);
-    api.setValue(date);
-  }
-
-  function updateInput (data) {
-    input.value = data;
-  }
-
-  function isEmpty () {
-    return o.required === false && input.value.trim() === '';
-  }
-
-  function unrequire (fn) {
-    return function maybe () {
-      return isEmpty() ? null : fn.apply(this, arguments);
-    };
-  }
-}
-
-module.exports = inputCalendar;
-
-
-/***/ }),
-/* 167 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function noop () {}
-
-module.exports = noop;
-
-
-/***/ }),
-/* 168 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Array.prototype.filter) {
-  Array.prototype.filter = function (fn, ctx) {
-    var f = [];
-    this.forEach(function (v, i, t) {
-      if (fn.call(ctx, v, i, t)) { f.push(v); }
-    }, ctx);
-    return f;
-  };
-}
-
-
-/***/ }),
-/* 169 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Array.prototype.forEach) {
-  Array.prototype.forEach = function (fn, ctx) {
-    if (this === void 0 || this === null || typeof fn !== 'function') {
-      throw new TypeError();
-    }
-    var t = this;
-    var len = t.length;
-    for (var i = 0; i < len; i++) {
-      if (i in t) { fn.call(ctx, t[i], i, t); }
-    }
-  };
-}
-
-
-/***/ }),
-/* 170 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Array.prototype.indexOf) {
-  Array.prototype.indexOf = function (what, start) {
-    if (this === undefined || this === null) {
-      throw new TypeError();
-    }
-    var length = this.length;
-    start = +start || 0;
-    if (Math.abs(start) === Infinity) {
-      start = 0;
-    } else if (start < 0) {
-      start += length;
-      if (start < 0) { start = 0; }
-    }
-    for (; start < length; start++) {
-      if (this[start] === what) {
-        return start;
-      }
-    }
-    return -1;
-  };
-}
-
-
-/***/ }),
-/* 171 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Array.isArray || (Array.isArray = function (a) {
-  return '' + a !== a && Object.prototype.toString.call(a) === '[object Array]';
-});
-
-
-/***/ }),
-/* 172 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Array.prototype.map) {
-  Array.prototype.map = function (fn, ctx) {
-    var context, result, i;
-
-    if (this == null) {
-      throw new TypeError('this is null or not defined');
-    }
-
-    var source = Object(this);
-    var len = source.length >>> 0;
-
-    if (typeof fn !== 'function') {
-      throw new TypeError(fn + ' is not a function');
-    }
-
-    if (arguments.length > 1) {
-      context = ctx;
-    }
-
-    result = new Array(len);
-    i = 0;
-
-    while (i < len) {
-      if (i in source) {
-        result[i] = fn.call(context, source[i], i, source);
-      }
-      i++;
-    }
-    return result;
-  };
-}
-
-
-/***/ }),
-/* 173 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Array.prototype.some) {
-  Array.prototype.some = function (fn, ctx) {
-    var context, i;
-
-    if (this == null) {
-      throw new TypeError('this is null or not defined');
-    }
-
-    var source = Object(this);
-    var len = source.length >>> 0;
-
-    if (typeof fn !== 'function') {
-      throw new TypeError(fn + ' is not a function');
-    }
-
-    if (arguments.length > 1) {
-      context = ctx;
-    }
-
-    i = 0;
-
-    while (i < len) {
-      if (i in source) {
-        var test = fn.call(context, source[i], i, source);
-        if (test) {
-          return true;
-        }
-      }
-      i++;
-    }
-    return false;
-  };
-}
-
-
-/***/ }),
-/* 174 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!Function.prototype.bind) {
-  Function.prototype.bind = function (context) {
-    if (typeof this !== 'function') {
-      throw new TypeError('Function.prototype.bind - what is trying to be bound is not callable');
-    }
-    var curried = Array.prototype.slice.call(arguments, 1);
-    var original = this;
-    var NoOp = function () {};
-    var bound = function () {
-      var ctx = this instanceof NoOp && context ? this : context;
-      var args = curried.concat(Array.prototype.slice.call(arguments));
-      return original.apply(ctx, args);
-    };
-    NoOp.prototype = this.prototype;
-    bound.prototype = new NoOp();
-    return bound;
-  };
-}
-
-
-/***/ }),
-/* 175 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var hasOwn = Object.prototype.hasOwnProperty;
-var hasDontEnumBug = !({ toString: null }).propertyIsEnumerable('toString');
-var dontEnums = [
-  'toString',
-  'toLocaleString',
-  'valueOf',
-  'hasOwnProperty',
-  'isPrototypeOf',
-  'propertyIsEnumerable',
-  'constructor'
-];
-var dontEnumsLength = dontEnums.length;
-
-if (!Object.keys) {
-  Object.keys = function(obj) {
-    if (typeof obj !== 'object' && (typeof obj !== 'function' || obj === null)) {
-      throw new TypeError('Object.keys called on non-object');
-    }
-
-    var result = [], prop, i;
-
-    for (prop in obj) {
-      if (hasOwn.call(obj, prop)) {
-        result.push(prop);
-      }
-    }
-
-    if (hasDontEnumBug) {
-      for (i = 0; i < dontEnumsLength; i++) {
-        if (hasOwn.call(obj, dontEnums[i])) {
-          result.push(dontEnums[i]);
-        }
-      }
-    }
-    return result;
-  };
-}
-
-
-/***/ }),
-/* 176 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-if (!String.prototype.trim) {
-  String.prototype.trim = function () {
-    return this.replace(/^\s+|\s+$/g, '');
-  };
-}
-
-
-/***/ }),
-/* 177 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-// these are only required for IE < 9
-// maybe move to IE-specific distro?
-__webpack_require__(174);
-__webpack_require__(169);
-__webpack_require__(172);
-__webpack_require__(168);
-__webpack_require__(171);
-__webpack_require__(170);
-__webpack_require__(173);
-__webpack_require__(176);
-__webpack_require__(175);
-
-var core = __webpack_require__(163);
-var index = __webpack_require__(9);
-var use = __webpack_require__(181);
-
-core.use = use.bind(core);
-core.find = index.find;
-core.val = __webpack_require__(182);
-
-module.exports = core;
-
-
-/***/ }),
-/* 178 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var moment = __webpack_require__(0);
-var rome = __webpack_require__(177);
-
-rome.use(moment);
-
-module.exports = rome;
-
-
-/***/ }),
-/* 179 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function text (elem, value) {
-  if (arguments.length === 2) {
-    elem.innerText = elem.textContent = value;
-  }
-  return elem.innerText || elem.textContent;
-}
-
-module.exports = text;
-
-
-/***/ }),
-/* 180 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function throttle (fn, boundary) {
-  var last = -Infinity;
-  var timer;
-  return function bounced () {
-    if (timer) {
-      return;
-    }
-    unbound();
-
-    function unbound () {
-      clearTimeout(timer);
-      timer = null;
-      var next = last + boundary;
-      var now = +new Date();
-      if (now > next) {
-        last = now;
-        fn.apply(this, arguments);
-      } else {
-        timer = setTimeout(unbound, next - now);
-      }
-    }
-  };
-};
-
-
-/***/ }),
-/* 181 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var momentum = __webpack_require__(4);
-
-function use (moment) {
-  this.moment = momentum.moment = moment;
-}
-
-module.exports = use;
-
-
-/***/ }),
-/* 182 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var index = __webpack_require__(9);
-var parse = __webpack_require__(11);
-var association = __webpack_require__(162);
-
-function compareBuilder (compare) {
-  return function factory (value) {
-    var fixed = parse(value);
-
-    return function validate (date) {
-      var cal = index.find(value);
-      var left = parse(date);
-      var right = fixed || cal && cal.getMoment();
-      if (!right) {
-        return true;
-      }
-      if (cal) {
-        association.add(this, cal);
-      }
-      return compare(left, right);
-    };
-  };
-}
-
-function rangeBuilder (how, compare) {
-  return function factory (start, end) {
-    var dates;
-    var len = arguments.length;
-
-    if (Array.isArray(start)) {
-      dates = start;
-    } else {
-      if (len === 1) {
-        dates = [start];
-      } else if (len === 2) {
-        dates = [[start, end]];
-      }
-    }
-
-    return function validate (date) {
-      return dates.map(expand.bind(this))[how](compare.bind(this, date));
-    };
-
-    function expand (value) {
-      var start, end;
-      var cal = index.find(value);
-      if (cal) {
-        start = end = cal.getMoment();
-      } else if (Array.isArray(value)) {
-        start = value[0]; end = value[1];
-      } else {
-        start = end = value;
-      }
-      if (cal) {
-        association.add(cal, this);
-      }
-      return {
-        start: parse(start).startOf('day').toDate(),
-        end: parse(end).endOf('day').toDate()
-      };
-    }
-  };
-}
-
-var afterEq  = compareBuilder(function (left, right) { return left >= right; });
-var after    = compareBuilder(function (left, right) { return left  > right; });
-var beforeEq = compareBuilder(function (left, right) { return left <= right; });
-var before   = compareBuilder(function (left, right) { return left  < right; });
-
-var except   = rangeBuilder('every', function (left, right) { return right.start  > left || right.end  < left; });
-var only     = rangeBuilder('some',  function (left, right) { return right.start <= left && right.end >= left; });
-
-module.exports = {
-  afterEq: afterEq,
-  after: after,
-  beforeEq: beforeEq,
-  before: before,
-  except: except,
-  only: only
-};
-
-
-/***/ }),
-/* 183 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function noop () {}
-
-function getSelectionNullOp () {
-  return {
-    removeAllRanges: noop,
-    addRange: noop
-  };
-}
-
-module.exports = getSelectionNullOp;
-
-
-/***/ }),
-/* 184 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-function getSelectionRaw () {
-  return global.getSelection();
-}
-
-module.exports = getSelectionRaw;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 185 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var rangeToTextRange = __webpack_require__(135);
-var doc = global.document;
-var body = doc.body;
-var GetSelectionProto = GetSelection.prototype;
-
-function GetSelection (selection) {
-  var self = this;
-  var range = selection.createRange();
-
-  this._selection = selection;
-  this._ranges = [];
-
-  if (selection.type === 'Control') {
-    updateControlSelection(self);
-  } else if (isTextRange(range)) {
-    updateFromTextRange(self, range);
-  } else {
-    updateEmptySelection(self);
-  }
-}
-
-GetSelectionProto.removeAllRanges = function () {
-  var textRange;
-  try {
-    this._selection.empty();
-    if (this._selection.type !== 'None') {
-      textRange = body.createTextRange();
-      textRange.select();
-      this._selection.empty();
-    }
-  } catch (e) {
-  }
-  updateEmptySelection(this);
-};
-
-GetSelectionProto.addRange = function (range) {
-  if (this._selection.type === 'Control') {
-    addRangeToControlSelection(this, range);
-  } else {
-    rangeToTextRange(range).select();
-    this._ranges[0] = range;
-    this.rangeCount = 1;
-    this.isCollapsed = this._ranges[0].collapsed;
-    updateAnchorAndFocusFromRange(this, range, false);
-  }
-};
-
-GetSelectionProto.setRanges = function (ranges) {
-  this.removeAllRanges();
-  var rangeCount = ranges.length;
-  if (rangeCount > 1) {
-    createControlSelection(this, ranges);
-  } else if (rangeCount) {
-    this.addRange(ranges[0]);
-  }
-};
-
-GetSelectionProto.getRangeAt = function (index) {
-  if (index < 0 || index >= this.rangeCount) {
-    throw new Error('getRangeAt(): index out of bounds');
-  } else {
-    return this._ranges[index].cloneRange();
-  }
-};
-
-GetSelectionProto.removeRange = function (range) {
-  if (this._selection.type !== 'Control') {
-    removeRangeManually(this, range);
-    return;
-  }
-  var controlRange = this._selection.createRange();
-  var rangeElement = getSingleElementFromRange(range);
-  var newControlRange = body.createControlRange();
-  var el;
-  var removed = false;
-  for (var i = 0, len = controlRange.length; i < len; ++i) {
-    el = controlRange.item(i);
-    if (el !== rangeElement || removed) {
-      newControlRange.add(controlRange.item(i));
-    } else {
-      removed = true;
-    }
-  }
-  newControlRange.select();
-  updateControlSelection(this);
-};
-
-GetSelectionProto.eachRange = function (fn, returnValue) {
-  var i = 0;
-  var len = this._ranges.length;
-  for (i = 0; i < len; ++i) {
-    if (fn(this.getRangeAt(i))) {
-      return returnValue;
-    }
-  }
-};
-
-GetSelectionProto.getAllRanges = function () {
-  var ranges = [];
-  this.eachRange(function (range) {
-    ranges.push(range);
-  });
-  return ranges;
-};
-
-GetSelectionProto.setSingleRange = function (range) {
-  this.removeAllRanges();
-  this.addRange(range);
-};
-
-function createControlSelection (sel, ranges) {
-  var controlRange = body.createControlRange();
-  for (var i = 0, el, len = ranges.length; i < len; ++i) {
-    el = getSingleElementFromRange(ranges[i]);
-    try {
-      controlRange.add(el);
-    } catch (e) {
-      throw new Error('setRanges(): Element could not be added to control selection');
-    }
-  }
-  controlRange.select();
-  updateControlSelection(sel);
-}
-
-function removeRangeManually (sel, range) {
-  var ranges = sel.getAllRanges();
-  sel.removeAllRanges();
-  for (var i = 0, len = ranges.length; i < len; ++i) {
-    if (!isSameRange(range, ranges[i])) {
-      sel.addRange(ranges[i]);
-    }
-  }
-  if (!sel.rangeCount) {
-    updateEmptySelection(sel);
-  }
-}
-
-function updateAnchorAndFocusFromRange (sel, range) {
-  var anchorPrefix = 'start';
-  var focusPrefix = 'end';
-  sel.anchorNode = range[anchorPrefix + 'Container'];
-  sel.anchorOffset = range[anchorPrefix + 'Offset'];
-  sel.focusNode = range[focusPrefix + 'Container'];
-  sel.focusOffset = range[focusPrefix + 'Offset'];
-}
-
-function updateEmptySelection (sel) {
-  sel.anchorNode = sel.focusNode = null;
-  sel.anchorOffset = sel.focusOffset = 0;
-  sel.rangeCount = 0;
-  sel.isCollapsed = true;
-  sel._ranges.length = 0;
-}
-
-function rangeContainsSingleElement (rangeNodes) {
-  if (!rangeNodes.length || rangeNodes[0].nodeType !== 1) {
-    return false;
-  }
-  for (var i = 1, len = rangeNodes.length; i < len; ++i) {
-    if (!isAncestorOf(rangeNodes[0], rangeNodes[i])) {
-      return false;
-    }
-  }
-  return true;
-}
-
-function getSingleElementFromRange (range) {
-  var nodes = range.getNodes();
-  if (!rangeContainsSingleElement(nodes)) {
-    throw new Error('getSingleElementFromRange(): range did not consist of a single element');
-  }
-  return nodes[0];
-}
-
-function isTextRange (range) {
-  return range && range.text !== void 0;
-}
-
-function updateFromTextRange (sel, range) {
-  sel._ranges = [range];
-  updateAnchorAndFocusFromRange(sel, range, false);
-  sel.rangeCount = 1;
-  sel.isCollapsed = range.collapsed;
-}
-
-function updateControlSelection (sel) {
-  sel._ranges.length = 0;
-  if (sel._selection.type === 'None') {
-    updateEmptySelection(sel);
-  } else {
-    var controlRange = sel._selection.createRange();
-    if (isTextRange(controlRange)) {
-      updateFromTextRange(sel, controlRange);
-    } else {
-      sel.rangeCount = controlRange.length;
-      var range;
-      for (var i = 0; i < sel.rangeCount; ++i) {
-        range = doc.createRange();
-        range.selectNode(controlRange.item(i));
-        sel._ranges.push(range);
-      }
-      sel.isCollapsed = sel.rangeCount === 1 && sel._ranges[0].collapsed;
-      updateAnchorAndFocusFromRange(sel, sel._ranges[sel.rangeCount - 1], false);
-    }
-  }
-}
-
-function addRangeToControlSelection (sel, range) {
-  var controlRange = sel._selection.createRange();
-  var rangeElement = getSingleElementFromRange(range);
-  var newControlRange = body.createControlRange();
-  for (var i = 0, len = controlRange.length; i < len; ++i) {
-    newControlRange.add(controlRange.item(i));
-  }
-  try {
-    newControlRange.add(rangeElement);
-  } catch (e) {
-    throw new Error('addRange(): Element could not be added to control selection');
-  }
-  newControlRange.select();
-  updateControlSelection(sel);
-}
-
-function isSameRange (left, right) {
-  return (
-    left.startContainer === right.startContainer &&
-    left.startOffset === right.startOffset &&
-    left.endContainer === right.endContainer &&
-    left.endOffset === right.endOffset
-  );
-}
-
-function isAncestorOf (ancestor, descendant) {
-  var node = descendant;
-  while (node.parentNode) {
-    if (node.parentNode === ancestor) {
-      return true;
-    }
-    node = node.parentNode;
-  }
-  return false;
-}
-
-function getSelection () {
-  return new GetSelection(global.document.selection);
-}
-
-module.exports = getSelection;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 186 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-function isHostMethod (host, prop) {
-  var type = typeof host[prop];
-  return type === 'function' || !!(type === 'object' && host[prop]) || type === 'unknown';
-}
-
-function isHostProperty (host, prop) {
-  return typeof host[prop] !== 'undefined';
-}
-
-function many (fn) {
-  return function areHosted (host, props) {
-    var i = props.length;
-    while (i--) {
-      if (!fn(host, props[i])) {
-        return false;
-      }
-    }
-    return true;
-  };
-}
-
-module.exports = {
-  method: isHostMethod,
-  methods: many(isHostMethod),
-  property: isHostProperty,
-  properties: many(isHostProperty)
-};
-
-
-/***/ }),
-/* 187 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var getSelection = __webpack_require__(134);
-var setSelection = __webpack_require__(188);
-
-module.exports = {
-  get: getSelection,
-  set: setSelection
-};
-
-
-/***/ }),
-/* 188 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {
-
-var getSelection = __webpack_require__(134);
-var rangeToTextRange = __webpack_require__(135);
-var doc = global.document;
-
-function setSelection (p) {
-  if (doc.createRange) {
-    modernSelection();
-  } else {
-    oldSelection();
-  }
-
-  function modernSelection () {
-    var sel = getSelection();
-    var range = doc.createRange();
-    if (!p.startContainer) {
-      return;
-    }
-    if (p.endContainer) {
-      range.setEnd(p.endContainer, p.endOffset);
-    } else {
-      range.setEnd(p.startContainer, p.startOffset);
-    }
-    range.setStart(p.startContainer, p.startOffset);
-    sel.removeAllRanges();
-    sel.addRange(range);
-  }
-
-  function oldSelection () {
-    rangeToTextRange(p).select();
-  }
-}
-
-module.exports = setSelection;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 189 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var get = easyGet;
-var set = easySet;
-
-if (document.selection && document.selection.createRange) {
-  get = hardGet;
-  set = hardSet;
-}
-
-function easyGet (el) {
-  return {
-    start: el.selectionStart,
-    end: el.selectionEnd
-  };
-}
-
-function hardGet (el) {
-  var active = document.activeElement;
-  if (active !== el) {
-    el.focus();
-  }
-
-  var range = document.selection.createRange();
-  var bookmark = range.getBookmark();
-  var original = el.value;
-  var marker = getUniqueMarker(original);
-  var parent = range.parentElement();
-  if (parent === null || !inputs(parent)) {
-    return result(0, 0);
-  }
-  range.text = marker + range.text + marker;
-
-  var contents = el.value;
-
-  el.value = original;
-  range.moveToBookmark(bookmark);
-  range.select();
-
-  return result(contents.indexOf(marker), contents.lastIndexOf(marker) - marker.length);
-
-  function result (start, end) {
-    if (active !== el) { // don't disrupt pre-existing state
-      if (active) {
-        active.focus();
-      } else {
-        el.blur();
-      }
-    }
-    return { start: start, end: end };
-  }
-}
-
-function getUniqueMarker (contents) {
-  var marker;
-  do {
-    marker = '@@marker.' + Math.random() * new Date();
-  } while (contents.indexOf(marker) !== -1);
-  return marker;
-}
-
-function inputs (el) {
-  return ((el.tagName === 'INPUT' && el.type === 'text') || el.tagName === 'TEXTAREA');
-}
-
-function easySet (el, p) {
-  el.selectionStart = parse(el, p.start);
-  el.selectionEnd = parse(el, p.end);
-}
-
-function hardSet (el, p) {
-  var range = el.createTextRange();
-
-  if (p.start === 'end' && p.end === 'end') {
-    range.collapse(false);
-    range.select();
-  } else {
-    range.collapse(true);
-    range.moveEnd('character', parse(el, p.end));
-    range.moveStart('character', parse(el, p.start));
-    range.select();
-  }
-}
-
-function parse (el, value) {
-  return value === 'end' ? el.value.length : value || 0;
-}
-
-function sell (el, p) {
-  if (arguments.length === 2) {
-    set(el, p);
-  }
-  return get(el);
-}
-
-module.exports = sell;
-
-
-/***/ }),
-/* 190 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
-    "use strict";
-
-    if (global.setImmediate) {
-        return;
-    }
-
-    var nextHandle = 1; // Spec says greater than zero
-    var tasksByHandle = {};
-    var currentlyRunningATask = false;
-    var doc = global.document;
-    var registerImmediate;
-
-    function setImmediate(callback) {
-      // Callback can either be a function or a string
-      if (typeof callback !== "function") {
-        callback = new Function("" + callback);
-      }
-      // Copy function arguments
-      var args = new Array(arguments.length - 1);
-      for (var i = 0; i < args.length; i++) {
-          args[i] = arguments[i + 1];
-      }
-      // Store and register the task
-      var task = { callback: callback, args: args };
-      tasksByHandle[nextHandle] = task;
-      registerImmediate(nextHandle);
-      return nextHandle++;
-    }
-
-    function clearImmediate(handle) {
-        delete tasksByHandle[handle];
-    }
-
-    function run(task) {
-        var callback = task.callback;
-        var args = task.args;
-        switch (args.length) {
-        case 0:
-            callback();
-            break;
-        case 1:
-            callback(args[0]);
-            break;
-        case 2:
-            callback(args[0], args[1]);
-            break;
-        case 3:
-            callback(args[0], args[1], args[2]);
-            break;
-        default:
-            callback.apply(undefined, args);
-            break;
-        }
-    }
-
-    function runIfPresent(handle) {
-        // From the spec: "Wait until any invocations of this algorithm started before this one have completed."
-        // So if we're currently running a task, we'll need to delay this invocation.
-        if (currentlyRunningATask) {
-            // Delay by doing a setTimeout. setImmediate was tried instead, but in Firefox 7 it generated a
-            // "too much recursion" error.
-            setTimeout(runIfPresent, 0, handle);
-        } else {
-            var task = tasksByHandle[handle];
-            if (task) {
-                currentlyRunningATask = true;
-                try {
-                    run(task);
-                } finally {
-                    clearImmediate(handle);
-                    currentlyRunningATask = false;
-                }
-            }
-        }
-    }
-
-    function installNextTickImplementation() {
-        registerImmediate = function(handle) {
-            process.nextTick(function () { runIfPresent(handle); });
-        };
-    }
-
-    function canUsePostMessage() {
-        // The test against `importScripts` prevents this implementation from being installed inside a web worker,
-        // where `global.postMessage` means something completely different and can't be used for this purpose.
-        if (global.postMessage && !global.importScripts) {
-            var postMessageIsAsynchronous = true;
-            var oldOnMessage = global.onmessage;
-            global.onmessage = function() {
-                postMessageIsAsynchronous = false;
-            };
-            global.postMessage("", "*");
-            global.onmessage = oldOnMessage;
-            return postMessageIsAsynchronous;
-        }
-    }
-
-    function installPostMessageImplementation() {
-        // Installs an event handler on `global` for the `message` event: see
-        // * https://developer.mozilla.org/en/DOM/window.postMessage
-        // * http://www.whatwg.org/specs/web-apps/current-work/multipage/comms.html#crossDocumentMessages
-
-        var messagePrefix = "setImmediate$" + Math.random() + "$";
-        var onGlobalMessage = function(event) {
-            if (event.source === global &&
-                typeof event.data === "string" &&
-                event.data.indexOf(messagePrefix) === 0) {
-                runIfPresent(+event.data.slice(messagePrefix.length));
-            }
-        };
-
-        if (global.addEventListener) {
-            global.addEventListener("message", onGlobalMessage, false);
-        } else {
-            global.attachEvent("onmessage", onGlobalMessage);
-        }
-
-        registerImmediate = function(handle) {
-            global.postMessage(messagePrefix + handle, "*");
-        };
-    }
-
-    function installMessageChannelImplementation() {
-        var channel = new MessageChannel();
-        channel.port1.onmessage = function(event) {
-            var handle = event.data;
-            runIfPresent(handle);
-        };
-
-        registerImmediate = function(handle) {
-            channel.port2.postMessage(handle);
-        };
-    }
-
-    function installReadyStateChangeImplementation() {
-        var html = doc.documentElement;
-        registerImmediate = function(handle) {
-            // Create a <script> element; its readystatechange event will be fired asynchronously once it is inserted
-            // into the document. Do so, thus queuing up the task. Remember to clean up once it's been called.
-            var script = doc.createElement("script");
-            script.onreadystatechange = function () {
-                runIfPresent(handle);
-                script.onreadystatechange = null;
-                html.removeChild(script);
-                script = null;
-            };
-            html.appendChild(script);
-        };
-    }
-
-    function installSetTimeoutImplementation() {
-        registerImmediate = function(handle) {
-            setTimeout(runIfPresent, 0, handle);
-        };
-    }
-
-    // If supported, we should attach to the prototype of global, since that is where setTimeout et al. live.
-    var attachTo = Object.getPrototypeOf && Object.getPrototypeOf(global);
-    attachTo = attachTo && attachTo.setTimeout ? attachTo : global;
-
-    // Don't get fooled by e.g. browserify environments.
-    if ({}.toString.call(global.process) === "[object process]") {
-        // For Node.js before 0.9
-        installNextTickImplementation();
-
-    } else if (canUsePostMessage()) {
-        // For non-IE10 modern browsers
-        installPostMessageImplementation();
-
-    } else if (global.MessageChannel) {
-        // For web workers, where supported
-        installMessageChannelImplementation();
-
-    } else if (doc && "onreadystatechange" in doc.createElement("script")) {
-        // For IE 6–8
-        installReadyStateChangeImplementation();
-
-    } else {
-        // For older browsers
-        installSetTimeoutImplementation();
-    }
-
-    attachTo.setImmediate = setImmediate;
-    attachTo.clearImmediate = clearImmediate;
-}(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(161)))
-
-/***/ }),
-/* 191 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/* WEBPACK VAR INJECTION */(function(setImmediate) {var si = typeof setImmediate === 'function', tick;
-if (si) {
-  tick = function (fn) { setImmediate(fn); };
-} else {
-  tick = function (fn) { setTimeout(fn, 0); };
-}
-
-module.exports = tick;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(192).setImmediate))
-
-/***/ }),
-/* 192 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var apply = Function.prototype.apply;
-
-// DOM APIs, for completeness
-
-exports.setTimeout = function() {
-  return new Timeout(apply.call(setTimeout, window, arguments), clearTimeout);
-};
-exports.setInterval = function() {
-  return new Timeout(apply.call(setInterval, window, arguments), clearInterval);
-};
-exports.clearTimeout =
-exports.clearInterval = function(timeout) {
-  if (timeout) {
-    timeout.close();
-  }
-};
-
-function Timeout(id, clearFn) {
-  this._id = id;
-  this._clearFn = clearFn;
-}
-Timeout.prototype.unref = Timeout.prototype.ref = function() {};
-Timeout.prototype.close = function() {
-  this._clearFn.call(window, this._id);
-};
-
-// Does not start the time, just sets up the members needed.
-exports.enroll = function(item, msecs) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = msecs;
-};
-
-exports.unenroll = function(item) {
-  clearTimeout(item._idleTimeoutId);
-  item._idleTimeout = -1;
-};
-
-exports._unrefActive = exports.active = function(item) {
-  clearTimeout(item._idleTimeoutId);
-
-  var msecs = item._idleTimeout;
-  if (msecs >= 0) {
-    item._idleTimeoutId = setTimeout(function onTimeout() {
-      if (item._onTimeout)
-        item._onTimeout();
-    }, msecs);
-  }
-};
-
-// setimmediate attaches itself to the global object
-__webpack_require__(190);
-exports.setImmediate = setImmediate;
-exports.clearImmediate = clearImmediate;
-
-
-/***/ }),
-/* 193 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"demo-element\"><template><style>.content.dark{background-color:var(--bg-color);}.content:last-child{margin-bottom:100px;}</style><menu-clab title-icon=\"icon-sign sign\" link=\"#/home\" current-hash=\"[[currentHash]]\" on-a-click=\"_changeCurrentHash\"><span class=\"product-name\">contact<b>plan</b></span><div class=\"alerts\"><alert-clab id=\"notify\" notify=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab></div></menu-clab><main class=\"main-content\"><section class=\"icons\" style=\"font-size: 50px\"><i class=\"clab-icon icon-play\"></i> <i class=\"clab-icon icon-pause\"></i> <i class=\"clab-icon icon-stop\"></i> <i class=\"clab-icon icon-fast-backward\"></i> <i class=\"clab-icon icon-backward\"></i> <i class=\"clab-icon icon-forward\"></i> <i class=\"clab-icon icon-fast-forward\"></i> <i class=\"clab-icon icon-equal-circle\"></i> <i class=\"clab-icon icon-equal-circle-full\"></i> <i class=\"clab-icon icon-full-arrow-top\"></i> <i class=\"clab-icon icon-full-arrow-right\"></i> <i class=\"clab-icon icon-full-arrow-down\"></i> <i class=\"clab-icon icon-full-arrow-left\"></i></section><section><h2>Alerts</h2><alert-clab visible=\"\" type=\"primary\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"warning\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"error\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"info\" primary=\"Go\" secondary=\"Cancel\" no-animation=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><button-clab on-click=\"_notify\">Show notification alert</button-clab></section><section><ul><li>Lorem ipsum dolor sit amet.</li><li>Ipsam eos assumenda laboriosam veritatis!</li></ul></section><section><h2>Tables</h2><table class=\"striped-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><table class=\"hover-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><div class=\"table responsive-table\"><div class=\"thead\"><div class=\"tr\"><div class=\"th\">Table Header 1</div><div class=\"th\">Table Header 2</div><div class=\"th\">Table Header 3</div></div></div><div class=\"tbody\"><div class=\"tr\"><div class=\"td\" data-th=\"Table Header 1\">Division 1</div><div class=\"td\" data-th=\"Table Header 2\">Division 2</div><div class=\"td\" data-th=\"Table Header 3\">Division 3</div></div></div></div></section><section><h2>Accordion</h2><accordion-clab title=\"Accordion 1\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab><accordion-clab title=\"Accordion 2\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab></section><section><h2>Buttons</h2><article><button-clab>Just click me</button-clab><button-clab type=\"primary\">Just click me</button-clab><button-clab type=\"primary empty\">Just click me</button-clab></article><article><button-clab block=\"\">Just click me</button-clab><button-clab block=\"\" size=\"small\">Just click me</button-clab></article><article><button-clab size=\"small\">Just click me</button-clab><button-clab size=\"small\" type=\"primary\">Just click me</button-clab><button-clab size=\"small\" type=\"primary empty\">Just click me</button-clab></article></section><section><h2>Buttons group</h2><article><group-clab options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"info\" size=\"small\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" size=\"smaller\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article></section><section><h2>Cards</h2><card-clab title=\"My Card\" icon=\"icon-class\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab title=\"My Card 2\" no-actions=\"\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab link=\"{&quot;text&quot;:&quot;blabla&quot;, &quot;href&quot;:&quot;#/hearts&quot;}\" icon=\"clab-icon icon-heart-full\" title=\"Queen of hearts\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With a link</p></card-clab></section><section><h2>Features</h2><feature-clab icon-class=\"clab-icon icon-heart-full\" size=\"small\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab icon-class=\"clab-icon icon-heart-full\" link=\"#\" vertical=\"\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\" vertical=\"\" link=\"https://www.google.it/\" link-target=\"_blank\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab></section><section><h2>Spinner</h2><div style=\"display: flex\"><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"200, 200, 200, 0.8\"></spinner-clab></article><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"0, 0, 0, 0.9\" dark=\"\"></spinner-clab></article></div></section><section><h2>Progress bar</h2><progress-clab value=\"42\" minimal=\"\"></progress-clab><progress-clab value=\"87\" type=\"primary\"></progress-clab></section><section><h2>Tabs &amp; pills</h2><tabs-clab labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" vertical=\"\" centered=\"\" full-width=\"\" restamp=\"\"><div class=\"tab-content\"><div><button-clab>vai</button-clab></div></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab><tabs-clab pills=\"\" labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" centered=\"\" full-width=\"\"><div class=\"tab-content\"><accordion-clab title=\"ciccio\">ciccio puzzo</accordion-clab></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab></section><section><h2>Tooltips</h2><article><tooltip-clab type=\"primary\" wait=\"200\"><button-clab class=\"tt-label\">Edit</button-clab><span class=\"tt-content\">Click to edit this block</span></tooltip-clab><tooltip-clab type=\"error\" wait=\"0\"><button-clab class=\"tt-label\">Cancel</button-clab><span class=\"tt-content\">Click to cancel this block</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><accordion-clab class=\"tt-label\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi cumque.</accordion-clab><span class=\"tt-content\">Click to read more</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><span class=\"tt-label\">My Tooltip</span> <span class=\"tt-content\">Click to read more</span></tooltip-clab></article></section><section><h2>Label &amp; badges</h2><label-clab type=\"error\">Just a test</label-clab><label-clab badge=\"\">42</label-clab></section><section><h2>Autocomplete</h2><autocomplete-clab inline=\"\" label=\"Normal auto-complete\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" min-char=\"1\" label-size=\"larger\" type=\"success\" note-type=\"info\"><span class=\"note\">Type here to get hints</span> <span class=\"button\"><button-clab>hola</button-clab></span></autocomplete-clab>&nbsp;<autocomplete-clab label=\"AJAX auto-complete\" min-char=\"1\" filter=\"\" url=\"http://localhost:4000/json\"><span class=\"note\">Type here to get hints</span></autocomplete-clab></section><section><h2>Dropdown</h2><dropdown-clab max-in-view=\"5\" type=\"success\" note-type=\"error\" result-as-obj=\"\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" selected=\"{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;}\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\">&gt; <span class=\"note\">This is my note</span> <span class=\"button\"><button-clab>ciao</button-clab></span></dropdown-clab><dropdown-clab max-in-view=\"5\" result-as-obj=\"\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\"><span class=\"note\">This is my note</span></dropdown-clab><dropdown-clab max-in-view=\"3\" label=\"Awesome Dropdown\" result-as-obj=\"\" options=\"[{&quot;name&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;name&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;name&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;name&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;name&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" label-field=\"name\"><span class=\"note\">This is my note</span></dropdown-clab></section><section><h2>Tags</h2><article><tags-clab label=\"Add tag\" placeholder=\"rosso\" type=\"warning\"><span class=\"note\">Lorem ipsum dolor sit.</span></tags-clab></article><article><div class=\"input-wrapper\"><label for=\"\">Add tag</label><div class=\"input\"><input type=\"text\" placeholder=\"placeholder\"> <button class=\"btn\">Add</button></div><div class=\"note-clab\">Lorem ipsum dolor sit.</div></div></article></section><section><h2>Modal</h2><button-clab id=\"openModal-one\" on-click=\"_openModal1\">Open modal (content via attribute)</button-clab><button-clab id=\"openModal-two\" on-click=\"_openModal2\">Open modal (content via HTML)</button-clab><modal-clab id=\"modalOne\" max-width=\"500px\" title=\"Dummy modal\" primary=\"Confirm\" secondary=\"Cancel\" content=\"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?\" width=\"800px\" no-actions=\"\"></modal-clab><modal-clab id=\"modalTwo\" title=\"Dummy modal\" primary=\"Confirm\" primary-disabled=\"\" secondary=\"Cancel\" warning=\"Do something\" no-animation=\"\"><h2>Some HTML...</h2><hr><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel! Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo. Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci, quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto! Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt. Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!</p><ul><li>ksbdfkbsdf</li><li>sdfbgsdfgsdfg</li><li>sdfgsdfgsdfg</li></ul></modal-clab></section><section><h2>Pagination</h2><pagination-clab tot=\"20\"></pagination-clab></section><section><h2>Multiple</h2><multiple-clab label=\"Select multiple options\" max-in-view=\"10\" id=\"multi\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\"><span class=\"note\">This is a note</span></multiple-clab></section><section><h2>Row actions</h2><div class=\"row-action success\"><a><i class=\"clab-icon icon-check\"></i></a></div><div class=\"row-action error\"><a><i class=\"clab-icon icon-close\"></i></a></div></section><section><h2>Input</h2><input-clab value=\"ciao\" label=\"My label\" note-type=\"error\" type=\"success\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" label=\"Input with buttons\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"error\">cancel</button-clab><button-clab class=\"button\" type=\"success\">save</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"small\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\" inline=\"\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"large\" icon=\"icon-edit\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab></section><section><h2>Password</h2><input-clab password=\"\" check=\"\" value=\"ciao\" label=\"My label\"></input-clab></section><section><h2>Calendar</h2><calendar-clab inline=\"\" id=\"cal\"></calendar-clab><calendar-clab label=\"Calendar not inline - ITALIAN\" options=\"{&quot;locale&quot;: &quot;it&quot;}\" type=\"info\" note-type=\"error\" on-datechange=\"_dateChange\"><span class=\"note\">This is note</span></calendar-clab><calendar-clab label=\"Calendar not inline - FRENCH\" options=\"{&quot;locale&quot;: &quot;fr&quot;}\" type=\"info\" note-type=\"error\"></calendar-clab></section><section><h2>Range</h2><range-clab label=\"My wonderful range input label\" value=\"5\" min=\"0\" max=\"10\" step=\"1\" show-details=\"\"></range-clab></section><section><h2>Radio</h2><radio-clab labels=\"[&quot;radio 1&quot;, &quot;radio 3&quot;, &quot;radio 2&quot;]\" name=\"group1\" active=\"0\" disabled=\"[1]\"></radio-clab></section><section><h2>Checkbox</h2><checkbox-clab label=\"ciao\" active=\"\" on-selected-change=\"_checkboxChange\"></checkbox-clab></section><section><h2>Input file</h2><file-clab label=\"My wonderful file input label\" type=\"info\" note-type=\"error\"><span class=\"note\">A simple input component</span></file-clab></section></main></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 194 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"accordion-clab\"><template><style>.accordion-title.active{\t\t\t\tfont-weight:600;\t\t\t}\t\t\t.accordion-title.active::before{\t\t\t\tcontent:\"\\e60f\";\t\t\t}</style><div class=\"accordion\"><div class$=\"[[_computeType(type)]]\" id=\"block\"><div class=\"accordion-title\" on-click=\"_toggleActive\"><span>[[title]]</span></div><div class=\"accordion-content\" id=\"content\"><slot></slot></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 195 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"alert-clab\"><template><style>.alert{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}</style><template is=\"dom-if\" if=\"[[!notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\"><div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div><h3>[[title]]</h3><p><slot></slot></p><button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab><button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab></div></template><template is=\"dom-if\" if=\"[[notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\"><div class=\"close\"><i class=\"clab-icon icon-close\"></i></div><p><slot></slot></p></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 196 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 197 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"group-clab\" class=\"buttons-group\"><template><div class$=\"buttons-group [[_computeGroupClass(type, size)]]\"><template is=\"dom-repeat\" items=\"[[options]]\"><button-clab appearance$=\"[[_computeItemClass(index,value)]]\" class=\"'group-item'\" data-i$=\"[[index]]\" disabled=\"[[disabled]]\" on-click=\"_selectElement\">[[item]]</button-clab></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 198 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"button-clab\"><template><button class$=\"[[_computeClass(type, appearance, size, block)]]\" disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\"><template is=\"dom-if\" if=\"[[icon]]\"><i class$=\"[[_computeIconClass(icon)]]\"></i></template><slot></slot></button></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 199 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 200 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"card-clab\"><template><div class$=\"[[_computeEffectClass(effect)]]\"><template is=\"dom-if\" if=\"[[!figure]]\"><div class$=\"[[_computeCardClass(big)]]\"><template is=\"dom-if\" if=\"[[!big]]\"><i class$=\"[[icon]]\"></i></template><span>[[title]]</span><template is=\"dom-if\" if=\"[[big]]\"><div class=\"circle\"><i class=\"fa fa-circle\"></i></div><div class=\"icon\"><i class$=\"[[icon]]\"></i></div></template></div></template><template is=\"dom-if\" if=\"[[figure]]\"><figure><img src=\"[[figure]]\"><template is=\"dom-if\" if=\"[[_showTitle(title)]]\"><h2>[[title]]</h2></template></figure></template><template is=\"dom-if\" if=\"[[!table]]\"><div class=\"card-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[table]]\"><slot></slot></template><div class=\"card-actions\"><template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\"><button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab><button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab></template><template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\"><a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 201 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"checkbox-clab\"><template><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(label)]]\" type=\"checkbox\" value=\"[[_dashify(label)]]\" checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(label)]]\">[[label]]</label></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 202 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 203 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><template><style>.dropdown-clab .options-list,.options-list li{display:block !important;}</style><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><div id=\"ddWrap\" class$=\"[[_compType('value_wrapper', disabled, type, id)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div><curtain-clab id=\"curtain\" options=\"[[options]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 204 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"feature-clab\"><template><div class$=\"[[_computeFeatureClass(size, vertical)]]\"><template is=\"dom-if\" if=\"[[link]]\"><a href$=\"[[link]]\" target$=\"[[linkTarget]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></a></template><template is=\"dom-if\" if=\"[[!link]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 205 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"file-clab\"><template><style>input[type=file]{\t\t\t\tdisplay:none;\t\t\t}\t\t\tinput[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\" on-click=\"_selection\"><input class$=\"[[type]]\" type=\"text\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\"> <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button></div><note-clab type=\"[[noteType]]\"><content select=\".note\"></content></note-clab><input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\"><div id=\"preview\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 206 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 207 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"label-clab\"><template><span class$=\"[[_computeClass(badge,type)]]\"><slot></slot><template is=\"dom-if\" if=\"[[counter]]\"><span class=\"counter\">[[counter]]</span></template><template is=\"dom-if\" if=\"[[remove]]\"><span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span></template></span></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 208 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"modal-clab\"><template><style>.modal-overlay{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}\t\t\t.third{\t\t\t\tfloat:left;\t\t\t\tclear:none;\t\t\t}</style><div class=\"modal-overlay\"><div class=\"close-overlay\" on-click=\"_closeModal\"><i class=\"clab-icon icon-close\"></i></div><div class=\"modal\"><div class=\"modal-wrapper\" style$=\"[[_computeWidth(width)]]\"><div class=\"modal-title\">[[title]]</div><template is=\"dom-if\" if=\"[[content]]\"><div class=\"modal-body\"><p>[[content]]</p></div></template><template is=\"dom-if\" if=\"[[!content]]\"><div class=\"modal-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[!noActions]]\"><div class=\"main-actions\"><div class=\"primary\"><template is=\"dom-if\" if=\"[[warning]]\"><button-clab type=\"error third\" on-btnclick=\"_warningAction\">[[warning]]</button-clab></template><template is=\"dom-if\" if=\"[[secondary]]\"><button-clab type=\"secondary\" appearance=\"flat\" on-btnclick=\"_secondaryAction\">[[secondary]]</button-clab></template><template is=\"dom-if\" if=\"[[primary]]\"><button-clab type=\"primary\" disabled=\"[[primaryDisabled]]\" on-btnclick=\"_primaryAction\">[[primary]]</button-clab></template></div></div></template></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
 /* 209 */
 /***/ (function(module, exports) {
 
@@ -34553,88 +22597,6 @@ exports.clearImmediate = clearImmediate;
 
 /***/ }),
 /* 210 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"note-clab\"><template><div class$=\"[[classes]]\"><slot></slot></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 211 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"pagination-clab\"><template><style>:host{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t}\t\t\t.page.invisible{\t\t\t\tdisplay:none;\t\t\t}</style><ul class=\"pagination\"><li class$=\"[[_hideIfFirst(currentPage, 'first')]]\" on-click=\"_setCurrent\" data-index$=\"[[firstPage]]\" data-type=\"first\"><i class=\"clab-icon icon-double-arrow-left\"></i></li><li class$=\"[[_hideIfFirst(currentPage)]]\" on-click=\"_setCurrent\" data-index$=\"[[prevPage]]\" data-type=\"prev\"><i class=\"clab-icon icon-arrow-left\"></i></li><template is=\"dom-repeat\" items=\"[[_compVisiblePages(availableStart, availableEnd)]]\" as=\"page\"><li class$=\"[[_computeActive(currentPage, page)]]\" on-click=\"_setCurrent\" data-index$=\"[[page]]\">[[_pageNumber(page)]]</li></template><li class$=\"[[_hideIfLast(currentPage, tot)]]\" on-click=\"_setCurrent\" data-index$=\"[[nextPage]]\" data-type=\"next\"><i class=\"clab-icon icon-arrow-right\"></i></li><li class$=\"[[_hideIfLast(currentPage, tot, 'last')]]\" on-click=\"_setCurrent\" data-index$=\"[[lastPage]]\" data-type=\"last\"><i class=\"clab-icon icon-double-arrow-right\"></i></li></ul></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 212 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"progress-clab\"><template><div class$=\"[[_computeClass(minimal,type)]]\"><section><article style$=\"[[_computeProp(value)]]\"><label id=\"label\">[[_percent(value)]]</label></article></section></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 213 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked$=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 214 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"range-clab\"><template><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class$=\"[[rangeWrapperClasses]]\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"min\">[[min]]</span></template><input class$=\"[[type]]\" type=\"range\" name$=\"[[_dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\" step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"max\">[[max]]</span></template></div><template is=\"dom-if\" if=\"[[showDetails]]\"><div class=\"value\">Range value: <span>[[value]]</span></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 215 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"spinner-clab\"><template><template is=\"dom-if\" if=\"[[visible]]\"><div class$=\"[[_computeClass(big,dark)]]\" style$=\"[[_computeBgColor(background)]]\"><div class=\"spinner\"><div class=\"rect1\"></div><div class=\"rect2\"></div><div class=\"rect3\"></div><div class=\"rect4\"></div><div class=\"rect5\"></div></div></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 216 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"tabs-clab\"><template><div class$=\"[[_computeType(pills, vertical, centered, fullWidth)]]\"><ul><template is=\"dom-repeat\" items=\"[[labels]]\"><li class$=\"[[_computeActive(active,index)]]\" data-index$=\"[[index]]\"><a on-click=\"_activateThis\">[[item]]</a></li></template></ul><div id=\"activeContentWrapper\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 217 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"tags-clab\"><template><div class=\"tags-wrapper\"><template is=\"dom-if\" if=\"[[!hideInput]]\"><input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\"><button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\" icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab><slot name=\"note\"></slot></input-clab></template><div class$=\"[[_computeStacked(stacked)]]\"><template is=\"dom-repeat\" items=\"[[tags]]\"><label-clab remove=\"\" on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 218 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"tooltip-clab\"><template><style>.tooltip{\t\t\t\tposition:fixed;\t\t\t\topacity:0;\t\t\t\tz-index:1000;\t\t\t\tdisplay:none;\t\t\t}\t\t\t.tooltip .arrow{\t\t\t\tposition:absolute;\t\t\t\twidth:0;\t\t\t\theight:0;\t\t\t}\t\t\t.tooltip.visible{\t\t\t\tdisplay:block;\t\t\t}</style><span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\"><slot name=\"tt-label\"></slot></span><div class$=\"[[_computeTooltipClass(type, visible)]]\"><span on-mouseenter=\"_handleMouseOnTT\" on-mouseleave=\"_handleMouseOnTT\"><slot name=\"tt-label\"></slot></span><div class=\"arrow\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 219 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34646,7 +22608,7 @@ module.exports = function(module) {
 
 
 
-class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element) {
+class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
         
   static get is() { return 'pagination-clab'; }
 
@@ -34830,11 +22792,17 @@ customElements.define(PaginationClab.is, PaginationClab);
 
 
 /***/ }),
-/* 221 */
+/* 211 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"pagination-clab\"><template><style>:host{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t}\t\t\t.page.invisible{\t\t\t\tdisplay:none;\t\t\t}</style><ul class=\"pagination\"><li class$=\"[[_hideIfFirst(currentPage, 'first')]]\" on-click=\"_setCurrent\" data-index$=\"[[firstPage]]\" data-type=\"first\"><i class=\"clab-icon icon-double-arrow-left\"></i></li><li class$=\"[[_hideIfFirst(currentPage)]]\" on-click=\"_setCurrent\" data-index$=\"[[prevPage]]\" data-type=\"prev\"><i class=\"clab-icon icon-arrow-left\"></i></li><template is=\"dom-repeat\" items=\"[[_compVisiblePages(availableStart, availableEnd)]]\" as=\"page\"><li class$=\"[[_computeActive(currentPage, page)]]\" on-click=\"_setCurrent\" data-index$=\"[[page]]\">[[_pageNumber(page)]]</li></template><li class$=\"[[_hideIfLast(currentPage, tot)]]\" on-click=\"_setCurrent\" data-index$=\"[[nextPage]]\" data-type=\"next\"><i class=\"clab-icon icon-arrow-right\"></i></li><li class$=\"[[_hideIfLast(currentPage, tot, 'last')]]\" on-click=\"_setCurrent\" data-index$=\"[[lastPage]]\" data-type=\"last\"><i class=\"clab-icon icon-double-arrow-right\"></i></li></ul></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -34892,11 +22860,17 @@ customElements.define(ProgressClab.is, ProgressClab);
 
 
 /***/ }),
-/* 222 */
+/* 213 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"progress-clab\"><template><div class$=\"[[_computeClass(minimal,type)]]\"><section><article style$=\"[[_computeProp(value)]]\"><label id=\"label\">[[_percent(value)]]</label></article></section></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 214 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -34904,7 +22878,7 @@ customElements.define(ProgressClab.is, ProgressClab);
 
 
 
-class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'radio-clab'; }
 
@@ -34966,11 +22940,17 @@ customElements.define(RadioClab.is, RadioClab);
 
 
 /***/ }),
-/* 223 */
+/* 215 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked$=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -34978,7 +22958,7 @@ customElements.define(RadioClab.is, RadioClab);
 
 
 
-class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'range-clab'; }
 
@@ -35054,11 +23034,17 @@ customElements.define(RangeClab.is, RangeClab);
 
 
 /***/ }),
-/* 224 */
+/* 217 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"range-clab\"><template><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class$=\"[[rangeWrapperClasses]]\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"min\">[[min]]</span></template><input class$=\"[[type]]\" type=\"range\" name$=\"[[_dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\" step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"max\">[[max]]</span></template></div><template is=\"dom-if\" if=\"[[showDetails]]\"><div class=\"value\">Range value: <span>[[value]]</span></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -35184,16 +23170,22 @@ customElements.define(TabsClab.is, TabsClab);
 
 
 /***/ }),
-/* 225 */
+/* 219 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"tabs-clab\"><template><div class$=\"[[_computeType(pills, vertical, centered, fullWidth)]]\"><ul><template is=\"dom-repeat\" items=\"[[labels]]\"><li class$=\"[[_computeActive(active,index)]]\" data-index$=\"[[index]]\"><a on-click=\"_activateThis\">[[item]]</a></li></template></ul><div id=\"activeContentWrapper\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_badge__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input___ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_badge__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input___ = __webpack_require__(7);
 
 
 
@@ -35202,7 +23194,7 @@ customElements.define(TabsClab.is, TabsClab);
 
 
 
-class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* UtilBehavior */]], Polymer.Element)  {
+class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
         
   static get is() { return 'tags-clab'; }
 
@@ -35347,11 +23339,17 @@ customElements.define(TagsClab.is, TagsClab);
 
 
 /***/ }),
-/* 226 */
+/* 221 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"tags-clab\"><template><div class=\"tags-wrapper\"><template is=\"dom-if\" if=\"[[!hideInput]]\"><input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\"><button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\" icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab><slot name=\"note\"></slot></input-clab></template><div class$=\"[[_computeStacked(stacked)]]\"><template is=\"dom-repeat\" items=\"[[tags]]\"><label-clab remove=\"\" on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -35524,6 +23522,172 @@ class TooltipClab extends Polymer.Element {
 
 customElements.define(TooltipClab.is, TooltipClab);
 
+
+/***/ }),
+/* 223 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"tooltip-clab\"><template><style>.tooltip{\t\t\t\tposition:fixed;\t\t\t\topacity:0;\t\t\t\tz-index:1000;\t\t\t\tdisplay:none;\t\t\t}\t\t\t.tooltip .arrow{\t\t\t\tposition:absolute;\t\t\t\twidth:0;\t\t\t\theight:0;\t\t\t}\t\t\t.tooltip.visible{\t\t\t\tdisplay:block;\t\t\t}</style><span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\"><slot name=\"tt-label\"></slot></span><div class$=\"[[_computeTooltipClass(type, visible)]]\"><span on-mouseenter=\"_handleMouseOnTT\" on-mouseleave=\"_handleMouseOnTT\"><slot name=\"tt-label\"></slot></span><div class=\"arrow\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 224 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__template_html__);
+
+
+
+
+class DemoElement extends Polymer.Element {
+
+  static get is() { return 'demo-element'; }
+
+  static get properties() {
+    return {
+
+    }
+  }
+
+
+  connectedCallback(){
+    super.connectedCallback();
+
+    setTimeout(() => {
+        // Dropdown in search mode
+        const ddData = [{ "name": "ciccio", "value": "ciccio" }, { "name": "puzzo raga", "value": "puzzo raga" }, { "name": "bella", "value": "bella" }, { "name": "raga", "value": "raga" }, { "name": "tutto raga", "value": "tutto raga" }, { "name": "tutto rego", "value": "tutto rego" }]
+        const ddSelected = Object.assign({}, ddData[2]);
+        const ddsearch = this.$.ddsearch;
+
+        setTimeout(() => {
+          ddsearch.options = ddData;
+        }, 1500)
+        setTimeout(() => {
+          ddsearch.selected = ddSelected;
+        }, 700)
+
+
+        // MODAL
+        this.modal1 = this.$.modalOne;
+        this.modal2 = this.$.modalTwo;
+        this.modal1.addEventListener('modal-primary', function () {
+          alert('Clicked');
+        });
+        this.modal1.addEventListener('modal-secondary', function (evt) {
+          evt.target.hide();
+        })
+        this.modal2.addEventListener('modal-primary', function () {
+          alert('Clicked');
+        });
+        this.modal2.addEventListener('modal-secondary', function (evt) {
+          evt.target.hide();
+        })
+        this.modal2.addEventListener('modal-warning', function (evt) {
+          if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
+        }.bind(this))
+        // Calendar
+        this.$.cal.options = {
+          time: false,
+          inputFormat: "DD/MM/YYYY"
+        };
+        Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function (el) {
+          el.addEventListener('change', function (evt) {
+            console.log('autocomplete-clab ', evt.detail)
+          });
+          el.addEventListener('sendRes', function (evt) {
+            console.log('autocomplete-clab ', evt.detail)
+          });
+          el.addEventListener('typing', function (evt) {
+            console.log('autocomplete-clab typing', evt)
+          });
+        });
+        Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function (dropdown) {
+          dropdown.addEventListener('change', function (evt) {
+            console.log('dropdown-clab ', evt.detail)
+          });
+        });
+        this.$.multi.addEventListener('change', function (evt) {
+          console.log('multiple-clab ', evt.detail.selected)
+        });
+      }, 200);
+
+      /*var menu = document.querySelector('menu-clab');
+      menu.menu = [{
+        "label": "Home",
+        "url": "#/home",
+        "visible": false
+      }, {
+        "label": "Plans",
+        "url": "#/plans",
+        "icon": "clab-icon icon-dashboard icon"
+      }, {
+        "label": "Segments",
+        "url": "#/segments",
+        "icon": "clab-icon icon-segment icon"
+      }, {
+        "label": "Reports",
+        "url": "#/reports",
+        "icon": "clab-icon icon-analytics icon"
+      }, {
+        "label": "Settings",
+        "url": "#/settings",
+        "icon": "clab-icon icon-settings icon",
+        "submenu": [{
+          "label": "Showed fields",
+          "url": "#/settings/fields"
+        }, {
+          "label": "Time zones & week",
+          "url": "#/settings/timezones"
+        }, {
+          "label": "Do Not Disturb Policy",
+          "url": "#/settings/dnd"
+        }, {
+          "label": "Users",
+          "url": "#/settings/users"
+        }]
+      }];*/
+    }
+
+
+    _openModal1() {
+        this.modal1.show();
+    }
+
+    _openModal2() {
+      this.modal2.show();
+    }
+
+    _notify(evt) {
+      this.$.notify.visible = true;
+    }
+
+    _fire(evt) {
+      console.log('primary');
+    }
+
+    _checkboxChange(evt) {
+      console.log(evt.target);
+    }
+
+    _changeCurrentHash(evt) {
+      this.set('currentHash', evt.detail.href);
+    }
+
+    _dateChange(evt){
+      console.log(evt.detail)
+    }
+
+}
+
+customElements.define(DemoElement.is, DemoElement);
+
+
+/***/ }),
+/* 225 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"demo-element\"><template><style>.content.dark{background-color:var(--bg-color);}.content:last-child{margin-bottom:100px;}</style><menu-clab title-icon=\"icon-sign sign\" link=\"#/home\" current-hash=\"[[currentHash]]\" on-a-click=\"_changeCurrentHash\"><span class=\"product-name\">contact<b>plan</b></span><div class=\"alerts\"><alert-clab id=\"notify\" notify=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab></div></menu-clab><main class=\"main-content\"><section class=\"icons\" style=\"font-size: 50px\"><i class=\"clab-icon icon-play\"></i> <i class=\"clab-icon icon-pause\"></i> <i class=\"clab-icon icon-stop\"></i> <i class=\"clab-icon icon-fast-backward\"></i> <i class=\"clab-icon icon-backward\"></i> <i class=\"clab-icon icon-forward\"></i> <i class=\"clab-icon icon-fast-forward\"></i> <i class=\"clab-icon icon-equal-circle\"></i> <i class=\"clab-icon icon-equal-circle-full\"></i> <i class=\"clab-icon icon-full-arrow-top\"></i> <i class=\"clab-icon icon-full-arrow-right\"></i> <i class=\"clab-icon icon-full-arrow-down\"></i> <i class=\"clab-icon icon-full-arrow-left\"></i></section><section><h2>Alerts</h2><alert-clab visible=\"\" type=\"primary\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"warning\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"error\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"info\" primary=\"Go\" secondary=\"Cancel\" no-animation=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><button-clab on-click=\"_notify\">Show notification alert</button-clab></section><section><ul><li>Lorem ipsum dolor sit amet.</li><li>Ipsam eos assumenda laboriosam veritatis!</li></ul></section><section><h2>Searchable dropdown</h2><dropdown-clab search=\"\" max-in-view=\"4\" label=\"Awesome Dropdown\" result-as-obj=\"\" options=\"[{&quot;name&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;name&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;name&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;name&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;name&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" selected=\"{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;}\" label-field=\"name\"></dropdown-clab><dropdown-clab search=\"\" id=\"ddsearch\" max-in-view=\"4\" label=\"Awesome Dropdown [test]\" result-as-obj=\"\" label-field=\"name\"></dropdown-clab></section><section><h2>Tables</h2><table class=\"striped-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><table class=\"hover-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><div class=\"table responsive-table\"><div class=\"thead\"><div class=\"tr\"><div class=\"th\">Table Header 1</div><div class=\"th\">Table Header 2</div><div class=\"th\">Table Header 3</div></div></div><div class=\"tbody\"><div class=\"tr\"><div class=\"td\" data-th=\"Table Header 1\">Division 1</div><div class=\"td\" data-th=\"Table Header 2\">Division 2</div><div class=\"td\" data-th=\"Table Header 3\">Division 3</div></div></div></div></section><section><h2>Accordion</h2><accordion-clab title=\"Accordion 1\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab><accordion-clab title=\"Accordion 2\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab></section><section><h2>Buttons</h2><article><button-clab>Just click me</button-clab><button-clab type=\"primary\">Just click me</button-clab><button-clab type=\"primary empty\">Just click me</button-clab></article><article><button-clab block=\"\">Just click me</button-clab><button-clab block=\"\" size=\"small\">Just click me</button-clab></article><article><button-clab size=\"small\">Just click me</button-clab><button-clab size=\"small\" type=\"primary\">Just click me</button-clab><button-clab size=\"small\" type=\"primary empty\">Just click me</button-clab></article></section><section><h2>Buttons group</h2><article><group-clab options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"info\" size=\"small\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" size=\"smaller\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article></section><section><h2>Cards</h2><card-clab title=\"My Card\" icon=\"icon-class\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab title=\"My Card 2\" no-actions=\"\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab link=\"{&quot;text&quot;:&quot;blabla&quot;, &quot;href&quot;:&quot;#/hearts&quot;}\" icon=\"clab-icon icon-heart-full\" title=\"Queen of hearts\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With a link</p></card-clab></section><section><h2>Features</h2><feature-clab icon-class=\"clab-icon icon-heart-full\" size=\"small\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab icon-class=\"clab-icon icon-heart-full\" link=\"#\" vertical=\"\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\" vertical=\"\" link=\"https://www.google.it/\" link-target=\"_blank\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab></section><section><h2>Spinner</h2><div style=\"display: flex\"><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"200, 200, 200, 0.8\"></spinner-clab></article><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"0, 0, 0, 0.9\" dark=\"\"></spinner-clab></article></div></section><section><h2>Progress bar</h2><progress-clab value=\"42\" minimal=\"\"></progress-clab><progress-clab value=\"87\" type=\"primary\"></progress-clab></section><section><h2>Tabs &amp; pills</h2><tabs-clab labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" vertical=\"\" centered=\"\" full-width=\"\" restamp=\"\"><div class=\"tab-content\"><div><button-clab>vai</button-clab></div></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab><tabs-clab pills=\"\" labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" centered=\"\" full-width=\"\"><div class=\"tab-content\"><accordion-clab title=\"ciccio\">ciccio puzzo</accordion-clab></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab></section><section><h2>Tooltips</h2><article><tooltip-clab type=\"primary\" wait=\"200\"><button-clab class=\"tt-label\">Edit</button-clab><span class=\"tt-content\">Click to edit this block</span></tooltip-clab><tooltip-clab type=\"error\" wait=\"0\"><button-clab class=\"tt-label\">Cancel</button-clab><span class=\"tt-content\">Click to cancel this block</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><accordion-clab class=\"tt-label\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi cumque.</accordion-clab><span class=\"tt-content\">Click to read more</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><span class=\"tt-label\">My Tooltip</span> <span class=\"tt-content\">Click to read more</span></tooltip-clab></article></section><section><h2>Label &amp; badges</h2><label-clab type=\"error\">Just a test</label-clab><label-clab badge=\"\">42</label-clab></section><section><h2>Autocomplete</h2><autocomplete-clab inline=\"\" label=\"Normal auto-complete\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" min-char=\"1\" label-size=\"larger\" type=\"success\" note-type=\"info\"><span class=\"note\">Type here to get hints</span> <span class=\"button\"><button-clab>hola</button-clab></span></autocomplete-clab>&nbsp;<autocomplete-clab label=\"AJAX auto-complete\" min-char=\"1\" filter=\"\" url=\"http://localhost:4000/json\"><span class=\"note\">Type here to get hints</span></autocomplete-clab></section><section><h2>Dropdown</h2><dropdown-clab max-in-view=\"5\" type=\"success\" note-type=\"error\" result-as-obj=\"\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" selected=\"{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;}\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\">&gt; <span class=\"note\">This is my note</span> <span class=\"button\"><button-clab>ciao</button-clab></span></dropdown-clab><dropdown-clab max-in-view=\"5\" result-as-obj=\"\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\"><span class=\"note\">This is my note</span></dropdown-clab><dropdown-clab max-in-view=\"3\" label=\"Awesome Dropdown\" result-as-obj=\"\" options=\"[{&quot;name&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;name&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;name&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;name&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;name&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" label-field=\"name\"><span class=\"note\">This is my note</span></dropdown-clab></section><section><h2>Tags</h2><article><tags-clab label=\"Add tag\" placeholder=\"rosso\" type=\"warning\"><span class=\"note\">Lorem ipsum dolor sit.</span></tags-clab></article><article><div class=\"input-wrapper\"><label for=\"\">Add tag</label><div class=\"input\"><input type=\"text\" placeholder=\"placeholder\"> <button class=\"btn\">Add</button></div><div class=\"note-clab\">Lorem ipsum dolor sit.</div></div></article></section><section><h2>Modal</h2><button-clab id=\"openModal-one\" on-click=\"_openModal1\">Open modal (content via attribute)</button-clab><button-clab id=\"openModal-two\" on-click=\"_openModal2\">Open modal (content via HTML)</button-clab><modal-clab id=\"modalOne\" max-width=\"500px\" title=\"Dummy modal\" primary=\"Confirm\" secondary=\"Cancel\" content=\"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?\" width=\"800px\" no-actions=\"\"></modal-clab><modal-clab id=\"modalTwo\" title=\"Dummy modal\" primary=\"Confirm\" primary-disabled=\"\" secondary=\"Cancel\" warning=\"Do something\" no-animation=\"\"><h2>Some HTML...</h2><hr><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel! Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo. Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci, quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto! Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt. Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!</p><ul><li>ksbdfkbsdf</li><li>sdfbgsdfgsdfg</li><li>sdfgsdfgsdfg</li></ul></modal-clab></section><section><h2>Pagination</h2><pagination-clab tot=\"20\"></pagination-clab></section><section><h2>Multiple</h2><multiple-clab label=\"Select multiple options\" max-in-view=\"10\" id=\"multi\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\"><span class=\"note\">This is a note</span></multiple-clab></section><section><h2>Row actions</h2><div class=\"row-action success\"><a><i class=\"clab-icon icon-check\"></i></a></div><div class=\"row-action error\"><a><i class=\"clab-icon icon-close\"></i></a></div></section><section><h2>Input</h2><input-clab value=\"ciao\" label=\"My label\" note-type=\"error\" type=\"success\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" label=\"Input with buttons\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"error\">cancel</button-clab><button-clab class=\"button\" type=\"success\">save</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"small\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\" inline=\"\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"large\" icon=\"icon-edit\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab></section><section><h2>Password</h2><input-clab password=\"\" check=\"\" value=\"ciao\" label=\"My label\"></input-clab></section><section><h2>Calendar</h2><calendar-clab inline=\"\" id=\"cal\"></calendar-clab><calendar-clab label=\"Calendar not inline - ITALIAN\" options=\"{&quot;locale&quot;: &quot;it&quot;}\" type=\"info\" note-type=\"error\" on-datechange=\"_dateChange\"><span class=\"note\">This is note</span></calendar-clab><calendar-clab label=\"Calendar not inline - FRENCH\" options=\"{&quot;locale&quot;: &quot;fr&quot;}\" type=\"info\" note-type=\"error\"></calendar-clab></section><section><h2>Range</h2><range-clab label=\"My wonderful range input label\" value=\"5\" min=\"0\" max=\"10\" step=\"1\" show-details=\"\"></range-clab></section><section><h2>Radio</h2><radio-clab labels=\"[&quot;radio 1&quot;, &quot;radio 3&quot;, &quot;radio 2&quot;]\" name=\"group1\" active=\"0\" disabled=\"[1]\"></radio-clab></section><section><h2>Checkbox</h2><checkbox-clab label=\"ciao\" active=\"\" on-selected-change=\"_checkboxChange\"></checkbox-clab></section><section><h2>Input file</h2><file-clab label=\"My wonderful file input label\" type=\"info\" note-type=\"error\"><span class=\"note\">A simple input component</span></file-clab></section></main></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ })
 /******/ ]);
