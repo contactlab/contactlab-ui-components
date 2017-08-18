@@ -3,46 +3,24 @@
 import rome from 'rome';
 import moment from 'moment';
 import { dashify, viewLabel } from './../_libs/utils';
+import props from './props';
+import { clear, getLocale } from './methods/public';
+import { _computeType, _getLocale, _getFormat } from './methods/internal';
 import './view.html';
 import "./../note";
 
-// class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
 class CalendarClab extends Polymer.mixinBehaviors(
-  [Polymer.LegacyElementMixin, { dashify, viewLabel }], Polymer.Element) {
+  [{ dashify, viewLabel, getLocale, _computeType },
+    Polymer.LegacyElementMixin], Polymer.Element) {
 
-  static get is() { return 'calendar-clab'; }
+  static get is() { return 'calendar-clab' }
 
-  static get properties() {
-    return {
-      label: String,
-      disabled: {
-        type: Boolean,
-        value: false
-      },
-      valueStr: {
-        type: String,
-        value: null,
-        notify: true
-      },
-      inline: {
-        type: Boolean,
-        value: false
-      },
-      options: {
-        type: Object,
-        value: {}
-      },
-      placeholder: String,
-      type: String,
-      noteType: String
-    }
-  }
+  static get properties() { return props }
 
-  connectedCallback(){
-    super.connectedCallback();
-    setTimeout(() => {
-      this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
-    }, 50);
+  _initRome(){
+    const selector = this.inline ? 'div.inline-cal' : "input";
+    this.$$(selector) ? this._createInstance(selector) : null;
+    return selector;
   }
 
   disconnectedCallback() {
@@ -75,7 +53,7 @@ class CalendarClab extends Polymer.mixinBehaviors(
     }
 
     if (newDate === "" && this.valueStr !== null) {
-      this.clear();
+      clear(this.getRomeInstance(), this.value, this.valueStr);
       this.dispatchEvent(new CustomEvent('datechange', {
         bubbles: true,
         composed: true,
@@ -93,7 +71,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
       this.getRomeInstance().show();
     }
   }
-
 
 
   /*----------
@@ -138,51 +115,22 @@ class CalendarClab extends Polymer.mixinBehaviors(
   }
 
 
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeType(str, type) {
-    return [str, type].join(' ');
-  }
-
-
-
-
-  /*----------
-  UTILS
-  ----------*/
-  _getFormat() {
-    let thisFormat = this.options.inputFormat ? this.options.inputFormat : this.getRomeInstance().options().inputFormat;
-    return thisFormat;
-  }
-
-  _getLocale() {
-    let thisLocale = this.options.locale ? this.options.locale : 'en';
-    return thisLocale;
-  }
-
-
-
   /*----------
   PUBLIC METHODS
   ----------*/
   setValue(userValue) {
-    this.valueStr = moment(userValue).format(this._getFormat());
+    this.valueStr = moment(userValue)
+      .format(_getFormat(this.options, this.getRomeInstance()));
   }
 
   getValue() {
-    let formatted = moment(this.valueStr, this._getFormat()).format();
+    const formatted = moment(this.valueStr,
+      _getFormat(this.options, this.getRomeInstance())).format();
     return this.valueStr ? formatted : undefined;
   }
 
   setLocale() {
-    let thisLocale = this._getLocale();
-    rome.moment.locale(thisLocale);
-  }
-
-  getLocale() {
-    return rome.moment.locale();
+    rome.moment.locale(_getLocale(this.options));
   }
 
   getRomeInstance() {
@@ -195,13 +143,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     rome(currentCalendar).destroy();
     rome(currentCalendar).restore(options || this.options);
     return currentCalendar;
-  }
-
-  clear() {
-    this.value = '';
-    this.valueStr = null;
-    let rome = this.getRomeInstance();
-    rome.setValue(moment().format());
   }
 
 }

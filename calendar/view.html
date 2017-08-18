@@ -6,7 +6,7 @@
       }
 
     </style>
-    <template is="dom-if" if="[[!inline]]">
+    <template is="dom-if" if="[[!inline]]" on-dom-change="_initRome">
       <div class$="[[_computeType('calendar input-wrapper', type)]]">
         <template is="dom-if" if="[[viewLabel(label)]]">
           <label class$="[[type]]" for$="[[dashify(name)]]">[[label]]</label>
@@ -23,7 +23,7 @@
         </note-clab>
       </div>
     </template>
-    <template is="dom-if" if="[[inline]]">
+    <template is="dom-if" if="[[inline]]" on-dom-change="_initRome">
       <div class="inline-cal"></div>
     </template>
   </template>

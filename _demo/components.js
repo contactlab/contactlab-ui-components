@@ -17586,7 +17586,7 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(209);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -17652,7 +17652,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(137);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(138);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(228);
 
 
 
@@ -17692,25 +17692,25 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button___ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group___ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar___ = __webpack_require__(152);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__card___ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__checkbox___ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__card___ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__checkbox___ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__curtain___ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropdown___ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feature___ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__file___ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__dropdown___ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feature___ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__file___ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__input___ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__label_badge___ = __webpack_require__(135);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal___ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__multiple___ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal___ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__multiple___ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__note___ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pagination___ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__progress_bar___ = __webpack_require__(213);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__radio___ = __webpack_require__(215);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__range___ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pagination___ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__progress_bar___ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__radio___ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__range___ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__spinner___ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tabs___ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tags___ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__tooltip___ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__tabs___ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__tags___ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__tooltip___ = __webpack_require__(226);
 
 
 
@@ -18567,10 +18567,13 @@ customElements.define(GroupClab.is, GroupClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rome__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_utils__ = __webpack_require__(195);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__note__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__libs_utils__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__methods_public__ = __webpack_require__(196);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__methods_internal__ = __webpack_require__(197);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__note__ = __webpack_require__(5);
 
 
 
@@ -18579,43 +18582,21 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 
-// class CalendarClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
+
+
+
 class CalendarClab extends Polymer.mixinBehaviors(
-  [Polymer.LegacyElementMixin, { dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["b" /* viewLabel */] }], Polymer.Element) {
+  [{ dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["b" /* viewLabel */], getLocale: __WEBPACK_IMPORTED_MODULE_4__methods_public__["b" /* getLocale */], _computeType: __WEBPACK_IMPORTED_MODULE_5__methods_internal__["a" /* _computeType */] },
+    Polymer.LegacyElementMixin], Polymer.Element) {
 
-  static get is() { return 'calendar-clab'; }
+  static get is() { return 'calendar-clab' }
 
-  static get properties() {
-    return {
-      label: String,
-      disabled: {
-        type: Boolean,
-        value: false
-      },
-      valueStr: {
-        type: String,
-        value: null,
-        notify: true
-      },
-      inline: {
-        type: Boolean,
-        value: false
-      },
-      options: {
-        type: Object,
-        value: {}
-      },
-      placeholder: String,
-      type: String,
-      noteType: String
-    }
-  }
+  static get properties() { return __WEBPACK_IMPORTED_MODULE_3__props__["a" /* default */] }
 
-  connectedCallback(){
-    super.connectedCallback();
-    setTimeout(() => {
-      this.inline ? this._createInstance('div.inline-cal') : this._createInstance("input");
-    }, 50);
+  _initRome(){
+    const selector = this.inline ? 'div.inline-cal' : "input";
+    this.$$(selector) ? this._createInstance(selector) : null;
+    return selector;
   }
 
   disconnectedCallback() {
@@ -18648,7 +18629,7 @@ class CalendarClab extends Polymer.mixinBehaviors(
     }
 
     if (newDate === "" && this.valueStr !== null) {
-      this.clear();
+      Object(__WEBPACK_IMPORTED_MODULE_4__methods_public__["a" /* clear */])(this.getRomeInstance(), this.value, this.valueStr);
       this.dispatchEvent(new CustomEvent('datechange', {
         bubbles: true,
         composed: true,
@@ -18666,7 +18647,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
       this.getRomeInstance().show();
     }
   }
-
 
 
   /*----------
@@ -18711,51 +18691,22 @@ class CalendarClab extends Polymer.mixinBehaviors(
   }
 
 
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeType(str, type) {
-    return [str, type].join(' ');
-  }
-
-
-
-
-  /*----------
-  UTILS
-  ----------*/
-  _getFormat() {
-    let thisFormat = this.options.inputFormat ? this.options.inputFormat : this.getRomeInstance().options().inputFormat;
-    return thisFormat;
-  }
-
-  _getLocale() {
-    let thisLocale = this.options.locale ? this.options.locale : 'en';
-    return thisLocale;
-  }
-
-
-
   /*----------
   PUBLIC METHODS
   ----------*/
   setValue(userValue) {
-    this.valueStr = __WEBPACK_IMPORTED_MODULE_1_moment___default()(userValue).format(this._getFormat());
+    this.valueStr = __WEBPACK_IMPORTED_MODULE_1_moment___default()(userValue)
+      .format(Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance()));
   }
 
   getValue() {
-    let formatted = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.valueStr, this._getFormat()).format();
+    const formatted = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.valueStr,
+      Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance())).format();
     return this.valueStr ? formatted : undefined;
   }
 
   setLocale() {
-    let thisLocale = this._getLocale();
-    __WEBPACK_IMPORTED_MODULE_0_rome___default.a.moment.locale(thisLocale);
-  }
-
-  getLocale() {
-    return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.moment.locale();
+    __WEBPACK_IMPORTED_MODULE_0_rome___default.a.moment.locale(Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["c" /* _getLocale */])(this.options));
   }
 
   getRomeInstance() {
@@ -18768,13 +18719,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar).destroy();
     __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar).restore(options || this.options);
     return currentCalendar;
-  }
-
-  clear() {
-    this.value = '';
-    this.valueStr = null;
-    let rome = this.getRomeInstance();
-    rome.setValue(__WEBPACK_IMPORTED_MODULE_1_moment___default()().format());
   }
 
 }
@@ -21175,12 +21119,6 @@ module.exports = {
 
 /***/ }),
 /* 194 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
-
-/***/ }),
-/* 195 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -21213,11 +21151,112 @@ const getIndex = (item, items) => {
 
 
 /***/ }),
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String
+  },
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  valueStr: {
+    type: String,
+    value: null,
+    notify: true
+  },
+  inline: {
+    type: Boolean,
+    value: false
+  },
+  options: {
+    type: Object,
+    value: {}
+  },
+  placeholder: {
+    type: String,
+    value: ''
+  },
+  type: {
+    type: String
+  },
+  noteType: {
+    type: String
+  }
+});
+
+
+/***/ }),
 /* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(197);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return clear; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getLocale; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rome__);
+
+
+
+
+const clear = (romeInstance, value, valueStr) => {
+  value = '';
+  valueStr = null;
+  romeInstance.setValue(moment().format());
+  return { romeInstance, value, valueStr }
+}
+
+const getLocale = () => {
+  return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.moment.locale();
+}
+
+
+
+
+/***/ }),
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeType; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return _getLocale; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _getFormat; });
+
+
+const _computeType = (str, type) => {
+  return [str, type].join(' ');
+}
+
+const _getLocale = (options) => {
+  const thisLocale = options.locale ? options.locale : 'en';
+  return thisLocale;
+}
+
+const _getFormat = (options, romeInst) => {
+  const thisFormat = options.inputFormat ? options.inputFormat : romeInst.options().inputFormat;
+  return thisFormat;
+}
+
+
+
+
+/***/ }),
+/* 198 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 199 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button__ = __webpack_require__(3);
 
@@ -21362,17 +21401,17 @@ customElements.define(CardClab.is, CardClab);
 
 
 /***/ }),
-/* 197 */
+/* 200 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"card-clab\"><template><div class$=\"[[_computeEffectClass(effect)]]\"><template is=\"dom-if\" if=\"[[!figure]]\"><div class$=\"[[_computeCardClass(big)]]\"><template is=\"dom-if\" if=\"[[!big]]\"><i class$=\"[[icon]]\"></i></template><span>[[title]]</span><template is=\"dom-if\" if=\"[[big]]\"><div class=\"circle\"><i class=\"fa fa-circle\"></i></div><div class=\"icon\"><i class$=\"[[icon]]\"></i></div></template></div></template><template is=\"dom-if\" if=\"[[figure]]\"><figure><img src=\"[[figure]]\"><template is=\"dom-if\" if=\"[[_showTitle(title)]]\"><h2>[[title]]</h2></template></figure></template><template is=\"dom-if\" if=\"[[!table]]\"><div class=\"card-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[table]]\"><slot></slot></template><div class=\"card-actions\"><template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\"><button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab><button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab></template><template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\"><a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 198 */
+/* 201 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(199);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -21509,17 +21548,17 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 
 /***/ }),
-/* 199 */
+/* 202 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"checkbox-clab\"><template><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(label)]]\" type=\"checkbox\" value=\"[[_dashify(label)]]\" checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(label)]]\">[[label]]</label></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 200 */
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(201);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(5);
@@ -21839,17 +21878,17 @@ customElements.define(DropdownClab.is, DropdownClab);
 
 
 /***/ }),
-/* 201 */
+/* 204 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><template><style>.dropdown-clab .options-list,.options-list li{display:block !important;}</style><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 202 */
+/* 205 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(206);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -21911,17 +21950,17 @@ customElements.define(FeatureClab.is, FeatureClab);
 
 
 /***/ }),
-/* 203 */
+/* 206 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"feature-clab\"><template><div class$=\"[[_computeFeatureClass(size, vertical)]]\"><template is=\"dom-if\" if=\"[[link]]\"><a href$=\"[[link]]\" target$=\"[[linkTarget]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></a></template><template is=\"dom-if\" if=\"[[!link]]\"><div class=\"image\"><i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i> <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\"></div><div class=\"description\"><slot></slot></div></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 204 */
+/* 207 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -22044,23 +22083,23 @@ customElements.define(FileClab.is, FileClab);
 
 
 /***/ }),
-/* 205 */
+/* 208 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"file-clab\"><template><style>input[type=file]{\t\t\t\tdisplay:none;\t\t\t}\t\t\tinput[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\" on-click=\"_selection\"><input class$=\"[[type]]\" type=\"text\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\"> <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button></div><note-clab type=\"[[noteType]]\"><content select=\".note\"></content></note-clab><input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\"><div id=\"preview\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 206 */
+/* 209 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"label-clab\"><template><span class$=\"[[_computeClass(badge,type)]]\"><slot></slot><template is=\"dom-if\" if=\"[[counter]]\"><span class=\"counter\">[[counter]]</span></template><template is=\"dom-if\" if=\"[[remove]]\"><span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span></template></span></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 207 */
+/* 210 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(211);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button___ = __webpack_require__(3);
@@ -22272,17 +22311,17 @@ customElements.define(ModalClab.is, ModalClab);
 
 
 /***/ }),
-/* 208 */
+/* 211 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"modal-clab\"><template><style>.modal-overlay{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}\t\t\t.third{\t\t\t\tfloat:left;\t\t\t\tclear:none;\t\t\t}</style><div class=\"modal-overlay\"><div class=\"close-overlay\" on-click=\"_closeModal\"><i class=\"clab-icon icon-close\"></i></div><div class=\"modal\"><div class=\"modal-wrapper\" style$=\"[[_computeWidth(width)]]\"><div class=\"modal-title\">[[title]]</div><template is=\"dom-if\" if=\"[[content]]\"><div class=\"modal-body\"><p>[[content]]</p></div></template><template is=\"dom-if\" if=\"[[!content]]\"><div class=\"modal-body\"><slot></slot></div></template><template is=\"dom-if\" if=\"[[!noActions]]\"><div class=\"main-actions\"><div class=\"primary\"><template is=\"dom-if\" if=\"[[warning]]\"><button-clab type=\"error third\" on-btnclick=\"_warningAction\">[[warning]]</button-clab></template><template is=\"dom-if\" if=\"[[secondary]]\"><button-clab type=\"secondary\" appearance=\"flat\" on-btnclick=\"_secondaryAction\">[[secondary]]</button-clab></template><template is=\"dom-if\" if=\"[[primary]]\"><button-clab type=\"primary\" disabled=\"[[primaryDisabled]]\" on-btnclick=\"_primaryAction\">[[primary]]</button-clab></template></div></div></template></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 209 */
+/* 212 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(5);
@@ -22620,17 +22659,17 @@ customElements.define(MultipleClab.is, MultipleClab);
 
 
 /***/ }),
-/* 210 */
+/* 213 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"multiple-clab\"><template><style>li{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t\tmargin:0;\t\t\t}\t\t\tli.selected{\t\t\t\tcolor:red;\t\t\t}\t\t\t.multiple-wrapper{\t\t\t\theight:auto;\t\t\t\twidth:100%;\t\t\t\toverflow:hidden;\t\t\t\tposition:relative;\t\t\t}\t\t\t.options-list{\t\t\t\tmax-height:300px;\t\t\t\tposition:relative;\t\t\t\twidth:100%;\t\t\t\toverflow-y:auto;\t\t\t}</style><div class=\"input-wrapper\"><template is=\"dom-if\" if=\"[[label]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div id$=\"[[_dashify(name)]]\" class$=\"[[_compWrapperType(type)]]\"><ol class=\"options-list\" on-scroll=\"_loadContent\"><template is=\"dom-repeat\" items=\"[[options]]\"><li data-index$=\"[[index]]\" tabindex=\"0\" on-click=\"_handleSelection\" class$=\"[[_computeSelection(item.selected)]]\">[[item.label]]</li></template></ol><spinner-clab visible=\"[[spinner]]\"></spinner-clab></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 211 */
+/* 214 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(212);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -22822,17 +22861,17 @@ customElements.define(PaginationClab.is, PaginationClab);
 
 
 /***/ }),
-/* 212 */
+/* 215 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"pagination-clab\"><template><style>:host{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t}\t\t\t.page.invisible{\t\t\t\tdisplay:none;\t\t\t}</style><ul class=\"pagination\"><li class$=\"[[_hideIfFirst(currentPage, 'first')]]\" on-click=\"_setCurrent\" data-index$=\"[[firstPage]]\" data-type=\"first\"><i class=\"clab-icon icon-double-arrow-left\"></i></li><li class$=\"[[_hideIfFirst(currentPage)]]\" on-click=\"_setCurrent\" data-index$=\"[[prevPage]]\" data-type=\"prev\"><i class=\"clab-icon icon-arrow-left\"></i></li><template is=\"dom-repeat\" items=\"[[_compVisiblePages(availableStart, availableEnd)]]\" as=\"page\"><li class$=\"[[_computeActive(currentPage, page)]]\" on-click=\"_setCurrent\" data-index$=\"[[page]]\">[[_pageNumber(page)]]</li></template><li class$=\"[[_hideIfLast(currentPage, tot)]]\" on-click=\"_setCurrent\" data-index$=\"[[nextPage]]\" data-type=\"next\"><i class=\"clab-icon icon-arrow-right\"></i></li><li class$=\"[[_hideIfLast(currentPage, tot, 'last')]]\" on-click=\"_setCurrent\" data-index$=\"[[lastPage]]\" data-type=\"last\"><i class=\"clab-icon icon-double-arrow-right\"></i></li></ul></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 213 */
+/* 216 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(214);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(217);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -22890,17 +22929,17 @@ customElements.define(ProgressClab.is, ProgressClab);
 
 
 /***/ }),
-/* 214 */
+/* 217 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"progress-clab\"><template><div class$=\"[[_computeClass(minimal,type)]]\"><section><article style$=\"[[_computeProp(value)]]\"><label id=\"label\">[[_percent(value)]]</label></article></section></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 215 */
+/* 218 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(216);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -22981,17 +23020,17 @@ customElements.define(RadioClab.is, RadioClab);
 
 
 /***/ }),
-/* 216 */
+/* 219 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 217 */
+/* 220 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 
@@ -23075,17 +23114,17 @@ customElements.define(RangeClab.is, RangeClab);
 
 
 /***/ }),
-/* 218 */
+/* 221 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"range-clab\"><template><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class$=\"[[rangeWrapperClasses]]\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"min\">[[min]]</span></template><input class$=\"[[type]]\" type=\"range\" name$=\"[[_dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\" step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"max\">[[max]]</span></template></div><template is=\"dom-if\" if=\"[[showDetails]]\"><div class=\"value\">Range value: <span>[[value]]</span></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 219 */
+/* 222 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(223);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -23211,17 +23250,17 @@ customElements.define(TabsClab.is, TabsClab);
 
 
 /***/ }),
-/* 220 */
+/* 223 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"tabs-clab\"><template><div class$=\"[[_computeType(pills, vertical, centered, fullWidth)]]\"><ul><template is=\"dom-repeat\" items=\"[[labels]]\"><li class$=\"[[_computeActive(active,index)]]\" data-index$=\"[[index]]\"><a on-click=\"_activateThis\">[[item]]</a></li></template></ul><div id=\"activeContentWrapper\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 221 */
+/* 224 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
@@ -23380,17 +23419,17 @@ customElements.define(TagsClab.is, TagsClab);
 
 
 /***/ }),
-/* 222 */
+/* 225 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"tags-clab\"><template><div class=\"tags-wrapper\"><template is=\"dom-if\" if=\"[[!hideInput]]\"><input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\"><button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\" icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab><slot name=\"note\"></slot></input-clab></template><div class$=\"[[_computeStacked(stacked)]]\"><template is=\"dom-repeat\" items=\"[[tags]]\"><label-clab remove=\"\" on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab></template></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 223 */
+/* 226 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(227);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
@@ -23565,17 +23604,17 @@ customElements.define(TooltipClab.is, TooltipClab);
 
 
 /***/ }),
-/* 224 */
+/* 227 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"tooltip-clab\"><template><style>.tooltip{\t\t\t\tposition:fixed;\t\t\t\topacity:0;\t\t\t\tz-index:1000;\t\t\t\tdisplay:none;\t\t\t}\t\t\t.tooltip .arrow{\t\t\t\tposition:absolute;\t\t\t\twidth:0;\t\t\t\theight:0;\t\t\t}\t\t\t.tooltip.visible{\t\t\t\tdisplay:block;\t\t\t}</style><span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\"><slot name=\"tt-label\"></slot></span><div class$=\"[[_computeTooltipClass(type, visible)]]\"><span on-mouseenter=\"_handleMouseOnTT\" on-mouseleave=\"_handleMouseOnTT\"><slot name=\"tt-label\"></slot></span><div class=\"arrow\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 225 */
+/* 228 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html__ = __webpack_require__(226);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html__ = __webpack_require__(229);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__template_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__template_html__);
 
 
@@ -23725,7 +23764,7 @@ customElements.define(DemoElement.is, DemoElement);
 
 
 /***/ }),
-/* 226 */
+/* 229 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"demo-element\"><template><style>.content.dark{background-color:var(--bg-color);}.content:last-child{margin-bottom:100px;}</style><menu-clab title-icon=\"icon-sign sign\" link=\"#/home\" current-hash=\"[[currentHash]]\" on-a-click=\"_changeCurrentHash\"><span class=\"product-name\">contact<b>plan</b></span><div class=\"alerts\"><alert-clab id=\"notify\" notify=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab></div></menu-clab><main class=\"main-content\"><section class=\"icons\" style=\"font-size: 50px\"><i class=\"clab-icon icon-play\"></i> <i class=\"clab-icon icon-pause\"></i> <i class=\"clab-icon icon-stop\"></i> <i class=\"clab-icon icon-fast-backward\"></i> <i class=\"clab-icon icon-backward\"></i> <i class=\"clab-icon icon-forward\"></i> <i class=\"clab-icon icon-fast-forward\"></i> <i class=\"clab-icon icon-equal-circle\"></i> <i class=\"clab-icon icon-equal-circle-full\"></i> <i class=\"clab-icon icon-full-arrow-top\"></i> <i class=\"clab-icon icon-full-arrow-right\"></i> <i class=\"clab-icon icon-full-arrow-down\"></i> <i class=\"clab-icon icon-full-arrow-left\"></i></section><section><h2>Alerts</h2><alert-clab visible=\"\" type=\"primary\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"warning\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"error\" primary=\"Go\" secondary=\"Cancel\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><alert-clab visible=\"\" type=\"info\" primary=\"Go\" secondary=\"Cancel\" no-animation=\"\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.</alert-clab><button-clab on-click=\"_notify\">Show notification alert</button-clab></section><section><ul><li>Lorem ipsum dolor sit amet.</li><li>Ipsam eos assumenda laboriosam veritatis!</li></ul></section><section><h2>Searchable dropdown</h2><dropdown-clab search=\"\" max-in-view=\"4\" label=\"Awesome Dropdown\" result-as-obj=\"\" options=\"[{&quot;name&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;name&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;name&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;name&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;name&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" selected=\"{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;}\" label-field=\"name\"></dropdown-clab><dropdown-clab search=\"\" id=\"ddsearch\" max-in-view=\"4\" label=\"Awesome Dropdown [test]\" result-as-obj=\"\" label-field=\"name\"></dropdown-clab></section><section><h2>Tables</h2><table class=\"striped-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><table class=\"hover-table\"><tbody><tr><th>Lorem ipsum.</th><th>Quia, doloremque!</th><th>Nesciunt, odio?</th></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr><tr><td>Lorem ipsum.</td><td>Quia, doloremque!</td><td>Nesciunt, odio?</td></tr></tbody></table><br><div class=\"table responsive-table\"><div class=\"thead\"><div class=\"tr\"><div class=\"th\">Table Header 1</div><div class=\"th\">Table Header 2</div><div class=\"th\">Table Header 3</div></div></div><div class=\"tbody\"><div class=\"tr\"><div class=\"td\" data-th=\"Table Header 1\">Division 1</div><div class=\"td\" data-th=\"Table Header 2\">Division 2</div><div class=\"td\" data-th=\"Table Header 3\">Division 3</div></div></div></div></section><section><h2>Accordion</h2><accordion-clab title=\"Accordion 1\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab><accordion-clab title=\"Accordion 2\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.</accordion-clab></section><section><h2>Buttons</h2><article><button-clab>Just click me</button-clab><button-clab type=\"primary\">Just click me</button-clab><button-clab type=\"primary empty\">Just click me</button-clab></article><article><button-clab block=\"\">Just click me</button-clab><button-clab block=\"\" size=\"small\">Just click me</button-clab></article><article><button-clab size=\"small\">Just click me</button-clab><button-clab size=\"small\" type=\"primary\">Just click me</button-clab><button-clab size=\"small\" type=\"primary empty\">Just click me</button-clab></article></section><section><h2>Buttons group</h2><article><group-clab options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"info\" size=\"small\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article><article><group-clab type=\"success\" size=\"smaller\" options=\"[&quot;First&quot;, &quot;Second&quot;, &quot;Third&quot;]\"></group-clab></article></section><section><h2>Cards</h2><card-clab title=\"My Card\" icon=\"icon-class\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab title=\"My Card 2\" no-actions=\"\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p></card-clab><card-clab link=\"{&quot;text&quot;:&quot;blabla&quot;, &quot;href&quot;:&quot;#/hearts&quot;}\" icon=\"clab-icon icon-heart-full\" title=\"Queen of hearts\"><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With a link</p></card-clab></section><section><h2>Features</h2><feature-clab icon-class=\"clab-icon icon-heart-full\" size=\"small\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab icon-class=\"clab-icon icon-heart-full\" link=\"#\" vertical=\"\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab><feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&amp;fm=jpg&amp;s=5e57c661d0f772ce269188a6f5325708\" size=\"big\" vertical=\"\" link=\"https://www.google.it/\" link-target=\"_blank\"><div class=\"title\">Title</div><div class=\"text\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</div></feature-clab></section><section><h2>Spinner</h2><div style=\"display: flex\"><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"200, 200, 200, 0.8\"></spinner-clab></article><article style=\"position: relative; flex-grow: 1; height: 200px\"><spinner-clab visible=\"\" background=\"0, 0, 0, 0.9\" dark=\"\"></spinner-clab></article></div></section><section><h2>Progress bar</h2><progress-clab value=\"42\" minimal=\"\"></progress-clab><progress-clab value=\"87\" type=\"primary\"></progress-clab></section><section><h2>Tabs &amp; pills</h2><tabs-clab labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" vertical=\"\" centered=\"\" full-width=\"\" restamp=\"\"><div class=\"tab-content\"><div><button-clab>vai</button-clab></div></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab><tabs-clab pills=\"\" labels=\"[&quot;All&quot;, &quot;Tab 2&quot;, &quot;Tab 3&quot;, &quot;lorem ipsum&quot;, &quot;dolor sit&quot;, &quot;amet&quot;]\" centered=\"\" full-width=\"\"><div class=\"tab-content\"><accordion-clab title=\"ciccio\">ciccio puzzo</accordion-clab></div><div class=\"tab-content\"><input-clab></input-clab></div><div class=\"tab-content\">Tab 3 content</div><div class=\"tab-content\">Tab 4 content</div><div class=\"tab-content\">Tab 5 content</div><div class=\"tab-content\">Tab 6 content</div></tabs-clab></section><section><h2>Tooltips</h2><article><tooltip-clab type=\"primary\" wait=\"200\"><button-clab class=\"tt-label\">Edit</button-clab><span class=\"tt-content\">Click to edit this block</span></tooltip-clab><tooltip-clab type=\"error\" wait=\"0\"><button-clab class=\"tt-label\">Cancel</button-clab><span class=\"tt-content\">Click to cancel this block</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><accordion-clab class=\"tt-label\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi cumque.</accordion-clab><span class=\"tt-content\">Click to read more</span></tooltip-clab></article><article><tooltip-clab type=\"info\" wait=\"0\"><span class=\"tt-label\">My Tooltip</span> <span class=\"tt-content\">Click to read more</span></tooltip-clab></article></section><section><h2>Label &amp; badges</h2><label-clab type=\"error\">Just a test</label-clab><label-clab badge=\"\">42</label-clab></section><section><h2>Autocomplete</h2><autocomplete-clab inline=\"\" label=\"Normal auto-complete\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" min-char=\"1\" label-size=\"larger\" type=\"success\" note-type=\"info\"><span class=\"note\">Type here to get hints</span> <span class=\"button\"><button-clab>hola</button-clab></span></autocomplete-clab>&nbsp;<autocomplete-clab label=\"AJAX auto-complete\" min-char=\"1\" filter=\"\" url=\"http://localhost:4000/json\"><span class=\"note\">Type here to get hints</span></autocomplete-clab></section><section><h2>Dropdown</h2><dropdown-clab max-in-view=\"5\" type=\"success\" note-type=\"error\" result-as-obj=\"\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" selected=\"{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;}\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\">&gt; <span class=\"note\">This is my note</span> <span class=\"button\"><button-clab>ciao</button-clab></span></dropdown-clab><dropdown-clab max-in-view=\"5\" result-as-obj=\"\" inline=\"\" label-size=\"larger\" icon=\"icon-edit\"><span class=\"note\">This is my note</span></dropdown-clab><dropdown-clab max-in-view=\"3\" label=\"Awesome Dropdown\" result-as-obj=\"\" options=\"[{&quot;name&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;name&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;name&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;name&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;name&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;name&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\" label-field=\"name\"><span class=\"note\">This is my note</span></dropdown-clab></section><section><h2>Tags</h2><article><tags-clab label=\"Add tag\" placeholder=\"rosso\" type=\"warning\"><span class=\"note\">Lorem ipsum dolor sit.</span></tags-clab></article><article><div class=\"input-wrapper\"><label for=\"\">Add tag</label><div class=\"input\"><input type=\"text\" placeholder=\"placeholder\"> <button class=\"btn\">Add</button></div><div class=\"note-clab\">Lorem ipsum dolor sit.</div></div></article></section><section><h2>Modal</h2><button-clab id=\"openModal-one\" on-click=\"_openModal1\">Open modal (content via attribute)</button-clab><button-clab id=\"openModal-two\" on-click=\"_openModal2\">Open modal (content via HTML)</button-clab><modal-clab id=\"modalOne\" max-width=\"500px\" title=\"Dummy modal\" primary=\"Confirm\" secondary=\"Cancel\" content=\"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?\" width=\"800px\" no-actions=\"\"></modal-clab><modal-clab id=\"modalTwo\" title=\"Dummy modal\" primary=\"Confirm\" primary-disabled=\"\" secondary=\"Cancel\" warning=\"Do something\" no-animation=\"\"><h2>Some HTML...</h2><hr><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel! Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo. Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p><p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci, quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto! Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt. Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!</p><ul><li>ksbdfkbsdf</li><li>sdfbgsdfgsdfg</li><li>sdfgsdfgsdfg</li></ul></modal-clab></section><section><h2>Pagination</h2><pagination-clab tot=\"20\"></pagination-clab></section><section><h2>Multiple</h2><multiple-clab label=\"Select multiple options\" max-in-view=\"10\" id=\"multi\" options=\"[{&quot;label&quot;:&quot;ciccio&quot;, &quot;value&quot;:&quot;ciccio&quot;},{&quot;label&quot;:&quot;puzzo raga&quot;, &quot;value&quot;:&quot;puzzo raga&quot;},{&quot;label&quot;:&quot;bella&quot;, &quot;value&quot;:&quot;bella&quot;},{&quot;label&quot;:&quot;raga&quot;, &quot;value&quot;:&quot;raga&quot;},{&quot;label&quot;:&quot;tutto raga&quot;, &quot;value&quot;:&quot;tutto raga&quot;},{&quot;label&quot;:&quot;tutto rego&quot;, &quot;value&quot;:&quot;tutto rego&quot;}]\"><span class=\"note\">This is a note</span></multiple-clab></section><section><h2>Row actions</h2><div class=\"row-action success\"><a><i class=\"clab-icon icon-check\"></i></a></div><div class=\"row-action error\"><a><i class=\"clab-icon icon-close\"></i></a></div></section><section><h2>Input</h2><input-clab value=\"ciao\" label=\"My label\" note-type=\"error\" type=\"success\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\"><span class=\"note\">A simple input component</span></input-clab><input-clab value=\"ciao\" label=\"Input with buttons\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"error\">cancel</button-clab><button-clab class=\"button\" type=\"success\">save</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"small\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" icon=\"icon-edit\" inline=\"\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab><input-clab value=\"ciao\" label=\"Input inline\" inline=\"\" label-size=\"large\" icon=\"icon-edit\"><span class=\"note\">A simple note</span><button-clab class=\"button\" type=\"success\">ok</button-clab></input-clab></section><section><h2>Password</h2><input-clab password=\"\" check=\"\" value=\"ciao\" label=\"My label\"></input-clab></section><section><h2>Calendar</h2><calendar-clab inline=\"\" id=\"cal\"></calendar-clab><calendar-clab label=\"Calendar not inline - ITALIAN\" options=\"{&quot;locale&quot;: &quot;it&quot;}\" type=\"info\" note-type=\"error\" on-datechange=\"_dateChange\"><span class=\"note\">This is note</span></calendar-clab><calendar-clab label=\"Calendar not inline - FRENCH\" options=\"{&quot;locale&quot;: &quot;fr&quot;}\" type=\"info\" note-type=\"error\"></calendar-clab></section><section><h2>Range</h2><range-clab label=\"My wonderful range input label\" value=\"5\" min=\"0\" max=\"10\" step=\"1\" show-details=\"\"></range-clab></section><section><h2>Radio</h2><radio-clab labels=\"[&quot;radio 1&quot;, &quot;radio 3&quot;, &quot;radio 2&quot;]\" name=\"group1\" active=\"0\" disabled=\"[1]\"></radio-clab></section><section><h2>Checkbox</h2><checkbox-clab label=\"ciao\" active=\"\" on-selected-change=\"_checkboxChange\"></checkbox-clab></section><section><h2>Input file</h2><file-clab label=\"My wonderful file input label\" type=\"info\" note-type=\"error\"><span class=\"note\">A simple input component</span></file-clab></section></main></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
