@@ -21,6 +21,12 @@ module.exports = {
     rules: [{
       test: /\.html$/,
       loaders: ['wc-loader?minify=true']
+    }, {
+      test: /\.js$/,
+      exclude: /(node_modules|bower_components)/,
+      use: {
+        loader: 'babel-loader'
+      }
     }]
   }
 }

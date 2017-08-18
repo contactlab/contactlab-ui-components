@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 136);
+/******/ 	return __webpack_require__(__webpack_require__.s = 137);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -4542,15 +4542,14 @@ return hooks;
 
 const UtilBehavior = {
 
-  _dashify: (str) => {
+  _dashify: str => {
     return str.toLowerCase().replace(/ /g, '-');
   },
 
   _viewLabel: (label, icon) => {
     let bool = false;
-    if(label != undefined && label.length > 0) bool = true;
-    else bool = false;
-    if(icon != undefined && icon.length > 0) bool = true;
+    if (label != undefined && label.length > 0) bool = true;else bool = false;
+    if (icon != undefined && icon.length > 0) bool = true;
     return bool;
   },
 
@@ -4561,13 +4560,10 @@ const UtilBehavior = {
 /* harmony export (immutable) */ __webpack_exports__["c"] = UtilBehavior;
 
 
-
-
-
 const AnimationsBehavior = {
 
   _onAnimationComplete: (elem, fn) => {
-    if(elem.finished) {
+    if (elem.finished) {
       elem.finished.then(fn);
     } else {
       elem.onfinish = fn;
@@ -4577,53 +4573,50 @@ const AnimationsBehavior = {
 /* harmony export (immutable) */ __webpack_exports__["a"] = AnimationsBehavior;
 
 
-
-
-
 const DropdownBehavior = {
-  getSelectedLabel: function() {
+  getSelectedLabel: function () {
     return this.selected[this.labelField];
   },
 
-  getSelectedValue: function() {
+  getSelectedValue: function () {
     return this.selected[this.valueField];
   },
 
-  setByLabel: function(str) {
+  setByLabel: function (str) {
     this.options.map(opt => {
-      if(opt[this.labelField] === str) {
+      if (opt[this.labelField] === str) {
         this._setSelected(opt);
         return;
       }
     });
   },
 
-  setByValue: function(str) {
+  setByValue: function (str) {
     this.options.map(opt => {
-      if(opt[this.valueField] === str) {
+      if (opt[this.valueField] === str) {
         this._setSelected(opt);
         return;
       }
     });
   },
 
-  isValorized: function() {
+  isValorized: function () {
     return !this.isNotValorized();
   },
 
-  isNotValorized: function() {
+  isNotValorized: function () {
     return this.selected === undefined || this.selected === null || this.selected[this.valueField] === undefined || this.selected[this.valueField] === null;
   },
 
-  setValue: function(obj, prevent) {
+  setValue: function (obj, prevent) {
     prevent = prevent ? true : false;
     this.preventChange = prevent;
 
-    if(typeof obj === 'object') {
+    if (typeof obj === 'object') {
       this._setSelected(obj);
     } else {
       this.options.map(opt => {
-        if(opt[this.valueField] === obj) {
+        if (opt[this.valueField] === obj) {
           this._setSelected(opt);
           return;
         }
@@ -4633,50 +4626,43 @@ const DropdownBehavior = {
     this.preventChange = false;
   },
 
-  getValue: function() {
+  getValue: function () {
     var v;
-    if(this.isNotValorized()) {
+    if (this.isNotValorized()) {
       v = undefined;
-
-    } else if(typeof this.selected === 'string' || this.selected instanceof String) {
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
       v = this.selected;
-
-    } else if(typeof this.selected === "object") {
+    } else if (typeof this.selected === "object") {
       v = this.selected[this.valueField];
-
     } else {
-      console.error(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+      console.error(this.is + ": Invalid value type [" + typeof this.selected + "]");
     }
     return v;
   },
 
-  getValueObject: function() {
+  getValueObject: function () {
     var v;
-    if(this.isNotValorized(this.selected)) {
+    if (this.isNotValorized(this.selected)) {
       v = undefined;
-
-    } else if(typeof this.selected === 'string' || this.selected instanceof String) {
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
       this.options.map(opt => {
-        if(opt[this.valueField] === this.selected) {
+        if (opt[this.valueField] === this.selected) {
           v = opt;
           return;
         }
       });
-      if(v === undefined) {
+      if (v === undefined) {
         console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
       }
-
-    } else if(typeof this.selected === "object") {
+    } else if (typeof this.selected === "object") {
       v = this.selected;
-
     } else {
-      console.warn(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+      console.warn(this.is + ": Invalid value type [" + typeof this.selected + "]");
     }
     return v;
   }
 };
 /* harmony export (immutable) */ __webpack_exports__["b"] = DropdownBehavior;
-
 
 
 /***/ }),
@@ -4711,15 +4697,17 @@ module.exports = g;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(143);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(144);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
 class ButtonClab extends Polymer.Element {
-        
-  static get is() { return 'button-clab'; }
+
+  static get is() {
+    return 'button-clab';
+  }
 
   static get properties() {
     return {
@@ -4773,13 +4761,13 @@ class ButtonClab extends Polymer.Element {
        */
       buttonType: {
         type: String,
-        value: 'button',
+        value: 'button'
       }
-    }
+    };
   }
 
   _click(evt) {
-    this.dispatchEvent(new CustomEvent('btnclick',{
+    this.dispatchEvent(new CustomEvent('btnclick', {
       bubbles: true,
       composed: true
     }));
@@ -4803,7 +4791,6 @@ class ButtonClab extends Polymer.Element {
 }
 
 customElements.define(ButtonClab.is, ButtonClab);
-
 
 /***/ }),
 /* 4 */
@@ -4829,15 +4816,17 @@ module.exports = api;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(147);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
 class NoteClab extends Polymer.Element {
-        
-  static get is() { return 'note-clab'; }
+
+  static get is() {
+    return 'note-clab';
+  }
 
   static get properties() {
     return {
@@ -4847,7 +4836,7 @@ class NoteClab extends Polymer.Element {
         computed: 'computeClasses(type)',
         readonly: true
       }
-    }
+    };
   }
 
   /*----------
@@ -4855,21 +4844,19 @@ class NoteClab extends Polymer.Element {
   ----------*/
   computeClasses(type) {
     var arr = ['input-note'];
-    if(type != undefined) arr.push(type);
+    if (type != undefined) arr.push(type);
     return arr.join(' ');
   }
 }
 
-
 customElements.define(NoteClab.is, NoteClab);
-
 
 /***/ }),
 /* 6 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(146);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(147);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
@@ -4881,9 +4868,11 @@ customElements.define(NoteClab.is, NoteClab);
 
 
 
-class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
-  static get is() { return 'input-clab'; }
+class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+
+  static get is() {
+    return 'input-clab';
+  }
 
   static get properties() {
     return {
@@ -4981,20 +4970,18 @@ class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
         value: false,
         observer: '_computeBtnPswd'
       }
-    }
+    };
   }
-
 
   connectedCallback() {
     super.connectedCallback();
     Array.prototype.map.call(this.getEffectiveChildren(), node => {
-      if(node.classList.contains('note')) {
+      if (node.classList.contains('note')) {
         Polymer.dom(this.$$('note-clab')).appendChild(node);
         Polymer.dom.flush();
       }
-    })
+    });
   }
-
 
   /*----------
   EVENT HANDLERS
@@ -5004,7 +4991,7 @@ class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
   }
 
   _btnclick(evt) {
-    this.dispatchEvent(new CustomEvent('btnclick',{
+    this.dispatchEvent(new CustomEvent('btnclick', {
       bubbles: true,
       composed: true
     }));
@@ -5030,38 +5017,34 @@ class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     }));
   }
 
-
   /*----------
   OBSERVERS
   ----------*/
   _disabledChanged(newVal, oldVal) {
-    if(newVal) this.type = 'disabled';
+    if (newVal) this.type = 'disabled';
   }
-
-
 
   /*----------
   COMPUTE
   ----------*/
   _compWrapperClass(str, type, inline, labelSize) {
     let arr = [str];
-    if(type != null) arr.push(type);
-    if(inline) {
+    if (type != null) arr.push(type);
+    if (inline) {
       arr.push('inline');
-      if(labelSize != null) arr.push(labelSize + '-label');
+      if (labelSize != null) arr.push(labelSize + '-label');
     }
     return arr.join(' ');
   }
 
   _compIcon(icon) {
-    if(icon != undefined) return 'clab-icon ' + icon;
-    else return '';
+    if (icon != undefined) return 'clab-icon ' + icon;else return '';
   }
 
   _computeInputType(password, inputType) {
-    if(password) {
+    if (password) {
       return 'password';
-    } if (inputType){
+    }if (inputType) {
       return inputType;
     } else {
       return 'text';
@@ -5069,7 +5052,7 @@ class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
   }
 
   _computeBtnPswd(val, old) {
-    if(val){
+    if (val) {
       this.set('_btnPswd', this.btnPswd.show);
     } else {
       this.set('_btnPswd', this.btnPswd.hide);
@@ -5078,9 +5061,7 @@ class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
 
 }
 
-
 customElements.define(InputClab.is, InputClab);
-
 
 /***/ }),
 /* 7 */
@@ -5193,15 +5174,17 @@ module.exports = {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(148);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(149);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
 class SpinnerClab extends Polymer.Element {
-        
-  static get is() { return 'spinner-clab'; }
+
+  static get is() {
+    return 'spinner-clab';
+  }
 
   static get properties() {
     return {
@@ -5219,12 +5202,10 @@ class SpinnerClab extends Polymer.Element {
       },
       visible: {
         type: Boolean,
-        value: false,
+        value: false
       }
-    }
+    };
   }
-
-
 
   /*----------
   COMPUTED
@@ -5244,21 +5225,22 @@ class SpinnerClab extends Polymer.Element {
 
 customElements.define(SpinnerClab.is, SpinnerClab);
 
-
 /***/ }),
 /* 9 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(149);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(150);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
 class CurtainClab extends Polymer.Element {
-        
-  static get is() { return 'curtain-clab'; }
+
+  static get is() {
+    return 'curtain-clab';
+  }
 
   static get properties() {
     return {
@@ -5300,30 +5282,27 @@ class CurtainClab extends Polymer.Element {
       },
       _computedStyles: String
     };
-    this.observers = [
-			'_setLiHeight(options, maxInView, disabled)',
-			'_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
-		]
+    this.observers = ['_setLiHeight(options, maxInView, disabled)', '_compStyles(_hidden, _listMaxHeight, _listHeight, open)'];
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
     this.addEventListener('mousedown', evt => {
-      switch(evt.target.localName) {
+      switch (evt.target.localName) {
         case 'ol':
           this.dontHide = true;
           break;
-       /* case 'li':
-          this.dontHide = false;
-          let i = evt.target.getAttribute('data-i');
-          this.dispatchEvent(new CustomEvent('do-select', {
-            bubbles: true,
-            composed: true,
-            detail: {
-              index: i
-            }
-          }));
-          break;*/
+        /* case 'li':
+           this.dontHide = false;
+           let i = evt.target.getAttribute('data-i');
+           this.dispatchEvent(new CustomEvent('do-select', {
+             bubbles: true,
+             composed: true,
+             detail: {
+               index: i
+             }
+           }));
+           break;*/
         default:
           this.dontHide = false;
       }
@@ -5333,7 +5312,7 @@ class CurtainClab extends Polymer.Element {
     });
   }
 
-  _elementSelection(evt){
+  _elementSelection(evt) {
     this.dontHide = false;
     let i = evt.target.getAttribute('data-i');
     this.dispatchEvent(new CustomEvent('do-select', {
@@ -5344,9 +5323,6 @@ class CurtainClab extends Polymer.Element {
       }
     }));
   }
-
-
-
 
   /*----------
   	EVENT HANDLERS
@@ -5362,39 +5338,34 @@ class CurtainClab extends Polymer.Element {
     }));
   }
 
-
-
   /*----------
   	METHODS
   ----------*/
   _setLiHeight(options, maxInView, disabled) {
-    if(options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
+    if (options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
       this.async(() => {
-        if(this.maxHeight == undefined || this.maxHeight == '') {
+        if (this.maxHeight == undefined || this.maxHeight == '') {
           this.set('_hidden', true);
           this.maxHeight = 28;
-          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
+          this.set('_listMaxHeight', this.maxHeight * maxInView + 'px');
           this.set('_hidden', false);
         } else {
           this.set('_hidden', true);
-          this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
+          this.set('_listMaxHeight', this.maxHeight * maxInView + 'px');
           this.set('_hidden', false);
         }
 
-        this.set('_listHeight', (this.maxHeight * options.length) + 'px');
+        this.set('_listHeight', this.maxHeight * options.length + 'px');
         this.$.list.scrollTop = 0;
       }, 100);
     }
   }
 
-
-
-
   /*----------
   	COMPUTERS
   ----------*/
   _compHighlight(highlighted, option) {
-    return(highlighted[this.valueField] === option[this.valueField]) ? 'selected' : '';
+    return highlighted[this.valueField] === option[this.valueField] ? 'selected' : '';
   }
 
   _compLabel(opt) {
@@ -5403,36 +5374,28 @@ class CurtainClab extends Polymer.Element {
 
   _compStyles(hidden, maxHeight, height, open) {
     let arr = [];
-    if(hidden) arr.push('display:block; opacity:0');
-    if(maxHeight != undefined) arr.push('max-height:' + maxHeight);
-    if(height != undefined) arr.push('height:' + height);
-    if(open) arr.push('display:block');
+    if (hidden) arr.push('display:block; opacity:0');
+    if (maxHeight != undefined) arr.push('max-height:' + maxHeight);
+    if (height != undefined) arr.push('height:' + height);
+    if (open) arr.push('display:block');
     this.set('_computedStyles', arr.join(';'));
   }
-
-
-
-
 
   /*----------
   	PUBLIC
   ----------*/
   scrollToHighlight(i, goesUp) {
     let offsetTop = this.$.list.children[i].offsetTop,
-      scrollTop = this.$.list.scrollTop,
-      h = this.$.list.clientHeight,
-      visible = (offsetTop < scrollTop || offsetTop >= (scrollTop + h)) ? false : true;
+        scrollTop = this.$.list.scrollTop,
+        h = this.$.list.clientHeight,
+        visible = offsetTop < scrollTop || offsetTop >= scrollTop + h ? false : true;
 
-    if(!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;
-    else if(!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
+    if (!visible && !goesUp) this.$.list.scrollTop += this.$.list.clientHeight;else if (!visible && goesUp) this.$.list.scrollTop -= this.$.list.clientHeight;
   }
 
 }
 
-
-
 customElements.define(CurtainClab.is, CurtainClab);
-
 
 /***/ }),
 /* 10 */
@@ -5512,6 +5475,21 @@ module.exports = isInput;
 /* 13 */
 /***/ (function(module, exports, __webpack_require__) {
 
+"use strict";
+
+
+var moment = __webpack_require__(0);
+var rome = __webpack_require__(156);
+
+rome.use(moment);
+
+module.exports = rome;
+
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
 //! moment.js locale configuration
 //! locale : Afrikaans [af]
 //! author : Werner Mollentze : https://github.com/wernerm
@@ -5587,7 +5565,7 @@ return af;
 
 
 /***/ }),
-/* 14 */
+/* 15 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5734,7 +5712,7 @@ return ar;
 
 
 /***/ }),
-/* 15 */
+/* 16 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5798,7 +5776,7 @@ return arDz;
 
 
 /***/ }),
-/* 16 */
+/* 17 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5862,7 +5840,7 @@ return arKw;
 
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -5993,7 +5971,7 @@ return arLy;
 
 
 /***/ }),
-/* 18 */
+/* 19 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6058,7 +6036,7 @@ return arMa;
 
 
 /***/ }),
-/* 19 */
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6168,7 +6146,7 @@ return arSa;
 
 
 /***/ }),
-/* 20 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6232,7 +6210,7 @@ return arTn;
 
 
 /***/ }),
-/* 21 */
+/* 22 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6342,7 +6320,7 @@ return az;
 
 
 /***/ }),
-/* 22 */
+/* 23 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6481,7 +6459,7 @@ return be;
 
 
 /***/ }),
-/* 23 */
+/* 24 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6576,7 +6554,7 @@ return bg;
 
 
 /***/ }),
-/* 24 */
+/* 25 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6700,7 +6678,7 @@ return bn;
 
 
 /***/ }),
-/* 25 */
+/* 26 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6824,7 +6802,7 @@ return bo;
 
 
 /***/ }),
-/* 26 */
+/* 27 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -6937,7 +6915,7 @@ return br;
 
 
 /***/ }),
-/* 27 */
+/* 28 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7085,7 +7063,7 @@ return bs;
 
 
 /***/ }),
-/* 28 */
+/* 29 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7178,7 +7156,7 @@ return ca;
 
 
 /***/ }),
-/* 29 */
+/* 30 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7355,7 +7333,7 @@ return cs;
 
 
 /***/ }),
-/* 30 */
+/* 31 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7423,7 +7401,7 @@ return cv;
 
 
 /***/ }),
-/* 31 */
+/* 32 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7509,7 +7487,7 @@ return cy;
 
 
 /***/ }),
-/* 32 */
+/* 33 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7574,7 +7552,7 @@ return da;
 
 
 /***/ }),
-/* 33 */
+/* 34 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7657,7 +7635,7 @@ return de;
 
 
 /***/ }),
-/* 34 */
+/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7741,7 +7719,7 @@ return deAt;
 
 
 /***/ }),
-/* 35 */
+/* 36 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7824,7 +7802,7 @@ return deCh;
 
 
 /***/ }),
-/* 36 */
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -7929,7 +7907,7 @@ return dv;
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8034,7 +8012,7 @@ return el;
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8106,7 +8084,7 @@ return enAu;
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8174,7 +8152,7 @@ return enCa;
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8246,7 +8224,7 @@ return enGb;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8318,7 +8296,7 @@ return enIe;
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8390,7 +8368,7 @@ return enNz;
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8468,7 +8446,7 @@ return eo;
 
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8556,7 +8534,7 @@ return es;
 
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8643,7 +8621,7 @@ return esDo;
 
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8728,7 +8706,7 @@ return et;
 
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8799,7 +8777,7 @@ return eu;
 
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -8911,7 +8889,7 @@ return fa;
 
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9023,7 +9001,7 @@ return fi;
 
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9088,7 +9066,7 @@ return fo;
 
 
 /***/ }),
-/* 51 */
+/* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9176,7 +9154,7 @@ return fr;
 
 
 /***/ }),
-/* 52 */
+/* 53 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9255,7 +9233,7 @@ return frCa;
 
 
 /***/ }),
-/* 53 */
+/* 54 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9338,7 +9316,7 @@ return frCh;
 
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9418,7 +9396,7 @@ return fy;
 
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9499,7 +9477,7 @@ return gd;
 
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9581,7 +9559,7 @@ return gl;
 
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9708,7 +9686,7 @@ return gomLatn;
 
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9812,7 +9790,7 @@ return he;
 
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -9941,7 +9919,7 @@ return hi;
 
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10091,7 +10069,7 @@ return hr;
 
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10205,7 +10183,7 @@ return hu;
 
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10305,7 +10283,7 @@ return hyAm;
 
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10393,7 +10371,7 @@ return id;
 
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10525,7 +10503,7 @@ return is;
 
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10600,7 +10578,7 @@ return it;
 
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10685,7 +10663,7 @@ return ja;
 
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10773,7 +10751,7 @@ return jv;
 
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10867,7 +10845,7 @@ return ka;
 
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -10959,7 +10937,7 @@ return kk;
 
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11022,7 +11000,7 @@ return km;
 
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11153,7 +11131,7 @@ return kn;
 
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11227,7 +11205,7 @@ return ko;
 
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11320,7 +11298,7 @@ return ky;
 
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11462,7 +11440,7 @@ return lb;
 
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11537,7 +11515,7 @@ return lo;
 
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11659,7 +11637,7 @@ return lt;
 
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11761,7 +11739,7 @@ return lv;
 
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11877,7 +11855,7 @@ return me;
 
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -11946,7 +11924,7 @@ return mi;
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12041,7 +12019,7 @@ return mk;
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12127,7 +12105,7 @@ return ml;
 
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12291,7 +12269,7 @@ return mr;
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12378,7 +12356,7 @@ return ms;
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12466,7 +12444,7 @@ return msMy;
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12567,7 +12545,7 @@ return my;
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12635,7 +12613,7 @@ return nb;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12763,7 +12741,7 @@ return ne;
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12856,7 +12834,7 @@ return nl;
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -12949,7 +12927,7 @@ return nlBe;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13014,7 +12992,7 @@ return nn;
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13143,7 +13121,7 @@ return paIn;
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13255,7 +13233,7 @@ return pl;
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13325,7 +13303,7 @@ return pt;
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13391,7 +13369,7 @@ return ptBr;
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13471,7 +13449,7 @@ return ro;
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13659,7 +13637,7 @@ return ru;
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13762,7 +13740,7 @@ return sd;
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13828,7 +13806,7 @@ return se;
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -13904,7 +13882,7 @@ return si;
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14059,7 +14037,7 @@ return sk;
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14226,7 +14204,7 @@ return sl;
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14301,7 +14279,7 @@ return sq;
 
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14416,7 +14394,7 @@ return sr;
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14531,7 +14509,7 @@ return srCyrl;
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14625,7 +14603,7 @@ return ss;
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14699,7 +14677,7 @@ return sv;
 
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14763,7 +14741,7 @@ return sw;
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14898,7 +14876,7 @@ return ta;
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -14992,7 +14970,7 @@ return te;
 
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15065,7 +15043,7 @@ return tet;
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15137,7 +15115,7 @@ return th;
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15204,7 +15182,7 @@ return tlPh;
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15329,7 +15307,7 @@ return tlh;
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15424,7 +15402,7 @@ return tr;
 
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15520,7 +15498,7 @@ return tzl;
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15583,7 +15561,7 @@ return tzm;
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15646,7 +15624,7 @@ return tzmLatn;
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15802,7 +15780,7 @@ return uk;
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15906,7 +15884,7 @@ return ur;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -15969,7 +15947,7 @@ return uz;
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16032,7 +16010,7 @@ return uzLatn;
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16116,7 +16094,7 @@ return vi;
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16189,7 +16167,7 @@ return xPseudo;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16254,7 +16232,7 @@ return yo;
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16370,7 +16348,7 @@ return zhCn;
 
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16480,7 +16458,7 @@ return zhHk;
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 //! moment.js locale configuration
@@ -16589,7 +16567,7 @@ return zhTw;
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16623,7 +16601,7 @@ module.exports = throttle;
 
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16648,7 +16626,7 @@ module.exports = getSelection;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16716,7 +16694,7 @@ module.exports = rangeToTextRange;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16750,7 +16728,7 @@ module.exports = clone;
 
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16863,7 +16841,7 @@ module.exports = defaults;
 
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -16874,10 +16852,10 @@ var emitter = __webpack_require__(180);
 var dom = __webpack_require__(187);
 var text = __webpack_require__(188);
 var parse = __webpack_require__(11);
-var clone = __webpack_require__(131);
-var defaults = __webpack_require__(132);
+var clone = __webpack_require__(132);
+var defaults = __webpack_require__(133);
 var momentum = __webpack_require__(4);
-var classes = __webpack_require__(134);
+var classes = __webpack_require__(135);
 var noop = __webpack_require__(189);
 var no;
 
@@ -17537,7 +17515,7 @@ module.exports = calendar;
 
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -17582,7 +17560,7 @@ module.exports = {
 
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -17593,8 +17571,10 @@ module.exports = {
 
 
 class LabelClab extends Polymer.Element {
-        
-  static get is() { return 'label-clab'; }
+
+  static get is() {
+    return 'label-clab';
+  }
 
   static get properties() {
     return {
@@ -17614,27 +17594,25 @@ class LabelClab extends Polymer.Element {
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
 
   /*----------
   EVENT HANDLERS
   ----------*/
   _removeClicked(evt) {
-    this.dispatchEvent(new CustomEvent('remove',{
+    this.dispatchEvent(new CustomEvent('remove', {
       bubbles: true,
       composed: true
     }));
   }
-
 
   /*----------
   COMPUTE
   ----------*/
   _computeClass(badge, type) {
     let arr = [badge ? 'badge' : 'label'];
-    if(type != null) arr.push(type);
+    if (type != null) arr.push(type);
     return arr.join(' ');
   }
 
@@ -17642,16 +17620,15 @@ class LabelClab extends Polymer.Element {
 
 customElements.define(LabelClab.is, LabelClab);
 
-
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(138);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(138);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(139);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(228);
 
 
@@ -17659,9 +17636,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 
-
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports) {
 
 // Copyright 2014 Google Inc. All rights reserved.
@@ -17682,16 +17658,16 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //# sourceMappingURL=web-animations-next.min.js.map
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion___ = __webpack_require__(139);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert___ = __webpack_require__(141);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__autocomplete___ = __webpack_require__(144);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__accordion___ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__alert___ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__autocomplete___ = __webpack_require__(145);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button___ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group___ = __webpack_require__(150);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar___ = __webpack_require__(152);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button_group___ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__calendar___ = __webpack_require__(153);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__card___ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__checkbox___ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__curtain___ = __webpack_require__(9);
@@ -17699,7 +17675,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__feature___ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__file___ = __webpack_require__(207);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__input___ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__label_badge___ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__label_badge___ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__modal___ = __webpack_require__(210);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__multiple___ = __webpack_require__(212);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__note___ = __webpack_require__(5);
@@ -17740,19 +17716,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(140);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(141);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 
 
 
 
 class AccordionClab extends Polymer.Element {
-        
-  static get is() { return 'accordion-clab'; }
+
+  static get is() {
+    return 'accordion-clab';
+  }
 
   static get properties() {
     return {
@@ -17769,58 +17747,43 @@ class AccordionClab extends Polymer.Element {
         value: false,
         observer: '_animateOpenClose'
       }
-    }
+    };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
 
     // Preparing the animations
-    let height = [
-      { height: '0' },
-      { height: 'auto' }
-		];
-    let margin = [
-      { 'margin-bottom': '0' },
-      { 'margin-bottom': '20px' }
-		];
+    let height = [{ height: '0' }, { height: 'auto' }];
+    let margin = [{ 'margin-bottom': '0' }, { 'margin-bottom': '20px' }];
 
-    this.openAccordion = new GroupEffect([
-			new KeyframeEffect(this.$.content, height, {
-        duration: 100,
-        fill: 'forwards',
-        direction: 'normal'
-      }),
-			new KeyframeEffect(this.$.block, margin, {
-        duration: 100,
-        fill: 'forwards',
-        direction: 'normal'
-      }),
-		]);
+    this.openAccordion = new GroupEffect([new KeyframeEffect(this.$.content, height, {
+      duration: 100,
+      fill: 'forwards',
+      direction: 'normal'
+    }), new KeyframeEffect(this.$.block, margin, {
+      duration: 100,
+      fill: 'forwards',
+      direction: 'normal'
+    })]);
 
-    this.closeAccordion = new GroupEffect([
-			new KeyframeEffect(this.$.content, height, {
-        duration: 100,
-        fill: 'forwards',
-        direction: 'reverse'
-      }),
-
-			new KeyframeEffect(this.$.block, margin, {
-        duration: 100,
-        fill: 'forwards',
-        direction: 'reverse'
-      }),
-		]);
+    this.closeAccordion = new GroupEffect([new KeyframeEffect(this.$.content, height, {
+      duration: 100,
+      fill: 'forwards',
+      direction: 'reverse'
+    }), new KeyframeEffect(this.$.block, margin, {
+      duration: 100,
+      fill: 'forwards',
+      direction: 'reverse'
+    })]);
   }
-
-
 
   /*----------
   	OBSERVERS
   ----------*/
   _animateOpenClose(val, old) {
-    if(old != undefined) {
-      if(val) {
+    if (old != undefined) {
+      if (val) {
         let player = document.timeline.play(this.openAccordion);
         this.$.block.classList.add('active');
         setTimeout(() => {
@@ -17833,8 +17796,6 @@ class AccordionClab extends Polymer.Element {
       }
     }
   }
-
-
 
   /*----------
   	COMPUTED
@@ -17849,23 +17810,21 @@ class AccordionClab extends Polymer.Element {
 
 }
 
-
 customElements.define(AccordionClab.is, AccordionClab);
 
-
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"accordion-clab\"><template><style>.accordion-title.active{\t\t\t\tfont-weight:600;\t\t\t}\t\t\t.accordion-title.active::before{\t\t\t\tcontent:\"\\e60f\";\t\t\t}</style><div class=\"accordion\"><div class$=\"[[_computeType(type)]]\" id=\"block\"><div class=\"accordion-title\" on-click=\"_toggleActive\"><span>[[title]]</span></div><div class=\"accordion-content\" id=\"content\"><slot></slot></div></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__behaviors__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(142);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(143);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
 
@@ -17875,8 +17834,10 @@ customElements.define(AccordionClab.is, AccordionClab);
 
 
 class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__behaviors__["a" /* AnimationsBehavior */]], Polymer.Element) {
-        
-  static get is() { return 'alert-clab'; }
+
+  static get is() {
+    return 'alert-clab';
+  }
 
   static get properties() {
     return {
@@ -17910,90 +17871,73 @@ class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__beh
         type: Boolean,
         value: false
       }
-    }
+    };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
     // Preparing the animations
-    if(!this.noAnimation) {
-      let opacity = [
-        {
-          opacity: 0
-        },
-        {
-          opacity: 1
-        }
-			];
-      let translateY = [
-        {
-          transform: 'translateY(-5px)'
-        },
-        {
-          transform: 'translateY(0)'
-        }
-			];
+    if (!this.noAnimation) {
+      let opacity = [{
+        opacity: 0
+      }, {
+        opacity: 1
+      }];
+      let translateY = [{
+        transform: 'translateY(-5px)'
+      }, {
+        transform: 'translateY(0)'
+      }];
 
-      this.alertEnter = (target) => {
-        return new GroupEffect([
-					new KeyframeEffect(target, opacity, {
-            duration: 190,
-            fill: 'forwards',
-            direction: 'normal'
-          }),
-					new KeyframeEffect(target, translateY, {
-            duration: 190,
-            fill: 'forwards',
-            direction: 'normal'
-          })
-				]);
-      }
-      this.alertExit = (target) => {
-        return new GroupEffect([
-					new KeyframeEffect(target, opacity, {
-            duration: 150,
-            fill: 'forwards',
-            direction: 'reverse'
-          }),
-					new KeyframeEffect(target, translateY, {
-            duration: 150,
-            fill: 'forwards',
-            direction: 'reverse'
-          })
-				]);
-      }
+      this.alertEnter = target => {
+        return new GroupEffect([new KeyframeEffect(target, opacity, {
+          duration: 190,
+          fill: 'forwards',
+          direction: 'normal'
+        }), new KeyframeEffect(target, translateY, {
+          duration: 190,
+          fill: 'forwards',
+          direction: 'normal'
+        })]);
+      };
+      this.alertExit = target => {
+        return new GroupEffect([new KeyframeEffect(target, opacity, {
+          duration: 150,
+          fill: 'forwards',
+          direction: 'reverse'
+        }), new KeyframeEffect(target, translateY, {
+          duration: 150,
+          fill: 'forwards',
+          direction: 'reverse'
+        })]);
+      };
     }
   }
-
-
 
   /*----------
   	EVENT HANDLERS
   ----------*/
   _handleClickP(evt) {
-      this.dispatchEvent(new CustomEvent('primary',{
-        bubbles: true,
-        composed: true
-      }));
-   }
-
-  _handleClickS(evt) {
-      this.dispatchEvent(new CustomEvent('secondary',{
-        bubbles: true,
-        composed: true
-      }));
-   }
-
-  _close(evt) {
-    this.visible = false;
-    this.dispatchEvent(new CustomEvent('close',{
+    this.dispatchEvent(new CustomEvent('primary', {
       bubbles: true,
       composed: true
     }));
   }
 
+  _handleClickS(evt) {
+    this.dispatchEvent(new CustomEvent('secondary', {
+      bubbles: true,
+      composed: true
+    }));
+  }
 
-
+  _close(evt) {
+    this.visible = false;
+    this.dispatchEvent(new CustomEvent('close', {
+      bubbles: true,
+      composed: true
+    }));
+  }
 
   /*----------
   	OBSERVERS
@@ -18001,35 +17945,32 @@ class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__beh
   _animateShowHide(val, oldval) {
     let target = this.$$('.alert');
 
-    if(val) {
-      if(target == null) {
+    if (val) {
+      if (target == null) {
         this.set('_alertStyle', 'display:block; opacity:1');
         return;
       }
 
       target.style.display = 'block';
-      if(!this.noAnimation && oldval != undefined) {
+      if (!this.noAnimation && oldval != undefined) {
         let animation = this.alertEnter(target);
         let player = document.timeline.play(animation);
       } else {
         target.style.opacity = 1;
       }
-
     } else {
-      if(!this.noAnimation && target != null) {
+      if (!this.noAnimation && target != null) {
         let animation = this.alertExit(target);
         let player = document.timeline.play(animation);
         this._onAnimationComplete(player, () => {
           target.style.display = 'none';
         });
-      } else if(target != null) {
+      } else if (target != null) {
         target.style.display = 'none';
         target.style.opacity = 0;
       }
     }
   }
-
-
 
   /*----------
   	COMPUTED
@@ -18040,28 +17981,26 @@ class AlertClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_0__beh
 
 }
 
-
 customElements.define(AlertClab.is, AlertClab);
-
-
-/***/ }),
-/* 142 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"alert-clab\"><template><style>.alert{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}</style><template is=\"dom-if\" if=\"[[!notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\"><div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div><h3>[[title]]</h3><p><slot></slot></p><button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab><button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab></div></template><template is=\"dom-if\" if=\"[[notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\"><div class=\"close\"><i class=\"clab-icon icon-close\"></i></div><p><slot></slot></p></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 143 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"button-clab\"><template><button class$=\"[[_computeClass(type, appearance, size, block)]]\" disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\"><template is=\"dom-if\" if=\"[[icon]]\"><i class$=\"[[_computeIconClass(icon)]]\"></i></template><slot></slot></button></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"alert-clab\"><template><style>.alert{\t\t\t\tdisplay:none;\t\t\t\topacity:0;\t\t\t}</style><template is=\"dom-if\" if=\"[[!notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\"><div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div><h3>[[title]]</h3><p><slot></slot></p><button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab><button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab></div></template><template is=\"dom-if\" if=\"[[notify]]\"><div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\"><div class=\"close\"><i class=\"clab-icon icon-close\"></i></div><p><slot></slot></p></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 144 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"button-clab\"><template><button class$=\"[[_computeClass(type, appearance, size, block)]]\" disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\"><template is=\"dom-if\" if=\"[[icon]]\"><i class$=\"[[_computeIconClass(icon)]]\"></i></template><slot></slot></button></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 145 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(145);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input__ = __webpack_require__(6);
@@ -18076,8 +18015,10 @@ customElements.define(AlertClab.is, AlertClab);
 
 
 class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
-        
-  static get is() { return 'autocomplete-clab'; }
+
+  static get is() {
+    return 'autocomplete-clab';
+  }
 
   static get properties() {
     return {
@@ -18157,7 +18098,6 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
       },
       icon: String,
 
-
       /*----------
         PRIVATE
       ----------*/
@@ -18174,15 +18114,12 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     };
   }
 
-
-
-
   /*----------
   EVENT HANDLERS
   ----------*/
   _handleKeyboardInputs(evt) {
     // If Enter
-    if(evt.keyCode == 13 && this._currentHint != undefined) {
+    if (evt.keyCode == 13 && this._currentHint != undefined) {
       // this.setSelected(this._currentHint);
       this.set('selected', this._currentHint);
       this.querySelector('input-clab input').blur();
@@ -18191,37 +18128,35 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     }
 
     //If Arrows
-    if(this.results.length > 0 && evt.keyCode == 38 && this._currentHint != undefined) {
+    if (this.results.length > 0 && evt.keyCode == 38 && this._currentHint != undefined) {
       evt.preventDefault();
       this._handleArrows('up');
       return;
     }
-    if(this.results.length > 0 && evt.keyCode == 40 && this._currentHint != undefined) {
+    if (this.results.length > 0 && evt.keyCode == 40 && this._currentHint != undefined) {
       evt.preventDefault();
       this._handleArrows('down');
       return;
     }
 
     // If typing
-    if(this._inputString.length > this.minChar) {
-      this.dispatchEvent(new CustomEvent('typing',{
+    if (this._inputString.length > this.minChar) {
+      this.dispatchEvent(new CustomEvent('typing', {
         bubbles: true,
         composed: true
       }));
-      if(typeof this._interval == 'number') {
+      if (typeof this._interval == 'number') {
         window.clearTimeout(this._interval);
         this._interval = undefined;
       }
 
-      if(this.url != undefined) {
+      if (this.url != undefined) {
         this._interval = window.setTimeout(() => {
           this._fetchOptions();
         }, 400);
-
       } else {
         this._showHints(true);
       }
-
     } else {
       this.$.curtain.open = false;
     }
@@ -18237,19 +18172,17 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
   }
 
   _handleBlur(evt) {
-    if(this.dontHide) {
+    if (this.dontHide) {
       evt.preventDefault();
       return;
     }
 
     this.$.curtain.open = false;
-    if(this.selected == undefined || this.selected[this.labelField] != this._inputString) {
+    if (this.selected == undefined || this.selected[this.labelField] != this._inputString) {
       this._inputString = '';
       this._currentHint = undefined;
     }
   }
-
-
 
   /*----------
   METHODS
@@ -18262,22 +18195,21 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     fetch(this.url, {
       method: 'GET'
     }).then(res => {
-      if(res.status !== 200) {
+      if (res.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' + res.status);
         this.type = 'error';
         this._resetSpinnerTimeout();
         return;
       }
 
-      res.json().then((data) => {
+      res.json().then(data => {
         this.set('options', data);
-        if(this.type === 'error') this.type = '';
+        if (this.type === 'error') this.type = '';
         this.async(() => {
           this._showHints(this.filter);
           this._resetSpinnerTimeout();
         }, 50);
       });
-
     }).catch(err => {
       console.error("Fetch Error ==> ", err);
       this.type = 'error';
@@ -18287,18 +18219,18 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
 
   _showHints(filter) {
     let searchVal = this._inputString.toLowerCase();
-    if(!filter) {
+    if (!filter) {
       this.set('results', this.options);
     } else {
       let results = [];
       this.options.map((opt, i) => {
-        if(opt[this.labelField].toLowerCase().search(searchVal) > -1) results.push(this.options[i]);
+        if (opt[this.labelField].toLowerCase().search(searchVal) > -1) results.push(this.options[i]);
       });
       this.set('results', results);
     }
 
     // handle list visual
-    if(this.results.length > 0) {
+    if (this.results.length > 0) {
       this._currentHint = this.results[0];
       this.$.curtain.open = true;
     } else {
@@ -18311,17 +18243,17 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
   _handleArrows(type) {
     let HIdx = this._getIndex(this._currentHint, this.results);
     let item;
-    switch(type) {
+    switch (type) {
       case 'up':
         item = this.results[HIdx - 1];
-        if(typeof item == 'object') {
+        if (typeof item == 'object') {
           this._currentHint = item;
           this.$.curtain.scrollToHighlight(HIdx - 1, true);
         }
         break;
       case 'down':
         item = this.results[HIdx + 1];
-        if(typeof item == 'object') {
+        if (typeof item == 'object') {
           this._currentHint = item;
           this.$.curtain.scrollToHighlight(HIdx + 1, false);
         }
@@ -18329,24 +18261,21 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     }
   }
 
-
-
-
   /*----------
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
+    promise().then(resp => {
       this.set('options', resp);
     });
   }
 
   _changedSelected(val, old) {
-    if(val != undefined && Object.keys(val).length > 0) {
+    if (val != undefined && Object.keys(val).length > 0) {
       this._inputString = this.selected[this.labelField];
       this._currentHint = undefined;
 
-      if(this.resultAsObj) {
+      if (this.resultAsObj) {
         this.dispatchEvent(new CustomEvent('change', {
           bubbles: true,
           composed: true,
@@ -18368,28 +18297,24 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
     }
   }
 
-
-
-
   /*----------
   UTILS
   ----------*/
   _startSpinnerTimeout() {
     this._interval = window.setTimeout(() => {
-      if(!this._spinner) this._spinner = true;
+      if (!this._spinner) this._spinner = true;
     }, 400);
   }
 
   _resetSpinnerTimeout() {
     window.clearTimeout(this._interval);
     this._interval = undefined;
-    if(this._spinner) this._spinner = false;
+    if (this._spinner) this._spinner = false;
   }
 
   _setLabelSize(newSize) {
-    this.set("labelSize", newSize)
+    this.set("labelSize", newSize);
   }
-
 
   /*----------
   PUBLIC
@@ -18400,46 +18325,45 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
 
 }
 
-customElements.define(AutoCompleteClab.is,AutoCompleteClab);
-
-
-/***/ }),
-/* 145 */
-/***/ (function(module, exports) {
-
-/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+customElements.define(AutoCompleteClab.is, AutoCompleteClab);
 
 /***/ }),
 /* 146 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"autocomplete-clab\"><template><div class=\"input-wrapper\"><input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\"><content select=\".button\"></content><content select=\".note\"></content><curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab></input-clab><spinner-clab visible=\"[[_spinner]]\"></spinner-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 147 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"note-clab\"><template><div class$=\"[[classes]]\"><slot></slot></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 148 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"spinner-clab\"><template><template is=\"dom-if\" if=\"[[visible]]\"><div class$=\"[[_computeClass(big,dark)]]\" style$=\"[[_computeBgColor(background)]]\"><div class=\"spinner\"><div class=\"rect1\"></div><div class=\"rect2\"></div><div class=\"rect3\"></div><div class=\"rect4\"></div><div class=\"rect5\"></div></div></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"note-clab\"><template><div class$=\"[[classes]]\"><slot></slot></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 149 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"spinner-clab\"><template><template is=\"dom-if\" if=\"[[visible]]\"><div class$=\"[[_computeClass(big,dark)]]\" style$=\"[[_computeBgColor(background)]]\"><div class=\"spinner\"><div class=\"rect1\"></div><div class=\"rect2\"></div><div class=\"rect3\"></div><div class=\"rect4\"></div><div class=\"rect5\"></div></div></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 150 */
+/***/ (function(module, exports) {
+
+/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+
+/***/ }),
+/* 151 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__button___ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(151);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(152);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 
 
@@ -18448,67 +18372,68 @@ customElements.define(AutoCompleteClab.is,AutoCompleteClab);
 
 class GroupClab extends Polymer.Element {
 
-	static get is() { return 'group-clab'; }
+	static get is() {
+		return 'group-clab';
+	}
 
 	static get properties() {
-    	return {
+		return {
 			/**
-			* Additional class
-			*/
+   * Additional class
+   */
 			options: {
 				type: Array,
 				value: ['Option 1', 'Option 2']
 			},
 			/**
-			* Additional class
-			*/
+   * Additional class
+   */
 			type: {
 				type: String,
 				value: ''
 			},
 			/**
-			* `size` additional class for the size of the buttons
-			*/
-			size:{
+   * `size` additional class for the size of the buttons
+   */
+			size: {
 				type: String,
 				value: ''
 			},
 			/**
-			* Whether the buttons are disabled
-			*/
+   * Whether the buttons are disabled
+   */
 			disabled: {
 				type: Boolean,
 				value: false
 			},
 			/**
-			* Index of the button active at init
-			*/
+   * Index of the button active at init
+   */
 			value: {
 				type: Number,
 				value: 0,
 				reflectToAttribute: true
 			}
-		}
+		};
 	}
 
-	connectedCallback(){
-    	super.connectedCallback();
+	connectedCallback() {
+		super.connectedCallback();
 		// let btns = this.getContentChildren();
 		/*let btns = this.$$('div.buttons-group button-clab');
-		Array.prototype.map.call(btns, (btn, i) => {
-			btn.classList.add('group-item');
-			btn.appearance = (i==this.value) ? '' : 'empty';
-			btn.setAttribute('data-i', i);
-			btn.addEventListener('btnclick', this._selectElement.bind(this));
-		});*/
+  Array.prototype.map.call(btns, (btn, i) => {
+  	btn.classList.add('group-item');
+  	btn.appearance = (i==this.value) ? '' : 'empty';
+  	btn.setAttribute('data-i', i);
+  	btn.addEventListener('btnclick', this._selectElement.bind(this));
+  });*/
 	}
 
-
 	/*----------
-	OBSERVER
-	----------*/
-	_updateAppearance(val, old){
-		if(old!==undefined && old !== val){
+ OBSERVER
+ ----------*/
+	_updateAppearance(val, old) {
+		if (old !== undefined && old !== val) {
 			this.dispatchEvent(new CustomEvent('change', {
 				bubbles: true,
 				composed: true,
@@ -18519,28 +18444,27 @@ class GroupClab extends Polymer.Element {
 
 			let btns = this.getContentChildren();
 			Array.prototype.map.call(btns, (btn, i) => {
-				btn.appearance = (i==this.value) ? '' : 'empty';
+				btn.appearance = i == this.value ? '' : 'empty';
 			});
 		}
 	}
 
 	/*----------
-	EVENT HANDLERS
-	----------*/
-	_selectElement(evt){
-		this.set('value', parseInt(evt.target.getAttribute('data-i')) );
+ EVENT HANDLERS
+ ----------*/
+	_selectElement(evt) {
+		this.set('value', parseInt(evt.target.getAttribute('data-i')));
 	}
 
-
 	/*----------
-	COMPUTED
-	----------*/
-	_computeGroupClass(type, size){
+ COMPUTED
+ ----------*/
+	_computeGroupClass(type, size) {
 		let arr = [type, size];
 		return arr.join(' ');
 	}
 
-	_computeItemClass(index,value){
+	_computeItemClass(index, value) {
 		let arr = [];
 		index !== value ? arr.push('empty') : null;
 		return arr.join(' ');
@@ -18548,22 +18472,20 @@ class GroupClab extends Polymer.Element {
 
 }
 
-
 customElements.define(GroupClab.is, GroupClab);
 
-
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports) {
 
 /*__wc__loader*/!function(a){var b="<dom-module id=\"group-clab\" class=\"buttons-group\"><template><div class$=\"buttons-group [[_computeGroupClass(type, size)]]\"><template is=\"dom-repeat\" items=\"[[options]]\"><button-clab appearance$=\"[[_computeItemClass(index,value)]]\" class=\"'group-item'\" data-i$=\"[[index]]\" disabled=\"[[disabled]]\" on-click=\"_selectElement\">[[item]]</button-clab></template></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rome__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
@@ -18585,15 +18507,17 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 
-class CalendarClab extends Polymer.mixinBehaviors(
-  [{ dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["b" /* viewLabel */], getLocale: __WEBPACK_IMPORTED_MODULE_4__methods_public__["b" /* getLocale */], _computeType: __WEBPACK_IMPORTED_MODULE_5__methods_internal__["a" /* _computeType */] },
-    Polymer.LegacyElementMixin], Polymer.Element) {
+class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["b" /* viewLabel */], getLocale: __WEBPACK_IMPORTED_MODULE_4__methods_public__["b" /* getLocale */], _computeType: __WEBPACK_IMPORTED_MODULE_5__methods_internal__["a" /* _computeType */] }, Polymer.LegacyElementMixin], Polymer.Element) {
 
-  static get is() { return 'calendar-clab' }
+  static get is() {
+    return 'calendar-clab';
+  }
 
-  static get properties() { return __WEBPACK_IMPORTED_MODULE_3__props__["a" /* default */] }
+  static get properties() {
+    return __WEBPACK_IMPORTED_MODULE_3__props__["a" /* default */];
+  }
 
-  _initRome(){
+  _initRome() {
     const selector = this.inline ? 'div.inline-cal' : "input";
     this.$$(selector) ? this._createInstance(selector) : null;
     return selector;
@@ -18603,7 +18527,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     const calendar = __WEBPACK_IMPORTED_MODULE_0_rome___default.a.find(this.querySelector('input'));
     calendar ? calendar.destroy() : null;
   }
-
 
   /*----------
   EVENT HANDLERS
@@ -18648,7 +18571,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     }
   }
 
-
   /*----------
   METHODS
   ----------*/
@@ -18658,18 +18580,18 @@ class CalendarClab extends Polymer.mixinBehaviors(
     const currentCalendar = this.$$(selector);
     const cal = __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar, obj);
 
-    cal.on('data', this._changeDate.bind(this))
+    cal.on('data', this._changeDate.bind(this));
     cal.on('next', evt => {
       this.cancelAsync(this._fireDate);
-    })
+    });
     cal.on('back', evt => {
       this.cancelAsync(this._fireDate);
-    })
+    });
 
     this.dispatchEvent(new CustomEvent('instance-created', {
       bubbles: true,
       composed: true,
-      detail: currentCalendar,
+      detail: currentCalendar
     }));
   }
 
@@ -18690,18 +18612,15 @@ class CalendarClab extends Polymer.mixinBehaviors(
     }, 250);
   }
 
-
   /*----------
   PUBLIC METHODS
   ----------*/
   setValue(userValue) {
-    this.valueStr = __WEBPACK_IMPORTED_MODULE_1_moment___default()(userValue)
-      .format(Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance()));
+    this.valueStr = __WEBPACK_IMPORTED_MODULE_1_moment___default()(userValue).format(Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance()));
   }
 
   getValue() {
-    const formatted = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.valueStr,
-      Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance())).format();
+    const formatted = __WEBPACK_IMPORTED_MODULE_1_moment___default()(this.valueStr, Object(__WEBPACK_IMPORTED_MODULE_5__methods_internal__["b" /* _getFormat */])(this.options, this.getRomeInstance())).format();
     return this.valueStr ? formatted : undefined;
   }
 
@@ -18723,24 +18642,7 @@ class CalendarClab extends Polymer.mixinBehaviors(
 
 }
 
-
 customElements.define(CalendarClab.is, CalendarClab);
-
-
-/***/ }),
-/* 153 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var moment = __webpack_require__(0);
-var rome = __webpack_require__(156);
-
-rome.use(moment);
-
-module.exports = rome;
-
 
 /***/ }),
 /* 154 */
@@ -18775,236 +18677,236 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
-	"./af": 13,
-	"./af.js": 13,
-	"./ar": 14,
-	"./ar-dz": 15,
-	"./ar-dz.js": 15,
-	"./ar-kw": 16,
-	"./ar-kw.js": 16,
-	"./ar-ly": 17,
-	"./ar-ly.js": 17,
-	"./ar-ma": 18,
-	"./ar-ma.js": 18,
-	"./ar-sa": 19,
-	"./ar-sa.js": 19,
-	"./ar-tn": 20,
-	"./ar-tn.js": 20,
-	"./ar.js": 14,
-	"./az": 21,
-	"./az.js": 21,
-	"./be": 22,
-	"./be.js": 22,
-	"./bg": 23,
-	"./bg.js": 23,
-	"./bn": 24,
-	"./bn.js": 24,
-	"./bo": 25,
-	"./bo.js": 25,
-	"./br": 26,
-	"./br.js": 26,
-	"./bs": 27,
-	"./bs.js": 27,
-	"./ca": 28,
-	"./ca.js": 28,
-	"./cs": 29,
-	"./cs.js": 29,
-	"./cv": 30,
-	"./cv.js": 30,
-	"./cy": 31,
-	"./cy.js": 31,
-	"./da": 32,
-	"./da.js": 32,
-	"./de": 33,
-	"./de-at": 34,
-	"./de-at.js": 34,
-	"./de-ch": 35,
-	"./de-ch.js": 35,
-	"./de.js": 33,
-	"./dv": 36,
-	"./dv.js": 36,
-	"./el": 37,
-	"./el.js": 37,
-	"./en-au": 38,
-	"./en-au.js": 38,
-	"./en-ca": 39,
-	"./en-ca.js": 39,
-	"./en-gb": 40,
-	"./en-gb.js": 40,
-	"./en-ie": 41,
-	"./en-ie.js": 41,
-	"./en-nz": 42,
-	"./en-nz.js": 42,
-	"./eo": 43,
-	"./eo.js": 43,
-	"./es": 44,
-	"./es-do": 45,
-	"./es-do.js": 45,
-	"./es.js": 44,
-	"./et": 46,
-	"./et.js": 46,
-	"./eu": 47,
-	"./eu.js": 47,
-	"./fa": 48,
-	"./fa.js": 48,
-	"./fi": 49,
-	"./fi.js": 49,
-	"./fo": 50,
-	"./fo.js": 50,
-	"./fr": 51,
-	"./fr-ca": 52,
-	"./fr-ca.js": 52,
-	"./fr-ch": 53,
-	"./fr-ch.js": 53,
-	"./fr.js": 51,
-	"./fy": 54,
-	"./fy.js": 54,
-	"./gd": 55,
-	"./gd.js": 55,
-	"./gl": 56,
-	"./gl.js": 56,
-	"./gom-latn": 57,
-	"./gom-latn.js": 57,
-	"./he": 58,
-	"./he.js": 58,
-	"./hi": 59,
-	"./hi.js": 59,
-	"./hr": 60,
-	"./hr.js": 60,
-	"./hu": 61,
-	"./hu.js": 61,
-	"./hy-am": 62,
-	"./hy-am.js": 62,
-	"./id": 63,
-	"./id.js": 63,
-	"./is": 64,
-	"./is.js": 64,
-	"./it": 65,
-	"./it.js": 65,
-	"./ja": 66,
-	"./ja.js": 66,
-	"./jv": 67,
-	"./jv.js": 67,
-	"./ka": 68,
-	"./ka.js": 68,
-	"./kk": 69,
-	"./kk.js": 69,
-	"./km": 70,
-	"./km.js": 70,
-	"./kn": 71,
-	"./kn.js": 71,
-	"./ko": 72,
-	"./ko.js": 72,
-	"./ky": 73,
-	"./ky.js": 73,
-	"./lb": 74,
-	"./lb.js": 74,
-	"./lo": 75,
-	"./lo.js": 75,
-	"./lt": 76,
-	"./lt.js": 76,
-	"./lv": 77,
-	"./lv.js": 77,
-	"./me": 78,
-	"./me.js": 78,
-	"./mi": 79,
-	"./mi.js": 79,
-	"./mk": 80,
-	"./mk.js": 80,
-	"./ml": 81,
-	"./ml.js": 81,
-	"./mr": 82,
-	"./mr.js": 82,
-	"./ms": 83,
-	"./ms-my": 84,
-	"./ms-my.js": 84,
-	"./ms.js": 83,
-	"./my": 85,
-	"./my.js": 85,
-	"./nb": 86,
-	"./nb.js": 86,
-	"./ne": 87,
-	"./ne.js": 87,
-	"./nl": 88,
-	"./nl-be": 89,
-	"./nl-be.js": 89,
-	"./nl.js": 88,
-	"./nn": 90,
-	"./nn.js": 90,
-	"./pa-in": 91,
-	"./pa-in.js": 91,
-	"./pl": 92,
-	"./pl.js": 92,
-	"./pt": 93,
-	"./pt-br": 94,
-	"./pt-br.js": 94,
-	"./pt.js": 93,
-	"./ro": 95,
-	"./ro.js": 95,
-	"./ru": 96,
-	"./ru.js": 96,
-	"./sd": 97,
-	"./sd.js": 97,
-	"./se": 98,
-	"./se.js": 98,
-	"./si": 99,
-	"./si.js": 99,
-	"./sk": 100,
-	"./sk.js": 100,
-	"./sl": 101,
-	"./sl.js": 101,
-	"./sq": 102,
-	"./sq.js": 102,
-	"./sr": 103,
-	"./sr-cyrl": 104,
-	"./sr-cyrl.js": 104,
-	"./sr.js": 103,
-	"./ss": 105,
-	"./ss.js": 105,
-	"./sv": 106,
-	"./sv.js": 106,
-	"./sw": 107,
-	"./sw.js": 107,
-	"./ta": 108,
-	"./ta.js": 108,
-	"./te": 109,
-	"./te.js": 109,
-	"./tet": 110,
-	"./tet.js": 110,
-	"./th": 111,
-	"./th.js": 111,
-	"./tl-ph": 112,
-	"./tl-ph.js": 112,
-	"./tlh": 113,
-	"./tlh.js": 113,
-	"./tr": 114,
-	"./tr.js": 114,
-	"./tzl": 115,
-	"./tzl.js": 115,
-	"./tzm": 116,
-	"./tzm-latn": 117,
-	"./tzm-latn.js": 117,
-	"./tzm.js": 116,
-	"./uk": 118,
-	"./uk.js": 118,
-	"./ur": 119,
-	"./ur.js": 119,
-	"./uz": 120,
-	"./uz-latn": 121,
-	"./uz-latn.js": 121,
-	"./uz.js": 120,
-	"./vi": 122,
-	"./vi.js": 122,
-	"./x-pseudo": 123,
-	"./x-pseudo.js": 123,
-	"./yo": 124,
-	"./yo.js": 124,
-	"./zh-cn": 125,
-	"./zh-cn.js": 125,
-	"./zh-hk": 126,
-	"./zh-hk.js": 126,
-	"./zh-tw": 127,
-	"./zh-tw.js": 127
+	"./af": 14,
+	"./af.js": 14,
+	"./ar": 15,
+	"./ar-dz": 16,
+	"./ar-dz.js": 16,
+	"./ar-kw": 17,
+	"./ar-kw.js": 17,
+	"./ar-ly": 18,
+	"./ar-ly.js": 18,
+	"./ar-ma": 19,
+	"./ar-ma.js": 19,
+	"./ar-sa": 20,
+	"./ar-sa.js": 20,
+	"./ar-tn": 21,
+	"./ar-tn.js": 21,
+	"./ar.js": 15,
+	"./az": 22,
+	"./az.js": 22,
+	"./be": 23,
+	"./be.js": 23,
+	"./bg": 24,
+	"./bg.js": 24,
+	"./bn": 25,
+	"./bn.js": 25,
+	"./bo": 26,
+	"./bo.js": 26,
+	"./br": 27,
+	"./br.js": 27,
+	"./bs": 28,
+	"./bs.js": 28,
+	"./ca": 29,
+	"./ca.js": 29,
+	"./cs": 30,
+	"./cs.js": 30,
+	"./cv": 31,
+	"./cv.js": 31,
+	"./cy": 32,
+	"./cy.js": 32,
+	"./da": 33,
+	"./da.js": 33,
+	"./de": 34,
+	"./de-at": 35,
+	"./de-at.js": 35,
+	"./de-ch": 36,
+	"./de-ch.js": 36,
+	"./de.js": 34,
+	"./dv": 37,
+	"./dv.js": 37,
+	"./el": 38,
+	"./el.js": 38,
+	"./en-au": 39,
+	"./en-au.js": 39,
+	"./en-ca": 40,
+	"./en-ca.js": 40,
+	"./en-gb": 41,
+	"./en-gb.js": 41,
+	"./en-ie": 42,
+	"./en-ie.js": 42,
+	"./en-nz": 43,
+	"./en-nz.js": 43,
+	"./eo": 44,
+	"./eo.js": 44,
+	"./es": 45,
+	"./es-do": 46,
+	"./es-do.js": 46,
+	"./es.js": 45,
+	"./et": 47,
+	"./et.js": 47,
+	"./eu": 48,
+	"./eu.js": 48,
+	"./fa": 49,
+	"./fa.js": 49,
+	"./fi": 50,
+	"./fi.js": 50,
+	"./fo": 51,
+	"./fo.js": 51,
+	"./fr": 52,
+	"./fr-ca": 53,
+	"./fr-ca.js": 53,
+	"./fr-ch": 54,
+	"./fr-ch.js": 54,
+	"./fr.js": 52,
+	"./fy": 55,
+	"./fy.js": 55,
+	"./gd": 56,
+	"./gd.js": 56,
+	"./gl": 57,
+	"./gl.js": 57,
+	"./gom-latn": 58,
+	"./gom-latn.js": 58,
+	"./he": 59,
+	"./he.js": 59,
+	"./hi": 60,
+	"./hi.js": 60,
+	"./hr": 61,
+	"./hr.js": 61,
+	"./hu": 62,
+	"./hu.js": 62,
+	"./hy-am": 63,
+	"./hy-am.js": 63,
+	"./id": 64,
+	"./id.js": 64,
+	"./is": 65,
+	"./is.js": 65,
+	"./it": 66,
+	"./it.js": 66,
+	"./ja": 67,
+	"./ja.js": 67,
+	"./jv": 68,
+	"./jv.js": 68,
+	"./ka": 69,
+	"./ka.js": 69,
+	"./kk": 70,
+	"./kk.js": 70,
+	"./km": 71,
+	"./km.js": 71,
+	"./kn": 72,
+	"./kn.js": 72,
+	"./ko": 73,
+	"./ko.js": 73,
+	"./ky": 74,
+	"./ky.js": 74,
+	"./lb": 75,
+	"./lb.js": 75,
+	"./lo": 76,
+	"./lo.js": 76,
+	"./lt": 77,
+	"./lt.js": 77,
+	"./lv": 78,
+	"./lv.js": 78,
+	"./me": 79,
+	"./me.js": 79,
+	"./mi": 80,
+	"./mi.js": 80,
+	"./mk": 81,
+	"./mk.js": 81,
+	"./ml": 82,
+	"./ml.js": 82,
+	"./mr": 83,
+	"./mr.js": 83,
+	"./ms": 84,
+	"./ms-my": 85,
+	"./ms-my.js": 85,
+	"./ms.js": 84,
+	"./my": 86,
+	"./my.js": 86,
+	"./nb": 87,
+	"./nb.js": 87,
+	"./ne": 88,
+	"./ne.js": 88,
+	"./nl": 89,
+	"./nl-be": 90,
+	"./nl-be.js": 90,
+	"./nl.js": 89,
+	"./nn": 91,
+	"./nn.js": 91,
+	"./pa-in": 92,
+	"./pa-in.js": 92,
+	"./pl": 93,
+	"./pl.js": 93,
+	"./pt": 94,
+	"./pt-br": 95,
+	"./pt-br.js": 95,
+	"./pt.js": 94,
+	"./ro": 96,
+	"./ro.js": 96,
+	"./ru": 97,
+	"./ru.js": 97,
+	"./sd": 98,
+	"./sd.js": 98,
+	"./se": 99,
+	"./se.js": 99,
+	"./si": 100,
+	"./si.js": 100,
+	"./sk": 101,
+	"./sk.js": 101,
+	"./sl": 102,
+	"./sl.js": 102,
+	"./sq": 103,
+	"./sq.js": 103,
+	"./sr": 104,
+	"./sr-cyrl": 105,
+	"./sr-cyrl.js": 105,
+	"./sr.js": 104,
+	"./ss": 106,
+	"./ss.js": 106,
+	"./sv": 107,
+	"./sv.js": 107,
+	"./sw": 108,
+	"./sw.js": 108,
+	"./ta": 109,
+	"./ta.js": 109,
+	"./te": 110,
+	"./te.js": 110,
+	"./tet": 111,
+	"./tet.js": 111,
+	"./th": 112,
+	"./th.js": 112,
+	"./tl-ph": 113,
+	"./tl-ph.js": 113,
+	"./tlh": 114,
+	"./tlh.js": 114,
+	"./tr": 115,
+	"./tr.js": 115,
+	"./tzl": 116,
+	"./tzl.js": 116,
+	"./tzm": 117,
+	"./tzm-latn": 118,
+	"./tzm-latn.js": 118,
+	"./tzm.js": 117,
+	"./uk": 119,
+	"./uk.js": 119,
+	"./ur": 120,
+	"./ur.js": 120,
+	"./uz": 121,
+	"./uz-latn": 122,
+	"./uz-latn.js": 122,
+	"./uz.js": 121,
+	"./vi": 123,
+	"./vi.js": 123,
+	"./x-pseudo": 124,
+	"./x-pseudo.js": 124,
+	"./yo": 125,
+	"./yo.js": 125,
+	"./zh-cn": 126,
+	"./zh-cn.js": 126,
+	"./zh-hk": 127,
+	"./zh-hk.js": 127,
+	"./zh-tw": 128,
+	"./zh-tw.js": 128
 };
 function webpackContext(req) {
 	return __webpack_require__(webpackContextResolve(req));
@@ -19344,11 +19246,11 @@ module.exports = core;
 var crossvent = __webpack_require__(7);
 var bullseye = __webpack_require__(170);
 var throttle = __webpack_require__(179);
-var clone = __webpack_require__(131);
-var defaults = __webpack_require__(132);
-var calendar = __webpack_require__(133);
+var clone = __webpack_require__(132);
+var defaults = __webpack_require__(133);
+var calendar = __webpack_require__(134);
 var momentum = __webpack_require__(4);
-var classes = __webpack_require__(134);
+var classes = __webpack_require__(135);
 
 function inputCalendar (input, calendarOptions) {
   var o = calendarOptions || {};
@@ -19553,7 +19455,7 @@ module.exports = eventmap;
 
 
 var crossvent = __webpack_require__(7);
-var throttle = __webpack_require__(128);
+var throttle = __webpack_require__(129);
 var tailormade = __webpack_require__(171);
 
 function bullseye (el, target, options) {
@@ -19648,7 +19550,7 @@ module.exports = bullseye;
 var sell = __webpack_require__(172);
 var crossvent = __webpack_require__(7);
 var seleccion = __webpack_require__(173);
-var throttle = __webpack_require__(128);
+var throttle = __webpack_require__(129);
 var getSelection = seleccion.get;
 var props = [
   'direction',
@@ -19932,7 +19834,7 @@ module.exports = sell;
 "use strict";
 
 
-var getSelection = __webpack_require__(129);
+var getSelection = __webpack_require__(130);
 var setSelection = __webpack_require__(178);
 
 module.exports = {
@@ -19982,7 +19884,7 @@ module.exports = getSelectionNullOp;
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-var rangeToTextRange = __webpack_require__(130);
+var rangeToTextRange = __webpack_require__(131);
 var doc = global.document;
 var body = doc.body;
 var GetSelectionProto = GetSelection.prototype;
@@ -20276,8 +20178,8 @@ module.exports = {
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-var getSelection = __webpack_require__(129);
-var rangeToTextRange = __webpack_require__(130);
+var getSelection = __webpack_require__(130);
+var rangeToTextRange = __webpack_require__(131);
 var doc = global.document;
 
 function setSelection (p) {
@@ -20942,7 +20844,7 @@ module.exports = noop;
 "use strict";
 
 
-var calendar = __webpack_require__(133);
+var calendar = __webpack_require__(134);
 
 function inline (elem, calendarOptions) {
   var o = calendarOptions || {};
@@ -21132,21 +21034,20 @@ module.exports = {
  * @module _libs/utils
  */
 
-const dashify = (str) => {
+const dashify = str => {
   return str.toLowerCase().replace(/ /g, '-');
-}
+};
 
 const viewLabel = (label, icon) => {
   let bool = false;
-  (label != undefined && label.length > 0) ? bool = true : bool = false;
-  (icon != undefined && icon.length > 0) ? bool = true : null;
+  label != undefined && label.length > 0 ? bool = true : bool = false;
+  icon != undefined && icon.length > 0 ? bool = true : null;
   return bool;
-}
+};
 
 const getIndex = (item, items) => {
   return items.indexOf(item);
-}
-
+};
 
 
 
@@ -21190,7 +21091,6 @@ const getIndex = (item, items) => {
   }
 });
 
-
 /***/ }),
 /* 196 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
@@ -21198,7 +21098,7 @@ const getIndex = (item, items) => {
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return clear; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getLocale; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(153);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_rome___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_rome__);
 
 
@@ -21208,13 +21108,12 @@ const clear = (romeInstance, value, valueStr) => {
   value = '';
   valueStr = null;
   romeInstance.setValue(moment().format());
-  return { romeInstance, value, valueStr }
-}
+  return { romeInstance, value, valueStr };
+};
 
 const getLocale = () => {
   return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.moment.locale();
-}
-
+};
 
 
 
@@ -21230,18 +21129,17 @@ const getLocale = () => {
 
 const _computeType = (str, type) => {
   return [str, type].join(' ');
-}
+};
 
-const _getLocale = (options) => {
+const _getLocale = options => {
   const thisLocale = options.locale ? options.locale : 'en';
   return thisLocale;
-}
+};
 
 const _getFormat = (options, romeInst) => {
   const thisFormat = options.inputFormat ? options.inputFormat : romeInst.options().inputFormat;
   return thisFormat;
-}
-
+};
 
 
 
@@ -21265,8 +21163,10 @@ const _getFormat = (options, romeInst) => {
 
 
 class CardClab extends Polymer.Element {
-        
-  static get is() { return 'card-clab'; }
+
+  static get is() {
+    return 'card-clab';
+  }
 
   static get properties() {
     return {
@@ -21289,13 +21189,13 @@ class CardClab extends Polymer.Element {
         value: 'Cancel'
       },
       /**
-		  * Add an url to the card
-			  {
-				  class:'',
-				  href:'',
-				  text:''
-			  }
-		  */
+      * Add an url to the card
+      {
+      class:'',
+      href:'',
+      text:''
+      }
+      */
       link: {
         type: Object,
         value: {}
@@ -21339,29 +21239,25 @@ class CardClab extends Polymer.Element {
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
-
 
   /*----------
   EVENT HANDLERS
   ----------*/
   _handleClickP(evt) {
-     this.dispatchEvent(new CustomEvent('primary',{
-        bubbles: true,
-        composed: true
-      }));
+    this.dispatchEvent(new CustomEvent('primary', {
+      bubbles: true,
+      composed: true
+    }));
   }
 
-   _handleClickS(evt) {
-     this.dispatchEvent(new CustomEvent('secondary',{
-        bubbles: true,
-        composed: true
-      }));
+  _handleClickS(evt) {
+    this.dispatchEvent(new CustomEvent('secondary', {
+      bubbles: true,
+      composed: true
+    }));
   }
-
-
 
   /*----------
   COMPUTED
@@ -21375,8 +21271,6 @@ class CardClab extends Polymer.Element {
   _computeEffectClass(effect) {
     return ['card', effect].join(' ');
   }
-
-
 
   /*----------
   UTILS
@@ -21393,12 +21287,9 @@ class CardClab extends Polymer.Element {
     return title != undefined;
   }
 
-
 }
 
-
 customElements.define(CardClab.is, CardClab);
-
 
 /***/ }),
 /* 200 */
@@ -21420,8 +21311,10 @@ customElements.define(CardClab.is, CardClab);
 
 
 class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
-        
-  static get is() { return 'checkbox-clab'; }
+
+  static get is() {
+    return 'checkbox-clab';
+  }
 
   get behaviors() {
     return [__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]];
@@ -21448,9 +21341,8 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
 
   /***
    *     _     _  __
@@ -21471,7 +21363,6 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     }
   }
 
-
   /***
    *    ___  ___     _   _               _
    *    |  \/  |    | | | |             | |
@@ -21487,8 +21378,8 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
    * Toggle checked or not of the checkbox
    */
   toggleActive() {
-    this.set('active', !this.active)
-    return new Promise(resolve => resolve(true))
+    this.set('active', !this.active);
+    return new Promise(resolve => resolve(true));
   }
 
   /***
@@ -21501,7 +21392,6 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
    *
    *
    */
-
 
   /***
    *     _     _     _
@@ -21516,11 +21406,11 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
 
   _onChange(evt) {
     this.toggleActive().then(res => {
-      this.dispatchEvent(new CustomEvent('selected-change',{
+      this.dispatchEvent(new CustomEvent('selected-change', {
         bubbles: true,
         composed: true
-      }))
-    })
+      }));
+    });
   }
 
   /***
@@ -21543,9 +21433,7 @@ class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
 
 }
 
-
 customElements.define(CheckboxClab.is, CheckboxClab);
-
 
 /***/ }),
 /* 202 */
@@ -21574,7 +21462,9 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */], __WEBPACK_IMPORTED_MODULE_1__behaviors__["b" /* DropdownBehavior */]], Polymer.Element) {
 
-  static get is() { return 'dropdown-clab'; }
+  static get is() {
+    return 'dropdown-clab';
+  }
 
   static get properties() {
     return {
@@ -21608,16 +21498,13 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       },
       options: {
         type: Array,
-        value: [
-          {
-            value: 'A',
-            label: 'Option 1'
-          },
-          {
-            value: 'B',
-            label: 'Option 2'
-          }
-        ],
+        value: [{
+          value: 'A',
+          label: 'Option 1'
+        }, {
+          value: 'B',
+          label: 'Option 2'
+        }],
         observer: '_updateList'
       },
       optionsList: {
@@ -21675,7 +21562,7 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       searchValue: {
         type: String,
         value: ''
-      },
+      }
       /*_liHeight:{
       	type:String,
       	value:null,
@@ -21684,45 +21571,43 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
-    if(this.id === undefined || this.id.length < 1) {
+    if (this.id === undefined || this.id.length < 1) {
       let id = '';
       let possible = "abcdefghijklmnopqrstuvwxyz";
       let n = Math.floor(Math.random() * (999 - 0) + 0);
       let time = Date.now();
-      for(var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
+      for (var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
       id += n;
       id += time;
       this.id = id;
     }
   }
 
-
-
   /*----------
   EVENT HANDLERS
   ----------*/
   _toggleList(evt) {
-    if(!this.disabled) {
+    if (!this.disabled) {
       this.open = !this.open;
     }
 
-    let windowClick = (evt) => {
+    let windowClick = evt => {
       let name = evt.target.localName;
       let hasClass = evt.target.classList.contains('curtain-clab');
       let hasIdentity = evt.target.classList.contains(this.id);
 
-      if(name == 'ol' && hasClass) {
+      if (name == 'ol' && hasClass) {
         return;
-      } else if(name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(this.id) || name == 'div' && hasIdentity) {
+      } else if (name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(this.id) || name == 'div' && hasIdentity) {
         window.removeEventListener('mousedown', windowClick);
         return;
       } else {
         this.open = false;
         window.removeEventListener('mousedown', windowClick);
       }
-    }
+    };
     window.addEventListener('mousedown', windowClick);
   }
 
@@ -21741,7 +21626,6 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     }) : this.optionsList = this.options.slice();
   }
 
-
   /*----------
   METHODS
   ----------*/
@@ -21749,16 +21633,15 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     fetch(this.url, {
       method: 'GET'
     }).then(res => {
-      if(res.status !== 200) {
+      if (res.status !== 200) {
         console.log('Looks like there was a problem. Status Code: ' + res.status);
         this.type = 'error';
         return;
       }
 
-      res.json().then((data) => {
+      res.json().then(data => {
         this.set('options', data);
       });
-
     }).catch(err => {
       console.error("Fetch Error ==> ", err);
       this.type = 'error';
@@ -21773,8 +21656,8 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     this.open = false;
     this.searchValue = this.selected[this.labelField];
 
-    if(!this.preventChange) {
-      if(this.resultAsObj){
+    if (!this.preventChange) {
+      if (this.resultAsObj) {
         this.dispatchEvent(new CustomEvent('change', {
           bubbles: true,
           composed: true,
@@ -21798,19 +21681,17 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     }
   }
 
-
-
   /*----------
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
+    promise().then(resp => {
       this.set('options', resp);
     });
   }
 
   _observUrl(newv, oldv) {
-    if(newv != undefined) this._fetchOptions();
+    if (newv != undefined) this._fetchOptions();
   }
 
   _updateList(newValue, oldValue) {
@@ -21819,40 +21700,38 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     this.searchValue = selected ? selected[this.labelField] : null;
   }
 
-
   /*----------
   COMPUTED
   ----------*/
   _viewValue(val, label) {
-    if(val && val[label]) {
-      return true
+    if (val && val[label]) {
+      return true;
     } else {
-      return false
+      return false;
     }
   }
 
   _compIcon(icon) {
-    if(icon != undefined && icon.length > 0) return 'clab-icon ' + icon;
-    else return '';
+    if (icon != undefined && icon.length > 0) return 'clab-icon ' + icon;else return '';
   }
 
   _compWrapperType(str, disabled, type, inline, labelSize) {
     let arr = [str];
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
-    if(inline) {
+    if (disabled) arr.push('disabled');
+    if (type != undefined && type.length > 0) arr.push(type);
+    if (inline) {
       arr.push('inline');
-      if(labelSize.length > 0) arr.push(labelSize + '-label');
+      if (labelSize.length > 0) arr.push(labelSize + '-label');
     }
     return arr.join(' ');
   }
 
   _compType(str, disabled, type, id, open) {
     let arr = [];
-    if(str != undefined && str.length > 0) arr.push(str);
-    if(id != undefined && id.length > 0) arr.push(id);
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
+    if (str != undefined && str.length > 0) arr.push(str);
+    if (id != undefined && id.length > 0) arr.push(id);
+    if (disabled) arr.push('disabled');
+    if (type != undefined && type.length > 0) arr.push(type);
     open ? arr.push('active') : null;
     return arr.join(' ');
   }
@@ -21869,13 +21748,9 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     return height ? height : '';
   }
 
-
 }
 
-
-
 customElements.define(DropdownClab.is, DropdownClab);
-
 
 /***/ }),
 /* 204 */
@@ -21895,8 +21770,10 @@ customElements.define(DropdownClab.is, DropdownClab);
 
 
 class FeatureClab extends Polymer.Element {
-        
-  static get is() { return 'feature-clab'; }
+
+  static get is() {
+    return 'feature-clab';
+  }
 
   static get properties() {
     return {
@@ -21924,17 +21801,16 @@ class FeatureClab extends Polymer.Element {
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
 
   /*----------
   COMPUTE
   ----------*/
   _computeFeatureClass(size, vertical) {
     let arr = ['feature'];
-    if(size) arr.push(size);
-    if(vertical) arr.push('vertical');
+    if (size) arr.push(size);
+    if (vertical) arr.push('vertical');
     return arr.join(' ');
   }
 
@@ -21942,12 +21818,9 @@ class FeatureClab extends Polymer.Element {
     return prop != null && prop != undefined && prop ? '' : 'display:none';
   }
 
-
 }
 
-
 customElements.define(FeatureClab.is, FeatureClab);
-
 
 /***/ }),
 /* 206 */
@@ -21968,10 +21841,12 @@ customElements.define(FeatureClab.is, FeatureClab);
 
 
 
-class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
-  static get is() { return 'file-clab'; }
-  
+class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+
+  static get is() {
+    return 'file-clab';
+  }
+
   static get properties() {
     return {
       label: String,
@@ -22004,10 +21879,8 @@ class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
-
 
   /*----------
   EVENT HANDLERS
@@ -22020,8 +21893,8 @@ class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
     let files = evt.target.files;
     let arr = [];
 
-    let readFiles = (file) => {
-      if(/\.(jpe?g|png|gif)$/i.test(file.name)) {
+    let readFiles = file => {
+      if (/\.(jpe?g|png|gif)$/i.test(file.name)) {
         arr.push(file.name);
 
         let reader = new FileReader();
@@ -22031,42 +21904,38 @@ class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
           image.title = file.name;
           image.src = reader.result;
           // console.log(image);
-          if(!this.noPreview) {
+          if (!this.noPreview) {
             this.$.preview.innerHTML = '';
             this.$.preview.appendChild(image);
           }
         }, false);
         reader.readAsDataURL(file);
       }
-    }
+    };
 
     Array.prototype.map.call(files, readFiles);
     this.set('value', arr.join(', '));
   }
 
   _checkIfResetPreview(evt) {
-    if(evt.target.value == '') this.$.preview.innerHTML = '';
+    if (evt.target.value == '') this.$.preview.innerHTML = '';
   }
-
-
 
   /*----------
   OBSERVERS
   ----------*/
   _disabledChanged(newVal, oldVal) {
-    if(newVal) this.type = 'disabled';
+    if (newVal) this.type = 'disabled';
   }
-
 
   /*----------
   COMPUTE
   ----------*/
   _compWrapperClass(str, type) {
     let arr = [str];
-    if(type != null) arr.push(type);
+    if (type != null) arr.push(type);
     return arr.join(' ');
   }
-
 
   /*----------
   PUBLIC
@@ -22077,10 +21946,7 @@ class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
 
 }
 
-
-
 customElements.define(FileClab.is, FileClab);
-
 
 /***/ }),
 /* 208 */
@@ -22109,9 +21975,11 @@ customElements.define(FileClab.is, FileClab);
 
 
 
-class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* AnimationsBehavior */]], Polymer.Element)  {
+class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["a" /* AnimationsBehavior */]], Polymer.Element) {
 
-  static get is() { return 'modal-clab'; }
+  static get is() {
+    return 'modal-clab';
+  }
 
   static get properties() {
     return {
@@ -22163,53 +22031,43 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
     // Preparing the animations
     if (!this.noAnimation) {
       let opacity = [{
-          opacity: 0
-        },
-        {
-          opacity: 1
-        }
-      ];
+        opacity: 0
+      }, {
+        opacity: 1
+      }];
       let scale = [{
-          transform: 'scale(.95)'
-        },
-        {
-          transform: 'scale(1)'
-        }
-      ];
+        transform: 'scale(.95)'
+      }, {
+        transform: 'scale(1)'
+      }];
 
-      this.modalEnter = (target) => {
-        return new GroupEffect([
-          new KeyframeEffect(target, opacity, {
-            duration: 190,
-            fill: 'forwards',
-            direction: 'normal'
-          }),
-          new KeyframeEffect(this.querySelector('.modal'), scale, {
-            duration: 190,
-            fill: 'forwards',
-            direction: 'normal'
-          })
-        ]);
-      }
-      this.modalExit = (target) => {
-        return new GroupEffect([
-          new KeyframeEffect(target, opacity, {
-            duration: 150,
-            fill: 'forwards',
-            direction: 'reverse'
-          }),
-          new KeyframeEffect(this.querySelector('.modal'), scale, {
-            duration: 150,
-            fill: 'forwards',
-            direction: 'reverse'
-          })
-        ]);
-      }
+      this.modalEnter = target => {
+        return new GroupEffect([new KeyframeEffect(target, opacity, {
+          duration: 190,
+          fill: 'forwards',
+          direction: 'normal'
+        }), new KeyframeEffect(this.querySelector('.modal'), scale, {
+          duration: 190,
+          fill: 'forwards',
+          direction: 'normal'
+        })]);
+      };
+      this.modalExit = target => {
+        return new GroupEffect([new KeyframeEffect(target, opacity, {
+          duration: 150,
+          fill: 'forwards',
+          direction: 'reverse'
+        }), new KeyframeEffect(this.querySelector('.modal'), scale, {
+          duration: 150,
+          fill: 'forwards',
+          direction: 'reverse'
+        })]);
+      };
     }
   }
 
@@ -22259,8 +22117,6 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     }));
   }
 
-
-
   /*----------
   	OBSERVERS
   ----------*/
@@ -22276,8 +22132,8 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
       } else {
         target.style.opacity = 1;
       }
-    // Check if was a previously attached modal to avoid to remove the "no-scroll" class from the body needed for another modal.
-    // The oldval should be "false"
+      // Check if was a previously attached modal to avoid to remove the "no-scroll" class from the body needed for another modal.
+      // The oldval should be "false"
     } else if (typeof oldval !== 'undefined') {
       document.querySelector('body').classList.remove('no-scroll');
       if (!this.noAnimation && this.modalExit) {
@@ -22293,8 +22149,6 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     }
   }
 
-
-
   /*----------
   	PUBLIC
   ----------*/
@@ -22306,9 +22160,7 @@ class ModalClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
   }
 }
 
-
 customElements.define(ModalClab.is, ModalClab);
-
 
 /***/ }),
 /* 211 */
@@ -22333,9 +22185,11 @@ customElements.define(ModalClab.is, ModalClab);
 
 
 
-class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
-  static get is() { return 'multiple-clab'; }
+class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+
+  static get is() {
+    return 'multiple-clab';
+  }
 
   static get properties() {
     return {
@@ -22379,13 +22233,13 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         value: false
       },
       noteType: String
-    }
+    };
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
     // Fetch options
-    if(this.url != undefined) {
+    if (this.url != undefined) {
       let timeoutID = window.setTimeout(() => {
         this.spinner = true;
       }, 400);
@@ -22393,19 +22247,19 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       fetch(this.url, {
         method: 'GET'
       }).then(res => {
-        if(res.status !== 200) {
+        if (res.status !== 200) {
           console.log('Looks like there was a problem. Status Code: ' + res.status);
 
           window.clearTimeout(timeoutID);
           timeoutID = undefined;
-          if(this.spinner) this.spinner = false;
+          if (this.spinner) this.spinner = false;
           return;
         }
-        res.json().then((data) => {
+        res.json().then(data => {
           this.set('options', data);
           window.clearTimeout(timeoutID);
           timeoutID = undefined;
-          if(this.spinner) this.spinner = false;
+          if (this.spinner) this.spinner = false;
         });
       }).catch(err => {
         console.error("Fetch Error ==> ", err);
@@ -22413,7 +22267,7 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         this.type = 'error';
         window.clearTimeout(timeoutID);
         timeoutID = undefined;
-        if(this.spinner) this.spinner = false;
+        if (this.spinner) this.spinner = false;
       });
     }
 
@@ -22427,19 +22281,15 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     document.querySelector('body').addEventListener('keyup', this._handleKeys.bind(this));
   }
 
-
-
-
-
   /*----------
   EVENT HANDLERS
   ----------*/
   _handleSelection(evt) {
-    if(this.disabled) return;
+    if (this.disabled) return;
 
     let i = parseInt(evt.target.getAttribute('data-index'));
 
-    if(!this.shift && !this.ctrl) {
+    if (!this.shift && !this.ctrl) {
       // starting the select
       this.set('selected', []);
       Array.prototype.map.call(this.querySelectorAll('.options-list li'), (el, i) => {
@@ -22447,29 +22297,27 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         this.set('options.' + i + '.selected', false);
       });
       this._selectThis(evt.target);
-
-    } else if(this.ctrl) {
+    } else if (this.ctrl) {
       //adding or removing single select
       // if(evt.target.classList.contains('selected'))
-      if(this.options[i].selected) {
+      if (this.options[i].selected) {
         this._removeThis(evt.target);
       } else {
         this._selectThis(evt.target);
       }
       console.log('##', this.selected);
-    } else if(this.shift) {
+    } else if (this.shift) {
       //adding multiple select
-      if(this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
-
+      if (this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
     }
   }
 
   _handleKeys(evt) {
-    if(this.disabled) return;
+    if (this.disabled) return;
 
-    switch(evt.type) {
+    switch (evt.type) {
       case 'keydown':
-        switch(evt.keyCode) {
+        switch (evt.keyCode) {
           case 16:
             this.shift = true;
             break;
@@ -22486,13 +22334,13 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
   }
 
   _loadContent(evt) {
-    if(this.disabled) return;
+    if (this.disabled) return;
 
     let maxScrollable = evt.target.scrollHeight - evt.target.clientHeight;
-    if(evt.target.scrollTop == maxScrollable) {
+    if (evt.target.scrollTop == maxScrollable) {
       evt.preventDefault();
 
-      if(this.url != undefined) {
+      if (this.url != undefined) {
         //load more content
         let timeoutID = window.setTimeout(() => {
           this.spinner = true;
@@ -22501,20 +22349,20 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
         fetch(this.url, {
           method: 'GET'
         }).then(res => {
-          if(res.status !== 200) {
+          if (res.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + res.status);
-            if(typeof timeoutID == 'number') {
+            if (typeof timeoutID == 'number') {
               window.clearTimeout(timeoutID);
               timeoutID = undefined;
               this.spinner = false;
             }
             return;
           }
-          res.json().then((data) => {
+          res.json().then(data => {
             let newData = this.options.concat(data);
             this.set('options', newData);
 
-            if(typeof timeoutID == 'number') {
+            if (typeof timeoutID == 'number') {
               window.clearTimeout(timeoutID);
               timeoutID = undefined;
               this.spinner = false;
@@ -22524,10 +22372,6 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       }
     }
   }
-
-
-
-
 
   /*----------
   METHODS
@@ -22549,7 +22393,7 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
 
   _removeThis(elem) {
     let i = elem.getAttribute('data-index');
-    let temp = this.selected.filter(function(obj) {
+    let temp = this.selected.filter(function (obj) {
       return obj.label !== elem.innerHTML;
     });
     this.set('selected', temp);
@@ -22566,9 +22410,9 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
 
   _selectThese(lastClicked) {
     let arr = [],
-      first,
-      last;
-    if(this.lastSelected > lastClicked) {
+        first,
+        last;
+    if (this.lastSelected > lastClicked) {
       first = lastClicked;
       last = this.lastSelected;
     } else {
@@ -22576,9 +22420,9 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
       last = lastClicked;
     }
 
-    for(var i = first; i <= last; i++) {
+    for (var i = first; i <= last; i++) {
       arr.push(i);
-      if(this.selected.indexOf(this.options[i]) == -1) this.push('selected', this.options[i]);
+      if (this.selected.indexOf(this.options[i]) == -1) this.push('selected', this.options[i]);
     }
 
     this._highlightElems(arr);
@@ -22595,7 +22439,7 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     this.async(() => {
       idx.map(i => {
         Array.prototype.map.call(this.querySelectorAll('.options-list li'), el => {
-          if(el.getAttribute('data-index') == i) {
+          if (el.getAttribute('data-index') == i) {
             // el.classList.add('selected');
             this.set('options.' + i + '.selected', true);
           }
@@ -22604,32 +22448,25 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     }, 100);
   }
 
-
-
-
   /*----------
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
+    promise().then(resp => {
       this.set('options', resp);
     });
   }
 
   _disabledChanged(newVal, oldVal) {
-    if(newVal) this.type = 'disabled';
+    if (newVal) this.type = 'disabled';
   }
-
-
-
-
 
   /*----------
   COMPUTED
   ----------*/
   _compWrapperType(type) {
     let arr = ['multiple-wrapper'];
-    if(type) arr.push(type);
+    if (type) arr.push(type);
     return arr.join(' ');
   }
 
@@ -22639,24 +22476,18 @@ class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__
     return str;
   }
 
-
-
-
   /*----------
   UTILITIES
   ----------*/
   _setWrapperHeights() {
-    if(this.liHeight == undefined) this.liHeight = 35;
+    if (this.liHeight == undefined) this.liHeight = 35;
     return this.liHeight * this.maxInView;
     // this.querySelector('.options-list').style.maxHeight = (this.liHeight * this.maxInView) + 'px';
   }
 
-
 }
 
-
 customElements.define(MultipleClab.is, MultipleClab);
-
 
 /***/ }),
 /* 213 */
@@ -22678,8 +22509,10 @@ customElements.define(MultipleClab.is, MultipleClab);
 
 
 class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
-        
-  static get is() { return 'pagination-clab'; }
+
+  static get is() {
+    return 'pagination-clab';
+  }
 
   static get properties() {
     return {
@@ -22726,10 +22559,8 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
         type: Number,
         computed: '_getEnd(currentPage, pages)'
       }
-    }
+    };
   }
-
-
 
   /*----------
   EVENT HANDLERS
@@ -22737,7 +22568,7 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
   _setCurrent(evt) {
     let i;
     let type;
-    switch(evt.target.localName) {
+    switch (evt.target.localName) {
       case 'i':
         i = Number(evt.target.parentNode.getAttribute('data-index'));
         type = evt.target.parentNode.getAttribute('data-type');
@@ -22748,35 +22579,31 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
         break;
     }
 
-    if((type && this[type + 'Page'] == undefined) || (type && this[type + 'Page'] == this.currentPage)) return;
-    if(i >= 0 && i <= this.lastPage) {
+    if (type && this[type + 'Page'] == undefined || type && this[type + 'Page'] == this.currentPage) return;
+    if (i >= 0 && i <= this.lastPage) {
       this.set('currentPage', i);
       this.dispatchEvent(new CustomEvent('change', {
         bubbles: true,
         composed: true,
-        detail:{
+        detail: {
           currentPage: i
         }
       }));
     }
   }
 
-
-
   /*----------
   OBSERVERS
   ----------*/
   _setPages(val) {
-    if(val != undefined) {
+    if (val != undefined) {
       let arr = [];
-      for(let i = 0; i < val; i++) {
+      for (let i = 0; i < val; i++) {
         arr.push(i);
       }
       this.set('pages', arr);
     }
   }
-
-
 
   /*----------
   COMPUTERS
@@ -22784,7 +22611,7 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
   _compVisiblePages(start, end) {
     let arr = [];
     this.pages.map((page, idx) => {
-      if(idx >= start && idx <= end) {
+      if (idx >= start && idx <= end) {
         arr.push(page);
       }
     });
@@ -22793,10 +22620,9 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
 
   _computeActive(cur, i) {
     var arr = ['page'];
-    if(i == cur) arr.push('active');
+    if (i == cur) arr.push('active');
     return arr.join(' ');
   }
-
 
   _getLastPage(pages) {
     return pages.length - 1;
@@ -22814,12 +22640,12 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
     const pages = parseInt(_pages);
     const c = parseInt(_c);
     let last = pages.length - 1;
-    if(c >= last - (this.range / 2)) {
+    if (c >= last - this.range / 2) {
       return last - this.range;
-    } else if(c <= (this.range / 2)) {
+    } else if (c <= this.range / 2) {
       return 0;
     } else {
-      return c - (this.range / 2);
+      return c - this.range / 2;
     }
   }
 
@@ -22827,26 +22653,23 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
     const pages = parseInt(_pages);
     const c = parseInt(_c);
     let last = pages.length - 1;
-    if(c >= last - (this.range / 2)) {
+    if (c >= last - this.range / 2) {
       return last;
-    } else if(c <= (this.range / 2)) {
+    } else if (c <= this.range / 2) {
       return this.range;
     } else {
-      return c + (this.range / 2);
+      return c + this.range / 2;
     }
   }
 
-
   _hideIfLast(current, tot, str) {
     let text = str ? str : '';
-    return(current == tot - 1) ? text += ' unactive' : text;
+    return current == tot - 1 ? text += ' unactive' : text;
   }
   _hideIfFirst(current, str) {
     let text = str ? str : '';
-    return(current == 0) ? text += ' unactive' : text;
+    return current == 0 ? text += ' unactive' : text;
   }
-
-
 
   /*----------
   UTILS
@@ -22858,7 +22681,6 @@ class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1
 }
 
 customElements.define(PaginationClab.is, PaginationClab);
-
 
 /***/ }),
 /* 215 */
@@ -22878,8 +22700,10 @@ customElements.define(PaginationClab.is, PaginationClab);
 
 
 class ProgressClab extends Polymer.Element {
-        
-  static get is() { return 'progress-clab'; }
+
+  static get is() {
+    return 'progress-clab';
+  }
 
   static get properties() {
     return {
@@ -22895,10 +22719,8 @@ class ProgressClab extends Polymer.Element {
         type: String,
         value: null
       }
-    }
+    };
   }
-
-
 
   /*----------
   COMPUTED
@@ -22909,12 +22731,10 @@ class ProgressClab extends Polymer.Element {
 
   _computeClass(minimal, type) {
     let arr = ['progress-bar'];
-    if(minimal) arr.push('minimal');
-    if(type != null) arr.push(type);
+    if (minimal) arr.push('minimal');
+    if (type != null) arr.push(type);
     return arr.join(' ');
   }
-
-
 
   /*----------
   UTILS
@@ -22926,7 +22746,6 @@ class ProgressClab extends Polymer.Element {
 }
 
 customElements.define(ProgressClab.is, ProgressClab);
-
 
 /***/ }),
 /* 217 */
@@ -22947,14 +22766,16 @@ customElements.define(ProgressClab.is, ProgressClab);
 
 
 
-class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
+class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
 
-  static get is() { return 'radio-clab'; }
+  static get is() {
+    return 'radio-clab';
+  }
 
   static get properties() {
     return {
       labels: {
-        type:Array,
+        type: Array,
         value: []
       },
       name: {
@@ -22978,10 +22799,8 @@ class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
         observer: '_computeInline',
         reflectToAttribute: true
       }
-    }
+    };
   }
-
-
 
   /*----------
     COMPUTED
@@ -22990,7 +22809,7 @@ class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     return ['row', wt].join(' ');
   }
 
-  _computeInline(inline){
+  _computeInline(inline) {
     inline ? this.classList.add('inline') : this.classList.remove('inline');
   }
 
@@ -23002,7 +22821,7 @@ class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
   }
 
   _isDisabled(index, disabledArr) {
-    return disabledArr.includes(index)
+    return disabledArr.includes(index);
   }
 
   /*----------
@@ -23010,14 +22829,12 @@ class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
   ----------*/
 
   _onChange(evt) {
-    const clickedIndex = parseInt(evt.target.dataset.index, 10)
-    this.set('active', clickedIndex)
+    const clickedIndex = parseInt(evt.target.dataset.index, 10);
+    this.set('active', clickedIndex);
   }
 }
 
-
 customElements.define(RadioClab.is, RadioClab);
-
 
 /***/ }),
 /* 219 */
@@ -23038,9 +22855,11 @@ customElements.define(RadioClab.is, RadioClab);
 
 
 
-class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
-  static get is() { return 'range-clab'; }
+class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+
+  static get is() {
+    return 'range-clab';
+  }
 
   static get properties() {
     return {
@@ -23075,10 +22894,8 @@ class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
         type: String,
         computed: 'computeRangeWrapperClasses(showDetails)'
       }
-    }
+    };
   }
-
-
 
   /*----------
   EVENT HANDLERS
@@ -23087,31 +22904,25 @@ class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beh
     this.value = this.querySelector('input').value;
   }
 
-
-
   /*----------
   OBSERVERS
   ----------*/
   disabledChanged(newVal, oldVal) {
-    if(newVal) this.type = 'disabled';
+    if (newVal) this.type = 'disabled';
   }
-
-
 
   /*----------
   COMPUTED
   ----------*/
   computeRangeWrapperClasses(show) {
     let name;
-    if(show) name = 'details';
+    if (show) name = 'details';
     return ['range-wrapper', name].join(' ');
   }
 
 }
 
-
 customElements.define(RangeClab.is, RangeClab);
-
 
 /***/ }),
 /* 221 */
@@ -23131,8 +22942,10 @@ customElements.define(RangeClab.is, RangeClab);
 
 
 class TabsClab extends Polymer.Element {
-        
-  static get is() { return 'tabs-clab'; }
+
+  static get is() {
+    return 'tabs-clab';
+  }
 
   static get properties() {
     return {
@@ -23167,18 +22980,14 @@ class TabsClab extends Polymer.Element {
       },
       _content: Array
     };
-    this.observers = [
-			'_changeTab(active, _content)'
-		]
+    this.observers = ['_changeTab(active, _content)'];
   }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
-    
+
     // this._content = this.getEffectiveChildren();
   }
-
-
 
   /*----------
   EVENT HANDLERS
@@ -23195,30 +23004,25 @@ class TabsClab extends Polymer.Element {
     }));
   }
 
-
-
-
   /*----------
   OBSERVERS
   ----------*/
 
-  _changeTab(active, content) {
-		/*if (active != undefined) {
-			if (content != undefined && content.length > 0) {
-				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
-					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
-				}
-				Array.prototype.map.call(this._content, (node, i) => {
-					if (i == active) {
-						Polymer.dom(this.$.activeContentWrapper).appendChild(node);
-						Polymer.dom.flush();
-						return;
-					}
-				});
-			}
-		}*/
-	}
-
+  _changeTab(active, content) {}
+  /*if (active != undefined) {
+  	if (content != undefined && content.length > 0) {
+  		while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
+  			Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
+  		}
+  		Array.prototype.map.call(this._content, (node, i) => {
+  			if (i == active) {
+  				Polymer.dom(this.$.activeContentWrapper).appendChild(node);
+  				Polymer.dom.flush();
+  				return;
+  			}
+  		});
+  	}
+  }*/
 
 
   /*----------
@@ -23227,27 +23031,24 @@ class TabsClab extends Polymer.Element {
   _computeType(pills, vertical, centered, fullWidth) {
     let arr = [];
     pills ? arr.push('pills') : arr.push('tabs');
-    if(vertical) arr.push('vertical');
-    if(centered) arr.push('centered');
-    if(fullWidth) arr.push('full-width');
+    if (vertical) arr.push('vertical');
+    if (centered) arr.push('centered');
+    if (fullWidth) arr.push('full-width');
     return arr.join(' ');
   }
 
   _computeActive(active, index) {
-		let arr = ['tab'];
-		if (active === index) {
-			arr.push('active');
-			this.set('current', this.labels[active]);
-		};
-		return arr.join(' ');
-	}
-
+    let arr = ['tab'];
+    if (active === index) {
+      arr.push('active');
+      this.set('current', this.labels[active]);
+    };
+    return arr.join(' ');
+  }
 
 }
 
-
 customElements.define(TabsClab.is, TabsClab);
-
 
 /***/ }),
 /* 223 */
@@ -23264,7 +23065,7 @@ customElements.define(TabsClab.is, TabsClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_badge__ = __webpack_require__(135);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_badge__ = __webpack_require__(136);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input___ = __webpack_require__(6);
 
 
@@ -23274,9 +23075,11 @@ customElements.define(TabsClab.is, TabsClab);
 
 
 
-class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element)  {
-        
-  static get is() { return 'tags-clab'; }
+class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+
+  static get is() {
+    return 'tags-clab';
+  }
 
   static get properties() {
     return {
@@ -23318,16 +23121,15 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
         type: Boolean,
         value: false
       }
-    }
+    };
   }
-
 
   /*----------
   EVENT HANDLERS
   ----------*/
   _handleKeyUp(evt) {
     evt.preventDefault();
-    switch(evt.keyCode) {
+    switch (evt.keyCode) {
       case 188:
         // if comma
         this._addTag(evt);
@@ -23341,7 +23143,7 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
 
   _addTag(evt) {
     let str = this.inputString == undefined ? '' : this.inputString.split(',')[0];
-    if(!/\S/.test(str)) return;
+    if (!/\S/.test(str)) return;
     let newTag = {
       label: str,
       value: str
@@ -23363,12 +23165,12 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
     let value = evt.target.getAttribute('value');
     let i = parseInt(evt.currentTarget.dataset.index);
     this.tags.map((tag, idx) => {
-      if(tag.value === value) {
+      if (tag.value === value) {
         i = idx;
         return;
       }
     });
-    if(i != undefined) this.splice('tags', i, 1);
+    if (i != undefined) this.splice('tags', i, 1);
 
     this.dispatchEvent(new CustomEvent('change', {
       bubbles: true,
@@ -23381,19 +23183,18 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
   }
 
   _computeStacked(stacked) {
-    if(stacked) {
+    if (stacked) {
       return 'selected-values';
     } else {
       return '';
     }
   }
 
-
   /*----------
   PUBLIC
   ----------*/
   setTags(array) {
-    if(this.tags.length < 0) {
+    if (this.tags.length < 0) {
       this.set('tags', array);
     } else {
       array.map(item => {
@@ -23414,9 +23215,7 @@ class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__beha
 
 }
 
-
 customElements.define(TagsClab.is, TagsClab);
-
 
 /***/ }),
 /* 225 */
@@ -23436,8 +23235,10 @@ customElements.define(TagsClab.is, TagsClab);
 
 
 class TooltipClab extends Polymer.Element {
-        
-  static get is() { return 'tooltip-clab'; }
+
+  static get is() {
+    return 'tooltip-clab';
+  }
 
   static get properties() {
     return {
@@ -23454,19 +23255,17 @@ class TooltipClab extends Polymer.Element {
         type: Number,
         value: 500
       }
-    }
+    };
   }
-
-
 
   /*----------
   EVENT HANDLERS
   ----------*/
   _handleMouseOnLabel(evt) {
-    switch(evt.type) {
+    switch (evt.type) {
       case 'mouseenter':
         this._resetTimeout('hideInterval');
-        if(!this.visible) {
+        if (!this.visible) {
           this._startTimeout('showInterval', () => {
             this.show();
           }, this.wait);
@@ -23474,7 +23273,7 @@ class TooltipClab extends Polymer.Element {
         break;
       case 'mouseleave':
         this._resetTimeout('showInterval');
-        if(this.visible) {
+        if (this.visible) {
           this._startTimeout('hideInterval', () => {
             this.hide();
           }, 100);
@@ -23484,7 +23283,7 @@ class TooltipClab extends Polymer.Element {
   }
 
   _handleMouseOnTT(evt) {
-    switch(evt.type) {
+    switch (evt.type) {
       case 'mouseenter':
         this._resetTimeout('hideInterval');
         break;
@@ -23496,15 +23295,11 @@ class TooltipClab extends Polymer.Element {
     }
   }
 
-
-
-
-
   /*----------
   METHODS
   ----------*/
   _startTimeout(type, fn, time) {
-    if(this[type] != undefined) this._resetTimeout();
+    if (this[type] != undefined) this._resetTimeout();
     this[type] = this.async(() => {
       fn();
     }, time);
@@ -23513,7 +23308,6 @@ class TooltipClab extends Polymer.Element {
     this.cancelAsync(this[type]);
     this[type] = undefined;
   }
-
 
   _positionHorizontal(left, right, arrowLeft) {
     let tooltip = this.querySelector('.tooltip');
@@ -23536,49 +23330,40 @@ class TooltipClab extends Polymer.Element {
   }
   _setTooltipPosition() {
     let targetSize;
-    if(Polymer.dom(this.querySelector('.tt-label')).node.$) //if the content is a component or not
-      targetSize = Polymer.dom(this.querySelector('.tt-label')).node.children[0].getBoundingClientRect();
-    else targetSize = this.querySelector('.tt-label').getBoundingClientRect();
+    if (Polymer.dom(this.querySelector('.tt-label')).node.$) //if the content is a component or not
+      targetSize = Polymer.dom(this.querySelector('.tt-label')).node.children[0].getBoundingClientRect();else targetSize = this.querySelector('.tt-label').getBoundingClientRect();
     let tooltipSize = this.querySelector('.tooltip').getBoundingClientRect();
-    let center = targetSize.left + (targetSize.width / 2);
+    let center = targetSize.left + targetSize.width / 2;
 
-    if((tooltipSize.width / 2) > (center - 20)) // rientra a sinistra
-      this._positionHorizontal('20px', 'auto', (center - 25));
-    else if((center + tooltipSize.width / 2) > window.innerWidth - 20) // rientra a destra
-      this._positionHorizontal('auto', '20px', ((tooltipSize.width - (targetSize.width / 2)) - 5));
-    else this._positionHorizontal((center - (tooltipSize.width / 2)) + 'px', 'auto', ((tooltipSize.width / 2) - 5));
-    if((targetSize.bottom + tooltipSize.height) > window.innerHeight) // allinea verticalmente
-      this._positionVertical((targetSize.top - tooltipSize.height - 5), '-135', 'auto', '-5px');
-    else this._positionVertical((targetSize.bottom + 5), '45', '-5px', 'auto');
+    if (tooltipSize.width / 2 > center - 20) // rientra a sinistra
+      this._positionHorizontal('20px', 'auto', center - 25);else if (center + tooltipSize.width / 2 > window.innerWidth - 20) // rientra a destra
+      this._positionHorizontal('auto', '20px', tooltipSize.width - targetSize.width / 2 - 5);else this._positionHorizontal(center - tooltipSize.width / 2 + 'px', 'auto', tooltipSize.width / 2 - 5);
+    if (targetSize.bottom + tooltipSize.height > window.innerHeight) // allinea verticalmente
+      this._positionVertical(targetSize.top - tooltipSize.height - 5, '-135', 'auto', '-5px');else this._positionVertical(targetSize.bottom + 5, '45', '-5px', 'auto');
   }
-
 
   /*----------
   OBSERVERS
   ----------*/
   _observVisibility(newv, oldv) {
-    let hideTooltip = (evt) => {
+    let hideTooltip = evt => {
       this.hide();
       document.body.removeEventListener('wheel', hideTooltip.bind(this));
-    }
-    if(newv) {
+    };
+    if (newv) {
       document.body.addEventListener('wheel', hideTooltip.bind(this));
     }
   }
-
-
 
   /*----------
   COMPUTED
   ----------*/
   _computeTooltipClass(type, visible) {
     var arr = ['tooltip'];
-    if(type) arr.push(type);
-    if(visible) arr.push('visible');
+    if (type) arr.push(type);
+    if (visible) arr.push('visible');
     return arr.join(' ');
   }
-
-
 
   /*----------
   PUBLIC
@@ -23597,11 +23382,9 @@ class TooltipClab extends Polymer.Element {
     this.visible = false;
   }
 
-
 }
 
 customElements.define(TooltipClab.is, TooltipClab);
-
 
 /***/ }),
 /* 227 */
@@ -23622,146 +23405,142 @@ customElements.define(TooltipClab.is, TooltipClab);
 
 class DemoElement extends Polymer.Element {
 
-  static get is() { return 'demo-element'; }
-
-  static get properties() {
-    return {
-
-    }
+  static get is() {
+    return 'demo-element';
   }
 
+  static get properties() {
+    return {};
+  }
 
-  connectedCallback(){
+  connectedCallback() {
     super.connectedCallback();
 
     setTimeout(() => {
-        // Dropdown in search mode
-        const ddData = [{ "name": "ciccio", "value": "ciccio" }, { "name": "puzzo raga", "value": "puzzo raga" }, { "name": "bella", "value": "bella" }, { "name": "raga", "value": "raga" }, { "name": "tutto raga", "value": "tutto raga" }, { "name": "tutto rego", "value": "tutto rego" }]
-        const ddSelected = Object.assign({}, ddData[2]);
-        const ddsearch = this.$.ddsearch;
+      // Dropdown in search mode
+      const ddData = [{ "name": "ciccio", "value": "ciccio" }, { "name": "puzzo raga", "value": "puzzo raga" }, { "name": "bella", "value": "bella" }, { "name": "raga", "value": "raga" }, { "name": "tutto raga", "value": "tutto raga" }, { "name": "tutto rego", "value": "tutto rego" }];
+      const ddSelected = Object.assign({}, ddData[2]);
+      const ddsearch = this.$.ddsearch;
 
-        setTimeout(() => {
-          ddsearch.options = ddData;
-        }, 1500)
-        setTimeout(() => {
-          ddsearch.selected = ddSelected;
-        }, 700)
+      setTimeout(() => {
+        ddsearch.options = ddData;
+      }, 1500);
+      setTimeout(() => {
+        ddsearch.selected = ddSelected;
+      }, 700);
 
+      // MODAL
+      this.modal1 = this.$.modalOne;
+      this.modal2 = this.$.modalTwo;
+      this.modal1.addEventListener('modal-primary', function () {
+        alert('Clicked');
+      });
+      this.modal1.addEventListener('modal-secondary', function (evt) {
+        evt.target.hide();
+      });
+      this.modal2.addEventListener('modal-primary', function () {
+        alert('Clicked');
+      });
+      this.modal2.addEventListener('modal-secondary', function (evt) {
+        evt.target.hide();
+      });
+      this.modal2.addEventListener('modal-warning', function (evt) {
+        if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
+      }.bind(this));
+      // Calendar
+      this.$.cal.options = {
+        time: false,
+        inputFormat: "DD/MM/YYYY"
+      };
+      Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function (el) {
+        el.addEventListener('change', function (evt) {
+          console.log('autocomplete-clab ', evt.detail);
+        });
+        el.addEventListener('sendRes', function (evt) {
+          console.log('autocomplete-clab ', evt.detail);
+        });
+        el.addEventListener('typing', function (evt) {
+          console.log('autocomplete-clab typing', evt);
+        });
+      });
+      Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function (dropdown) {
+        dropdown.addEventListener('change', function (evt) {
+          console.log('dropdown-clab ', evt.detail);
+        });
+      });
+      this.$.multi.addEventListener('change', function (evt) {
+        console.log('multiple-clab ', evt.detail.selected);
+      });
+    }, 200);
 
-        // MODAL
-        this.modal1 = this.$.modalOne;
-        this.modal2 = this.$.modalTwo;
-        this.modal1.addEventListener('modal-primary', function () {
-          alert('Clicked');
-        });
-        this.modal1.addEventListener('modal-secondary', function (evt) {
-          evt.target.hide();
-        })
-        this.modal2.addEventListener('modal-primary', function () {
-          alert('Clicked');
-        });
-        this.modal2.addEventListener('modal-secondary', function (evt) {
-          evt.target.hide();
-        })
-        this.modal2.addEventListener('modal-warning', function (evt) {
-          if (this.modal2.primaryDisabled) this.modal2.primaryDisabled = false;
-        }.bind(this))
-        // Calendar
-        this.$.cal.options = {
-          time: false,
-          inputFormat: "DD/MM/YYYY"
-        };
-        Array.prototype.map.call(document.querySelectorAll('autocomplete-clab'), function (el) {
-          el.addEventListener('change', function (evt) {
-            console.log('autocomplete-clab ', evt.detail)
-          });
-          el.addEventListener('sendRes', function (evt) {
-            console.log('autocomplete-clab ', evt.detail)
-          });
-          el.addEventListener('typing', function (evt) {
-            console.log('autocomplete-clab typing', evt)
-          });
-        });
-        Array.prototype.map.call(document.querySelectorAll('dropdown-clab'), function (dropdown) {
-          dropdown.addEventListener('change', function (evt) {
-            console.log('dropdown-clab ', evt.detail)
-          });
-        });
-        this.$.multi.addEventListener('change', function (evt) {
-          console.log('multiple-clab ', evt.detail.selected)
-        });
-      }, 200);
-
-      /*var menu = document.querySelector('menu-clab');
-      menu.menu = [{
-        "label": "Home",
-        "url": "#/home",
-        "visible": false
+    /*var menu = document.querySelector('menu-clab');
+    menu.menu = [{
+      "label": "Home",
+      "url": "#/home",
+      "visible": false
+    }, {
+      "label": "Plans",
+      "url": "#/plans",
+      "icon": "clab-icon icon-dashboard icon"
+    }, {
+      "label": "Segments",
+      "url": "#/segments",
+      "icon": "clab-icon icon-segment icon"
+    }, {
+      "label": "Reports",
+      "url": "#/reports",
+      "icon": "clab-icon icon-analytics icon"
+    }, {
+      "label": "Settings",
+      "url": "#/settings",
+      "icon": "clab-icon icon-settings icon",
+      "submenu": [{
+        "label": "Showed fields",
+        "url": "#/settings/fields"
       }, {
-        "label": "Plans",
-        "url": "#/plans",
-        "icon": "clab-icon icon-dashboard icon"
+        "label": "Time zones & week",
+        "url": "#/settings/timezones"
       }, {
-        "label": "Segments",
-        "url": "#/segments",
-        "icon": "clab-icon icon-segment icon"
+        "label": "Do Not Disturb Policy",
+        "url": "#/settings/dnd"
       }, {
-        "label": "Reports",
-        "url": "#/reports",
-        "icon": "clab-icon icon-analytics icon"
-      }, {
-        "label": "Settings",
-        "url": "#/settings",
-        "icon": "clab-icon icon-settings icon",
-        "submenu": [{
-          "label": "Showed fields",
-          "url": "#/settings/fields"
-        }, {
-          "label": "Time zones & week",
-          "url": "#/settings/timezones"
-        }, {
-          "label": "Do Not Disturb Policy",
-          "url": "#/settings/dnd"
-        }, {
-          "label": "Users",
-          "url": "#/settings/users"
-        }]
-      }];*/
-    }
+        "label": "Users",
+        "url": "#/settings/users"
+      }]
+    }];*/
+  }
 
+  _openModal1() {
+    this.modal1.show();
+  }
 
-    _openModal1() {
-        this.modal1.show();
-    }
+  _openModal2() {
+    this.modal2.show();
+  }
 
-    _openModal2() {
-      this.modal2.show();
-    }
+  _notify(evt) {
+    this.$.notify.visible = true;
+  }
 
-    _notify(evt) {
-      this.$.notify.visible = true;
-    }
+  _fire(evt) {
+    console.log('primary');
+  }
 
-    _fire(evt) {
-      console.log('primary');
-    }
+  _checkboxChange(evt) {
+    console.log(evt.target);
+  }
 
-    _checkboxChange(evt) {
-      console.log(evt.target);
-    }
+  _changeCurrentHash(evt) {
+    this.set('currentHash', evt.detail.href);
+  }
 
-    _changeCurrentHash(evt) {
-      this.set('currentHash', evt.detail.href);
-    }
-
-    _dateChange(evt){
-      console.log(evt.detail)
-    }
+  _dateChange(evt) {
+    console.log(evt.detail);
+  }
 
 }
 
 customElements.define(DemoElement.is, DemoElement);
-
 
 /***/ }),
 /* 229 */
