@@ -18528,6 +18528,15 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
     calendar ? calendar.destroy() : null;
   }
 
+  _show(evt) {
+    this.getRomeInstance() ? this.getRomeInstance().show() : null;
+  }
+
+  _hide(evt) {
+    console.log('blur', evt);
+    // this.getRomeInstance() ? this.getRomeInstance().hide() : null;
+  }
+
   /*----------
   EVENT HANDLERS
   ----------*/
@@ -18576,9 +18585,16 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
   ----------*/
   _createInstance(selector) {
     this.setLocale();
-    const obj = typeof this.options === 'object' ? this.options : this.getRomeInstance().options();
+    const defaults = typeof this.options === 'object' ? this.options : this.getRomeInstance().options();
+    const setup = {
+      "autoClose": false,
+      "autoHideOnBlur": false,
+      "autoHideOnClick": false
+    };
+    const opts = this.inline ? Object.assign({}, defaults) : Object.assign({}, defaults, setup);
     const currentCalendar = this.$$(selector);
-    const cal = __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar, obj);
+    console.log('rome opts', opts);
+    const cal = __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar, opts);
 
     cal.on('data', this._changeDate.bind(this));
     cal.on('next', evt => {
@@ -18587,6 +18603,12 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
     cal.on('back', evt => {
       this.cancelAsync(this._fireDate);
     });
+    /*cal.on('day', evt => {
+      this.getRomeInstance().hide();
+    });
+    cal.on('month', evt => {
+      this.getRomeInstance().show();
+    });*/
 
     this.dispatchEvent(new CustomEvent('instance-created', {
       bubbles: true,
@@ -18610,6 +18632,8 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
         }
       }));
     }, 250);
+
+    // this.getRomeInstance().hide();
   }
 
   /*----------
@@ -18629,7 +18653,7 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
   }
 
   getRomeInstance() {
-    return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.find(this.querySelector('input'));
+    return __WEBPACK_IMPORTED_MODULE_0_rome___default.a.find(this.$$('input'));
   }
 
   restore(options) {
@@ -21147,7 +21171,7 @@ const _getFormat = (options, romeInst) => {
 /* 198 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\" on-focus=\"_show\" on-blur=\"_hide\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 199 */

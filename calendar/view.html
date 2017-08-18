@@ -15,7 +15,8 @@
         <div class="input">
           <div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
           <input class$="[[type]]" type="text" disabled="[[disabled]]"
-          placeholder="[[placeholder]]" value="[[valueStr]]" on-keyup="_checkClear">
+          placeholder="[[placeholder]]" value="[[valueStr]]" on-keyup="_checkClear"
+          on-focus="_show" on-blur="_hide">
         </div>
 
         <note-clab type="[[noteType]]">
