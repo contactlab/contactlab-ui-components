@@ -1,15 +1,11 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
+import { dashify } from './../_libs/utils';
 
-class CheckboxClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
-        
+class CheckboxClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element) {
+
   static get is() { return 'checkbox-clab'; }
-
-  get behaviors() {
-    return [UtilBehavior];
-  }
 
   static get properties() {
     return {

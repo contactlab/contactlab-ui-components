@@ -8,9 +8,9 @@
     </style>
 
     <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
-      <template is="dom-if" if="[[_viewLabel(label, icon)]]">
-        <label class$="[[type]]" for$="[[_dashify(name)]]">
-					<template is="dom-if" if="[[_viewLabel(icon)]]">
+      <template is="dom-if" if="[[viewLabel(label, icon)]]">
+        <label class$="[[type]]" for$="[[dashify(name)]]">
+					<template is="dom-if" if="[[viewLabel(icon)]]">
 						<i class$="[[_compIcon(icon)]]"></i>
 					</template>
 					[[label]]

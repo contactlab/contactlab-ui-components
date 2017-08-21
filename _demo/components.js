@@ -18002,7 +18002,7 @@ customElements.define(AlertClab.is, AlertClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(146);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__input__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(8);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__curtain__ = __webpack_require__(9);
@@ -18014,7 +18014,7 @@ customElements.define(AlertClab.is, AlertClab);
 
 
 
-class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class AutoCompleteClab extends Polymer.Element {
 
   static get is() {
     return 'autocomplete-clab';
@@ -18241,7 +18241,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE
   }
 
   _handleArrows(type) {
-    let HIdx = this._getIndex(this._currentHint, this.results);
+    let HIdx = Object(__WEBPACK_IMPORTED_MODULE_1__libs_utils__["b" /* getIndex */])(this._currentHint, this.results);
     let item;
     switch (type) {
       case 'up':
@@ -18507,7 +18507,7 @@ customElements.define(GroupClab.is, GroupClab);
 
 
 
-class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["b" /* viewLabel */], getLocale: __WEBPACK_IMPORTED_MODULE_4__methods_public__["b" /* getLocale */], _computeType: __WEBPACK_IMPORTED_MODULE_5__methods_internal__["a" /* _computeType */] }, Polymer.LegacyElementMixin], Polymer.Element) {
+class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_2__libs_utils__["c" /* viewLabel */], getLocale: __WEBPACK_IMPORTED_MODULE_4__methods_public__["b" /* getLocale */], _computeType: __WEBPACK_IMPORTED_MODULE_5__methods_internal__["a" /* _computeType */] }, Polymer.LegacyElementMixin], Polymer.Element) {
 
   static get is() {
     return 'calendar-clab';
@@ -18526,15 +18526,6 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
   disconnectedCallback() {
     const calendar = __WEBPACK_IMPORTED_MODULE_0_rome___default.a.find(this.querySelector('input'));
     calendar ? calendar.destroy() : null;
-  }
-
-  _show(evt) {
-    this.getRomeInstance() ? this.getRomeInstance().show() : null;
-  }
-
-  _hide(evt) {
-    console.log('blur', evt);
-    // this.getRomeInstance() ? this.getRomeInstance().hide() : null;
   }
 
   /*----------
@@ -18587,13 +18578,12 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
     this.setLocale();
     const defaults = typeof this.options === 'object' ? this.options : this.getRomeInstance().options();
     const setup = {
-      "autoClose": false,
+      // "autoClose": false,
       "autoHideOnBlur": false,
       "autoHideOnClick": false
     };
     const opts = this.inline ? Object.assign({}, defaults) : Object.assign({}, defaults, setup);
     const currentCalendar = this.$$(selector);
-    console.log('rome opts', opts);
     const cal = __WEBPACK_IMPORTED_MODULE_0_rome___default()(currentCalendar, opts);
 
     cal.on('data', this._changeDate.bind(this));
@@ -18603,12 +18593,6 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
     cal.on('back', evt => {
       this.cancelAsync(this._fireDate);
     });
-    /*cal.on('day', evt => {
-      this.getRomeInstance().hide();
-    });
-    cal.on('month', evt => {
-      this.getRomeInstance().show();
-    });*/
 
     this.dispatchEvent(new CustomEvent('instance-created', {
       bubbles: true,
@@ -18632,8 +18616,6 @@ class CalendarClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED
         }
       }));
     }, 250);
-
-    // this.getRomeInstance().hide();
   }
 
   /*----------
@@ -21049,8 +21031,8 @@ module.exports = {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return dashify; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return viewLabel; });
-/* unused harmony export getIndex */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return viewLabel; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return getIndex; });
 
 
 /**
@@ -21171,7 +21153,7 @@ const _getFormat = (options, romeInst) => {
 /* 198 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\" on-focus=\"_show\" on-blur=\"_hide\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"calendar-clab\"><template><style>input[type=text]::-ms-clear{display:none;}</style><template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\"><div class$=\"[[_computeType('calendar input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\"><div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div><input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\"></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template><template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\"><div class=\"inline-cal\"></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 199 */
@@ -21328,20 +21310,16 @@ customElements.define(CardClab.is, CardClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(194);
 
 
 
 
 
-class CheckboxClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class CheckboxClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */] }], Polymer.Element) {
 
   static get is() {
     return 'checkbox-clab';
-  }
-
-  get behaviors() {
-    return [__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]];
   }
 
   static get properties() {
@@ -21463,7 +21441,7 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 /* 202 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"checkbox-clab\"><template><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(label)]]\" type=\"checkbox\" value=\"[[_dashify(label)]]\" checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(label)]]\">[[label]]</label></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"checkbox-clab\"><template><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[dashify(label)]]\" type=\"checkbox\" value=\"[[dashify(label)]]\" checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[dashify(label)]]\">[[label]]</label></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 203 */
@@ -21472,10 +21450,11 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__curtain__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__behaviors__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__note__ = __webpack_require__(5);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__curtain__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__input__ = __webpack_require__(6);
 
 
 
@@ -21484,7 +21463,8 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 
 
-class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */], __WEBPACK_IMPORTED_MODULE_1__behaviors__["b" /* DropdownBehavior */]], Polymer.Element) {
+
+class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_2__behaviors__["b" /* DropdownBehavior */], { dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
 
   static get is() {
     return 'dropdown-clab';
@@ -21780,7 +21760,7 @@ customElements.define(DropdownClab.is, DropdownClab);
 /* 204 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><template><style>.dropdown-clab .options-list,.options-list li{display:block !important;}</style><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><template><style>.dropdown-clab .options-list,.options-list li{display:block !important;}</style><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\"><template is=\"dom-if\" if=\"[[viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 205 */
@@ -21859,13 +21839,13 @@ customElements.define(FeatureClab.is, FeatureClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(208);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(194);
 
 
 
 
 
-class FileClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class FileClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
 
   static get is() {
     return 'file-clab';
@@ -21976,7 +21956,7 @@ customElements.define(FileClab.is, FileClab);
 /* 208 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"file-clab\"><template><style>input[type=file]{\t\t\t\tdisplay:none;\t\t\t}\t\t\tinput[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class=\"input\" on-click=\"_selection\"><input class$=\"[[type]]\" type=\"text\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\"> <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button></div><note-clab type=\"[[noteType]]\"><content select=\".note\"></content></note-clab><input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\"><div id=\"preview\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"file-clab\"><template><style>input[type=file]{\t\t\t\tdisplay:none;\t\t\t}\t\t\tinput[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class=\"input\" on-click=\"_selection\"><input class$=\"[[type]]\" type=\"text\" name$=\"[[dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\"> <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button></div><note-clab type=\"[[noteType]]\"><content select=\".note\"></content></note-clab><input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\"><div id=\"preview\"></div></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 209 */

@@ -10,12 +10,12 @@
 		</style>
 
 		<div class$="[[_compWrapperClass('input-wrapper', type)]]">
-			<template is="dom-if" if="[[_viewLabel(label)]]">
-				<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+			<template is="dom-if" if="[[viewLabel(label)]]">
+				<label class$="[[type]]" for$="[[dashify(name)]]">[[label]]</label>
 			</template>
 
 			<div class="input" on-click="_selection">
-				<input class$="[[type]]" type="text" name$="[[_dashify(name)]]" disabled="[[disabled]]" value="{{value}}" on-change="_checkIfResetPreview">
+				<input class$="[[type]]" type="text" name$="[[dashify(name)]]" disabled="[[disabled]]" value="{{value}}" on-change="_checkIfResetPreview">
 				<button class="btn"><i class="clab-icon icon-folder"></i></button>
 			</div>
 

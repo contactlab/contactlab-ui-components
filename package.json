@@ -13,8 +13,7 @@
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "test": "wct",
-    "test:p": "wct -p",
-    "flow": "npm run flow"
+    "test:p": "wct -p"
   },
   "repository": {
     "type": "git",

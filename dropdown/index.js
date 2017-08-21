@@ -1,12 +1,14 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior, DropdownBehavior} from "./../_behaviors";
+import { dashify, viewLabel } from './../_libs/utils';
+import {DropdownBehavior} from "./../_behaviors";
 import "./../note";
 import "./../curtain";
 import "./../input";
 
-class DropdownClab extends Polymer.mixinBehaviors([UtilBehavior, DropdownBehavior], Polymer.Element) {
+class DropdownClab extends Polymer.mixinBehaviors(
+  [DropdownBehavior, { dashify, viewLabel}], Polymer.Element) {
 
   static get is() { return 'dropdown-clab'; }
 

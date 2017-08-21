@@ -28,14 +28,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     calendar ? calendar.destroy() : null;
   }
 
-  _show(evt){
-    this.getRomeInstance() ? this.getRomeInstance().show() : null;
-  }
-
-  _hide(evt) {
-    console.log('blur', evt);
-    // this.getRomeInstance() ? this.getRomeInstance().hide() : null;
-  }
 
   /*----------
   EVENT HANDLERS
@@ -88,13 +80,12 @@ class CalendarClab extends Polymer.mixinBehaviors(
     this.setLocale();
     const defaults = typeof this.options === 'object' ? this.options : this.getRomeInstance().options();
     const setup = {
-      "autoClose": false,
+      // "autoClose": false,
       "autoHideOnBlur": false,
       "autoHideOnClick": false
     }
     const opts = this.inline ? Object.assign({}, defaults) : Object.assign({}, defaults, setup);
     const currentCalendar = this.$$(selector);
-    console.log('rome opts', opts);
     const cal = rome(currentCalendar, opts);
 
     cal.on('data', this._changeDate.bind(this))
@@ -104,12 +95,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
     cal.on('back', evt => {
       this.cancelAsync(this._fireDate);
     })
-    /*cal.on('day', evt => {
-      this.getRomeInstance().hide();
-    });
-    cal.on('month', evt => {
-      this.getRomeInstance().show();
-    });*/
 
     this.dispatchEvent(new CustomEvent('instance-created', {
       bubbles: true,
@@ -133,8 +118,6 @@ class CalendarClab extends Polymer.mixinBehaviors(
         }
       }));
     }, 250);
-
-    // this.getRomeInstance().hide();
   }
 
 
@@ -148,7 +131,7 @@ class CalendarClab extends Polymer.mixinBehaviors(
 
   getValue() {
     const formatted = moment(this.valueStr,
-      _getFormat(this.options, this.getRomeInstance())).format();
+    _getFormat(this.options, this.getRomeInstance())).format();
     return this.valueStr ? formatted : undefined;
   }
 

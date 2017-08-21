@@ -1,12 +1,12 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
+import { dashify, viewLabel } from './../_libs/utils';
 
-class FileClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+class FileClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element)  {
+
   static get is() { return 'file-clab'; }
-  
+
   static get properties() {
     return {
       label: String,

@@ -1,13 +1,13 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
+import { getIndex } from './../_libs/utils';
 import "./../input";
 import "./../spinner";
 import "./../curtain";
 
-class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
-        
+class AutoCompleteClab extends Polymer.Element {
+
   static get is() { return 'autocomplete-clab'; }
 
   static get properties() {
@@ -240,7 +240,7 @@ class AutoCompleteClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.El
   }
 
   _handleArrows(type) {
-    let HIdx = this._getIndex(this._currentHint, this.results);
+    let HIdx = getIndex(this._currentHint, this.results);
     let item;
     switch(type) {
       case 'up':
