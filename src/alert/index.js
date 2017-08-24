@@ -1,11 +1,11 @@
 'use strict';
 
-import {AnimationsBehavior} from "./../_behaviors";
+import { onAnimationComplete } from './../_libs/animations';
 import './view.html';
 import "./../button";
 
-class AlertClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Element) {
-        
+class AlertClab extends Polymer.mixinBehaviors([Polymer.LegacyElementMixin], Polymer.Element) {
+
   static get is() { return 'alert-clab'; }
 
   static get properties() {
@@ -149,7 +149,7 @@ class AlertClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Ele
       if(!this.noAnimation && target != null) {
         let animation = this.alertExit(target);
         let player = document.timeline.play(animation);
-        this._onAnimationComplete(player, () => {
+        onAnimationComplete(player, () => {
           target.style.display = 'none';
         });
       } else if(target != null) {

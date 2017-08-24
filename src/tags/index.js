@@ -5,7 +5,7 @@ import "./../button";
 import "./../label-badge";
 import "./../input/";
 
-class TagsClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
+class TagsClab extends Polymer.Element {
 
   static get is() { return 'tags-clab'; }
 

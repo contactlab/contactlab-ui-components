@@ -1,19 +1,6 @@
 'use strict';
 
 
-export const AnimationsBehavior = {
-
-  _onAnimationComplete: (elem, fn) => {
-    if(elem.finished) {
-      elem.finished.then(fn);
-    } else {
-      elem.onfinish = fn;
-    }
-  }
-};
-
-
-
 
 export const DropdownBehavior = {
   getSelectedLabel: function() {

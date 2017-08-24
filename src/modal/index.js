@@ -1,10 +1,10 @@
 'use strict';
 
+import { onAnimationComplete } from './../_libs/animations';
 import './view.html';
-import { AnimationsBehavior } from "./../_behaviors";
 import "./../button/";
 
-class ModalClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Element)  {
+class ModalClab extends Polymer.mixinBehaviors([Polymer.LegacyElementMixin], Polymer.Element) {
 
   static get is() { return 'modal-clab'; }
 
@@ -178,7 +178,7 @@ class ModalClab extends Polymer.mixinBehaviors([AnimationsBehavior], Polymer.Ele
       if (!this.noAnimation && this.modalExit) {
         let animation = this.modalExit(target);
         let player = document.timeline.play(animation);
-        this._onAnimationComplete(player, () => {
+        onAnimationComplete(player, () => {
           target.style.display = 'none';
         });
       } else {
