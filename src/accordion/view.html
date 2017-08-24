@@ -1,22 +1,18 @@
-<dom-module id="accordion-clab">
-	<template>
-		<style>
-			.accordion-title.active{
-				font-weight:600;
-			}
-			.accordion-title.active::before{
-				content:"\e60f";
-			}
-		</style>
-		<div class="accordion">
-			<div class$="[[_computeType(type)]]" id="block">
-				<div class="accordion-title" on-click="_toggleActive">
-					<span>[[title]]</span>
-				</div>
-				<div class="accordion-content" id="content">
-					<slot></slot>
-				</div>
-			</div>
-		</div>
-	</template>
-</dom-module>
+<style>
+  .accordion-title.active{
+    font-weight:600;
+  }
+  .accordion-title.active::before{
+    content:"\e60f";
+  }
+</style>
+<div class="accordion">
+  <div class$="[[_computeType(type)]]" id="block">
+    <div class="accordion-title" on-click="_toggleActive">
+      <span>[[title]]</span>
+    </div>
+    <div class="accordion-content" id="content">
+      <slot></slot>
+    </div>
+  </div>
+</div>

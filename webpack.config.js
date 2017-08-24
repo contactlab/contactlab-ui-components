@@ -20,7 +20,7 @@ module.exports = {
   module: {
     rules: [{
       test: /\.html$/,
-      loaders: ['wc-loader?minify=true']
+      use: 'text-loader'
     }, {
       test: /\.js$/,
       exclude: /(node_modules|bower_components)/,

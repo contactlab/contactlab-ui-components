@@ -1,10 +1,13 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 
-class ButtonClab extends Polymer.Element {
-        
+class ButtonClab extends PolymerElement {
+
   static get is() { return 'button-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

@@ -1,7 +1,7 @@
 'use strict';
 
 import './src/accordion/';
-import './src/alert/';
+/* import './src/alert/';
 import './src/autocomplete/';
 import './src/button/';
 import './src/button-group/';
@@ -25,3 +25,4 @@ import './src/spinner/';
 import './src/tabs/';
 import './src/tags/';
 import './src/tooltip/';
+ */

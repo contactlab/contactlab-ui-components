@@ -1,10 +1,13 @@
 'use strict';
 
-import './template.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './template.html';
 
-class DemoElement extends Polymer.Element {
+class DemoElement extends PolymerElement {
 
   static get is() { return 'demo-element'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

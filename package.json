@@ -1,7 +1,7 @@
 {
   "name": "contactlab-ui-components",
-  "version": "1.3.7",
-  "description": "Polymer (v2) UI components of the Contactlab Pattern Library",
+  "version": "2.0.0",
+  "description": "Polymer (v3) UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "config": {
     "port": {
@@ -38,16 +38,16 @@
     "replace-in-file": "2.5.4",
     "runnable-exports": "0.1.1",
     "strip-loader": "0.1.2",
-    "wc-loader": "1.1.12",
+    "text-loader": "0.0.1",
     "webpack": "3.5.5",
     "webpack-notifier": "1.5.0"
   },
   "dependencies": {
-    "@polymer/polymer": "contactlab/polymer",
     "ikonograph": "2.0.0",
     "moment": "2.18.1",
     "rome": "2.1.22",
     "web-animations-js": "2.3.1",
-    "webcomponentsjs": "1.0.2"
+    "@polymer/polymer": "next",
+    "@webcomponents/webcomponentsjs": "1.0.8"
   }
 }

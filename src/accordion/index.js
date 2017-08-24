@@ -1,10 +1,13 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 
-class AccordionClab extends Polymer.Element {
-        
+class AccordionClab extends PolymerElement {
+
   static get is() { return 'accordion-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

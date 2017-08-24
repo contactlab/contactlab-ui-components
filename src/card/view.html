@@ -1,43 +1,39 @@
-<dom-module id="card-clab">
-	<template>
-		<div class$="[[_computeEffectClass(effect)]]">
-			<template is="dom-if" if="[[!figure]]">
-				<div class$="[[_computeCardClass(big)]]">
-					<template is="dom-if" if="[[!big]]">
-						<i class$="[[icon]]"></i>
-					</template>
-					<span>[[title]]</span>
-					<template is="dom-if" if="[[big]]">
-						<div class="circle"><i class="fa fa-circle"></i></div>
-						<div class="icon"><i class$="[[icon]]"></i></div>
-					</template>
-				</div>
-			</template>
-			<template is="dom-if" if="[[figure]]">
-				<figure>
-					<img src="[[figure]]">
-					<template is="dom-if" if="[[_showTitle(title)]]">
-						<h2>[[title]]</h2>
-					</template>
-				</figure>
-			</template>
-			<template is="dom-if" if="[[!table]]">
-				<div class="card-body">
-					<slot></slot>
-				</div>
-			</template>
-			<template is="dom-if" if="[[table]]">
-				<slot></slot>
-			</template>
-			<div class="card-actions">
-				<template is="dom-if" if="[[_showActions(noActions, link)]]">
-					<button-clab type="primary" appearance="empty" on-btnclick="_handleClickP">[[secondary]]</button-clab>
-					<button-clab type="secondary" on-btnclick="_handleClickS">[[primary]]</button-clab>
-				</template>
-				<template is="dom-if" if="[[_showLink(noActions, link)]]">
-					<a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>
-				</template>
-			</div>
-		</div>
-	</template>
-</dom-module>
+<div class$="[[_computeEffectClass(effect)]]">
+  <template is="dom-if" if="[[!figure]]">
+    <div class$="[[_computeCardClass(big)]]">
+      <template is="dom-if" if="[[!big]]">
+        <i class$="[[icon]]"></i>
+      </template>
+      <span>[[title]]</span>
+      <template is="dom-if" if="[[big]]">
+        <div class="circle"><i class="fa fa-circle"></i></div>
+        <div class="icon"><i class$="[[icon]]"></i></div>
+      </template>
+    </div>
+  </template>
+  <template is="dom-if" if="[[figure]]">
+    <figure>
+      <img src="[[figure]]">
+      <template is="dom-if" if="[[_showTitle(title)]]">
+        <h2>[[title]]</h2>
+      </template>
+    </figure>
+  </template>
+  <template is="dom-if" if="[[!table]]">
+    <div class="card-body">
+      <slot></slot>
+    </div>
+  </template>
+  <template is="dom-if" if="[[table]]">
+    <slot></slot>
+  </template>
+  <div class="card-actions">
+    <template is="dom-if" if="[[_showActions(noActions, link)]]">
+      <button-clab type="primary" appearance="empty" on-btnclick="_handleClickP">[[secondary]]</button-clab>
+      <button-clab type="secondary" on-btnclick="_handleClickS">[[primary]]</button-clab>
+    </template>
+    <template is="dom-if" if="[[_showLink(noActions, link)]]">
+      <a class$="[[link.class]]" href$="[[link.href]]">[[link.text]]</a>
+    </template>
+  </div>
+</div>
