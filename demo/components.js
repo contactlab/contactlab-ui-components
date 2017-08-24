@@ -4561,105 +4561,7 @@ module.exports = g;
 
 
 /***/ }),
-/* 2 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-const DropdownBehavior = {
-  getSelectedLabel: function () {
-    return this.selected[this.labelField];
-  },
-
-  getSelectedValue: function () {
-    return this.selected[this.valueField];
-  },
-
-  setByLabel: function (str) {
-    this.options.map(opt => {
-      if (opt[this.labelField] === str) {
-        this._setSelected(opt);
-        return;
-      }
-    });
-  },
-
-  setByValue: function (str) {
-    this.options.map(opt => {
-      if (opt[this.valueField] === str) {
-        this._setSelected(opt);
-        return;
-      }
-    });
-  },
-
-  isValorized: function () {
-    return !this.isNotValorized();
-  },
-
-  isNotValorized: function () {
-    return this.selected === undefined || this.selected === null || this.selected[this.valueField] === undefined || this.selected[this.valueField] === null;
-  },
-
-  setValue: function (obj, prevent) {
-    prevent = prevent ? true : false;
-    this.preventChange = prevent;
-
-    if (typeof obj === 'object') {
-      this._setSelected(obj);
-    } else {
-      this.options.map(opt => {
-        if (opt[this.valueField] === obj) {
-          this._setSelected(opt);
-          return;
-        }
-      });
-    }
-
-    this.preventChange = false;
-  },
-
-  getValue: function () {
-    var v;
-    if (this.isNotValorized()) {
-      v = undefined;
-    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
-      v = this.selected;
-    } else if (typeof this.selected === "object") {
-      v = this.selected[this.valueField];
-    } else {
-      console.error(this.is + ": Invalid value type [" + typeof this.selected + "]");
-    }
-    return v;
-  },
-
-  getValueObject: function () {
-    var v;
-    if (this.isNotValorized(this.selected)) {
-      v = undefined;
-    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
-      this.options.map(opt => {
-        if (opt[this.valueField] === this.selected) {
-          v = opt;
-          return;
-        }
-      });
-      if (v === undefined) {
-        console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
-      }
-    } else if (typeof this.selected === "object") {
-      v = this.selected;
-    } else {
-      console.warn(this.is + ": Invalid value type [" + typeof this.selected + "]");
-    }
-    return v;
-  }
-};
-/* harmony export (immutable) */ __webpack_exports__["a"] = DropdownBehavior;
-
-
-/***/ }),
+/* 2 */,
 /* 3 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -21418,10 +21320,9 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__behaviors__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__note__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__curtain__ = __webpack_require__(10);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__input__ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__curtain__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input__ = __webpack_require__(7);
 
 
 
@@ -21430,8 +21331,7 @@ customElements.define(CheckboxClab.is, CheckboxClab);
 
 
 
-
-class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_2__behaviors__["a" /* DropdownBehavior */], { dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
+class DropdownClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
 
   static get is() {
     return 'dropdown-clab';
@@ -21717,6 +21617,94 @@ class DropdownClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_2__
 
   _compMaxHeight(height) {
     return height ? height : '';
+  }
+
+  getSelectedLabel() {
+    return this.selected[this.labelField];
+  }
+
+  getSelectedValue() {
+    return this.selected[this.valueField];
+  }
+
+  setByLabel(str) {
+    this.options.map(opt => {
+      if (opt[this.labelField] === str) {
+        this._setSelected(opt);
+        return;
+      }
+    });
+  }
+
+  setByValue(str) {
+    this.options.map(opt => {
+      if (opt[this.valueField] === str) {
+        this._setSelected(opt);
+        return;
+      }
+    });
+  }
+
+  isValorized() {
+    return !this.isNotValorized();
+  }
+
+  isNotValorized() {
+    return this.selected === undefined || this.selected === null || this.selected[this.valueField] === undefined || this.selected[this.valueField] === null;
+  }
+
+  setValue(obj, prevent) {
+    prevent = prevent ? true : false;
+    this.preventChange = prevent;
+
+    if (typeof obj === 'object') {
+      this._setSelected(obj);
+    } else {
+      this.options.map(opt => {
+        if (opt[this.valueField] === obj) {
+          this._setSelected(opt);
+          return;
+        }
+      });
+    }
+
+    this.preventChange = false;
+  }
+
+  getValue() {
+    var v;
+    if (this.isNotValorized()) {
+      v = undefined;
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
+      v = this.selected;
+    } else if (typeof this.selected === "object") {
+      v = this.selected[this.valueField];
+    } else {
+      console.error(this.is + ": Invalid value type [" + typeof this.selected + "]");
+    }
+    return v;
+  }
+
+  getValueObject() {
+    var v;
+    if (this.isNotValorized(this.selected)) {
+      v = undefined;
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
+      this.options.map(opt => {
+        if (opt[this.valueField] === this.selected) {
+          v = opt;
+          return;
+        }
+      });
+      if (v === undefined) {
+        console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
+      }
+    } else if (typeof this.selected === "object") {
+      v = this.selected;
+    } else {
+      console.warn(this.is + ": Invalid value type [" + typeof this.selected + "]");
+    }
+    return v;
   }
 
 }

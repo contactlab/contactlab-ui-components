@@ -2,13 +2,11 @@
 
 import './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
-import {DropdownBehavior} from "./../_behaviors";
 import "./../note";
 import "./../curtain";
 import "./../input";
 
-class DropdownClab extends Polymer.mixinBehaviors(
-  [DropdownBehavior, { dashify, viewLabel}], Polymer.Element) {
+class DropdownClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element) {
 
   static get is() { return 'dropdown-clab'; }
 
@@ -303,6 +301,100 @@ class DropdownClab extends Polymer.mixinBehaviors(
 
   _compMaxHeight(height) {
     return height ? height : '';
+  }
+
+
+
+
+  getSelectedLabel(){
+    return this.selected[this.labelField];
+  }
+
+  getSelectedValue(){
+    return this.selected[this.valueField];
+  }
+
+  setByLabel(str) {
+    this.options.map(opt => {
+      if (opt[this.labelField] === str) {
+        this._setSelected(opt);
+        return;
+      }
+    });
+  }
+
+  setByValue(str){
+    this.options.map(opt => {
+      if (opt[this.valueField] === str) {
+        this._setSelected(opt);
+        return;
+      }
+    });
+  }
+
+  isValorized(){
+    return !this.isNotValorized();
+  }
+
+  isNotValorized(){
+    return this.selected === undefined ||
+      this.selected === null ||
+      this.selected[this.valueField] === undefined ||
+      this.selected[this.valueField] === null;
+  }
+
+  setValue(obj, prevent){
+    prevent = prevent ? true : false;
+    this.preventChange = prevent;
+
+    if (typeof obj === 'object') {
+      this._setSelected(obj);
+    } else {
+      this.options.map(opt => {
+        if (opt[this.valueField] === obj) {
+          this._setSelected(opt);
+          return;
+        }
+      });
+    }
+
+    this.preventChange = false;
+  }
+
+  getValue(){
+    var v;
+    if (this.isNotValorized()) {
+      v = undefined;
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
+      v = this.selected;
+    } else if (typeof this.selected === "object") {
+      v = this.selected[this.valueField];
+    } else {
+      console.error(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+    }
+    return v;
+  }
+
+  getValueObject(){
+    var v;
+    if (this.isNotValorized(this.selected)) {
+      v = undefined;
+    } else if (typeof this.selected === 'string' || this.selected instanceof String) {
+      this.options.map(opt => {
+        if (opt[this.valueField] === this.selected) {
+          v = opt;
+          return;
+        }
+      });
+      if (v === undefined) {
+        console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
+      }
+    } else if (typeof this.selected === "object") {
+      v = this.selected;
+    } else {
+      console.warn(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+    }
+    return v;
   }
 
 
