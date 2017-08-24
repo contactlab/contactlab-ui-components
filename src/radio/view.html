@@ -2,9 +2,10 @@
   <template>
     <template is="dom-repeat" items="[[labels]]">
       <div class$="[[_computeType(wrapperType)]]">
-        <input id$="[[_dashify(item)]]" type="radio" name="[[name]]" value="[[_dashify(item)]]" checked="[[_isChecked(index, active)]]"
+        <input id$="[[_dashify(item)]]" type="radio" name="[[name]]" value="[[dashify(item)]]"
+          checked="[[_isChecked(index, active)]]"
           disabled$="[[_isDisabled(index, disabled)]]" data-index$="[[index]]" on-change="_onChange">
-        <label for$="[[_dashify(item)]]">[[item]]</label>
+        <label for$="[[dashify(item)]]">[[item]]</label>
       </div>
     </template>
   </template>

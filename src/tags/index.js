@@ -1,13 +1,12 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
 import "./../button";
 import "./../label-badge";
 import "./../input/";
 
 class TagsClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+
   static get is() { return 'tags-clab'; }
 
   static get properties() {

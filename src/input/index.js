@@ -1,12 +1,12 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors";
+import { dashify, viewLabel } from './../_libs/utils';
 import "./../button";
 import "./../note";
 
-class InputClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+class InputClab extends Polymer.mixinBehaviors([{ dashify, viewLabel}], Polymer.Element)  {
+
   static get is() { return 'input-clab'; }
 
   static get properties() {

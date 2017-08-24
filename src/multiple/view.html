@@ -30,9 +30,9 @@
 		</style>
 		<div class="input-wrapper">
 		<template is="dom-if" if="[[label]]">
-			<label class$="[[type]]" for$="[[_dashify(name)]]">[[label]]</label>
+			<label class$="[[type]]" for$="[[dashify(name)]]">[[label]]</label>
 		</template>
-		<div id$="[[_dashify(name)]]" class$="[[_compWrapperType(type)]]">
+		<div id$="[[dashify(name)]]" class$="[[_compWrapperType(type)]]">
 			<ol class="options-list" on-scroll="_loadContent">
 				<template is="dom-repeat" items="[[options]]">
 						<li data-index$="[[index]]" tabindex="0" on-click="_handleSelection" class$="[[_computeSelection(item.selected)]]">[[item.label]]</li>

@@ -1,10 +1,9 @@
 'use strict';
 
 import "./view.html";
-import {UtilBehavior} from "./../_behaviors";
 
-class PaginationClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
-        
+class PaginationClab extends Polymer.Element {
+
   static get is() { return 'pagination-clab'; }
 
   static get properties() {

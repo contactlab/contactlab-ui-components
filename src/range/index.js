@@ -1,10 +1,10 @@
 'use strict';
 
 import "./view.html";
-import {UtilBehavior} from "./../_behaviors";
+import { dashify, viewLabel } from './../_libs/utils';
 
-class RangeClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+class RangeClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element)  {
+
   static get is() { return 'range-clab'; }
 
   static get properties() {

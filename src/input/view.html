@@ -8,9 +8,9 @@
 
 		<div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
 
-			<template is="dom-if" if="[[_viewLabel(label, icon)]]">
-				<label class$="[[type]]" for$="[[_dashify(name)]]">
-					<template is="dom-if" if="[[_viewLabel(icon)]]">
+			<template is="dom-if" if="[[viewLabel(label, icon)]]">
+				<label class$="[[type]]" for$="[[dashify(name)]]">
+					<template is="dom-if" if="[[viewLabel(icon)]]">
 						<i class$="[[_compIcon(icon)]]"></i>
 					</template>
 					[[label]]
@@ -21,7 +21,7 @@
 				<input
 					class$="[[type]]"
 					type$="[[_computeInputType(password,inputType)]]"
-					name$="[[_dashify(name)]]"
+					name$="[[dashify(name)]]"
 					disabled="[[disabled]]"
 					value="{{value::input}}"
 					placeholder="[[placeholder]]"

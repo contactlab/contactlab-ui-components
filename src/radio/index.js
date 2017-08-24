@@ -1,9 +1,9 @@
 'use strict';
 
 import "./view.html";
-import {UtilBehavior} from "./../_behaviors";
+import { dashify } from './../_libs/utils';
 
-class RadioClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
+class RadioClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element)  {
 
   static get is() { return 'radio-clab'; }
 

@@ -4567,26 +4567,6 @@ module.exports = g;
 "use strict";
 
 
-const UtilBehavior = {
-
-  _dashify: str => {
-    return str.toLowerCase().replace(/ /g, '-');
-  },
-
-  _viewLabel: (label, icon) => {
-    let bool = false;
-    if (label != undefined && label.length > 0) bool = true;else bool = false;
-    if (icon != undefined && icon.length > 0) bool = true;
-    return bool;
-  },
-
-  _getIndex: (item, items) => {
-    return items.indexOf(item);
-  }
-};
-/* harmony export (immutable) */ __webpack_exports__["c"] = UtilBehavior;
-
-
 const AnimationsBehavior = {
 
   _onAnimationComplete: (elem, fn) => {
@@ -4890,7 +4870,7 @@ customElements.define(NoteClab.is, NoteClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(148);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__note__ = __webpack_require__(6);
 
@@ -4900,7 +4880,7 @@ customElements.define(NoteClab.is, NoteClab);
 
 
 
-class InputClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class InputClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
 
   static get is() {
     return 'input-clab';
@@ -18369,7 +18349,7 @@ customElements.define(AutoCompleteClab.is, AutoCompleteClab);
 /* 148 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><template><style>input[type=text]::-ms-clear{\t\t\t\tdisplay:none;\t\t\t}</style><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\"><template is=\"dom-if\" if=\"[[viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 149 */
@@ -22179,7 +22159,7 @@ customElements.define(ModalClab.is, ModalClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(213);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__note__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__spinner__ = __webpack_require__(9);
 
@@ -22189,7 +22169,7 @@ customElements.define(ModalClab.is, ModalClab);
 
 
 
-class MultipleClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class MultipleClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */] }], Polymer.Element) {
 
   static get is() {
     return 'multiple-clab';
@@ -22497,7 +22477,7 @@ customElements.define(MultipleClab.is, MultipleClab);
 /* 213 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"multiple-clab\"><template><style>li{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t\tmargin:0;\t\t\t}\t\t\tli.selected{\t\t\t\tcolor:red;\t\t\t}\t\t\t.multiple-wrapper{\t\t\t\theight:auto;\t\t\t\twidth:100%;\t\t\t\toverflow:hidden;\t\t\t\tposition:relative;\t\t\t}\t\t\t.options-list{\t\t\t\tmax-height:300px;\t\t\t\tposition:relative;\t\t\t\twidth:100%;\t\t\t\toverflow-y:auto;\t\t\t}</style><div class=\"input-wrapper\"><template is=\"dom-if\" if=\"[[label]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div id$=\"[[_dashify(name)]]\" class$=\"[[_compWrapperType(type)]]\"><ol class=\"options-list\" on-scroll=\"_loadContent\"><template is=\"dom-repeat\" items=\"[[options]]\"><li data-index$=\"[[index]]\" tabindex=\"0\" on-click=\"_handleSelection\" class$=\"[[_computeSelection(item.selected)]]\">[[item.label]]</li></template></ol><spinner-clab visible=\"[[spinner]]\"></spinner-clab></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"multiple-clab\"><template><style>li{\t\t\t\t-webkit-touch-callout:none;/* iOS Safari */\t\t\t\t-webkit-user-select:none;/* Chrome/Safari/Opera */\t\t\t\t-khtml-user-select:none;/* Konqueror */\t\t\t\t-moz-user-select:none;/* Firefox */\t\t\t\t-ms-user-select:none;/* IE/Edge */\t\t\t\tuser-select:none;\t\t\t\tmargin:0;\t\t\t}\t\t\tli.selected{\t\t\t\tcolor:red;\t\t\t}\t\t\t.multiple-wrapper{\t\t\t\theight:auto;\t\t\t\twidth:100%;\t\t\t\toverflow:hidden;\t\t\t\tposition:relative;\t\t\t}\t\t\t.options-list{\t\t\t\tmax-height:300px;\t\t\t\tposition:relative;\t\t\t\twidth:100%;\t\t\t\toverflow-y:auto;\t\t\t}</style><div class=\"input-wrapper\"><template is=\"dom-if\" if=\"[[label]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div id$=\"[[dashify(name)]]\" class$=\"[[_compWrapperType(type)]]\"><ol class=\"options-list\" on-scroll=\"_loadContent\"><template is=\"dom-repeat\" items=\"[[options]]\"><li data-index$=\"[[index]]\" tabindex=\"0\" on-click=\"_handleSelection\" class$=\"[[_computeSelection(item.selected)]]\">[[item.label]]</li></template></ol><spinner-clab visible=\"[[spinner]]\"></spinner-clab></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 214 */
@@ -22506,13 +22486,11 @@ customElements.define(MultipleClab.is, MultipleClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(215);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
 
 
 
 
-
-class PaginationClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class PaginationClab extends Polymer.Element {
 
   static get is() {
     return 'pagination-clab';
@@ -22764,13 +22742,13 @@ customElements.define(ProgressClab.is, ProgressClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(219);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(5);
 
 
 
 
 
-class RadioClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class RadioClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */] }], Polymer.Element) {
 
   static get is() {
     return 'radio-clab';
@@ -22844,7 +22822,7 @@ customElements.define(RadioClab.is, RadioClab);
 /* 219 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[_dashify(item)]]\" checked=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[_dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"radio-clab\"><template><template is=\"dom-repeat\" items=\"[[labels]]\"><div class$=\"[[_computeType(wrapperType)]]\"><input id$=\"[[_dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[dashify(item)]]\" checked=\"[[_isChecked(index, active)]]\" disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\"><label for$=\"[[dashify(item)]]\">[[item]]</label></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 220 */
@@ -22853,13 +22831,13 @@ customElements.define(RadioClab.is, RadioClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__libs_utils__ = __webpack_require__(5);
 
 
 
 
 
-class RangeClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class RangeClab extends Polymer.mixinBehaviors([{ dashify: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_1__libs_utils__["c" /* viewLabel */] }], Polymer.Element) {
 
   static get is() {
     return 'range-clab';
@@ -22932,7 +22910,7 @@ customElements.define(RangeClab.is, RangeClab);
 /* 221 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"range-clab\"><template><template is=\"dom-if\" if=\"[[_viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\">[[label]]</label></template><div class$=\"[[rangeWrapperClasses]]\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"min\">[[min]]</span></template><input class$=\"[[type]]\" type=\"range\" name$=\"[[_dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\" step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"max\">[[max]]</span></template></div><template is=\"dom-if\" if=\"[[showDetails]]\"><div class=\"value\">Range value: <span>[[value]]</span></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"range-clab\"><template><template is=\"dom-if\" if=\"[[viewLabel(label)]]\"><label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label></template><div class$=\"[[rangeWrapperClasses]]\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"min\">[[min]]</span></template><input class$=\"[[type]]\" type=\"range\" name$=\"[[dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\" step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\"><template is=\"dom-if\" if=\"[[showDetails]]\"><span class=\"max\">[[max]]</span></template></div><template is=\"dom-if\" if=\"[[showDetails]]\"><div class=\"value\">Range value: <span>[[value]]</span></div></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 222 */
@@ -23067,10 +23045,9 @@ customElements.define(TabsClab.is, TabsClab);
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html__ = __webpack_require__(225);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__behaviors__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__button__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__label_badge__ = __webpack_require__(137);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input___ = __webpack_require__(7);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__button__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__label_badge__ = __webpack_require__(137);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__input___ = __webpack_require__(7);
 
 
 
@@ -23078,8 +23055,7 @@ customElements.define(TabsClab.is, TabsClab);
 
 
 
-
-class TagsClab extends Polymer.mixinBehaviors([__WEBPACK_IMPORTED_MODULE_1__behaviors__["c" /* UtilBehavior */]], Polymer.Element) {
+class TagsClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element) {
 
   static get is() {
     return 'tags-clab';

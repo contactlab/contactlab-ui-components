@@ -1,12 +1,12 @@
 'use strict';
 
 import "./view.html";
-import {UtilBehavior} from "./../_behaviors";
+import { dashify } from './../_libs/utils';
 import "./../note";
 import "./../spinner";
 
-class MultipleClab extends Polymer.mixinBehaviors([UtilBehavior], Polymer.Element)  {
-        
+class MultipleClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element)  {
+
   static get is() { return 'multiple-clab'; }
 
   static get properties() {
