@@ -2,20 +2,26 @@
 
 import rome from 'rome';
 import moment from 'moment';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { dashify, viewLabel } from './../_libs/utils';
+import template from './view.html';
 import props from './props';
 import { clear, getLocale } from './methods/public';
 import { _computeType, _getLocale, _getFormat } from './methods/internal';
+import '@polymer/polymer/lib/elements/dom-if';
 import './view.html';
-import "./../note";
 
-class CalendarClab extends Polymer.mixinBehaviors(
+class CalendarClab extends mixinBehaviors(
   [{ dashify, viewLabel, getLocale, _computeType },
-    Polymer.LegacyElementMixin], Polymer.Element) {
+    LegacyElementMixin], PolymerElement) {
 
   static get is() { return 'calendar-clab' }
 
   static get properties() { return props }
+
+  static get template() { return template; }
 
   _initRome(){
     const selector = this.inline ? 'div.inline-cal' : "input";

@@ -1,14 +1,18 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import "./../note";
 import "./../curtain";
 import "./../input";
 
-class DropdownClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element) {
+class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerElement) {
 
   static get is() { return 'dropdown-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

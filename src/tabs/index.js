@@ -1,10 +1,14 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-repeat';
 
-class TabsClab extends Polymer.Element {
-        
+class TabsClab extends PolymerElement {
+
   static get is() { return 'tabs-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {
@@ -46,7 +50,7 @@ class TabsClab extends Polymer.Element {
 
   connectedCallback(){
     super.connectedCallback();
-    
+
     // this._content = this.getEffectiveChildren();
   }
 

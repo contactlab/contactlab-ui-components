@@ -2,11 +2,13 @@
 
 import { onAnimationComplete } from './../_libs/animations';
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
-import LegacyElementMixin from '@polymer/polymer/lib/legacy/legacy-element-mixin';
+import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-if';
 import "./../button";
 
-class AlertClab extends Polymer.mixinBehaviors([LegacyElementMixin], PolymerElement) {
+class AlertClab extends mixinBehaviors([LegacyElementMixin], PolymerElement) {
 
   static get is() { return 'alert-clab'; }
 

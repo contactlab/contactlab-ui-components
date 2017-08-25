@@ -1,11 +1,15 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import template from './view.html';
 import { dashify } from './../_libs/utils';
 
-class CheckboxClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element) {
+class CheckboxClab extends mixinBehaviors([{ dashify }], PolymerElement) {
 
   static get is() { return 'checkbox-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

@@ -1,10 +1,13 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 
-class TooltipClab extends Polymer.Element {
-        
+class TooltipClab extends PolymerElement {
+
   static get is() { return 'tooltip-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

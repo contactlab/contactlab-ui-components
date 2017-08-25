@@ -1,13 +1,18 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-if';
+import '@polymer/polymer/lib/elements/dom-repeat';
 import "./../button";
 import "./../label-badge";
 import "./../input/";
 
-class TagsClab extends Polymer.Element {
+class TagsClab extends PolymerElement {
 
   static get is() { return 'tags-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

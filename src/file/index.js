@@ -1,11 +1,16 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import '@polymer/polymer/lib/elements/dom-if';
 
-class FileClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element)  {
+class FileClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerElement)  {
 
   static get is() { return 'file-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

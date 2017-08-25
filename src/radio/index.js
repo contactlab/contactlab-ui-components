@@ -1,11 +1,16 @@
 'use strict';
 
-import "./view.html";
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 import { dashify } from './../_libs/utils';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import '@polymer/polymer/lib/elements/dom-repeat';
 
-class RadioClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element)  {
+class RadioClab extends mixinBehaviors([{ dashify }], PolymerElement)  {
 
   static get is() { return 'radio-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

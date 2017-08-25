@@ -1,13 +1,19 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
+import template from './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
+import '@polymer/polymer/lib/elements/dom-if';
 import "./../button";
 import "./../note";
 
-class InputClab extends Polymer.mixinBehaviors([{ dashify, viewLabel}], Polymer.Element)  {
+class InputClab extends mixinBehaviors([{ dashify, viewLabel }, LegacyElementMixin], PolymerElement)  {
 
   static get is() { return 'input-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {
@@ -111,10 +117,12 @@ class InputClab extends Polymer.mixinBehaviors([{ dashify, viewLabel}], Polymer.
 
   connectedCallback() {
     super.connectedCallback();
-    Array.prototype.map.call(this.getEffectiveChildren(), node => {
-      if(node.classList.contains('note')) {
-        Polymer.dom(this.$$('note-clab')).appendChild(node);
-        Polymer.dom.flush();
+
+    this.getEffectiveChildren().forEach((node,i) => {
+      if (node.classList.contains('note')) {
+        this.$$('note-clab').appendChild(node);
+        /* Polymer.dom(this.$$('note-clab')).appendChild(node);
+        Polymer.dom.flush(); */
       }
     })
   }

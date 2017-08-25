@@ -1,11 +1,15 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-if';
 import "./../button";
 
-class CardClab extends Polymer.Element {
-        
+class CardClab extends PolymerElement {
+
   static get is() { return 'card-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

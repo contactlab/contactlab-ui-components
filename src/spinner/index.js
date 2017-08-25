@@ -1,10 +1,14 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-if';
 
-class SpinnerClab extends Polymer.Element {
-        
+class SpinnerClab extends PolymerElement {
+
   static get is() { return 'spinner-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

@@ -1,11 +1,16 @@
 'use strict';
 
-import "./view.html";
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import '@polymer/polymer/lib/elements/dom-if';
 
-class RangeClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer.Element)  {
+class RangeClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerElement)  {
 
   static get is() { return 'range-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {
@@ -49,7 +54,7 @@ class RangeClab extends Polymer.mixinBehaviors([{ dashify, viewLabel }], Polymer
   EVENT HANDLERS
   ----------*/
   _updateCompValue(evt) {
-    this.value = this.querySelector('input').value;
+    this.value = parseInt(evt.currentTarget.value);
   }
 
 

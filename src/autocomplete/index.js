@@ -1,14 +1,17 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
 import { getIndex } from './../_libs/utils';
 import "./../input";
 import "./../spinner";
 import "./../curtain";
 
-class AutoCompleteClab extends Polymer.Element {
+class AutoCompleteClab extends PolymerElement {
 
   static get is() { return 'autocomplete-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

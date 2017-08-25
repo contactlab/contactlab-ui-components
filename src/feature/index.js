@@ -1,10 +1,14 @@
 'use strict';
 
-import './view.html';
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import '@polymer/polymer/lib/elements/dom-if';
 
-class FeatureClab extends Polymer.Element {
-        
+class FeatureClab extends PolymerElement {
+
   static get is() { return 'feature-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {

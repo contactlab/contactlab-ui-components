@@ -1,13 +1,19 @@
 'use strict';
 
-import "./view.html";
+import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import template from './view.html';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { dashify } from './../_libs/utils';
+import '@polymer/polymer/lib/elements/dom-if';
+import '@polymer/polymer/lib/elements/dom-repeat';
 import "./../note";
 import "./../spinner";
 
-class MultipleClab extends Polymer.mixinBehaviors([{ dashify }], Polymer.Element)  {
+class MultipleClab extends mixinBehaviors([{ dashify }], PolymerElement)  {
 
   static get is() { return 'multiple-clab'; }
+
+  static get template() { return template; }
 
   static get properties() {
     return {
