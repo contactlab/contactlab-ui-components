@@ -8194,10 +8194,12 @@ const flush = function() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(192);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
 
@@ -8205,32 +8207,20 @@ const flush = function() {
 
 
 
-class SpinnerClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */] {
+
+
+class SpinnerClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ _computeClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["b" /* _computeClass */], _computeBgColor: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["a" /* _computeBgColor */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
 
   static get is() {
     return 'spinner-clab';
   }
 
   static get template() {
-    return __WEBPACK_IMPORTED_MODULE_1__view_html___default.a;
+    return __WEBPACK_IMPORTED_MODULE_3__view_html___default.a;
   }
 
   static get properties() {
-    return __WEBPACK_IMPORTED_MODULE_2__props__["a" /* default */];
-  }
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeClass(big, dark) {
-    let str = 'spinner-overlay ';
-    this.dark ? str += ' dark ' : null;
-    this.big ? str += ' big ' : null;
-    return str;
-  }
-
-  _computeBgColor(color) {
-    return 'background-color: rgba(' + color + ')';
+    return __WEBPACK_IMPORTED_MODULE_4__props__["a" /* default */];
   }
 
 }
@@ -35955,6 +35945,30 @@ module.exports = "<style>\n    .content.dark {\n        background-color: var(--
     value: 500
   }
 });
+
+/***/ }),
+/* 295 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeBgColor; });
+
+
+var _this = this;
+
+const _computeClass = (big, dark) => {
+  const arr = ['spinner-overlay'];
+  _this.dark ? arr.push('dark') : null;
+  _this.big ? arr.push('big') : null;
+  return arr.join(' ');
+};
+
+const _computeBgColor = color => {
+  return 'background-color: rgba(' + color + ')';
+};
+
+
 
 /***/ })
 /******/ ]);
