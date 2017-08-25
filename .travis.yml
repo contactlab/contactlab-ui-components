@@ -3,11 +3,9 @@ dist: trusty
 language: node_js
 node_js:
   - 'node'
-  - '6'
+  - '8.3'
 before_script:
-  - npm install -g bower
-  - bower install -f
-  - npm run build
+  - npm run build:test
   - export TZ=Europe/Rome
   - export DISPLAY=:99.0
   - sh -e /etc/init.d/xvfb start

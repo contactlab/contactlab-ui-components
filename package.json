@@ -12,6 +12,8 @@
   "scripts": {
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
+    "build": "webpack",
+    "build:test": "webpack --config webpack.config-test.js",
     "test": "wct",
     "test:p": "wct -p"
   },
@@ -35,6 +37,7 @@
     "flow-bin": "0.53.1",
     "fs-extra": "4.0.1",
     "http-server": "0.10.0",
+    "mocha": "3.5.0",
     "replace-in-file": "2.5.4",
     "runnable-exports": "0.1.1",
     "strip-loader": "0.1.2",
@@ -43,11 +46,11 @@
     "webpack-notifier": "1.5.0"
   },
   "dependencies": {
+    "@polymer/polymer": "next",
+    "@webcomponents/webcomponentsjs": "1.0.8",
     "ikonograph": "2.0.0",
     "moment": "2.18.1",
     "rome": "2.1.22",
-    "web-animations-js": "2.3.1",
-    "@polymer/polymer": "next",
-    "@webcomponents/webcomponentsjs": "1.0.8"
+    "web-animations-js": "2.3.1"
   }
 }
