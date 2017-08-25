@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-if';
 import '@polymer/polymer/lib/elements/dom-repeat';
 
@@ -12,49 +13,11 @@ class CurtainClab extends PolymerElement {
   static get template() { return template; }
 
   static get properties() {
-    return {
-      id: String,
-      options: {
-        type: Array,
-        value: []
-      },
-      highlighted: {
-        type: Object,
-        value: {}
-      },
-      labelField: String,
-      valueField: String,
-      dontHide: {
-        type: Boolean,
-        notify: true
-      },
-      maxInView: Number,
-      disabled: {
-        type: Boolean,
-        value: false
-      },
-      open: {
-        type: Boolean,
-        value: false
-      },
-
-      //_liHeight:Number,
-      maxHeight: {
-        type: Number,
-        value: 28
-      },
-      _listMaxHeight: String,
-      _listHeight: String,
-      _hidden: {
-        type: Boolean,
-        value: false
-      },
-      _computedStyles: String
-    };
+    return props;
     this.observers = [
-			'_setLiHeight(options, maxInView, disabled)',
-			'_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
-		]
+      '_setLiHeight(options, maxInView, disabled)',
+      '_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
+    ]
   }
 
   connectedCallback(){
@@ -114,13 +77,12 @@ class CurtainClab extends PolymerElement {
   }
 
 
-
   /*----------
   	METHODS
   ----------*/
   _setLiHeight(options, maxInView, disabled) {
     if(options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
-      this.async(() => {
+      setTimeout(() => {
         if(this.maxHeight == undefined || this.maxHeight == '') {
           this.set('_hidden', true);
           this.maxHeight = 28;

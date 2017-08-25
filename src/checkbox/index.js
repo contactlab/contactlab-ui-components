@@ -3,6 +3,7 @@
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import template from './view.html';
+import props from './props';
 import { dashify } from './../_libs/utils';
 
 class CheckboxClab extends mixinBehaviors([{ dashify }], PolymerElement) {
@@ -11,29 +12,7 @@ class CheckboxClab extends mixinBehaviors([{ dashify }], PolymerElement) {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      /** Label of the checkbox */
-      label: {
-        type: String
-      },
-      /** Wrapper style type */
-      wrapperType: {
-        type: String
-      },
-      /** Determine if the check is checked or not */
-      active: {
-        type: Boolean,
-        value: false,
-        notify: true
-      },
-      /** Determine if the check is disabled or not */
-      disabled: {
-        type: Boolean,
-        value: false
-      }
-    }
-  }
+  static get properties() { return props; }
 
 
   /***

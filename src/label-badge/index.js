@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-if';
 
 class LabelClab extends PolymerElement {
@@ -10,26 +11,7 @@ class LabelClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      type: {
-        type: String,
-        value: null
-      },
-      counter: {
-        type: Number,
-        value: null
-      },
-      remove: {
-        type: Boolean,
-        value: false
-      },
-      badge: {
-        type: Boolean,
-        value: false
-      }
-    }
-  }
+  static get properties() { return props; }
 
 
   /*----------

@@ -5,6 +5,7 @@ import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-if';
 import "./../button";
 
@@ -14,40 +15,7 @@ class AlertClab extends mixinBehaviors([LegacyElementMixin], PolymerElement) {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      title: {
-        type: String,
-        value: 'Title'
-      },
-      type: {
-        type: String,
-        value: 'success'
-      },
-      visible: {
-        type: Boolean,
-        value: false,
-        notify: true,
-        observer: '_animateShowHide'
-      },
-      primary: {
-        type: String,
-        value: 'Confirm'
-      },
-      secondary: {
-        type: String,
-        value: 'Cancel'
-      },
-      notify: {
-        type: Boolean,
-        value: false
-      },
-      noAnimation: {
-        type: Boolean,
-        value: false
-      }
-    }
-  }
+  static get properties() { return props }
 
   connectedCallback(){
     super.connectedCallback();

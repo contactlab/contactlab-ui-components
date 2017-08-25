@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 
 class AccordionClab extends PolymerElement {
 
@@ -9,23 +10,7 @@ class AccordionClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      title: {
-        type: String,
-        value: 'Title'
-      },
-      type: {
-        type: String,
-        value: ''
-      },
-      open: {
-        type: Boolean,
-        value: false,
-        observer: '_animateOpenClose'
-      }
-    }
-  }
+  static get properties() { return props }
 
   connectedCallback(){
     super.connectedCallback();

@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 
 class TooltipClab extends PolymerElement {
 
@@ -9,24 +10,7 @@ class TooltipClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      type: {
-        type: String,
-        value: ""
-      },
-      visible: {
-        type: Boolean,
-        value: false,
-        observer: '_observVisibility'
-      },
-      wait: {
-        type: Number,
-        value: 500
-      }
-    }
-  }
-
+  static get properties() { return props; }
 
 
   /*----------

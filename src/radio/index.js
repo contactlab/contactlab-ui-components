@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import { dashify } from './../_libs/utils';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import '@polymer/polymer/lib/elements/dom-repeat';
@@ -12,36 +13,7 @@ class RadioClab extends mixinBehaviors([{ dashify }], PolymerElement)  {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      labels: {
-        type:Array,
-        value: []
-      },
-      name: {
-        type: String
-      },
-      wrapperType: {
-        type: String,
-        value: ''
-      },
-      active: {
-        type: Number,
-        value: 0
-      },
-      disabled: {
-        type: Array,
-        value: []
-      },
-      inline: {
-        type: Boolean,
-        value: false,
-        observer: '_computeInline',
-        reflectToAttribute: true
-      }
-    }
-  }
-
+  static get properties() { return props; }
 
 
   /*----------

@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 
 class ProgressClab extends PolymerElement {
 
@@ -9,23 +10,7 @@ class ProgressClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      value: {
-        type: Number,
-        value: 0
-      },
-      minimal: {
-        type: Boolean,
-        value: false
-      },
-      type: {
-        type: String,
-        value: null
-      }
-    }
-  }
-
+  static get properties() { return props; }
 
 
   /*----------

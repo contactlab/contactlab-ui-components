@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 
 class NoteClab extends PolymerElement {
 
@@ -9,16 +10,7 @@ class NoteClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      type: String,
-      classes: {
-        type: String,
-        computed: 'computeClasses(type)',
-        readonly: true
-      }
-    }
-  }
+  static get properties() { return props; }
 
   /*----------
   COMPUTED

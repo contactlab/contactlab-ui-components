@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-if';
 
 class SpinnerClab extends PolymerElement {
@@ -10,26 +11,7 @@ class SpinnerClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      dark: {
-        type: Boolean,
-        value: false
-      },
-      big: {
-        type: Boolean,
-        value: false
-      },
-      background: {
-        type: String,
-        value: '240, 240, 240, 0.9'
-      },
-      visible: {
-        type: Boolean,
-        value: false,
-      }
-    }
-  }
+  static get properties() { return props; }
 
 
 

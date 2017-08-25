@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-repeat';
 
 class TabsClab extends PolymerElement {
@@ -11,49 +12,12 @@ class TabsClab extends PolymerElement {
   static get template() { return template; }
 
   static get properties() {
-    return {
-      labels: {
-        type: Array,
-        value: []
-      },
-      pills: {
-        type: Boolean,
-        value: false
-      },
-      vertical: {
-        type: Boolean,
-        value: false
-      },
-      centered: {
-        type: Boolean,
-        value: false
-      },
-      fullWidth: {
-        type: Boolean,
-        value: false
-      },
-      active: {
-        type: Number,
-        value: 0,
-        notify: true
-      },
-      current: {
-        type: String,
-        notify: true
-      },
-      _content: Array
-    };
+    return props;
+
     this.observers = [
 			'_changeTab(active, _content)'
 		]
   }
-
-  connectedCallback(){
-    super.connectedCallback();
-
-    // this._content = this.getEffectiveChildren();
-  }
-
 
 
   /*----------

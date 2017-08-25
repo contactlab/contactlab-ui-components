@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-repeat';
 import './../button/';
 
@@ -11,59 +12,7 @@ class GroupClab extends PolymerElement {
 
   static get template() { return template; }
 
-	static get properties() {
-    	return {
-			/**
-			* Additional class
-			*/
-			options: {
-				type: Array,
-				value: ['Option 1', 'Option 2']
-			},
-			/**
-			* Additional class
-			*/
-			type: {
-				type: String,
-				value: ''
-			},
-			/**
-			* `size` additional class for the size of the buttons
-			*/
-			size:{
-				type: String,
-				value: ''
-			},
-			/**
-			* Whether the buttons are disabled
-			*/
-			disabled: {
-				type: Boolean,
-				value: false
-			},
-			/**
-			* Index of the button active at init
-			*/
-			value: {
-				type: Number,
-				value: 0,
-				reflectToAttribute: true
-			}
-		}
-	}
-
-	connectedCallback(){
-    	super.connectedCallback();
-		// let btns = this.getContentChildren();
-		/*let btns = this.$$('div.buttons-group button-clab');
-		Array.prototype.map.call(btns, (btn, i) => {
-			btn.classList.add('group-item');
-			btn.appearance = (i==this.value) ? '' : 'empty';
-			btn.setAttribute('data-i', i);
-			btn.addEventListener('btnclick', this._selectElement.bind(this));
-		});*/
-	}
-
+	static get properties() { return props }
 
 	/*----------
 	OBSERVER
@@ -97,12 +46,12 @@ class GroupClab extends PolymerElement {
 	COMPUTED
 	----------*/
 	_computeGroupClass(type, size){
-		let arr = [type, size];
+		const arr = [type, size];
 		return arr.join(' ');
 	}
 
 	_computeItemClass(index,value){
-		let arr = [];
+		const arr = [];
 		index !== value ? arr.push('empty') : null;
 		return arr.join(' ');
 	}

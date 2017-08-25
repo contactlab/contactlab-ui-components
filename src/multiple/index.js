@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { dashify } from './../_libs/utils';
 import '@polymer/polymer/lib/elements/dom-if';
@@ -15,50 +16,7 @@ class MultipleClab extends mixinBehaviors([{ dashify }], PolymerElement)  {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      label: {
-        type: String,
-        value: null
-      },
-      type: {
-        type: String,
-        value: ''
-      },
-      options: {
-        type: Array,
-        value: []
-      },
-      optionsFn: {
-        type: Function,
-        observer: '_setOptions'
-      },
-      url: String,
-      selected: {
-        type: Array,
-        value: [],
-        notify: true
-      },
-      name: {
-        type: String,
-        value: 'multiple select'
-      },
-      disabled: {
-        type: Boolean,
-        value: false,
-        observer: '_disabledChanged'
-      },
-      maxInView: {
-        type: Number,
-        value: 6
-      },
-      spinner: {
-        type: Boolean,
-        value: false
-      },
-      noteType: String
-    }
-  }
+  static get properties() { return props; }
 
   connectedCallback(){
     super.connectedCallback();

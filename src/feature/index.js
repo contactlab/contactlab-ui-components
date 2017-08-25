@@ -2,6 +2,7 @@
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
+import props from './props';
 import '@polymer/polymer/lib/elements/dom-if';
 
 class FeatureClab extends PolymerElement {
@@ -10,34 +11,7 @@ class FeatureClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return {
-      link: {
-        type: String,
-        value: null
-      },
-      linkTarget: {
-        type: String,
-        value: '_self'
-      },
-      iconClass: {
-        type: String,
-        value: null
-      },
-      src: {
-        type: String,
-        value: null
-      },
-      size: {
-        type: String,
-        value: null
-      },
-      vertical: {
-        type: Boolean,
-        value: false
-      }
-    }
-  }
+  static get properties() { return props; }
 
 
   /*----------
