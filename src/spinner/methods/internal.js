@@ -2,8 +2,8 @@
 
 const _computeClass = (big, dark) => {
   const arr = ['spinner-overlay'];
-  this.dark ? arr.push('dark') : null;
-  this.big ? arr.push('big') : null;
+  dark ? arr.push('dark') : null;
+  big ? arr.push('big') : null;
   return arr.join(' ');
 }
 
