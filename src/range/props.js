@@ -1,34 +1,36 @@
 'use strict';
 
 export default {
-  label: String,
+  label: {
+    type: String
+  },
   name: {
     type: String,
     value: 'rangeinput'
-  },
-  type: {
-    type: String,
-    value: null
   },
   value: {
     type: Number,
     notify: true,
     reflectToAttribute: true
   },
-  min: Number,
-  max: Number,
-  step: Number,
+  min: {
+    type: Number,
+    value: 0
+  },
+  max: {
+    type: Number,
+    value: 10
+  },
+  step: {
+    type: Number,
+    value: 1
+  },
   disabled: {
     type: Boolean,
-    value: false,
-    observer: 'disabledChanged'
+    value: false
   },
   showDetails: {
     type: Boolean,
     value: false
-  },
-  rangeWrapperClasses: {
-    type: String,
-    computed: 'computeRangeWrapperClasses(showDetails)'
   }
 }

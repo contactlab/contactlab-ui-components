@@ -20,7 +20,7 @@
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "build": "webpack",
     "build:test": "webpack --config webpack.config-test.js",
-    "test": "ava ./src/spinner/test"
+    "test": "ava ./test/index.js"
   },
   "repository": {
     "type": "git",

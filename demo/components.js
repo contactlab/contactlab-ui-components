@@ -1896,7 +1896,7 @@ function loadLocale(name) {
             module && module.exports) {
         try {
             oldLocale = globalLocale._abbr;
-            __webpack_require__(198)("./" + name);
+            __webpack_require__(208)("./" + name);
             // because defineLocale currently also sets the global locale, we
             // want to undo that for lazy loaded locales
             getSetGlobalLocale(oldLocale);
@@ -4531,7 +4531,7 @@ return hooks;
 
 })));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(197)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(207)(module)))
 
 /***/ }),
 /* 1 */
@@ -5389,9 +5389,9 @@ const microTask = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(189);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(190);
 
 
 
@@ -6193,15 +6193,15 @@ function camelToDashCase(camel) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webcomponents_shadycss_entrypoints_apply_shim_js__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webcomponents_shadycss_entrypoints_apply_shim_js__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_element_mixin_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_gesture_event_listeners_js__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_gesture_event_listeners_js__ = __webpack_require__(180);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_mixin_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_import_href_js__ = __webpack_require__(180);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_render_status_js__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_import_href_js__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_render_status_js__ = __webpack_require__(182);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__polymer_dom_js__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__polymer_dom_js__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_gestures_js__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_debounce_js__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_async_js__ = __webpack_require__(8);
@@ -7470,9 +7470,9 @@ class Debouncer {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__button__ = __webpack_require__(9);
@@ -7601,9 +7601,9 @@ customElements.define(InputClab.is, InputClab);
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(191);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(196);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(197);
 
 
 
@@ -7643,8 +7643,8 @@ customElements.define(NoteClab.is, NoteClab);
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-var customEvent = __webpack_require__(211);
-var eventmap = __webpack_require__(212);
+var customEvent = __webpack_require__(221);
+var eventmap = __webpack_require__(222);
 var doc = document;
 var addEvent = addEventEasy;
 var removeEvent = removeEventEasy;
@@ -8195,10 +8195,10 @@ const flush = function() {
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(295);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(192);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(198);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(200);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
@@ -8233,9 +8233,9 @@ customElements.define(SpinnerClab.is, SpinnerClab);
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(193);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(202);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
@@ -13975,7 +13975,7 @@ MutableData._mutablePropertyChange = mutablePropertyChange;
 
 
 var moment = __webpack_require__(0);
-var rome = __webpack_require__(199);
+var rome = __webpack_require__(209);
 
 rome.use(moment);
 
@@ -25105,10 +25105,10 @@ module.exports = throttle;
 
 var getSelection;
 var doc = global.document;
-var getSelectionRaw = __webpack_require__(217);
-var getSelectionNullOp = __webpack_require__(218);
-var getSelectionSynthetic = __webpack_require__(219);
-var isHost = __webpack_require__(220);
+var getSelectionRaw = __webpack_require__(227);
+var getSelectionNullOp = __webpack_require__(228);
+var getSelectionSynthetic = __webpack_require__(229);
+var isHost = __webpack_require__(230);
 if (isHost.method(global, 'getSelection')) {
   getSelection = getSelectionRaw;
 } else if (typeof doc.selection === 'object' && doc.selection) {
@@ -25344,15 +25344,15 @@ module.exports = defaults;
 
 
 var crossvent = __webpack_require__(19);
-var emitter = __webpack_require__(223);
-var dom = __webpack_require__(230);
-var text = __webpack_require__(231);
+var emitter = __webpack_require__(233);
+var dom = __webpack_require__(240);
+var text = __webpack_require__(241);
 var parse = __webpack_require__(27);
 var clone = __webpack_require__(160);
 var defaults = __webpack_require__(161);
 var momentum = __webpack_require__(11);
 var classes = __webpack_require__(163);
-var noop = __webpack_require__(232);
+var noop = __webpack_require__(242);
 var no;
 
 function calendar (calendarOptions) {
@@ -26067,9 +26067,9 @@ module.exports = "<style>\n  input[type=text]::-ms-clear {\n    display: none;\n
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
@@ -26124,7 +26124,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(167);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(295);
 
 
 
@@ -26158,30 +26158,30 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_accordion___ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_alert___ = __webpack_require__(174);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_autocomplete___ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_alert___ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_autocomplete___ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_button___ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_button_group___ = __webpack_require__(194);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_calendar___ = __webpack_require__(196);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_card___ = __webpack_require__(240);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_checkbox___ = __webpack_require__(242);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_button_group___ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_calendar___ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_card___ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_checkbox___ = __webpack_require__(253);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_curtain___ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_dropdown___ = __webpack_require__(244);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_feature___ = __webpack_require__(246);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_file___ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_dropdown___ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_feature___ = __webpack_require__(259);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_file___ = __webpack_require__(262);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_input___ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_label_badge___ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_modal___ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_multiple___ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_modal___ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_multiple___ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_note___ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__src_pagination___ = __webpack_require__(255);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__src_progress_bar___ = __webpack_require__(257);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__src_radio___ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__src_range___ = __webpack_require__(261);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__src_pagination___ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__src_progress_bar___ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__src_radio___ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__src_range___ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__src_spinner___ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__src_tabs___ = __webpack_require__(263);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__src_tags___ = __webpack_require__(265);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__src_tooltip___ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__src_tabs___ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__src_tags___ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__src_tooltip___ = __webpack_require__(292);
 
 
 
@@ -26218,7 +26218,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(173);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(174);
 
 
 
@@ -27471,13 +27471,36 @@ module.exports = "<style>\n  .accordion-title.active{\n    font-weight:600;\n  }
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  title: {
+    type: String,
+    value: 'Title'
+  },
+  type: {
+    type: String,
+    value: ''
+  },
+  open: {
+    type: Boolean,
+    value: false,
+    observer: '_animateOpenClose'
+  }
+});
+
+/***/ }),
+/* 175 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_animations__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html__ = __webpack_require__(187);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__props__ = __webpack_require__(272);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__props__ = __webpack_require__(188);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__button__ = __webpack_require__(9);
 
@@ -27615,17 +27638,17 @@ class AlertClab extends Object(__WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_
 customElements.define(AlertClab.is, AlertClab);
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_apply_shim_js__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_apply_shim_js__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_template_map_js__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_style_util_js__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_apply_shim_utils_js__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_apply_shim_utils_js__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_document_wait_js__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_common_utils_js__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_custom_style_interface_js__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_custom_style_interface_js__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_style_settings_js__ = __webpack_require__(34);
 /**
 @license
@@ -27823,7 +27846,7 @@ if (!window.ShadyCSS || !window.ShadyCSS.ScopingShim) {
 window.ShadyCSS.ApplyShim = applyShim;
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28295,7 +28318,7 @@ Object.defineProperty(ApplyShim.prototype, 'invalidCallback', {
 /* harmony default export */ __webpack_exports__["a"] = (ApplyShim);
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28461,7 +28484,7 @@ function elementsAreInvalid() {
 }
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28629,7 +28652,7 @@ let CustomStyleInterfaceInterface;
 
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28677,7 +28700,7 @@ const GestureEventListeners = Object(__WEBPACK_IMPORTED_MODULE_1__utils_mixin_js
 
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28758,7 +28781,7 @@ const importHref = function(href, onload, onerror, optAsync) {
 
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28837,7 +28860,7 @@ function afterNextRender(context, callback, args) {
 
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports) {
 
 function resolve() {
@@ -28852,7 +28875,7 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
 
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28861,7 +28884,7 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_boot_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_boot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils_boot_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_settings_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_flattened_nodes_observer_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_flattened_nodes_observer_js__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_flush_js__ = __webpack_require__(23);
 /* unused harmony reexport flush */
 /* unused harmony reexport addDebouncer */
@@ -29159,14 +29182,14 @@ const dom = function(obj) {
 
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlattenedNodesObserver; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boot_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__boot_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array_splice_js__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array_splice_js__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__async_js__ = __webpack_require__(8);
 
 
@@ -29407,7 +29430,7 @@ class FlattenedNodesObserver {
 
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29678,26 +29701,128 @@ function equals(currentValue, previousValue) {
 
 
 /***/ }),
-/* 186 */
-/***/ (function(module, exports) {
-
-module.exports = "<style>\n  .alert{\n    display: none;\n    opacity: 0;\n  }\n</style>\n<template is=\"dom-if\" if=\"[[!notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\">\n    <div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div>\n    <h3>[[title]]</h3>\n    <p><slot></slot></p>\n    <button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab>\n    <button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab>\n  </div>\n</template>\n<template is=\"dom-if\" if=\"[[notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\">\n    <div class=\"close\"><i class=\"clab-icon icon-close\"></i></div>\n    <p><slot></slot></p>\n  </div>\n</template>\n"
-
-/***/ }),
 /* 187 */
 /***/ (function(module, exports) {
 
-module.exports = "<button class$=\"[[_computeClass(type, appearance, size, block)]]\"\n  disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\">\n    <template is=\"dom-if\" if=\"[[icon]]\">\n      <i class$=\"[[_computeIconClass(icon)]]\"></i>\n    </template>\n    <slot></slot>\n</button>\n"
+module.exports = "<style>\n  .alert{\n    display: none;\n    opacity: 0;\n  }\n</style>\n<template is=\"dom-if\" if=\"[[!notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\">\n    <div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div>\n    <h3>[[title]]</h3>\n    <p><slot></slot></p>\n    <button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab>\n    <button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab>\n  </div>\n</template>\n<template is=\"dom-if\" if=\"[[notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\">\n    <div class=\"close\"><i class=\"clab-icon icon-close\"></i></div>\n    <p><slot></slot></p>\n  </div>\n</template>\n"
 
 /***/ }),
 /* 188 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  title: {
+    type: String,
+    value: 'Title'
+  },
+  type: {
+    type: String,
+    value: 'success'
+  },
+  visible: {
+    type: Boolean,
+    value: false,
+    notify: true,
+    observer: '_animateShowHide'
+  },
+  primary: {
+    type: String,
+    value: 'Confirm'
+  },
+  secondary: {
+    type: String,
+    value: 'Cancel'
+  },
+  notify: {
+    type: Boolean,
+    value: false
+  },
+  noAnimation: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports) {
+
+module.exports = "<button class$=\"[[_computeClass(type, appearance, size, block)]]\"\n  disabled=\"[[disabled]]\" on-click=\"_click\" type=\"[[buttonType]]\">\n    <template is=\"dom-if\" if=\"[[icon]]\">\n      <i class$=\"[[_computeIconClass(icon)]]\"></i>\n    </template>\n    <slot></slot>\n</button>\n"
+
+/***/ }),
+/* 190 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /**
+   * `type` additional class for the type of btn
+   */
+  type: {
+    type: String,
+    value: "",
+    reflectToAttribute: true
+  },
+  /**
+   * `appearance` additional class for the type
+   */
+  appearance: {
+    type: String,
+    value: ""
+  },
+  /**
+   * `size` additional class for the size
+   */
+  size: {
+    type: String,
+    value: ""
+  },
+  /**
+   * `type` insert a valid icon class to add an icon
+   */
+  icon: {
+    type: String,
+    value: ""
+  },
+  /**
+   * Whether is disabled or not
+   */
+  disabled: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
+  /**
+   * If it use block layout (auto width)
+   */
+  block: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
+  /**
+   * Default HTML button type (submit, reset, button)
+   */
+  buttonType: {
+    type: String,
+    value: 'button'
+  }
+});
+
+/***/ }),
+/* 191 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(192);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(193);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__input__ = __webpack_require__(17);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__spinner__ = __webpack_require__(24);
@@ -29940,44 +30065,356 @@ class AutoCompleteClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_poly
 customElements.define(AutoCompleteClab.is, AutoCompleteClab);
 
 /***/ }),
-/* 189 */
+/* 192 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"input-wrapper\">\n  <input-clab label=\"[[label]]\" value=\"{{_inputString}}\" name=\"[[name]]\" type=\"[[type]]\" note-type=\"[[noteType]]\" disabled=\"[[disabled]]\" inline=\"[[inline]]\" label-size=\"[[labelSize]]\" icon=\"[[icon]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyboardInputs\" on-blur=\"_handleBlur\">\n    <content select=\".button\"></content>\n    <content select=\".note\"></content>\n    <curtain-clab class=\"curtain\" options=\"[[results]]\" highlighted=\"[[_currentHint]]\" label-field=\"[[labelField]]\"\n    value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" dont-hide=\"{{dontHide}}\" disabled=\"[[hideHints]]\"\n      on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" id=\"curtain\"></curtain-clab>\n  </input-clab>\n\n  <spinner-clab visible=\"[[_spinner]]\"></spinner-clab>\n</div>\n"
 
 /***/ }),
-/* 190 */
+/* 193 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String,
+    value: null
+  },
+  name: {
+    type: String,
+    value: 'auto complete'
+  },
+  type: {
+    type: String
+  },
+  noteType: {
+    type: String
+  },
+  selected: {
+    type: Object,
+    value: {},
+    observer: '_changedSelected'
+  },
+  valueField: {
+    type: String,
+    value: 'value'
+  },
+  labelField: {
+    type: String,
+    value: 'label'
+  },
+  placeholder: {
+    type: String,
+    value: 'Type..'
+  },
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  options: Array,
+  url: String,
+
+  results: {
+    type: Array,
+    value: [],
+    notify: true
+  },
+  optionsFn: {
+    type: Function,
+    observer: '_setOptions'
+  },
+  filter: {
+    type: Boolean,
+    value: false
+  },
+  hideHints: {
+    type: Boolean,
+    value: false
+  },
+  resultAsObj: {
+    type: Boolean,
+    value: false
+  },
+  minChar: {
+    type: Number,
+    value: 3
+  },
+  maxInView: {
+    type: Number,
+    value: 6
+  },
+  inline: {
+    type: Boolean,
+    value: false
+  },
+  labelSize: {
+    type: String,
+    observer: '_setLabelSize'
+  },
+  icon: String,
+
+  _inputString: {
+    type: String,
+    readonly: true
+  },
+  _currentHint: Object,
+  _spinner: {
+    type: Boolean,
+    value: false
+  },
+  _interval: Object
+});
+
+/***/ }),
+/* 194 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  input[type=text]::-ms-clear{\n    display: none;\n  }\n</style>\n\n<div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\">\n\n  <template is=\"dom-if\" if=\"[[viewLabel(label, icon)]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">\n      <template is=\"dom-if\" if=\"[[viewLabel(icon)]]\">\n        <i class$=\"[[_compIcon(icon)]]\"></i>\n      </template>\n      [[label]]\n    </label>\n  </template>\n\n  <div class=\"input\">\n    <input\n      class$=\"[[type]]\"\n      type$=\"[[_computeInputType(password,inputType)]]\"\n      name$=\"[[dashify(name)]]\"\n      disabled=\"[[disabled]]\"\n      value=\"{{value::input}}\"\n      placeholder=\"[[placeholder]]\"\n      required=\"[[required]]\"\n      readonly$=\"[[readonly]]\"\n      maxlength$=\"[[maxlength]]\"\n      on-blur=\"_blur\"\n      on-focus=\"_focus\" >\n\n    <template is=\"dom-if\" if=\"[[check]]\">\n      <button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab>\n    </template>\n    <slot name=\"button\"></slot>\n\n    <slot name=\"curtain\"></slot>\n  </div>\n\n  <note-clab type=\"[[noteType]]\"></note-clab>\n</div>\n"
 
 /***/ }),
-/* 191 */
+/* 195 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String,
+    value: null,
+    reflectToAttribute: true
+  },
+  icon: {
+    type: String,
+    value: null,
+    reflectToAttribute: true
+  },
+  name: {
+    type: String,
+    value: 'textinput',
+    reflectToAttribute: true
+  },
+  inputType: {
+    type: String,
+    value: null,
+    reflectToAttribute: true
+  },
+  type: {
+    type: String,
+    value: null,
+    reflectToAttribute: true
+  },
+  noteType: String,
+  value: {
+    type: String,
+    notify: true,
+    reflectToAttribute: true
+  },
+  disabled: {
+    type: Boolean,
+    value: false,
+    observer: '_disabledChanged',
+    reflectToAttribute: true
+  },
+  inline: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
+  readonly: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
+  labelSize: {
+    type: String,
+    value: null
+  },
+  placeholder: {
+    type: String,
+    reflectToAttribute: true
+  },
+  check: {
+    type: Boolean,
+    value: false
+  },
+  required: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
+  maxlength: {
+    type: Number,
+    value: null,
+    reflectToAttribute: true
+  },
+  btnPswd: {
+    type: Object,
+    value: {
+      show: {
+        icon: '',
+        label: 'Show',
+        type: "",
+        appearance: "",
+        size: ""
+      },
+      hide: {
+        icon: '',
+        label: 'Hide',
+        type: "",
+        appearance: "",
+        size: ""
+      }
+    }
+  },
+  _btnPswd: Object,
+  password: {
+    type: Boolean,
+    value: false,
+    observer: '_computeBtnPswd'
+  }
+});
+
+/***/ }),
+/* 196 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[classes]]\">\n  <slot></slot>\n</div>\n"
 
 /***/ }),
-/* 192 */
+/* 197 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  type: String,
+  classes: {
+    type: String,
+    computed: 'computeClasses(type)',
+    readonly: true
+  }
+});
+
+/***/ }),
+/* 198 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeBgColor; });
+
+
+const _computeClass = (big, dark) => {
+  const arr = ['spinner-overlay'];
+  dark ? arr.push('dark') : null;
+  big ? arr.push('big') : null;
+  return arr.join(' ');
+};
+
+const _computeBgColor = color => {
+  return 'background-color: rgba(' + color + ')';
+};
+
+
+
+/***/ }),
+/* 199 */
 /***/ (function(module, exports) {
 
 module.exports = "<template is=\"dom-if\" if=\"[[visible]]\">\n  <div class$=\"[[_computeClass(big,dark)]]\" style$=\"[[_computeBgColor(background)]]\">\n    <div class=\"spinner\">\n      <div class=\"rect1\"></div>\n      <div class=\"rect2\"></div>\n      <div class=\"rect3\"></div>\n      <div class=\"rect4\"></div>\n      <div class=\"rect5\"></div>\n    </div>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 193 */
+/* 200 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  dark: {
+    type: Boolean,
+    value: false
+  },
+  big: {
+    type: Boolean,
+    value: false
+  },
+  background: {
+    type: String,
+    value: '240, 240, 240, 0.9'
+  },
+  visible: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 201 */
 /***/ (function(module, exports) {
 
 module.exports = "<template is=\"dom-if\" if=\"[[open]]\">\n  <ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\">\n    <template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\">\n      <li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\"\n      on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li>\n    </template>\n  </ol>\n</template>\n"
 
 /***/ }),
-/* 194 */
+/* 202 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  id: String,
+  options: {
+    type: Array,
+    value: []
+  },
+  highlighted: {
+    type: Object,
+    value: {}
+  },
+  labelField: String,
+  valueField: String,
+  dontHide: {
+    type: Boolean,
+    notify: true
+  },
+  maxInView: Number,
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  open: {
+    type: Boolean,
+    value: false
+  },
+
+  //_liHeight:Number,
+  maxHeight: {
+    type: Number,
+    value: 28
+  },
+  _listMaxHeight: String,
+  _listHeight: String,
+  _hidden: {
+    type: Boolean,
+    value: false
+  },
+  _computedStyles: String
+});
+
+/***/ }),
+/* 203 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(195);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(204);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__button___ = __webpack_require__(9);
 
@@ -30048,13 +30485,56 @@ class GroupClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_ele
 customElements.define(GroupClab.is, GroupClab);
 
 /***/ }),
-/* 195 */
+/* 204 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"buttons-group [[_computeGroupClass(type, size)]]\">\n  <template is=\"dom-repeat\" items=\"[[options]]\">\n    <button-clab appearance$=\"[[_computeItemClass(index,value)]]\" class=\"'group-item'\" data-i$=\"[[index]]\"\n    disabled=\"[[disabled]]\" on-click=\"_selectElement\">[[item]]</button-clab>\n  </template>\n</div>\n"
 
 /***/ }),
-/* 196 */
+/* 205 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  options: {
+    type: Array,
+    value: ['Option 1', 'Option 2']
+  },
+  /**
+  * Additional class
+  */
+  type: {
+    type: String,
+    value: ''
+  },
+  /**
+  * `size` additional class for the size of the buttons
+  */
+  size: {
+    type: String,
+    value: ''
+  },
+  /**
+  * Whether the buttons are disabled
+  */
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  /**
+  * Index of the button active at init
+  */
+  value: {
+    type: Number,
+    value: 0,
+    reflectToAttribute: true
+  }
+});
+
+/***/ }),
+/* 206 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -30068,9 +30548,9 @@ module.exports = "<div class$=\"buttons-group [[_computeGroupClass(type, size)]]
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__props__ = __webpack_require__(237);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__methods_public__ = __webpack_require__(238);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__methods_internal__ = __webpack_require__(239);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__props__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__methods_public__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__methods_internal__ = __webpack_require__(249);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
@@ -30235,7 +30715,7 @@ class CalendarClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_l
 customElements.define(CalendarClab.is, CalendarClab);
 
 /***/ }),
-/* 197 */
+/* 207 */
 /***/ (function(module, exports) {
 
 module.exports = function(module) {
@@ -30263,7 +30743,7 @@ module.exports = function(module) {
 
 
 /***/ }),
-/* 198 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
@@ -30512,10 +30992,10 @@ webpackContext.keys = function webpackContextKeys() {
 };
 webpackContext.resolve = webpackContextResolve;
 module.exports = webpackContext;
-webpackContext.id = 198;
+webpackContext.id = 208;
 
 /***/ }),
-/* 199 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30523,29 +31003,29 @@ webpackContext.id = 198;
 
 // these are only required for IE < 9
 // maybe move to IE-specific distro?
-__webpack_require__(200);
-__webpack_require__(201);
-__webpack_require__(202);
-__webpack_require__(203);
-__webpack_require__(204);
-__webpack_require__(205);
-__webpack_require__(206);
-__webpack_require__(207);
-__webpack_require__(208);
+__webpack_require__(210);
+__webpack_require__(211);
+__webpack_require__(212);
+__webpack_require__(213);
+__webpack_require__(214);
+__webpack_require__(215);
+__webpack_require__(216);
+__webpack_require__(217);
+__webpack_require__(218);
 
-var core = __webpack_require__(209);
+var core = __webpack_require__(219);
 var index = __webpack_require__(26);
-var use = __webpack_require__(234);
+var use = __webpack_require__(244);
 
 core.use = use.bind(core);
 core.find = index.find;
-core.val = __webpack_require__(235);
+core.val = __webpack_require__(245);
 
 module.exports = core;
 
 
 /***/ }),
-/* 200 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30572,7 +31052,7 @@ if (!Function.prototype.bind) {
 
 
 /***/ }),
-/* 201 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30593,7 +31073,7 @@ if (!Array.prototype.forEach) {
 
 
 /***/ }),
-/* 202 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30633,7 +31113,7 @@ if (!Array.prototype.map) {
 
 
 /***/ }),
-/* 203 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30651,7 +31131,7 @@ if (!Array.prototype.filter) {
 
 
 /***/ }),
-/* 204 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30663,7 +31143,7 @@ Array.isArray || (Array.isArray = function (a) {
 
 
 /***/ }),
-/* 205 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30693,7 +31173,7 @@ if (!Array.prototype.indexOf) {
 
 
 /***/ }),
-/* 206 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30735,7 +31215,7 @@ if (!Array.prototype.some) {
 
 
 /***/ }),
-/* 207 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30749,7 +31229,7 @@ if (!String.prototype.trim) {
 
 
 /***/ }),
-/* 208 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30795,15 +31275,15 @@ if (!Object.keys) {
 
 
 /***/ }),
-/* 209 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var index = __webpack_require__(26);
-var input = __webpack_require__(210);
-var inline = __webpack_require__(233);
+var input = __webpack_require__(220);
+var inline = __webpack_require__(243);
 var isInput = __webpack_require__(28);
 
 function core (elem, options) {
@@ -30827,15 +31307,15 @@ module.exports = core;
 
 
 /***/ }),
-/* 210 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var crossvent = __webpack_require__(19);
-var bullseye = __webpack_require__(213);
-var throttle = __webpack_require__(222);
+var bullseye = __webpack_require__(223);
+var throttle = __webpack_require__(232);
 var clone = __webpack_require__(160);
 var defaults = __webpack_require__(161);
 var calendar = __webpack_require__(162);
@@ -30962,7 +31442,7 @@ module.exports = inputCalendar;
 
 
 /***/ }),
-/* 211 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {
@@ -31017,7 +31497,7 @@ function CustomEvent (type, params) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 212 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31038,7 +31518,7 @@ module.exports = eventmap;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 213 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31046,7 +31526,7 @@ module.exports = eventmap;
 
 var crossvent = __webpack_require__(19);
 var throttle = __webpack_require__(157);
-var tailormade = __webpack_require__(214);
+var tailormade = __webpack_require__(224);
 
 function bullseye (el, target, options) {
   var o = options;
@@ -31131,15 +31611,15 @@ module.exports = bullseye;
 
 
 /***/ }),
-/* 214 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 /* WEBPACK VAR INJECTION */(function(global) {
 
-var sell = __webpack_require__(215);
+var sell = __webpack_require__(225);
 var crossvent = __webpack_require__(19);
-var seleccion = __webpack_require__(216);
+var seleccion = __webpack_require__(226);
 var throttle = __webpack_require__(157);
 var getSelection = seleccion.get;
 var props = [
@@ -31315,7 +31795,7 @@ module.exports = tailormade;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 215 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31418,14 +31898,14 @@ module.exports = sell;
 
 
 /***/ }),
-/* 216 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var getSelection = __webpack_require__(158);
-var setSelection = __webpack_require__(221);
+var setSelection = __webpack_require__(231);
 
 module.exports = {
   get: getSelection,
@@ -31434,7 +31914,7 @@ module.exports = {
 
 
 /***/ }),
-/* 217 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31449,7 +31929,7 @@ module.exports = getSelectionRaw;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 218 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31468,7 +31948,7 @@ module.exports = getSelectionNullOp;
 
 
 /***/ }),
-/* 219 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31726,7 +32206,7 @@ module.exports = getSelection;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 220 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31762,7 +32242,7 @@ module.exports = {
 
 
 /***/ }),
-/* 221 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31805,7 +32285,7 @@ module.exports = setSelection;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
 
 /***/ }),
-/* 222 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31837,14 +32317,14 @@ module.exports = function throttle (fn, boundary) {
 
 
 /***/ }),
-/* 223 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var atoa = __webpack_require__(224);
-var debounce = __webpack_require__(225);
+var atoa = __webpack_require__(234);
+var debounce = __webpack_require__(235);
 
 module.exports = function emitter (thing, options) {
   var opts = options || {};
@@ -31898,20 +32378,20 @@ module.exports = function emitter (thing, options) {
 
 
 /***/ }),
-/* 224 */
+/* 234 */
 /***/ (function(module, exports) {
 
 module.exports = function atoa (a, n) { return Array.prototype.slice.call(a, n); }
 
 
 /***/ }),
-/* 225 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var ticky = __webpack_require__(226);
+var ticky = __webpack_require__(236);
 
 module.exports = function debounce (fn, args, ctx) {
   if (!fn) { return; }
@@ -31922,7 +32402,7 @@ module.exports = function debounce (fn, args, ctx) {
 
 
 /***/ }),
-/* 226 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(setImmediate) {var si = typeof setImmediate === 'function', tick;
@@ -31933,10 +32413,10 @@ if (si) {
 }
 
 module.exports = tick;
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(227).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(237).setImmediate))
 
 /***/ }),
-/* 227 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var apply = Function.prototype.apply;
@@ -31989,13 +32469,13 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(228);
+__webpack_require__(238);
 exports.setImmediate = setImmediate;
 exports.clearImmediate = clearImmediate;
 
 
 /***/ }),
-/* 228 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -32185,10 +32665,10 @@ exports.clearImmediate = clearImmediate;
     attachTo.clearImmediate = clearImmediate;
 }(typeof self === "undefined" ? typeof global === "undefined" ? this : global : self));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(229)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5), __webpack_require__(239)))
 
 /***/ }),
-/* 229 */
+/* 239 */
 /***/ (function(module, exports) {
 
 // shim for using process in browser
@@ -32378,7 +32858,7 @@ process.umask = function() { return 0; };
 
 
 /***/ }),
-/* 230 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32403,7 +32883,7 @@ module.exports = dom;
 
 
 /***/ }),
-/* 231 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32420,7 +32900,7 @@ module.exports = text;
 
 
 /***/ }),
-/* 232 */
+/* 242 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32432,7 +32912,7 @@ module.exports = noop;
 
 
 /***/ }),
-/* 233 */
+/* 243 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32455,7 +32935,7 @@ module.exports = inline;
 
 
 /***/ }),
-/* 234 */
+/* 244 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32471,7 +32951,7 @@ module.exports = use;
 
 
 /***/ }),
-/* 235 */
+/* 245 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32479,7 +32959,7 @@ module.exports = use;
 
 var index = __webpack_require__(26);
 var parse = __webpack_require__(27);
-var association = __webpack_require__(236);
+var association = __webpack_require__(246);
 
 function compareBuilder (compare) {
   return function factory (value) {
@@ -32559,7 +33039,7 @@ module.exports = {
 
 
 /***/ }),
-/* 236 */
+/* 246 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32614,7 +33094,7 @@ module.exports = {
 
 
 /***/ }),
-/* 237 */
+/* 247 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32654,7 +33134,7 @@ module.exports = {
 });
 
 /***/ }),
-/* 238 */
+/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32680,7 +33160,7 @@ const getLocale = () => {
 
 
 /***/ }),
-/* 239 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -32706,16 +33186,16 @@ const _getFormat = (options, romeInst) => {
 
 
 /***/ }),
-/* 240 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(241);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(251);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(252);
 
 
 
@@ -32788,21 +33268,100 @@ class CardClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
 customElements.define(CardClab.is, CardClab);
 
 /***/ }),
-/* 241 */
+/* 251 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeEffectClass(effect)]]\">\n  <template is=\"dom-if\" if=\"[[!figure]]\">\n    <div class$=\"[[_computeCardClass(big)]]\">\n      <template is=\"dom-if\" if=\"[[!big]]\">\n        <i class$=\"[[icon]]\"></i>\n      </template>\n      <span>[[title]]</span>\n      <template is=\"dom-if\" if=\"[[big]]\">\n        <div class=\"circle\"><i class=\"fa fa-circle\"></i></div>\n        <div class=\"icon\"><i class$=\"[[icon]]\"></i></div>\n      </template>\n    </div>\n  </template>\n  <template is=\"dom-if\" if=\"[[figure]]\">\n    <figure>\n      <img src=\"[[figure]]\">\n      <template is=\"dom-if\" if=\"[[_showTitle(title)]]\">\n        <h2>[[title]]</h2>\n      </template>\n    </figure>\n  </template>\n  <template is=\"dom-if\" if=\"[[!table]]\">\n    <div class=\"card-body\">\n      <slot></slot>\n    </div>\n  </template>\n  <template is=\"dom-if\" if=\"[[table]]\">\n    <slot></slot>\n  </template>\n  <div class=\"card-actions\">\n    <template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\">\n      <button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab>\n      <button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab>\n    </template>\n    <template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\">\n      <a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a>\n    </template>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 242 */
+/* 252 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /**
+   * Title of the card
+   */
+  title: String,
+  /**
+   * Inner text of the primary buttons
+   */
+  primary: {
+    type: String,
+    value: 'OK'
+  },
+  /**
+   * Inner text of the secondary buttons
+   */
+  secondary: {
+    type: String,
+    value: 'Cancel'
+  },
+  /**
+  * Add an url to the card
+    {
+      class:'',
+      href:'',
+      text:''
+    }
+  */
+  link: {
+    type: Object,
+    value: {}
+  },
+  /**
+   * Add an icon to the card (class)
+   */
+  icon: String,
+  /**
+   * Whether the card is big
+   */
+  big: {
+    type: Boolean,
+    value: false
+  },
+  /**
+   * Whether the <content> is in table format
+   */
+  table: {
+    type: Boolean,
+    value: false
+  },
+  /**
+   * Source of the image
+   */
+  figure: {
+    type: String,
+    value: null
+  },
+  /**
+   * Effect to apply on the image
+   */
+  effect: {
+    type: String,
+    value: null
+  },
+  /**
+   * Whether the buttons are shown
+   */
+  noActions: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libs_utils__ = __webpack_require__(6);
 
 
@@ -32918,20 +33477,49 @@ class CheckboxClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_l
 customElements.define(CheckboxClab.is, CheckboxClab);
 
 /***/ }),
-/* 243 */
+/* 254 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeType(wrapperType)]]\">\n  <input id$=\"[[dashify(label)]]\" type=\"checkbox\" value=\"[[dashify(label)]]\"\n    checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\"\n    on-change=\"_onChange\">\n  <label for$=\"[[dashify(label)]]\">[[label]]</label>\n</div>\n"
 
 /***/ }),
-/* 244 */
+/* 255 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  /** Label of the checkbox */
+  label: {
+    type: String
+  },
+  /** Wrapper style type */
+  wrapperType: {
+    type: String
+  },
+  /** Determine if the check is checked or not */
+  active: {
+    type: Boolean,
+    value: false,
+    notify: true
+  },
+  /** Determine if the check is disabled or not */
+  disabled: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(245);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(257);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__note__ = __webpack_require__(18);
@@ -33232,20 +33820,130 @@ class DropdownClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_l
 customElements.define(DropdownClab.is, DropdownClab);
 
 /***/ }),
-/* 245 */
+/* 257 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .dropdown-clab .options-list,\n  .options-list li{\n      display: block !important;\n  }\n</style>\n<div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\">\n  <template is=\"dom-if\" if=\"[[viewLabel(label, icon)]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">\n      <template is=\"dom-if\" if=\"[[viewLabel(icon)]]\">\n        <i class$=\"[[_compIcon(icon)]]\"></i>\n      </template>\n      [[label]]\n    </label>\n  </template>\n\n  <div class=\"input\">\n    <template is=\"dom-if\" if=\"[[!search]]\">\n      <div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\">\n        <template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\">\n          <span class=\"selected\">[[_compLabel(selected)]]</span>\n        </template>\n        <template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\">\n          <span class=\"placeholder\">[[placeholder]]</span>\n        </template>\n      </div>\n    </template>\n    <template is=\"dom-if\" if=\"[[search]]\">\n      <input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab>\n    </template>\n    <curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\"\n      label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\"\n      on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab>\n  </div>\n\n  <slot name=\"button\"></slot>\n\n  <note-clab type=\"[[noteType]]\">\n    <slot name=\"note\"></slot>\n  </note-clab>\n</div>\n"
 
 /***/ }),
-/* 246 */
+/* 258 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String,
+    value: null
+  },
+  icon: {
+    type: String,
+    value: ''
+  },
+  type: {
+    type: String,
+    value: ''
+  },
+  noteType: {
+    type: String
+  },
+  selected: {
+    type: Object,
+    value: {}
+  },
+  highlighted: Object,
+  valueField: {
+    type: String,
+    value: 'value'
+  },
+  labelField: {
+    type: String,
+    value: 'label'
+  },
+  options: {
+    type: Array,
+    value: [{
+      value: 'A',
+      label: 'Option 1'
+    }, {
+      value: 'B',
+      label: 'Option 2'
+    }],
+    observer: '_updateList'
+  },
+  optionsList: {
+    type: Array,
+    value: []
+  },
+  optionsFn: {
+    type: Function,
+    observer: '_setOptions'
+  },
+  url: {
+    type: String,
+    observer: '_observUrl'
+  },
+  inline: {
+    type: Boolean,
+    value: false
+  },
+  open: {
+    type: Boolean,
+    value: false
+  },
+  labelSize: {
+    type: String,
+    value: ''
+  },
+  placeholder: {
+    type: String,
+    value: 'Select..'
+  },
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  preventChange: {
+    type: Boolean,
+    value: false
+  },
+  resultAsObj: {
+    type: Boolean,
+    value: false
+  },
+  maxInView: {
+    type: Number,
+    value: 4
+  },
+  maxHeight: {
+    type: Number,
+    value: 28
+  },
+  search: {
+    type: Boolean,
+    value: false
+  },
+  searchValue: {
+    type: String,
+    value: ''
+  }
+  /*_liHeight:{
+    type:String,
+    value:null,
+    readonly: true
+  }*/
+});
+
+/***/ }),
+/* 259 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(247);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(260);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
@@ -33287,20 +33985,54 @@ class FeatureClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(FeatureClab.is, FeatureClab);
 
 /***/ }),
-/* 247 */
+/* 260 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeFeatureClass(size, vertical)]]\">\n  <template is=\"dom-if\" if=\"[[link]]\">\n    <a href$=\"[[link]]\" target$=\"[[linkTarget]]\">\n      <div class=\"image\">\n            <i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i>\n        <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\">\n          </div>\n\n          <div class=\"description\">\n              <slot></slot>\n          </div>\n    </a>\n  </template>\n  <template is=\"dom-if\" if=\"[[!link]]\">\n    <div class=\"image\">\n      <i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i>\n      <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\">\n    </div>\n    <div class=\"description\">\n      <slot></slot>\n    </div>\n  </template>\n</div>\n"
 
 /***/ }),
-/* 248 */
+/* 261 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  link: {
+    type: String,
+    value: null
+  },
+  linkTarget: {
+    type: String,
+    value: '_self'
+  },
+  iconClass: {
+    type: String,
+    value: null
+  },
+  src: {
+    type: String,
+    value: null
+  },
+  size: {
+    type: String,
+    value: null
+  },
+  vertical: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 262 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
@@ -33394,27 +34126,93 @@ class FileClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_l
 customElements.define(FileClab.is, FileClab);
 
 /***/ }),
-/* 249 */
+/* 263 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  input[type=file]{\n    display: none;\n  }\n  input[type=text]::-ms-clear{\n    display: none;\n  }\n</style>\n\n<div class$=\"[[_compWrapperClass('input-wrapper', type)]]\">\n  <template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n  </template>\n\n  <div class=\"input\" on-click=\"_selection\">\n    <input class$=\"[[type]]\" type=\"text\" name$=\"[[dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\">\n    <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button>\n  </div>\n\n  <note-clab type=\"[[noteType]]\">\n    <content select=\".note\"></content>\n  </note-clab>\n\n  <input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\">\n\n  <div id=\"preview\"></div>\n</div>\n"
 
 /***/ }),
-/* 250 */
+/* 264 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: String,
+  name: {
+    type: String,
+    value: 'fileinput'
+  },
+  type: {
+    type: String,
+    value: null
+  },
+  noteType: String,
+  value: {
+    type: String,
+    notify: true,
+    value: null
+  },
+  disabled: {
+    type: Boolean,
+    value: false,
+    notify: true,
+    reflectToAttribute: true,
+    observer: '_disabledChanged'
+  },
+  multiple: {
+    type: Boolean,
+    value: false
+  },
+  noPreview: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 265 */
 /***/ (function(module, exports) {
 
 module.exports = "<span class$=\"[[_computeClass(badge,type)]]\">\n  <slot></slot>\n  <template is=\"dom-if\" if=\"[[counter]]\">\n    <span class=\"counter\">[[counter]]</span>\n  </template>\n  <template is=\"dom-if\" if=\"[[remove]]\">\n    <span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span>\n  </template>\n</span>\n"
 
 /***/ }),
-/* 251 */
+/* 266 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  type: {
+    type: String,
+    value: null
+  },
+  counter: {
+    type: Number,
+    value: null
+  },
+  remove: {
+    type: Boolean,
+    value: false
+  },
+  badge: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 267 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_animations__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(268);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
@@ -33576,20 +34374,75 @@ class ModalClab extends Object(__WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_
 customElements.define(ModalClab.is, ModalClab);
 
 /***/ }),
-/* 252 */
+/* 268 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .modal-overlay{\n    display:none;\n    opacity: 0;\n  }\n  .third{\n    float: left;\n    clear: none;\n  }\n</style>\n<div class=\"modal-overlay\">\n  <div class=\"close-overlay\" on-click=\"_closeModal\"><i class=\"clab-icon icon-close\"></i></div>\n  <div class=\"modal\">\n    <div class=\"modal-wrapper\" style$=\"[[_computeWidth(width)]]\">\n      <div class=\"modal-title\">[[title]]</div>\n      <template is=\"dom-if\" if=\"[[content]]\">\n        <div class=\"modal-body\">\n          <p>[[content]]</p>\n        </div>\n      </template>\n      <template is=\"dom-if\" if=\"[[!content]]\">\n        <div class=\"modal-body\">\n          <slot></slot>\n        </div>\n      </template>\n\n      <template is=\"dom-if\" if=\"[[!noActions]]\">\n        <div class=\"main-actions\">\n          <div class=\"primary\">\n            <template is=\"dom-if\" if=\"[[warning]]\">\n              <button-clab type=\"error third\" on-btnclick=\"_warningAction\">[[warning]]</button-clab>\n            </template>\n            <template is=\"dom-if\" if=\"[[secondary]]\">\n              <button-clab type=\"secondary\" appearance=\"flat\" on-btnclick=\"_secondaryAction\">[[secondary]]</button-clab>\n            </template>\n            <template is=\"dom-if\" if=\"[[primary]]\">\n              <button-clab type=\"primary\" disabled=\"[[primaryDisabled]]\" on-btnclick=\"_primaryAction\">[[primary]]</button-clab>\n            </template>\n          </div>\n        </div>\n      </template>\n    </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
-/* 253 */
+/* 269 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  title: {
+    type: String,
+    value: 'Modal title'
+  },
+  visible: {
+    type: Boolean,
+    value: false,
+    observer: '_animateShowHide'
+  },
+  primary: {
+    type: String,
+    value: null
+  },
+  secondary: {
+    type: String,
+    value: null
+  },
+  warning: {
+    type: String,
+    value: null
+  },
+  primaryDisabled: {
+    type: Boolean,
+    value: false
+  },
+  content: {
+    type: String,
+    value: null
+  },
+  stopClose: {
+    type: Boolean,
+    value: false
+  },
+  width: {
+    type: Number,
+    value: 840
+  },
+  noAnimation: {
+    type: Boolean,
+    value: false
+  },
+  noActions: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
@@ -33876,20 +34729,70 @@ class MultipleClab extends Object(__WEBPACK_IMPORTED_MODULE_3__polymer_polymer_l
 customElements.define(MultipleClab.is, MultipleClab);
 
 /***/ }),
-/* 254 */
+/* 271 */
 /***/ (function(module, exports) {
 
 module.exports = "  <style>\n    li{\n      -webkit-touch-callout: none; /* iOS Safari */\n      -webkit-user-select: none;   /* Chrome/Safari/Opera */\n      -khtml-user-select: none;    /* Konqueror */\n      -moz-user-select: none;      /* Firefox */\n      -ms-user-select: none;       /* IE/Edge */\n      user-select: none;\n      margin: 0;\n    }\n    li.selected{\n      color:red;\n    }\n    .multiple-wrapper{\n      height: auto;\n      width: 100%;\n      overflow:hidden;\n      position: relative;\n    }\n    .options-list{\n      max-height: 300px;\n      position: relative;\n      width: 100%;\n      overflow-y:auto;\n    }\n  </style>\n  <div class=\"input-wrapper\">\n  <template is=\"dom-if\" if=\"[[label]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n  </template>\n  <div id$=\"[[dashify(name)]]\" class$=\"[[_compWrapperType(type)]]\">\n    <ol class=\"options-list\" on-scroll=\"_loadContent\">\n      <template is=\"dom-repeat\" items=\"[[options]]\">\n          <li data-index$=\"[[index]]\" tabindex=\"0\" on-click=\"_handleSelection\" class$=\"[[_computeSelection(item.selected)]]\">[[item.label]]</li>\n      </template>\n    </ol>\n    <spinner-clab visible=\"[[spinner]]\"></spinner-clab>\n  </div>\n  <note-clab type=\"[[noteType]]\">\n    <slot name=\"note\"></slot>\n  </note-clab>\n</div>\n"
 
 /***/ }),
-/* 255 */
+/* 272 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String,
+    value: null
+  },
+  type: {
+    type: String,
+    value: ''
+  },
+  options: {
+    type: Array,
+    value: []
+  },
+  optionsFn: {
+    type: Function,
+    observer: '_setOptions'
+  },
+  url: String,
+  selected: {
+    type: Array,
+    value: [],
+    notify: true
+  },
+  name: {
+    type: String,
+    value: 'multiple select'
+  },
+  disabled: {
+    type: Boolean,
+    value: false,
+    observer: '_disabledChanged'
+  },
+  maxInView: {
+    type: Number,
+    value: 6
+  },
+  spinner: {
+    type: Boolean,
+    value: false
+  },
+  noteType: String
+});
+
+/***/ }),
+/* 273 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(256);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(274);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -34033,20 +34936,73 @@ class PaginationClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polyme
 customElements.define(PaginationClab.is, PaginationClab);
 
 /***/ }),
-/* 256 */
+/* 274 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  :host{\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none;   /* Chrome/Safari/Opera */\n    -khtml-user-select: none;    /* Konqueror */\n    -moz-user-select: none;      /* Firefox */\n    -ms-user-select: none;       /* IE/Edge */\n    user-select: none;\n  }\n  .page.invisible{\n    display: none;\n  }\n\n</style>\n<ul class=\"pagination\">\n  <li class$=\"[[_hideIfFirst(currentPage, 'first')]]\" on-click=\"_setCurrent\" data-index$=\"[[firstPage]]\" data-type=\"first\">\n    <i class=\"clab-icon icon-double-arrow-left\"></i>\n  </li>\n  <li class$=\"[[_hideIfFirst(currentPage)]]\" on-click=\"_setCurrent\" data-index$=\"[[prevPage]]\" data-type=\"prev\">\n      <i class=\"clab-icon icon-arrow-left\"></i>\n    </li>\n\n  <template is=\"dom-repeat\" items=\"[[_compVisiblePages(availableStart, availableEnd)]]\" as=\"page\">\n    <li class$=\"[[_computeActive(currentPage, page)]]\" on-click=\"_setCurrent\" data-index$=\"[[page]]\">[[_pageNumber(page)]]</li>\n  </template>\n\n  <li class$=\"[[_hideIfLast(currentPage, tot)]]\" on-click=\"_setCurrent\" data-index$=\"[[nextPage]]\" data-type=\"next\">\n      <i class=\"clab-icon icon-arrow-right\"></i>\n    </li>\n  <li class$=\"[[_hideIfLast(currentPage, tot, 'last')]]\" on-click=\"_setCurrent\" data-index$=\"[[lastPage]]\" data-type=\"last\">\n      <i class=\"clab-icon icon-double-arrow-right\"></i>\n    </li>\n</ul>\n"
 
 /***/ }),
-/* 257 */
+/* 275 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  tot: {
+    type: Number,
+    observer: '_setPages'
+  },
+  links: Array,
+  pages: {
+    type: Array,
+    notify: true,
+    value: []
+  },
+  currentPage: {
+    type: Number,
+    notify: true,
+    value: 0
+  },
+  range: {
+    type: Number,
+    value: 8
+  },
+  firstPage: {
+    type: String,
+    value: 0
+  },
+  lastPage: {
+    type: String,
+    computed: '_getLastPage(pages)'
+  },
+  prevPage: {
+    type: String,
+    computed: '_getPrevPage(pages, currentPage)'
+  },
+  nextPage: {
+    type: String,
+    computed: '_getNextPage(pages, currentPage)'
+  },
+  availableStart: {
+    type: Number,
+    computed: '_getStart(currentPage, pages)'
+  },
+  availableEnd: {
+    type: Number,
+    computed: '_getEnd(currentPage, pages)'
+  }
+});
+
+/***/ }),
+/* 276 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(277);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(278);
 
 
 
@@ -34093,20 +35049,42 @@ class ProgressClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_
 customElements.define(ProgressClab.is, ProgressClab);
 
 /***/ }),
-/* 258 */
+/* 277 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeClass(minimal,type)]]\">\n  <section>\n    <article style$=\"[[_computeProp(value)]]\">\n      <label id=\"label\">[[_percent(value)]]</label>\n    </article>\n  </section>\n</div>\n"
 
 /***/ }),
-/* 259 */
+/* 278 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  value: {
+    type: Number,
+    value: 0
+  },
+  minimal: {
+    type: Boolean,
+    value: false
+  },
+  type: {
+    type: String,
+    value: null
+  }
+});
+
+/***/ }),
+/* 279 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(281);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
@@ -34168,23 +35146,59 @@ class RadioClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_
 customElements.define(RadioClab.is, RadioClab);
 
 /***/ }),
-/* 260 */
+/* 280 */
 /***/ (function(module, exports) {
 
 module.exports = "<template is=\"dom-repeat\" items=\"[[labels]]\">\n  <div class$=\"[[_computeType(wrapperType)]]\">\n    <input id$=\"[[dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[dashify(item)]]\"\n      checked=\"[[_isChecked(index, active)]]\"\n      disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\">\n    <label for$=\"[[dashify(item)]]\">[[item]]</label>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 261 */
+/* 281 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  labels: {
+    type: Array,
+    value: []
+  },
+  name: {
+    type: String
+  },
+  wrapperType: {
+    type: String,
+    value: ''
+  },
+  active: {
+    type: Number,
+    value: 0
+  },
+  disabled: {
+    type: Array,
+    value: []
+  },
+  inline: {
+    type: Boolean,
+    value: false,
+    observer: '_computeInline',
+    reflectToAttribute: true
+  }
+});
+
+/***/ }),
+/* 282 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__methods_internal__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 
 
 
@@ -34194,7 +35208,8 @@ module.exports = "<template is=\"dom-repeat\" items=\"[[labels]]\">\n  <div clas
 
 
 
-class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ dashify: __WEBPACK_IMPORTED_MODULE_3__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_3__libs_utils__["c" /* viewLabel */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
+
+class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ dashify: __WEBPACK_IMPORTED_MODULE_3__libs_utils__["a" /* dashify */], viewLabel: __WEBPACK_IMPORTED_MODULE_3__libs_utils__["c" /* viewLabel */], _computeRangeWrapperClasses: __WEBPACK_IMPORTED_MODULE_4__methods_internal__["b" /* _computeRangeWrapperClasses */], _compDisabled: __WEBPACK_IMPORTED_MODULE_4__methods_internal__["a" /* _compDisabled */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
 
   static get is() {
     return 'range-clab';
@@ -34208,27 +35223,9 @@ class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_
     return __WEBPACK_IMPORTED_MODULE_2__props__["a" /* default */];
   }
 
-  /*----------
-  EVENT HANDLERS
-  ----------*/
   _updateCompValue(evt) {
+    console.log(evt);
     this.value = parseInt(evt.currentTarget.value);
-  }
-
-  /*----------
-  OBSERVERS
-  ----------*/
-  disabledChanged(newVal, oldVal) {
-    if (newVal) this.type = 'disabled';
-  }
-
-  /*----------
-  COMPUTED
-  ----------*/
-  computeRangeWrapperClasses(show) {
-    let name;
-    if (show) name = 'details';
-    return ['range-wrapper', name].join(' ');
   }
 
 }
@@ -34236,20 +35233,83 @@ class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_
 customElements.define(RangeClab.is, RangeClab);
 
 /***/ }),
-/* 262 */
+/* 283 */
 /***/ (function(module, exports) {
 
-module.exports = "<template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n  <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n</template>\n<div class$=\"[[rangeWrapperClasses]]\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"min\">[[min]]</span>\n  </template>\n  <input class$=\"[[type]]\" type=\"range\" name$=\"[[dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\"\n  step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"max\">[[max]]</span>\n  </template>\n</div>\n<template is=\"dom-if\" if=\"[[showDetails]]\">\n  <div class=\"value\">\n    Range value: <span>[[value]]</span>\n  </div>\n</template>\n"
+module.exports = "<template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n  <label class$=\"[[_compDisabled(disabled)]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n</template>\n<div class$=\"[[_computeRangeWrapperClasses(showDetails)]]\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"min\">[[min]]</span>\n  </template>\n  <input class$=\"[[_compDisabled(disabled)]]\" type=\"range\" name$=\"[[dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\"\n  step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"max\">[[max]]</span>\n  </template>\n</div>\n<template is=\"dom-if\" if=\"[[showDetails]]\">\n  <div class=\"value\">\n    Range value: <span>[[value]]</span>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 263 */
+/* 284 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: {
+    type: String
+  },
+  name: {
+    type: String,
+    value: 'rangeinput'
+  },
+  value: {
+    type: Number,
+    notify: true,
+    reflectToAttribute: true
+  },
+  min: {
+    type: Number,
+    value: 0
+  },
+  max: {
+    type: Number,
+    value: 10
+  },
+  step: {
+    type: Number,
+    value: 1
+  },
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  showDetails: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 285 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeRangeWrapperClasses; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _compDisabled; });
+
+
+const _computeRangeWrapperClasses = show => {
+  const arr = ['range-wrapper'];
+  show ? arr.push('details') : null;
+  return arr.join(' ');
+};
+
+const _compDisabled = disabled => {
+  return disabled ? 'disabled' : null;
+};
+
+
+
+/***/ }),
+/* 286 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(287);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -34336,20 +35396,60 @@ class TabsClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
 customElements.define(TabsClab.is, TabsClab);
 
 /***/ }),
-/* 264 */
+/* 287 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeType(pills, vertical, centered, fullWidth)]]\">\n  <ul>\n    <template is=\"dom-repeat\" items=\"[[labels]]\">\n      <li class$=\"[[_computeActive(active,index)]]\" data-index$=\"[[index]]\"><a on-click=\"_activateThis\">[[item]]</a></li>\n    </template>\n  </ul>\n  <div id=\"activeContentWrapper\"></div>\n</div>\n"
 
 /***/ }),
-/* 265 */
+/* 288 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  labels: {
+    type: Array,
+    value: []
+  },
+  pills: {
+    type: Boolean,
+    value: false
+  },
+  vertical: {
+    type: Boolean,
+    value: false
+  },
+  centered: {
+    type: Boolean,
+    value: false
+  },
+  fullWidth: {
+    type: Boolean,
+    value: false
+  },
+  active: {
+    type: Number,
+    value: 0,
+    notify: true
+  },
+  current: {
+    type: String,
+    notify: true
+  },
+  _content: Array
+});
+
+/***/ }),
+/* 289 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(266);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(291);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__button__ = __webpack_require__(9);
@@ -34474,18 +35574,66 @@ class TagsClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
 customElements.define(TagsClab.is, TagsClab);
 
 /***/ }),
-/* 266 */
+/* 290 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"tags-wrapper\">\n  <template is=\"dom-if\" if=\"[[!hideInput]]\">\n    <input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\"\n    disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\">\n      <button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\"\n      icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab>\n      <slot name=\"note\"></slot>\n    </input-clab>\n  </template>\n\n  <div class$=\"[[_computeStacked(stacked)]]\">\n    <template is=\"dom-repeat\" items=\"[[tags]]\">\n      <label-clab remove on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab>\n    </template>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 267 */
+/* 291 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  label: String,
+  name: {
+    type: String,
+    value: 'tags input'
+  },
+  inputString: String,
+  type: {
+    type: String,
+    value: ''
+  },
+  noteType: {
+    type: String
+  },
+  disabled: {
+    type: Boolean,
+    value: false
+  },
+  placeholder: String,
+  stacked: {
+    type: Boolean,
+    value: false
+  },
+  tags: {
+    type: Array,
+    value: [],
+    notify: true
+  },
+  btnLabel: {
+    type: String,
+    value: 'Add'
+  },
+  btnAppearence: String,
+  btnSize: String,
+  btnIcon: String,
+  hideInput: {
+    type: Boolean,
+    value: false
+  }
+});
+
+/***/ }),
+/* 292 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(293);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(294);
 
@@ -34637,18 +35785,41 @@ class TooltipClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(TooltipClab.is, TooltipClab);
 
 /***/ }),
-/* 268 */
+/* 293 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .tooltip{\n    position:fixed;\n    opacity:0;\n    z-index:1000;\n    display: none;\n  }\n  .tooltip .arrow{\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  .tooltip.visible{\n    display: block;\n  }\n</style>\n<span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\">\n  <slot name=\"tt-label\"></slot>\n</span>\n\n<div class$=\"[[_computeTooltipClass(type, visible)]]\">\n  <span on-mouseenter=\"_handleMouseOnTT\"  on-mouseleave=\"_handleMouseOnTT\">\n    <slot name=\"tt-label\"></slot>\n  </span>\n  <div class=\"arrow\"></div>\n</div>\n"
 
 /***/ }),
-/* 269 */
+/* 294 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  type: {
+    type: String,
+    value: ""
+  },
+  visible: {
+    type: Boolean,
+    value: false,
+    observer: '_observVisibility'
+  },
+  wait: {
+    type: Number,
+    value: 500
+  }
+});
+
+/***/ }),
+/* 295 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html__ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html__ = __webpack_require__(296);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_html__);
 
 
@@ -34799,1176 +35970,10 @@ class DemoElement extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(DemoElement.is, DemoElement);
 
 /***/ }),
-/* 270 */
+/* 296 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n    .content.dark {\n        background-color: var(--bg-color);\n    }\n    .content:last-child {\n        margin-bottom: 100px;\n    }\n</style>\n  <menu-clab title-icon=\"icon-sign sign\" link=\"#/home\" current-hash=\"[[currentHash]]\" on-a-click=\"_changeCurrentHash\">\n    <span class=\"product-name\">contact<b>plan</b></span>\n\n    <div class=\"alerts\">\n        <alert-clab id=\"notify\" notify>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n    </div>\n    </menu-clab>\n\n    <main class=\"main-content\">\n    <section class=\"icons\" style=\"font-size: 50px\">\n        <i class=\"clab-icon icon-play\"></i>\n        <i class=\"clab-icon icon-pause\"></i>\n        <i class=\"clab-icon icon-stop\"></i>\n        <i class=\"clab-icon icon-fast-backward\"></i>\n        <i class=\"clab-icon icon-backward\"></i>\n        <i class=\"clab-icon icon-forward\"></i>\n        <i class=\"clab-icon icon-fast-forward\"></i>\n        <i class=\"clab-icon icon-equal-circle\"></i>\n        <i class=\"clab-icon icon-equal-circle-full\"></i>\n        <i class=\"clab-icon icon-full-arrow-top\"></i>\n        <i class=\"clab-icon icon-full-arrow-right\"></i>\n        <i class=\"clab-icon icon-full-arrow-down\"></i>\n        <i class=\"clab-icon icon-full-arrow-left\"></i>\n    </section>\n    <section>\n        <h2>Alerts</h2>\n        <alert-clab visible type=\"primary\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"warning\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"error\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"info\" primary=\"Go\" secondary=\"Cancel\" no-animation>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n\n        <button-clab on-click=\"_notify\">Show notification alert</button-clab>\n    </section>\n\n    <section>\n        <ul>\n          <li>Lorem ipsum dolor sit amet.</li>\n          <li>Ipsam eos assumenda laboriosam veritatis!</li>\n        </ul>\n    </section>\n\n    <section>\n      <h2>Searchable dropdown</h2>\n      <dropdown-clab search max-in-view=\"4\" label=\"Awesome Dropdown\" result-as-obj options='[{\"name\":\"ciccio\", \"value\":\"ciccio\"},{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"name\":\"bella\", \"value\":\"bella\"},{\"name\":\"raga\", \"value\":\"raga\"},{\"name\":\"tutto raga\", \"value\":\"tutto raga\"},{\"name\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        selected='{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"}' label-field=\"name\">\n      </dropdown-clab>\n\n      <dropdown-clab search id=\"ddsearch\" max-in-view=\"4\" label=\"Awesome Dropdown [test]\" result-as-obj label-field=\"name\">\n      </dropdown-clab>\n    </section>\n\n    <section>\n        <h2>Tables</h2>\n        <table class=\"striped-table\">\n        <tr>\n            <th>Lorem ipsum.</th>\n            <th>Quia, doloremque!</th>\n            <th>Nesciunt, odio?</th>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        </table>\n\n        <br>\n\n        <table class=\"hover-table\">\n        <tr>\n            <th>Lorem ipsum.</th>\n            <th>Quia, doloremque!</th>\n            <th>Nesciunt, odio?</th>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        </table>\n\n        <br>\n\n        <!-- Responsive table -->\n        <div class=\"table responsive-table\">\n        <div class=\"thead\">\n            <div class=\"tr\">\n            <div class=\"th\">Table Header 1</div>\n            <div class=\"th\">Table Header 2</div>\n            <div class=\"th\">Table Header 3</div>\n            </div>\n        </div>\n        <div class=\"tbody\">\n            <div class=\"tr\">\n            <div class=\"td\" data-th=\"Table Header 1\">Division 1</div>\n            <div class=\"td\" data-th=\"Table Header 2\">Division 2</div>\n            <div class=\"td\" data-th=\"Table Header 3\">Division 3</div>\n            </div>\n        </div>\n        </div>\n    </section>\n\n    <section>\n        <h2>Accordion</h2>\n        <accordion-clab title=\"Accordion 1\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia\n        vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor\n        sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit\n        amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit\n        amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.\n        </accordion-clab>\n        <accordion-clab title=\"Accordion 2\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia\n        vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.\n        </accordion-clab>\n    </section>\n\n    <section>\n        <h2>Buttons</h2>\n        <article>\n        <button-clab>\n            Just click me\n        </button-clab>\n\n\n        <button-clab type=\"primary\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab type=\"primary empty\">\n            Just click me\n        </button-clab>\n        </article>\n\n        <article>\n        <button-clab block>\n            Just click me\n        </button-clab>\n\n\n        <button-clab block size=\"small\">\n            Just click me\n        </button-clab>\n        </article>\n\n        <article>\n        <button-clab size=\"small\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab size=\"small\" type=\"primary\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab size=\"small\" type=\"primary empty\">\n            Just click me\n        </button-clab>\n        </article>\n\n    </section>\n\n    <section>\n        <h2>Buttons group</h2>\n        <article>\n        <group-clab options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"success\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"info\" size=\"small\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"success\" size=\"smaller\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n    </section>\n\n    <section>\n        <h2>Cards</h2>\n        <card-clab title=\"My Card\" icon=\"icon-class\">\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>\n        </card-clab>\n        <card-clab title=\"My Card 2\" no-actions>\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>\n        </card-clab>\n        <card-clab link='{\"text\":\"blabla\", \"href\":\"#/hearts\"}' icon=\"clab-icon icon-heart-full\" title=\"Queen of hearts\">\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With\n            a link</p>\n        </card-clab>\n    </section>\n\n    <section>\n        <h2>Features</h2>\n        <feature-clab icon-class=\"clab-icon icon-heart-full\" size=\"small\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab icon-class=\"clab-icon icon-heart-full\" link=\"#\" vertical>\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708\"\n        size=\"big\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708\"\n        size=\"big\" vertical link=\"https://www.google.it/\" link-target=\"_blank\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n    </section>\n\n    <section>\n        <h2>Spinner</h2>\n        <div style=\"display: flex;\">\n        <article style=\"position: relative; flex-grow: 1; height: 200px;\">\n            <spinner-clab visible background=\"200, 200, 200, 0.8\"></spinner-clab>\n        </article>\n        <article style=\"position: relative; flex-grow: 1; height: 200px;\">\n            <spinner-clab visible background=\"0, 0, 0, 0.9\" dark></spinner-clab>\n        </article>\n        </div>\n    </section>\n\n    <section>\n        <h2>Progress bar</h2>\n        <progress-clab value=\"42\" minimal></progress-clab>\n        <progress-clab value=\"87\" type=\"primary\"></progress-clab>\n    </section>\n\n    <section>\n        <h2>Tabs & pills</h2>\n        <tabs-clab labels='[\"All\", \"Tab 2\", \"Tab 3\", \"lorem ipsum\", \"dolor sit\", \"amet\"]' vertical centered full-width restamp>\n        <div class=\"tab-content\">\n            <div>\n            <button-clab>vai</button-clab>\n            </div>\n        </div>\n        <div class=\"tab-content\">\n            <input-clab></input-clab>\n        </div>\n        <div class=\"tab-content\">Tab 3 content</div>\n        <div class=\"tab-content\">Tab 4 content</div>\n        <div class=\"tab-content\">Tab 5 content</div>\n        <div class=\"tab-content\">Tab 6 content</div>\n        </tabs-clab>\n\n        <tabs-clab pills labels='[\"All\", \"Tab 2\", \"Tab 3\", \"lorem ipsum\", \"dolor sit\", \"amet\"]' centered full-width>\n        <div class=\"tab-content\">\n            <accordion-clab title=\"ciccio\">ciccio puzzo</accordion-clab>\n        </div>\n        <div class=\"tab-content\">\n            <input-clab></input-clab>\n        </div>\n        <div class=\"tab-content\">Tab 3 content</div>\n        <div class=\"tab-content\">Tab 4 content</div>\n        <div class=\"tab-content\">Tab 5 content</div>\n        <div class=\"tab-content\">Tab 6 content</div>\n        </tabs-clab>\n\n    </section>\n\n    <section>\n        <h2>Tooltips</h2>\n        <article>\n        <tooltip-clab type=\"primary\" wait=\"200\">\n            <button-clab class=\"tt-label\">Edit</button-clab>\n            <span class=\"tt-content\">Click to edit this block</span>\n        </tooltip-clab>\n        <tooltip-clab type=\"error\" wait=\"0\">\n            <button-clab class=\"tt-label\">Cancel</button-clab>\n            <span class=\"tt-content\">Click to cancel this block</span>\n        </tooltip-clab>\n        </article>\n        <article>\n        <tooltip-clab type=\"info\" wait=\"0\">\n            <accordion-clab class=\"tt-label\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam\n            voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi\n            cumque.\n            </accordion-clab>\n            <span class=\"tt-content\">Click to read more</span>\n        </tooltip-clab>\n        </article>\n        <article>\n        <tooltip-clab type=\"info\" wait=\"0\">\n            <span class=\"tt-label\">My Tooltip</span>\n            <span class=\"tt-content\">Click to read more</span>\n        </tooltip-clab>\n        </article>\n\n    </section>\n\n    <section>\n        <h2>Label & badges</h2>\n        <label-clab type=\"error\">\n        Just a test\n        </label-clab>\n\n        <label-clab badge>\n        42\n        </label-clab>\n    </section>\n\n    <section>\n        <h2>Autocomplete</h2>\n        <autocomplete-clab inline label=\"Normal auto-complete\" options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        min-char=\"1\" label-size=\"larger\" type=\"success\" note-type=\"info\">\n        <span class=\"note\">Type here to get hints</span>\n        <span class=\"button\"><button-clab>hola</button-clab></span>\n        </autocomplete-clab>\n        &nbsp;\n        <autocomplete-clab label=\"AJAX auto-complete\" min-char=\"1\" filter url=\"http://localhost:4000/json\">\n        <span class=\"note\">Type here to get hints</span>\n        </autocomplete-clab>\n    </section>\n\n    <section>\n        <h2>Dropdown</h2>\n        <dropdown-clab max-in-view=\"5\" type=\"success\" note-type=\"error\" result-as-obj options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        selected='{\"label\":\"bella\", \"value\":\"bella\"}' inline label-size=\"larger\" icon=\"icon-edit\">>\n        <span class=\"note\">This is my note</span>\n        <span class=\"button\"><button-clab>ciao</button-clab></span>\n        </dropdown-clab>\n\n\n        <dropdown-clab max-in-view=\"5\" result-as-obj inline label-size=\"larger\" icon=\"icon-edit\">\n        <span class=\"note\">This is my note</span>\n        </dropdown-clab>\n\n        <dropdown-clab max-in-view=\"3\" label=\"Awesome Dropdown\" result-as-obj options='[{\"name\":\"ciccio\", \"value\":\"ciccio\"},{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"name\":\"bella\", \"value\":\"bella\"},{\"name\":\"raga\", \"value\":\"raga\"},{\"name\":\"tutto raga\", \"value\":\"tutto raga\"},{\"name\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        label-field=\"name\">\n        <span class=\"note\">This is my note</span>\n        </dropdown-clab>\n    </section>\n\n    <section>\n        <h2>Tags</h2>\n        <article>\n        <tags-clab label=\"Add tag\" placeholder=\"rosso\" type=\"warning\">\n            <span class=\"note\">Lorem ipsum dolor sit.</span>\n        </tags-clab>\n        </article>\n        <article>\n        <div class=\"input-wrapper\">\n            <label for=\"\">Add tag</label>\n            <div class=\"input\">\n            <input type=\"text\" placeholder=\"placeholder\">\n            <button class=\"btn\">Add</button>\n            </div>\n            <div class=\"note-clab\">Lorem ipsum dolor sit.</div>\n        </div>\n        </article>\n    </section>\n\n    <section>\n        <h2>Modal</h2>\n        <button-clab id=\"openModal-one\" on-click=\"_openModal1\">\n        Open modal (content via attribute)\n        </button-clab>\n        <button-clab id=\"openModal-two\" on-click=\"_openModal2\">\n        Open modal (content via HTML)\n        </button-clab>\n\n        <modal-clab id=\"modalOne\" max-width=\"500px\" title=\"Dummy modal\" primary=\"Confirm\" secondary=\"Cancel\" content=\"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?\"\n        width=\"800px\" no-actions>\n        </modal-clab>\n\n        <modal-clab id=\"modalTwo\" title=\"Dummy modal\" primary=\"Confirm\" primary-disabled secondary=\"Cancel\" warning=\"Do something\"\n        no-animation>\n        <h2>Some HTML...</h2>\n        <hr>\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis\n            maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem\n            ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur\n            a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio\n            nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel\n            in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates\n            ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati\n            corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio\n            qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus\n            ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos\n            ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur\n            consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut\n            odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio\n            veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur\n            illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi\n            iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias\n            minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus\n            perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima\n            commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit\n            ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam\n            doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel!\n            Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat\n            in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo.\n            Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam\n            vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur\n            ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis\n            odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam\n            repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat\n            totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium\n            quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora\n            temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae\n            ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid\n            dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit\n            fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem\n            veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem\n            ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p>\n        <p>\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci,\n            quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto!\n            Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum\n            est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate\n            architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt.\n            Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis\n            temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!\n        </p>\n        <ul>\n            <li>ksbdfkbsdf</li>\n            <li>sdfbgsdfgsdfg</li>\n            <li>sdfgsdfgsdfg</li>\n        </ul>\n        </modal-clab>\n    </section>\n\n    <section>\n        <h2>Pagination</h2>\n        <pagination-clab tot=\"20\"></pagination-clab>\n    </section>\n\n    <section>\n        <h2>Multiple</h2>\n        <multiple-clab label=\"Select multiple options\" max-in-view=\"10\" id=\"multi\"\n        options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        >\n        <span class=\"note\">This is a note</span>\n        </multiple-clab>\n    </section>\n\n    <section>\n        <h2>Row actions</h2>\n        <div class=\"row-action success\">\n        <a><i class=\"clab-icon icon-check\"></i></a>\n        </div>\n\n        <div class=\"row-action error\">\n        <a><i class=\"clab-icon icon-close\"></i></a>\n        </div>\n    </section>\n\n    <section>\n        <h2>Input</h2>\n        <input-clab value=\"ciao\" label=\"My label\" note-type=\"error\" type=\"success\">\n        <span class=\"note\">A simple input component</span>\n        </input-clab>\n        <input-clab value=\"ciao\" icon=\"icon-edit\">\n        <span class=\"note\">A simple input component</span>\n        </input-clab>\n\n        <input-clab value=\"ciao\" label=\"Input with buttons\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"error\">cancel</button-clab>\n        <button-clab class=\"button\" type=\"success\">save</button-clab>\n        </input-clab>\n\n        <input-clab value=\"ciao\" label=\"Input inline\" inline label-size=\"small\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n        <input-clab value=\"ciao\" icon=\"icon-edit\" inline>\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n        <input-clab value=\"ciao\" label=\"Input inline\" inline label-size=\"large\" icon=\"icon-edit\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n    </section>\n\n    <section>\n        <h2>Password</h2>\n        <input-clab password check value=\"ciao\" label=\"My label\"></input-clab>\n    </section>\n\n    <section>\n        <h2>Calendar</h2>\n        <calendar-clab inline id=\"cal\"></calendar-clab>\n\n        <calendar-clab label=\"Calendar not inline - ITALIAN\" options='{\"locale\": \"it\"}' type=\"info\" note-type=\"error\" on-datechange=\"_dateChange\">\n        <span class=\"note\">This is note</span>\n        </calendar-clab>\n        <calendar-clab label=\"Calendar not inline - FRENCH\" options='{\"locale\": \"fr\"}' type=\"info\" note-type=\"error\"></calendar-clab>\n    </section>\n\n    <section>\n        <h2>Range</h2>\n        <range-clab label=\"My wonderful range input label\" value=\"5\" min=\"0\" max=\"10\" step=\"1\" show-details></range-clab>\n    </section>\n\n    <section>\n        <h2>Radio</h2>\n        <radio-clab labels='[\"radio 1\", \"radio 3\", \"radio 2\"]' name=\"group1\" active=\"0\" disabled='[1]'></radio-clab>\n    </section>\n\n    <section>\n        <h2>Checkbox</h2>\n        <checkbox-clab label=\"ciao\" active on-selected-change=\"_checkboxChange\"></checkbox-clab>\n    </section>\n\n    <section>\n        <h2>Input file</h2>\n        <file-clab label=\"My wonderful file input label\" type=\"info\" note-type=\"error\">\n        <span class=\"note\">A simple input component</span>\n        </file-clab>\n    </section>\n    </main>\n"
-
-/***/ }),
-/* 271 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  title: {
-    type: String,
-    value: 'Title'
-  },
-  type: {
-    type: String,
-    value: ''
-  },
-  open: {
-    type: Boolean,
-    value: false,
-    observer: '_animateOpenClose'
-  }
-});
-
-/***/ }),
-/* 272 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  title: {
-    type: String,
-    value: 'Title'
-  },
-  type: {
-    type: String,
-    value: 'success'
-  },
-  visible: {
-    type: Boolean,
-    value: false,
-    notify: true,
-    observer: '_animateShowHide'
-  },
-  primary: {
-    type: String,
-    value: 'Confirm'
-  },
-  secondary: {
-    type: String,
-    value: 'Cancel'
-  },
-  notify: {
-    type: Boolean,
-    value: false
-  },
-  noAnimation: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 273 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: {
-    type: String,
-    value: null
-  },
-  name: {
-    type: String,
-    value: 'auto complete'
-  },
-  type: {
-    type: String
-  },
-  noteType: {
-    type: String
-  },
-  selected: {
-    type: Object,
-    value: {},
-    observer: '_changedSelected'
-  },
-  valueField: {
-    type: String,
-    value: 'value'
-  },
-  labelField: {
-    type: String,
-    value: 'label'
-  },
-  placeholder: {
-    type: String,
-    value: 'Type..'
-  },
-  disabled: {
-    type: Boolean,
-    value: false
-  },
-  options: Array,
-  url: String,
-
-  results: {
-    type: Array,
-    value: [],
-    notify: true
-  },
-  optionsFn: {
-    type: Function,
-    observer: '_setOptions'
-  },
-  filter: {
-    type: Boolean,
-    value: false
-  },
-  hideHints: {
-    type: Boolean,
-    value: false
-  },
-  resultAsObj: {
-    type: Boolean,
-    value: false
-  },
-  minChar: {
-    type: Number,
-    value: 3
-  },
-  maxInView: {
-    type: Number,
-    value: 6
-  },
-  inline: {
-    type: Boolean,
-    value: false
-  },
-  labelSize: {
-    type: String,
-    observer: '_setLabelSize'
-  },
-  icon: String,
-
-  _inputString: {
-    type: String,
-    readonly: true
-  },
-  _currentHint: Object,
-  _spinner: {
-    type: Boolean,
-    value: false
-  },
-  _interval: Object
-});
-
-/***/ }),
-/* 274 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  /**
-   * `type` additional class for the type of btn
-   */
-  type: {
-    type: String,
-    value: "",
-    reflectToAttribute: true
-  },
-  /**
-   * `appearance` additional class for the type
-   */
-  appearance: {
-    type: String,
-    value: ""
-  },
-  /**
-   * `size` additional class for the size
-   */
-  size: {
-    type: String,
-    value: ""
-  },
-  /**
-   * `type` insert a valid icon class to add an icon
-   */
-  icon: {
-    type: String,
-    value: ""
-  },
-  /**
-   * Whether is disabled or not
-   */
-  disabled: {
-    type: Boolean,
-    value: false,
-    reflectToAttribute: true
-  },
-  /**
-   * If it use block layout (auto width)
-   */
-  block: {
-    type: Boolean,
-    value: false,
-    reflectToAttribute: true
-  },
-  /**
-   * Default HTML button type (submit, reset, button)
-   */
-  buttonType: {
-    type: String,
-    value: 'button'
-  }
-});
-
-/***/ }),
-/* 275 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  options: {
-    type: Array,
-    value: ['Option 1', 'Option 2']
-  },
-  /**
-  * Additional class
-  */
-  type: {
-    type: String,
-    value: ''
-  },
-  /**
-  * `size` additional class for the size of the buttons
-  */
-  size: {
-    type: String,
-    value: ''
-  },
-  /**
-  * Whether the buttons are disabled
-  */
-  disabled: {
-    type: Boolean,
-    value: false
-  },
-  /**
-  * Index of the button active at init
-  */
-  value: {
-    type: Number,
-    value: 0,
-    reflectToAttribute: true
-  }
-});
-
-/***/ }),
-/* 276 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  /**
-   * Title of the card
-   */
-  title: String,
-  /**
-   * Inner text of the primary buttons
-   */
-  primary: {
-    type: String,
-    value: 'OK'
-  },
-  /**
-   * Inner text of the secondary buttons
-   */
-  secondary: {
-    type: String,
-    value: 'Cancel'
-  },
-  /**
-  * Add an url to the card
-    {
-      class:'',
-      href:'',
-      text:''
-    }
-  */
-  link: {
-    type: Object,
-    value: {}
-  },
-  /**
-   * Add an icon to the card (class)
-   */
-  icon: String,
-  /**
-   * Whether the card is big
-   */
-  big: {
-    type: Boolean,
-    value: false
-  },
-  /**
-   * Whether the <content> is in table format
-   */
-  table: {
-    type: Boolean,
-    value: false
-  },
-  /**
-   * Source of the image
-   */
-  figure: {
-    type: String,
-    value: null
-  },
-  /**
-   * Effect to apply on the image
-   */
-  effect: {
-    type: String,
-    value: null
-  },
-  /**
-   * Whether the buttons are shown
-   */
-  noActions: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 277 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  /** Label of the checkbox */
-  label: {
-    type: String
-  },
-  /** Wrapper style type */
-  wrapperType: {
-    type: String
-  },
-  /** Determine if the check is checked or not */
-  active: {
-    type: Boolean,
-    value: false,
-    notify: true
-  },
-  /** Determine if the check is disabled or not */
-  disabled: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 278 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  id: String,
-  options: {
-    type: Array,
-    value: []
-  },
-  highlighted: {
-    type: Object,
-    value: {}
-  },
-  labelField: String,
-  valueField: String,
-  dontHide: {
-    type: Boolean,
-    notify: true
-  },
-  maxInView: Number,
-  disabled: {
-    type: Boolean,
-    value: false
-  },
-  open: {
-    type: Boolean,
-    value: false
-  },
-
-  //_liHeight:Number,
-  maxHeight: {
-    type: Number,
-    value: 28
-  },
-  _listMaxHeight: String,
-  _listHeight: String,
-  _hidden: {
-    type: Boolean,
-    value: false
-  },
-  _computedStyles: String
-});
-
-/***/ }),
-/* 279 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: {
-    type: String,
-    value: null
-  },
-  icon: {
-    type: String,
-    value: ''
-  },
-  type: {
-    type: String,
-    value: ''
-  },
-  noteType: {
-    type: String
-  },
-  selected: {
-    type: Object,
-    value: {}
-  },
-  highlighted: Object,
-  valueField: {
-    type: String,
-    value: 'value'
-  },
-  labelField: {
-    type: String,
-    value: 'label'
-  },
-  options: {
-    type: Array,
-    value: [{
-      value: 'A',
-      label: 'Option 1'
-    }, {
-      value: 'B',
-      label: 'Option 2'
-    }],
-    observer: '_updateList'
-  },
-  optionsList: {
-    type: Array,
-    value: []
-  },
-  optionsFn: {
-    type: Function,
-    observer: '_setOptions'
-  },
-  url: {
-    type: String,
-    observer: '_observUrl'
-  },
-  inline: {
-    type: Boolean,
-    value: false
-  },
-  open: {
-    type: Boolean,
-    value: false
-  },
-  labelSize: {
-    type: String,
-    value: ''
-  },
-  placeholder: {
-    type: String,
-    value: 'Select..'
-  },
-  disabled: {
-    type: Boolean,
-    value: false
-  },
-  preventChange: {
-    type: Boolean,
-    value: false
-  },
-  resultAsObj: {
-    type: Boolean,
-    value: false
-  },
-  maxInView: {
-    type: Number,
-    value: 4
-  },
-  maxHeight: {
-    type: Number,
-    value: 28
-  },
-  search: {
-    type: Boolean,
-    value: false
-  },
-  searchValue: {
-    type: String,
-    value: ''
-  }
-  /*_liHeight:{
-    type:String,
-    value:null,
-    readonly: true
-  }*/
-});
-
-/***/ }),
-/* 280 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  link: {
-    type: String,
-    value: null
-  },
-  linkTarget: {
-    type: String,
-    value: '_self'
-  },
-  iconClass: {
-    type: String,
-    value: null
-  },
-  src: {
-    type: String,
-    value: null
-  },
-  size: {
-    type: String,
-    value: null
-  },
-  vertical: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 281 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: String,
-  name: {
-    type: String,
-    value: 'fileinput'
-  },
-  type: {
-    type: String,
-    value: null
-  },
-  noteType: String,
-  value: {
-    type: String,
-    notify: true,
-    value: null
-  },
-  disabled: {
-    type: Boolean,
-    value: false,
-    notify: true,
-    reflectToAttribute: true,
-    observer: '_disabledChanged'
-  },
-  multiple: {
-    type: Boolean,
-    value: false
-  },
-  noPreview: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 282 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: {
-    type: String,
-    value: null,
-    reflectToAttribute: true
-  },
-  icon: {
-    type: String,
-    value: null,
-    reflectToAttribute: true
-  },
-  name: {
-    type: String,
-    value: 'textinput',
-    reflectToAttribute: true
-  },
-  inputType: {
-    type: String,
-    value: null,
-    reflectToAttribute: true
-  },
-  type: {
-    type: String,
-    value: null,
-    reflectToAttribute: true
-  },
-  noteType: String,
-  value: {
-    type: String,
-    notify: true,
-    reflectToAttribute: true
-  },
-  disabled: {
-    type: Boolean,
-    value: false,
-    observer: '_disabledChanged',
-    reflectToAttribute: true
-  },
-  inline: {
-    type: Boolean,
-    value: false,
-    reflectToAttribute: true
-  },
-  readonly: {
-    type: Boolean,
-    value: false,
-    reflectToAttribute: true
-  },
-  labelSize: {
-    type: String,
-    value: null
-  },
-  placeholder: {
-    type: String,
-    reflectToAttribute: true
-  },
-  check: {
-    type: Boolean,
-    value: false
-  },
-  required: {
-    type: Boolean,
-    value: false,
-    reflectToAttribute: true
-  },
-  maxlength: {
-    type: Number,
-    value: null,
-    reflectToAttribute: true
-  },
-  btnPswd: {
-    type: Object,
-    value: {
-      show: {
-        icon: '',
-        label: 'Show',
-        type: "",
-        appearance: "",
-        size: ""
-      },
-      hide: {
-        icon: '',
-        label: 'Hide',
-        type: "",
-        appearance: "",
-        size: ""
-      }
-    }
-  },
-  _btnPswd: Object,
-  password: {
-    type: Boolean,
-    value: false,
-    observer: '_computeBtnPswd'
-  }
-});
-
-/***/ }),
-/* 283 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  type: {
-    type: String,
-    value: null
-  },
-  counter: {
-    type: Number,
-    value: null
-  },
-  remove: {
-    type: Boolean,
-    value: false
-  },
-  badge: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 284 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  title: {
-    type: String,
-    value: 'Modal title'
-  },
-  visible: {
-    type: Boolean,
-    value: false,
-    observer: '_animateShowHide'
-  },
-  primary: {
-    type: String,
-    value: null
-  },
-  secondary: {
-    type: String,
-    value: null
-  },
-  warning: {
-    type: String,
-    value: null
-  },
-  primaryDisabled: {
-    type: Boolean,
-    value: false
-  },
-  content: {
-    type: String,
-    value: null
-  },
-  stopClose: {
-    type: Boolean,
-    value: false
-  },
-  width: {
-    type: Number,
-    value: 840
-  },
-  noAnimation: {
-    type: Boolean,
-    value: false
-  },
-  noActions: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 285 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: {
-    type: String,
-    value: null
-  },
-  type: {
-    type: String,
-    value: ''
-  },
-  options: {
-    type: Array,
-    value: []
-  },
-  optionsFn: {
-    type: Function,
-    observer: '_setOptions'
-  },
-  url: String,
-  selected: {
-    type: Array,
-    value: [],
-    notify: true
-  },
-  name: {
-    type: String,
-    value: 'multiple select'
-  },
-  disabled: {
-    type: Boolean,
-    value: false,
-    observer: '_disabledChanged'
-  },
-  maxInView: {
-    type: Number,
-    value: 6
-  },
-  spinner: {
-    type: Boolean,
-    value: false
-  },
-  noteType: String
-});
-
-/***/ }),
-/* 286 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  type: String,
-  classes: {
-    type: String,
-    computed: 'computeClasses(type)',
-    readonly: true
-  }
-});
-
-/***/ }),
-/* 287 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  tot: {
-    type: Number,
-    observer: '_setPages'
-  },
-  links: Array,
-  pages: {
-    type: Array,
-    notify: true,
-    value: []
-  },
-  currentPage: {
-    type: Number,
-    notify: true,
-    value: 0
-  },
-  range: {
-    type: Number,
-    value: 8
-  },
-  firstPage: {
-    type: String,
-    value: 0
-  },
-  lastPage: {
-    type: String,
-    computed: '_getLastPage(pages)'
-  },
-  prevPage: {
-    type: String,
-    computed: '_getPrevPage(pages, currentPage)'
-  },
-  nextPage: {
-    type: String,
-    computed: '_getNextPage(pages, currentPage)'
-  },
-  availableStart: {
-    type: Number,
-    computed: '_getStart(currentPage, pages)'
-  },
-  availableEnd: {
-    type: Number,
-    computed: '_getEnd(currentPage, pages)'
-  }
-});
-
-/***/ }),
-/* 288 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  value: {
-    type: Number,
-    value: 0
-  },
-  minimal: {
-    type: Boolean,
-    value: false
-  },
-  type: {
-    type: String,
-    value: null
-  }
-});
-
-/***/ }),
-/* 289 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  labels: {
-    type: Array,
-    value: []
-  },
-  name: {
-    type: String
-  },
-  wrapperType: {
-    type: String,
-    value: ''
-  },
-  active: {
-    type: Number,
-    value: 0
-  },
-  disabled: {
-    type: Array,
-    value: []
-  },
-  inline: {
-    type: Boolean,
-    value: false,
-    observer: '_computeInline',
-    reflectToAttribute: true
-  }
-});
-
-/***/ }),
-/* 290 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: String,
-  name: {
-    type: String,
-    value: 'rangeinput'
-  },
-  type: {
-    type: String,
-    value: null
-  },
-  value: {
-    type: Number,
-    notify: true,
-    reflectToAttribute: true
-  },
-  min: Number,
-  max: Number,
-  step: Number,
-  disabled: {
-    type: Boolean,
-    value: false,
-    observer: 'disabledChanged'
-  },
-  showDetails: {
-    type: Boolean,
-    value: false
-  },
-  rangeWrapperClasses: {
-    type: String,
-    computed: 'computeRangeWrapperClasses(showDetails)'
-  }
-});
-
-/***/ }),
-/* 291 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  dark: {
-    type: Boolean,
-    value: false
-  },
-  big: {
-    type: Boolean,
-    value: false
-  },
-  background: {
-    type: String,
-    value: '240, 240, 240, 0.9'
-  },
-  visible: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 292 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  labels: {
-    type: Array,
-    value: []
-  },
-  pills: {
-    type: Boolean,
-    value: false
-  },
-  vertical: {
-    type: Boolean,
-    value: false
-  },
-  centered: {
-    type: Boolean,
-    value: false
-  },
-  fullWidth: {
-    type: Boolean,
-    value: false
-  },
-  active: {
-    type: Number,
-    value: 0,
-    notify: true
-  },
-  current: {
-    type: String,
-    notify: true
-  },
-  _content: Array
-});
-
-/***/ }),
-/* 293 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  label: String,
-  name: {
-    type: String,
-    value: 'tags input'
-  },
-  inputString: String,
-  type: {
-    type: String,
-    value: ''
-  },
-  noteType: {
-    type: String
-  },
-  disabled: {
-    type: Boolean,
-    value: false
-  },
-  placeholder: String,
-  stacked: {
-    type: Boolean,
-    value: false
-  },
-  tags: {
-    type: Array,
-    value: [],
-    notify: true
-  },
-  btnLabel: {
-    type: String,
-    value: 'Add'
-  },
-  btnAppearence: String,
-  btnSize: String,
-  btnIcon: String,
-  hideInput: {
-    type: Boolean,
-    value: false
-  }
-});
-
-/***/ }),
-/* 294 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-
-
-/* harmony default export */ __webpack_exports__["a"] = ({
-  type: {
-    type: String,
-    value: ""
-  },
-  visible: {
-    type: Boolean,
-    value: false,
-    observer: '_observVisibility'
-  },
-  wait: {
-    type: Number,
-    value: 500
-  }
-});
-
-/***/ }),
-/* 295 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeClass; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeBgColor; });
-
-
-var _this = this;
-
-const _computeClass = (big, dark) => {
-  const arr = ['spinner-overlay'];
-  _this.dark ? arr.push('dark') : null;
-  _this.big ? arr.push('big') : null;
-  return arr.join(' ');
-};
-
-const _computeBgColor = color => {
-  return 'background-color: rgba(' + color + ')';
-};
-
-
 
 /***/ })
 /******/ ]);

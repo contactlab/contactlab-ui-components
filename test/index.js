@@ -1,3 +1,4 @@
 'use strict';
 
-import './../index';
+import './../src/spinner/test/';
+import './../src/range/test/';
