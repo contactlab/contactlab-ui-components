@@ -1,10 +1,13 @@
 'use strict';
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import { _computeClass, _computeIconClass } from './methods/internal';
 import template from './view.html';
 import props from './props';
 
-class ButtonClab extends PolymerElement {
+class ButtonClab extends mixinBehaviors(
+  [{ _computeClass, _computeIconClass }], PolymerElement) {
 
   static get is() { return 'button-clab'; }
 
@@ -17,22 +20,6 @@ class ButtonClab extends PolymerElement {
       bubbles: true,
       composed: true
     }));
-  }
-
-  /**
-   * Computes the class of the button joining the values of 'type', 'appearence' and 'size'
-   */
-  _computeClass(type, appearance, size, block) {
-    const arr = ['btn', type, appearance, size];
-    block ? arr.push('block') : null;
-    return arr.join(' ');
-  }
-
-  /**
-   * Computes the class of the icon if 'icon' has a value
-   */
-  _computeIconClass(icon) {
-    return ['icon', icon].join(' ');
   }
 }
 

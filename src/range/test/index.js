@@ -36,3 +36,12 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.showDetails.value, false);
 });
 
+test(`${element} _compDisabled`, t => {
+  t.is(_compDisabled(), null);
+  t.is(_compDisabled(true), 'disabled');
+});
+
+test(`${element} _computeRangeWrapperClasses`, t => {
+  t.is(_computeRangeWrapperClasses(), 'range-wrapper');
+  t.is(_computeRangeWrapperClasses(true), 'range-wrapper details');
+});

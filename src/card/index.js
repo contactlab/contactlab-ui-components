@@ -1,12 +1,21 @@
 'use strict';
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import {
+  _computeCardClass,
+  _computeEffectClass,
+  _showActions,
+  _showLink,
+  _showTitle
+} from './methods/internal';
 import template from './view.html';
 import '@polymer/polymer/lib/elements/dom-if';
 import "./../button";
 import props from './props';
 
-class CardClab extends PolymerElement {
+class CardClab extends mixinBehaviors(
+  [{_computeCardClass, _computeEffectClass, _showActions, _showLink, _showTitle }], PolymerElement) {
 
   static get is() { return 'card-clab'; }
 
@@ -14,58 +23,19 @@ class CardClab extends PolymerElement {
 
   static get properties() { return props }
 
-
-  /*----------
-  EVENT HANDLERS
-  ----------*/
   _handleClickP(evt) {
-     this.dispatchEvent(new CustomEvent('primary',{
-        bubbles: true,
-        composed: true
-      }));
+    this.dispatchEvent(new CustomEvent('primary',{
+      bubbles: true,
+      composed: true
+    }));
   }
 
    _handleClickS(evt) {
-     this.dispatchEvent(new CustomEvent('secondary',{
-        bubbles: true,
-        composed: true
-      }));
+    this.dispatchEvent(new CustomEvent('secondary',{
+      bubbles: true,
+      composed: true
+    }));
   }
-
-
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeCardClass(big) {
-    let classes = ['card-title'];
-    big ? classes.push('big-icon') : null;
-    return classes.join(' ');
-  }
-
-  _computeEffectClass(effect) {
-    return ['card', effect].join(' ');
-  }
-
-
-
-  /*----------
-  UTILS
-  ----------*/
-  _showActions(noActions, link) {
-    return !link.hasOwnProperty('href') && !noActions;
-  }
-
-  _showLink(noActions, link) {
-    return link.hasOwnProperty('href') && !noActions;
-  }
-
-  _showTitle(title) {
-    return title != undefined;
-  }
-
-
 }
-
 
 customElements.define(CardClab.is, CardClab);

@@ -4,7 +4,10 @@ export default {
   /**
    * Title of the card
    */
-  title: String,
+  title: {
+    type: String,
+    value: ''
+  },
   /**
    * Inner text of the primary buttons
    */
@@ -34,7 +37,9 @@ export default {
   /**
    * Add an icon to the card (class)
    */
-  icon: String,
+  icon: {
+    type: String
+  },
   /**
    * Whether the card is big
    */

@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 166);
+/******/ 	return __webpack_require__(__webpack_require__.s = 165);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -4577,277 +4577,6 @@ let Polymer;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export DomIf */
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_element_js__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_templatize_js__ = __webpack_require__(39);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_debounce_js__ = __webpack_require__(16);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_flush_js__ = __webpack_require__(23);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_async_js__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_path_js__ = __webpack_require__(15);
-
-
-
-
-
-
-
-/**
- * The `<dom-if>` element will stamp a light-dom `<template>` child when
- * the `if` property becomes truthy, and the template can use Polymer
- * data-binding and declarative event features when used in the context of
- * a Polymer element's template.
- *
- * When `if` becomes falsey, the stamped content is hidden but not
- * removed from dom. When `if` subsequently becomes truthy again, the content
- * is simply re-shown. This approach is used due to its favorable performance
- * characteristics: the expense of creating template content is paid only
- * once and lazily.
- *
- * Set the `restamp` property to true to force the stamped content to be
- * created / destroyed when the `if` condition changes.
- *
- * @customElement
- * @polymer
- * @extends Polymer.Element
- * @memberof Polymer
- * @summary Custom element that conditionally stamps and hides or removes
- *   template content based on a boolean flag.
- */
-class DomIf extends __WEBPACK_IMPORTED_MODULE_0__polymer_element_js__["a" /* Element */] {
-
-  // Not needed to find template; can be removed once the analyzer
-  // can find the tag name from customElements.define call
-  static get is() { return 'dom-if'; }
-
-  static get template() { return null; }
-
-  static get properties() {
-
-    return {
-
-      /**
-       * Fired whenever DOM is added or removed/hidden by this template (by
-       * default, rendering occurs lazily).  To force immediate rendering, call
-       * `render`.
-       *
-       * @event dom-change
-       */
-
-      /**
-       * A boolean indicating whether this template should stamp.
-       */
-      if: {
-        type: Boolean,
-        observer: '__debounceRender'
-      },
-
-      /**
-       * When true, elements will be removed from DOM and discarded when `if`
-       * becomes false and re-created and added back to the DOM when `if`
-       * becomes true.  By default, stamped elements will be hidden but left
-       * in the DOM when `if` becomes false, which is generally results
-       * in better performance.
-       */
-      restamp: {
-        type: Boolean,
-        observer: '__debounceRender'
-      }
-
-    };
-
-  }
-
-  constructor() {
-    super();
-    this.__renderDebouncer = null;
-    this.__invalidProps = null;
-    this.__instance = null;
-    this._lastIf = false;
-    this.__ctor = null;
-  }
-
-  __debounceRender() {
-    // Render is async for 2 reasons:
-    // 1. To eliminate dom creation trashing if user code thrashes `if` in the
-    //    same turn. This was more common in 1.x where a compound computed
-    //    property could result in the result changing multiple times, but is
-    //    mitigated to a large extent by batched property processing in 2.x.
-    // 2. To avoid double object propagation when a bag including values bound
-    //    to the `if` property as well as one or more hostProps could enqueue
-    //    the <dom-if> to flush before the <template>'s host property
-    //    forwarding. In that scenario creating an instance would result in
-    //    the host props being set once, and then the enqueued changes on the
-    //    template would set properties a second time, potentially causing an
-    //    object to be set to an instance more than once.  Creating the
-    //    instance async from flushing data ensures this doesn't happen. If
-    //    we wanted a sync option in the future, simply having <dom-if> flush
-    //    (or clear) its template's pending host properties before creating
-    //    the instance would also avoid the problem.
-    this.__renderDebouncer = __WEBPACK_IMPORTED_MODULE_2__utils_debounce_js__["a" /* Debouncer */].debounce(
-          this.__renderDebouncer
-        , __WEBPACK_IMPORTED_MODULE_4__utils_async_js__["a" /* microTask */]
-        , () => this.__render());
-    Object(__WEBPACK_IMPORTED_MODULE_3__utils_flush_js__["a" /* enqueueDebouncer */])(this.__renderDebouncer);
-  }
-
-  disconnectedCallback() {
-    super.disconnectedCallback();
-    if (!this.parentNode ||
-        (this.parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE &&
-         !this.parentNode.host)) {
-      this.__teardownInstance();
-    }
-  }
-
-  connectedCallback() {
-    super.connectedCallback();
-    if (this.if) {
-      this.__debounceRender();
-    }
-  }
-
-  /**
-   * Forces the element to render its content. Normally rendering is
-   * asynchronous to a provoking change. This is done for efficiency so
-   * that multiple changes trigger only a single render. The render method
-   * should be called if, for example, template rendering is required to
-   * validate application state.
-   */
-  render() {
-    Object(__WEBPACK_IMPORTED_MODULE_3__utils_flush_js__["b" /* flush */])();
-  }
-
-  __render() {
-    if (this.if) {
-      if (!this.__ensureInstance()) {
-        // No template found yet
-        return;
-      }
-      this._showHideChildren();
-    } else if (this.restamp) {
-      this.__teardownInstance();
-    }
-    if (!this.restamp && this.__instance) {
-      this._showHideChildren();
-    }
-    if (this.if != this._lastIf) {
-      this.dispatchEvent(new CustomEvent('dom-change', {
-        bubbles: true,
-        composed: true
-      }));
-      this._lastIf = this.if;
-    }
-  }
-
-  __ensureInstance() {
-    let parentNode = this.parentNode;
-    // Guard against element being detached while render was queued
-    if (parentNode) {
-      if (!this.__ctor) {
-        let template = this.querySelector('template');
-        if (!template) {
-          // Wait until childList changes and template should be there by then
-          let observer = new MutationObserver(() => {
-            if (this.querySelector('template')) {
-              observer.disconnect();
-              this.__render();
-            } else {
-              throw new Error('dom-if requires a <template> child');
-            }
-          });
-          observer.observe(this, {childList: true});
-          return false;
-        }
-        this.__ctor = __WEBPACK_IMPORTED_MODULE_1__utils_templatize_js__["b" /* Templatize */].templatize(template, this, {
-          // dom-if templatizer instances require `mutable: true`, as
-          // `__syncHostProperties` relies on that behavior to sync objects
-          mutableData: true,
-          /**
-           * @param {string} prop Property to forward
-           * @param {*} value Value of property
-           * @this {this}
-           */
-          forwardHostProp: function(prop, value) {
-            if (this.__instance) {
-              if (this.if) {
-                this.__instance.forwardHostProp(prop, value);
-              } else {
-                // If we have an instance but are squelching host property
-                // forwarding due to if being false, note the invalidated
-                // properties so `__syncHostProperties` can sync them the next
-                // time `if` becomes true
-                this.__invalidProps = this.__invalidProps || Object.create(null);
-                this.__invalidProps[Object(__WEBPACK_IMPORTED_MODULE_5__utils_path_js__["g" /* root */])(prop)] = true;
-              }
-            }
-          }
-        });
-      }
-      if (!this.__instance) {
-        this.__instance = new this.__ctor();
-        parentNode.insertBefore(this.__instance.root, this);
-      } else {
-        this.__syncHostProperties();
-        let c$ = this.__instance.children;
-        if (c$ && c$.length) {
-          // Detect case where dom-if was re-attached in new position
-          let lastChild = this.previousSibling;
-          if (lastChild !== c$[c$.length-1]) {
-            for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
-              parentNode.insertBefore(n, this);
-            }
-          }
-        }
-      }
-    }
-    return true;
-  }
-
-  __syncHostProperties() {
-    let props = this.__invalidProps;
-    if (props) {
-      for (let prop in props) {
-        this.__instance._setPendingProperty(prop, this.__dataHost[prop]);
-      }
-      this.__invalidProps = null;
-      this.__instance._flushProperties();
-    }
-  }
-
-  __teardownInstance() {
-    if (this.__instance) {
-      let c$ = this.__instance.children;
-      if (c$ && c$.length) {
-        // use first child parent, for case when dom-if may have been detached
-        let parent = c$[0].parentNode;
-        for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
-          parent.removeChild(n);
-        }
-      }
-      this.__instance = null;
-      this.__invalidProps = null;
-    }
-  }
-
-  _showHideChildren() {
-    let hidden = this.__hideTemplateChildren__ || !this.if;
-    if (this.__instance) {
-      this.__instance._showHideChildren(hidden);
-    }
-  }
-
-}
-
-customElements.define(DomIf.is, DomIf);
-
-
-
-
-/***/ }),
-/* 4 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return mixinBehaviors; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__legacy_element_mixin_js__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__elements_dom_module_js__ = __webpack_require__(30);
@@ -5110,6 +4839,277 @@ const Class = function(info) {
 };
 /* unused harmony export Class */
 
+
+
+
+
+/***/ }),
+/* 4 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export DomIf */
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_element_js__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_templatize_js__ = __webpack_require__(39);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_debounce_js__ = __webpack_require__(16);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_flush_js__ = __webpack_require__(23);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_async_js__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_path_js__ = __webpack_require__(15);
+
+
+
+
+
+
+
+/**
+ * The `<dom-if>` element will stamp a light-dom `<template>` child when
+ * the `if` property becomes truthy, and the template can use Polymer
+ * data-binding and declarative event features when used in the context of
+ * a Polymer element's template.
+ *
+ * When `if` becomes falsey, the stamped content is hidden but not
+ * removed from dom. When `if` subsequently becomes truthy again, the content
+ * is simply re-shown. This approach is used due to its favorable performance
+ * characteristics: the expense of creating template content is paid only
+ * once and lazily.
+ *
+ * Set the `restamp` property to true to force the stamped content to be
+ * created / destroyed when the `if` condition changes.
+ *
+ * @customElement
+ * @polymer
+ * @extends Polymer.Element
+ * @memberof Polymer
+ * @summary Custom element that conditionally stamps and hides or removes
+ *   template content based on a boolean flag.
+ */
+class DomIf extends __WEBPACK_IMPORTED_MODULE_0__polymer_element_js__["a" /* Element */] {
+
+  // Not needed to find template; can be removed once the analyzer
+  // can find the tag name from customElements.define call
+  static get is() { return 'dom-if'; }
+
+  static get template() { return null; }
+
+  static get properties() {
+
+    return {
+
+      /**
+       * Fired whenever DOM is added or removed/hidden by this template (by
+       * default, rendering occurs lazily).  To force immediate rendering, call
+       * `render`.
+       *
+       * @event dom-change
+       */
+
+      /**
+       * A boolean indicating whether this template should stamp.
+       */
+      if: {
+        type: Boolean,
+        observer: '__debounceRender'
+      },
+
+      /**
+       * When true, elements will be removed from DOM and discarded when `if`
+       * becomes false and re-created and added back to the DOM when `if`
+       * becomes true.  By default, stamped elements will be hidden but left
+       * in the DOM when `if` becomes false, which is generally results
+       * in better performance.
+       */
+      restamp: {
+        type: Boolean,
+        observer: '__debounceRender'
+      }
+
+    };
+
+  }
+
+  constructor() {
+    super();
+    this.__renderDebouncer = null;
+    this.__invalidProps = null;
+    this.__instance = null;
+    this._lastIf = false;
+    this.__ctor = null;
+  }
+
+  __debounceRender() {
+    // Render is async for 2 reasons:
+    // 1. To eliminate dom creation trashing if user code thrashes `if` in the
+    //    same turn. This was more common in 1.x where a compound computed
+    //    property could result in the result changing multiple times, but is
+    //    mitigated to a large extent by batched property processing in 2.x.
+    // 2. To avoid double object propagation when a bag including values bound
+    //    to the `if` property as well as one or more hostProps could enqueue
+    //    the <dom-if> to flush before the <template>'s host property
+    //    forwarding. In that scenario creating an instance would result in
+    //    the host props being set once, and then the enqueued changes on the
+    //    template would set properties a second time, potentially causing an
+    //    object to be set to an instance more than once.  Creating the
+    //    instance async from flushing data ensures this doesn't happen. If
+    //    we wanted a sync option in the future, simply having <dom-if> flush
+    //    (or clear) its template's pending host properties before creating
+    //    the instance would also avoid the problem.
+    this.__renderDebouncer = __WEBPACK_IMPORTED_MODULE_2__utils_debounce_js__["a" /* Debouncer */].debounce(
+          this.__renderDebouncer
+        , __WEBPACK_IMPORTED_MODULE_4__utils_async_js__["a" /* microTask */]
+        , () => this.__render());
+    Object(__WEBPACK_IMPORTED_MODULE_3__utils_flush_js__["a" /* enqueueDebouncer */])(this.__renderDebouncer);
+  }
+
+  disconnectedCallback() {
+    super.disconnectedCallback();
+    if (!this.parentNode ||
+        (this.parentNode.nodeType == Node.DOCUMENT_FRAGMENT_NODE &&
+         !this.parentNode.host)) {
+      this.__teardownInstance();
+    }
+  }
+
+  connectedCallback() {
+    super.connectedCallback();
+    if (this.if) {
+      this.__debounceRender();
+    }
+  }
+
+  /**
+   * Forces the element to render its content. Normally rendering is
+   * asynchronous to a provoking change. This is done for efficiency so
+   * that multiple changes trigger only a single render. The render method
+   * should be called if, for example, template rendering is required to
+   * validate application state.
+   */
+  render() {
+    Object(__WEBPACK_IMPORTED_MODULE_3__utils_flush_js__["b" /* flush */])();
+  }
+
+  __render() {
+    if (this.if) {
+      if (!this.__ensureInstance()) {
+        // No template found yet
+        return;
+      }
+      this._showHideChildren();
+    } else if (this.restamp) {
+      this.__teardownInstance();
+    }
+    if (!this.restamp && this.__instance) {
+      this._showHideChildren();
+    }
+    if (this.if != this._lastIf) {
+      this.dispatchEvent(new CustomEvent('dom-change', {
+        bubbles: true,
+        composed: true
+      }));
+      this._lastIf = this.if;
+    }
+  }
+
+  __ensureInstance() {
+    let parentNode = this.parentNode;
+    // Guard against element being detached while render was queued
+    if (parentNode) {
+      if (!this.__ctor) {
+        let template = this.querySelector('template');
+        if (!template) {
+          // Wait until childList changes and template should be there by then
+          let observer = new MutationObserver(() => {
+            if (this.querySelector('template')) {
+              observer.disconnect();
+              this.__render();
+            } else {
+              throw new Error('dom-if requires a <template> child');
+            }
+          });
+          observer.observe(this, {childList: true});
+          return false;
+        }
+        this.__ctor = __WEBPACK_IMPORTED_MODULE_1__utils_templatize_js__["b" /* Templatize */].templatize(template, this, {
+          // dom-if templatizer instances require `mutable: true`, as
+          // `__syncHostProperties` relies on that behavior to sync objects
+          mutableData: true,
+          /**
+           * @param {string} prop Property to forward
+           * @param {*} value Value of property
+           * @this {this}
+           */
+          forwardHostProp: function(prop, value) {
+            if (this.__instance) {
+              if (this.if) {
+                this.__instance.forwardHostProp(prop, value);
+              } else {
+                // If we have an instance but are squelching host property
+                // forwarding due to if being false, note the invalidated
+                // properties so `__syncHostProperties` can sync them the next
+                // time `if` becomes true
+                this.__invalidProps = this.__invalidProps || Object.create(null);
+                this.__invalidProps[Object(__WEBPACK_IMPORTED_MODULE_5__utils_path_js__["g" /* root */])(prop)] = true;
+              }
+            }
+          }
+        });
+      }
+      if (!this.__instance) {
+        this.__instance = new this.__ctor();
+        parentNode.insertBefore(this.__instance.root, this);
+      } else {
+        this.__syncHostProperties();
+        let c$ = this.__instance.children;
+        if (c$ && c$.length) {
+          // Detect case where dom-if was re-attached in new position
+          let lastChild = this.previousSibling;
+          if (lastChild !== c$[c$.length-1]) {
+            for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
+              parentNode.insertBefore(n, this);
+            }
+          }
+        }
+      }
+    }
+    return true;
+  }
+
+  __syncHostProperties() {
+    let props = this.__invalidProps;
+    if (props) {
+      for (let prop in props) {
+        this.__instance._setPendingProperty(prop, this.__dataHost[prop]);
+      }
+      this.__invalidProps = null;
+      this.__instance._flushProperties();
+    }
+  }
+
+  __teardownInstance() {
+    if (this.__instance) {
+      let c$ = this.__instance.children;
+      if (c$ && c$.length) {
+        // use first child parent, for case when dom-if may have been detached
+        let parent = c$[0].parentNode;
+        for (let i=0, n; (i<c$.length) && (n=c$[i]); i++) {
+          parent.removeChild(n);
+        }
+      }
+      this.__instance = null;
+      this.__invalidProps = null;
+    }
+  }
+
+  _showHideChildren() {
+    let hidden = this.__hideTemplateChildren__ || !this.if;
+    if (this.__instance) {
+      this.__instance._showHideChildren(hidden);
+    }
+  }
+
+}
+
+customElements.define(DomIf.is, DomIf);
 
 
 
@@ -5389,27 +5389,31 @@ const microTask = {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(189);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(190);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(188);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(189);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(190);
 
 
 
 
 
 
-class ButtonClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */] {
+
+
+class ButtonClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ _computeClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["a" /* _computeClass */], _computeIconClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["b" /* _computeIconClass */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
 
   static get is() {
     return 'button-clab';
   }
 
   static get template() {
-    return __WEBPACK_IMPORTED_MODULE_1__view_html___default.a;
+    return __WEBPACK_IMPORTED_MODULE_3__view_html___default.a;
   }
 
   static get properties() {
-    return __WEBPACK_IMPORTED_MODULE_2__props__["a" /* default */];
+    return __WEBPACK_IMPORTED_MODULE_4__props__["a" /* default */];
   }
 
   _click(evt) {
@@ -5417,22 +5421,6 @@ class ButtonClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_el
       bubbles: true,
       composed: true
     }));
-  }
-
-  /**
-   * Computes the class of the button joining the values of 'type', 'appearence' and 'size'
-   */
-  _computeClass(type, appearance, size, block) {
-    const arr = ['btn', type, appearance, size];
-    block ? arr.push('block') : null;
-    return arr.join(' ');
-  }
-
-  /**
-   * Computes the class of the icon if 'icon' has a value
-   */
-  _computeIconClass(icon) {
-    return ['icon', icon].join(' ');
   }
 }
 
@@ -6193,15 +6181,15 @@ function camelToDashCase(camel) {
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webcomponents_shadycss_entrypoints_apply_shim_js__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__webcomponents_shadycss_entrypoints_apply_shim_js__ = __webpack_require__(175);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_element_mixin_js__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_gesture_event_listeners_js__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_gesture_event_listeners_js__ = __webpack_require__(179);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_mixin_js__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_import_href_js__ = __webpack_require__(181);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_render_status_js__ = __webpack_require__(182);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__ = __webpack_require__(183);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_import_href_js__ = __webpack_require__(180);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_render_status_js__ = __webpack_require__(181);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__ = __webpack_require__(182);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__utils_unresolved_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__polymer_dom_js__ = __webpack_require__(184);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__polymer_dom_js__ = __webpack_require__(183);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__utils_gestures_js__ = __webpack_require__(38);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__utils_debounce_js__ = __webpack_require__(16);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__utils_async_js__ = __webpack_require__(8);
@@ -7468,13 +7456,13 @@ class Debouncer {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(194);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(195);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__button__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__note__ = __webpack_require__(18);
 
@@ -8194,12 +8182,12 @@ const flush = function() {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(198);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(199);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(200);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -8236,7 +8224,7 @@ customElements.define(SpinnerClab.is, SpinnerClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(201);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -8461,7 +8449,7 @@ module.exports = isInput;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_settings_js__ = __webpack_require__(20);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_mixin_js__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_case_map_js__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_style_gather_js__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__utils_style_gather_js__ = __webpack_require__(169);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__utils_resolve_url_js__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__elements_dom_module_js__ = __webpack_require__(30);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__property_effects_js__ = __webpack_require__(31);
@@ -9338,8 +9326,8 @@ customElements.define('dom-module', DomModule);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_mixin_js__ = __webpack_require__(7);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_path_js__ = __webpack_require__(15);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_case_map_js__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__property_accessors_js__ = __webpack_require__(171);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_stamp_js__ = __webpack_require__(172);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__property_accessors_js__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__template_stamp_js__ = __webpack_require__(171);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__utils_settings_js__ = __webpack_require__(20);
 
 
@@ -26057,20 +26045,14 @@ module.exports = {
 
 /***/ }),
 /* 164 */
-/***/ (function(module, exports) {
-
-module.exports = "<style>\n  input[type=text]::-ms-clear {\n    display: none;\n  }\n</style>\n<template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\">\n  <div class$=\"[[_computeType('calendar input-wrapper', type)]]\">\n    <template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n      <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n    </template>\n\n    <div class=\"input\">\n      <div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div>\n      <input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\"\n      placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\">\n    </div>\n\n    <note-clab type=\"[[noteType]]\">\n      <slot name=\"note\"></slot>\n    </note-clab>\n  </div>\n</template>\n<template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\">\n  <div class=\"inline-cal\"></div>\n</template>\n"
-
-/***/ }),
-/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(265);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(266);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(266);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(267);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -26116,15 +26098,15 @@ class LabelClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_ele
 customElements.define(LabelClab.is, LabelClab);
 
 /***/ }),
-/* 166 */
+/* 165 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__ = __webpack_require__(166);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_web_animations_js_web_animations_next_min__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(168);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(295);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__index__ = __webpack_require__(167);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__demo_element__ = __webpack_require__(297);
 
 
 
@@ -26132,7 +26114,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 167 */
+/* 166 */
 /***/ (function(module, exports) {
 
 // Copyright 2014 Google Inc. All rights reserved.
@@ -26153,35 +26135,35 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //# sourceMappingURL=web-animations-next.min.js.map
 
 /***/ }),
-/* 168 */
+/* 167 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_accordion___ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_alert___ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_accordion___ = __webpack_require__(168);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_alert___ = __webpack_require__(174);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_autocomplete___ = __webpack_require__(191);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_button___ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_button_group___ = __webpack_require__(203);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_calendar___ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_card___ = __webpack_require__(250);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_checkbox___ = __webpack_require__(253);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_card___ = __webpack_require__(251);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_checkbox___ = __webpack_require__(254);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__src_curtain___ = __webpack_require__(25);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_dropdown___ = __webpack_require__(256);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_feature___ = __webpack_require__(259);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_file___ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__src_dropdown___ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__src_feature___ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__src_file___ = __webpack_require__(263);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__src_input___ = __webpack_require__(17);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_label_badge___ = __webpack_require__(165);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_modal___ = __webpack_require__(267);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_multiple___ = __webpack_require__(270);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__src_label_badge___ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__src_modal___ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__src_multiple___ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__src_note___ = __webpack_require__(18);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__src_pagination___ = __webpack_require__(273);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__src_progress_bar___ = __webpack_require__(276);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__src_radio___ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__src_range___ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__src_pagination___ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__src_progress_bar___ = __webpack_require__(277);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__src_radio___ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__src_range___ = __webpack_require__(284);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__src_spinner___ = __webpack_require__(24);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__src_tabs___ = __webpack_require__(286);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__src_tags___ = __webpack_require__(289);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__src_tooltip___ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__src_tabs___ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__src_tags___ = __webpack_require__(291);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__src_tooltip___ = __webpack_require__(294);
 
 
 
@@ -26211,14 +26193,14 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 
 /***/ }),
-/* 169 */
+/* 168 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(173);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(172);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(174);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(173);
 
 
 
@@ -26302,7 +26284,7 @@ class AccordionClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer
 customElements.define(AccordionClab.is, AccordionClab);
 
 /***/ }),
-/* 170 */
+/* 169 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26400,7 +26382,7 @@ function _cssFromModuleImports(module) {
 
 
 /***/ }),
-/* 171 */
+/* 170 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -26997,7 +26979,7 @@ const PropertyAccessors = Object(__WEBPACK_IMPORTED_MODULE_1__utils_mixin_js__["
 
 
 /***/ }),
-/* 172 */
+/* 171 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27461,13 +27443,13 @@ const TemplateStamp = Object(__WEBPACK_IMPORTED_MODULE_1__utils_mixin_js__["a" /
 
 
 /***/ }),
-/* 173 */
+/* 172 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .accordion-title.active{\n    font-weight:600;\n  }\n  .accordion-title.active::before{\n    content:\"\\e60f\";\n  }\n</style>\n<div class=\"accordion\">\n  <div class$=\"[[_computeType(type)]]\" id=\"block\">\n    <div class=\"accordion-title\" on-click=\"_toggleActive\">\n      <span>[[title]]</span>\n    </div>\n    <div class=\"accordion-content\" id=\"content\">\n      <slot></slot>\n    </div>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 174 */
+/* 173 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -27490,18 +27472,18 @@ module.exports = "<style>\n  .accordion-title.active{\n    font-weight:600;\n  }
 });
 
 /***/ }),
-/* 175 */
+/* 174 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_animations__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html__ = __webpack_require__(186);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__props__ = __webpack_require__(188);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__props__ = __webpack_require__(187);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__button__ = __webpack_require__(9);
 
 
@@ -27638,17 +27620,17 @@ class AlertClab extends Object(__WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_
 customElements.define(AlertClab.is, AlertClab);
 
 /***/ }),
-/* 176 */
+/* 175 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_apply_shim_js__ = __webpack_require__(177);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__src_apply_shim_js__ = __webpack_require__(176);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__src_template_map_js__ = __webpack_require__(36);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__src_style_util_js__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_apply_shim_utils_js__ = __webpack_require__(178);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__src_apply_shim_utils_js__ = __webpack_require__(177);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__src_document_wait_js__ = __webpack_require__(37);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__src_common_utils_js__ = __webpack_require__(35);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_custom_style_interface_js__ = __webpack_require__(179);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__src_custom_style_interface_js__ = __webpack_require__(178);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__src_style_settings_js__ = __webpack_require__(34);
 /**
 @license
@@ -27846,7 +27828,7 @@ if (!window.ShadyCSS || !window.ShadyCSS.ScopingShim) {
 window.ShadyCSS.ApplyShim = applyShim;
 
 /***/ }),
-/* 177 */
+/* 176 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28318,7 +28300,7 @@ Object.defineProperty(ApplyShim.prototype, 'invalidCallback', {
 /* harmony default export */ __webpack_exports__["a"] = (ApplyShim);
 
 /***/ }),
-/* 178 */
+/* 177 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28484,7 +28466,7 @@ function elementsAreInvalid() {
 }
 
 /***/ }),
-/* 179 */
+/* 178 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28652,7 +28634,7 @@ let CustomStyleInterfaceInterface;
 
 
 /***/ }),
-/* 180 */
+/* 179 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28700,7 +28682,7 @@ const GestureEventListeners = Object(__WEBPACK_IMPORTED_MODULE_1__utils_mixin_js
 
 
 /***/ }),
-/* 181 */
+/* 180 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28781,7 +28763,7 @@ const importHref = function(href, onload, onerror, optAsync) {
 
 
 /***/ }),
-/* 182 */
+/* 181 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28860,7 +28842,7 @@ function afterNextRender(context, callback, args) {
 
 
 /***/ }),
-/* 183 */
+/* 182 */
 /***/ (function(module, exports) {
 
 function resolve() {
@@ -28875,7 +28857,7 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
 
 
 /***/ }),
-/* 184 */
+/* 183 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -28884,7 +28866,7 @@ if (document.readyState === 'interactive' || document.readyState === 'complete')
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_boot_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__utils_boot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__utils_boot_js__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__utils_settings_js__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_flattened_nodes_observer_js__ = __webpack_require__(185);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__utils_flattened_nodes_observer_js__ = __webpack_require__(184);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__utils_flush_js__ = __webpack_require__(23);
 /* unused harmony reexport flush */
 /* unused harmony reexport addDebouncer */
@@ -29182,14 +29164,14 @@ const dom = function(obj) {
 
 
 /***/ }),
-/* 185 */
+/* 184 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FlattenedNodesObserver; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boot_js__ = __webpack_require__(2);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__boot_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__boot_js__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array_splice_js__ = __webpack_require__(186);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__array_splice_js__ = __webpack_require__(185);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__async_js__ = __webpack_require__(8);
 
 
@@ -29430,7 +29412,7 @@ class FlattenedNodesObserver {
 
 
 /***/ }),
-/* 186 */
+/* 185 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29701,13 +29683,13 @@ function equals(currentValue, previousValue) {
 
 
 /***/ }),
-/* 187 */
+/* 186 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .alert{\n    display: none;\n    opacity: 0;\n  }\n</style>\n<template is=\"dom-if\" if=\"[[!notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\">\n    <div class=\"close\" on-click=\"_close\"><i class=\"clab-icon icon-close\"></i></div>\n    <h3>[[title]]</h3>\n    <p><slot></slot></p>\n    <button-clab type=\"secondary\" appearance=\"empty\" data-primary=\"false\" on-btnclick=\"_handleClickS\">[[secondary]]</button-clab>\n    <button-clab type=\"primary\" data-primary=\"true\" on-btnclick=\"_handleClickP\">[[primary]]</button-clab>\n  </div>\n</template>\n<template is=\"dom-if\" if=\"[[notify]]\">\n  <div class$=\"[[_computeType('alert', type)]]\" style$=\"[[_alertStyle]]\" on-click=\"_close\">\n    <div class=\"close\"><i class=\"clab-icon icon-close\"></i></div>\n    <p><slot></slot></p>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 188 */
+/* 187 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -29745,6 +29727,27 @@ module.exports = "<style>\n  .alert{\n    display: none;\n    opacity: 0;\n  }\n
     value: false
   }
 });
+
+/***/ }),
+/* 188 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeIconClass; });
+
+
+const _computeClass = (type, appearance, size, block) => {
+  const arr = ['btn', type, appearance, size];
+  block ? arr.push('block') : null;
+  return arr.join(' ');
+};
+
+const _computeIconClass = icon => {
+  return ['icon', icon].join(' ');
+};
+
+
 
 /***/ }),
 /* 189 */
@@ -30544,15 +30547,14 @@ module.exports = "<div class$=\"buttons-group [[_computeGroupClass(type, size)]]
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_moment__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_polymer_element__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html__ = __webpack_require__(164);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html__ = __webpack_require__(247);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__props__ = __webpack_require__(247);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__methods_public__ = __webpack_require__(248);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__methods_internal__ = __webpack_require__(249);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
-
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__props__ = __webpack_require__(248);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__methods_public__ = __webpack_require__(249);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__methods_internal__ = __webpack_require__(250);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -33095,6 +33097,12 @@ module.exports = {
 
 /***/ }),
 /* 247 */
+/***/ (function(module, exports) {
+
+module.exports = "<style>\n  input[type=text]::-ms-clear {\n    display: none;\n  }\n</style>\n<template is=\"dom-if\" if=\"[[!inline]]\" on-dom-change=\"_initRome\">\n  <div class$=\"[[_computeType('calendar input-wrapper', type)]]\">\n    <template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n      <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n    </template>\n\n    <div class=\"input\">\n      <div class=\"input-icon-wrapper calendar\" on-click=\"_focusElement\"></div>\n      <input class$=\"[[type]]\" type=\"text\" disabled=\"[[disabled]]\"\n      placeholder=\"[[placeholder]]\" value=\"[[valueStr]]\" on-keyup=\"_checkClear\">\n    </div>\n\n    <note-clab type=\"[[noteType]]\">\n      <slot name=\"note\"></slot>\n    </note-clab>\n  </div>\n</template>\n<template is=\"dom-if\" if=\"[[inline]]\" on-dom-change=\"_initRome\">\n  <div class=\"inline-cal\"></div>\n</template>\n"
+
+/***/ }),
+/* 248 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33134,7 +33142,7 @@ module.exports = {
 });
 
 /***/ }),
-/* 248 */
+/* 249 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33160,7 +33168,7 @@ const getLocale = () => {
 
 
 /***/ }),
-/* 249 */
+/* 250 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33186,16 +33194,18 @@ const _getFormat = (options, romeInst) => {
 
 
 /***/ }),
-/* 250 */
+/* 251 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(251);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__button__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(299);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(252);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__button__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__props__ = __webpack_require__(253);
 
 
 
@@ -33204,23 +33214,22 @@ const _getFormat = (options, romeInst) => {
 
 
 
-class CardClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */] {
+
+
+class CardClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ _computeCardClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["a" /* _computeCardClass */], _computeEffectClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["b" /* _computeEffectClass */], _showActions: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["c" /* _showActions */], _showLink: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["d" /* _showLink */], _showTitle: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["e" /* _showTitle */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
 
   static get is() {
     return 'card-clab';
   }
 
   static get template() {
-    return __WEBPACK_IMPORTED_MODULE_1__view_html___default.a;
+    return __WEBPACK_IMPORTED_MODULE_3__view_html___default.a;
   }
 
   static get properties() {
-    return __WEBPACK_IMPORTED_MODULE_4__props__["a" /* default */];
+    return __WEBPACK_IMPORTED_MODULE_6__props__["a" /* default */];
   }
 
-  /*----------
-  EVENT HANDLERS
-  ----------*/
   _handleClickP(evt) {
     this.dispatchEvent(new CustomEvent('primary', {
       bubbles: true,
@@ -33234,47 +33243,18 @@ class CardClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
       composed: true
     }));
   }
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeCardClass(big) {
-    let classes = ['card-title'];
-    big ? classes.push('big-icon') : null;
-    return classes.join(' ');
-  }
-
-  _computeEffectClass(effect) {
-    return ['card', effect].join(' ');
-  }
-
-  /*----------
-  UTILS
-  ----------*/
-  _showActions(noActions, link) {
-    return !link.hasOwnProperty('href') && !noActions;
-  }
-
-  _showLink(noActions, link) {
-    return link.hasOwnProperty('href') && !noActions;
-  }
-
-  _showTitle(title) {
-    return title != undefined;
-  }
-
 }
 
 customElements.define(CardClab.is, CardClab);
 
 /***/ }),
-/* 251 */
+/* 252 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeEffectClass(effect)]]\">\n  <template is=\"dom-if\" if=\"[[!figure]]\">\n    <div class$=\"[[_computeCardClass(big)]]\">\n      <template is=\"dom-if\" if=\"[[!big]]\">\n        <i class$=\"[[icon]]\"></i>\n      </template>\n      <span>[[title]]</span>\n      <template is=\"dom-if\" if=\"[[big]]\">\n        <div class=\"circle\"><i class=\"fa fa-circle\"></i></div>\n        <div class=\"icon\"><i class$=\"[[icon]]\"></i></div>\n      </template>\n    </div>\n  </template>\n  <template is=\"dom-if\" if=\"[[figure]]\">\n    <figure>\n      <img src=\"[[figure]]\">\n      <template is=\"dom-if\" if=\"[[_showTitle(title)]]\">\n        <h2>[[title]]</h2>\n      </template>\n    </figure>\n  </template>\n  <template is=\"dom-if\" if=\"[[!table]]\">\n    <div class=\"card-body\">\n      <slot></slot>\n    </div>\n  </template>\n  <template is=\"dom-if\" if=\"[[table]]\">\n    <slot></slot>\n  </template>\n  <div class=\"card-actions\">\n    <template is=\"dom-if\" if=\"[[_showActions(noActions, link)]]\">\n      <button-clab type=\"primary\" appearance=\"empty\" on-btnclick=\"_handleClickP\">[[secondary]]</button-clab>\n      <button-clab type=\"secondary\" on-btnclick=\"_handleClickS\">[[primary]]</button-clab>\n    </template>\n    <template is=\"dom-if\" if=\"[[_showLink(noActions, link)]]\">\n      <a class$=\"[[link.class]]\" href$=\"[[link.href]]\">[[link.text]]</a>\n    </template>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 252 */
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33284,7 +33264,10 @@ module.exports = "<div class$=\"[[_computeEffectClass(effect)]]\">\n  <template 
   /**
    * Title of the card
    */
-  title: String,
+  title: {
+    type: String,
+    value: ''
+  },
   /**
    * Inner text of the primary buttons
    */
@@ -33353,15 +33336,15 @@ module.exports = "<div class$=\"[[_computeEffectClass(effect)]]\">\n  <template 
 });
 
 /***/ }),
-/* 253 */
+/* 254 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(254);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(255);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(255);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(256);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libs_utils__ = __webpack_require__(6);
 
 
@@ -33477,13 +33460,13 @@ class CheckboxClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_l
 customElements.define(CheckboxClab.is, CheckboxClab);
 
 /***/ }),
-/* 254 */
+/* 255 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeType(wrapperType)]]\">\n  <input id$=\"[[dashify(label)]]\" type=\"checkbox\" value=\"[[dashify(label)]]\"\n    checked$=\"[[active]]\" disabled$=\"[[disabled]]\" data-index$=\"[[index]]\"\n    on-change=\"_onChange\">\n  <label for$=\"[[dashify(label)]]\">[[label]]</label>\n</div>\n"
 
 /***/ }),
-/* 255 */
+/* 256 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33512,16 +33495,16 @@ module.exports = "<div class$=\"[[_computeType(wrapperType)]]\">\n  <input id$=\
 });
 
 /***/ }),
-/* 256 */
+/* 257 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(257);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(258);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(258);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(259);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__note__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__curtain__ = __webpack_require__(25);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__input__ = __webpack_require__(17);
@@ -33820,13 +33803,13 @@ class DropdownClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_l
 customElements.define(DropdownClab.is, DropdownClab);
 
 /***/ }),
-/* 257 */
+/* 258 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .dropdown-clab .options-list,\n  .options-list li{\n      display: block !important;\n  }\n</style>\n<div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\">\n  <template is=\"dom-if\" if=\"[[viewLabel(label, icon)]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">\n      <template is=\"dom-if\" if=\"[[viewLabel(icon)]]\">\n        <i class$=\"[[_compIcon(icon)]]\"></i>\n      </template>\n      [[label]]\n    </label>\n  </template>\n\n  <div class=\"input\">\n    <template is=\"dom-if\" if=\"[[!search]]\">\n      <div class$=\"[[_compType('value_wrapper', disabled, type, id, open)]]\" on-tap=\"_toggleList\">\n        <template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\">\n          <span class=\"selected\">[[_compLabel(selected)]]</span>\n        </template>\n        <template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\">\n          <span class=\"placeholder\">[[placeholder]]</span>\n        </template>\n      </div>\n    </template>\n    <template is=\"dom-if\" if=\"[[search]]\">\n      <input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab>\n    </template>\n    <curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\"\n      label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\"\n      on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab>\n  </div>\n\n  <slot name=\"button\"></slot>\n\n  <note-clab type=\"[[noteType]]\">\n    <slot name=\"note\"></slot>\n  </note-clab>\n</div>\n"
 
 /***/ }),
-/* 258 */
+/* 259 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -33936,15 +33919,15 @@ module.exports = "<style>\n  .dropdown-clab .options-list,\n  .options-list li{\
 });
 
 /***/ }),
-/* 259 */
+/* 260 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(260);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(261);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(261);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(262);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -33985,13 +33968,13 @@ class FeatureClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(FeatureClab.is, FeatureClab);
 
 /***/ }),
-/* 260 */
+/* 261 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeFeatureClass(size, vertical)]]\">\n  <template is=\"dom-if\" if=\"[[link]]\">\n    <a href$=\"[[link]]\" target$=\"[[linkTarget]]\">\n      <div class=\"image\">\n            <i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i>\n        <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\">\n          </div>\n\n          <div class=\"description\">\n              <slot></slot>\n          </div>\n    </a>\n  </template>\n  <template is=\"dom-if\" if=\"[[!link]]\">\n    <div class=\"image\">\n      <i class$=\"[[iconClass]]\" style$=\"[[_compDisplay(iconClass)]]\"></i>\n      <img src$=\"[[src]]\" alt=\"\" style$=\"[[_compDisplay(src)]]\">\n    </div>\n    <div class=\"description\">\n      <slot></slot>\n    </div>\n  </template>\n</div>\n"
 
 /***/ }),
-/* 261 */
+/* 262 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34025,17 +34008,17 @@ module.exports = "<div class$=\"[[_computeFeatureClass(size, vertical)]]\">\n  <
 });
 
 /***/ }),
-/* 262 */
+/* 263 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(263);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(264);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(264);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(265);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -34126,13 +34109,13 @@ class FileClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_l
 customElements.define(FileClab.is, FileClab);
 
 /***/ }),
-/* 263 */
+/* 264 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  input[type=file]{\n    display: none;\n  }\n  input[type=text]::-ms-clear{\n    display: none;\n  }\n</style>\n\n<div class$=\"[[_compWrapperClass('input-wrapper', type)]]\">\n  <template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n  </template>\n\n  <div class=\"input\" on-click=\"_selection\">\n    <input class$=\"[[type]]\" type=\"text\" name$=\"[[dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value}}\" on-change=\"_checkIfResetPreview\">\n    <button class=\"btn\"><i class=\"clab-icon icon-folder\"></i></button>\n  </div>\n\n  <note-clab type=\"[[noteType]]\">\n    <content select=\".note\"></content>\n  </note-clab>\n\n  <input id=\"input_file\" type=\"file\" multiple$=\"[[multiple]]\" disabled=\"[[disabled]]\" on-change=\"_updateValue\">\n\n  <div id=\"preview\"></div>\n</div>\n"
 
 /***/ }),
-/* 264 */
+/* 265 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34172,13 +34155,13 @@ module.exports = "<style>\n  input[type=file]{\n    display: none;\n  }\n  input
 });
 
 /***/ }),
-/* 265 */
+/* 266 */
 /***/ (function(module, exports) {
 
 module.exports = "<span class$=\"[[_computeClass(badge,type)]]\">\n  <slot></slot>\n  <template is=\"dom-if\" if=\"[[counter]]\">\n    <span class=\"counter\">[[counter]]</span>\n  </template>\n  <template is=\"dom-if\" if=\"[[remove]]\">\n    <span class=\"remove\" on-click=\"_removeClicked\"><i class=\"clab-icon icon-close\"></i></span>\n  </template>\n</span>\n"
 
 /***/ }),
-/* 266 */
+/* 267 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34204,18 +34187,18 @@ module.exports = "<span class$=\"[[_computeClass(badge,type)]]\">\n  <slot></slo
 });
 
 /***/ }),
-/* 267 */
+/* 268 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__libs_animations__ = __webpack_require__(32);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(268);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html__ = __webpack_require__(269);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(269);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__props__ = __webpack_require__(270);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_legacy_element_mixin__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__button___ = __webpack_require__(9);
 
 
@@ -34374,13 +34357,13 @@ class ModalClab extends Object(__WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_
 customElements.define(ModalClab.is, ModalClab);
 
 /***/ }),
-/* 268 */
+/* 269 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .modal-overlay{\n    display:none;\n    opacity: 0;\n  }\n  .third{\n    float: left;\n    clear: none;\n  }\n</style>\n<div class=\"modal-overlay\">\n  <div class=\"close-overlay\" on-click=\"_closeModal\"><i class=\"clab-icon icon-close\"></i></div>\n  <div class=\"modal\">\n    <div class=\"modal-wrapper\" style$=\"[[_computeWidth(width)]]\">\n      <div class=\"modal-title\">[[title]]</div>\n      <template is=\"dom-if\" if=\"[[content]]\">\n        <div class=\"modal-body\">\n          <p>[[content]]</p>\n        </div>\n      </template>\n      <template is=\"dom-if\" if=\"[[!content]]\">\n        <div class=\"modal-body\">\n          <slot></slot>\n        </div>\n      </template>\n\n      <template is=\"dom-if\" if=\"[[!noActions]]\">\n        <div class=\"main-actions\">\n          <div class=\"primary\">\n            <template is=\"dom-if\" if=\"[[warning]]\">\n              <button-clab type=\"error third\" on-btnclick=\"_warningAction\">[[warning]]</button-clab>\n            </template>\n            <template is=\"dom-if\" if=\"[[secondary]]\">\n              <button-clab type=\"secondary\" appearance=\"flat\" on-btnclick=\"_secondaryAction\">[[secondary]]</button-clab>\n            </template>\n            <template is=\"dom-if\" if=\"[[primary]]\">\n              <button-clab type=\"primary\" disabled=\"[[primaryDisabled]]\" on-btnclick=\"_primaryAction\">[[primary]]</button-clab>\n            </template>\n          </div>\n        </div>\n      </template>\n    </div>\n  </div>\n\n</div>\n"
 
 /***/ }),
-/* 269 */
+/* 270 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34435,17 +34418,17 @@ module.exports = "<style>\n  .modal-overlay{\n    display:none;\n    opacity: 0;
 });
 
 /***/ }),
-/* 270 */
+/* 271 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(271);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(272);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__note__ = __webpack_require__(18);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__spinner__ = __webpack_require__(24);
@@ -34729,13 +34712,13 @@ class MultipleClab extends Object(__WEBPACK_IMPORTED_MODULE_3__polymer_polymer_l
 customElements.define(MultipleClab.is, MultipleClab);
 
 /***/ }),
-/* 271 */
+/* 272 */
 /***/ (function(module, exports) {
 
 module.exports = "  <style>\n    li{\n      -webkit-touch-callout: none; /* iOS Safari */\n      -webkit-user-select: none;   /* Chrome/Safari/Opera */\n      -khtml-user-select: none;    /* Konqueror */\n      -moz-user-select: none;      /* Firefox */\n      -ms-user-select: none;       /* IE/Edge */\n      user-select: none;\n      margin: 0;\n    }\n    li.selected{\n      color:red;\n    }\n    .multiple-wrapper{\n      height: auto;\n      width: 100%;\n      overflow:hidden;\n      position: relative;\n    }\n    .options-list{\n      max-height: 300px;\n      position: relative;\n      width: 100%;\n      overflow-y:auto;\n    }\n  </style>\n  <div class=\"input-wrapper\">\n  <template is=\"dom-if\" if=\"[[label]]\">\n    <label class$=\"[[type]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n  </template>\n  <div id$=\"[[dashify(name)]]\" class$=\"[[_compWrapperType(type)]]\">\n    <ol class=\"options-list\" on-scroll=\"_loadContent\">\n      <template is=\"dom-repeat\" items=\"[[options]]\">\n          <li data-index$=\"[[index]]\" tabindex=\"0\" on-click=\"_handleSelection\" class$=\"[[_computeSelection(item.selected)]]\">[[item.label]]</li>\n      </template>\n    </ol>\n    <spinner-clab visible=\"[[spinner]]\"></spinner-clab>\n  </div>\n  <note-clab type=\"[[noteType]]\">\n    <slot name=\"note\"></slot>\n  </note-clab>\n</div>\n"
 
 /***/ }),
-/* 272 */
+/* 273 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34785,14 +34768,14 @@ module.exports = "  <style>\n    li{\n      -webkit-touch-callout: none; /* iOS 
 });
 
 /***/ }),
-/* 273 */
+/* 274 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(275);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(276);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -34936,13 +34919,13 @@ class PaginationClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polyme
 customElements.define(PaginationClab.is, PaginationClab);
 
 /***/ }),
-/* 274 */
+/* 275 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  :host{\n    -webkit-touch-callout: none; /* iOS Safari */\n    -webkit-user-select: none;   /* Chrome/Safari/Opera */\n    -khtml-user-select: none;    /* Konqueror */\n    -moz-user-select: none;      /* Firefox */\n    -ms-user-select: none;       /* IE/Edge */\n    user-select: none;\n  }\n  .page.invisible{\n    display: none;\n  }\n\n</style>\n<ul class=\"pagination\">\n  <li class$=\"[[_hideIfFirst(currentPage, 'first')]]\" on-click=\"_setCurrent\" data-index$=\"[[firstPage]]\" data-type=\"first\">\n    <i class=\"clab-icon icon-double-arrow-left\"></i>\n  </li>\n  <li class$=\"[[_hideIfFirst(currentPage)]]\" on-click=\"_setCurrent\" data-index$=\"[[prevPage]]\" data-type=\"prev\">\n      <i class=\"clab-icon icon-arrow-left\"></i>\n    </li>\n\n  <template is=\"dom-repeat\" items=\"[[_compVisiblePages(availableStart, availableEnd)]]\" as=\"page\">\n    <li class$=\"[[_computeActive(currentPage, page)]]\" on-click=\"_setCurrent\" data-index$=\"[[page]]\">[[_pageNumber(page)]]</li>\n  </template>\n\n  <li class$=\"[[_hideIfLast(currentPage, tot)]]\" on-click=\"_setCurrent\" data-index$=\"[[nextPage]]\" data-type=\"next\">\n      <i class=\"clab-icon icon-arrow-right\"></i>\n    </li>\n  <li class$=\"[[_hideIfLast(currentPage, tot, 'last')]]\" on-click=\"_setCurrent\" data-index$=\"[[lastPage]]\" data-type=\"last\">\n      <i class=\"clab-icon icon-double-arrow-right\"></i>\n    </li>\n</ul>\n"
 
 /***/ }),
-/* 275 */
+/* 276 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -34995,53 +34978,36 @@ module.exports = "<style>\n  :host{\n    -webkit-touch-callout: none; /* iOS Saf
 });
 
 /***/ }),
-/* 276 */
+/* 277 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__methods_internal__ = __webpack_require__(278);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__view_html__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__props__ = __webpack_require__(280);
 
 
 
 
 
 
-class ProgressClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */] {
+
+
+class ProgressClab extends Object(__WEBPACK_IMPORTED_MODULE_1__polymer_polymer_lib_legacy_class__["a" /* mixinBehaviors */])([{ _computeClass: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["a" /* _computeClass */], _percent: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["c" /* _percent */], _computeProp: __WEBPACK_IMPORTED_MODULE_2__methods_internal__["b" /* _computeProp */] }], __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__["a" /* Element */]) {
 
   static get is() {
     return 'progress-clab';
   }
 
   static get template() {
-    return __WEBPACK_IMPORTED_MODULE_1__view_html___default.a;
+    return __WEBPACK_IMPORTED_MODULE_3__view_html___default.a;
   }
 
   static get properties() {
-    return __WEBPACK_IMPORTED_MODULE_2__props__["a" /* default */];
-  }
-
-  /*----------
-  COMPUTED
-  ----------*/
-  _computeProp(value) {
-    return 'width:' + this.value + '%;';
-  }
-
-  _computeClass(minimal, type) {
-    let arr = ['progress-bar'];
-    if (minimal) arr.push('minimal');
-    if (type != null) arr.push(type);
-    return arr.join(' ');
-  }
-
-  /*----------
-  UTILS
-  ----------*/
-  _percent(value) {
-    return value + '%';
+    return __WEBPACK_IMPORTED_MODULE_4__props__["a" /* default */];
   }
 
 }
@@ -35049,13 +35015,40 @@ class ProgressClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_
 customElements.define(ProgressClab.is, ProgressClab);
 
 /***/ }),
-/* 277 */
+/* 278 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return _percent; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeProp; });
+
+
+const _percent = value => {
+  return value + '%';
+};
+
+const _computeClass = (minimal, type) => {
+  const arr = ['progress-bar'];
+  if (minimal) arr.push('minimal');
+  if (type != null) arr.push(type);
+  return arr.join(' ');
+};
+
+const _computeProp = value => {
+  return `width:${value}%;`;
+};
+
+
+
+/***/ }),
+/* 279 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeClass(minimal,type)]]\">\n  <section>\n    <article style$=\"[[_computeProp(value)]]\">\n      <label id=\"label\">[[_percent(value)]]</label>\n    </article>\n  </section>\n</div>\n"
 
 /***/ }),
-/* 278 */
+/* 280 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35077,16 +35070,16 @@ module.exports = "<div class$=\"[[_computeClass(minimal,type)]]\">\n  <section>\
 });
 
 /***/ }),
-/* 279 */
+/* 281 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(283);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -35146,13 +35139,13 @@ class RadioClab extends Object(__WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_
 customElements.define(RadioClab.is, RadioClab);
 
 /***/ }),
-/* 280 */
+/* 282 */
 /***/ (function(module, exports) {
 
 module.exports = "<template is=\"dom-repeat\" items=\"[[labels]]\">\n  <div class$=\"[[_computeType(wrapperType)]]\">\n    <input id$=\"[[dashify(item)]]\" type=\"radio\" name=\"[[name]]\" value=\"[[dashify(item)]]\"\n      checked=\"[[_isChecked(index, active)]]\"\n      disabled$=\"[[_isDisabled(index, disabled)]]\" data-index$=\"[[index]]\" on-change=\"_onChange\">\n    <label for$=\"[[dashify(item)]]\">[[item]]</label>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 281 */
+/* 283 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35187,18 +35180,18 @@ module.exports = "<template is=\"dom-repeat\" items=\"[[labels]]\">\n  <div clas
 });
 
 /***/ }),
-/* 282 */
+/* 284 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(285);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(286);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__libs_utils__ = __webpack_require__(6);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__methods_internal__ = __webpack_require__(285);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__methods_internal__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_legacy_class__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 
 
 
@@ -35224,8 +35217,7 @@ class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_
   }
 
   _updateCompValue(evt) {
-    console.log(evt);
-    this.value = parseInt(evt.currentTarget.value);
+    return this.value = parseInt(evt.currentTarget.value);
   }
 
 }
@@ -35233,13 +35225,13 @@ class RangeClab extends Object(__WEBPACK_IMPORTED_MODULE_5__polymer_polymer_lib_
 customElements.define(RangeClab.is, RangeClab);
 
 /***/ }),
-/* 283 */
+/* 285 */
 /***/ (function(module, exports) {
 
 module.exports = "<template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n  <label class$=\"[[_compDisabled(disabled)]]\" for$=\"[[dashify(name)]]\">[[label]]</label>\n</template>\n<div class$=\"[[_computeRangeWrapperClasses(showDetails)]]\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"min\">[[min]]</span>\n  </template>\n  <input class$=\"[[_compDisabled(disabled)]]\" type=\"range\" name$=\"[[dashify(name)]]\" min$=\"[[min]]\" max$=\"[[max]]\"\n  step$=\"[[step]]\" value=\"{{value}}\" disabled$=\"[[disabled]]\" on-input=\"_updateCompValue\">\n  <template is=\"dom-if\" if=\"[[showDetails]]\">\n    <span class=\"max\">[[max]]</span>\n  </template>\n</div>\n<template is=\"dom-if\" if=\"[[showDetails]]\">\n  <div class=\"value\">\n    Range value: <span>[[value]]</span>\n  </div>\n</template>\n"
 
 /***/ }),
-/* 284 */
+/* 286 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35281,7 +35273,7 @@ module.exports = "<template is=\"dom-if\" if=\"[[viewLabel(label)]]\">\n  <label
 });
 
 /***/ }),
-/* 285 */
+/* 287 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35302,14 +35294,14 @@ const _compDisabled = disabled => {
 
 
 /***/ }),
-/* 286 */
+/* 288 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(290);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 
 
@@ -35396,13 +35388,13 @@ class TabsClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
 customElements.define(TabsClab.is, TabsClab);
 
 /***/ }),
-/* 287 */
+/* 289 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class$=\"[[_computeType(pills, vertical, centered, fullWidth)]]\">\n  <ul>\n    <template is=\"dom-repeat\" items=\"[[labels]]\">\n      <li class$=\"[[_computeActive(active,index)]]\" data-index$=\"[[index]]\"><a on-click=\"_activateThis\">[[item]]</a></li>\n    </template>\n  </ul>\n  <div id=\"activeContentWrapper\"></div>\n</div>\n"
 
 /***/ }),
-/* 288 */
+/* 290 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35442,18 +35434,18 @@ module.exports = "<div class$=\"[[_computeType(pills, vertical, centered, fullWi
 });
 
 /***/ }),
-/* 289 */
+/* 291 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(290);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(292);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(291);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__polymer_polymer_lib_elements_dom_if__ = __webpack_require__(4);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__polymer_polymer_lib_elements_dom_repeat__ = __webpack_require__(10);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__button__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__label_badge__ = __webpack_require__(165);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__label_badge__ = __webpack_require__(164);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__input___ = __webpack_require__(17);
 
 
@@ -35574,13 +35566,13 @@ class TagsClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_elem
 customElements.define(TagsClab.is, TagsClab);
 
 /***/ }),
-/* 290 */
+/* 292 */
 /***/ (function(module, exports) {
 
 module.exports = "<div class=\"tags-wrapper\">\n  <template is=\"dom-if\" if=\"[[!hideInput]]\">\n    <input-clab type=\"[[type]]\" note-type=\"[[noteType]]\" label=\"[[label]]\" name=\"[[name]]\" value=\"{{inputString}}\"\n    disabled=\"[[disabled]]\" placeholder=\"[[placeholder]]\" on-keyup=\"_handleKeyUp\">\n      <button-clab class=\"button\" type=\"[[inputType]]\" appearance=\"[[btnAppearence]]\" size=\"[[btnSize]]\"\n      icon=\"[[btnIcon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_addTag\" id=\"tagsBtn\">[[btnLabel]]</button-clab>\n      <slot name=\"note\"></slot>\n    </input-clab>\n  </template>\n\n  <div class$=\"[[_computeStacked(stacked)]]\">\n    <template is=\"dom-repeat\" items=\"[[tags]]\">\n      <label-clab remove on-remove=\"_removeTag\" data-index$=\"[[index]]\" value$=\"[[item.value]]\">[[item.label]]</label-clab>\n    </template>\n  </div>\n</div>\n"
 
 /***/ }),
-/* 291 */
+/* 293 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35628,14 +35620,14 @@ module.exports = "<div class=\"tags-wrapper\">\n  <template is=\"dom-if\" if=\"[
 });
 
 /***/ }),
-/* 292 */
+/* 294 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(293);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html__ = __webpack_require__(295);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__view_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__view_html__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__props__ = __webpack_require__(296);
 
 
 
@@ -35785,13 +35777,13 @@ class TooltipClab extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(TooltipClab.is, TooltipClab);
 
 /***/ }),
-/* 293 */
+/* 295 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n  .tooltip{\n    position:fixed;\n    opacity:0;\n    z-index:1000;\n    display: none;\n  }\n  .tooltip .arrow{\n    position: absolute;\n    width: 0;\n    height: 0;\n  }\n  .tooltip.visible{\n    display: block;\n  }\n</style>\n<span on-tap=\"hide\" on-mouseenter=\"_handleMouseOnLabel\" on-mouseleave=\"_handleMouseOnLabel\">\n  <slot name=\"tt-label\"></slot>\n</span>\n\n<div class$=\"[[_computeTooltipClass(type, visible)]]\">\n  <span on-mouseenter=\"_handleMouseOnTT\"  on-mouseleave=\"_handleMouseOnTT\">\n    <slot name=\"tt-label\"></slot>\n  </span>\n  <div class=\"arrow\"></div>\n</div>\n"
 
 /***/ }),
-/* 294 */
+/* 296 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -35814,12 +35806,12 @@ module.exports = "<style>\n  .tooltip{\n    position:fixed;\n    opacity:0;\n   
 });
 
 /***/ }),
-/* 295 */
+/* 297 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_element__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html__ = __webpack_require__(296);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html__ = __webpack_require__(298);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__template_html___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1__template_html__);
 
 
@@ -35970,10 +35962,46 @@ class DemoElement extends __WEBPACK_IMPORTED_MODULE_0__polymer_polymer_polymer_e
 customElements.define(DemoElement.is, DemoElement);
 
 /***/ }),
-/* 296 */
+/* 298 */
 /***/ (function(module, exports) {
 
 module.exports = "<style>\n    .content.dark {\n        background-color: var(--bg-color);\n    }\n    .content:last-child {\n        margin-bottom: 100px;\n    }\n</style>\n  <menu-clab title-icon=\"icon-sign sign\" link=\"#/home\" current-hash=\"[[currentHash]]\" on-a-click=\"_changeCurrentHash\">\n    <span class=\"product-name\">contact<b>plan</b></span>\n\n    <div class=\"alerts\">\n        <alert-clab id=\"notify\" notify>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n    </div>\n    </menu-clab>\n\n    <main class=\"main-content\">\n    <section class=\"icons\" style=\"font-size: 50px\">\n        <i class=\"clab-icon icon-play\"></i>\n        <i class=\"clab-icon icon-pause\"></i>\n        <i class=\"clab-icon icon-stop\"></i>\n        <i class=\"clab-icon icon-fast-backward\"></i>\n        <i class=\"clab-icon icon-backward\"></i>\n        <i class=\"clab-icon icon-forward\"></i>\n        <i class=\"clab-icon icon-fast-forward\"></i>\n        <i class=\"clab-icon icon-equal-circle\"></i>\n        <i class=\"clab-icon icon-equal-circle-full\"></i>\n        <i class=\"clab-icon icon-full-arrow-top\"></i>\n        <i class=\"clab-icon icon-full-arrow-right\"></i>\n        <i class=\"clab-icon icon-full-arrow-down\"></i>\n        <i class=\"clab-icon icon-full-arrow-left\"></i>\n    </section>\n    <section>\n        <h2>Alerts</h2>\n        <alert-clab visible type=\"primary\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"warning\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"error\" primary=\"Go\" secondary=\"Cancel\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n        <alert-clab visible type=\"info\" primary=\"Go\" secondary=\"Cancel\" no-animation>\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur\n        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.\n        </alert-clab>\n\n        <button-clab on-click=\"_notify\">Show notification alert</button-clab>\n    </section>\n\n    <section>\n        <ul>\n          <li>Lorem ipsum dolor sit amet.</li>\n          <li>Ipsam eos assumenda laboriosam veritatis!</li>\n        </ul>\n    </section>\n\n    <section>\n      <h2>Searchable dropdown</h2>\n      <dropdown-clab search max-in-view=\"4\" label=\"Awesome Dropdown\" result-as-obj options='[{\"name\":\"ciccio\", \"value\":\"ciccio\"},{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"name\":\"bella\", \"value\":\"bella\"},{\"name\":\"raga\", \"value\":\"raga\"},{\"name\":\"tutto raga\", \"value\":\"tutto raga\"},{\"name\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        selected='{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"}' label-field=\"name\">\n      </dropdown-clab>\n\n      <dropdown-clab search id=\"ddsearch\" max-in-view=\"4\" label=\"Awesome Dropdown [test]\" result-as-obj label-field=\"name\">\n      </dropdown-clab>\n    </section>\n\n    <section>\n        <h2>Tables</h2>\n        <table class=\"striped-table\">\n        <tr>\n            <th>Lorem ipsum.</th>\n            <th>Quia, doloremque!</th>\n            <th>Nesciunt, odio?</th>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        </table>\n\n        <br>\n\n        <table class=\"hover-table\">\n        <tr>\n            <th>Lorem ipsum.</th>\n            <th>Quia, doloremque!</th>\n            <th>Nesciunt, odio?</th>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        <tr>\n            <td>Lorem ipsum.</td>\n            <td>Quia, doloremque!</td>\n            <td>Nesciunt, odio?</td>\n        </tr>\n        </table>\n\n        <br>\n\n        <!-- Responsive table -->\n        <div class=\"table responsive-table\">\n        <div class=\"thead\">\n            <div class=\"tr\">\n            <div class=\"th\">Table Header 1</div>\n            <div class=\"th\">Table Header 2</div>\n            <div class=\"th\">Table Header 3</div>\n            </div>\n        </div>\n        <div class=\"tbody\">\n            <div class=\"tr\">\n            <div class=\"td\" data-th=\"Table Header 1\">Division 1</div>\n            <div class=\"td\" data-th=\"Table Header 2\">Division 2</div>\n            <div class=\"td\" data-th=\"Table Header 3\">Division 3</div>\n            </div>\n        </div>\n        </div>\n    </section>\n\n    <section>\n        <h2>Accordion</h2>\n        <accordion-clab title=\"Accordion 1\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia\n        vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor\n        sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit\n        amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis. Lorem ipsum dolor sit\n        amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia vitae\n        ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.\n        </accordion-clab>\n        <accordion-clab title=\"Accordion 2\">\n        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Necessitatibus debitis cupiditate nisi dolore aut dolor quae officia\n        vitae ad accusamus tempora fugiat ullam molestias eius laborum hic similique beatae, officiis.\n        </accordion-clab>\n    </section>\n\n    <section>\n        <h2>Buttons</h2>\n        <article>\n        <button-clab>\n            Just click me\n        </button-clab>\n\n\n        <button-clab type=\"primary\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab type=\"primary empty\">\n            Just click me\n        </button-clab>\n        </article>\n\n        <article>\n        <button-clab block>\n            Just click me\n        </button-clab>\n\n\n        <button-clab block size=\"small\">\n            Just click me\n        </button-clab>\n        </article>\n\n        <article>\n        <button-clab size=\"small\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab size=\"small\" type=\"primary\">\n            Just click me\n        </button-clab>\n\n\n        <button-clab size=\"small\" type=\"primary empty\">\n            Just click me\n        </button-clab>\n        </article>\n\n    </section>\n\n    <section>\n        <h2>Buttons group</h2>\n        <article>\n        <group-clab options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"success\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"info\" size=\"small\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n\n        <article>\n        <group-clab type=\"success\" size=\"smaller\" options='[\"First\", \"Second\", \"Third\"]'></group-clab>\n        </article>\n    </section>\n\n    <section>\n        <h2>Cards</h2>\n        <card-clab title=\"My Card\" icon=\"icon-class\">\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>\n        </card-clab>\n        <card-clab title=\"My Card 2\" no-actions>\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?</p>\n        </card-clab>\n        <card-clab link='{\"text\":\"blabla\", \"href\":\"#/hearts\"}' icon=\"clab-icon icon-heart-full\" title=\"Queen of hearts\">\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi? With\n            a link</p>\n        </card-clab>\n    </section>\n\n    <section>\n        <h2>Features</h2>\n        <feature-clab icon-class=\"clab-icon icon-heart-full\" size=\"small\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab icon-class=\"clab-icon icon-heart-full\" link=\"#\" vertical>\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708\"\n        size=\"big\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n\n        <feature-clab src=\"https://unsplash.imgix.net/photo-1423683249427-8ca22bd873e0?q=75&fm=jpg&s=5e57c661d0f772ce269188a6f5325708\"\n        size=\"big\" vertical link=\"https://www.google.it/\" link-target=\"_blank\">\n        <div class=\"title\">Title</div>\n        <div class=\"text\">\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro expedita amet labore itaque praesentium, enim dignissimos\n            nulla recusandae incidunt laboriosam inventore alias quis officia. Quod possimus unde adipisci, vero sequi?\n        </div>\n        </feature-clab>\n    </section>\n\n    <section>\n        <h2>Spinner</h2>\n        <div style=\"display: flex;\">\n        <article style=\"position: relative; flex-grow: 1; height: 200px;\">\n            <spinner-clab visible background=\"200, 200, 200, 0.8\"></spinner-clab>\n        </article>\n        <article style=\"position: relative; flex-grow: 1; height: 200px;\">\n            <spinner-clab visible background=\"0, 0, 0, 0.9\" dark></spinner-clab>\n        </article>\n        </div>\n    </section>\n\n    <section>\n        <h2>Progress bar</h2>\n        <progress-clab value=\"42\" minimal></progress-clab>\n        <progress-clab value=\"87\" type=\"primary\"></progress-clab>\n    </section>\n\n    <section>\n        <h2>Tabs & pills</h2>\n        <tabs-clab labels='[\"All\", \"Tab 2\", \"Tab 3\", \"lorem ipsum\", \"dolor sit\", \"amet\"]' vertical centered full-width restamp>\n        <div class=\"tab-content\">\n            <div>\n            <button-clab>vai</button-clab>\n            </div>\n        </div>\n        <div class=\"tab-content\">\n            <input-clab></input-clab>\n        </div>\n        <div class=\"tab-content\">Tab 3 content</div>\n        <div class=\"tab-content\">Tab 4 content</div>\n        <div class=\"tab-content\">Tab 5 content</div>\n        <div class=\"tab-content\">Tab 6 content</div>\n        </tabs-clab>\n\n        <tabs-clab pills labels='[\"All\", \"Tab 2\", \"Tab 3\", \"lorem ipsum\", \"dolor sit\", \"amet\"]' centered full-width>\n        <div class=\"tab-content\">\n            <accordion-clab title=\"ciccio\">ciccio puzzo</accordion-clab>\n        </div>\n        <div class=\"tab-content\">\n            <input-clab></input-clab>\n        </div>\n        <div class=\"tab-content\">Tab 3 content</div>\n        <div class=\"tab-content\">Tab 4 content</div>\n        <div class=\"tab-content\">Tab 5 content</div>\n        <div class=\"tab-content\">Tab 6 content</div>\n        </tabs-clab>\n\n    </section>\n\n    <section>\n        <h2>Tooltips</h2>\n        <article>\n        <tooltip-clab type=\"primary\" wait=\"200\">\n            <button-clab class=\"tt-label\">Edit</button-clab>\n            <span class=\"tt-content\">Click to edit this block</span>\n        </tooltip-clab>\n        <tooltip-clab type=\"error\" wait=\"0\">\n            <button-clab class=\"tt-label\">Cancel</button-clab>\n            <span class=\"tt-content\">Click to cancel this block</span>\n        </tooltip-clab>\n        </article>\n        <article>\n        <tooltip-clab type=\"info\" wait=\"0\">\n            <accordion-clab class=\"tt-label\">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Ullam quae inventore eveniet labore, explicabo magnam\n            voluptas, at facere hic totam obcaecati illo! Labore rerum excepturi itaque exercitationem voluptatum modi\n            cumque.\n            </accordion-clab>\n            <span class=\"tt-content\">Click to read more</span>\n        </tooltip-clab>\n        </article>\n        <article>\n        <tooltip-clab type=\"info\" wait=\"0\">\n            <span class=\"tt-label\">My Tooltip</span>\n            <span class=\"tt-content\">Click to read more</span>\n        </tooltip-clab>\n        </article>\n\n    </section>\n\n    <section>\n        <h2>Label & badges</h2>\n        <label-clab type=\"error\">\n        Just a test\n        </label-clab>\n\n        <label-clab badge>\n        42\n        </label-clab>\n    </section>\n\n    <section>\n        <h2>Autocomplete</h2>\n        <autocomplete-clab inline label=\"Normal auto-complete\" options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        min-char=\"1\" label-size=\"larger\" type=\"success\" note-type=\"info\">\n        <span class=\"note\">Type here to get hints</span>\n        <span class=\"button\"><button-clab>hola</button-clab></span>\n        </autocomplete-clab>\n        &nbsp;\n        <autocomplete-clab label=\"AJAX auto-complete\" min-char=\"1\" filter url=\"http://localhost:4000/json\">\n        <span class=\"note\">Type here to get hints</span>\n        </autocomplete-clab>\n    </section>\n\n    <section>\n        <h2>Dropdown</h2>\n        <dropdown-clab max-in-view=\"5\" type=\"success\" note-type=\"error\" result-as-obj options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        selected='{\"label\":\"bella\", \"value\":\"bella\"}' inline label-size=\"larger\" icon=\"icon-edit\">>\n        <span class=\"note\">This is my note</span>\n        <span class=\"button\"><button-clab>ciao</button-clab></span>\n        </dropdown-clab>\n\n\n        <dropdown-clab max-in-view=\"5\" result-as-obj inline label-size=\"larger\" icon=\"icon-edit\">\n        <span class=\"note\">This is my note</span>\n        </dropdown-clab>\n\n        <dropdown-clab max-in-view=\"3\" label=\"Awesome Dropdown\" result-as-obj options='[{\"name\":\"ciccio\", \"value\":\"ciccio\"},{\"name\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"name\":\"bella\", \"value\":\"bella\"},{\"name\":\"raga\", \"value\":\"raga\"},{\"name\":\"tutto raga\", \"value\":\"tutto raga\"},{\"name\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        label-field=\"name\">\n        <span class=\"note\">This is my note</span>\n        </dropdown-clab>\n    </section>\n\n    <section>\n        <h2>Tags</h2>\n        <article>\n        <tags-clab label=\"Add tag\" placeholder=\"rosso\" type=\"warning\">\n            <span class=\"note\">Lorem ipsum dolor sit.</span>\n        </tags-clab>\n        </article>\n        <article>\n        <div class=\"input-wrapper\">\n            <label for=\"\">Add tag</label>\n            <div class=\"input\">\n            <input type=\"text\" placeholder=\"placeholder\">\n            <button class=\"btn\">Add</button>\n            </div>\n            <div class=\"note-clab\">Lorem ipsum dolor sit.</div>\n        </div>\n        </article>\n    </section>\n\n    <section>\n        <h2>Modal</h2>\n        <button-clab id=\"openModal-one\" on-click=\"_openModal1\">\n        Open modal (content via attribute)\n        </button-clab>\n        <button-clab id=\"openModal-two\" on-click=\"_openModal2\">\n        Open modal (content via HTML)\n        </button-clab>\n\n        <modal-clab id=\"modalOne\" max-width=\"500px\" title=\"Dummy modal\" primary=\"Confirm\" secondary=\"Cancel\" content=\"Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?\"\n        width=\"800px\" no-actions>\n        </modal-clab>\n\n        <modal-clab id=\"modalTwo\" title=\"Dummy modal\" primary=\"Confirm\" primary-disabled secondary=\"Cancel\" warning=\"Do something\"\n        no-animation>\n        <h2>Some HTML...</h2>\n        <hr>\n        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis\n            maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis? Lorem\n            ipsum dolor sit amet, consectetur adipisicing elit. Atque sapiente aspernatur impedit natus dolorum omnis, consectetur\n            a velit laudantium reiciendis eligendi iure repellendus ducimus provident error similique, eveniet distinctio\n            nobis modi at ea aliquam in et obcaecati! Provident expedita amet, sequi! Ab similique ullam praesentium vel\n            in officiis quidem tempora, quis est rem omnis nesciunt excepturi ipsum, deleniti voluptatum, sed voluptates\n            ipsa qui id inventore! Dolores cupiditate iusto magnam porro magni! Itaque, ea! Deleniti ab atque voluptas, obcaecati\n            corporis autem labore omnis dolores tempore enim quidem delectus incidunt odio, perferendis esse. Repellat distinctio\n            qui, tempore, nulla vel a, ipsam voluptatem, praesentium exercitationem accusamus magnam asperiores commodi voluptatibus\n            ea? Suscipit consequatur laboriosam necessitatibus ipsa cum reprehenderit quae tenetur nemo similique, dignissimos\n            ipsum. Illo quis, dolor. Distinctio explicabo, earum assumenda, incidunt quod consequuntur facilis. Numquam consequatur\n            consectetur natus dicta modi error. Quidem mollitia eius expedita, nobis, placeat recusandae necessitatibus ut\n            odit, fugiat iste a quibusdam autem quisquam ab. Quis recusandae, dignissimos expedita aliquam. Earum, distinctio\n            veniam dolorum soluta numquam obcaecati officia totam, tenetur non laboriosam harum commodi minima ut consectetur\n            illum illo reiciendis? Necessitatibus deserunt officia fuga, in ducimus provident harum incidunt quam excepturi\n            iusto corporis voluptas reiciendis ut perspiciatis soluta temporibus, nihil dolorum! Ipsum magnam est, vel alias\n            minima a ratione debitis ipsam id, possimus. Sit ad error hic doloremque fugit. Deserunt sapiente voluptatibus\n            perspiciatis, quidem ratione quo distinctio delectus dolorem quisquam asperiores fugiat esse nesciunt alias minima\n            commodi velit quis voluptate explicabo maxime cumque nam facere accusamus omnis sint. Placeat neque reprehenderit\n            ratione aperiam fuga dolorum voluptate iusto eaque quam officia cupiditate nostrum modi, voluptatum illo ullam\n            doloribus ut, sunt dolorem! Consectetur aliquid eveniet ipsum possimus at officia rem quia recusandae est vel!\n            Et earum temporibus, voluptatum dicta, velit qui voluptate illo officia perferendis accusamus voluptatem, quaerat\n            in repellat. Rem a fuga dolorem odio dolor minima rerum cupiditate, esse quam nemo officia ipsam quae, explicabo.\n            Dolorum dolorem, modi tempora. Consequuntur nostrum delectus necessitatibus nemo recusandae non pariatur totam\n            vel nisi molestiae iste eos exercitationem est odit quasi, ex excepturi molestias sint itaque, libero tenetur\n            ratione obcaecati numquam! Voluptatem minima iste dolore tempora beatae quod magnam doloremque, cum non nobis\n            odio reiciendis assumenda a distinctio harum tenetur id consectetur eligendi molestias quae eveniet! Quibusdam\n            repellendus obcaecati at dolore impedit, veritatis assumenda reiciendis odio rerum itaque ullam adipisci, repellat\n            totam iusto amet! Placeat perferendis, omnis molestiae perspiciatis architecto sed in fugit ratione rerum accusantium\n            quo facilis hic, aliquid et, consequuntur laudantium tempore excepturi ea nesciunt nam eos quod possimus tempora\n            temporibus illo. Beatae, officia, rerum. Hic nobis sapiente, dolor maiores reprehenderit dignissimos repudiandae\n            ex culpa? Neque harum cupiditate laudantium cum nesciunt exercitationem praesentium iure qui est ipsa aliquid\n            dolorem ducimus facilis perferendis beatae dolore aliquam explicabo placeat nulla, aspernatur dignissimos suscipit\n            fugiat autem incidunt! Accusantium sed at repellendus iure inventore velit nobis nemo porro qui unde. Exercitationem\n            veritatis quibusdam, amet id. Alias consectetur, laudantium dolores, inventore eum nemo, voluptatibus vel autem\n            ab accusantium corrupti. Repellendus harum, quam sed, ullam distinctio consequatur quisquam!</p>\n        <p>\n            Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse dignissimos natus blanditiis, nemo quibusdam eos adipisci,\n            quas doloribus accusantium maxime. Maiores sapiente provident sed esse facilis, placeat neque eum quos architecto!\n            Tempora, culpa nobis ipsa a voluptatibus alias laborum iure iste temporibus, tenetur eum reiciendis nihil rerum\n            est esse! Vitae ipsum, voluptatem quos ratione officiis soluta facere debitis enim est asperiores rem cupiditate\n            architecto necessitatibus amet consequatur! Culpa sunt exercitationem nihil. Accusantium dolor laudantium deserunt.\n            Ratione voluptatum ipsam eaque esse dolore, debitis ipsa, beatae error tenetur voluptate ea in. Cum perferendis\n            temporibus numquam error dolorem doloremque autem, omnis facilis ducimus!\n        </p>\n        <ul>\n            <li>ksbdfkbsdf</li>\n            <li>sdfbgsdfgsdfg</li>\n            <li>sdfgsdfgsdfg</li>\n        </ul>\n        </modal-clab>\n    </section>\n\n    <section>\n        <h2>Pagination</h2>\n        <pagination-clab tot=\"20\"></pagination-clab>\n    </section>\n\n    <section>\n        <h2>Multiple</h2>\n        <multiple-clab label=\"Select multiple options\" max-in-view=\"10\" id=\"multi\"\n        options='[{\"label\":\"ciccio\", \"value\":\"ciccio\"},{\"label\":\"puzzo raga\", \"value\":\"puzzo raga\"},{\"label\":\"bella\", \"value\":\"bella\"},{\"label\":\"raga\", \"value\":\"raga\"},{\"label\":\"tutto raga\", \"value\":\"tutto raga\"},{\"label\":\"tutto rego\", \"value\":\"tutto rego\"}]'\n        >\n        <span class=\"note\">This is a note</span>\n        </multiple-clab>\n    </section>\n\n    <section>\n        <h2>Row actions</h2>\n        <div class=\"row-action success\">\n        <a><i class=\"clab-icon icon-check\"></i></a>\n        </div>\n\n        <div class=\"row-action error\">\n        <a><i class=\"clab-icon icon-close\"></i></a>\n        </div>\n    </section>\n\n    <section>\n        <h2>Input</h2>\n        <input-clab value=\"ciao\" label=\"My label\" note-type=\"error\" type=\"success\">\n        <span class=\"note\">A simple input component</span>\n        </input-clab>\n        <input-clab value=\"ciao\" icon=\"icon-edit\">\n        <span class=\"note\">A simple input component</span>\n        </input-clab>\n\n        <input-clab value=\"ciao\" label=\"Input with buttons\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"error\">cancel</button-clab>\n        <button-clab class=\"button\" type=\"success\">save</button-clab>\n        </input-clab>\n\n        <input-clab value=\"ciao\" label=\"Input inline\" inline label-size=\"small\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n        <input-clab value=\"ciao\" icon=\"icon-edit\" inline>\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n        <input-clab value=\"ciao\" label=\"Input inline\" inline label-size=\"large\" icon=\"icon-edit\">\n        <span class=\"note\">A simple note</span>\n        <button-clab class=\"button\" type=\"success\">ok</button-clab>\n        </input-clab>\n    </section>\n\n    <section>\n        <h2>Password</h2>\n        <input-clab password check value=\"ciao\" label=\"My label\"></input-clab>\n    </section>\n\n    <section>\n        <h2>Calendar</h2>\n        <calendar-clab inline id=\"cal\"></calendar-clab>\n\n        <calendar-clab label=\"Calendar not inline - ITALIAN\" options='{\"locale\": \"it\"}' type=\"info\" note-type=\"error\" on-datechange=\"_dateChange\">\n        <span class=\"note\">This is note</span>\n        </calendar-clab>\n        <calendar-clab label=\"Calendar not inline - FRENCH\" options='{\"locale\": \"fr\"}' type=\"info\" note-type=\"error\"></calendar-clab>\n    </section>\n\n    <section>\n        <h2>Range</h2>\n        <range-clab label=\"My wonderful range input label\" value=\"5\" min=\"0\" max=\"10\" step=\"1\" show-details></range-clab>\n    </section>\n\n    <section>\n        <h2>Radio</h2>\n        <radio-clab labels='[\"radio 1\", \"radio 3\", \"radio 2\"]' name=\"group1\" active=\"0\" disabled='[1]'></radio-clab>\n    </section>\n\n    <section>\n        <h2>Checkbox</h2>\n        <checkbox-clab label=\"ciao\" active on-selected-change=\"_checkboxChange\"></checkbox-clab>\n    </section>\n\n    <section>\n        <h2>Input file</h2>\n        <file-clab label=\"My wonderful file input label\" type=\"info\" note-type=\"error\">\n        <span class=\"note\">A simple input component</span>\n        </file-clab>\n    </section>\n    </main>\n"
+
+/***/ }),
+/* 299 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return _computeCardClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return _computeEffectClass; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return _showActions; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "d", function() { return _showLink; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return _showTitle; });
+
+
+const _computeCardClass = big => {
+  const classes = ['card-title'];
+  big ? classes.push('big-icon') : null;
+  return classes.join(' ');
+};
+
+const _computeEffectClass = effect => {
+  return ['card', effect].join(' ');
+};
+
+const _showActions = (noActions, link) => {
+  return !link.hasOwnProperty('href') && !noActions;
+};
+
+const _showLink = (noActions, link) => {
+  return link.hasOwnProperty('href') && !noActions;
+};
+
+const _showTitle = title => {
+  return title != undefined;
+};
+
+
 
 /***/ })
 /******/ ]);

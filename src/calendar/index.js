@@ -11,7 +11,6 @@ import props from './props';
 import { clear, getLocale } from './methods/public';
 import { _computeType, _getLocale, _getFormat } from './methods/internal';
 import '@polymer/polymer/lib/elements/dom-if';
-import './view.html';
 
 class CalendarClab extends mixinBehaviors(
   [{ dashify, viewLabel, getLocale, _computeType },
