@@ -2,16 +2,16 @@
 
 'use strict';
 
-const _computeType = (str: string, type: string): string => {
+const _computeType = (str, type) => {
   return [str, type].join(' ');
 }
 
-const _getLocale = (options: {}): string => {
+const _getLocale = (options) => {
   const thisLocale = options.locale ? options.locale : 'en';
   return thisLocale;
 }
 
-const _getFormat = (options: {}, romeInst: {}): string => {
+const _getFormat = (options, romeInst)=> {
   const thisFormat = options.inputFormat ? options.inputFormat : romeInst.options().inputFormat;
   return thisFormat;
 }
