@@ -24,7 +24,7 @@
     margin-bottom: 0;
     overflow: auto;
     @extend .depth-1;
-    display: none;
+    // display: none;
 
     &.active {
       display: block;

@@ -9,18 +9,17 @@
     <link rel="stylesheet" href="./node_modules/ikonograph/dist/ikonograph.min.css">
     <script>
         window.ShadyDOM = { force: true };
-        window.customElements.forcePolyfill = true;
+        window.customElements = {forcePolyfill: true};
+
+        window.addEventListener('WebComponentsReady', function () {
+          console.log('WebComponentsReady');
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = "./demo/components.js";
+          document.body.appendChild(script);
+        });
     </script>
-    <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-loader.js"></script>
-    <script>
-      window.addEventListener('WebComponentsReady', function(){
-        console.log('WebComponentsReady');
-        var script = document.createElement('script');
-        script.async = true;
-        script.src = "./demo/components.js";
-        document.body.appendChild(script);
-      });
-    </script>
+    <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
 </head>
 <body>
 

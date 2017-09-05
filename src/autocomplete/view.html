@@ -1,11 +1,12 @@
 <div class="input-wrapper">
-  <input-clab label="[[label]]" value="{{_inputString}}" name="[[name]]" type="[[type]]" note-type="[[noteType]]" disabled="[[disabled]]" inline="[[inline]]" label-size="[[labelSize]]" icon="[[icon]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs" on-blur="_handleBlur">
-    <content select=".button"></content>
-    <content select=".note"></content>
-    <curtain-clab class="curtain" options="[[results]]" highlighted="[[_currentHint]]" label-field="[[labelField]]"
-    value-field="[[valueField]]" max-in-view="[[maxInView]]" dont-hide="{{dontHide}}" disabled="[[hideHints]]"
-      on-do-highlight="_handleHighlight" on-do-select="handleSelect" id="curtain"></curtain-clab>
-  </input-clab>
-
+    <input-clab label="[[label]]" value="{{_inputString}}" name="[[name]]" type="[[type]]" note-type="[[noteType]]" disabled="[[disabled]]"
+      inline="[[inline]]" label-size="[[labelSize]]" icon="[[icon]]" placeholder="[[placeholder]]" on-keyup="_handleKeyboardInputs"
+      on-blur="_handleBlur">
+      <content select=".button"></content>
+      <content select=".note"></content>
+    </input-clab>
+    <curtain-clab class="curtain" options="[[results]]" highlighted="[[_currentHint]]" label-field="[[labelField]]" value-field="[[valueField]]"
+      max-in-view="[[maxInView]]" dont-hide="{{dontHide}}" disabled="[[hideHints]]" on-do-highlight="_handleHighlight" on-do-select="handleSelect"
+      id="curtain"></curtain-clab>
   <spinner-clab visible="[[_spinner]]"></spinner-clab>
 </div>
