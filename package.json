@@ -10,10 +10,10 @@
     "buildType": null
   },
   "ava": {
+    "babel": "inherit",
     "require": [
       "babel-register"
-    ],
-    "babel": "inherit"
+    ]
   },
   "scripts": {
     "start": "http-server -s -p 3000",
@@ -45,6 +45,7 @@
     "flow-bin": "0.53.1",
     "fs-extra": "4.0.1",
     "http-server": "0.10.0",
+    "jsdom-wc": "11.0.0-alpha-1",
     "node-sass": "4.5.3",
     "replace-in-file": "2.5.4",
     "runnable-exports": "0.1.1",
