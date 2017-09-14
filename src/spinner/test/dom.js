@@ -17,19 +17,16 @@ Object.assign(global, {
   window,
 });
 
-// import './../index';
-
 const bundle = document.createElement('script');
 bundle.src = './../../../demo/components.js'
 
 document.body.appendChild(bundle);
-document.body.appendChild(document.createElement('button-clab'));
+document.body.appendChild(document.createElement('spinner-clab'));
 
-const elem = document.body.querySelector('button-clab');
-elem.innerHTML = 'OK';
+const elem = document.body.querySelector('spinner-clab');
 
 test(`${element} in DOM`, t => {
-  console.log(elem.outerHTML, elem.innerHTML, elem.tagName , elem.id);
-  t.is(elem.outerHTML, '<spinner-clab id="zio"></spinner-clab>');
+  console.log(elem.tagName , elem.id);
+  t.is(elem.outerHTML, '<spinner-clab></spinner-clab>');
   t.is(elem.dark, undefined);
 });
