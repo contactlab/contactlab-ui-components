@@ -213,7 +213,7 @@ class DropdownClab {
     this.set('selected', item);
     this.set('highlighted', item);
     this.$.curtain.open = false;
-    !this.search ? $$('.value_wrapper').classList.remove('active') : null;
+    !this.search ? this.$$('.value_wrapper').classList.remove('active') : null;
     this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
