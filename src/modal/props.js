@@ -22,6 +22,10 @@ export default {
     type: String,
     value: null
   },
+  classic: {
+    type: Boolean,
+    value: false
+  },
   primaryDisabled: {
     type: Boolean,
     value: false

@@ -6,18 +6,19 @@
         margin-bottom: 100px;
     }
 </style>
-  <menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
-    <span class="product-name">contact<b>plan</b></span>
 
-    <div class="alerts">
-        <alert-clab id="notify" notify>
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
-        aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
-        </alert-clab>
-    </div>
-    </menu-clab>
+<menu-clab title-icon="icon-sign sign" link="#/home" current-hash="[[currentHash]]" on-a-click="_changeCurrentHash">
+  <span class="product-name">contact<b>plan</b></span>
 
-    <main class="main-content">
+  <div class="alerts">
+      <alert-clab id="notify" notify>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Sequi sed, corporis a eius aliquam quasi perspiciatis consequatur
+      aliquid dolores reprehenderit quidem enim consectetur officia ducimus doloribus inventore numquam officiis voluptas.
+      </alert-clab>
+  </div>
+</menu-clab>
+
+<main class="main-content">
     <section class="icons" style="font-size: 50px">
         <i class="clab-icon icon-play"></i>
         <i class="clab-icon icon-pause"></i>
@@ -466,12 +467,13 @@
         Open modal (content via HTML)
         </button-clab>
 
-        <modal-clab id="modalOne" max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel" content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?"
-        width="800px" no-actions>
+        <modal-clab id="modalOne" max-width="500px" title="Dummy modal" primary="Confirm" secondary="Cancel"
+          content="Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis maxime adipisci! Aliquid labore unde eum consequatur mollitia similique ducimus, dolor adipisci reiciendis?"
+          width="800px" no-actions>
         </modal-clab>
 
-        <modal-clab id="modalTwo" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel" warning="Do something"
-        no-animation>
+        <modal-clab id="modalTwo" title="Dummy modal" primary="Confirm" primary-disabled secondary="Cancel"
+        warning="Do something" no-animation classic>
         <h2>Some HTML...</h2>
         <hr>
         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nemo iste rerum ea ipsam, sequi explicabo, et officiis
@@ -617,4 +619,4 @@
         <span class="note">A simple input component</span>
         </file-clab>
     </section>
-    </main>
+ </main>

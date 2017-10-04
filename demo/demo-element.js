@@ -11,10 +11,16 @@ class DemoElement extends PolymerElement {
 
   static get properties() {
     return {
-
+      isAlive: {
+        type: Boolean,
+        value: true
+      }
     }
   }
 
+  test(){
+    return Math.ceil(Math.random() * 100);
+  }
 
   connectedCallback(){
     super.connectedCallback();
@@ -145,4 +151,4 @@ class DemoElement extends PolymerElement {
 
 }
 
-customElements.define(DemoElement.is, DemoElement);
+customElements.define('demo-element', DemoElement);
