@@ -1,6 +1,6 @@
 'use strict';
 
- 
+
 import './view.html';
 
 class CurtainClab {
@@ -9,8 +9,14 @@ class CurtainClab {
     this.is = "curtain-clab";
     this.properties = {
       id: String,
-      options: Array,
-      highlighted: Object,
+      options: {
+        type: Array,
+        value: []
+      },
+      highlighted: {
+        type: Object,
+        value: {}
+      },
       labelField: String,
       valueField: String,
       dontHide: {
@@ -26,7 +32,6 @@ class CurtainClab {
         type: Boolean,
         value: false
       },
-
       //_liHeight:Number,
       maxHeight: {
         type: Number,
@@ -40,6 +45,7 @@ class CurtainClab {
       },
       _computedStyles: String
     };
+
     this.observers = [
 			'_setLiHeight(options, maxInView, disabled)',
 			'_compStyles(_hidden, _listMaxHeight, _listHeight, open)'
@@ -52,7 +58,7 @@ class CurtainClab {
         case 'ol':
           this.dontHide = true;
           break;
-        case 'li':
+       /*  case 'li':
           this.dontHide = false;
           let i = evt.target.getAttribute('data-i');
           this.dispatchEvent(new CustomEvent('do-select', {
@@ -62,7 +68,7 @@ class CurtainClab {
               index: i
             }
           }));
-          break;
+          break; */
         default:
           this.dontHide = false;
       }
@@ -70,6 +76,18 @@ class CurtainClab {
     this.addEventListener('mouseup', evt => {
       this.dontHide = false;
     });
+  }
+
+  _elementSelection(evt) {
+    this.dontHide = false;
+    let i = evt.target.getAttribute('data-i');
+    this.dispatchEvent(new CustomEvent('do-select', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        index: i
+      }
+    }));
   }
 
 

@@ -75,6 +75,10 @@ class DropdownClab {
         type: Boolean,
         value: false
       },
+      open: {
+        type: Boolean,
+        value: false
+      },
       labelSize: {
         type: String,
         value: ''
@@ -137,7 +141,6 @@ class DropdownClab {
   }
 
   _filter(evt){
-    console.log(evt.target.value);
     this.searchValue = evt.target.value;
     const str = evt.target.value;
     this.searchValue.length > 0 ? this.optionsList = this.options.filter((e,i) => {
@@ -150,9 +153,8 @@ class DropdownClab {
   EVENT HANDLERS
   ----------*/
   _toggleList(evt) {
-    if(!this.disabled) {
-      this.$.curtain.open = !this.$.curtain.open;
-      !this.search ? this.querySelector('.value_wrapper').classList.toggle('active') : null;
+    if (!this.disabled) {
+      this.open = !this.open;
     }
 
     let windowClick = (evt) => {
@@ -166,8 +168,7 @@ class DropdownClab {
         window.removeEventListener('mousedown', windowClick);
         return;
       } else {
-        this.$.curtain.open = false;
-        !this.search ? this.querySelector('.value_wrapper').classList.remove('active') : null;
+        this.open = false;
         window.removeEventListener('mousedown', windowClick);
       }
     }
@@ -210,10 +211,10 @@ class DropdownClab {
 
   _setSelected(item) {
     let old = this.selected;
+    this.optionsList = this.options.slice();
     this.set('selected', item);
     this.set('highlighted', item);
-    this.$.curtain.open = false;
-    !this.search ? this.querySelector('.value_wrapper').classList.remove('active') : null;
+    this.open = false;
     this.searchValue = this.selected[this.labelField];
 
     if(!this.preventChange) {
@@ -285,12 +286,13 @@ class DropdownClab {
     return arr.join(' ');
   }
 
-  _compType(str, disabled, type, id) {
+  _compType(str, disabled, type, id, open) {
     let arr = [];
     if(str != undefined && str.length > 0) arr.push(str);
     if(id != undefined && id.length > 0) arr.push(id);
     if(disabled) arr.push('disabled');
     if(type != undefined && type.length > 0) arr.push(type);
+    open ? arr.push('active') : null;
     return arr.join(' ');
   }
 
