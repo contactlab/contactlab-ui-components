@@ -127,7 +127,7 @@ class CurtainClab {
         }
 
         this.set('_listHeight', (this.maxHeight * options.length) + 'px');
-        this.$.list.scrollTop = 0;
+        this.$$('#list') ? this.$$('#list').scrollTop = 0 : null;
       }, 100);
     }
   }
