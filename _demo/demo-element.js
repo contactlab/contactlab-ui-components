@@ -2,11 +2,8 @@
 
 import './template.html';
 
-Polymer({
-    is: "demo-element"
-  })
 
-/*Polymer({
+Polymer({
     is: "demo-element",
     properties: {
       currentHash: {
@@ -136,4 +133,4 @@ Polymer({
     _dateChange: evt => {
       console.log(evt.detail)
     }
-  });*/
+  });
