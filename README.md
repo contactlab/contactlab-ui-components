@@ -17,7 +17,7 @@ $ yarn add contactlab-ui-components@1.4.0
 Polymer 3.x (preview)
 
 ```
-$ yarn add contactlab-ui-components@2.0.1
+$ yarn add contactlab-ui-components@2.0.2
 ```
 
 Legacy version on Bower
