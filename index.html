@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Contactlab UI Components | Demo</title>
+
+    <link rel="stylesheet" href="./_assets/css/contactlab-pattern.min.css">
+    <link rel="stylesheet" href="./node_modules/ikonograph/dist/ikonograph.min.css">
+
+    <script src="./node_modules/webcomponents.js/webcomponents-lite.min.js"></script>
+    <script>
+      window.Polymer = {
+        //dom: 'shadow',
+        lazyRegister: true
+      };
+
+      window.addEventListener('WebComponentsReady', function(){
+        console.log('WebComponentsReady');
+        const script = document.createElement('script');
+        script.async = true;
+        script.src = "./_demo/components.js";
+        document.body.appendChild(script);
+      });
+    </script>
+    <link rel="import" href="https://cdn.rawgit.com/Polymer/polymer/1.x/polymer.html">
+</head>
+<body>
+
+   <demo-element></demo-element>
+   <!--<button-clab>test</button-clab>-->
+
+</body>
+</html>
