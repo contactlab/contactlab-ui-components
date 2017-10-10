@@ -156,8 +156,9 @@ class DropdownClab {
     if (!this.disabled) {
       this.open = !this.open;
     }
+    console.log(this.open);
 
-    let windowClick = (evt) => {
+    const windowClick = (evt) => {
       let name = evt.target.localName;
       let hasClass = evt.target.classList.contains('curtain-clab');
       let hasIdentity = evt.target.classList.contains(this.id);

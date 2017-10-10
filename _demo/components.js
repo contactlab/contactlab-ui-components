@@ -17526,7 +17526,7 @@ Polymer(AutoCompleteClab);
 /* 142 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"curtain-clab\"><template><template is=\"dom-if\" if=\"[[open]]\" restamp=\"\"><ol id=\"list\" class=\"options-list\" style$=\"[[_computedStyles]]\"><template is=\"dom-repeat\" items=\"[[options]]\" as=\"option\"><li class$=\"[[_compHighlight(highlighted, option)]]\" data-i$=\"[[index]]\" on-mouseover=\"doHighlight\" on-mousedown=\"_elementSelection\">[[_compLabel(option)]]</li></template></ol></template></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 143 */
@@ -20727,8 +20727,9 @@ class DropdownClab {
     if (!this.disabled) {
       this.open = !this.open;
     }
+    console.log(this.open);
 
-    let windowClick = (evt) => {
+    const windowClick = (evt) => {
       let name = evt.target.localName;
       let hasClass = evt.target.classList.contains('curtain-clab');
       let hasIdentity = evt.target.classList.contains(this.id);
@@ -20891,7 +20892,7 @@ Polymer(DropdownClab);
 /* 193 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><style>.options-list li{display:block !important;}</style><template><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id)]]\" on-tap=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"dropdown-clab\"><style>.options-list li{display:block !important;}</style><template><div class$=\"[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><template is=\"dom-if\" if=\"[[!search]]\"><div class$=\"[[_compType('value_wrapper', disabled, type, id)]]\" on-click=\"_toggleList\"><template is=\"dom-if\" if=\"[[_viewValue(selected,labelField)]]\"><span class=\"selected\">[[_compLabel(selected)]]</span></template><template is=\"dom-if\" if=\"[[!_viewValue(selected,labelField)]]\"><span class=\"placeholder\">[[placeholder]]</span></template></div></template><template is=\"dom-if\" if=\"[[search]]\"><input-clab on-click=\"_toggleList\" on-keyup=\"_filter\" value=\"[[searchValue]]\"></input-clab></template><curtain-clab id=\"curtain\" slot=\"curtain\" options=\"[[optionsList]]\" max-height=\"[[_compMaxHeight(maxHeight)]]\" highlighted=\"[[highlighted]]\" label-field=\"[[labelField]]\" value-field=\"[[valueField]]\" max-in-view=\"[[maxInView]]\" on-do-highlight=\"_handleHighlight\" on-do-select=\"handleSelect\" open=\"[[open]]\"></curtain-clab></div><slot name=\"button\"></slot><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 194 */

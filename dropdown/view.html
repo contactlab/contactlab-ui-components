@@ -20,7 +20,7 @@
 
       <div class="input">
         <template is="dom-if" if="[[!search]]">
-          <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-tap="_toggleList">
+          <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-click="_toggleList">
             <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
               <span class="selected">[[_compLabel(selected)]]</span>
             </template>
