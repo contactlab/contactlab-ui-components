@@ -4710,7 +4710,7 @@ Polymer(NoteClab);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__note___ = __webpack_require__(5);
 
 
- 
+
 
 
 
@@ -4871,12 +4871,19 @@ class InputClab {
   COMPUTE
   ----------*/
   _compWrapperClass(str, type, inline, labelSize) {
-    let arr = [str];
-    if (type != null) arr.push(type);
+    const arr = [str];
+    if (type !== null) arr.push(type);
     if (inline) {
       arr.push('inline');
       if (labelSize != null) arr.push(labelSize + '-label');
     }
+    return arr.join(' ');
+  }
+
+  _compClassType(type, disabled){
+    const arr = [];
+    disabled ? arr.push('disabled') : null;
+    type !== 'disabled' ? arr.push(type) : null;
     return arr.join(' ');
   }
 
@@ -17508,7 +17515,7 @@ Polymer(AutoCompleteClab);
 /* 139 */
 /***/ (function(module, exports) {
 
-/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><style>input[type=text]::-ms-clear{display:none;}</style><template><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[type]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[type]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
+/*__wc__loader*/!function(a){var b="<dom-module id=\"input-clab\"><style>input[type=text]::-ms-clear{display:none;}</style><template><div class$=\"[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(label, icon)]]\"><label class$=\"[[_compClassType(type, disabled)]]\" for$=\"[[_dashify(name)]]\"><template is=\"dom-if\" if=\"[[_viewLabel(icon)]]\"><i class$=\"[[_compIcon(icon)]]\"></i></template>[[label]]</label></template><div class=\"input\"><input class$=\"[[_compClassType(type, disabled)]]\" type$=\"[[_computeInputType(password,inputType)]]\" name$=\"[[_dashify(name)]]\" disabled=\"[[disabled]]\" value=\"{{value::input}}\" placeholder=\"[[placeholder]]\" required=\"[[required]]\" readonly$=\"[[readonly]]\" maxlength$=\"[[maxlength]]\" on-blur=\"_blur\" on-focus=\"_focus\"><template is=\"dom-if\" if=\"[[check]]\"><button-clab class=\"password-toggle\" type=\"[[_btnPswd.type]]\" size=\"[[_btnPswd.size]]\" appearance=\"[[_btnPswd.appearance]]\" icon=\"[[_btnPswd.icon]]\" disabled=\"[[disabled]]\" on-btnclick=\"_toggleInputType\">[[_btnPswd.label]]</button-clab></template><slot name=\"button\"></slot><slot name=\"curtain\"></slot></div><note-clab type=\"[[noteType]]\"><slot name=\"note\"></slot></note-clab></div></template></dom-module>";if(a.body){var c=a.body,d=a.createElement("div");for(d.innerHTML=b;d.children.length>0;)c.appendChild(d.children[0])}else a.write(b)}(document);
 
 /***/ }),
 /* 140 */

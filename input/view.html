@@ -10,7 +10,7 @@
     <div class$="[[_compWrapperClass('input-wrapper', type, inline, labelSize)]]">
 
       <template is="dom-if" if="[[_viewLabel(label, icon)]]">
-        <label class$="[[type]]" for$="[[_dashify(name)]]">
+        <label class$="[[_compClassType(type, disabled)]]" for$="[[_dashify(name)]]">
 					<template is="dom-if" if="[[_viewLabel(icon)]]">
 						<i class$="[[_compIcon(icon)]]"></i>
 					</template>
@@ -19,7 +19,7 @@
       </template>
 
       <div class="input">
-        <input class$="[[type]]" type$="[[_computeInputType(password,inputType)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]"
+        <input class$="[[_compClassType(type, disabled)]]" type$="[[_computeInputType(password,inputType)]]" name$="[[_dashify(name)]]" disabled="[[disabled]]"
           value="{{value::input}}" placeholder="[[placeholder]]" required="[[required]]" readonly$="[[readonly]]" maxlength$="[[maxlength]]"
           on-blur="_blur" on-focus="_focus">
 
