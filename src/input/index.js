@@ -80,12 +80,19 @@ class InputClab extends mixinBehaviors([{ dashify, viewLabel }, LegacyElementMix
   COMPUTE
   ----------*/
   _compWrapperClass(str, type, inline, labelSize) {
-    let arr = [str];
-    if(type != null) arr.push(type);
+    const arr = [str];
+    if(type !== null) arr.push(type);
     if(inline) {
       arr.push('inline');
       if(labelSize != null) arr.push(labelSize + '-label');
     }
+    return arr.join(' ');
+  }
+
+  _compClassType(type, disabled) {
+    const arr = [];
+    disabled ? arr.push('disabled') : null;
+    type !== 'disabled' ? arr.push(type) : null;
     return arr.join(' ');
   }
 
