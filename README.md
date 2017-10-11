@@ -11,7 +11,7 @@
 Polymer 1.x version (stable)
 
 ```
-$ yarn add contactlab-ui-components@1.4.1
+$ yarn add contactlab-ui-components@1.4.2
 ```
 
 Polymer 3.x (preview)
