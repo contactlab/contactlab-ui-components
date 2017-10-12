@@ -137,7 +137,9 @@ class DropdownClab {
   }
 
   _updateList(newValue, oldValue){
-    this.optionsList = newValue.slice();
+    if(newValue !== null && typeof newValue !== 'undefined'){
+      this.optionsList = newValue.slice();
+    }
   }
 
   _filter(evt){
