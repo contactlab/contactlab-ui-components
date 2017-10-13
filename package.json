@@ -3,17 +3,9 @@
   "version": "1.4.2",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
-  "config": {
-    "port": {
-      "dev": 3000
-    },
-    "buildType": null
-  },
   "scripts": {
     "start": "http-server -s -p 3000",
-    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "test": "wct",
-    "test:p": "wct -p"
+    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" "
   },
   "repository": {
     "type": "git",
@@ -23,19 +15,11 @@
   "license": "Apache-2.0",
   "homepage": "https://github.com/contactlab/contactlab-ui-components#readme",
   "devDependencies": {
-    "chokidar": "1.6.1",
-    "colors": "1.1.2",
     "concurrently": "3.4.0",
-    "fs-extra": "1.0.0",
     "http-server": "0.9.0",
-    "node-minify": "2.0.0",
     "node-sass": "4.5.0",
-    "replace-in-file": "2.0.1",
-    "runnable-exports": "0.1.1",
     "strip-loader": "0.1.2",
-    "vulcanize": "1.14.8",
     "wc-loader": "1.1.4",
-    "web-component-tester": "5.0.0",
     "webpack": "3.0.0",
     "webpack-notifier": "1.5.0"
   },
