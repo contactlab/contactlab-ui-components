@@ -1,6 +1,5 @@
 'use strict';
 
-
 import './view.html';
 import {UtilBehavior} from "./../_behaviors/";
 import {DropdownBehavior} from "./../_behaviors/";
@@ -8,15 +7,35 @@ import "./../input/";
 import "./../note/";
 import "./../curtain/";
 
+const isNil = val => val === null || typeof val === 'undefined';
+
+const isNilOrEmptyStr = str => isNil(str) || str === '';
+
+const randomId = () => {
+  let id = '';
+  let possible = "abcdefghijklmnopqrstuvwxyz";
+  let n = Math.floor(Math.random() * (999 - 0) + 0);
+  let time = Date.now();
+  for(var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
+  id += n;
+  id += time;
+  return id;
+}
+
 class DropdownClab {
 
   get behaviors() {
-    return [UtilBehavior, DropdownBehavior];
+    return [{
+      _isNilOrEmptyStr: isNilOrEmptyStr
+    }, UtilBehavior, DropdownBehavior];
   }
 
   beforeRegister() {
     this.is = "dropdown-clab";
     this.properties = {
+      id: {
+        type: String
+      },
       label: {
         type: String,
         value: null
@@ -34,7 +53,12 @@ class DropdownClab {
       },
       selected: {
         type: Object,
-        value: {}
+        value: null
+      },
+      selectedLabel: {
+        type: String,
+        value: null,
+        computed: '_compSelectedLabel(selected, labelField)'
       },
       highlighted: Object,
       valueField: {
@@ -47,29 +71,18 @@ class DropdownClab {
       },
       options: {
         type: Array,
-        value: [
-          {
-            value: 'A',
-            label: 'Option 1'
-          },
-          {
-            value: 'B',
-            label: 'Option 2'
-          }
-				],
-        observer: '_updateList'
-      },
-      optionsList: {
-        type: Array,
         value: []
       },
+      _optionsVisible: {
+        type: Array,
+        value: [],
+        computed: '_updateVisibleOptions(options, searchValue, labelField)'
+      },
       optionsFn: {
-        type: Function,
-        observer: '_setOptions'
+        type: Function
       },
       url: {
-        type: String,
-        observer: '_observUrl'
+        type: String
       },
       inline: {
         type: Boolean,
@@ -113,77 +126,69 @@ class DropdownClab {
       },
       searchValue: {
         type: String,
-        value: ''
+        value: null
       },
-      /*_liHeight:{
-      	type:String,
-      	value:null,
-      	readonly: true
-      }*/
+      _toggleList: {
+        type: Function,
+        computed: '_compToggleList(disabled, id)'
+      }
     };
+    this.observers = [
+      '_triggerFetchOptions(url)',
+      '_setOptions(optionsFn)'
+    ]
   }
 
   attached() {
-    if(this.id === undefined || this.id.length < 1) {
-      let id = '';
-      let possible = "abcdefghijklmnopqrstuvwxyz";
-      let n = Math.floor(Math.random() * (999 - 0) + 0);
-      let time = Date.now();
-      for(var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
-      id += n;
-      id += time;
-      this.id = id;
+    if(isNilOrEmptyStr(this.id)){
+      this.set('id', randomId());
     }
   }
 
-  _updateList(newValue, oldValue){
-    if(newValue !== null && typeof newValue !== 'undefined'){
-      this.optionsList = newValue.slice();
-    }
-  }
-
-  _filter(evt){
-    this.searchValue = evt.target.value;
-    const str = evt.target.value;
-    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e,i) => {
-      return e[this.labelField].search(this.searchValue) > -1;
-    }) : this.optionsList = this.options.slice();
+  _setSearchValue(evt) {
+    this.set('searchValue', evt.target.value);
   }
 
 
   /*----------
   EVENT HANDLERS
   ----------*/
-  _toggleList(evt) {
-    if (!this.disabled) {
-      this.open = !this.open;
-    }
-    console.log(this.open);
+  _handleSelect(evt) {
+    const selected = this._optionsVisible[evt.detail.index];
+    const oldValue = this.selected;
+    
+    this.set('selected', selected);
+    this.set('highlighted', selected);
+    this.set('open', false);
+    this.set('searchValue', null);
 
-    const windowClick = (evt) => {
-      let name = evt.target.localName;
-      let hasClass = evt.target.classList.contains('curtain-clab');
-      let hasIdentity = evt.target.classList.contains(this.id);
-
-      if(name == 'ol' && hasClass) {
-        return;
-      } else if(name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(this.id) || name == 'div' && hasIdentity) {
-        window.removeEventListener('mousedown', windowClick);
-        return;
-      } else {
-        this.open = false;
-        window.removeEventListener('mousedown', windowClick);
+    if(!this.preventChange) {
+      if(this.resultAsObj){
+        return this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            selected,
+            newValue: selected,
+            oldValue
+          }
+        }));
       }
-    }
-    window.addEventListener('mousedown', windowClick);
-  }
 
-  handleSelect(evt) {
-    this._setSelected(this.options[evt.detail.index]);
+      return this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          selected: selected[this.valueField],
+          newValue: selected,
+          oldValue
+        }
+      }));
+    }
   }
 
   _handleHighlight(evt) {
-    this.set('highlighted', this.options[evt.detail.index]);
+    this.set('highlighted', this._optionsVisible[evt.detail.index]);
   }
 
 
@@ -212,38 +217,39 @@ class DropdownClab {
     });
   }
 
-  _setSelected(item) {
-    let old = this.selected;
-    this.optionsList = this.options.slice();
-    this.set('selected', item);
-    this.set('highlighted', item);
-    this.open = false;
-    this.searchValue = this.selected[this.labelField];
+  // _setSelected(item, options) {
+  //   const old = this.selected;
+    
+  //   this.optionsList = this.options.slice();
+  //   this.set('selected', item);
+  //   this.set('highlighted', item);
+  //   this.open = false;
+  //   this.searchValue = this.selected[this.labelField];
 
-    if(!this.preventChange) {
-      if(this.resultAsObj){
-        this.dispatchEvent(new CustomEvent('change', {
-          bubbles: true,
-          composed: true,
-          detail: {
-            selected: this.selected,
-            newValue: this.selected,
-            oldValue: old
-          }
-        }));
-      } else {
-        this.dispatchEvent(new CustomEvent('change', {
-          bubbles: true,
-          composed: true,
-          detail: {
-            selected: this.selected[this.valueField],
-            newValue: this.selected,
-            oldValue: old
-          }
-        }));
-      }
-    }
-  }
+  //   if(!this.preventChange) {
+  //     if(this.resultAsObj){
+  //       this.dispatchEvent(new CustomEvent('change', {
+  //         bubbles: true,
+  //         composed: true,
+  //         detail: {
+  //           selected: this.selected,
+  //           newValue: this.selected,
+  //           oldValue: old
+  //         }
+  //       }));
+  //     } else {
+  //       this.dispatchEvent(new CustomEvent('change', {
+  //         bubbles: true,
+  //         composed: true,
+  //         detail: {
+  //           selected: this.selected[this.valueField],
+  //           newValue: this.selected,
+  //           oldValue: old
+  //         }
+  //       }));
+  //     }
+  //   }
+  // }
 
 
 
@@ -251,13 +257,15 @@ class DropdownClab {
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
-      this.set('options', resp);
-    });
+    if(!isNil(promise)) {
+      promise().then(resp => this.set('options', resp));
+    }
   }
 
-  _observUrl(newv, oldv) {
-    if(newv != undefined) this._fetchOptions();
+  _triggerFetchOptions(url) {
+    if(!isNil(url)) { 
+      this._fetchOptions();
+    }
   }
 
 
@@ -265,50 +273,131 @@ class DropdownClab {
   /*----------
   COMPUTED
   ----------*/
-  _viewValue(val, label) {
-    if(val && val[label]) {
-      return true
-    } else {
-      return false
+  _updateVisibleOptions(options, searchValue, labelField) {
+    if(!isNil(options) && options.constructor === Array) {
+      const optionsVisible = !isNilOrEmptyStr(searchValue)
+        ? options.filter(o => o[labelField].toLowerCase().search(searchValue) > -1)
+        : [...options];
+      return optionsVisible;
     }
+    return [];
   }
 
   _compIcon(icon) {
-    if(icon != undefined && icon.length > 0) return 'clab-icon ' + icon;
-    else return '';
+    return !isNilOrEmptyStr(icon)
+      ? `clab-icon ${icon}`
+      : '';
   }
 
-  _compWrapperType(str, disabled, type, inline, labelSize) {
-    let arr = [str];
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
+  _compWrapperType(disabled, type, inline, labelSize) {
+    let arr = [];
+
+    if(disabled){ 
+      arr.push('disabled');
+    }
+    if(!isNilOrEmptyStr(type)){ 
+      arr.push(type);
+    }
     if(inline) {
       arr.push('inline');
-      if(labelSize.length > 0) arr.push(labelSize + '-label');
+      if(!isNilOrEmptyStr(labelSize)){ 
+        arr.push(`${labelSize}-label`);
+      }
     }
+
     return arr.join(' ');
   }
 
-  _compType(str, disabled, type, id, open) {
+  _compType(disabled, type, id) {
     let arr = [];
-    if(str != undefined && str.length > 0) arr.push(str);
-    if(id != undefined && id.length > 0) arr.push(id);
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
-    open ? arr.push('active') : null;
+
+    if(!isNilOrEmptyStr(id)){ 
+      arr.push(id);
+    }
+    if(disabled){ 
+      arr.push('disabled');
+    }
+    if(!isNilOrEmptyStr(type)){ 
+      arr.push(type);
+    }
+
     return arr.join(' ');
   }
 
-  _compValue(option) {
-    return option ? option[this.valueField] : '';
+  _compSelectedLabel(option, label) {
+    return !isNil(option) && !isNilOrEmptyStr(label)
+      ? option[label]
+      : null;
   }
 
-  _compLabel(option) {
-    return option ? option[this.labelField] : '';
+  _compLabelClass(selectedLabel, placeholder) {
+    return !isNilOrEmptyStr(selectedLabel)
+      ? 'selected'
+      : 'placeholder';
+  }
+
+  _compLabelVisible(selectedLabel, placeholder) {
+    return !isNilOrEmptyStr(selectedLabel)
+    ? selectedLabel
+    : placeholder;
   }
 
   _compMaxHeight(height) {
-    return height ? height : '';
+    return !isNil(height) 
+      ? height 
+      : '';
+  }
+
+  _compToggleList(disabled, id) {
+    return evt => {
+
+      if (!disabled) {
+        const isSpan = e => e.target.localName === 'span' && e.path[4] && e.path[4].id === id;
+        const isDiv = e => e.target.localName === 'div' && e.path[3] && e.path[3].id === id;
+        const isInput = e => e.target.localName === 'input' && e.path[3] && e.path[3].id === id;
+
+        if((isSpan(evt) || isDiv(evt))){
+          this.set('open', !this.open);
+        }
+        
+        if(isInput(evt) && !this.open) {
+          this.set('open', true);
+        }
+        
+        const windowClick = evt => {
+          const isOl = e => e.target.localName === 'ol' && e.target.classList.contains('curtain-clab');
+          const isLi = e => e.target.localName === 'li' && e.target.classList.contains('curtain-clab');
+  
+          if(isLi(evt) || isDiv(evt) || isSpan(evt)) {
+            return window.removeEventListener('mousedown', windowClick);
+          }
+  
+          if(isOl(evt) || isInput(evt)) {
+            return;
+          }
+  
+          this.set('open', false);
+          this.set('searchValue', null);
+          return window.removeEventListener('mousedown', windowClick);
+        }
+        
+
+        if(!this.open) {
+          this.set('searchValue', null);
+        }
+        return window.addEventListener('mousedown', windowClick);
+      }
+    }
+  }
+
+  _compSearchVisibleValue(searchValue, selectedLabel) {
+    if(!isNilOrEmptyStr(selectedLabel)) {
+      return isNil(searchValue)
+        ? selectedLabel
+        : searchValue
+    }
+
+    return searchValue;
   }
 
 

@@ -8,33 +8,31 @@
   </style>
 
   <template>
-    <div class$="[[_compWrapperType('input-wrapper', disabled, type, inline, labelSize)]]">
+    <div class$="input-wrapper [[_compWrapperType(disabled, type, inline, labelSize)]]">
       <template is="dom-if" if="[[_viewLabel(label, icon)]]">
         <label class$="[[type]]" for$="[[_dashify(name)]]">
-					<template is="dom-if" if="[[_viewLabel(icon)]]">
-						<i class$="[[_compIcon(icon)]]"></i>
-					</template>
-					[[label]]
-				</label>
+            <template is="dom-if" if="[[_viewLabel(icon)]]">
+              <i class$="[[_compIcon(icon)]]"></i>
+            </template>
+            [[label]]
+          </label>
       </template>
 
       <div class="input">
         <template is="dom-if" if="[[!search]]">
-          <div class$="[[_compType('value_wrapper', disabled, type, id)]]" on-click="_toggleList">
-            <template is="dom-if" if="[[_viewValue(selected,labelField)]]">
-              <span class="selected">[[_compLabel(selected)]]</span>
-            </template>
-            <template is="dom-if" if="[[!_viewValue(selected,labelField)]]">
-              <span class="placeholder">[[placeholder]]</span>
-            </template>
+          <div class$="value_wrapper [[_compType(disabled, type, id)]]" on-click="_toggleList">
+            <span class$="[[_compLabelClass(selectedLabel, placeholder)]]">[[_compLabelVisible(selectedLabel, placeholder)]]</span>
           </div>
         </template>
+
         <template is="dom-if" if="[[search]]">
-          <input-clab on-click="_toggleList" on-keyup="_filter" value="[[searchValue]]"></input-clab>
+          <input-clab id="[[id]]" value="[[_compSearchVisibleValue(searchValue, selectedLabel)]]" placeholder="[[placeholder]]" data-options="[[options]]"
+            data-label-field=[[labelField]] on-click="_toggleList" on-keyup="_setSearchValue"></input-clab>
         </template>
-        <curtain-clab id="curtain" slot="curtain" options="[[optionsList]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]"
-          label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" on-do-highlight="_handleHighlight"
-          on-do-select="handleSelect" open="[[open]]"></curtain-clab>
+
+        <curtain-clab id="curtain" slot="curtain" options="[[_optionsVisible]]" max-height="[[_compMaxHeight(maxHeight)]]" highlighted="[[highlighted]]"
+          label-field="[[labelField]]" value-field="[[valueField]]" max-in-view="[[maxInView]]" open="[[open]]" on-do-highlight="_handleHighlight"
+          on-do-select="_handleSelect"></curtain-clab>
       </div>
 
       <slot name="button"></slot>
