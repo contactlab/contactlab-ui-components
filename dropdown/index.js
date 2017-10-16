@@ -22,6 +22,12 @@ const randomId = () => {
   return id;
 }
 
+const propLowerCase = (obj, key) => 
+  !isNil(obj) && !isNil(obj[key])
+    ? obj[key].toLowerCase()
+    : '';
+
+
 class DropdownClab {
 
   get behaviors() {
@@ -71,7 +77,12 @@ class DropdownClab {
       },
       options: {
         type: Array,
-        value: []
+        value: [
+          {
+            label: '-',
+            value: null
+          }
+        ]
       },
       _optionsVisible: {
         type: Array,
@@ -191,6 +202,10 @@ class DropdownClab {
     this.set('highlighted', this._optionsVisible[evt.detail.index]);
   }
 
+  _stop(evt) {
+    evt.stopPropagation();
+  }
+
 
 
 
@@ -217,40 +232,6 @@ class DropdownClab {
     });
   }
 
-  // _setSelected(item, options) {
-  //   const old = this.selected;
-    
-  //   this.optionsList = this.options.slice();
-  //   this.set('selected', item);
-  //   this.set('highlighted', item);
-  //   this.open = false;
-  //   this.searchValue = this.selected[this.labelField];
-
-  //   if(!this.preventChange) {
-  //     if(this.resultAsObj){
-  //       this.dispatchEvent(new CustomEvent('change', {
-  //         bubbles: true,
-  //         composed: true,
-  //         detail: {
-  //           selected: this.selected,
-  //           newValue: this.selected,
-  //           oldValue: old
-  //         }
-  //       }));
-  //     } else {
-  //       this.dispatchEvent(new CustomEvent('change', {
-  //         bubbles: true,
-  //         composed: true,
-  //         detail: {
-  //           selected: this.selected[this.valueField],
-  //           newValue: this.selected,
-  //           oldValue: old
-  //         }
-  //       }));
-  //     }
-  //   }
-  // }
-
 
 
   /*----------
@@ -275,9 +256,10 @@ class DropdownClab {
   ----------*/
   _updateVisibleOptions(options, searchValue, labelField) {
     if(!isNil(options) && options.constructor === Array) {
-      const optionsVisible = !isNilOrEmptyStr(searchValue)
-        ? options.filter(o => o[labelField].toLowerCase().search(searchValue) > -1)
-        : [...options];
+      const toSearch = !isNilOrEmptyStr(searchValue)
+        ? searchValue.toLowerCase()
+        : '';
+      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(toSearch) > -1);
       return optionsVisible;
     }
     return [];

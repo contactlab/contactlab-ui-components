@@ -80,12 +80,12 @@ class CurtainClab {
 
   _elementSelection(evt) {
     this.dontHide = false;
-    let i = evt.target.getAttribute('data-i');
+    let index = evt.target.getAttribute('data-i');
     this.dispatchEvent(new CustomEvent('do-select', {
       bubbles: true,
       composed: true,
       detail: {
-        index: i
+        index
       }
     }));
   }
