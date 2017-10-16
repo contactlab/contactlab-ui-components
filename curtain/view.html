@@ -1,10 +1,9 @@
 <dom-module id="curtain-clab">
-	<template>
+  <template>
     <template is="dom-if" if="[[open]]" restamp>
       <ol id="list" class="options-list" style$="[[_computedStyles]]">
         <template is="dom-repeat" items="[[options]]" as="option">
-          <li class$="[[_compHighlight(highlighted, option)]]" data-i$="[[index]]"
-          on-mouseover="doHighlight" on-mousedown="_elementSelection">[[_compLabel(option)]]</li>
+          <li class$="[[_compHighlight(highlighted, option)]]" data-i$="[[index]]" on-mouseover="doHighlight" on-click="_elementSelection">[[_compLabel(option)]]</li>
         </template>
       </ol>
     </template>
