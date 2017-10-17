@@ -1,31 +1,12 @@
 'use strict';
 
 import './view.html';
-import {UtilBehavior} from "./../_behaviors/";
-import {DropdownBehavior} from "./../_behaviors/";
+import { UtilBehavior, DropdownBehavior} from "./../_behaviors/";
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase } from './libs';
 import "./../input/";
 import "./../note/";
 import "./../curtain/";
-
-const isNil = val => val === null || typeof val === 'undefined';
-
-const isNilOrEmptyStr = str => isNil(str) || str === '';
-
-const randomId = () => {
-  let id = '';
-  let possible = "abcdefghijklmnopqrstuvwxyz";
-  let n = Math.floor(Math.random() * (999 - 0) + 0);
-  let time = Date.now();
-  for(var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
-  id += n;
-  id += time;
-  return id;
-}
-
-const propLowerCase = (obj, key) => 
-  !isNil(obj) && !isNil(obj[key])
-    ? obj[key].toLowerCase()
-    : '';
+import './../_behaviors/path';
 
 
 class DropdownClab {
@@ -167,7 +148,7 @@ class DropdownClab {
   _handleSelect(evt) {
     const selected = this._optionsVisible[evt.detail.index];
     const oldValue = this.selected;
-    
+
     this.set('selected', selected);
     this.set('highlighted', selected);
     this.set('open', false);
@@ -217,7 +198,7 @@ class DropdownClab {
       method: 'GET'
     }).then(res => {
       if(res.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + res.status);
+        console.warn('Looks like there was a problem. Status Code: ' + res.status);
         this.type = 'error';
         return;
       }
@@ -244,7 +225,7 @@ class DropdownClab {
   }
 
   _triggerFetchOptions(url) {
-    if(!isNil(url)) { 
+    if(!isNil(url)) {
       this._fetchOptions();
     }
   }
@@ -274,15 +255,15 @@ class DropdownClab {
   _compWrapperType(disabled, type, inline, labelSize) {
     let arr = [];
 
-    if(disabled){ 
+    if(disabled){
       arr.push('disabled');
     }
-    if(!isNilOrEmptyStr(type)){ 
+    if(!isNilOrEmptyStr(type)){
       arr.push(type);
     }
     if(inline) {
       arr.push('inline');
-      if(!isNilOrEmptyStr(labelSize)){ 
+      if(!isNilOrEmptyStr(labelSize)){
         arr.push(`${labelSize}-label`);
       }
     }
@@ -293,13 +274,13 @@ class DropdownClab {
   _compType(disabled, type, id) {
     let arr = [];
 
-    if(!isNilOrEmptyStr(id)){ 
+    if(!isNilOrEmptyStr(id)){
       arr.push(id);
     }
-    if(disabled){ 
+    if(disabled){
       arr.push('disabled');
     }
-    if(!isNilOrEmptyStr(type)){ 
+    if(!isNilOrEmptyStr(type)){
       arr.push(type);
     }
 
@@ -325,8 +306,8 @@ class DropdownClab {
   }
 
   _compMaxHeight(height) {
-    return !isNil(height) 
-      ? height 
+    return !isNil(height)
+      ? height
       : '';
   }
 
@@ -341,28 +322,28 @@ class DropdownClab {
         if((isSpan(evt) || isDiv(evt))){
           this.set('open', !this.open);
         }
-        
+
         if(isInput(evt) && !this.open) {
           this.set('open', true);
         }
-        
+
         const windowClick = evt => {
           const isOl = e => e.target.localName === 'ol' && e.target.classList.contains('curtain-clab');
           const isLi = e => e.target.localName === 'li' && e.target.classList.contains('curtain-clab');
-  
+
           if(isLi(evt) || isDiv(evt) || isSpan(evt)) {
             return window.removeEventListener('mousedown', windowClick);
           }
-  
+
           if(isOl(evt) || isInput(evt)) {
             return;
           }
-  
+
           this.set('open', false);
           this.set('searchValue', null);
           return window.removeEventListener('mousedown', windowClick);
         }
-        
+
 
         if(!this.open) {
           this.set('searchValue', null);
