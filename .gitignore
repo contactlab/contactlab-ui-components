@@ -5,3 +5,5 @@ node_modules/
 **/*.sass-cache
 workspace
 .esm-cache
+_demo/components.js
+_demo/components.js.map
