@@ -6,3 +6,5 @@ bower_components/
 **/*.sass-cache
 workspace
 clab-ui-components-custom.html
+_demo/components.js
+_demo/components.js.map
