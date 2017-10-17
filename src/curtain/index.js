@@ -49,12 +49,12 @@ class CurtainClab extends PolymerElement {
 
   _elementSelection(evt){
     this.dontHide = false;
-    let i = evt.target.getAttribute('data-i');
+    let index = evt.target.getAttribute('data-i');
     this.dispatchEvent(new CustomEvent('do-select', {
       bubbles: true,
       composed: true,
       detail: {
-        index: i
+        index
       }
     }));
   }
@@ -81,7 +81,7 @@ class CurtainClab extends PolymerElement {
   	METHODS
   ----------*/
   _setLiHeight(options, maxInView, disabled) {
-    if(options != undefined && options.length > 0 && maxInView != undefined && !disabled) {
+    if (options != undefined && maxInView != undefined && !disabled) {
       setTimeout(() => {
         if(this.maxHeight == undefined || this.maxHeight == '') {
           this.set('_hidden', true);
@@ -94,8 +94,11 @@ class CurtainClab extends PolymerElement {
           this.set('_hidden', false);
         }
 
-        this.set('_listHeight', (this.maxHeight * options.length) + 'px');
-        this.$.list.scrollTop = 0;
+        const listHeight = options.length > 0
+          ? `${this.maxHeight * options.length}px`
+          : '0px';
+        this.set('_listHeight', listHeight);
+        this.$$('#list') ? this.$$('#list').scrollTop = 0 : null;
       }, 100);
     }
   }
@@ -117,8 +120,8 @@ class CurtainClab extends PolymerElement {
   _compStyles(hidden, maxHeight, height, open) {
     let arr = [];
     if(hidden) arr.push('display:block; opacity:0');
-    if(maxHeight != undefined) arr.push('max-height:' + maxHeight);
-    if(height != undefined) arr.push('height:' + height);
+    if(maxHeight !== undefined) arr.push('max-height:' + maxHeight);
+    if(height !== undefined) arr.push('height:' + height);
     if(open) arr.push('display:block');
     this.set('_computedStyles', arr.join(';'));
   }
