@@ -17,6 +17,13 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
 
   static get properties() { return props; }
 
+  static get observers() {
+    return [
+      '_triggerFetchOptions(url)',
+      '_setOptions(optionsFn)'
+    ]
+  }
+
   connectedCallback(){
     super.connectedCallback();
     if(this.id === undefined || this.id.length < 1) {

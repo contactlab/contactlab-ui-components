@@ -25,7 +25,6 @@ export default {
     type: Boolean,
     value: false
   },
-
   //_liHeight:Number,
   maxHeight: {
     type: Number,
