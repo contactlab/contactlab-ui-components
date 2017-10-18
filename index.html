@@ -16,15 +16,18 @@
           var script = document.createElement('script');
           script.async = true;
           script.src = "./demo/components.js";
+          script.onload = () => console.log('Script loaded');
           document.body.appendChild(script);
         });
     </script>
     <script src="./node_modules/web-animations-js/web-animations-next-lite.min.js"></script>
-    <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script>
+    <script src="./node_modules/@webcomponents/webcomponentsjs/webcomponents-lite.js"></script>
+    <!-- <script src="https://cdn.rawgit.com/webcomponents/webcomponentsjs/master/webcomponents-sd-ce.js"></script> -->
 </head>
 <body>
 
    <demo-element></demo-element>
+   <button-clab>test</button-clab>
 
 </body>
 </html>

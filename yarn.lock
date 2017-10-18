@@ -4437,7 +4437,7 @@ term-size@^1.2.0:
   dependencies:
     execa "^0.7.0"
 
-text-loader@0.0.1:
+text-loader@false0.0.1:
   version "0.0.1"
   resolved "https://registry.yarnpkg.com/text-loader/-/text-loader-0.0.1.tgz#8bf75d749b7c0579c939920051c69ea572ebddc1"
 
