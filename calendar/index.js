@@ -34,6 +34,11 @@ class CalendarClab {
         type: Object,
         value: {}
       },
+      required: {
+        type: Boolean,
+        value: false,
+        reflectToAttribute: true
+      },
       placeholder: String,
       type: String,
       noteType: String
