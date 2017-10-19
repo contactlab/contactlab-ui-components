@@ -5,16 +5,28 @@
   "main": "index.js",
   "scripts": {
     "start": "http-server -s -p 3000",
-    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" "
+    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
+    "build": "webpack",
+    "test": "ava ./test/index.js"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/contactlab/contactlab-ui-components"
   },
+  "ava": {
+    "babel": "inherit",
+    "require": [
+      "babel-register"
+    ]
+  },
   "author": "ContactLab Product Team",
   "license": "Apache-2.0",
   "homepage": "https://github.com/contactlab/contactlab-ui-components#readme",
   "devDependencies": {
+    "ava": "0.22.0",
+    "babel-core": "false6.26.0",
+    "babel-plugin-transform-runtime": "false6.23.0",
+    "babel-preset-es2015": "false6.24.1",
     "concurrently": "3.4.0",
     "http-server": "0.9.0",
     "node-sass": "4.5.0",

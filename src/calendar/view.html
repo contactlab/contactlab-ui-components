@@ -1,0 +1,34 @@
+<dom-module id="calendar-clab">
+  <style>
+    input[type=text]::-ms-clear {
+      display: none;
+    }
+
+  </style>
+
+  <template>
+
+    <template is="dom-if" if="[[!inline]]">
+      <div class$="[[_computeType('calendar input-wrapper', type)]]">
+        <template is="dom-if" if="[[viewLabel(label)]]">
+          <label class$="[[type]]" for$="[[dashify(name)]]">[[label]]</label>
+        </template>
+
+        <div class="input">
+          <div class="input-icon-wrapper calendar" on-click="_focusElement"></div>
+          <input class$="[[type]]" type="text" disabled="[[disabled]]" placeholder="[[placeholder]]"
+            value="[[valueStr]]" on-keyup="_checkClear" required="[[required]]">
+        </div>
+
+        <note-clab type="[[noteType]]">
+          <slot name="note"></slot>
+        </note-clab>
+      </div>
+    </template>
+
+    <template is="dom-if" if="[[inline]]">
+      <div class="inline-cal"></div>
+    </template>
+
+  </template>
+</dom-module>

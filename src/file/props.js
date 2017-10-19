@@ -1,0 +1,34 @@
+'use strict';
+
+export default {
+  label: String,
+  name: {
+    type: String,
+    value: 'fileinput'
+  },
+  type: {
+    type: String,
+    value: null
+  },
+  noteType: String,
+  value: {
+    type: String,
+    notify: true,
+    value: null
+  },
+  disabled: {
+    type: Boolean,
+    value: false,
+    notify: true,
+    reflectToAttribute: true,
+    observer: '_disabledChanged'
+  },
+  multiple: {
+    type: Boolean,
+    value: false
+  },
+  noPreview: {
+    type: Boolean,
+    value: false
+  }
+}
