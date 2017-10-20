@@ -21,6 +21,11 @@ export default {
     type: Object,
     value: {}
   },
+  required: {
+    type: Boolean,
+    value: false,
+    reflectToAttribute: true
+  },
   placeholder: {
     type: String,
     value: ''

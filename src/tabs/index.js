@@ -19,7 +19,6 @@ class TabsClab extends PolymerElement {
 		]
   }
 
-
   /*----------
   EVENT HANDLERS
   ----------*/
@@ -34,8 +33,6 @@ class TabsClab extends PolymerElement {
       }
     }));
   }
-
-
 
 
   /*----------

@@ -1,7 +1,9 @@
 'use strict';
 
 export default {
-  type: String,
+  type: {
+    type: String
+  },
   classes: {
     type: String,
     computed: 'computeClasses(type)',

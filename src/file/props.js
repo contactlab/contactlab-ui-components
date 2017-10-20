@@ -1,7 +1,9 @@
 'use strict';
 
 export default {
-  label: String,
+  label: {
+    type: String
+  },
   name: {
     type: String,
     value: 'fileinput'
@@ -10,7 +12,9 @@ export default {
     type: String,
     value: null
   },
-  noteType: String,
+  noteType: {
+    type: String
+  },
   value: {
     type: String,
     notify: true,

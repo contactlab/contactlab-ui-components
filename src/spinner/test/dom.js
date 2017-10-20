@@ -26,7 +26,6 @@ document.body.appendChild(document.createElement('spinner-clab'));
 const elem = document.body.querySelector('spinner-clab');
 
 test(`${element} in DOM`, t => {
-  console.log(elem.tagName , elem.id);
   t.is(elem.outerHTML, '<spinner-clab></spinner-clab>');
   t.is(elem.dark, undefined);
 });

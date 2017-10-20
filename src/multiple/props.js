@@ -17,7 +17,9 @@ export default {
     type: Function,
     observer: '_setOptions'
   },
-  url: String,
+  url: {
+    type: String
+  },
   selected: {
     type: Array,
     value: [],
@@ -40,5 +42,7 @@ export default {
     type: Boolean,
     value: false
   },
-  noteType: String
+  noteType: {
+    type: String
+  }
 }

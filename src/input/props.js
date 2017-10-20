@@ -26,7 +26,9 @@ export default {
     value: null,
     reflectToAttribute: true
   },
-  noteType: String,
+  noteType: {
+    type: String
+  },
   value: {
     type: String,
     notify: true,
@@ -89,7 +91,9 @@ export default {
       }
     }
   },
-  _btnPswd: Object,
+  _btnPswd: {
+    type: Object
+  },
   password: {
     type: Boolean,
     value: false,

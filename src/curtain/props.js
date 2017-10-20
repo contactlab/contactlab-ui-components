@@ -1,7 +1,9 @@
 'use strict';
 
 export default {
-  id: String,
+  id: {
+    type: String
+  },
   options: {
     type: Array,
     value: []
@@ -10,13 +12,19 @@ export default {
     type: Object,
     value: {}
   },
-  labelField: String,
-  valueField: String,
+  labelField: {
+    type: String
+  },
+  valueField: {
+    type: String
+  },
   dontHide: {
     type: Boolean,
     notify: true
   },
-  maxInView: Number,
+  maxInView: {
+    type: Number
+  },
   disabled: {
     type: Boolean,
     value: false
@@ -30,11 +38,17 @@ export default {
     type: Number,
     value: 28
   },
-  _listMaxHeight: String,
-  _listHeight: String,
+  _listMaxHeight: {
+    type: String
+  },
+  _listHeight: {
+    type: String
+  },
   _hidden: {
     type: Boolean,
     value: false
   },
-  _computedStyles: String
+  _computedStyles: {
+    type: String
+  }
 }

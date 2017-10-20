@@ -17,28 +17,31 @@ export default {
   },
   selected: {
     type: Object,
-    value: { },
+    value: {},
     observer: '_changedSelected'
   },
   valueField: {
     type: String,
-      value: 'value'
+    value: 'value'
   },
   labelField: {
     type: String,
-      value: 'label'
+    value: 'label'
   },
   placeholder: {
     type: String,
-      value: 'Type..'
+    value: 'Type...'
   },
   disabled: {
     type: Boolean,
-      value: false
+    value: false
   },
-  options: Array,
-  url: String,
-
+  options: {
+    type: Array
+  },
+  url: {
+    type: String
+  },
   results: {
     type: Array,
     value: [],
@@ -46,7 +49,7 @@ export default {
   },
   optionsFn: {
     type: Function,
-      observer: '_setOptions'
+    observer: '_setOptions'
   },
   filter: {
     type: Boolean,
@@ -76,17 +79,25 @@ export default {
     type: String,
     observer: '_setLabelSize'
   },
-  icon: String,
+  icon: {
+    type: String
+  },
 
-
+  /*----------
+    PRIVATE
+  ----------*/
   _inputString: {
     type: String,
     readonly: true
   },
-  _currentHint: Object,
+  _currentHint: {
+    type: Object
+  },
   _spinner: {
     type: Boolean,
     value: false
   },
-  _interval: Object
+  _interval: {
+    type: Object
+  }
 }

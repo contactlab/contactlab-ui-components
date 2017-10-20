@@ -1,6 +1,9 @@
 'use strict';
 
 export default {
+  id: {
+    type: String
+  },
   label: {
     type: String,
     value: null
@@ -18,9 +21,16 @@ export default {
   },
   selected: {
     type: Object,
-    value: {}
+    value: null
   },
-  highlighted: Object,
+  selectedLabel: {
+    type: String,
+    value: null,
+    computed: '_compSelectedLabel(selected, labelField)'
+  },
+  highlighted: {
+    type: Object
+  },
   valueField: {
     type: String,
     value: 'value'
@@ -33,19 +43,16 @@ export default {
     type: Array,
     value: [
       {
-        value: 'A',
-        label: 'Option 1'
-      },
-      {
-        value: 'B',
-        label: 'Option 2'
+        value: null,
+        label: '-'
       }
     ],
     observer: '_updateList'
   },
-  optionsList: {
+  _optionsVisible: {
     type: Array,
-    value: []
+    value: [],
+    computed: '_updateVisibleOptions(options, searchValue, labelField)'
   },
   optionsFn: {
     type: Function,
@@ -69,7 +76,7 @@ export default {
   },
   placeholder: {
     type: String,
-    value: 'Select..'
+    value: 'Select...'
   },
   disabled: {
     type: Boolean,
@@ -97,11 +104,10 @@ export default {
   },
   searchValue: {
     type: String,
-    value: ''
+    value: null
   },
-  /*_liHeight:{
-    type:String,
-    value:null,
-    readonly: true
-  }*/
+  _toggleList: {
+    type: Function,
+    computed: '_compToggleList(disabled, id)'
+  }
 }

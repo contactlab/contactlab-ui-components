@@ -1,12 +1,16 @@
 'use strict';
 
 export default {
-  label: String,
+  label: {
+    type: String
+  },
   name: {
     type: String,
     value: 'tags input'
   },
-  inputString: String,
+  inputString: {
+    type: String
+  },
   type: {
     type: String,
     value: ''
@@ -18,7 +22,9 @@ export default {
     type: Boolean,
     value: false
   },
-  placeholder: String,
+  placeholder: {
+    type: String
+  },
   stacked: {
     type: Boolean,
     value: false
@@ -32,9 +38,15 @@ export default {
     type: String,
     value: 'Add'
   },
-  btnAppearence: String,
-  btnSize: String,
-  btnIcon: String,
+  btnAppearence: {
+    type: String
+  },
+  btnSize: {
+    type: String
+  },
+  btnIcon: {
+    type: String
+  },
   hideInput: {
     type: Boolean,
     value: false

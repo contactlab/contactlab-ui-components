@@ -74,19 +74,13 @@ class AlertClab extends mixinBehaviors([LegacyElementMixin], PolymerElement) {
   /*----------
   	EVENT HANDLERS
   ----------*/
-  _handleClickP(evt) {
-      this.dispatchEvent(new CustomEvent('primary',{
-        bubbles: true,
-        composed: true
-      }));
-   }
-
-  _handleClickS(evt) {
-      this.dispatchEvent(new CustomEvent('secondary',{
-        bubbles: true,
-        composed: true
-      }));
-   }
+  _handleClick(evt) {
+    const type = evt.target.type;
+    this.dispatchEvent(new CustomEvent(type, {
+      bubbles: true,
+      composed: true
+    }));
+  }
 
   _close(evt) {
     this.visible = false;

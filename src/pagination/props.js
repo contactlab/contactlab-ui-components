@@ -5,7 +5,9 @@ export default {
     type: Number,
     observer: '_setPages'
   },
-  links: Array,
+  links: {
+    type: Array
+  },
   pages: {
     type: Array,
     notify: true,

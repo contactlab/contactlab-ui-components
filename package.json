@@ -1,6 +1,6 @@
 {
   "name": "contactlab-ui-components",
-  "version": "2.0.3",
+  "version": "2.0.4",
   "description": "Polymer (v3) UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "files": [
@@ -25,7 +25,8 @@
     "sass": "node-sass --output-style compressed ./assets/scss/contactlab-pattern.scss > ./assets/css/contactlab-pattern.min.css",
     "build": "webpack",
     "build:test": "webpack --config webpack.config-test.js",
-    "test": "ava ./test/index.js"
+    "pretest": "webpack",
+    "test": "ava ./test/index.js --verbose"
   },
   "repository": {
     "type": "git",
