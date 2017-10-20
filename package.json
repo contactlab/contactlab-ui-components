@@ -1,6 +1,6 @@
 {
   "name": "contactlab-ui-components",
-  "version": "1.4.5",
+  "version": "1.4.6",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "scripts": {
@@ -24,12 +24,12 @@
   "homepage": "https://github.com/contactlab/contactlab-ui-components#readme",
   "devDependencies": {
     "ava": "0.22.0",
-    "babel-core": "false6.26.0",
-    "babel-plugin-transform-runtime": "false6.23.0",
-    "babel-preset-es2015": "false6.24.1",
+    "babel-core": "6.26.0",
+    "babel-plugin-transform-runtime": "6.23.0",
+    "babel-preset-es2015": "6.24.1",
     "concurrently": "3.4.0",
     "http-server": "0.9.0",
-    "jsdom-wc": "false11.0.0-alpha-1",
+    "jsdom-wc": "11.0.0-alpha-1",
     "node-sass": "4.5.0",
     "strip-loader": "0.1.2",
     "wc-loader": "1.1.4",
