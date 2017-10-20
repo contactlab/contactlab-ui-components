@@ -4,12 +4,14 @@ import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
 import props from './props';
 import { dashify, viewLabel } from './../_libs/utils';
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase } from './libs';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import "./../note";
 import "./../curtain";
 import "./../input";
 
-class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerElement) {
+class DropdownClab extends mixinBehaviors(
+  [{ _isNilOrEmptyStr: isNilOrEmptyStr, dashify, viewLabel }], PolymerElement) {
 
   static get is() { return 'dropdown-clab'; }
 
@@ -26,59 +28,59 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
 
   connectedCallback(){
     super.connectedCallback();
-    if(this.id === undefined || this.id.length < 1) {
-      let id = '';
-      let possible = "abcdefghijklmnopqrstuvwxyz";
-      let n = Math.floor(Math.random() * (999 - 0) + 0);
-      let time = Date.now();
-      for(var i = 0; i < 2; i++) id += possible.charAt(Math.floor(Math.random() * possible.length));
-      id += n;
-      id += time;
-      this.id = id;
+    if (isNilOrEmptyStr(this.id)) {
+      this.set('id', randomId());
     }
   }
 
+  _setSearchValue(evt) {
+    this.set('searchValue', evt.target.value);
+  }
 
 
   /*----------
   EVENT HANDLERS
   ----------*/
-  _toggleList(evt) {
-    if(!this.disabled) {
-      this.open = !this.open;
-    }
+  _handleSelect(evt) {
+    const selected = this._optionsVisible[evt.detail.index];
+    const oldValue = this.selected;
 
-    let windowClick = (evt) => {
-      let name = evt.target.localName;
-      let hasClass = evt.target.classList.contains('curtain-clab');
-      let hasIdentity = evt.target.classList.contains(this.id);
+    this.set('selected', selected);
+    this.set('highlighted', selected);
+    this.set('open', false);
+    this.set('searchValue', null);
 
-      if(name == 'ol' && hasClass) {
-        return;
-      } else if(name == 'li' && hasClass || name == 'span' && evt.target.parentNode.classList.contains(this.id) || name == 'div' && hasIdentity) {
-        window.removeEventListener('mousedown', windowClick);
-        return;
-      } else {
-        this.open = false;
-        window.removeEventListener('mousedown', windowClick);
+    if (!this.preventChange) {
+      if (this.resultAsObj) {
+        return this.dispatchEvent(new CustomEvent('change', {
+          bubbles: true,
+          composed: true,
+          detail: {
+            selected,
+            newValue: selected,
+            oldValue
+          }
+        }));
       }
-    }
-    window.addEventListener('mousedown', windowClick);
-  }
 
-  handleSelect(evt) {
-    this._setSelected(this.optionsList[evt.detail.index]);
+      return this.dispatchEvent(new CustomEvent('change', {
+        bubbles: true,
+        composed: true,
+        detail: {
+          selected: selected[this.valueField],
+          newValue: selected,
+          oldValue
+        }
+      }));
+    }
   }
 
   _handleHighlight(evt) {
-    this.set('highlighted', this.options[evt.detail.index]);
+    this.set('highlighted', this._optionsVisible[evt.detail.index]);
   }
 
-  _filter(evt) {
-    this.searchValue = evt.target.value;
-    this.searchValue.length > 0 ? this.optionsList = this.options.filter((e, i) => {
-      return e[this.labelField].search(this.searchValue) > -1;
-    }) : this.optionsList = this.options.slice();
+  _stop(evt) {
+    evt.stopPropagation();
   }
 
 
@@ -89,8 +91,8 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     fetch(this.url, {
       method: 'GET'
     }).then(res => {
-      if(res.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + res.status);
+      if (res.status !== 200) {
+        console.warn('Looks like there was a problem. Status Code: ' + res.status);
         this.type = 'error';
         return;
       }
@@ -105,118 +107,161 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     });
   }
 
-  _setSelected(item) {
-    let old = this.selected;
-    this.optionsList = this.options.slice();
-    this.set('selected', item);
-    this.set('highlighted', item);
-    this.open = false;
-    this.searchValue = this.selected[this.labelField];
-
-    if(!this.preventChange) {
-      if(this.resultAsObj){
-        this.dispatchEvent(new CustomEvent('change', {
-          bubbles: true,
-          composed: true,
-          detail: {
-            selected: this.selected,
-            newValue: this.selected,
-            oldValue: old
-          }
-        }));
-      } else {
-        this.dispatchEvent(new CustomEvent('change', {
-          bubbles: true,
-          composed: true,
-          detail: {
-            selected: this.selected[this.valueField],
-            newValue: this.selected,
-            oldValue: old
-          }
-        }));
-      }
-    }
-  }
-
-
-
   /*----------
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
-      this.set('options', resp);
-    });
+    if (!isNil(promise)) {
+      promise().then(resp => this.set('options', resp));
+    }
   }
 
-  _observUrl(newv, oldv) {
-    if(newv != undefined) this._fetchOptions();
-  }
-
-  _updateList(newValue, oldValue) {
-    const selected = this.selected;
-    this.optionsList = newValue ? newValue.slice() : this.optionsList;
-    this.searchValue = selected ? selected[this.labelField] : null;
+  _triggerFetchOptions(url) {
+    if (!isNil(url)) {
+      this._fetchOptions();
+    }
   }
 
 
   /*----------
   COMPUTED
   ----------*/
-  _viewValue(val, label) {
-    if(val && val[label]) {
-      return true
-    } else {
-      return false
+  _updateVisibleOptions(options, searchValue, labelField) {
+    if (!isNil(options) && options.constructor === Array) {
+      const toSearch = !isNilOrEmptyStr(searchValue)
+        ? searchValue.toLowerCase()
+        : '';
+      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(toSearch) > -1);
+      return optionsVisible;
     }
+    return [];
   }
 
   _compIcon(icon) {
-    if(icon != undefined && icon.length > 0) return 'clab-icon ' + icon;
-    else return '';
+    return !isNilOrEmptyStr(icon)
+      ? `clab-icon ${icon}`
+      : '';
   }
 
-  _compWrapperType(str, disabled, type, inline, labelSize) {
-    let arr = [str];
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
-    if(inline) {
-      arr.push('inline');
-      if(labelSize.length > 0) arr.push(labelSize + '-label');
-    }
-    return arr.join(' ');
-  }
-
-  _compType(str, disabled, type, id, open) {
+  _compWrapperType(disabled, type, inline, labelSize) {
     let arr = [];
-    if(str != undefined && str.length > 0) arr.push(str);
-    if(id != undefined && id.length > 0) arr.push(id);
-    if(disabled) arr.push('disabled');
-    if(type != undefined && type.length > 0) arr.push(type);
-    open ? arr.push('active') : null;
+
+    if (disabled) {
+      arr.push('disabled');
+    }
+    if (!isNilOrEmptyStr(type)) {
+      arr.push(type);
+    }
+    if (inline) {
+      arr.push('inline');
+      if (!isNilOrEmptyStr(labelSize)) {
+        arr.push(`${labelSize}-label`);
+      }
+    }
+
     return arr.join(' ');
   }
 
-  _compValue(option) {
-    return option ? option[this.valueField] : '';
+  _compType(disabled, type, id) {
+    let arr = [];
+
+    if (!isNilOrEmptyStr(id)) {
+      arr.push(id);
+    }
+    if (disabled) {
+      arr.push('disabled');
+    }
+    if (!isNilOrEmptyStr(type)) {
+      arr.push(type);
+    }
+
+    return arr.join(' ');
   }
 
-  _compLabel(option) {
-    return option ? option[this.labelField] : '';
+  _compSelectedLabel(option, label) {
+    return !isNil(option) && !isNilOrEmptyStr(label)
+      ? option[label]
+      : null;
+  }
+
+  _compLabelClass(selectedLabel, placeholder) {
+    return !isNilOrEmptyStr(selectedLabel)
+      ? 'selected'
+      : 'placeholder';
+  }
+
+  _compLabelVisible(selectedLabel, placeholder) {
+    return !isNilOrEmptyStr(selectedLabel)
+      ? selectedLabel
+      : placeholder;
   }
 
   _compMaxHeight(height) {
-    return height ? height : '';
+    return !isNil(height)
+      ? height
+      : '';
+  }
+
+  _compToggleList(disabled, id) {
+    return evt => {
+
+      if (!disabled) {
+        const isSpan = e => e.target.localName === 'span' && e.path[4] && e.path[4].id === id;
+        const isDiv = e => e.target.localName === 'div' && e.path[3] && e.path[3].id === id;
+        const isInput = e => e.target.localName === 'input' && e.path[3] && e.path[3].id === id;
+
+        if ((isSpan(evt) || isDiv(evt))) {
+          this.set('open', !this.open);
+        }
+
+        if (isInput(evt) && !this.open) {
+          this.set('open', true);
+        }
+
+        const windowClick = evt => {
+          const isOl = e => e.target.localName === 'ol' && e.target.classList.contains('curtain-clab');
+          const isLi = e => e.target.localName === 'li' && e.target.classList.contains('curtain-clab');
+
+          if (isLi(evt) || isDiv(evt) || isSpan(evt)) {
+            return window.removeEventListener('mousedown', windowClick);
+          }
+
+          if (isOl(evt) || isInput(evt)) {
+            return;
+          }
+
+          this.set('open', false);
+          this.set('searchValue', null);
+          return window.removeEventListener('mousedown', windowClick);
+        }
+
+
+        if (!this.open) {
+          this.set('searchValue', null);
+        }
+        return window.addEventListener('mousedown', windowClick);
+      }
+    }
+  }
+
+  _compSearchVisibleValue(searchValue, selectedLabel) {
+    if (!isNilOrEmptyStr(selectedLabel)) {
+      return isNil(searchValue)
+        ? selectedLabel
+        : searchValue
+    }
+
+    return searchValue;
   }
 
 
 
 
-  getSelectedLabel(){
+  getSelectedLabel() {
     return this.selected[this.labelField];
   }
 
-  getSelectedValue(){
+  getSelectedValue() {
     return this.selected[this.valueField];
   }
 
@@ -229,7 +274,7 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     });
   }
 
-  setByValue(str){
+  setByValue(str) {
     this.options.map(opt => {
       if (opt[this.valueField] === str) {
         this._setSelected(opt);
@@ -238,18 +283,18 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     });
   }
 
-  isValorized(){
+  isValorized() {
     return !this.isNotValorized();
   }
 
-  isNotValorized(){
+  isNotValorized() {
     return this.selected === undefined ||
       this.selected === null ||
       this.selected[this.valueField] === undefined ||
       this.selected[this.valueField] === null;
   }
 
-  setValue(obj, prevent){
+  setValue(obj, prevent) {
     prevent = prevent ? true : false;
     this.preventChange = prevent;
 
@@ -267,7 +312,7 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     this.preventChange = false;
   }
 
-  getValue(){
+  getValue() {
     var v;
     if (this.isNotValorized()) {
       v = undefined;
@@ -281,7 +326,7 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     return v;
   }
 
-  getValueObject(){
+  getValueObject() {
     var v;
     if (this.isNotValorized(this.selected)) {
       v = undefined;
@@ -303,9 +348,7 @@ class DropdownClab extends mixinBehaviors([{ dashify, viewLabel }], PolymerEleme
     return v;
   }
 
-
 }
-
 
 
 customElements.define(DropdownClab.is, DropdownClab);

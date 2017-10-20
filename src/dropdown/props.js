@@ -43,11 +43,10 @@ export default {
     type: Array,
     value: [
       {
-        value: null,
-        label: '-'
+        label: '-',
+        value: null
       }
-    ],
-    observer: '_updateList'
+    ]
   },
   _optionsVisible: {
     type: Array,
@@ -55,12 +54,10 @@ export default {
     computed: '_updateVisibleOptions(options, searchValue, labelField)'
   },
   optionsFn: {
-    type: Function,
-    observer: '_setOptions'
+    type: Function
   },
   url: {
-    type: String,
-    observer: '_observUrl'
+    type: String
   },
   inline: {
     type: Boolean,
