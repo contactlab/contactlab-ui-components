@@ -42,6 +42,8 @@ To run the **unit tests** written with [Ava.js](https://github.com/avajs/ava)
 $ yarn test
 ```
 
+Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) to better understand how to develop and integrate changes on this repo.
+
 ### How to use & Documentation
 
 For detailed instruction on how to install and use the Contactlab Pattern Library components check out the [documentation website](https://ux.contactlab.com).

@@ -6,9 +6,11 @@ Please note we have a code of conduct, please follow it in all your interactions
 
 ## Pull Request Process
 
-1. The `master` branch always reflects a production-ready state while the latest development is taking place in the `develop` branch.
-2. Each time you want to work on a fix or a new feature, create a new `branch` based on the develop branch: `git checkout -b BRANCH_NAME develop`. Only pull requests to the `develop` branch will be merged.
-3. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+1. The `master` branch always reflects a production-ready state based on **Polymer v1.x**.
+2. The `next` branch shoud reflects as close as possible the master branch, but being based on the experimental **Polymer v3.x**.
+3. Each time you want to work on a fix or a new feature, create a new `feature/[branch-name]` based on the master or next branch.
+4. Ensure any install or build dependencies are removed before the end of the layer when doing a build.
+5. After the pull request has been accepted and merged, the same changes should be integrated on the opposite branch, to make sure that both `master` and `next` offers the same functionalities.
 
 ## Code of Conduct
 
