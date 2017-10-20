@@ -28,7 +28,9 @@ export default {
     value: null,
     computed: '_compSelectedLabel(selected, labelField)'
   },
-  highlighted: Object,
+  highlighted: {
+    type: Object
+  },
   valueField: {
     type: String,
     value: 'value'
@@ -71,7 +73,7 @@ export default {
   },
   placeholder: {
     type: String,
-    value: 'Select..'
+    value: 'Select...'
   },
   disabled: {
     type: Boolean,

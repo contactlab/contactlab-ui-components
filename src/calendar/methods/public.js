@@ -1,6 +1,7 @@
 'use strict';
 
 import rome from 'rome';
+import moment from 'moment';
 
 const clear = (romeInstance, value, valueStr) => {
   value = '';

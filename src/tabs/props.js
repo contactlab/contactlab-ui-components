@@ -30,5 +30,7 @@ export default {
     type: String,
     notify: true
   },
-  _content: Array
+  _content: {
+    type: Array
+  }
 }

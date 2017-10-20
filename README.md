@@ -36,6 +36,12 @@ To start a development server on ```localhost:3000``` plus Webpack in *watch* mo
 $ yarn dev
 ```
 
+To run the **unit tests** written with [Ava.js](https://github.com/avajs/ava)
+
+```
+$ yarn test
+```
+
 ### How to use & Documentation
 
 For detailed instruction on how to install and use the Contactlab Pattern Library components check out the [documentation website](https://ux.contactlab.com).

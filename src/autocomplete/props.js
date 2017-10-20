@@ -30,14 +30,18 @@ export default {
   },
   placeholder: {
     type: String,
-    value: 'Type..'
+    value: 'Type...'
   },
   disabled: {
     type: Boolean,
     value: false
   },
-  options: Array,
-  url: String,
+  options: {
+    type: Array
+  },
+  url: {
+    type: String
+  },
   results: {
     type: Array,
     value: [],
@@ -75,7 +79,9 @@ export default {
     type: String,
     observer: '_setLabelSize'
   },
-  icon: String,
+  icon: {
+    type: String
+  },
 
   /*----------
     PRIVATE
@@ -84,10 +90,14 @@ export default {
     type: String,
     readonly: true
   },
-  _currentHint: Object,
+  _currentHint: {
+    type: Object
+  },
   _spinner: {
     type: Boolean,
     value: false
   },
-  _interval: Object
+  _interval: {
+    type: Object
+  }
 }

@@ -6,8 +6,8 @@
   "scripts": {
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "build": "webpack",
-    "test": "ava ./test/index.js"
+    "pretest": "webpack",
+    "test": "ava ./test/index.js --verbose"
   },
   "repository": {
     "type": "git",
@@ -29,6 +29,7 @@
     "babel-preset-es2015": "false6.24.1",
     "concurrently": "3.4.0",
     "http-server": "0.9.0",
+    "jsdom-wc": "false11.0.0-alpha-1",
     "node-sass": "4.5.0",
     "strip-loader": "0.1.2",
     "wc-loader": "1.1.4",

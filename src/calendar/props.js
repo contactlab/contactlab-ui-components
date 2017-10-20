@@ -1,7 +1,9 @@
 'use strict';
 
 export default {
-  label: String,
+  label: {
+    type: String
+  },
   disabled: {
     type: Boolean,
     value: false
@@ -24,7 +26,13 @@ export default {
     value: false,
     reflectToAttribute: true
   },
-  placeholder: String,
-  type: String,
-  noteType: String
+  placeholder: {
+    type: String
+  },
+  type: {
+    type: String
+  },
+  noteType: {
+    type: String
+  }
 }
