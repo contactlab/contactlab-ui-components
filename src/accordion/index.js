@@ -65,10 +65,12 @@ class AccordionClab {
         setTimeout(() => {
           this.querySelector('.accordion-content').classList.add('opened');
         }, 110);
+        return 'open';
       } else {
         let player = document.timeline.play(this.closeAccordion);
         this.querySelector('.accordion-block').classList.remove('active');
         this.querySelector('.accordion-content').classList.remove('opened');
+        return 'close';
       }
     }
   }

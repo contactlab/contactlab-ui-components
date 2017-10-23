@@ -1,5 +1,7 @@
 'use strict';
 
+import './../src/_libs/test/';
+import './../src/accordion/test/';
 import './../src/alert/test/';
 import './../src/autocomplete/test/';
 import './../src/button/test/';
@@ -21,7 +23,6 @@ import './../src/progress-bar/test/';
 import './../src/radio/test/';
 import './../src/range/test/';
 import './../src/spinner/test/';
-import './../src/spinner/test/dom';
 import './../src/tabs/test/';
 import './../src/tags/test/';
 import './../src/tooltip/test/';
