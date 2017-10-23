@@ -9,6 +9,10 @@
     "pretest": "webpack",
     "test": "ava ./test/index.js --verbose"
   },
+  "files": [
+    "src",
+    "assets"
+  ],
   "repository": {
     "type": "git",
     "url": "https://github.com/contactlab/contactlab-ui-components"
