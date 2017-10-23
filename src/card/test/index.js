@@ -14,6 +14,13 @@ import {
 
 const element = '<card-clab>';
 
+const link = {
+  hasOwnProperty: prop => true
+}
+const noLink = {
+  hasOwnProperty: prop => false
+}
+
 test(`${element} properties: types & default values`, t => {
   t.is(props.title.type, String);
   t.is(props.title.value, '');
@@ -46,20 +53,31 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.noActions.value, false);
 });
 
-/* test(`${element} _computeClass`, t => {
-  const type = 'type';
-  const appearance = 'appearance';
-  const size = 'size';
-  t.is(_computeClass(), 'btn   ');
-  t.is(_computeClass(type), `btn ${type}  `);
-  t.is(_computeClass(null, appearance), `btn  ${appearance} `);
-  t.is(_computeClass(null, null, size), `btn   ${size}`);
-  t.is(_computeClass(null, null, null, true), `btn    block`);
-  t.is(_computeClass(type, appearance, size, true), `btn ${type} ${appearance} ${size} block`);
+test(`${element} _computeCardClass`, t => {
+  t.is(_computeCardClass(), 'card-title');
+  t.is(_computeCardClass(true), 'card-title big-icon');
 });
 
-test(`${element} _computeIconClass`, t => {
-  const str = 'test';
-  t.is(_computeIconClass(), 'icon ');
-  t.is(_computeIconClass(str), `icon ${str}`);
-}); */
+test(`${element} _computeEffectClass`, t => {
+  t.is(_computeEffectClass(), 'card ');
+  t.is(_computeEffectClass('effect'), 'card effect');
+});
+
+test(`${element} _showActions`, t => {
+  t.is(_showActions(undefined, noLink), true);
+  t.is(_showActions(true, noLink), false);
+  t.is(_showActions(undefined, link), false);
+  t.is(_showActions(true, link), false);
+});
+
+test(`${element} _showLink`, t => {
+  t.is(_showLink(undefined, noLink), false);
+  t.is(_showLink(true, noLink), false);
+  t.is(_showLink(undefined, link), true);
+  t.is(_showLink(true, link), false);
+});
+
+test(`${element} _showtitle`, t => {
+  t.is(_showTitle(), false);
+  t.is(_showTitle('text'), true);
+});

@@ -1,5 +1,7 @@
 'use strict';
 
+import './../src/_libs/test/';
+import './../src/accordion/test/';
 import './../src/alert/test/';
 import './../src/autocomplete/test/';
 import './../src/button/test/';
