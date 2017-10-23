@@ -336,33 +336,16 @@
 
     <section>
         <h2>Tabs & pills</h2>
-        <tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' vertical centered full-width restamp>
-        <div class="tab-content">
-            <div>
-            <button-clab>vai</button-clab>
-            </div>
-        </div>
-        <div class="tab-content">
-            <input-clab></input-clab>
-        </div>
-        <div class="tab-content">Tab 3 content</div>
-        <div class="tab-content">Tab 4 content</div>
-        <div class="tab-content">Tab 5 content</div>
-        <div class="tab-content">Tab 6 content</div>
+        <tabs-clab labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]'
+          vertical centered full-width on-change="_updateTab1">
         </tabs-clab>
+        <p>Active tab <b>[[tab1]]</b></p>
 
-        <tabs-clab pills labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]' centered full-width>
-        <div class="tab-content">
-            <accordion-clab title="ciccio">ciccio puzzo</accordion-clab>
-        </div>
-        <div class="tab-content">
-            <input-clab></input-clab>
-        </div>
-        <div class="tab-content">Tab 3 content</div>
-        <div class="tab-content">Tab 4 content</div>
-        <div class="tab-content">Tab 5 content</div>
-        <div class="tab-content">Tab 6 content</div>
+        <tabs-clab
+          pills labels='["All", "Tab 2", "Tab 3", "lorem ipsum", "dolor sit", "amet"]'
+          centered full-width on-change="_updateTab2">
         </tabs-clab>
+        <p>Active tab <b>[[tab2]]</b></p>
 
     </section>
 

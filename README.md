@@ -42,28 +42,24 @@ Importing a single component, ```<button-clab>``` for instance:
 import 'contactlab-ui-components/src/button';
 ```
 
-### Dependencies
-The following required libraries and polyfills are resolved by the package manager during the installation:
-
-- [Polymer v3](https://www.polymer-project.org/)
-- [Ikonograph v2](https://github.com/contactlab/ikonograph/releases/tag/v2.0.0)
-- [MomentJS](http://momentjs.com/)
-- [Rome](https://bevacqua.github.io/rome/)
-- [Fetch API](http://github.github.io/fetch/) *(polyfill)*
-- [ES6 Promises](https://github.com/stefanpenner/es6-promise) *(polyfill)*
-- [Web Animations](https://github.com/web-animations/web-animations-js) *(polyfill)*
-
 ### How to use & Documentation
 
 For detailed instruction on how to install and use the Contactlab Pattern Library components check out the [documentation website](https://ux.contactlab.com).
 
 ### Development
+To start a development server on ```localhost:3000``` plus Webpack in *watch* mode, you can use the command
 
-Running the command
+```
+$ yarn dev
+```
 
-	$ yarn run dev
+To run the **unit tests** written with [Ava.js](https://github.com/avajs/ava)
 
-you can work with Javascript files. This command automatically compiles ES6(2015) to ES5 via Babel and Webpack and starts a static web server on `localhost:3000`.
+```
+$ yarn test
+```
+
+Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) to better understand how to develop and integrate changes on this repo.
 
 ### Styling
 
@@ -73,15 +69,9 @@ To compile and watch the sass files run:
 $ yarn run sass
 ```
 
-<!--### Testing
-
-Start test suites with **web-component-tester**:
-
-	$ yarn test
-
-If you want to see tests on your browser (Chrome):
-
-	$ yarn run test:p-->
+### Notable changes from v1.4 / master branch
+* **[tabs-clab]** do not accept HTML content anymore, you can still get the current opened tab via the `active` attribute or the `change` event.
+* **[dropdown-clab]** has a [known issue](https://github.com/contactlab/contactlab-ui-components/issues/171) which prevents the curtain to show while it is in `search` mode.
 
 ### NOTE on Yarn
 > Everything can be run with NPM as well!

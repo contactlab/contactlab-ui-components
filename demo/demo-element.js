@@ -14,12 +14,26 @@ class DemoElement extends PolymerElement {
       isAlive: {
         type: Boolean,
         value: true
+      },
+      tab1: {
+        type: Number
+      },
+      tab2: {
+        type: Number
       }
     }
   }
 
   test(){
     return Math.ceil(Math.random() * 100);
+  }
+
+  _updateTab1(evt){
+    this.tab1 = evt.detail.active;
+  }
+
+  _updateTab2(evt) {
+    this.tab2 = evt.detail.active;
   }
 
   connectedCallback(){

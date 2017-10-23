@@ -30,6 +30,4 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props.current.type, String);
   t.true(props.current.notify);
-
-  t.is(props._content.type, Array);
 });

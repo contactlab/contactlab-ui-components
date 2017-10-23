@@ -1,6 +1,7 @@
 'use strict';
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { DomApi as dom } from '@polymer/polymer/lib/legacy/polymer.dom';
 import template from './view.html';
 import props from './props';
 import '@polymer/polymer/lib/elements/dom-repeat';
@@ -11,13 +12,7 @@ class TabsClab extends PolymerElement {
 
   static get template() { return template; }
 
-  static get properties() {
-    return props;
-
-    this.observers = [
-			'_changeTab(active, _content)'
-		]
-  }
+  static get properties() { return props; }
 
   /*----------
   EVENT HANDLERS
@@ -33,30 +28,6 @@ class TabsClab extends PolymerElement {
       }
     }));
   }
-
-
-  /*----------
-  OBSERVERS
-  ----------*/
-
-  _changeTab(active, content) {
-		/*if (active != undefined) {
-			if (content != undefined && content.length > 0) {
-				while (Polymer.dom(this.$.activeContentWrapper).firstChild) {
-					Polymer.dom(this.$.activeContentWrapper).removeChild(Polymer.dom(this.$.activeContentWrapper).firstChild);
-				}
-				Array.prototype.map.call(this._content, (node, i) => {
-					if (i == active) {
-						Polymer.dom(this.$.activeContentWrapper).appendChild(node);
-						Polymer.dom.flush();
-						return;
-					}
-				});
-			}
-		}*/
-	}
-
-
 
   /*----------
   COMPUTED
@@ -79,6 +50,16 @@ class TabsClab extends PolymerElement {
 		return arr.join(' ');
 	}
 
+  connectedCallback(){
+    super.connectedCallback();
+    this.dispatchEvent(new CustomEvent('change', {
+      bubbles: true,
+      composed: true,
+      detail: {
+        active: this.active
+      }
+    }));
+  }
 
 }
 

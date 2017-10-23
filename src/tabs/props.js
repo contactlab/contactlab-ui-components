@@ -29,8 +29,5 @@ export default {
   current: {
     type: String,
     notify: true
-  },
-  _content: {
-    type: Array
   }
 }
