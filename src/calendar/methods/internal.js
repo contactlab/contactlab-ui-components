@@ -1,5 +1,3 @@
-// @flow
-
 'use strict';
 
 const _computeType = (str, type) => {
@@ -11,7 +9,7 @@ const _getLocale = (options) => {
   return thisLocale;
 }
 
-const _getFormat = (options, romeInst)=> {
+const _getFormat = (options, romeInst) => {
   const thisFormat = options.inputFormat ? options.inputFormat : romeInst.options().inputFormat;
   return thisFormat;
 }
