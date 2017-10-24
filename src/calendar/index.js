@@ -130,13 +130,13 @@ class CalendarClab extends mixinBehaviors(
   PUBLIC METHODS
   ----------*/
   setValue(userValue) {
-    this.valueStr = moment(userValue)
-      .format(_getFormat(this.options, this.getRomeInstance()));
+    const format = _getFormat(this.options, this.getRomeInstance());
+    this.valueStr = moment(userValue).format(format);
   }
 
   getValue() {
-    const formatted = moment(this.valueStr,
-    _getFormat(this.options, this.getRomeInstance())).format();
+    const format = _getFormat(this.options, this.getRomeInstance());
+    const formatted = moment(this.valueStr, _getFormat(format)).format();
     return this.valueStr ? formatted : undefined;
   }
 
