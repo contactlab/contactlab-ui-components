@@ -1,19 +1,30 @@
 'use strict';
 
 import props from './props';
+import {
+  _computeActive,
+  _getLastPage,
+  _getPrevPage,
+  _getNextPage,
+  _hideIfLast,
+  _hideIfFirst,
+  _pageNumber,
+  _compVisiblePages
+} from './methods/internal';
 import './view.html';
 
 class PaginationClab {
+
+  get behaviors() {
+    return [{ _computeActive, _getLastPage, _getPrevPage, _getNextPage, _hideIfLast,
+      _hideIfFirst, _pageNumber, _compVisiblePages }];
+  }
 
   beforeRegister() {
     this.is = "pagination-clab";
     this.properties = props;
   }
 
-
-  /*----------
-  EVENT HANDLERS
-  ----------*/
   _setCurrent(evt) {
     let i;
     let type;
@@ -41,11 +52,6 @@ class PaginationClab {
     }
   }
 
-
-
-  /*----------
-  OBSERVERS
-  ----------*/
   _setPages(val) {
     if(val != undefined) {
       let arr = [];
@@ -54,40 +60,6 @@ class PaginationClab {
       }
       this.set('pages', arr);
     }
-  }
-
-
-
-  /*----------
-  COMPUTERS
-  ----------*/
-  _compVisiblePages(start, end) {
-    let arr = [];
-    this.pages.map((page, idx) => {
-      if(idx >= start && idx <= end) {
-        arr.push(page);
-      }
-    });
-    return arr;
-  }
-
-  _computeActive(cur, i) {
-    var arr = ['page'];
-    if(i == cur) arr.push('active');
-    return arr.join(' ');
-  }
-
-
-  _getLastPage(pages) {
-    return pages.length - 1;
-  }
-
-  _getPrevPage(pages, cur) {
-    return pages[cur - 1];
-  }
-
-  _getNextPage(pages, cur) {
-    return pages[cur + 1];
   }
 
   _getStart(_c, _pages) {
@@ -114,25 +86,6 @@ class PaginationClab {
     } else {
       return c + (this.range / 2);
     }
-  }
-
-
-  _hideIfLast(current, tot, str) {
-    let text = str ? str : '';
-    return(current == tot - 1) ? text += ' unactive' : text;
-  }
-  _hideIfFirst(current, str) {
-    let text = str ? str : '';
-    return(current == 0) ? text += ' unactive' : text;
-  }
-
-
-
-  /*----------
-  UTILS
-  ----------*/
-  _pageNumber(i) {
-    return i + 1;
   }
 
 }
