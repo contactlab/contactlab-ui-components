@@ -1,16 +1,10 @@
 <style>
   :host{
-    -webkit-touch-callout: none; /* iOS Safari */
-    -webkit-user-select: none;   /* Chrome/Safari/Opera */
-    -khtml-user-select: none;    /* Konqueror */
-    -moz-user-select: none;      /* Firefox */
-    -ms-user-select: none;       /* IE/Edge */
     user-select: none;
   }
   .page.invisible{
     display: none;
   }
-
 </style>
 <ul class="pagination">
   <li class$="[[_hideIfFirst(currentPage, 'first')]]" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
@@ -20,7 +14,7 @@
       <i class="clab-icon icon-arrow-left"></i>
     </li>
 
-  <template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd)]]" as="page">
+  <template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd, pages)]]" as="page">
     <li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
   </template>
 

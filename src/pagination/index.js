@@ -1,11 +1,23 @@
 'use strict';
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
+import {
+  _computeActive,
+  _getLastPage,
+  _getPrevPage,
+  _getNextPage,
+  _hideIfLast,
+  _hideIfFirst,
+  _pageNumber,
+  _compVisiblePages
+} from './methods/internal';
 import template from './view.html';
 import props from './props';
 import '@polymer/polymer/lib/elements/dom-repeat';
 
-class PaginationClab extends PolymerElement {
+class PaginationClab extends mixinBehaviors([{ _computeActive, _getLastPage, _compVisiblePages,
+    _getPrevPage, _getNextPage, _hideIfLast, _hideIfFirst, _pageNumber }], PolymerElement) {
 
   static get is() { return 'pagination-clab'; }
 
@@ -14,10 +26,6 @@ class PaginationClab extends PolymerElement {
   static get properties() { return props; }
 
 
-
-  /*----------
-  EVENT HANDLERS
-  ----------*/
   _setCurrent(evt) {
     let i;
     let type;
@@ -45,11 +53,6 @@ class PaginationClab extends PolymerElement {
     }
   }
 
-
-
-  /*----------
-  OBSERVERS
-  ----------*/
   _setPages(val) {
     if(val != undefined) {
       let arr = [];
@@ -60,39 +63,6 @@ class PaginationClab extends PolymerElement {
     }
   }
 
-
-
-  /*----------
-  COMPUTERS
-  ----------*/
-  _compVisiblePages(start, end) {
-    let arr = [];
-    this.pages.map((page, idx) => {
-      if(idx >= start && idx <= end) {
-        arr.push(page);
-      }
-    });
-    return arr;
-  }
-
-  _computeActive(cur, i) {
-    var arr = ['page'];
-    if(i == cur) arr.push('active');
-    return arr.join(' ');
-  }
-
-
-  _getLastPage(pages) {
-    return pages.length - 1;
-  }
-
-  _getPrevPage(pages, cur) {
-    return pages[cur - 1];
-  }
-
-  _getNextPage(pages, cur) {
-    return pages[cur + 1];
-  }
 
   _getStart(_c, _pages) {
     const pages = parseInt(_pages);
@@ -118,25 +88,6 @@ class PaginationClab extends PolymerElement {
     } else {
       return c + (this.range / 2);
     }
-  }
-
-
-  _hideIfLast(current, tot, str) {
-    let text = str ? str : '';
-    return(current == tot - 1) ? text += ' unactive' : text;
-  }
-  _hideIfFirst(current, str) {
-    let text = str ? str : '';
-    return(current == 0) ? text += ' unactive' : text;
-  }
-
-
-
-  /*----------
-  UTILS
-  ----------*/
-  _pageNumber(i) {
-    return i + 1;
   }
 
 }

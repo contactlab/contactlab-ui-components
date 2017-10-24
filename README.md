@@ -1,6 +1,8 @@
 # Contactlab Pattern Library UI Components
 **Polymer v3 (hybrid)**
 
+[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg?branch=next)](https://travis-ci.org/contactlab/contactlab-ui-components)
+
 This is a hybrid version of the legacy Contactlab Pattern Library UI Components that works with ```Polymer v3``` using ```global CSS``` styles and ```ShadyDOM```.
 
 This is a required step **for us** since we need to upgrade our applications to Polymer v3 & NPM workflows while keeping this UI components with stable functionalities and appearance.
