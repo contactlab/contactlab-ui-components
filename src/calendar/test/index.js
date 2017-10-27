@@ -7,7 +7,7 @@ import test from 'ava';
 import rome from 'rome';
 
 import props from './../props';
-import { clear, getLocale } from './../methods/public';
+import { getLocale } from './../methods/public';
 import { _computeType, _getLocale, _getFormat } from './../methods/internal';
 
 const element = '<calendar-clab>';
@@ -39,13 +39,13 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.noteType.type, String);
 });
 
-test(`${element} clear`, t => {
-  const instance = { setValue: () => true };
+// test(`${element} clear`, t => {
+//   const instance = { setValue: () => true };
 
-  t.deepEqual(
-    clear(instance, 123, 'valueString'),
-    { romeInstance: instance, value: '', valueStr: null });
-});
+//   t.deepEqual(
+//     clear(instance, 123, 'valueString'),
+//     { romeInstance: instance, value: '', valueStr: null });
+// });
 
 test(`${element} getLocale`, t => {
   t.is(getLocale(), 'en');

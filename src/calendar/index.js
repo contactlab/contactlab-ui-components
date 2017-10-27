@@ -4,7 +4,7 @@ import rome from 'rome';
 import moment from 'moment';
 import props from './props';
 import { dashify, viewLabel } from './../_libs/utils';
-import { clear, getLocale } from './methods/public';
+import { getLocale } from './methods/public';
 import { _computeType, _getLocale, _getFormat } from './methods/internal';
 import './view.html';
 import './../note/';
@@ -56,7 +56,7 @@ class CalendarClab {
     }
 
     if (newDate === "" && this.valueStr !== null) {
-      clear();
+      this.clear();
       this.dispatchEvent(new CustomEvent('datechange', {
         bubbles: true,
         composed: true,
@@ -146,6 +146,11 @@ class CalendarClab {
     rome(currentCalendar).destroy();
     rome(currentCalendar).restore(options || this.options);
     return currentCalendar;
+  }
+
+  clear() {
+    this.set('valueStr', null);
+    this.getRomeInstance().setValue(moment().format());
   }
 
 }
