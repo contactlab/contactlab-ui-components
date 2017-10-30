@@ -266,7 +266,7 @@ class DropdownClab {
   setByLabel(str) {
     this.options.map(opt => {
       if (opt[this.labelField] === str) {
-        this._setSelected(opt);
+        this.set('selected', opt);
         return;
       }
     });
@@ -275,7 +275,7 @@ class DropdownClab {
   setByValue(str) {
     this.options.map(opt => {
       if (opt[this.valueField] === str) {
-        this._setSelected(opt);
+        this.set('selected', opt);
         return;
       }
     });
@@ -297,11 +297,11 @@ class DropdownClab {
     this.preventChange = prevent;
 
     if (typeof obj === 'object') {
-      this._setSelected(obj);
+      this.set('selected', obj);
     } else {
       this.options.map(opt => {
         if (opt[this.valueField] === obj) {
-          this._setSelected(opt);
+          this.set('selected', opt);
           return;
         }
       });
