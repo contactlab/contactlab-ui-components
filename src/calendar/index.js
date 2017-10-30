@@ -127,7 +127,7 @@ class CalendarClab {
 
   getValue() {
     const format = _getFormat(this.options, this.getRomeInstance());
-    const formatted = moment(this.valueStr, _getFormat(format)).format();
+    const formatted = moment(this.valueStr, format).format();
     return this.valueStr ? formatted : undefined;
   }
 
