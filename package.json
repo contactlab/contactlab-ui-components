@@ -6,7 +6,6 @@
   "scripts": {
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "pretest": "webpack",
     "test": "ava ./test/index.js --verbose"
   },
   "files": [
