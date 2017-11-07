@@ -105,6 +105,10 @@ class DropdownClab {
     });
   }
 
+  _escapeString(s){
+    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+  }
+
   /*----------
   OBSERVERS
   ----------*/
@@ -129,7 +133,8 @@ class DropdownClab {
       const toSearch = !isNilOrEmptyStr(searchValue)
         ? searchValue.toLowerCase()
         : '';
-      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(toSearch) > -1);
+      const _toSearch = this._escapeString(toSearch);
+      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(_toSearch) > -1);
       return optionsVisible;
     }
     return [];
