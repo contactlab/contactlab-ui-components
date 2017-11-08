@@ -21,4 +21,20 @@ const propLowerCase = (obj, key) =>
     : '';
 
 
-export { isNil, isNilOrEmptyStr, randomId, propLowerCase }
+const escapeString = s => {
+  return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
+}
+
+const setOptionsList = (options, searchValue, labelField) => {
+  if (!isNil(options) && options.constructor === Array) {
+    const toSearch = !isNilOrEmptyStr(searchValue)
+      ? searchValue.toLowerCase()
+      : '';
+    const _toSearch = escapeString(toSearch);
+    const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(_toSearch) > -1);
+    return optionsVisible;
+  }
+  return [];
+}
+
+export { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList }

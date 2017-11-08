@@ -1,11 +1,11 @@
 {
   "name": "contactlab-ui-components",
-  "version": "2.0.5",
+  "version": "2.0.6",
   "description": "Polymer (v3) UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "files": [
-      "src",
-      "assets"
+    "src",
+    "assets"
   ],
   "config": {
     "port": {
