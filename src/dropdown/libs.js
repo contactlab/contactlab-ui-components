@@ -37,4 +37,4 @@ const setOptionsList = (options, searchValue, labelField) => {
   return [];
 }
 
-export { isNil, isNilOrEmptyStr, randomId, propLowerCase, escapeString, setOptionsList }
+export { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList }

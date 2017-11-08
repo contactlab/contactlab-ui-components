@@ -5,7 +5,7 @@ process.env.NODE_ENV = 'test';
 import test from 'ava';
 import props from './../props';
 
-import { isNil, isNilOrEmptyStr, randomId, propLowerCase, escapeString, setOptionsList } from './../libs';
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from './../libs';
 
 const element = '<dropdown-clab>';
 
@@ -118,21 +118,48 @@ test(`${element} propLowerCase`, t => {
   t.is(propLowerCase(obj, 'foo'), 'bar');
 });
 
-test(`${element} escapeString`, t => {
-  const str = '+00 | Africa/Abidjan';
-  t.is(escapeString(str), '\\+00 \\| Africa\\/Abidjan');
-});
-
 test(`${element} setOptionsList`, t => {
   const options = [
     { value: 0, label: '+00 | Africa/Abidjan' }, 
     { value: 1, label: '+01 | Europe/Rome' },
     { value: 2, label: '-04 | America/Antigua' }
   ];
-  const searchValue = 'rom';
   const labelField = 'label';
+
+  let searchValue = 'rom';
   t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
     value: 1, 
     label: '+01 | Europe/Rome' 
   }]);
+
+  searchValue = '-04 | America/';
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
+    value: 2, 
+    label: '-04 | America/Antigua' 
+  }]);
+
+  searchValue = '+00 | Africa/Abidjan';
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
+    value: 0, 
+    label: '+00 | Africa/Abidjan' 
+  }]);
+
+  searchValue = '/a';
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
+    value: 0, 
+    label: '+00 | Africa/Abidjan' 
+  },{ 
+    value: 2, 
+    label: '-04 | America/Antigua' 
+  }]);
+
+  searchValue = '+02';
+  t.deepEqual(setOptionsList(options, searchValue, labelField), []);
+
+  searchValue = '';
+  t.deepEqual(setOptionsList(options, searchValue, labelField), options);
+
+  searchValue = null;
+  t.deepEqual(setOptionsList(options, searchValue, labelField), options);
+
 });
