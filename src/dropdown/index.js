@@ -1,14 +1,17 @@
-'use strict';
+/**
+ * Dropdown-clab Component definition
+ * @module dropdown/index
+ */
 
 import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
 import props from './props';
 import { dashify, viewLabel } from './../_libs/utils';
-import { isNil, isNilOrEmptyStr, randomId, propLowerCase } from './libs';
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from './libs';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
-import "./../note";
-import "./../curtain";
-import "./../input";
+import './../note';
+import './../curtain';
+import './../input';
 
 class DropdownClab extends mixinBehaviors(
   [{ _isNilOrEmptyStr: isNilOrEmptyStr, dashify, viewLabel }], PolymerElement) {
@@ -36,7 +39,6 @@ class DropdownClab extends mixinBehaviors(
   _setSearchValue(evt) {
     this.set('searchValue', evt.target.value);
   }
-
 
   /*----------
   EVENT HANDLERS
@@ -83,7 +85,6 @@ class DropdownClab extends mixinBehaviors(
     evt.stopPropagation();
   }
 
-
   /*----------
   METHODS
   ----------*/
@@ -102,7 +103,7 @@ class DropdownClab extends mixinBehaviors(
       });
 
     }).catch(err => {
-      console.error("Fetch Error ==> ", err);
+      console.error('Fetch Error ==> ', err);
       this.type = 'error';
     });
   }
@@ -122,19 +123,11 @@ class DropdownClab extends mixinBehaviors(
     }
   }
 
-
   /*----------
   COMPUTED
   ----------*/
   _updateVisibleOptions(options, searchValue, labelField) {
-    if (!isNil(options) && options.constructor === Array) {
-      const toSearch = !isNilOrEmptyStr(searchValue)
-        ? searchValue.toLowerCase()
-        : '';
-      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(toSearch) > -1);
-      return optionsVisible;
-    }
-    return [];
+    return setOptionsList(options, searchValue, labelField);
   }
 
   _compIcon(icon) {
@@ -254,9 +247,6 @@ class DropdownClab extends mixinBehaviors(
     return searchValue;
   }
 
-
-
-
   getSelectedLabel() {
     return this.selected[this.labelField];
   }
@@ -318,10 +308,10 @@ class DropdownClab extends mixinBehaviors(
       v = undefined;
     } else if (typeof this.selected === 'string' || this.selected instanceof String) {
       v = this.selected;
-    } else if (typeof this.selected === "object") {
+    } else if (typeof this.selected === 'object') {
       v = this.selected[this.valueField];
     } else {
-      console.error(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+      console.error(this.is + ': Invalid value type [' + (typeof this.selected) + ']');
     }
     return v;
   }
@@ -338,17 +328,16 @@ class DropdownClab extends mixinBehaviors(
         }
       });
       if (v === undefined) {
-        console.warn(this.is + ": There is no option with value equal to [" + this.selected + "]");
+        console.warn(this.is + ': There is no option with value equal to [' + this.selected + ']');
       }
-    } else if (typeof this.selected === "object") {
+    } else if (typeof this.selected === 'object') {
       v = this.selected;
     } else {
-      console.warn(this.is + ": Invalid value type [" + (typeof this.selected) + "]");
+      console.warn(this.is + ': Invalid value type [' + (typeof this.selected) + ']');
     }
     return v;
   }
 
 }
-
 
 customElements.define(DropdownClab.is, DropdownClab);
