@@ -3,7 +3,7 @@
 import props from './props';
 import './view.html';
 import { dashify, viewLabel } from './../_libs/utils';
-import { isNil, isNilOrEmptyStr, randomId, propLowerCase } from './libs';
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from './libs';
 import "./../input/";
 import "./../note/";
 import "./../curtain/";
@@ -105,10 +105,6 @@ class DropdownClab {
     });
   }
 
-  _escapeString(s){
-    return s.replace(/[-\/\\^$*+?.()|[\]{}]/g, '\\$&');
-  }
-
   /*----------
   OBSERVERS
   ----------*/
@@ -129,15 +125,7 @@ class DropdownClab {
   COMPUTED
   ----------*/
   _updateVisibleOptions(options, searchValue, labelField) {
-    if(!isNil(options) && options.constructor === Array) {
-      const toSearch = !isNilOrEmptyStr(searchValue)
-        ? searchValue.toLowerCase()
-        : '';
-      const _toSearch = this._escapeString(toSearch);
-      const optionsVisible = options.filter(o => propLowerCase(o, labelField).search(_toSearch) > -1);
-      return optionsVisible;
-    }
-    return [];
+    return setOptionsList(options, searchValue, labelField);
   }
 
   _compIcon(icon) {
