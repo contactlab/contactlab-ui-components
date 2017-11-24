@@ -22,7 +22,8 @@
   "scripts": {
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "sass": "node-sass --output-style compressed ./assets/scss/contactlab-pattern.scss > ./assets/css/contactlab-pattern.min.css",
+    "sass": "node-sass ./assets/scss/contactlab-pattern.scss > ./assets/css/contactlab-pattern.css",
+    "postsass": "node-sass --output-style compressed ./assets/scss/contactlab-pattern.scss > ./assets/css/contactlab-pattern.min.css",
     "build": "webpack",
     "build:test": "webpack --config webpack.config-test.js",
     "pretest": "webpack",
