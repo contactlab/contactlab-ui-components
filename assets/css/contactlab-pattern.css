@@ -2714,7 +2714,8 @@ td, .table .th,
 .rd-container .rd-next {
   background-color: transparent;
   border: 0;
-  position: absolute;
+  cursor: pointer;
+  margin-top: 10px;
   top: 10px;
   width: 20px;
   height: 20px; }
@@ -3044,7 +3045,7 @@ tabs-clab {
   z-index: 3;
   background-color: #FFFFFF;
   margin-bottom: 0;
-  overflow: auto;}
+  overflow: auto; }
   .autocomplete-clab .options-list.active,
   .dropdown-clab .options-list.active {
     display: block; }

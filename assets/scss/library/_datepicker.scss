@@ -28,7 +28,8 @@
   .rd-next {
     background-color: transparent;
     border: 0;
-    position: absolute;
+    cursor: pointer;
+    margin-top: 10px;
     top: $small-spacing;
     width: 20px;
     height: 20px;
