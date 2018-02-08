@@ -1423,8 +1423,6 @@ label, .key-value li span:first-of-type {
   padding-right: 10px;
   padding-bottom: 5px;
   display: block; }
-  label.disabled, .key-value li span.disabled:first-of-type {
-    color: #C0C0C0; }
 
 input[type="color"],
 input[type="date"],
@@ -1483,6 +1481,23 @@ textarea {
   textarea:disabled {
     cursor: not-allowed;
     color: #C0C0C0; }
+  input[type="color"]:readonly,
+  input[type="date"]:readonly,
+  input[type="datetime"]:readonly,
+  input[type="datetime-local"]:readonly,
+  input[type="email"]:readonly,
+  input[type="month"]:readonly,
+  input[type="number"]:readonly,
+  input[type="password"]:readonly,
+  input[type="search"]:readonly,
+  input[type="tel"]:readonly,
+  input[type="text"]:readonly,
+  .dropdown-clab .value_wrapper:readonly,
+  input[type="time"]:readonly,
+  input[type="url"]:readonly,
+  input[type="week"]:readonly,
+  textarea:readonly {
+    cursor: not-allowed; }
 
 .input-wrapper .input-note.primary, .input-wrapper .buttons-group.primary .input-note.btn, .buttons-group.primary .input-wrapper .input-note.btn {
   color: #0072bc; }
@@ -2714,7 +2729,6 @@ td, .table .th,
 .rd-container .rd-next {
   background-color: transparent;
   border: 0;
-  /* position: absolute; */
   cursor: pointer;
   margin-top: 10px;
   top: 10px;
