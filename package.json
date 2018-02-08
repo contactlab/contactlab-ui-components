@@ -3,6 +3,10 @@
   "version": "1.4.14",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
+  "engines": {
+    "node": ">= 8.0",
+    "yarn": ">= 1.1"
+  },
   "scripts": {
     "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
