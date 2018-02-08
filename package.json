@@ -4,6 +4,7 @@
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "scripts": {
+    "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "test": "ava ./test/index.js --verbose"
