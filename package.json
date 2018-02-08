@@ -1,9 +1,14 @@
 {
   "name": "contactlab-ui-components",
-  "version": "1.4.14",
+  "version": "1.4.15",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
+  "engines": {
+    "node": ">= 8.0",
+    "yarn": ">= 1.1"
+  },
   "scripts": {
+    "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
     "test": "ava ./test/index.js --verbose"

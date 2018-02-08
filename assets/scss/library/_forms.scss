@@ -238,10 +238,6 @@ label {
 	padding-right: $small-spacing;
 	padding-bottom: $smaller-spacing;
 	display: block;
-
-	&.disabled {
-		color: $disabled-color;
-	}
 }
 
 input[type="color"],
@@ -274,7 +270,11 @@ textarea {
 	&:disabled {
 		cursor: not-allowed;
 		color: $disabled-color;
-	}
+  }
+
+  &:readonly {
+    cursor: not-allowed;
+  }
 }
 
 .input-wrapper .input-note {
