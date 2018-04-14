@@ -3,7 +3,7 @@
  * @module dropdown/index
  */
 
-import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
 import props from './props';
 import { dashify, viewLabel } from './../_libs/utils';

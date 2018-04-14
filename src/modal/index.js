@@ -1,7 +1,7 @@
 'use strict';
 
 import { onAnimationComplete } from './../_libs/animations';
-import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
 import props from './props';
 import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';

@@ -2,7 +2,7 @@
 
 import rome from 'rome';
 import moment from 'moment';
-import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { PolymerElement } from '@polymer/polymer/polymer-element';
 import { LegacyElementMixin } from '@polymer/polymer/lib/legacy/legacy-element-mixin';
 import { mixinBehaviors } from '@polymer/polymer/lib/legacy/class';
 import { dashify, viewLabel } from './../_libs/utils';

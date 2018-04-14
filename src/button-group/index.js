@@ -1,6 +1,6 @@
 'use strict';
 
-import { Element as PolymerElement } from '@polymer/polymer/polymer-element';
+import { PolymerElement } from '@polymer/polymer/polymer-element';
 import template from './view.html';
 import props from './props';
 import '@polymer/polymer/lib/elements/dom-repeat';
