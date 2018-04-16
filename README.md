@@ -1,3 +1,13 @@
+# :warning: DEPRECATED
+
+This package is deprecated in favor of [our new design system](https://github.com/contactlab/design-system).
+
+**Thus:**
+- no new developments will be made;
+- all issue will be closed with the tag `won't fix`;
+- no new pull-requests will be accepted (except for bug fixes - *see below*);
+- only blocking bugs will be fixed, if necessary.
+
 # Contactlab Pattern Library UI Components
 **Polymer v3 (hybrid)**
 
