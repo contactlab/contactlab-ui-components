@@ -6,3 +6,4 @@ node_modules/
 workspace
 demo/components.js
 demo/components.js.map
+*.log*
