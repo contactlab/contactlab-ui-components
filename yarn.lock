@@ -44,9 +44,9 @@
   dependencies:
     arrify "^1.0.1"
 
-"@polymer/polymer@next":
-  version "3.0.0-pre.1"
-  resolved "https://registry.yarnpkg.com/@polymer/polymer/-/polymer-3.0.0-pre.1.tgz#9fc26b5259aad9265f324ced02de715991d2eabe"
+"@polymer/polymer@3.0.0-pre.12":
+  version "3.0.0-pre.12"
+  resolved "https://registry.yarnpkg.com/@polymer/polymer/-/polymer-3.0.0-pre.12.tgz#3f5dd19099a194bf1066cf417ae13c335bd63b04"
   dependencies:
     "@webcomponents/shadycss" "^1.0.0"
     "@webcomponents/webcomponentsjs" "^1.0.0"
@@ -56,16 +56,12 @@
   resolved "https://registry.yarnpkg.com/@types/node/-/node-8.5.7.tgz#9c498c35af354dcfbca3790fb2e81129e93cf0e2"
 
 "@webcomponents/shadycss@^1.0.0":
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.1.0.tgz#3a31b062d6f0837b2a34bec1edea8b6fb046b2eb"
+  version "1.1.3"
+  resolved "https://registry.yarnpkg.com/@webcomponents/shadycss/-/shadycss-1.1.3.tgz#6d4c7d2d842de9dba1b3ac5cc051938b8439c043"
 
-"@webcomponents/webcomponentsjs@1.0.8":
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.0.8.tgz#de43375ebb491a2348abfc3ae8bc0fb1be6f0eeb"
-
-"@webcomponents/webcomponentsjs@^1.0.0":
-  version "1.0.22"
-  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.0.22.tgz#a9fed9f346d81dab738b0c3e04614ee6303a24b6"
+"@webcomponents/webcomponentsjs@1.2.0", "@webcomponents/webcomponentsjs@^1.0.0":
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/@webcomponents/webcomponentsjs/-/webcomponentsjs-1.2.0.tgz#c9e129340c3e4637f5fa6505e968e85face7bd5b"
 
 abab@^1.0.3:
   version "1.0.4"

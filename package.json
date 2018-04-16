@@ -54,8 +54,8 @@
     "webpack-notifier": "1.5.0"
   },
   "dependencies": {
-    "@polymer/polymer": "next",
-    "@webcomponents/webcomponentsjs": "1.0.8",
+    "@polymer/polymer": "3.0.0-pre.12",
+    "@webcomponents/webcomponentsjs": "1.2.0",
     "ikonograph": "2.0.0",
     "moment": "2.18.1",
     "rome": "2.1.22",
