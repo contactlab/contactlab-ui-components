@@ -1,6 +1,6 @@
 {
   "name": "contactlab-ui-components",
-  "version": "1.4.16",
+  "version": "1.4.17",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "main": "index.js",
   "engines": {
