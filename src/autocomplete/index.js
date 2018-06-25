@@ -1,11 +1,12 @@
 'use strict';
 
 import props from './props';
+import filterOptions from './libs/filterOptions';
 import './view.html';
-import { getIndex } from './../_libs/utils';
-import './../input/';
-import './../spinner/';
-import './../curtain/';
+import { getIndex } from '../_libs/utils';
+import '../input/';
+import '../spinner/';
+import '../curtain/';
 
 class AutoCompleteClab {
 
@@ -124,25 +125,17 @@ class AutoCompleteClab {
   }
 
   _showHints(filter) {
-    let searchVal = this._inputString.toLowerCase();
-    if(!filter) {
-      this.set('results', this.options);
-    } else {
-      let results = [];
-      this.options.map((opt, i) => {
-        if(opt[this.labelField].toLowerCase().search(searchVal) > -1) results.push(this.options[i]);
-      });
-      this.set('results', results);
-    }
+    this.set('results', filterOptions(filter, this._inputString, this.labelField, this.options));
+    this._handleListVisual();
+  }
 
-    // handle list visual
+  _handleListVisual() {
     if(this.results.length > 0) {
       this._currentHint = this.results[0];
       this.querySelector('curtain-clab').open = true;
     } else {
       this.querySelector('curtain-clab').open = false;
       this._currentHint = undefined;
-      console.info('No hint was found');
     }
   }
 

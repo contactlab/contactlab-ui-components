@@ -11,7 +11,7 @@
     "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "test": "ava ./test/index.js --verbose"
+    "test": "ava src/**/test/**.js --verbose"
   },
   "files": [
     "src",
@@ -45,6 +45,7 @@
     "webpack-notifier": "1.5.0"
   },
   "dependencies": {
+    "escape-string-regexp": "1.0.5",
     "ikonograph": "2.0.0",
     "moment": "2.20.1",
     "rome": "2.1.22",
