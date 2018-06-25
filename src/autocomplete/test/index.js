@@ -1,11 +1,9 @@
 'use strict';
-
 process.env.NODE_ENV = 'test';
 
 import test from 'ava';
 
 import props from './../props';
-// import { _computeClass, _computeBgColor } from './../methods/internal';
 
 const element = '<autocomplete-clab>';
 
