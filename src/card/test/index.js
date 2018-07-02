@@ -1,16 +1,12 @@
-'use strict';
-
-process.env.NODE_ENV = 'test';
-
 import test from 'ava';
-import props from './../props';
+import props from '../props';
 import {
   _computeCardClass,
   _computeEffectClass,
   _showActions,
   _showLink,
   _showTitle
-} from './../methods/internal';
+} from '../methods/internal';
 
 const element = '<card-clab>';
 

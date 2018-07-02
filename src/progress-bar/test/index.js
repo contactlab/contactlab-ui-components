@@ -1,10 +1,6 @@
-'use strict';
-
-process.env.NODE_ENV = 'test';
-
 import test from 'ava';
-import props from './../props';
-import { _computeClass, _percent, _computeProp } from './../methods/internal';
+import props from '../props';
+import { _computeClass, _percent, _computeProp } from '../methods/internal';
 
 const element = '<progress-clab>';
 

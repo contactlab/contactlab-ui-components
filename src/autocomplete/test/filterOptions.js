@@ -1,12 +1,10 @@
-'use strict';
-process.env.NODE_ENV = 'test';
 import test from 'ava';
-import filterOptions from './../libs/filterOptions';
+import filterOptions from '../libs/filterOptions';
 
 const options = [
-  {label: 'ciccio', value: 1},
-  {label: '[puzzo', value: 2},
-  {label: 'figa+', value: 9999}
+  { label: 'ciccio', value: 1 },
+  { label: '[puzzo', value: 2 },
+  { label: 'figa+', value: 9999 }
 ];
 
 test('filterOptions - true', t => {

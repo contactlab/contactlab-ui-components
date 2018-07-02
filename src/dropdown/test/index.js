@@ -1,11 +1,7 @@
-'use strict';
-
-process.env.NODE_ENV = 'test';
-
 import test from 'ava';
-import props from './../props';
+import props from '../props';
 
-import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from './../libs';
+import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from '../libs';
 
 const element = '<dropdown-clab>';
 
@@ -40,9 +36,9 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props.options.type, Array);
   t.deepEqual(props.options.value, [{
-      label: '-',
-      value: null
-    }]);
+    label: '-',
+    value: null
+  }]);
   t.is(props.options.value.length, 1);
 
   t.is(props._optionsVisible.type, Array);
@@ -93,9 +89,9 @@ test(`${element} properties: types & default values`, t => {
 
 
 test(`${element} isNil`, t => {
-  t.is( isNil(null), true);
-  t.is( isNil(undefined), true);
-  t.is( isNil('value'), false);
+  t.is(isNil(null), true);
+  t.is(isNil(undefined), true);
+  t.is(isNil('value'), false);
 });
 
 test(`${element} isNilOrEmptyStr`, t => {
@@ -120,37 +116,37 @@ test(`${element} propLowerCase`, t => {
 
 test(`${element} setOptionsList`, t => {
   const options = [
-    { value: 0, label: '+00 | Africa/Abidjan' }, 
+    { value: 0, label: '+00 | Africa/Abidjan' },
     { value: 1, label: '+01 | Europe/Rome' },
     { value: 2, label: '-04 | America/Antigua' }
   ];
   const labelField = 'label';
 
   let searchValue = 'rom';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
-    value: 1, 
-    label: '+01 | Europe/Rome' 
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
+    value: 1,
+    label: '+01 | Europe/Rome'
   }]);
 
   searchValue = '-04 | America/';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
-    value: 2, 
-    label: '-04 | America/Antigua' 
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
+    value: 2,
+    label: '-04 | America/Antigua'
   }]);
 
   searchValue = '+00 | Africa/Abidjan';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
-    value: 0, 
-    label: '+00 | Africa/Abidjan' 
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
+    value: 0,
+    label: '+00 | Africa/Abidjan'
   }]);
 
   searchValue = '/a';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{ 
-    value: 0, 
-    label: '+00 | Africa/Abidjan' 
-  },{ 
-    value: 2, 
-    label: '-04 | America/Antigua' 
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
+    value: 0,
+    label: '+00 | Africa/Abidjan'
+  }, {
+    value: 2,
+    label: '-04 | America/Antigua'
   }]);
 
   searchValue = '+02';

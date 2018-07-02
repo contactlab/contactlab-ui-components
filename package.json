@@ -11,7 +11,7 @@
     "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
     "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
-    "test": "ava src/**/test/**.js --verbose"
+    "test": "ava src/**/test/**.js"
   },
   "files": [
     "src",

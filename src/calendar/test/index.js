@@ -1,14 +1,7 @@
-'use strict';
-
-process.env.NODE_ENV = 'test';
-
-import { window } from './../../../test/helpers/dom';
 import test from 'ava';
-import rome from 'rome';
-
-import props from './../props';
-import { getLocale } from './../methods/public';
-import { _computeType, _getLocale, _getFormat } from './../methods/internal';
+import props from '../props';
+import { getLocale } from '../methods/public';
+import { _computeType, _getLocale, _getFormat } from '../methods/internal';
 
 const element = '<calendar-clab>';
 
@@ -38,14 +31,6 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props.noteType.type, String);
 });
-
-// test(`${element} clear`, t => {
-//   const instance = { setValue: () => true };
-
-//   t.deepEqual(
-//     clear(instance, 123, 'valueString'),
-//     { romeInstance: instance, value: '', valueStr: null });
-// });
 
 test(`${element} getLocale`, t => {
   t.is(getLocale(), 'en');
