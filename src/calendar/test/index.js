@@ -1,7 +1,10 @@
+import { window } from './../../../test/helpers/dom';
+
 import test from 'ava';
 import props from '../props';
 import { getLocale } from '../methods/public';
 import { _computeType, _getLocale, _getFormat } from '../methods/internal';
+import rome from 'rome';
 
 const element = '<calendar-clab>';
 
