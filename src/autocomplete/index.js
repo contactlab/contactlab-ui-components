@@ -28,17 +28,17 @@ class AutoCompleteClab {
   ----------*/
   _handleKeyboardInputs(evt) {
     // If Enter
-    if(evt.keyCode === 13 && this._currentHint !== undefined) {
+    if(evt.keyCode === 13 && typeof this._currentHint !== 'undefined') {
       return this.setSelected(this._currentHint);
     }
 
     //If Arrows
-    if(this.results.length > 0 && evt.keyCode === 38 && this._currentHint !== undefined) {
+    if(this.results.length > 0 && evt.keyCode === 38 && typeof this._currentHint !== 'undefined') {
       evt.preventDefault();
       this._handleArrows('up');
       return;
     }
-    if(this.results.length > 0 && evt.keyCode === 40 && this._currentHint !== undefined) {
+    if(this.results.length > 0 && evt.keyCode === 40 && typeof this._currentHint !== 'undefined') {
       evt.preventDefault();
       this._handleArrows('down');
       return;
@@ -55,7 +55,7 @@ class AutoCompleteClab {
         this._interval = undefined;
       }
 
-      if(this.url !== undefined) {
+      if(typeof this.url !== 'undefined') {
         this._interval = window.setTimeout(() => {
           this._fetchOptions();
         }, 400);
@@ -174,14 +174,14 @@ class AutoCompleteClab {
     switch(type) {
       case 'up':
         item = this.results[HIdx - 1];
-        if(typeof item === 'object') {
+        if(item !== null && typeof item === 'object' && item.constructor === Object) {
           this._currentHint = item;
           this.querySelector('curtain-clab').scrollToHighlight(HIdx - 1, true);
         }
         break;
       case 'down':
         item = this.results[HIdx + 1];
-        if(typeof item === 'object') {
+        if(item !== null && typeof item === 'object' && item.constructor === Object) {
           this._currentHint = item;
           this.querySelector('curtain-clab').scrollToHighlight(HIdx + 1, false);
         }
@@ -204,7 +204,7 @@ class AutoCompleteClab {
   }
 
   _changedSelected(val, old) {
-    if(val !== undefined && Object.keys(val).length > 0) {
+    if(typeof val !== 'undefined' && Object.keys(val).length > 0) {
       this._inputString = this.selected[this.labelField];
       this._currentHint = undefined;
 

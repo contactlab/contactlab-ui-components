@@ -61,9 +61,9 @@ class CurtainClab {
   METHODS
   ----------*/
   _setLiHeight(options, maxInView, disabled) {
-    if(options != undefined && maxInView != undefined && !disabled) {
+    if(typeof options !== 'undefined' && typeof maxInView !== 'undefined' && !disabled) {
       this.async(() => {
-        if(this.maxHeight == undefined || this.maxHeight == '') {
+        if(typeof this.maxHeight === 'undefined' || this.maxHeight == '') {
           this.set('_hidden', true);
           this.maxHeight = 28;
           this.set('_listMaxHeight', (this.maxHeight * maxInView) + 'px');
@@ -97,8 +97,8 @@ class CurtainClab {
   _compStyles(hidden, maxHeight, height, open) {
     let arr = [];
     if(hidden) arr.push('display:block; opacity:0');
-    if(maxHeight !== undefined) arr.push('max-height:' + maxHeight);
-    if(height !== undefined) arr.push('height:' + height);
+    if(typeof maxHeight !== 'undefined') arr.push('max-height:' + maxHeight);
+    if(typeof height !== 'undefined') arr.push('height:' + height);
     if(open) arr.push('display:block');
     this.set('_computedStyles', arr.join(';'));
   }
