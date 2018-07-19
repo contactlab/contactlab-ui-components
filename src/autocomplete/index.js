@@ -4,6 +4,7 @@ import props from './props';
 import filterOptions from './libs/filterOptions';
 import './view.html';
 import { getIndex } from '../_libs/utils';
+import { randomId, isNilOrEmptyStr } from '../dropdown/libs';
 import '../input/';
 import '../spinner/';
 import '../curtain/';
@@ -11,8 +12,14 @@ import '../curtain/';
 class AutoCompleteClab {
 
   beforeRegister() {
-    this.is = "autocomplete-clab";
+    this.is = 'autocomplete-clab';
     this.properties = props;
+  }
+
+  attached() {
+    if(isNilOrEmptyStr(this.id)) {
+      this.set('id', randomId());
+    }
   }
 
 
@@ -21,21 +28,17 @@ class AutoCompleteClab {
   ----------*/
   _handleKeyboardInputs(evt) {
     // If Enter
-    if(evt.keyCode == 13 && this._currentHint != undefined) {
-      // this.setSelected(this._currentHint);
-      this.set('selected', this._currentHint);
-      this.querySelector('input-clab input').blur();
-      this.results = [];
-      return;
+    if(evt.keyCode === 13 && typeof this._currentHint !== 'undefined') {
+      return this.setSelected(this._currentHint);
     }
 
     //If Arrows
-    if(this.results.length > 0 && evt.keyCode == 38 && this._currentHint != undefined) {
+    if(this.results.length > 0 && evt.keyCode === 38 && typeof this._currentHint !== 'undefined') {
       evt.preventDefault();
       this._handleArrows('up');
       return;
     }
-    if(this.results.length > 0 && evt.keyCode == 40 && this._currentHint != undefined) {
+    if(this.results.length > 0 && evt.keyCode === 40 && typeof this._currentHint !== 'undefined') {
       evt.preventDefault();
       this._handleArrows('down');
       return;
@@ -47,12 +50,12 @@ class AutoCompleteClab {
         bubbles: true,
         composed: true
       }));
-      if(typeof this._interval == 'number') {
+      if(typeof this._interval === 'number') {
         window.clearTimeout(this._interval);
         this._interval = undefined;
       }
 
-      if(this.url != undefined) {
+      if(typeof this.url !== 'undefined') {
         this._interval = window.setTimeout(() => {
           this._fetchOptions();
         }, 400);
@@ -71,21 +74,46 @@ class AutoCompleteClab {
   }
 
   handleSelect(evt) {
-    // this.setSelected(this.results[evt.detail.index]);
-    this.set('selected', this.results[evt.detail.index]);
+    this.setSelected(this.results[evt.detail.index]);
   }
 
-  _handleBlur(evt) {
-    if(this.dontHide) {
-      evt.preventDefault();
-      return;
-    }
+  _compToggleList(disabled, id) {
+    return evt => {
 
-    this.querySelector('curtain-clab').open = false;
-    if(this.selected == undefined || this.selected[this.labelField] != this._inputString) {
-      this._inputString = '';
-      this._currentHint = undefined;
-    }
+      if (!disabled) {
+        const isInput = e => e.target.localName === 'input' && e.path[3] && e.path[3].id === id;
+
+        if(isInput(evt) && !this.open) {
+          this.set('open', true);
+        }
+
+        const windowClick = evt => {
+          const isOl = e => e.target.localName === 'ol' && e.target.classList.contains('curtain-clab');
+          const isLi = e => e.target.localName === 'li' && e.target.classList.contains('curtain-clab');
+
+          if(isLi(evt)) {
+            return window.removeEventListener('mousedown', windowClick);
+          }
+
+          if(isOl(evt) || isInput(evt)) {
+            return;
+          }
+
+          this.set('open', false);
+          this.set('_currentHint', undefined);
+          this.set('_inputString', '');
+          this.results = [];
+          return window.removeEventListener('mousedown', windowClick);
+        };
+
+        if(!this.open) {
+          this.set('_currentHint', undefined);
+          this.set('_inputString', '');
+          this.results = [];
+        }
+        return window.addEventListener('mousedown', windowClick);
+      }
+    };
   }
 
 
@@ -102,15 +130,16 @@ class AutoCompleteClab {
       method: 'GET'
     }).then(res => {
       if(res.status !== 200) {
-        console.log('Looks like there was a problem. Status Code: ' + res.status);
         this.type = 'error';
         this._resetSpinnerTimeout();
         return;
       }
 
-      res.json().then((data) => {
+      res.json().then(data => {
         this.set('options', data);
-        if(this.type === 'error') this.type = '';
+        if(this.type === 'error') {
+          this.type = '';
+        }
         this.async(() => {
           this._showHints(this.filter);
           this._resetSpinnerTimeout();
@@ -118,7 +147,7 @@ class AutoCompleteClab {
       });
 
     }).catch(err => {
-      console.error("Fetch Error ==> ", err);
+      console.error('Fetch Error ==> ', err);
       this.type = 'error';
       this._resetSpinnerTimeout();
     });
@@ -140,22 +169,24 @@ class AutoCompleteClab {
   }
 
   _handleArrows(type) {
-    let HIdx = getIndex(this._currentHint, this.results);
+    const HIdx = getIndex(this._currentHint, this.results);
     let item;
     switch(type) {
       case 'up':
         item = this.results[HIdx - 1];
-        if(typeof item == 'object') {
+        if(item !== null && typeof item === 'object' && item.constructor === Object) {
           this._currentHint = item;
           this.querySelector('curtain-clab').scrollToHighlight(HIdx - 1, true);
         }
         break;
       case 'down':
         item = this.results[HIdx + 1];
-        if(typeof item == 'object') {
+        if(item !== null && typeof item === 'object' && item.constructor === Object) {
           this._currentHint = item;
           this.querySelector('curtain-clab').scrollToHighlight(HIdx + 1, false);
         }
+        break;
+      default:
         break;
     }
   }
@@ -167,13 +198,13 @@ class AutoCompleteClab {
   OBSERVERS
   ----------*/
   _setOptions(promise) {
-    promise().then((resp) => {
+    promise().then(resp => {
       this.set('options', resp);
     });
   }
 
   _changedSelected(val, old) {
-    if(val != undefined && Object.keys(val).length > 0) {
+    if(typeof val !== 'undefined' && Object.keys(val).length > 0) {
       this._inputString = this.selected[this.labelField];
       this._currentHint = undefined;
 
@@ -207,18 +238,22 @@ class AutoCompleteClab {
   ----------*/
   _startSpinnerTimeout() {
     this._interval = window.setTimeout(() => {
-      if(!this._spinner) this._spinner = true;
+      if(!this._spinner) {
+        this._spinner = true;
+      }
     }, 400);
   }
 
   _resetSpinnerTimeout() {
     window.clearTimeout(this._interval);
     this._interval = undefined;
-    if(this._spinner) this._spinner = false;
+    if(this._spinner) {
+      this._spinner = false;
+    }
   }
 
   _setLabelSize(newSize) {
-    this.set("labelSize", newSize)
+    this.set('labelSize', newSize);
   }
 
 
@@ -226,7 +261,11 @@ class AutoCompleteClab {
   PUBLIC
   ----------*/
   setSelected(obj) {
+    this.set('open', false);
     this.set('selected', obj);
+    this.set('_inputString', '');
+    this.set('_currentHint', undefined);
+    this.results = [];
   }
 
 }
