@@ -1,6 +1,9 @@
 'use strict';
 
 export default {
+  id: {
+    type: String
+  },
   label: {
     type: String,
     value: null
@@ -82,6 +85,10 @@ export default {
   icon: {
     type: String
   },
+  open: {
+    type: Boolean,
+    value: false
+  },
 
   /*----------
     PRIVATE
@@ -99,5 +106,9 @@ export default {
   },
   _interval: {
     type: Object
+  },
+  _toggleList: {
+    type: Function,
+    computed: '_compToggleList(disabled, id)'
   }
-}
+};

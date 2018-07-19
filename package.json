@@ -10,7 +10,7 @@
   "scripts": {
     "sass": "node ./scripts/sass",
     "start": "http-server -s -p 3000",
-    "dev": "concurrently -k \"http-server -s -p 3000\" \"webpack -w \" ",
+    "dev": "concurrently -k \"http-server -s -p 3001\" \"webpack -w \" ",
     "test": "ava src/**/test/**.js"
   },
   "files": [
