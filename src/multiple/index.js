@@ -61,12 +61,6 @@ class MultipleClab {
 
     // Global vars
     this.lastSelected = undefined;
-    this.shift = false;
-    this.ctrl = false;
-
-    // Listen for key events
-    document.querySelector('body').addEventListener('keydown', this._handleKeys.bind(this));
-    document.querySelector('body').addEventListener('keyup', this._handleKeys.bind(this));
   }
 
 
@@ -78,50 +72,27 @@ class MultipleClab {
 
     let i = parseInt(evt.target.getAttribute('data-index'));
 
-    if(!this.shift && !this.ctrl) {
-      // starting the select
-      this.set('selected', []);
-      Array.prototype.map.call(this.querySelectorAll('.options-list li'), (el, i) => {
-        // el.classList.remove('selected');
-        this.set('options.' + i + '.selected', false);
-      });
-      this._selectThis(evt.target);
+    if(evt.ctrlKey || (evt.metaKey && navigator.platform === 'MacIntel')) {
 
-    } else if(this.ctrl) {
-      //adding or removing single select
-      // if(evt.target.classList.contains('selected'))
       if(this.options[i].selected) {
-        this._removeThis(evt.target);
+        return this._removeThis(evt.target);
       } else {
-        this._selectThis(evt.target);
+        return this._selectThis(evt.target);
       }
-      console.log('##', this.selected);
-    } else if(this.shift) {
-      //adding multiple select
-      if(this.lastSelected != undefined) this._selectThese(evt.target.getAttribute('data-index'));
+      
+    } else if(evt.shiftKey && typeof this.lastSelected !== undefined) {
+
+      return this._selectThese(evt.target.getAttribute('data-index'));
 
     }
-  }
 
-  _handleKeys(evt) {
-    if(this.disabled) return;
-
-    switch(evt.type) {
-      case 'keydown':
-        switch(evt.keyCode) {
-          case 16:
-            this.shift = true;
-            break;
-          case 17:
-            this.ctrl = true;
-            break;
-        }
-        break;
-      case 'keyup':
-        this.shift = false;
-        this.ctrl = false;
-        break;
-    }
+    this.set('options', 
+      this.options.map(op => Object.assign({}, op, {
+        selected: false
+      }))
+    );
+    this.set('selected', []);
+    this._selectThis(evt.target);
   }
 
   _loadContent(evt) {
@@ -131,7 +102,7 @@ class MultipleClab {
     if(evt.target.scrollTop == maxScrollable) {
       evt.preventDefault();
 
-      if(this.url != undefined) {
+      if(typeof this.url !== undefined) {
         //load more content
         let timeoutID = window.setTimeout(() => {
           this.spinner = true;
@@ -142,7 +113,7 @@ class MultipleClab {
         }).then(res => {
           if(res.status !== 200) {
             console.log('Looks like there was a problem. Status Code: ' + res.status);
-            if(typeof timeoutID == 'number') {
+            if(typeof timeoutID === 'number') {
               window.clearTimeout(timeoutID);
               timeoutID = undefined;
               this.spinner = false;
@@ -170,7 +141,6 @@ class MultipleClab {
   ----------*/
   _selectThis(elem) {
     let i = elem.getAttribute('data-index');
-    // elem.classList.add('selected');
     this.push('selected', this.options[i]);
     this.set('options.' + i + '.selected', true);
     this.dispatchEvent(new CustomEvent('change', {
@@ -232,7 +202,6 @@ class MultipleClab {
       idx.map(i => {
         Array.prototype.map.call(this.querySelectorAll('.options-list li'), el => {
           if(el.getAttribute('data-index') == i) {
-            // el.classList.add('selected');
             this.set('options.' + i + '.selected', true);
           }
         });
@@ -275,7 +244,6 @@ class MultipleClab {
   UTILITIES
   ----------*/
   _setWrapperHeights() {
-    // if(this.liHeight==undefined) this.liHeight=this.querySelectorAll('.options-list li')[0].clientHeight;
     if(this.liHeight == undefined) this.liHeight = 35;
     this.querySelector('.options-list').style.maxHeight = (this.liHeight * this.maxInView) + 'px';
   }
