@@ -3,6 +3,8 @@ import test from 'ava';
 import { dashify, viewLabel, getIndex } from '../utils';
 
 test(`UTILS dashify`, t => {
+  t.is(dashify(null), null);
+  t.is(dashify(undefined), undefined);
   t.is(dashify('string with spaces'), 'string-with-spaces');
 });
 

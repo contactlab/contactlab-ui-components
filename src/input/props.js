@@ -1,4 +1,4 @@
-'use strict';
+"use strict";
 
 export default {
   label: {
@@ -13,7 +13,7 @@ export default {
   },
   name: {
     type: String,
-    value: 'textinput',
+    value: null,
     reflectToAttribute: true
   },
   inputType: {

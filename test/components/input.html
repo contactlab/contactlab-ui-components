@@ -1,193 +1,196 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-	<meta charset="UTF-8">
-	
+  <meta charset="UTF-8">
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../input/view.html">
+  <script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
+  <script src="./../../../web-component-tester/browser.js"></script>
+
+  <link rel="import" href="./../../input/view.html">
 
 </head>
+
 <body>
-	
-<test-fixture id="input">
-	<template>
-	  <input-clab>This is my note</input-clab>
-	</template>
-</test-fixture>
+
+  <test-fixture id="input">
+    <template>
+      <input-clab>This is my note</input-clab>
+    </template>
+  </test-fixture>
 
 
-<script>
+  <script>
 
-describe('<input-clab>', function() {
-  var input;
+    describe('<input-clab>', function () {
+      var input;
 
-	beforeEach(function() {
-		input = fixture('input');
-	});
+      beforeEach(function () {
+        input = fixture('input');
+      });
 
-	context('Test Properties', function() {
+      context('Test Properties', function () {
 
-		it('Default Properties', function(done) {
-			expect(input.name).to.equal('textinput');
-			expect(input.label).to.be.undefined;
-			expect(input.type).to.equal('');
-			expect(input.password).to.equal(false);
-			expect(input.check).to.equal(false);
-			expect(input.value).to.be.undefined;
-			expect(input.disabled).to.equal(false);
-			expect(input.placeholder).to.be.undefined;
-			expect(input.noteType).to.equal('');
-			expect(input.btnConfig).to.be.an('object');
+        it('Default Properties', function (done) {
+          expect(input.name).to.equal('textinput');
+          expect(input.label).to.be.undefined;
+          expect(input.type).to.equal('');
+          expect(input.password).to.equal(false);
+          expect(input.check).to.equal(false);
+          expect(input.value).to.be.undefined;
+          expect(input.disabled).to.equal(false);
+          expect(input.placeholder).to.be.undefined;
+          expect(input.noteType).to.equal('');
+          expect(input.btnConfig).to.be.an('object');
 
-			done();
-		});
+          done();
+        });
 
-	});
+      });
 
-	context('Test DOM Bindings', function(){
+      context('Test DOM Bindings', function () {
 
-		it('Check type & noteType', function(done) {
-			var str = 'error';
-			var note = 'error-note';
-			input.label='This is my label';
-			input.type = str;
-			input.noteType = note;
+        it('Check type & noteType', function (done) {
+          var str = 'error';
+          var note = 'error-note';
+          input.label = 'This is my label';
+          input.type = str;
+          input.noteType = note;
 
-			setTimeout(function(){
-				expect(input.querySelector('label').classList.contains(str)).to.equal(true);
-				expect(input.querySelector('input').classList.contains(str)).to.equal(true);
-				expect(input.querySelector('.input-note').classList.contains(note)).to.equal(true);
+          setTimeout(function () {
+            expect(input.querySelector('label').classList.contains(str)).to.equal(true);
+            expect(input.querySelector('input').classList.contains(str)).to.equal(true);
+            expect(input.querySelector('.input-note').classList.contains(note)).to.equal(true);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check label', function(done) {
-			var str = 'This is my label';
-			input.label=str;
+        it('Check label', function (done) {
+          var str = 'This is my label';
+          input.label = str;
 
-			setTimeout(function(){
-				expect(input.querySelector('label')).to.not.be.undefined;
-				expect(input.querySelector('label').innerText).to.equal(str);
+          setTimeout(function () {
+            expect(input.querySelector('label')).to.not.be.undefined;
+            expect(input.querySelector('label').innerText).to.equal(str);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check name', function(done) {
-			var str = 'another name';
-			input.label='This is my label';
-			input.name=str;
+        it('Check name', function (done) {
+          var str = 'another name';
+          input.label = 'This is my label';
+          input.name = str;
 
-			setTimeout(function(){
-				expect(input.querySelector('input[type=text]').getAttribute('name')).to.equal(input._dashify(input.name));
-				expect(input.querySelector('label').getAttribute('for')).to.equal(input._dashify(input.name));
+          setTimeout(function () {
+            expect(input.querySelector('input[type=text]').getAttribute('name')).to.equal(input._dashify(input.name));
+            expect(input.querySelector('label').getAttribute('for')).to.equal(input._dashify(input.name));
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check value', function(done) {
-			var str = 'input/in/path.pdf';
-			input.value = str;
+        it('Check value', function (done) {
+          var str = 'input/in/path.pdf';
+          input.value = str;
 
-			setTimeout(function(){
-				expect(input.querySelector('input[type=text]').value).to.equal(str);
+          setTimeout(function () {
+            expect(input.querySelector('input[type=text]').value).to.equal(str);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check disabled', function(done) {
-			input.disabled = true;
+        it('Check disabled', function (done) {
+          input.disabled = true;
 
-			setTimeout(function(){
-				expect(input.querySelector('input[type=text]').disabled).to.equal(true);
+          setTimeout(function () {
+            expect(input.querySelector('input[type=text]').disabled).to.equal(true);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check password', function(done) {
-			input.password = true;
+        it('Check password', function (done) {
+          input.password = true;
 
-			setTimeout(function(){
-				expect(input.querySelector('input[type=password]')).to.not.be.undefined;
+          setTimeout(function () {
+            expect(input.querySelector('input[type=password]')).to.not.be.undefined;
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check check', function(done) {
-			input.check = true;
+        it('Check check', function (done) {
+          input.check = true;
 
-			setTimeout(function(){
-				expect(input.querySelector('button-clab')).to.not.equal(null);
+          setTimeout(function () {
+            expect(input.querySelector('button-clab')).to.not.equal(null);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check placeholder', function(done) {
-			var str='this is it';
-			input.placeholder = str;
+        it('Check placeholder', function (done) {
+          var str = 'this is it';
+          input.placeholder = str;
 
-			setTimeout(function(){
-				expect(input.querySelector('input[type=text]').getAttribute('placeholder')).to.equal(str);
+          setTimeout(function () {
+            expect(input.querySelector('input[type=text]').getAttribute('placeholder')).to.equal(str);
 
-				done();
-			},50);
-		});
+            done();
+          }, 50);
+        });
 
-		it('Check btnConfig', function(done) {
-			var obj={
-					show:{
-						icon:'fa fa-eye',
-						label:'Mostra psw',
-						type:"primary", 
-						appearance:"flat", 
-						size:""
-					},
-					hide:{
-						icon:'fa fa-eye-slash',
-						label:'Nascondi psw',
-						type:"secondary",
-						appearance:"full",
-						size:"small"
-					}
-				};
-			input.btnConfig = obj;
-			input.check=true;
-			input.password=true;
+        it('Check btnConfig', function (done) {
+          var obj = {
+            show: {
+              icon: 'fa fa-eye',
+              label: 'Mostra psw',
+              type: "primary",
+              appearance: "flat",
+              size: ""
+            },
+            hide: {
+              icon: 'fa fa-eye-slash',
+              label: 'Nascondi psw',
+              type: "secondary",
+              appearance: "full",
+              size: "small"
+            }
+          };
+          input.btnConfig = obj;
+          input.check = true;
+          input.password = true;
 
-			setTimeout(function(){
-				expect(input.querySelector('button-clab i').classList.contains('fa-eye')).to.equal(true);
-				expect(input.querySelector('button-clab button').classList.contains('primary')).to.equal(true);
-				expect(input.querySelector('button-clab button').classList.contains('flat')).to.equal(true);
-				expect(input.querySelector('button-clab button').innerText).to.equal('Mostra psw');
-				expect(input.querySelector('button-clab').size).to.equal('');
+          setTimeout(function () {
+            expect(input.querySelector('button-clab i').classList.contains('fa-eye')).to.equal(true);
+            expect(input.querySelector('button-clab button').classList.contains('primary')).to.equal(true);
+            expect(input.querySelector('button-clab button').classList.contains('flat')).to.equal(true);
+            expect(input.querySelector('button-clab button').innerText).to.equal('Mostra psw');
+            expect(input.querySelector('button-clab').size).to.equal('');
 
-				input.password=false;
+            input.password = false;
 
-				setTimeout(function(){
-					expect(input.querySelector('button-clab i').classList.contains('fa-eye-slash')).to.equal(true);
-					expect(input.querySelector('button-clab button').classList.contains('secondary')).to.equal(true);
-					expect(input.querySelector('button-clab button').classList.contains('full')).to.equal(true);
-					expect(input.querySelector('button-clab button').classList.contains('small')).to.equal(true);
-					expect(input.querySelector('button-clab button').innerText).to.equal('Nascondi psw');
+            setTimeout(function () {
+              expect(input.querySelector('button-clab i').classList.contains('fa-eye-slash')).to.equal(true);
+              expect(input.querySelector('button-clab button').classList.contains('secondary')).to.equal(true);
+              expect(input.querySelector('button-clab button').classList.contains('full')).to.equal(true);
+              expect(input.querySelector('button-clab button').classList.contains('small')).to.equal(true);
+              expect(input.querySelector('button-clab button').innerText).to.equal('Nascondi psw');
 
-					done();
-				},50);
-			},50);
-		});
+              done();
+            }, 50);
+          }, 50);
+        });
 
-	});
+      });
 
-});	
+    });
 
-</script>
+  </script>
 </body>
+
 </html>
