@@ -34,7 +34,7 @@
       suite('Test Properties', function () {
 
         test('Default Properties', function () {
-          assert.equal(input.name, 'textinput');
+          assert.isNull(input.name);
           assert.isNull(input.label);
           assert.isNull(input.icon);
           assert.isNull(input.type);
@@ -219,6 +219,8 @@
           });
 
           test('Input blur and focus', function (done) {
+            var name = "textinput";
+            input.name = name;
 
             var blur = new Event('blur');
             var focus = new Event('focus');

@@ -30,7 +30,7 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.icon.reflectToAttribute, true);
 
   t.is(props.name.type, String);
-  t.is(props.name.value, 'textinput');
+  t.is(props.name.value, null);
   t.is(props.name.reflectToAttribute, true);
 
   t.is(props.inputType.type, String);

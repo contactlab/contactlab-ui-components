@@ -5,8 +5,8 @@
  * @module _libs/utils
  */
 
-const dashify = (str) => {
-  return str.toLowerCase().replace(/ /g, '-');
+const dashify = val => {
+  return typeof val === 'string' ? val.toLowerCase().replace(/ /g, '-') : val;
 }
 
 const viewLabel = (label, icon) => {
