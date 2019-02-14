@@ -1,123 +1,64 @@
 /////////////////// SPINNER ///////////////////
 
-.spinner-overlay.app-load {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	flex-direction: column;
-	left:0;
-	z-index: 99;
-
-	.spinner {
-		position: initial;
-		margin: $small-spacing 0 0;
-	}
-}
-
-spinner-clab[loading-text] .spinner-overlay:after,
-.spinner-overlay.loading-app:after {
-	content: "Loading";
-	font-size: $base-font-size;
-	margin-top: $small-spacing;
-}
-
-spinner-clab[loading-text] .spinner-overlay.dark:after,
-.spinner-overlay.dark.loading-app:after {
-	color: #FFFFFF;
-}
-
-.spinner-overlay.loading-app:after {
-	content: "Loading application";
-}
-
 .spinner-overlay {
   position: absolute;
+  z-index: 2;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  z-index: 2;
+  width: 100%;
+  height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background-color: rgba($background-color, 0.9);
   @include user-selection(none);
 
-  &.dark {
-    background-color: rgba(0, 0, 0, 0.85);
+  .spinner {
+    display: grid;
+    width: 40px;
+    height: 10px;
+  }
+}
 
-    .spinner > div {
-      background-color: $lighter-gray;
+spinner-clab {
+
+  &[position='fixed'] {
+    .spinner-overlay {
+      position: fixed;
+      z-index: 99;
     }
   }
 
-  &.big {
-    .spinner {
-      width: 50px;
-      height: 50px;
-
-      > div {
-        width: 2px;
-        margin: 0 3px;
+  &[small] {
+    .spinner-overlay {
+      .spinner {
+        width: 24px !important;
+        height: 6px !important;
       }
     }
   }
-}
 
-.spinner {
-	width: 24px;
-	height: 24px;
-	text-align: center;
-	font-size: 0px;
-	@include user-selection(none);
-
-
-
-  > div {
-    background-color: $dark-gray;
-    height: 100%;
-    width: 2px;
-    display: inline-block;
-    margin: 0 1px;
-
-    -webkit-animation: sk-stretchdelay 1.2s infinite ease-in-out;
-    animation: sk-stretchdelay 1.2s infinite ease-in-out;
+  &[big] {
+    .spinner-overlay {
+      .spinner {
+        width: 56px !important;
+        height: 14px !important;
+      }
+    }
   }
 
-  .rect2 {
-    -webkit-animation-delay: -1.1s;
-    animation-delay: -1.1s;
-  }
-
-  .rect3 {
-    -webkit-animation-delay: -1.0s;
-    animation-delay: -1.0s;
-  }
-
-  .rect4 {
-    -webkit-animation-delay: -0.9s;
-    animation-delay: -0.9s;
-  }
-
-  .rect5 {
-    -webkit-animation-delay: -0.8s;
-    animation-delay: -0.8s;
-  }
-}
-
-@-webkit-keyframes sk-stretchdelay {
-  0%, 40%, 100% { -webkit-transform: scaleY(0.4) }
-  20% { -webkit-transform: scaleY(1.0) }
-}
-
-@keyframes sk-stretchdelay {
-  0%, 40%, 100% {
-    transform: scaleY(0.4);
-    -webkit-transform: scaleY(0.4);
-  }  20% {
-    transform: scaleY(1.0);
-    -webkit-transform: scaleY(1.0);
+  &[dark] {
+    .spinner-overlay {
+      background-color: rgba(0, 0, 0, 0.85) !important;
+      color: #FFF;
+      .spinner {
+        svg {
+          fill: #FFF !important;
+        }
+      }
+    }
   }
 }
 
