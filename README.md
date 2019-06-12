@@ -11,8 +11,6 @@ This package is deprecated in favor of [our new design system](https://github.co
 
 # Contactlab Pattern Library UI Components
 
-[![Build Status](https://travis-ci.org/contactlab/contactlab-ui-components.svg)](https://travis-ci.org/contactlab/contactlab-ui-components)
-
 ## Installation
 
 Polymer 1.x version (stable)
