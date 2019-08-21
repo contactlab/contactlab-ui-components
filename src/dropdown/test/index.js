@@ -26,6 +26,10 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.selectedLabel.value, null);
   t.is(props.selectedLabel.computed, '_compSelectedLabel(selected, labelField)');
 
+  t.is(props.isValidSelection.type, Boolean);
+  t.is(props.isValidSelection.value, false);
+  t.is(props.isValidSelection.computed, '_compIsValidSelection(selected, options, labelField)');
+
   t.is(props.highlighted.type, Object);
 
   t.is(props.valueField.type, String);

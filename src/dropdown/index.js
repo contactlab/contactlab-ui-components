@@ -32,6 +32,14 @@ class DropdownClab {
   }
 
   _setSearchValue(evt) {
+    if (evt.target.value === '' && this.isValidSelection) {
+      this.dispatchEvent(
+        new CustomEvent('deselect', {
+          bubbles: true,
+          composed: true
+        })
+      );
+    }
     this.set('searchValue', evt.target.value);
   }
 
@@ -173,6 +181,12 @@ class DropdownClab {
     return !isNil(option) && !isNilOrEmptyStr(label)
       ? option[label]
       : null;
+  }
+
+  _compIsValidSelection(selected, options, label) {
+    return !isNil(selected) && Array.isArray(options)
+      ? typeof options.find(o => o[label] === selected[label]) !== 'undefined'
+      : false;
   }
 
   _compLabelClass(selectedLabel, placeholder) {

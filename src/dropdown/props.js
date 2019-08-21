@@ -28,6 +28,11 @@ export default {
     value: null,
     computed: '_compSelectedLabel(selected, labelField)'
   },
+  isValidSelection: {
+    type: Boolean,
+    value: false,
+    computed: '_compIsValidSelection(selected, options, labelField)'
+  },
   highlighted: {
     type: Object
   },
