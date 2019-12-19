@@ -50,7 +50,6 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props.availableEnd.type, Number);
   t.is(props.availableEnd.computed, '_getEnd(currentPage, pages)');
-
 });
 
 test(`${element} _computeActive`, t => {

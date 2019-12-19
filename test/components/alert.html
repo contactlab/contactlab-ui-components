@@ -1,115 +1,115 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-animations-js/web-animations-next.min.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../alert/view.html" />
-	</head>
-	<body>
-		<test-fixture id="alert">
-			<template>
-				<alert-clab></alert-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../alert/view.html" />
+  </head>
+  <body>
+    <test-fixture id="alert">
+      <template>
+        <alert-clab></alert-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<alert-clab>', function() {
-				var alert;
+    <script>
+      describe('<alert-clab>', function() {
+        var alert;
 
-				beforeEach(function() {
-					alert = fixture('alert');
-				});
+        beforeEach(function() {
+          alert = fixture('alert');
+        });
 
-				context('Test Properties', function() {
-					it('default properties', function(done) {
-						expect(alert.visible).to.equal(false);
-						expect(alert.title).to.equal('Title');
-						expect(alert.type).to.equal('success');
-						expect(alert.labels.primary).to.equal('Confirm');
-						expect(alert.labels.secondary).to.equal('Cancel');
+        context('Test Properties', function() {
+          it('default properties', function(done) {
+            expect(alert.visible).to.equal(false);
+            expect(alert.title).to.equal('Title');
+            expect(alert.type).to.equal('success');
+            expect(alert.labels.primary).to.equal('Confirm');
+            expect(alert.labels.secondary).to.equal('Cancel');
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check visible', function(done) {
-						alert.visible = true;
+        context('Test DOM Bindings', function() {
+          it('Check visible', function(done) {
+            alert.visible = true;
 
-						setTimeout(function() {
-							expect(alert.querySelector('.alert')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(alert.querySelector('.alert')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check type', function(done) {
-						var style = 'error';
-						alert.visible = true;
-						alert.type = style;
+          it('Check type', function(done) {
+            var style = 'error';
+            alert.visible = true;
+            alert.type = style;
 
-						setTimeout(function() {
-							expect(
-								alert.querySelector('.alert').classList.contains(style)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                alert.querySelector('.alert').classList.contains(style)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check title', function(done) {
-						var title = 'A new title';
-						alert.visible = true;
-						alert.title = title;
+          it('Check title', function(done) {
+            var title = 'A new title';
+            alert.visible = true;
+            alert.title = title;
 
-						setTimeout(function() {
-							expect(alert.querySelector('.alert h3').innerText).to.equal(
-								title
-							);
+            setTimeout(function() {
+              expect(alert.querySelector('.alert h3').innerText).to.equal(
+                title
+              );
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check labels', function(done) {
-						var pri = 'this is first';
-						var sec = 'this is second';
-						alert.visible = true;
-						alert.labels = {
-							primary: pri,
-							secondary: sec
-						};
+          it('Check labels', function(done) {
+            var pri = 'this is first';
+            var sec = 'this is second';
+            alert.visible = true;
+            alert.labels = {
+              primary: pri,
+              secondary: sec
+            };
 
-						setTimeout(function() {
-							expect(
-								alert.querySelectorAll('button-clab')[0].textContent.trim()
-							).to.equal(pri);
-							expect(
-								alert.querySelectorAll('button-clab')[1].textContent.trim()
-							).to.equal(sec);
+            setTimeout(function() {
+              expect(
+                alert.querySelectorAll('button-clab')[0].textContent.trim()
+              ).to.equal(pri);
+              expect(
+                alert.querySelectorAll('button-clab')[1].textContent.trim()
+              ).to.equal(sec);
 
-							done();
-						}, 50);
-					});
-				});
+              done();
+            }, 50);
+          });
+        });
 
-				context('Test Events', function() {
-					it('Hiding the alert on-click', function(done) {
-						alert.visible = true;
-						alert._close();
+        context('Test Events', function() {
+          it('Hiding the alert on-click', function(done) {
+            alert.visible = true;
+            alert._close();
 
-						setTimeout(function() {
-							expect(alert.querySelector('.alert')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(alert.querySelector('.alert')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -4,11 +4,13 @@
       <ol id="list" class="options-list" style$="[[_computedStyles]]">
         <template is="dom-repeat" items="[[options]]" as="option">
           <li
-            class$="[[_compHighlight(highlighted, option)]]" 
-            data-i$="[[index]]" 
+            class$="[[_compHighlight(highlighted, option)]]"
+            data-i$="[[index]]"
             on-mouseover="doHighlight"
             on-click="_elementSelection"
-          >[[_compLabel(option)]]</li>
+          >
+            [[_compLabel(option)]]
+          </li>
         </template>
       </ol>
     </template>

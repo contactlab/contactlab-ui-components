@@ -1,98 +1,98 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../checkbox/view.html" />
-	</head>
-	<body>
-		<test-fixture id="checkbox">
-			<template>
-				<checkbox-clab></checkbox-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../checkbox/view.html" />
+  </head>
+  <body>
+    <test-fixture id="checkbox">
+      <template>
+        <checkbox-clab></checkbox-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<checkbox-clab>', function() {
-				var checkbox;
+    <script>
+      describe('<checkbox-clab>', function() {
+        var checkbox;
 
-				beforeEach(function() {
-					checkbox = fixture('checkbox');
-				});
+        beforeEach(function() {
+          checkbox = fixture('checkbox');
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						expect(checkbox.labels).to.be.undefined;
-						expect(checkbox.wrapperType).to.equal('');
-						expect(checkbox.active).to.be.undefined;
-						expect(checkbox.disabled).to.be.undefined;
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            expect(checkbox.labels).to.be.undefined;
+            expect(checkbox.wrapperType).to.equal('');
+            expect(checkbox.active).to.be.undefined;
+            expect(checkbox.disabled).to.be.undefined;
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check labels', function(done) {
-						checkbox.labels = ['checkbox 1', 'checkbox 2'];
+        context('Test DOM Bindings', function() {
+          it('Check labels', function(done) {
+            checkbox.labels = ['checkbox 1', 'checkbox 2'];
 
-						setTimeout(function() {
-							expect(checkbox.querySelectorAll('.row').length).to.equal(
-								checkbox.labels.length
-							);
+            setTimeout(function() {
+              expect(checkbox.querySelectorAll('.row').length).to.equal(
+                checkbox.labels.length
+              );
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check wrapperType', function(done) {
-						var str = 'error';
-						checkbox.labels = ['checkbox 1', 'checkbox 2'];
-						checkbox.wrapperType = str;
+          it('Check wrapperType', function(done) {
+            var str = 'error';
+            checkbox.labels = ['checkbox 1', 'checkbox 2'];
+            checkbox.wrapperType = str;
 
-						setTimeout(function() {
-							expect(
-								checkbox.querySelector('.row').classList.contains(str)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                checkbox.querySelector('.row').classList.contains(str)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check disabled', function(done) {
-						checkbox.labels = ['checkbox 1', 'checkbox 2'];
-						checkbox.disabled = [0, 1];
+          it('Check disabled', function(done) {
+            checkbox.labels = ['checkbox 1', 'checkbox 2'];
+            checkbox.disabled = [0, 1];
 
-						setTimeout(function() {
-							Array.prototype.map.call(
-								checkbox.querySelectorAll('input[type=checkbox]'),
-								function(el, i) {
-									for (var n = 0; n < checkbox.disabled.length; n++) {
-										if (n == i) expect(el.disabled).to.equal(true);
-									}
-								}
-							);
+            setTimeout(function() {
+              Array.prototype.map.call(
+                checkbox.querySelectorAll('input[type=checkbox]'),
+                function(el, i) {
+                  for (var n = 0; n < checkbox.disabled.length; n++) {
+                    if (n == i) expect(el.disabled).to.equal(true);
+                  }
+                }
+              );
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check active', function(done) {
-						checkbox.labels = ['checkbox 1', 'checkbox 2'];
-						checkbox.active = 1;
+          it('Check active', function(done) {
+            checkbox.labels = ['checkbox 1', 'checkbox 2'];
+            checkbox.active = 1;
 
-						setTimeout(function() {
-							expect(
-								checkbox.querySelectorAll('input[type=checkbox]')[1].checked
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                checkbox.querySelectorAll('input[type=checkbox]')[1].checked
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

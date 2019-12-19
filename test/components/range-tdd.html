@@ -1,141 +1,141 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../../polymer/polymer.html" />
-		<link rel="import" href="../../range/view.html" />
-		<script src="../../_components/bundle.js"></script>
-	</head>
-	<body>
-		<test-fixture id="range">
-			<template>
-				<range-clab></range-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../../polymer/polymer.html" />
+    <link rel="import" href="../../range/view.html" />
+    <script src="../../_components/bundle.js"></script>
+  </head>
+  <body>
+    <test-fixture id="range">
+      <template>
+        <range-clab></range-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			suite('<range-clab>', function() {
-				var range;
+    <script>
+      suite('<range-clab>', function() {
+        var range;
 
-				setup(function() {
-					range = fixture('range');
-				});
+        setup(function() {
+          range = fixture('range');
+        });
 
-				suite('Test Properties', function() {
-					test('Default Properties', function() {
-						assert.isUndefined(range.label);
-						assert.equal(range.name, 'rangeinput');
-						assert.isNull(range.type);
-						assert.isUndefined(range.value);
-						assert.isUndefined(range.max);
-						assert.isUndefined(range.min);
-						assert.isUndefined(range.step);
-						assert.isFalse(range.disabled);
-						assert.isFalse(range.showDetails);
-						assert.equal(
-							range.rangeWrapperClasses,
-							'range-wrapper ',
-							'Computation class wrapper'
-						);
-					});
-				});
+        suite('Test Properties', function() {
+          test('Default Properties', function() {
+            assert.isUndefined(range.label);
+            assert.equal(range.name, 'rangeinput');
+            assert.isNull(range.type);
+            assert.isUndefined(range.value);
+            assert.isUndefined(range.max);
+            assert.isUndefined(range.min);
+            assert.isUndefined(range.step);
+            assert.isFalse(range.disabled);
+            assert.isFalse(range.showDetails);
+            assert.equal(
+              range.rangeWrapperClasses,
+              'range-wrapper ',
+              'Computation class wrapper'
+            );
+          });
+        });
 
-				suite('Test DOM Bindings', function() {
-					test('Check label', function(done) {
-						var label = 'This is a label';
-						range.label = label;
-						setTimeout(function() {
-							var el = range.$$('label');
-							assert.equal(el.innerText, label);
-							done();
-						});
-					});
+        suite('Test DOM Bindings', function() {
+          test('Check label', function(done) {
+            var label = 'This is a label';
+            range.label = label;
+            setTimeout(function() {
+              var el = range.$$('label');
+              assert.equal(el.innerText, label);
+              done();
+            });
+          });
 
-					test('Check name', function(done) {
-						var name = 'newname';
-						var label = 'This is a label';
-						range.label = label;
-						range.name = name;
-						setTimeout(function() {
-							var elLabel = range.$$('label');
-							var elInput = range.$$('input');
-							assert.equal(elLabel.getAttribute('for'), name);
-							assert.equal(elInput.getAttribute('name'), name);
-							done();
-						});
-					});
+          test('Check name', function(done) {
+            var name = 'newname';
+            var label = 'This is a label';
+            range.label = label;
+            range.name = name;
+            setTimeout(function() {
+              var elLabel = range.$$('label');
+              var elInput = range.$$('input');
+              assert.equal(elLabel.getAttribute('for'), name);
+              assert.equal(elInput.getAttribute('name'), name);
+              done();
+            });
+          });
 
-					test('Check type', function(done) {
-						var type = 'error';
-						var label = 'This is a label';
-						range.label = label;
-						range.type = type;
-						setTimeout(function() {
-							var labelClass = range.$$('label').classList;
-							var inputClass = range.$$('input').classList;
-							assert.isTrue(labelClass.contains(type));
-							assert.isTrue(inputClass.contains(type));
-							done();
-						});
-					});
+          test('Check type', function(done) {
+            var type = 'error';
+            var label = 'This is a label';
+            range.label = label;
+            range.type = type;
+            setTimeout(function() {
+              var labelClass = range.$$('label').classList;
+              var inputClass = range.$$('input').classList;
+              assert.isTrue(labelClass.contains(type));
+              assert.isTrue(inputClass.contains(type));
+              done();
+            });
+          });
 
-					test('Check showDetails and detail (min, max, value)', function(done) {
-						var min = 0,
-							max = 10,
-							value = 5;
-						range.min = min;
-						range.max = max;
-						range.value = value;
-						range.showDetails = true;
-						setTimeout(function() {
-							var input = range.$$('input');
-							var elMin = range.$$('.min');
-							var elMax = range.$$('.max');
-							var elValue = range.$$('.value span');
-							assert.equal(elMin.innerText, min);
-							assert.equal(elMax.innerText, max);
-							assert.equal(elValue.innerText, value);
-							assert.equal(input.getAttribute('min'), min);
-							assert.equal(input.getAttribute('max'), max);
-							assert.equal(input.value, value);
-							done();
-						});
-					});
+          test('Check showDetails and detail (min, max, value)', function(done) {
+            var min = 0,
+              max = 10,
+              value = 5;
+            range.min = min;
+            range.max = max;
+            range.value = value;
+            range.showDetails = true;
+            setTimeout(function() {
+              var input = range.$$('input');
+              var elMin = range.$$('.min');
+              var elMax = range.$$('.max');
+              var elValue = range.$$('.value span');
+              assert.equal(elMin.innerText, min);
+              assert.equal(elMax.innerText, max);
+              assert.equal(elValue.innerText, value);
+              assert.equal(input.getAttribute('min'), min);
+              assert.equal(input.getAttribute('max'), max);
+              assert.equal(input.value, value);
+              done();
+            });
+          });
 
-					test('Check disabled', function() {
-						var label = 'This is a label';
-						range.label = label;
-						range.disabled = true;
+          test('Check disabled', function() {
+            var label = 'This is a label';
+            range.label = label;
+            range.disabled = true;
 
-						var input = range.$$('input');
-						assert.isTrue(input.disabled);
-					});
+            var input = range.$$('input');
+            assert.isTrue(input.disabled);
+          });
 
-					test('Check rangeWrapperClasses', function() {
-						range.showDetails = true;
+          test('Check rangeWrapperClasses', function() {
+            range.showDetails = true;
 
-						var elClass = range.$$('.range-wrapper').classList;
-						assert.isTrue(elClass.contains('details'));
-					});
-				});
+            var elClass = range.$$('.range-wrapper').classList;
+            assert.isTrue(elClass.contains('details'));
+          });
+        });
 
-				suite('Test Events', function() {
-					test('Update value on-input event', function() {
-						var inputEvt = new Event('input');
-						var value = 5;
+        suite('Test Events', function() {
+          test('Update value on-input event', function() {
+            var inputEvt = new Event('input');
+            var value = 5;
 
-						var el = range.$$('input');
-						el.value = value;
-						el.dispatchEvent(inputEvt);
+            var el = range.$$('input');
+            el.value = value;
+            el.dispatchEvent(inputEvt);
 
-						assert.equal(range.value, value.toString());
-					});
-				});
-			});
-		</script>
-	</body>
+            assert.equal(range.value, value.toString());
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

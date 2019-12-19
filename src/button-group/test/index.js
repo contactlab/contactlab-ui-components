@@ -20,4 +20,3 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.value.observer, '_updateAppearance');
   t.is(props.value.reflectToAttribute, true);
 });
-

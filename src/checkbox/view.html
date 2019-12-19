@@ -1,11 +1,16 @@
 <dom-module id="checkbox-clab">
-	<template>
-
-		<div class$="[[_computeType(wrapperType)]]">
-			<input id$="[[dashify(label)]]" type="checkbox" value="[[dashify(label)]]" checked$="[[active]]" disabled$="[[disabled]]" data-index$="[[index]]" on-change="_onChange">
-			<label for$="[[dashify(label)]]">[[label]]</label>
-		</div>
-
-	</template>
-
+  <template>
+    <div class$="[[_computeType(wrapperType)]]">
+      <input
+        id$="[[dashify(label)]]"
+        type="checkbox"
+        value="[[dashify(label)]]"
+        checked$="[[active]]"
+        disabled$="[[disabled]]"
+        data-index$="[[index]]"
+        on-change="_onChange"
+      />
+      <label for$="[[dashify(label)]]">[[label]]</label>
+    </div>
+  </template>
 </dom-module>

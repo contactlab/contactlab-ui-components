@@ -1,8 +1,8 @@
 # --- Run pipeline only for "master" changes
 trigger:
-- master
+  - master
 pr:
-- master
+  - master
 
 # --- Ubuntu agent
 pool:
@@ -18,12 +18,12 @@ strategy:
 
 # --- Job tasks
 steps:
-- task: NodeTool@0
-  inputs:
-    versionSpec: $(node_version)
-  displayName: 'Install Node.js'
+  - task: NodeTool@0
+    inputs:
+      versionSpec: $(node_version)
+    displayName: 'Install Node.js'
 
-- script: |
-    npm ci
-    npm test
-  displayName: 'Run tests'
+  - script: |
+      npm ci
+      npm test
+    displayName: 'Run tests'

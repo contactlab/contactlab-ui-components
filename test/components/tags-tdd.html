@@ -1,217 +1,217 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../../polymer/polymer.html" />
-		<link rel="import" href="../../tags/view.html" />
-		<script src="../../_components/bundle.js"></script>
-	</head>
-	<body>
-		<test-fixture id="tags">
-			<template>
-				<tags-clab>This is my note</tags-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../../polymer/polymer.html" />
+    <link rel="import" href="../../tags/view.html" />
+    <script src="../../_components/bundle.js"></script>
+  </head>
+  <body>
+    <test-fixture id="tags">
+      <template>
+        <tags-clab>This is my note</tags-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			suite('<tags-clab>', function() {
-				var tags;
+    <script>
+      suite('<tags-clab>', function() {
+        var tags;
 
-				setup(function() {
-					tags = fixture('tags');
-				});
+        setup(function() {
+          tags = fixture('tags');
+        });
 
-				suite('Test Properties', function() {
-					test('Default Properties', function() {
-						assert.isUndefined(tags.label);
-						assert.equal(tags.name, 'tags input');
-						assert.isUndefined(tags.inputString);
-						assert.isFalse(tags.disabled);
-						assert.isUndefined(tags.placeholder);
-						assert.isFalse(tags.stacked);
-						assert.isArray(tags.tags);
-						assert.equal(tags.type, '');
-						assert.equal(tags.btnLabel, 'Add');
-						assert.isUndefined(tags.btnAppearence);
-						assert.isUndefined(tags.btnSize);
-						assert.isUndefined(tags.btnIcon);
-						assert.isFalse(tags.hideInput);
-					});
-				});
+        suite('Test Properties', function() {
+          test('Default Properties', function() {
+            assert.isUndefined(tags.label);
+            assert.equal(tags.name, 'tags input');
+            assert.isUndefined(tags.inputString);
+            assert.isFalse(tags.disabled);
+            assert.isUndefined(tags.placeholder);
+            assert.isFalse(tags.stacked);
+            assert.isArray(tags.tags);
+            assert.equal(tags.type, '');
+            assert.equal(tags.btnLabel, 'Add');
+            assert.isUndefined(tags.btnAppearence);
+            assert.isUndefined(tags.btnSize);
+            assert.isUndefined(tags.btnIcon);
+            assert.isFalse(tags.hideInput);
+          });
+        });
 
-				suite('Test DOM Bindings', function() {
-					test('Check label', function(done) {
-						var label = 'this is a label';
-						tags.label = label;
-						setTimeout(function() {
-							var el = tags.querySelector('.input-wrapper label');
-							assert.equal(el.innerText, label);
-							done();
-						});
-					});
+        suite('Test DOM Bindings', function() {
+          test('Check label', function(done) {
+            var label = 'this is a label';
+            tags.label = label;
+            setTimeout(function() {
+              var el = tags.querySelector('.input-wrapper label');
+              assert.equal(el.innerText, label);
+              done();
+            });
+          });
 
-					test('Check name', function(done) {
-						var name = 'newname';
-						tags.name = name;
-						setTimeout(function() {
-							var el = tags.querySelector('.input-wrapper input');
-							assert.equal(el.getAttribute('name'), name);
-							done();
-						});
-					});
+          test('Check name', function(done) {
+            var name = 'newname';
+            tags.name = name;
+            setTimeout(function() {
+              var el = tags.querySelector('.input-wrapper input');
+              assert.equal(el.getAttribute('name'), name);
+              done();
+            });
+          });
 
-					test('Check inputString', function(done) {
-						var str = 'string input';
-						tags.inputString = str;
-						setTimeout(function() {
-							var el = tags.querySelector('.input input');
-							assert.equal(el.value, str);
-							done();
-						});
-					});
+          test('Check inputString', function(done) {
+            var str = 'string input';
+            tags.inputString = str;
+            setTimeout(function() {
+              var el = tags.querySelector('.input input');
+              assert.equal(el.value, str);
+              done();
+            });
+          });
 
-					test('Check disabled', function(done) {
-						tags.disabled = true;
-						setTimeout(function() {
-							var el = tags.querySelector('.input input');
-							assert.isTrue(el.disabled);
-							done();
-						});
-					});
+          test('Check disabled', function(done) {
+            tags.disabled = true;
+            setTimeout(function() {
+              var el = tags.querySelector('.input input');
+              assert.isTrue(el.disabled);
+              done();
+            });
+          });
 
-					test('Check placeholder', function(done) {
-						var place = 'this is a placeholder';
-						tags.placeholder = place;
-						setTimeout(function() {
-							var el = tags.querySelector('.input input');
-							assert.equal(el.placeholder, place);
-							done();
-						});
-					});
+          test('Check placeholder', function(done) {
+            var place = 'this is a placeholder';
+            tags.placeholder = place;
+            setTimeout(function() {
+              var el = tags.querySelector('.input input');
+              assert.equal(el.placeholder, place);
+              done();
+            });
+          });
 
-					test('Check stacked', function(done) {
-						tags.stacked = true;
-						setTimeout(function() {
-							var el = tags.$$('.selected-values');
-							assert.isNotNull(el);
-							done();
-						});
-					});
+          test('Check stacked', function(done) {
+            tags.stacked = true;
+            setTimeout(function() {
+              var el = tags.$$('.selected-values');
+              assert.isNotNull(el);
+              done();
+            });
+          });
 
-					test('Check tags', function(done) {
-						var arr = ['ciccio puzzo', 'bella', 'raga'];
-						tags.tags = arr;
-						setTimeout(function() {
-							var els = Polymer.dom(tags.root).querySelectorAll('label-clab');
-							assert.lengthOf(els, arr.length);
-							done();
-						});
-					});
+          test('Check tags', function(done) {
+            var arr = ['ciccio puzzo', 'bella', 'raga'];
+            tags.tags = arr;
+            setTimeout(function() {
+              var els = Polymer.dom(tags.root).querySelectorAll('label-clab');
+              assert.lengthOf(els, arr.length);
+              done();
+            });
+          });
 
-					test('Check inputType', function(done) {
-						var type = 'error';
-						tags.type = type;
-						setTimeout(function() {
-							var elClass = tags.querySelector('.input input').classList;
-							assert.isTrue(elClass.contains(type));
-							done();
-						});
-					});
+          test('Check inputType', function(done) {
+            var type = 'error';
+            tags.type = type;
+            setTimeout(function() {
+              var elClass = tags.querySelector('.input input').classList;
+              assert.isTrue(elClass.contains(type));
+              done();
+            });
+          });
 
-					test('Check btnLabel', function(done) {
-						var btnLabel = 'New Label';
-						tags.btnLabel = btnLabel;
-						setTimeout(function() {
-							var el = tags.querySelector('button-clab button');
-							assert.equal(el.innerText, btnLabel);
-							done();
-						});
-					});
+          test('Check btnLabel', function(done) {
+            var btnLabel = 'New Label';
+            tags.btnLabel = btnLabel;
+            setTimeout(function() {
+              var el = tags.querySelector('button-clab button');
+              assert.equal(el.innerText, btnLabel);
+              done();
+            });
+          });
 
-					test('Check btn attributes', function(done) {
-						var btnAppearence = 'appearance';
-						var btnSize = 'small';
-						var btnIcon = 'icon-ciao';
-						tags.btnAppearence = btnAppearence;
-						tags.btnSize = btnSize;
-						tags.btnIcon = btnIcon;
+          test('Check btn attributes', function(done) {
+            var btnAppearence = 'appearance';
+            var btnSize = 'small';
+            var btnIcon = 'icon-ciao';
+            tags.btnAppearence = btnAppearence;
+            tags.btnSize = btnSize;
+            tags.btnIcon = btnIcon;
 
-						setTimeout(function() {
-							var el = tags.querySelector('button-clab');
-							assert.equal(el.appearance, btnAppearence);
-							assert.equal(el.size, btnSize);
-							assert.equal(el.icon, btnIcon);
-							done();
-						});
-					});
+            setTimeout(function() {
+              var el = tags.querySelector('button-clab');
+              assert.equal(el.appearance, btnAppearence);
+              assert.equal(el.size, btnSize);
+              assert.equal(el.icon, btnIcon);
+              done();
+            });
+          });
 
-					test('Check hideInput', function(done) {
-						tags.hideInput = true;
+          test('Check hideInput', function(done) {
+            tags.hideInput = true;
 
-						setTimeout(function() {
-							var el = tags.$$('input-clab');
-							assert.isNull(el);
-							done();
-						});
-					});
-				});
+            setTimeout(function() {
+              var el = tags.$$('input-clab');
+              assert.isNull(el);
+              done();
+            });
+          });
+        });
 
-				suite('Test Events', function() {
-					test('Change on add tag', function(done) {
-						setTimeout(function() {
-							var newTag = 'this is tag';
-							var inputEl = tags.$$('input-clab');
-							var button = tags.querySelector('button-clab button');
-							var click = new Event('click');
-							inputEl.value = newTag;
-							tags.addEventListener('change', function(event) {
-								assert.lengthOf(event.detail.tags, 1);
-								assert.equal(event.detail.new.value, newTag);
-								done();
-							});
-							button.dispatchEvent(click);
-						});
-					});
+        suite('Test Events', function() {
+          test('Change on add tag', function(done) {
+            setTimeout(function() {
+              var newTag = 'this is tag';
+              var inputEl = tags.$$('input-clab');
+              var button = tags.querySelector('button-clab button');
+              var click = new Event('click');
+              inputEl.value = newTag;
+              tags.addEventListener('change', function(event) {
+                assert.lengthOf(event.detail.tags, 1);
+                assert.equal(event.detail.new.value, newTag);
+                done();
+              });
+              button.dispatchEvent(click);
+            });
+          });
 
-					test('Change on remove', function(done) {
-						var newTags = ['ciao', 'bello'];
-						tags.tags = newTags.slice();
-						setTimeout(function() {
-							var close = tags.querySelector('.remove');
-							var click = new Event('click');
-							tags.addEventListener('change', function(evt) {
-								assert.lengthOf(evt.detail.tags, newTags.length - 1);
-								assert.equal(
-									evt.detail.removed,
-									0,
-									"Removed the '0' index of tags array"
-								);
-								done();
-							});
-							close.dispatchEvent(click);
-						});
-					});
-				});
+          test('Change on remove', function(done) {
+            var newTags = ['ciao', 'bello'];
+            tags.tags = newTags.slice();
+            setTimeout(function() {
+              var close = tags.querySelector('.remove');
+              var click = new Event('click');
+              tags.addEventListener('change', function(evt) {
+                assert.lengthOf(evt.detail.tags, newTags.length - 1);
+                assert.equal(
+                  evt.detail.removed,
+                  0,
+                  "Removed the '0' index of tags array"
+                );
+                done();
+              });
+              close.dispatchEvent(click);
+            });
+          });
+        });
 
-				suite('Test Methods', function() {
-					test('setTags()', function(done) {
-						// --- TODO strange
-						tags.tags = [];
-						// -----------
-						var arr = ['ciao', 'bello'];
-						tags.addEventListener('change', function(evt) {
-							assert.lengthOf(evt.detail.tags, arr.length);
-							assert.equal(JSON.stringify(evt.detail.new), JSON.stringify(arr));
-							done();
-						});
-						tags.setTags(arr);
-					});
-				});
-			});
-		</script>
-	</body>
+        suite('Test Methods', function() {
+          test('setTags()', function(done) {
+            // --- TODO strange
+            tags.tags = [];
+            // -----------
+            var arr = ['ciao', 'bello'];
+            tags.addEventListener('change', function(evt) {
+              assert.lengthOf(evt.detail.tags, arr.length);
+              assert.equal(JSON.stringify(evt.detail.new), JSON.stringify(arr));
+              done();
+            });
+            tags.setTags(arr);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

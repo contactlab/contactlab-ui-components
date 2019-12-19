@@ -1,89 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../label-badge/view.html" />
-	</head>
-	<body>
-		<test-fixture id="label">
-			<template>
-				<label-clab></label-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../label-badge/view.html" />
+  </head>
+  <body>
+    <test-fixture id="label">
+      <template>
+        <label-clab></label-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<label-clab>', function() {
-				var label;
+    <script>
+      describe('<label-clab>', function() {
+        var label;
 
-				beforeEach(function() {
-					label = fixture('label');
-				});
+        beforeEach(function() {
+          label = fixture('label');
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						expect(label.type).to.equal('');
-						expect(label.counter).to.equal(null);
-						expect(label.remove).to.equal(false);
-						expect(label.badge).to.equal(false);
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            expect(label.type).to.equal('');
+            expect(label.counter).to.equal(null);
+            expect(label.remove).to.equal(false);
+            expect(label.badge).to.equal(false);
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check type', function(done) {
-						var str = 'error';
-						label.type = str;
+        context('Test DOM Bindings', function() {
+          it('Check type', function(done) {
+            var str = 'error';
+            label.type = str;
 
-						setTimeout(function() {
-							if (label.badge)
-								expect(
-									label.querySelector('.badge').classList.contains(str)
-								).to.equal(true);
-							else
-								expect(
-									label.querySelector('.label').classList.contains(str)
-								).to.equal(true);
+            setTimeout(function() {
+              if (label.badge)
+                expect(
+                  label.querySelector('.badge').classList.contains(str)
+                ).to.equal(true);
+              else
+                expect(
+                  label.querySelector('.label').classList.contains(str)
+                ).to.equal(true);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check counter', function(done) {
-						label.counter = true;
+          it('Check counter', function(done) {
+            label.counter = true;
 
-						setTimeout(function() {
-							expect(label.querySelector('.counter')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(label.querySelector('.counter')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check remove', function(done) {
-						label.remove = true;
+          it('Check remove', function(done) {
+            label.remove = true;
 
-						setTimeout(function() {
-							expect(label.querySelector('.remove')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(label.querySelector('.remove')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check badge', function(done) {
-						label.badge = true;
+          it('Check badge', function(done) {
+            label.badge = true;
 
-						setTimeout(function() {
-							expect(label.querySelector('.badge')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(label.querySelector('.badge')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

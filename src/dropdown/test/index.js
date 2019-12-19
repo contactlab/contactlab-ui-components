@@ -1,7 +1,13 @@
 import test from 'ava';
 import props from '../props';
 
-import { isNil, isNilOrEmptyStr, randomId, propLowerCase, setOptionsList } from '../libs';
+import {
+  isNil,
+  isNilOrEmptyStr,
+  randomId,
+  propLowerCase,
+  setOptionsList
+} from '../libs';
 
 const element = '<dropdown-clab>';
 
@@ -24,11 +30,17 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props.selectedLabel.type, String);
   t.is(props.selectedLabel.value, null);
-  t.is(props.selectedLabel.computed, '_compSelectedLabel(selected, labelField)');
+  t.is(
+    props.selectedLabel.computed,
+    '_compSelectedLabel(selected, labelField)'
+  );
 
   t.is(props.isValidSelection.type, Boolean);
   t.is(props.isValidSelection.value, false);
-  t.is(props.isValidSelection.computed, '_compIsValidSelection(selected, options, labelField)');
+  t.is(
+    props.isValidSelection.computed,
+    '_compIsValidSelection(selected, options, labelField)'
+  );
 
   t.is(props.highlighted.type, Object);
 
@@ -39,15 +51,20 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.labelField.value, 'label');
 
   t.is(props.options.type, Array);
-  t.deepEqual(props.options.value, [{
-    label: '-',
-    value: null
-  }]);
+  t.deepEqual(props.options.value, [
+    {
+      label: '-',
+      value: null
+    }
+  ]);
   t.is(props.options.value.length, 1);
 
   t.is(props._optionsVisible.type, Array);
   t.deepEqual(props._optionsVisible.value, []);
-  t.is(props._optionsVisible.computed, '_updateVisibleOptions(options, searchValue, labelField)');
+  t.is(
+    props._optionsVisible.computed,
+    '_updateVisibleOptions(options, searchValue, labelField)'
+  );
   t.is(props._optionsVisible.value.length, 0);
 
   t.is(props.optionsFn.type, Function);
@@ -91,7 +108,6 @@ test(`${element} properties: types & default values`, t => {
   t.is(props._toggleList.computed, '_compToggleList(disabled, id)');
 });
 
-
 test(`${element} isNil`, t => {
   t.is(isNil(null), true);
   t.is(isNil(undefined), true);
@@ -111,7 +127,7 @@ test(`${element} randomId`, t => {
 });
 
 test(`${element} propLowerCase`, t => {
-  const obj = { foo: 'BAR' };
+  const obj = {foo: 'BAR'};
 
   t.is(propLowerCase(), '');
   t.is(propLowerCase(obj, 'test'), '');
@@ -120,38 +136,47 @@ test(`${element} propLowerCase`, t => {
 
 test(`${element} setOptionsList`, t => {
   const options = [
-    { value: 0, label: '+00 | Africa/Abidjan' },
-    { value: 1, label: '+01 | Europe/Rome' },
-    { value: 2, label: '-04 | America/Antigua' }
+    {value: 0, label: '+00 | Africa/Abidjan'},
+    {value: 1, label: '+01 | Europe/Rome'},
+    {value: 2, label: '-04 | America/Antigua'}
   ];
   const labelField = 'label';
 
   let searchValue = 'rom';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
-    value: 1,
-    label: '+01 | Europe/Rome'
-  }]);
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [
+    {
+      value: 1,
+      label: '+01 | Europe/Rome'
+    }
+  ]);
 
   searchValue = '-04 | America/';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
-    value: 2,
-    label: '-04 | America/Antigua'
-  }]);
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [
+    {
+      value: 2,
+      label: '-04 | America/Antigua'
+    }
+  ]);
 
   searchValue = '+00 | Africa/Abidjan';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
-    value: 0,
-    label: '+00 | Africa/Abidjan'
-  }]);
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [
+    {
+      value: 0,
+      label: '+00 | Africa/Abidjan'
+    }
+  ]);
 
   searchValue = '/a';
-  t.deepEqual(setOptionsList(options, searchValue, labelField), [{
-    value: 0,
-    label: '+00 | Africa/Abidjan'
-  }, {
-    value: 2,
-    label: '-04 | America/Antigua'
-  }]);
+  t.deepEqual(setOptionsList(options, searchValue, labelField), [
+    {
+      value: 0,
+      label: '+00 | Africa/Abidjan'
+    },
+    {
+      value: 2,
+      label: '-04 | America/Antigua'
+    }
+  ]);
 
   searchValue = '+02';
   t.deepEqual(setOptionsList(options, searchValue, labelField), []);
@@ -161,5 +186,4 @@ test(`${element} setOptionsList`, t => {
 
   searchValue = null;
   t.deepEqual(setOptionsList(options, searchValue, labelField), options);
-
 });

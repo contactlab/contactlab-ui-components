@@ -1,83 +1,83 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../../polymer/polymer.html" />
-		<link rel="import" href="../../spinner/view.html" />
-		<script src="../../_components/bundle.js"></script>
-	</head>
-	<body>
-		<test-fixture id="spinner">
-			<template>
-				<spinner-clab></spinner-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../../polymer/polymer.html" />
+    <link rel="import" href="../../spinner/view.html" />
+    <script src="../../_components/bundle.js"></script>
+  </head>
+  <body>
+    <test-fixture id="spinner">
+      <template>
+        <spinner-clab></spinner-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			suite('<spinner-clab>', function() {
-				var spinner;
+    <script>
+      suite('<spinner-clab>', function() {
+        var spinner;
 
-				setup(function() {
-					spinner = fixture('spinner');
-				});
+        setup(function() {
+          spinner = fixture('spinner');
+        });
 
-				suite('Test Properties', function() {
-					test('Default Properties', function() {
-						assert.isFalse(spinner.dark);
-						assert.isFalse(spinner.big);
-						assert.isFalse(spinner.visible);
-						assert.equal(spinner.background, '255, 255, 255, 0.9');
-					});
-				});
+        suite('Test Properties', function() {
+          test('Default Properties', function() {
+            assert.isFalse(spinner.dark);
+            assert.isFalse(spinner.big);
+            assert.isFalse(spinner.visible);
+            assert.equal(spinner.background, '255, 255, 255, 0.9');
+          });
+        });
 
-				suite('Test DOM Bindings', function() {
-					test('Check visible', function(done) {
-						spinner.visible = true;
-						setTimeout(function() {
-							var el = spinner.$$('.spinner-overlay');
-							assert.isNotNull(el);
-							done();
-						});
-					});
+        suite('Test DOM Bindings', function() {
+          test('Check visible', function(done) {
+            spinner.visible = true;
+            setTimeout(function() {
+              var el = spinner.$$('.spinner-overlay');
+              assert.isNotNull(el);
+              done();
+            });
+          });
 
-					test('Check dark', function(done) {
-						spinner.dark = true;
-						spinner.visible = true;
-						setTimeout(function() {
-							var elClass = spinner.$$('.spinner-overlay').classList;
-							assert.isTrue(elClass.contains('dark'));
-							done();
-						});
-					});
+          test('Check dark', function(done) {
+            spinner.dark = true;
+            spinner.visible = true;
+            setTimeout(function() {
+              var elClass = spinner.$$('.spinner-overlay').classList;
+              assert.isTrue(elClass.contains('dark'));
+              done();
+            });
+          });
 
-					test('Check big', function(done) {
-						spinner.big = true;
-						spinner.visible = true;
-						setTimeout(function() {
-							var elClass = spinner.$$('.spinner-overlay').classList;
-							assert.isTrue(elClass.contains('big'));
-							done();
-						});
-					});
+          test('Check big', function(done) {
+            spinner.big = true;
+            spinner.visible = true;
+            setTimeout(function() {
+              var elClass = spinner.$$('.spinner-overlay').classList;
+              assert.isTrue(elClass.contains('big'));
+              done();
+            });
+          });
 
-					test('Check background', function(done) {
-						var bck = '1, 1, 1, 1';
-						var rgbStr = 'rgb(1, 1, 1)';
-						spinner.visible = true;
-						spinner.background = bck;
-						setTimeout(function() {
-							var el = spinner.$$('.spinner-overlay');
-							assert.equal(el.style.backgroundColor, rgbStr);
-							done();
-						});
-					});
-				});
+          test('Check background', function(done) {
+            var bck = '1, 1, 1, 1';
+            var rgbStr = 'rgb(1, 1, 1)';
+            spinner.visible = true;
+            spinner.background = bck;
+            setTimeout(function() {
+              var el = spinner.$$('.spinner-overlay');
+              assert.equal(el.style.backgroundColor, rgbStr);
+              done();
+            });
+          });
+        });
 
-				/*context('Test DOM Bindings', function() {
+        /*context('Test DOM Bindings', function() {
 
 
 	it('Check background', function(done){
@@ -93,7 +93,7 @@
 	});
 
 });*/
-			});
-		</script>
-	</body>
+      });
+    </script>
+  </body>
 </html>

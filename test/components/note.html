@@ -1,51 +1,51 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../note/view.html" />
-	</head>
-	<body>
-		<test-fixture id="note">
-			<template>
-				<note-clab></note-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../note/view.html" />
+  </head>
+  <body>
+    <test-fixture id="note">
+      <template>
+        <note-clab></note-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<note-clab>', function() {
-				var note;
+    <script>
+      describe('<note-clab>', function() {
+        var note;
 
-				beforeEach(function() {
-					note = fixture('note');
-				});
+        beforeEach(function() {
+          note = fixture('note');
+        });
 
-				context('Test Properties', function() {
-					it('default properties', function(done) {
-						expect(note.type).to.be.undefined;
+        context('Test Properties', function() {
+          it('default properties', function(done) {
+            expect(note.type).to.be.undefined;
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check type', function(done) {
-						var str = 'error';
-						note.type = str;
+        context('Test DOM Bindings', function() {
+          it('Check type', function(done) {
+            var str = 'error';
+            note.type = str;
 
-						setTimeout(function() {
-							expect(
-								note.querySelector('.input-note').classList.contains(str)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                note.querySelector('.input-note').classList.contains(str)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

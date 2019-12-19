@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 export default {
   label: {
@@ -78,16 +78,16 @@ export default {
       show: {
         icon: '',
         label: 'Show',
-        type: "",
-        appearance: "",
-        size: ""
+        type: '',
+        appearance: '',
+        size: ''
       },
       hide: {
         icon: '',
         label: 'Hide',
-        type: "",
-        appearance: "",
-        size: ""
+        type: '',
+        appearance: '',
+        size: ''
       }
     }
   },
@@ -99,4 +99,4 @@ export default {
     value: false,
     observer: '_computeBtnPswd'
   }
-}
+};

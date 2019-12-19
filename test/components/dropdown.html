@@ -1,47 +1,47 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../dropdown/view.html" />
-	</head>
-	<body>
-		<test-fixture id="dropdown">
-			<template>
-				<dropdown-clab>This is my note</dropdown-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../dropdown/view.html" />
+  </head>
+  <body>
+    <test-fixture id="dropdown">
+      <template>
+        <dropdown-clab>This is my note</dropdown-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<dropdown-clab>', function() {
-				var dropdown;
+    <script>
+      describe('<dropdown-clab>', function() {
+        var dropdown;
 
-				beforeEach(function() {
-					dropdown = fixture('dropdown');
-					dropdown.liHeight = 20;
-				});
+        beforeEach(function() {
+          dropdown = fixture('dropdown');
+          dropdown.liHeight = 20;
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						expect(dropdown.label).to.equal(null);
-						expect(dropdown.type).to.equal('');
-						expect(dropdown.selected).to.be.an('object');
-						expect(dropdown.options).to.be.an('array');
-						expect(dropdown.optionsFn).to.be.undefined;
-						expect(dropdown.placeholder).to.equal('Select..');
-						expect(dropdown.disabled).to.equal(false);
-						expect(dropdown.resultAsObj).to.equal(false);
-						expect(dropdown.maxInView).to.equal(4);
-						expect(dropdown.noteType).to.be.undefined;
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            expect(dropdown.label).to.equal(null);
+            expect(dropdown.type).to.equal('');
+            expect(dropdown.selected).to.be.an('object');
+            expect(dropdown.options).to.be.an('array');
+            expect(dropdown.optionsFn).to.be.undefined;
+            expect(dropdown.placeholder).to.equal('Select..');
+            expect(dropdown.disabled).to.equal(false);
+            expect(dropdown.resultAsObj).to.equal(false);
+            expect(dropdown.maxInView).to.equal(4);
+            expect(dropdown.noteType).to.be.undefined;
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				/*context('Test DOM Bindings', function() {
+        /*context('Test DOM Bindings', function() {
 
 		it('Check label', function(done) {
 			var str='ciccio';
@@ -138,7 +138,7 @@
 		});
 
 	});*/
-			});
-		</script>
-	</body>
+      });
+    </script>
+  </body>
 </html>

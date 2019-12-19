@@ -7,18 +7,18 @@ const pswd = {
   show: {
     icon: '',
     label: 'Show',
-    type: "",
-    appearance: "",
-    size: ""
+    type: '',
+    appearance: '',
+    size: ''
   },
   hide: {
     icon: '',
     label: 'Hide',
-    type: "",
-    appearance: "",
-    size: ""
+    type: '',
+    appearance: '',
+    size: ''
   }
-}
+};
 
 test(`${element} properties: types & default values`, t => {
   t.is(props.label.type, String);

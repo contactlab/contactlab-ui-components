@@ -1,132 +1,132 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../menu/view.html" />
-	</head>
-	<body>
-		<test-fixture id="menu">
-			<template>
-				<menu-clab>
-					<span class="name">menu-<b>clab</b></span>
-				</menu-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../menu/view.html" />
+  </head>
+  <body>
+    <test-fixture id="menu">
+      <template>
+        <menu-clab>
+          <span class="name">menu-<b>clab</b></span>
+        </menu-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<menu-clab>', function() {
-				var menu;
+    <script>
+      describe('<menu-clab>', function() {
+        var menu;
 
-				beforeEach(function() {
-					menu = fixture('menu');
-				});
+        beforeEach(function() {
+          menu = fixture('menu');
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						expect(menu.titleIcon).to.equal('fa-hand-peace-o');
-						expect(menu.menu).to.be.an('array');
-						expect(menu.link).to.equal('/');
-						expect(menu.draft).to.equal(null);
-						expect(menu.submenu).to.be.undefined;
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            expect(menu.titleIcon).to.equal('fa-hand-peace-o');
+            expect(menu.menu).to.be.an('array');
+            expect(menu.link).to.equal('/');
+            expect(menu.draft).to.equal(null);
+            expect(menu.submenu).to.be.undefined;
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check titleIcon', function(done) {
-						var str = 'new-title-icon';
-						menu.titleIcon = str;
+        context('Test DOM Bindings', function() {
+          it('Check titleIcon', function(done) {
+            var str = 'new-title-icon';
+            menu.titleIcon = str;
 
-						setTimeout(function() {
-							expect(
-								menu.querySelector('.clab-icon').classList.contains(str)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                menu.querySelector('.clab-icon').classList.contains(str)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check menu', function(done) {
-						var obj = [
-							{
-								label: 'Plans',
-								url: '#/plans',
-								icon: 'clab-icon icon-dashboard icon'
-							},
-							{
-								label: 'Segments',
-								url: '#/segments',
-								icon: 'clab-icon icon-segment icon'
-							},
-							{
-								label: 'Reports',
-								url: '#/reports',
-								icon: 'clab-icon icon-analytics icon'
-							},
-							{
-								label: 'Settings',
-								url: '#/settings',
-								icon: 'clab clab-icon-settings icon',
-								submenu: [
-									{
-										label: 'Showed fields',
-										url: '#/settings/fields'
-									},
-									{
-										label: 'Time zones & week',
-										url: '#/settings/timezones'
-									},
-									{
-										label: 'Do Not Disturb Policy',
-										url: '#/settings/dnd'
-									},
-									{
-										label: 'Users',
-										url: '#/settings/users'
-									}
-								]
-							}
-						];
-						menu.menu = obj;
+          it('Check menu', function(done) {
+            var obj = [
+              {
+                label: 'Plans',
+                url: '#/plans',
+                icon: 'clab-icon icon-dashboard icon'
+              },
+              {
+                label: 'Segments',
+                url: '#/segments',
+                icon: 'clab-icon icon-segment icon'
+              },
+              {
+                label: 'Reports',
+                url: '#/reports',
+                icon: 'clab-icon icon-analytics icon'
+              },
+              {
+                label: 'Settings',
+                url: '#/settings',
+                icon: 'clab clab-icon-settings icon',
+                submenu: [
+                  {
+                    label: 'Showed fields',
+                    url: '#/settings/fields'
+                  },
+                  {
+                    label: 'Time zones & week',
+                    url: '#/settings/timezones'
+                  },
+                  {
+                    label: 'Do Not Disturb Policy',
+                    url: '#/settings/dnd'
+                  },
+                  {
+                    label: 'Users',
+                    url: '#/settings/users'
+                  }
+                ]
+              }
+            ];
+            menu.menu = obj;
 
-						setTimeout(function() {
-							expect(menu.querySelectorAll('.main-menu li').length).to.be.above(
-								0
-							);
+            setTimeout(function() {
+              expect(menu.querySelectorAll('.main-menu li').length).to.be.above(
+                0
+              );
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check link', function(done) {
-						var str = 'www.ciccio.com';
-						menu.link = str;
+          it('Check link', function(done) {
+            var str = 'www.ciccio.com';
+            menu.link = str;
 
-						setTimeout(function() {
-							expect(
-								menu.querySelector('#main-logo a').getAttribute('href')
-							).to.equal(str);
+            setTimeout(function() {
+              expect(
+                menu.querySelector('#main-logo a').getAttribute('href')
+              ).to.equal(str);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check draft', function(done) {
-						menu.draft = true;
+          it('Check draft', function(done) {
+            menu.draft = true;
 
-						setTimeout(function() {
-							expect(menu.querySelector('#draft-ribbon')).to.not.be.null;
+            setTimeout(function() {
+              expect(menu.querySelector('#draft-ribbon')).to.not.be.null;
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

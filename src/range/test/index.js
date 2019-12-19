@@ -1,6 +1,6 @@
 import test from 'ava';
 import props from '../props';
-import { _computeRangeWrapperClasses, _compDisabled } from '../methods/internal';
+import {_computeRangeWrapperClasses, _compDisabled} from '../methods/internal';
 
 const element = '<range-clab>';
 

@@ -1,6 +1,6 @@
 import test from 'ava';
 import props from '../props';
-import { _computeClass, _percent, _computeProp } from '../methods/internal';
+import {_computeClass, _percent, _computeProp} from '../methods/internal';
 
 const element = '<progress-clab>';
 

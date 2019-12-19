@@ -1,33 +1,29 @@
 <dom-module id="feature-clab">
+  <template>
+    <div class$="[[_computeFeatureClass(size, vertical)]]">
+      <template is="dom-if" if="[[link]]">
+        <a href$="[[link]]" target$="[[linkTarget]]">
+          <div class="image">
+            <i class$="[[iconClass]]" style$="[[_compDisplay(iconClass)]]"></i>
+            <img src$="[[src]]" alt="" style$="[[_compDisplay(src)]]" />
+          </div>
 
-	<template>
-		<div class$="[[_computeFeatureClass(size, vertical)]]">
+          <div class="description">
+            <slot></slot>
+          </div>
+        </a>
+      </template>
 
-			<template is="dom-if" if="[[link]]">
-				<a href$="[[link]]" target$="[[linkTarget]]">
-					<div class="image">
-			        	<i class$="[[iconClass]]" style$="[[_compDisplay(iconClass)]]"></i>
-						<img src$="[[src]]" alt="" style$="[[_compDisplay(src)]]">
-			        </div>
+      <template is="dom-if" if="[[!link]]">
+        <div class="image">
+          <i class$="[[iconClass]]" style$="[[_compDisplay(iconClass)]]"></i>
+          <img src$="[[src]]" alt="" style$="[[_compDisplay(src)]]" />
+        </div>
 
-			        <div class="description">
-			            <slot></slot>
-			        </div>
-				</a>
-			</template>
-
-			<template is="dom-if" if="[[!link]]">
-				<div class="image">
-					<i class$="[[iconClass]]" style$="[[_compDisplay(iconClass)]]"></i>
-					<img src$="[[src]]" alt="" style$="[[_compDisplay(src)]]">
-				</div>
-
-				<div class="description">
-					<slot></slot>
-				</div>
-			</template>
-
-      	</div>
-	</template>
-
+        <div class="description">
+          <slot></slot>
+        </div>
+      </template>
+    </div>
+  </template>
 </dom-module>

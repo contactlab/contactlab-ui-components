@@ -15,5 +15,3 @@ test(`${element} properties: types & default values`, t => {
   t.false(props.open.value);
   t.is(props.open.observer, '_animateOpenClose');
 });
-
-

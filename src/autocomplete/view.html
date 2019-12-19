@@ -1,39 +1,35 @@
 <dom-module id="autocomplete-clab">
-
   <template>
-    <div 
-      class="input-wrapper"
-    >
-      <input-clab 
+    <div class="input-wrapper">
+      <input-clab
         id$="[[id]]"
-        label="[[label]]" 
-        value="{{_inputString}}" 
-        name="[[name]]" 
-        type="[[type]]" 
-        note-type="[[noteType]]" 
+        label="[[label]]"
+        value="{{_inputString}}"
+        name="[[name]]"
+        type="[[type]]"
+        note-type="[[noteType]]"
         disabled="[[disabled]]"
-        inline="[[inline]]" 
-        label-size="[[labelSize]]" 
-        icon="[[icon]]" 
-        placeholder="[[placeholder]]" 
+        inline="[[inline]]"
+        label-size="[[labelSize]]"
+        icon="[[icon]]"
+        placeholder="[[placeholder]]"
         on-keyup="_handleKeyboardInputs"
         on-click="_toggleList"
       >
-
         <slot name="button" slot="button"></slot>
 
         <slot name="note" slot="note"></slot>
 
-        <curtain-clab 
-          class="curtain" 
-          slot="curtain" 
-          options="[[results]]" 
-          highlighted="[[_currentHint]]" 
+        <curtain-clab
+          class="curtain"
+          slot="curtain"
+          options="[[results]]"
+          highlighted="[[_currentHint]]"
           label-field="[[labelField]]"
-          value-field="[[valueField]]" 
-          max-in-view="[[maxInView]]" 
+          value-field="[[valueField]]"
+          max-in-view="[[maxInView]]"
           open="[[open]]"
-          disabled="[[hideHints]]" 
+          disabled="[[hideHints]]"
           on-do-highlight="_handleHighlight"
           on-do-select="handleSelect"
         ></curtain-clab>
@@ -42,5 +38,4 @@
       <spinner-clab visible="[[_spinner]]"></spinner-clab>
     </div>
   </template>
-
 </dom-module>

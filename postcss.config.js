@@ -6,7 +6,7 @@ module.exports = require('@giotramu/postcss-config').expandDefault({
   plugins: {
     'postcss-import': false,
     '@csstools/postcss-sass': {
-      includePaths: [path.join(__dirname, 'node_modules')],
-    },
-  },
+      includePaths: [path.join(__dirname, 'node_modules')]
+    }
+  }
 });

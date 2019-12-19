@@ -1,14 +1,25 @@
 <dom-module id="range-clab">
-	<template>
+  <template>
     <template is="dom-if" if="[[viewLabel(label)]]">
-      <label class$="[[_compDisabled(disabled)]]" for$="[[dashify(name)]]">[[label]]</label>
+      <label class$="[[_compDisabled(disabled)]]" for$="[[dashify(name)]]"
+        >[[label]]</label
+      >
     </template>
     <div class$="[[_computeRangeWrapperClasses(showDetails)]]">
       <template is="dom-if" if="[[showDetails]]">
         <span class="min">[[min]]</span>
       </template>
-      <input class$="[[_compDisabled(disabled)]]" type="range" name$="[[dashify(name)]]" min$="[[min]]" max$="[[max]]" step$="[[step]]"
-        value="{{value}}" disabled$="[[disabled]]" on-input="_updateCompValue">
+      <input
+        class$="[[_compDisabled(disabled)]]"
+        type="range"
+        name$="[[dashify(name)]]"
+        min$="[[min]]"
+        max$="[[max]]"
+        step$="[[step]]"
+        value="{{value}}"
+        disabled$="[[disabled]]"
+        on-input="_updateCompValue"
+      />
       <template is="dom-if" if="[[showDetails]]">
         <span class="max">[[max]]</span>
       </template>
@@ -19,5 +30,5 @@
         <span>[[value]]</span>
       </div>
     </template>
-	</template>
+  </template>
 </dom-module>

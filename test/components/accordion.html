@@ -1,72 +1,72 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-animations-js/web-animations-next.min.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../accordion/view.html" />
-	</head>
-	<body>
-		<test-fixture id="accordion">
-			<template>
-				<accordion-clab></accordion-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../accordion/view.html" />
+  </head>
+  <body>
+    <test-fixture id="accordion">
+      <template>
+        <accordion-clab></accordion-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<accordion-clab>', function() {
-				var accordion;
+    <script>
+      describe('<accordion-clab>', function() {
+        var accordion;
 
-				beforeEach(function() {
-					accordion = fixture('accordion');
-				});
+        beforeEach(function() {
+          accordion = fixture('accordion');
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						expect(accordion.title).to.equal('Title');
-						expect(accordion.type).to.equal('');
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            expect(accordion.title).to.equal('Title');
+            expect(accordion.type).to.equal('');
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check type', function(done) {
-						var style = 'error';
-						accordion.type = style;
+        context('Test DOM Bindings', function() {
+          it('Check type', function(done) {
+            var style = 'error';
+            accordion.type = style;
 
-						setTimeout(function() {
-							expect(
-								accordion
-									.querySelector('.accordion-block')
-									.classList.contains(style)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                accordion
+                  .querySelector('.accordion-block')
+                  .classList.contains(style)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
-				});
+              done();
+            }, 50);
+          });
+        });
 
-				context('Test Events', function() {
-					it('Toggle the accordion on-click', function(done) {
-						accordion._toggleActive();
+        context('Test Events', function() {
+          it('Toggle the accordion on-click', function(done) {
+            accordion._toggleActive();
 
-						setTimeout(function() {
-							expect(
-								accordion
-									.querySelector('.accordion-title')
-									.classList.contains('active')
-							).to.equal(true);
-							expect(accordion.open).to.equal(true);
+            setTimeout(function() {
+              expect(
+                accordion
+                  .querySelector('.accordion-title')
+                  .classList.contains('active')
+              ).to.equal(true);
+              expect(accordion.open).to.equal(true);
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

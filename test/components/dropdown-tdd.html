@@ -1,58 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../node_modules/web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../node_modules/web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../../polymer/polymer.html" />
-		<link rel="import" href="../../dropdown/view.html" />
-		<script src="../../_components/bundle.js"></script>
-	</head>
-	<body>
-		<test-fixture id="dropdown">
-			<template>
-				<dropdown-clab>This is my note</dropdown-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../../polymer/polymer.html" />
+    <link rel="import" href="../../dropdown/view.html" />
+    <script src="../../_components/bundle.js"></script>
+  </head>
+  <body>
+    <test-fixture id="dropdown">
+      <template>
+        <dropdown-clab>This is my note</dropdown-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			suite('<dropdown-clab>', function() {
-				var dropdown;
+    <script>
+      suite('<dropdown-clab>', function() {
+        var dropdown;
 
-				setup(function() {
-					dropdown = fixture('dropdown');
-				});
+        setup(function() {
+          dropdown = fixture('dropdown');
+        });
 
-				suite('Test Properties', function() {
-					test('Default Properties', function() {
-						assert.isNull(dropdown.label);
-						assert.equal(dropdown.icon, '');
-						assert.equal(dropdown.type, '');
-						assert.isArray(dropdown.options);
-						assert.isObject(dropdown.selected);
-						assert.isUndefined(dropdown.highlighted);
-						assert.equal(dropdown.valueField, 'value');
-						assert.equal(dropdown.labelField, 'label');
-						assert.isUndefined(dropdown.optionsFn);
-						assert.isUndefined(dropdown.url);
-						assert.isFalse(dropdown.inline);
-						assert.equal(dropdown.labelSize, '');
-						assert.equal(dropdown.placeholder, 'Select..');
-						assert.isFalse(dropdown.disabled);
-						assert.isFalse(dropdown.preventChange);
-						assert.isFalse(dropdown.resultAsObj);
-						assert.equal(dropdown.maxInView, 4);
-						assert.isUndefined(dropdown.noteType);
-						assert.equal(dropdown.maxHeight, 28);
-						assert.isFalse(dropdown.search);
-						assert.equal(dropdown.searchValue, '');
-						assert.isArray(dropdown.optionsList);
-					});
-				});
+        suite('Test Properties', function() {
+          test('Default Properties', function() {
+            assert.isNull(dropdown.label);
+            assert.equal(dropdown.icon, '');
+            assert.equal(dropdown.type, '');
+            assert.isArray(dropdown.options);
+            assert.isObject(dropdown.selected);
+            assert.isUndefined(dropdown.highlighted);
+            assert.equal(dropdown.valueField, 'value');
+            assert.equal(dropdown.labelField, 'label');
+            assert.isUndefined(dropdown.optionsFn);
+            assert.isUndefined(dropdown.url);
+            assert.isFalse(dropdown.inline);
+            assert.equal(dropdown.labelSize, '');
+            assert.equal(dropdown.placeholder, 'Select..');
+            assert.isFalse(dropdown.disabled);
+            assert.isFalse(dropdown.preventChange);
+            assert.isFalse(dropdown.resultAsObj);
+            assert.equal(dropdown.maxInView, 4);
+            assert.isUndefined(dropdown.noteType);
+            assert.equal(dropdown.maxHeight, 28);
+            assert.isFalse(dropdown.search);
+            assert.equal(dropdown.searchValue, '');
+            assert.isArray(dropdown.optionsList);
+          });
+        });
 
-				/*suite('Test DOM Bindings', function() {
+        /*suite('Test DOM Bindings', function() {
 
 		test('Check labels', function(done) {
       var label = 'ciccio';
@@ -194,31 +194,31 @@
 
 	});*/
 
-				suite('Test Events', function() {
-					test('Change event', function(done) {
-						var obj = {value: 'A', label: 'Option 1'};
-						var options = [
-							{value: 'A', label: 'Option 1'},
-							{value: 'B', label: 'Option 2'},
-							{value: 'C', label: 'Option 1'},
-							{value: 'D', label: 'Option 2'}
-						];
+        suite('Test Events', function() {
+          test('Change event', function(done) {
+            var obj = {value: 'A', label: 'Option 1'};
+            var options = [
+              {value: 'A', label: 'Option 1'},
+              {value: 'B', label: 'Option 2'},
+              {value: 'C', label: 'Option 1'},
+              {value: 'D', label: 'Option 2'}
+            ];
 
-						dropdown.addEventListener('change', function(evt) {
-							assert.equal(
-								evt.detail.selected,
-								obj.value,
-								'Value selected: correct'
-							);
-							assert.equal(evt.type, 'change', "Type event 'change': correct");
-							done();
-						});
+            dropdown.addEventListener('change', function(evt) {
+              assert.equal(
+                evt.detail.selected,
+                obj.value,
+                'Value selected: correct'
+              );
+              assert.equal(evt.type, 'change', "Type event 'change': correct");
+              done();
+            });
 
-						dropdown.options = options;
-						dropdown._setSelected(obj);
-					});
-				});
-			});
-		</script>
-	</body>
+            dropdown.options = options;
+            dropdown._setSelected(obj);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

@@ -61,11 +61,11 @@
     $label-status-color: nth($color, 1);
     $label-foreground: darken(
       $color: $label-status-color,
-      $amount: 15%,
+      $amount: 15%
     );
     $label-background: lighten(
       $color: $label-status-color,
-      $amount: 30%,
+      $amount: 30%
     );
 
     &.#{$status} {

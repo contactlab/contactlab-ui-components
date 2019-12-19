@@ -1,15 +1,15 @@
 <dom-module id="label-clab">
-
-	<template>
-		<span class$="[[_computeClass(badge,type)]]">
-			<slot></slot>
-			<template is="dom-if" if="[[counter]]">
-				<span class="counter">[[counter]]</span>
-			</template>
-			<template is="dom-if" if="[[remove]]">
-				<span class="remove" on-tap="_removeClicked"><i class="clab-icon icon-close"></i></span>
-			</template>
-		</span>
-	</template>
-
+  <template>
+    <span class$="[[_computeClass(badge,type)]]">
+      <slot></slot>
+      <template is="dom-if" if="[[counter]]">
+        <span class="counter">[[counter]]</span>
+      </template>
+      <template is="dom-if" if="[[remove]]">
+        <span class="remove" on-tap="_removeClicked"
+          ><i class="clab-icon icon-close"></i
+        ></span>
+      </template>
+    </span>
+  </template>
 </dom-module>

@@ -1,119 +1,119 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-animations-js/web-animations-next.min.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../modal/view.html" />
-	</head>
-	<body>
-		<test-fixture id="modal">
-			<template>
-				<modal-clab></modal-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../modal/view.html" />
+  </head>
+  <body>
+    <test-fixture id="modal">
+      <template>
+        <modal-clab></modal-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<modal-clab>', function() {
-				var modal;
+    <script>
+      describe('<modal-clab>', function() {
+        var modal;
 
-				beforeEach(function() {
-					modal = fixture('modal');
-				});
+        beforeEach(function() {
+          modal = fixture('modal');
+        });
 
-				context('Test Properties', function() {
-					it('default properties', function(done) {
-						expect(modal.visible).to.equal(false);
-						expect(modal.title).to.equal('Modal title');
-						expect(modal.primary).to.be.undefined;
-						expect(modal.secondary).to.be.undefined;
-						expect(modal.content).to.equal(null);
+        context('Test Properties', function() {
+          it('default properties', function(done) {
+            expect(modal.visible).to.equal(false);
+            expect(modal.title).to.equal('Modal title');
+            expect(modal.primary).to.be.undefined;
+            expect(modal.secondary).to.be.undefined;
+            expect(modal.content).to.equal(null);
 
-						done();
-					});
-				});
+            done();
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check visible', function(done) {
-						modal.visible = true;
+        context('Test DOM Bindings', function() {
+          it('Check visible', function(done) {
+            modal.visible = true;
 
-						setTimeout(function() {
-							expect(modal.querySelector('.modal-overlay')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(modal.querySelector('.modal-overlay')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check title', function(done) {
-						var title = 'A new title';
-						modal.visible = true;
-						modal.title = title;
+          it('Check title', function(done) {
+            var title = 'A new title';
+            modal.visible = true;
+            modal.title = title;
 
-						setTimeout(function() {
-							expect(modal.querySelector('.modal-title').innerText).to.equal(
-								title
-							);
+            setTimeout(function() {
+              expect(modal.querySelector('.modal-title').innerText).to.equal(
+                title
+              );
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check primary & secondary', function(done) {
-						var pri = 'this is first';
-						var sec = 'this is second';
-						var thi = 'this is third';
-						modal.visible = true;
-						modal.primary = pri;
-						modal.secondary = sec;
-						modal.warningBtn = thi;
+          it('Check primary & secondary', function(done) {
+            var pri = 'this is first';
+            var sec = 'this is second';
+            var thi = 'this is third';
+            modal.visible = true;
+            modal.primary = pri;
+            modal.secondary = sec;
+            modal.warningBtn = thi;
 
-						setTimeout(function() {
-							expect(
-								modal.querySelector('.btn.primary').innerText.trim()
-							).to.equal(pri);
-							expect(
-								modal.querySelector('.btn.secondary').innerText.trim()
-							).to.equal(sec);
-							expect(
-								modal.querySelector('.btn.third').innerText.trim()
-							).to.equal(thi);
+            setTimeout(function() {
+              expect(
+                modal.querySelector('.btn.primary').innerText.trim()
+              ).to.equal(pri);
+              expect(
+                modal.querySelector('.btn.secondary').innerText.trim()
+              ).to.equal(sec);
+              expect(
+                modal.querySelector('.btn.third').innerText.trim()
+              ).to.equal(thi);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check content', function(done) {
-						var str = 'A new content';
-						modal.visible = true;
-						modal.content = str;
+          it('Check content', function(done) {
+            var str = 'A new content';
+            modal.visible = true;
+            modal.content = str;
 
-						setTimeout(function() {
-							expect(modal.querySelector('.modal-body p').innerText).to.equal(
-								str
-							);
+            setTimeout(function() {
+              expect(modal.querySelector('.modal-body p').innerText).to.equal(
+                str
+              );
 
-							done();
-						}, 50);
-					});
-				});
+              done();
+            }, 50);
+          });
+        });
 
-				context('Test Events', function() {
-					it('Closing the modal on-click', function(done) {
-						modal.visible = true;
+        context('Test Events', function() {
+          it('Closing the modal on-click', function(done) {
+            modal.visible = true;
 
-						setTimeout(function() {
-							var evt = new Event('click');
-							modal.querySelector('.close-overlay').dispatchEvent(evt);
-							expect(modal.visible).to.equal(false);
+            setTimeout(function() {
+              var evt = new Event('click');
+              modal.querySelector('.close-overlay').dispatchEvent(evt);
+              expect(modal.visible).to.equal(false);
 
-							done();
-						}, 50);
-					});
-				});
-			});
-		</script>
-	</body>
+              done();
+            }, 50);
+          });
+        });
+      });
+    </script>
+  </body>
 </html>

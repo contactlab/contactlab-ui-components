@@ -1,6 +1,6 @@
 import test from 'ava';
 
-import { dashify, viewLabel, getIndex } from '../utils';
+import {dashify, viewLabel, getIndex} from '../utils';
 
 test(`UTILS dashify`, t => {
   t.is(dashify(null), null);

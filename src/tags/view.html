@@ -1,22 +1,42 @@
 <dom-module id="tags-clab">
-
   <template>
     <div class="tags-wrapper">
       <template is="dom-if" if="[[!hideInput]]">
-        <input-clab type="[[type]]" note-type="[[noteType]]" label="[[label]]" name="[[name]]" value="{{inputString}}" disabled="[[disabled]]"
-          placeholder="[[placeholder]]" on-keyup="_handleKeyUp">
-          <button-clab slot="button" type="[[inputType]]" appearance="[[btnAppearence]]" size="[[btnSize]]" icon="[[btnIcon]]" disabled="[[disabled]]"
-            on-btnclick="_addTag">[[btnLabel]]</button-clab>
+        <input-clab
+          type="[[type]]"
+          note-type="[[noteType]]"
+          label="[[label]]"
+          name="[[name]]"
+          value="{{inputString}}"
+          disabled="[[disabled]]"
+          placeholder="[[placeholder]]"
+          on-keyup="_handleKeyUp"
+        >
+          <button-clab
+            slot="button"
+            type="[[inputType]]"
+            appearance="[[btnAppearence]]"
+            size="[[btnSize]]"
+            icon="[[btnIcon]]"
+            disabled="[[disabled]]"
+            on-btnclick="_addTag"
+            >[[btnLabel]]</button-clab
+          >
           <slot name="note" slot="note"></slot>
         </input-clab>
       </template>
 
       <div class$="[[_computeStacked(stacked)]]">
         <template is="dom-repeat" items="[[tags]]">
-          <label-clab remove on-remove="_removeTag" data-index$="[[index]]" value$="[[item.value]]">[[item.label]]</label-clab>
+          <label-clab
+            remove
+            on-remove="_removeTag"
+            data-index$="[[index]]"
+            value$="[[item.value]]"
+            >[[item.label]]</label-clab
+          >
         </template>
       </div>
     </div>
   </template>
-
 </dom-module>

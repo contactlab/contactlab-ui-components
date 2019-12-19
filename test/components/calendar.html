@@ -1,121 +1,121 @@
 <!DOCTYPE html>
 <html lang="en">
-	<head>
-		<meta charset="UTF-8" />
+  <head>
+    <meta charset="UTF-8" />
 
-		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
-		<script src="../../../web-component-tester/browser.js"></script>
+    <script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+    <script src="../../../web-component-tester/browser.js"></script>
 
-		<link rel="import" href="../../calendar/view.html" />
-	</head>
-	<body>
-		<test-fixture id="calendar">
-			<template>
-				<calendar-clab></calendar-clab>
-			</template>
-		</test-fixture>
+    <link rel="import" href="../../calendar/view.html" />
+  </head>
+  <body>
+    <test-fixture id="calendar">
+      <template>
+        <calendar-clab></calendar-clab>
+      </template>
+    </test-fixture>
 
-		<script>
-			describe('<calendar-clab>', function() {
-				var calendar;
+    <script>
+      describe('<calendar-clab>', function() {
+        var calendar;
 
-				beforeEach(function() {
-					calendar = fixture('calendar');
-				});
+        beforeEach(function() {
+          calendar = fixture('calendar');
+        });
 
-				context('Test Properties', function() {
-					it('Default Properties', function(done) {
-						setTimeout(function() {
-							expect(calendar.label).to.be.undefined;
-							expect(calendar.disabled).to.equal(false);
-							expect(calendar.valueStr).to.equal(null);
-							expect(calendar.inline).to.equal(false);
-							expect(calendar.placeholder).to.be.undefined;
-							expect(calendar.type).to.equal('');
-							expect(calendar.noteType).to.equal('');
+        context('Test Properties', function() {
+          it('Default Properties', function(done) {
+            setTimeout(function() {
+              expect(calendar.label).to.be.undefined;
+              expect(calendar.disabled).to.equal(false);
+              expect(calendar.valueStr).to.equal(null);
+              expect(calendar.inline).to.equal(false);
+              expect(calendar.placeholder).to.be.undefined;
+              expect(calendar.type).to.equal('');
+              expect(calendar.noteType).to.equal('');
 
-							done();
-						}, 100);
-					});
-				});
+              done();
+            }, 100);
+          });
+        });
 
-				context('Test DOM Bindings', function() {
-					it('Check label', function(done) {
-						var label = 'This is my label';
-						calendar.label = label;
+        context('Test DOM Bindings', function() {
+          it('Check label', function(done) {
+            var label = 'This is my label';
+            calendar.label = label;
 
-						setTimeout(function() {
-							expect(calendar.label).to.be.equal(label);
+            setTimeout(function() {
+              expect(calendar.label).to.be.equal(label);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check disabled', function(done) {
-						var bool = true;
-						calendar.disabled = bool;
+          it('Check disabled', function(done) {
+            var bool = true;
+            calendar.disabled = bool;
 
-						setTimeout(function() {
-							expect(
-								calendar.querySelector('input[type=text]').disabled
-							).to.equal(bool);
+            setTimeout(function() {
+              expect(
+                calendar.querySelector('input[type=text]').disabled
+              ).to.equal(bool);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check inline', function(done) {
-						calendar.inline = true;
+          it('Check inline', function(done) {
+            calendar.inline = true;
 
-						setTimeout(function() {
-							expect(calendar.querySelector('.inline-cal')).to.not.be.undefined;
+            setTimeout(function() {
+              expect(calendar.querySelector('.inline-cal')).to.not.be.undefined;
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check placeholder', function(done) {
-						var placeholder = 'This is my placeholder';
-						calendar.placeholder = placeholder;
+          it('Check placeholder', function(done) {
+            var placeholder = 'This is my placeholder';
+            calendar.placeholder = placeholder;
 
-						setTimeout(function() {
-							expect(
-								calendar.querySelector('input').getAttribute('placeholder')
-							).to.equal(placeholder);
+            setTimeout(function() {
+              expect(
+                calendar.querySelector('input').getAttribute('placeholder')
+              ).to.equal(placeholder);
 
-							done();
-						}, 50);
-					});
+              done();
+            }, 50);
+          });
 
-					it('Check type & noteType', function(done) {
-						var str = 'error';
-						var noteType = 'small';
-						calendar.label = 'I have a label';
-						calendar.type = str;
-						calendar.noteType = noteType;
+          it('Check type & noteType', function(done) {
+            var str = 'error';
+            var noteType = 'small';
+            calendar.label = 'I have a label';
+            calendar.type = str;
+            calendar.noteType = noteType;
 
-						setTimeout(function() {
-							expect(
-								calendar.querySelector('label').classList.contains(str)
-							).to.equal(true);
-							expect(
-								calendar.querySelector('input').classList.contains(str)
-							).to.equal(true);
-							expect(
-								calendar.querySelector('.input-note').classList.contains(str)
-							).to.equal(true);
-							expect(
-								calendar
-									.querySelector('.input-note')
-									.classList.contains(noteType)
-							).to.equal(true);
+            setTimeout(function() {
+              expect(
+                calendar.querySelector('label').classList.contains(str)
+              ).to.equal(true);
+              expect(
+                calendar.querySelector('input').classList.contains(str)
+              ).to.equal(true);
+              expect(
+                calendar.querySelector('.input-note').classList.contains(str)
+              ).to.equal(true);
+              expect(
+                calendar
+                  .querySelector('.input-note')
+                  .classList.contains(noteType)
+              ).to.equal(true);
 
-							done();
-						}, 50);
-					});
-				});
+              done();
+            }, 50);
+          });
+        });
 
-				/* context('Test Events', function() {
+        /* context('Test Events', function() {
 	it('check if input is clear', function(done) {
 		calendar.valueStr='';
 		calendar._checkClear();
@@ -125,7 +125,7 @@
 		done();
 	});
   });*/
-			});
-		</script>
-	</body>
+      });
+    </script>
+  </body>
 </html>

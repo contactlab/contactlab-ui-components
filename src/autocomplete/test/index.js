@@ -76,4 +76,3 @@ test(`${element} properties: types & default values`, t => {
 
   t.is(props._interval.type, Object);
 });
-
