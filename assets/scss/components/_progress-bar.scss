@@ -1,0 +1,43 @@
+.progress-bar {
+  padding-top: 2rem;
+  position: relative;
+
+  section {
+    width: 100%;
+    height: 0.3rem;
+    margin: 0 !important;
+    padding: 0 !important;
+    position: relative;
+    background-color: get-color('base300');
+    text-align: right;
+
+    article {
+      height: 0.3rem;
+      padding: 0 !important;
+      position: absolute;
+      top: 0;
+      left: 0;
+      background-color: get-color('base800');
+      text-align: center;
+    }
+
+    label {
+      display: block;
+      width: 100%;
+      transform: translate(0, -2rem);
+      font-size: 1.6rem;
+      text-align: right;
+      white-space: nowrap;
+    }
+  }
+
+  &.minimal section {
+    background-color: transparent;
+  }
+
+  @each $status, $color in $default-status {
+    &.#{$status} section article {
+      background-color: nth($color, 1);
+    }
+  }
+}

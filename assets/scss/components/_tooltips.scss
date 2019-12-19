@@ -1,0 +1,15 @@
+.tooltip {
+  border-radius: 0.4rem;
+  padding: 0.4rem;
+  color: get-color('white');
+  background-color: get-color('base800');
+  font-size: 1.2rem;
+  font-weight: normal;
+  line-height: 1;
+
+  a {
+    color: get-color('white');
+    text-decoration: underline;
+    cursor: pointer;
+  }
+}

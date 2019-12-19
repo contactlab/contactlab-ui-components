@@ -1,0 +1,82 @@
+body {
+  background-color: get-color('base100');
+
+  &.no-scroll {
+    overflow: hidden;
+    padding-right: 1.5rem;
+  }
+}
+
+a,
+a:link,
+a:visited {
+  color: get-color('accent500');
+  text-decoration: none;
+  cursor: pointer;
+}
+
+a:hover,
+a:focus {
+  color: darken($color: get-color('accent500'), $amount: 10%);
+}
+
+a:active {
+  color: lighten($color: get-color('accent500'), $amount: 10%);
+}
+
+// --- row actions
+.row-action {
+  display: flex;
+  align-self: stretch;
+
+  a {
+    @extend %default-link-effect;
+    display: flex;
+    padding: 0 1.2rem;
+    align-items: center;
+  }
+
+  @each $status, $color in $default-status {
+    &.#{$status} {
+      a {
+        color: nth($color, 1);
+
+        &:active {
+          color: darken($color: nth($color, 1), $amount: 20%);
+        }
+      }
+    }
+  }
+}
+
+// --- misc
+.key-value {
+  li {
+    display: flex;
+    margin-bottom: 1.2rem * 1.5;
+    flex-flow: row wrap;
+    flex-grow: 1;
+    align-items: flex-end;
+
+    span:first-of-type {
+      @extend label;
+      padding: 0 !important;
+    }
+
+    &:last-of-type {
+      margin-bottom: 0;
+    }
+  }
+
+  hr.divider {
+    margin: 0 1.2rem 0.3rem;
+    border-style: dotted;
+    flex: 1 0;
+  }
+
+  .multiple {
+    padding-top: 1.2rem;
+    padding-left: 2rem;
+    flex-basis: 100%;
+  }
+}

@@ -1,129 +1,126 @@
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8" />
 
-<head>
-	<meta charset="UTF-8">
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../checkbox/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+	<body>
+		<test-fixture id="checkbox">
+			<template>
+				<checkbox-clab></checkbox-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../checkbox/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<checkbox-clab>', function() {
+				var checkbox;
+				var label = 'test';
+				var type = 'error';
 
-</head>
-
-<body>
-
-	<test-fixture id="checkbox">
-		<template>
-			<checkbox-clab></checkbox-clab>
-		</template>
-	</test-fixture>
-
-
-	<script>
-		suite('<checkbox-clab>', function() {
-			var checkbox;
-			var label = 'test';
-			var type = 'error';
-
-
-			setup(function() {
-				checkbox = fixture('checkbox');
-			});
-
-			suite('Test Properties', function() {
-
-				test('Default Properties', function() {
-					assert.isUndefined(checkbox.label);
-					assert.isUndefined(checkbox.wrapperType);
-					assert.isFalse(checkbox.active);
-					assert.isFalse(checkbox.disabled);
+				setup(function() {
+					checkbox = fixture('checkbox');
 				});
 
-			});
-
-			suite('Test DOM Bindings', function() {
-
-				test('Check label', function(done) {
-					checkbox.label = label;
-					checkbox.wrapperType = type;
-					flush(function() {
-						var rows = checkbox.querySelectorAll('.row');
-						var singleCheck = checkbox.querySelectorAll('.row label')[0];
-						assert.equal(singleCheck.htmlFor, label, "Label binding: correct");
-						done();
-					})
-				});
-
-				test('Check wrapperType', function(done) {
-					checkbox.label = label;
-					checkbox.wrapperType = type;
-					flush(function() {
-						var row = checkbox.$$('.row');
-						assert.include(row.classList.value, type, "Wrapper type: correct");
-						done();
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.isUndefined(checkbox.label);
+						assert.isUndefined(checkbox.wrapperType);
+						assert.isFalse(checkbox.active);
+						assert.isFalse(checkbox.disabled);
 					});
 				});
 
-				test('Check disabled', function(done) {
-					checkbox.label = label;
-					checkbox.wrapperType = type;
-					// Fill array of disabled checkbox
-					checkbox.disabled = [0, 1];
-					setTimeout(function() {
-						Array.prototype.map.call(checkbox.querySelectorAll('input[type=checkbox]'), function(el, i) {
-							for (var n = 0; n < checkbox.disabled.length; n++) {
-								if (n == i)
-									assert.isTrue(el.disabled);
-							}
+				suite('Test DOM Bindings', function() {
+					test('Check label', function(done) {
+						checkbox.label = label;
+						checkbox.wrapperType = type;
+						flush(function() {
+							var rows = checkbox.querySelectorAll('.row');
+							var singleCheck = checkbox.querySelectorAll('.row label')[0];
+							assert.equal(
+								singleCheck.htmlFor,
+								label,
+								'Label binding: correct'
+							);
+							done();
 						});
-						done();
+					});
+
+					test('Check wrapperType', function(done) {
+						checkbox.label = label;
+						checkbox.wrapperType = type;
+						flush(function() {
+							var row = checkbox.$$('.row');
+							assert.include(
+								row.classList.value,
+								type,
+								'Wrapper type: correct'
+							);
+							done();
+						});
+					});
+
+					test('Check disabled', function(done) {
+						checkbox.label = label;
+						checkbox.wrapperType = type;
+						// Fill array of disabled checkbox
+						checkbox.disabled = [0, 1];
+						setTimeout(function() {
+							Array.prototype.map.call(
+								checkbox.querySelectorAll('input[type=checkbox]'),
+								function(el, i) {
+									for (var n = 0; n < checkbox.disabled.length; n++) {
+										if (n == i) assert.isTrue(el.disabled);
+									}
+								}
+							);
+							done();
+						});
+					});
+
+					test('Check active', function(done) {
+						checkbox.label = label;
+						checkbox.wrapperType = type;
+						checkbox.active = true;
+						flush(function() {
+							var inputActive = checkbox.querySelectorAll(
+								'input[type=checkbox]'
+							)[0];
+							assert.isTrue(inputActive.checked);
+							done();
+						});
 					});
 				});
 
-				test('Check active', function(done) {
-					checkbox.label = label;
-					checkbox.wrapperType = type;
-					checkbox.active = true;
-					flush(function() {
-						var inputActive = checkbox.querySelectorAll('input[type=checkbox]')[0];
-						assert.isTrue(inputActive.checked);
-						done();
-					});
-				});
-
-
-			});
-
-			suite('Test Events', function() {
-
-				test('Update active on-click', function(done) {
-					checkbox.label = label;
-					checkbox.wrapperType = type;
-					// TODO: must be set on element as default value
-					//checkbox.active = [];
-					flush(function() {
-						var check = checkbox.querySelectorAll('input[type=checkbox]')[0];
-						check.addEventListener('click', function(evt) {
-							flush(function() {
-								assert.isTrue(checkbox.active, "Checkbox.active is true: correct");
-								done();
+				suite('Test Events', function() {
+					test('Update active on-click', function(done) {
+						checkbox.label = label;
+						checkbox.wrapperType = type;
+						// TODO: must be set on element as default value
+						//checkbox.active = [];
+						flush(function() {
+							var check = checkbox.querySelectorAll('input[type=checkbox]')[0];
+							check.addEventListener('click', function(evt) {
+								flush(function() {
+									assert.isTrue(
+										checkbox.active,
+										'Checkbox.active is true: correct'
+									);
+									done();
+								});
 							});
+							check.click();
 						});
-						check.click();
 					});
 				});
-
 			});
-
-
-
-
-		});
-	</script>
-</body>
-
+		</script>
+	</body>
 </html>

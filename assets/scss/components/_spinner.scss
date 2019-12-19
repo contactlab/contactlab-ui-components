@@ -1,0 +1,63 @@
+.spinner-overlay {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  user-select: none;
+
+  .spinner {
+    display: grid;
+    width: 4rem;
+    height: 1rem;
+  }
+}
+
+spinner-clab {
+  &[position='fixed'] {
+    .spinner-overlay {
+      width: 100vw;
+      height: 100vh;
+      position: fixed;
+      z-index: 99;
+    }
+  }
+
+  &[small] {
+    .spinner-overlay {
+      .spinner {
+        width: 2.4rem !important;
+        height: 0.6rem !important;
+      }
+    }
+  }
+
+  &[big] {
+    .spinner-overlay {
+      .spinner {
+        width: 5.6rem !important;
+        height: 1.4rem !important;
+      }
+    }
+  }
+
+  &[dark] {
+    .spinner-overlay {
+      color: get-color('white');
+      background-color: rgba(29, 51, 68, 0.85) !important;
+
+      .spinner {
+        svg {
+          fill: get-color('white') !important;
+        }
+      }
+    }
+  }
+}

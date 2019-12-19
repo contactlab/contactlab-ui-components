@@ -29,9 +29,6 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.stopClose.type, Boolean);
   t.is(props.stopClose.value, false);
 
-  t.is(props.width.type, Number);
-  t.is(props.width.value, 840);
-
   t.is(props.noAnimation.type, Boolean);
   t.is(props.noAnimation.value, false);
 

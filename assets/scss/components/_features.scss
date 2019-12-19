@@ -1,0 +1,65 @@
+.feature {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: flex-start;
+
+  a {
+    display: flex;
+    color: get-color('base900');
+  }
+
+  .image {
+    padding-right: 1.2rem;
+    font-size: 5rem;
+    line-height: 1;
+
+    img {
+      height: 5rem;
+    }
+  }
+
+  .title {
+    padding-bottom: 0.4rem;
+    font-weight: bold;
+  }
+
+  .description {
+    flex-grow: 1;
+  }
+
+  &.small {
+    .image {
+      font-size: 2.5rem;
+
+      img {
+        height: 2.5rem;
+      }
+    }
+  }
+
+  &.big {
+    .image {
+      font-size: 7.5rem;
+
+      img {
+        height: 7.5rem;
+      }
+    }
+  }
+
+  &.vertical {
+    flex-flow: column wrap;
+    align-items: center;
+    text-align: center;
+
+    a {
+      display: flex;
+      flex-direction: column;
+    }
+
+    .image {
+      margin-bottom: 1.2rem;
+      padding-right: 0;
+    }
+  }
+}

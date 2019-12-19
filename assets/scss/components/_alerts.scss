@@ -1,0 +1,57 @@
+.alert {
+  margin-bottom: 2.4rem;
+  border-radius: 0.8rem;
+  padding: 1.6rem;
+  padding-right: 3.2rem;
+  position: relative;
+  color: get-color('white');
+  background-color: get-color('base900');
+
+  p {
+    margin-bottom: 0;
+  }
+
+  .close {
+    display: flex;
+    width: 1.4rem;
+    height: 1.4rem;
+    position: absolute;
+    top: 0.8rem;
+    right: 0.8rem;
+    align-items: center;
+    justify-content: center;
+    color: get-color('base300');
+    font-size: 1rem;
+    line-height: 1;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+      color: get-color('base200');
+    }
+  }
+
+  &.fixed {
+    max-width: 50%;
+    position: fixed;
+    top: auto;
+    bottom: 0;
+    left: 2.4rem;
+    z-index: 4;
+    box-shadow: 0 1rem 1rem 0 rgba(0, 20, 32, 0.05),
+      0 1.4rem 2.8rem 0 rgba(0, 20, 32, 0.16);
+  }
+
+  @each $status, $color in $default-status {
+    $status-color: nth($color, 1);
+
+    &.#{$status} .title {
+      margin-bottom: 0.8rem;
+      color: $status-color;
+      font-size: 1.8rem;
+      font-weight: normal;
+      text-rendering: optimizeLegibility;
+      line-height: 1.3em;
+    }
+  }
+}

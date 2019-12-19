@@ -1,57 +1,65 @@
-
 <dom-module id="modal-clab">
-	<style>
-		.modal-overlay{
-			display:none;
-			opacity: 0;
-		}
+  <style>
+    .modal-overlay {
+      display: none;
+      opacity: 0;
+    }
 
-		.third{
-			float: left;
-			clear: none;
-		}
-	</style>
+    .third {
+      float: left;
+      clear: none;
+    }
+  </style>
 
-	<template>
-		<!-- <template is="dom-if" if="[[visible]]"> -->
-			<div class="modal-overlay">
+  <template>
+    <div class="modal-overlay">
+      <div class="modal">
+        <div class="modal-wrapper">
+          <div class="close-overlay" on-click="_closeModal">
+            <i class="clab-icon icon-close"></i>
+          </div>
 
-				<div class="close-overlay" on-click="_closeModal"><i class="clab-icon icon-close"></i></div>
+          <div class="modal-title">[[title]]</div>
+          <template is="dom-if" if="[[content]]">
+            <div class="modal-body">
+              <p>[[content]]</p>
+            </div>
+          </template>
+          <template is="dom-if" if="[[!content]]">
+            <div class="modal-body">
+              <slot></slot>
+            </div>
+          </template>
 
-				<div class="modal">
-					<div class="modal-wrapper" style$="[[_computeWidth(width)]]">
-						<div class="modal-title">[[title]]</div>
-						<template is="dom-if" if="[[content]]">
-							<div class="modal-body">
-								<p>[[content]]</p>
-							</div>
-						</template>
-						<template is="dom-if" if="[[!content]]">
-							<div class="modal-body">
-								<slot></slot>
-							</div>
-						</template>
-
-						<template is="dom-if" if="[[!noActions]]">
-							<div class="main-actions">
-								<div class="primary">
-									<template is="dom-if" if="[[warning]]">
-										<button-clab type="error third" on-btnclick="_warningAction">[[warning]]</button-clab>
-									</template>
-									<template is="dom-if" if="[[secondary]]">
-										<button-clab type="secondary" appearance="flat" on-btnclick="_secondaryAction">[[secondary]]</button-clab>
-									</template>
-									<template is="dom-if" if="[[primary]]">
-										<button-clab type="primary" disabled="[[primaryDisabled]]" on-btnclick="_primaryAction">[[primary]]</button-clab>
-									</template>
-								</div>
-							</div>
-						</template>
-					</div>
-				</div>
-
-			</div>
-		<!-- </template> -->
-	</template>
-
+          <template is="dom-if" if="[[!noActions]]">
+            <div class="main-actions">
+              <div class="primary">
+                <template is="dom-if" if="[[warning]]">
+                  <button-clab type="error third" on-btnclick="_warningAction"
+                    >[[warning]]</button-clab
+                  >
+                </template>
+                <template is="dom-if" if="[[secondary]]">
+                  <button-clab
+                    type="secondary"
+                    appearance="empty"
+                    on-btnclick="_secondaryAction"
+                    >[[secondary]]</button-clab
+                  >
+                </template>
+                <template is="dom-if" if="[[primary]]">
+                  <button-clab
+                    type="primary"
+                    disabled="[[primaryDisabled]]"
+                    on-btnclick="_primaryAction"
+                    >[[primary]]</button-clab
+                  >
+                </template>
+              </div>
+            </div>
+          </template>
+        </div>
+      </div>
+    </div>
+  </template>
 </dom-module>

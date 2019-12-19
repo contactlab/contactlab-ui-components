@@ -1,87 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../progress-bar/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="progress">
+			<template>
+				<progress-clab></progress-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../progress-bar/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<progress-clab>', function() {
+				var progress;
 
-</head>
-<body>
+				setup(function() {
+					progress = fixture('progress');
+				});
 
-<test-fixture id="progress">
-	<template>
-	  <progress-clab></progress-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.equal(progress.value, 0);
+						assert.isFalse(progress.minimal);
+						assert.isNull(progress.type);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check value', function() {
+						var num = Math.floor(Math.random() * 100);
+						// Get percent
+						var perc = progress._percent(num);
+						progress.value = num;
 
-<script>
+						var el = progress.$$('article');
+						assert.equal(el.style.width, perc);
+					});
 
-suite('<progress-clab>', function() {
-  var progress;
+					test('Check minimal', function() {
+						progress.minimal = true;
+						// Get percent
+						var elClass = progress.$$('.progress-bar').classList;
+						assert.isTrue(elClass.contains('minimal'));
+					});
 
-  setup(function() {
-	  progress = fixture('progress');
-  });
+					test('Check type', function() {
+						var type = 'error';
+						progress.type = type;
+						// Get percent
+						var elClass = progress.$$('.progress-bar').classList;
+						assert.isTrue(elClass.contains(type));
+					});
+				});
 
-  suite('Test Properties', function() {
-
-  	test('Default Properties', function() {
-  		assert.equal(progress.value, 0);
-  		assert.isFalse(progress.minimal);
-  		assert.isNull(progress.type);
-	  });
-
-  });
-
-  suite('Test DOM Bindings', function() {
-
-  	test('Check value', function() {
-      var num = Math.floor(Math.random() * 100);
-      // Get percent
-      var perc = progress._percent(num);
-      progress.value = num;
-
-      var el = progress.$$('article');
-      assert.equal(el.style.width, perc);
-	  });
-
-    test('Check minimal', function() {
-      progress.minimal = true;
-      // Get percent
-      var elClass = progress.$$('.progress-bar').classList;
-      assert.isTrue(elClass.contains('minimal'));
-	  });
-
-    test('Check type', function() {
-      var type = 'error';
-      progress.type = type;
-      // Get percent
-      var elClass = progress.$$('.progress-bar').classList;
-      assert.isTrue(elClass.contains(type));
-	  });
-
-  });
-
-
-  suite('Test Methods', function() {
-
-  	test('Get % of value', function() {
-  		var num = Math.floor(Math.random() * 100);
-  		var perc = progress._percent(num);
-      assert.equal(perc, num + '%');
-  	});
-
-  });
-
-});
-
-</script>
-</body>
+				suite('Test Methods', function() {
+					test('Get % of value', function() {
+						var num = Math.floor(Math.random() * 100);
+						var perc = progress._percent(num);
+						assert.equal(perc, num + '%');
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

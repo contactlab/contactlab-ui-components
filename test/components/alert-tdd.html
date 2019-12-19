@@ -1,170 +1,185 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../alert/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="alert">
+			<template>
+				<alert-clab></alert-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../alert/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<alert-clab>', function() {
+				var alert;
 
-</head>
-<body>
+				setup(function() {
+					alert = fixture('alert');
+				});
 
-<test-fixture id="alert">
-	<template>
-	  <alert-clab></alert-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						// Default values
+						assert.equal(alert.title, 'Title');
+						assert.equal(alert.type, 'success');
+						assert.isFalse(alert.visible);
+						assert.equal(alert.primary, 'Confirm');
+						assert.equal(alert.secondary, 'Cancel');
+						assert.isFalse(alert.notify);
+						assert.isFalse(alert.noAnimation);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check default binding (not visible and "success" type)', function(done) {
+						// Default not visible
+						// No Events
+						// Wait with setTimeout
+						setTimeout(function() {
+							var el = alert.$$('.alert');
+							var h3Title = alert.$$('.alert h3').textContent;
+							assert.equal(h3Title, 'Title');
+							assert.include(
+								el.classList.value,
+								'success',
+								"Classlist contains 'success'"
+							);
+							assert.equal(
+								getComputedStyle(el).display,
+								'none',
+								'Alert not visible'
+							);
+							assert.equal(getComputedStyle(el).opacity, 0);
+							done();
+						}, 5);
+					});
 
-<script>
+					test('Check visibility', function(done) {
+						alert.visible = true;
 
-suite('<alert-clab>', function() {
-  var alert;
+						setTimeout(function() {
+							var el = alert.$$('.alert');
+							assert.equal(
+								getComputedStyle(el).display,
+								'block',
+								'Alert is visible'
+							);
+							assert.equal(getComputedStyle(el).opacity, 1);
+							done();
+						}, 5);
+					});
 
-  setup(function() {
-	  alert = fixture('alert');
-  });
+					test('Check type', function(done) {
+						var style = 'error';
+						alert.visible = true;
+						alert.type = style;
 
-  suite('Test Properties', function() {
+						setTimeout(function() {
+							var el = alert.$$('.alert');
+							assert.include(
+								el.classList.value,
+								style,
+								'Classlist contains new type class'
+							);
+							done();
+						}, 5);
+					});
 
-  	test('Default Properties', function() {
-      // Default values
-  		assert.equal(alert.title, 'Title');
-  		assert.equal(alert.type, 'success');
-  		assert.isFalse(alert.visible);
-  		assert.equal(alert.primary, 'Confirm');
-  		assert.equal(alert.secondary, 'Cancel');
-      assert.isFalse(alert.notify);
-      assert.isFalse(alert.noAnimation);
-	  });
+					test('Check title', function(done) {
+						var title = 'A new title';
+						alert.visible = true;
+						alert.title = title;
 
-  });
+						setTimeout(function() {
+							var elTitle = alert.$$('.alert h3').textContent;
+							assert.equal(elTitle, title, 'Title is changed');
+							done();
+						}, 5);
+					});
 
-  suite('Test DOM Bindings',function(){
+					test('Check labels', function(done) {
+						var pri = 'this is first';
+						var sec = 'this is second';
+						alert.visible = true;
+						alert.primary = pri;
+						alert.secondary = sec;
 
-  	test('Check default binding (not visible and "success" type)', function(done) {
-      // Default not visible
-      // No Events
-      // Wait with setTimeout
-      setTimeout(function () {
-        var el = alert.$$('.alert');
-        var h3Title = alert.$$('.alert h3').textContent;
-        assert.equal(h3Title, 'Title');
-        assert.include(el.classList.value, 'success', "Classlist contains 'success'");
-        assert.equal(getComputedStyle(el).display, "none", "Alert not visible");
-        assert.equal(getComputedStyle(el).opacity, 0);
-        done();
-      }, 5);
+						setTimeout(function() {
+							var titleLables = alert.querySelectorAll('button-clab');
+							assert.equal(
+								titleLables[1].textContent.trim(),
+								pri,
+								"The second button is the 'primary'"
+							);
+							assert.equal(titleLables[0].textContent.trim(), sec),
+								"The first button is the 'secondary'";
+							done();
+						}, 5);
+					});
+				});
 
-	  });
+				suite('Test Events', function() {
+					test('Hiding the alert on-click (not Notify version)', function(done) {
+						// Show
+						alert.visible = true;
+						// Hide
+						setTimeout(function() {
+							var elClose = alert.$$('.close');
+							elClose.click();
+						}, 5);
 
-    test('Check visibility', function (done) {
-      alert.visible = true;
+						alert.addEventListener('close', function(evt) {
+							// Ensure transition complete with setTimeout
+							setTimeout(function() {
+								var el = alert.$$('.alert');
+								assert.equal(
+									getComputedStyle(el).display,
+									'none',
+									'Alert is now not visible'
+								);
+								assert.equal(getComputedStyle(el).opacity, 0);
+								done();
+							}, 500);
+						});
+					});
 
-  		setTimeout(function(){
-        var el = alert.$$('.alert');
-        assert.equal(getComputedStyle(el).display, "block", "Alert is visible");
-        assert.equal(getComputedStyle(el).opacity, 1);
-  			done();
-  		}, 5);
-    });
+					test('Hiding the alert on-click (with Notify version)', function(done) {
+						// Show
+						alert.visible = true;
+						// Set notify version;
+						alert.notify = true;
+						// Hide
+						setTimeout(function() {
+							// Click directly on alert box
+							var el = alert.$$('.alert');
+							el.click();
+						}, 5);
 
-  	test('Check type', function(done) {
-  		var style = 'error';
-  		alert.visible = true;
-  		alert.type = style;
-
-  		setTimeout(function(){
-        var el = alert.$$('.alert');
-  			assert.include(el.classList.value, style, "Classlist contains new type class")
-  			done();
-  		}, 5);
-  	});
-
-  	test('Check title', function(done) {
-  		var title = 'A new title';
-  		alert.visible = true;
-  		alert.title = title;
-
-  		setTimeout(function(){
-        var elTitle = alert.$$('.alert h3').textContent;
-        assert.equal(elTitle, title, "Title is changed");
-  			done();
-  		}, 5);
-  	});
-
-  	test('Check labels', function(done) {
-  		var pri = 'this is first';
-  		var sec = 'this is second';
-  		alert.visible = true;
-      alert.primary = pri;
-      alert.secondary = sec;
-
-  		setTimeout(function(){
-        var titleLables = alert.querySelectorAll('button-clab');
-  			assert.equal(titleLables[1].textContent.trim(), pri, "The second button is the 'primary'");
-  			assert.equal(titleLables[0].textContent.trim(), sec), "The first button is the 'secondary'";
-  			done();
-  		}, 5);
-  	});
-
-  });
-
-  suite('Test Events', function() {
-
-  	test('Hiding the alert on-click (not Notify version)', function(done) {
-        // Show
-  	  	alert.visible = true;
-        // Hide
-        setTimeout(function(){
-          var elClose = alert.$$('.close');
-          elClose.click();
-    		}, 5);
-
-  	  	alert.addEventListener('close', function (evt) {
-          // Ensure transition complete with setTimeout
-          setTimeout(function(){
-            var el = alert.$$('.alert');
-            assert.equal(getComputedStyle(el).display, "none", "Alert is now not visible");
-            assert.equal(getComputedStyle(el).opacity, 0);
-    	  		done();
-          }, 500);
-
-  	  	});
-  	});
-
-    test('Hiding the alert on-click (with Notify version)', function(done) {
-        // Show
-        alert.visible = true;
-        // Set notify version;
-        alert.notify = true;
-        // Hide
-        setTimeout(function(){
-          // Click directly on alert box
-          var el = alert.$$('.alert');
-          el.click();
-        }, 5);
-
-        alert.addEventListener('close', function (evt) {
-          // Ensure transition complete with setTimeout
-          setTimeout(function(){
-            var el = alert.$$('.alert');
-            assert.equal(getComputedStyle(el).display, "none", "Alert is now not visible");
-            assert.equal(getComputedStyle(el).opacity, 0);
-            done();
-          }, 200);
-
-        });
-    });
-  });
-});
-
-</script>
-</body>
+						alert.addEventListener('close', function(evt) {
+							// Ensure transition complete with setTimeout
+							setTimeout(function() {
+								var el = alert.$$('.alert');
+								assert.equal(
+									getComputedStyle(el).display,
+									'none',
+									'Alert is now not visible'
+								);
+								assert.equal(getComputedStyle(el).opacity, 0);
+								done();
+							}, 200);
+						});
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

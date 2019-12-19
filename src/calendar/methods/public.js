@@ -1,10 +1,7 @@
-'use strict';
-
 import rome from 'rome';
-import moment from 'moment';
 
 const getLocale = () => {
-  return rome.moment.locale();
-}
+	return rome.moment.locale();
+};
 
-export { getLocale }
+export {getLocale};

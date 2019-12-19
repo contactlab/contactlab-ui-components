@@ -1,105 +1,93 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../label-badge/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="label">
+			<template>
+				<label-clab></label-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../label-badge/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<label-clab>', function() {
+				var label;
 
-</head>
-<body>
+				setup(function() {
+					label = fixture('label');
+				});
 
-<test-fixture id="label">
-	<template>
-	  <label-clab></label-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.isNull(label.type);
+						assert.isNull(label.counter);
+						assert.isFalse(label.remove);
+						assert.isFalse(label.badge);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check type', function() {
+						var type = 'error';
+						label.type = type;
 
-<script>
+						var elClass = label.$$('.label').classList;
+						assert.isTrue(elClass.contains(type));
+					});
 
-suite('<label-clab>', function() {
-  var label;
+					test('Check counter', function(done) {
+						var n = 12;
+						label.counter = true;
+						setTimeout(function() {
+							var el = label.$$('.counter');
+							assert.isNotNull(el);
+							assert.equal(el.innerText, 'true');
+							done();
+						});
+					});
 
-	setup(function() {
-		label = fixture('label');
-	});
+					test('Check remove', function(done) {
+						label.remove = true;
+						setTimeout(function() {
+							var el = label.$$('.remove');
+							assert.isNotNull(el);
+							done();
+						});
+					});
 
-	suite('Test Properties', function() {
+					test('Check badge', function(done) {
+						label.badge = true;
+						setTimeout(function() {
+							var el = label.$$('.badge');
+							assert.isNotNull(el);
+							done();
+						});
+					});
 
-		test('Default Properties', function() {
-			assert.isNull(label.type);
-			assert.isNull(label.counter);
-			assert.isFalse(label.remove);
-			assert.isFalse(label.badge);
-		});
-
-	});
-
-	suite('Test DOM Bindings', function(){
-
-		test('Check type', function() {
-			var type = 'error';
-			label.type = type;
-
-      var elClass = label.$$('.label').classList;
-			assert.isTrue(elClass.contains(type));
-		});
-
-    test('Check counter', function(done) {
-      var n = 12
-      label.counter = true;
-      setTimeout(function () {
-        var el = label.$$('.counter');
-        assert.isNotNull(el);
-        assert.equal(el.innerText, "true");
-        done();
-      });
-    });
-
-    test('Check remove', function(done) {
-      label.remove = true;
-      setTimeout(function () {
-        var el = label.$$('.remove');
-        assert.isNotNull(el);
-        done();
-      });
-    });
-
-    test('Check badge', function(done) {
-      label.badge = true;
-      setTimeout(function () {
-        var el = label.$$('.badge');
-        assert.isNotNull(el);
-        done();
-      });
-    });
-
-    suite('Test Events', function() {
-
-  		test('Remove on-click', function(done) {
-        label.remove = true;
-        var tap = new Event('tap');
-        setTimeout(function () {
-          var el = label.$$('.remove');
-          label.addEventListener('remove', function (evt) {
-            assert.equal(evt.type, 'remove');
-            done();
-          });
-          el.dispatchEvent(tap);
-        });
-  		});
-
-  	});
-  });
-
-});
-
-</script>
-</body>
+					suite('Test Events', function() {
+						test('Remove on-click', function(done) {
+							label.remove = true;
+							var tap = new Event('tap');
+							setTimeout(function() {
+								var el = label.$$('.remove');
+								label.addEventListener('remove', function(evt) {
+									assert.equal(evt.type, 'remove');
+									done();
+								});
+								el.dispatchEvent(tap);
+							});
+						});
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

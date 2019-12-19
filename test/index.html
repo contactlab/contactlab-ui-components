@@ -1,45 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
-
-	<script src="./../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../web-component-tester/browser.js"></script>
-
-</head>
-<body>
-
-<script>
-
-	WCT.loadSuites([
-		//'components/accordion.html',
-		//'components/alert.html',
-		//'components/autocomplete.html',
-		//'components/button-group.html',
-		//'components/button.html',
-		//'components/calendar.html',
-		//'components/card.html',
-		//'components/checkbox.html',
-		//'components/dropdown.html',
-		/*'components/feature.html',
-		'components/file.html',
-		'components/input.html',
-		'components/label-badge.html',
-		'components/menu.html',
-		'components/modal.html',
-		'components/multiple.html',
-		'components/note.html',
-		'components/pagination.html',
-		'components/progress.html',
-		'components/radio.html',
-		'components/range.html',
-		'components/spinner.html',
-		'components/tabs.html',
-		'components/tags.html',
-		'components/tooltip.html',*/
-	]);
-
-</script>
-</body>
+		<script src="../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="./node_modules/web-component-tester/browser.js"></script>
+	</head>
+	<body>
+		<script>
+			WCT.loadSuites([
+				'components/accordion-tdd.html',
+				'components/alert-tdd.html',
+				// TODO AJAX TEST
+				'components/autocomplete-tdd.html',
+				'components/button-group-tdd.html',
+				'components/button-tdd.html',
+				'components/checkbox-tdd.html',
+				'components/dropdown-tdd.html',
+				'components/feature-tdd.html',
+				'components/file-tdd.html',
+				'components/input-tdd.html',
+				'components/label-badge-tdd.html',
+				//TODO 'components/menu-tdd.html',
+				'components/modal-tdd.html',
+				// TODO AJAX TEST
+				'components/multiple-tdd.html',
+				'components/note-tdd.html',
+				'components/pagination-tdd.html',
+				'components/progress-tdd.html',
+				'components/radio-tdd.html',
+				'components/range-tdd.html',
+				'components/spinner-tdd.html',
+				'components/tabs-tdd.html',
+				'components/tags-tdd.html',
+				'components/tooltip-tdd.html',
+				'components/calendar-tdd.html'
+			]);
+		</script>
+	</body>
 </html>

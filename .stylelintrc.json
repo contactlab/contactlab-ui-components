@@ -1,0 +1,8 @@
+{
+  "extends": "@giotramu/stylelint-config",
+  "rules": {
+    "declaration-no-important": null,
+    "scss/at-extend-no-missing-placeholder": null,
+    "selector-class-pattern": null
+  }
+}

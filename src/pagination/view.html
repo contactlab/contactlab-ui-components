@@ -1,5 +1,5 @@
 <dom-module id="pagination-clab">
-	<template>
+  <template>
     <style>
       :host {
         user-select: none;
@@ -10,25 +10,54 @@
       }
     </style>
 
-		<ul class="pagination">
-			<li class$="[[_hideIfFirst(currentPage, 'first')]]" on-click="_setCurrent" data-index$="[[firstPage]]" data-type="first">
-				<i class="clab-icon icon-double-arrow-left"></i>
-			</li>
-			<li class$="[[_hideIfFirst(currentPage)]]" on-click="_setCurrent" data-index$="[[prevPage]]" data-type="prev">
-		    	<i class="clab-icon icon-arrow-left"></i>
-		    </li>
+    <ul class="pagination">
+      <li
+        class$="[[_hideIfFirst(currentPage, 'first')]]"
+        on-click="_setCurrent"
+        data-index$="[[firstPage]]"
+        data-type="first"
+      >
+        <i class="clab-icon icon-double-arrow-left"></i>
+      </li>
+      <li
+        class$="[[_hideIfFirst(currentPage)]]"
+        on-click="_setCurrent"
+        data-index$="[[prevPage]]"
+        data-type="prev"
+      >
+        <i class="clab-icon icon-arrow-left"></i>
+      </li>
 
-			<template is="dom-repeat" items="[[_compVisiblePages(availableStart, availableEnd, pages)]]" as="page">
-				<li class$="[[_computeActive(currentPage, page)]]" on-click="_setCurrent" data-index$="[[page]]">[[_pageNumber(page)]]</li>
-			</template>
+      <template
+        is="dom-repeat"
+        items="[[_compVisiblePages(availableStart, availableEnd, pages)]]"
+        as="page"
+      >
+        <li
+          class$="[[_computeActive(currentPage, page)]]"
+          on-click="_setCurrent"
+          data-index$="[[page]]"
+        >
+          [[_pageNumber(page)]]
+        </li>
+      </template>
 
-			<li class$="[[_hideIfLast(currentPage, tot)]]" on-click="_setCurrent" data-index$="[[nextPage]]" data-type="next">
-		    	<i class="clab-icon icon-arrow-right"></i>
-		    </li>
-			<li class$="[[_hideIfLast(currentPage, tot, 'last')]]" on-click="_setCurrent" data-index$="[[lastPage]]" data-type="last">
-		    	<i class="clab-icon icon-double-arrow-right"></i>
-		    </li>
-		</ul>
-	</template>
-
+      <li
+        class$="[[_hideIfLast(currentPage, tot)]]"
+        on-click="_setCurrent"
+        data-index$="[[nextPage]]"
+        data-type="next"
+      >
+        <i class="clab-icon icon-arrow-right"></i>
+      </li>
+      <li
+        class$="[[_hideIfLast(currentPage, tot, 'last')]]"
+        on-click="_setCurrent"
+        data-index$="[[lastPage]]"
+        data-type="last"
+      >
+        <i class="clab-icon icon-double-arrow-right"></i>
+      </li>
+    </ul>
+  </template>
 </dom-module>

@@ -1,0 +1,111 @@
+// --- labels
+.label {
+  display: inline-block;
+  overflow: hidden;
+  min-width: 2rem;
+  height: 2rem;
+  border: 0.1rem solid get-color('base300');
+  border-radius: 0.4rem;
+  padding: 0 1.2rem;
+  color: get-color('base900');
+  background-color: get-color('base200');
+  font-size: 1.2rem;
+  text-align: center;
+  line-height: 2rem;
+  white-space: nowrap;
+
+  .counter {
+    margin-left: 0.4rem;
+    border-radius: 1rem;
+    padding: 0 0.4rem;
+    color: get-color('base900');
+    background-color: get-color('white');
+  }
+
+  .remove {
+    padding: 0.3rem 0 0.3rem 0.5rem;
+    color: rgba(255, 255, 255, 0.6);
+    font-size: 0.8rem;
+    text-align: right;
+
+    .clab {
+      font-size: 0.8rem;
+    }
+
+    &:hover {
+      color: get-color('white');
+      cursor: pointer;
+    }
+  }
+
+  &.empty {
+    border: 0.1rem solid get-color('base900');
+    color: get-color('base900');
+    background-color: transparent;
+
+    .counter {
+      color: get-color('white');
+      background-color: get-color('base900');
+    }
+
+    .remove {
+      color: rgba(get-color('base900'), 0.6);
+
+      &:hover {
+        color: get-color('base900');
+      }
+    }
+  }
+
+  @each $status, $color in $default-status {
+    $label-status-color: nth($color, 1);
+    $label-foreground: darken(
+      $color: $label-status-color,
+      $amount: 15%,
+    );
+    $label-background: lighten(
+      $color: $label-status-color,
+      $amount: 30%,
+    );
+
+    &.#{$status} {
+      border-color: $label-status-color;
+      color: $label-foreground;
+      background-color: $label-background;
+
+      .counter {
+        color: $label-status-color;
+      }
+
+      &.empty {
+        border: 0.1rem solid $label-status-color;
+        color: $label-status-color;
+        background-color: transparent;
+
+        .counter {
+          color: $label-status-color;
+          background-color: $label-background;
+        }
+
+        .remove {
+          color: darken($color: $label-status-color, $amount: 10%);
+
+          &:hover {
+            color: darken($color: $label-status-color, $amount: 15%);
+          }
+        }
+      }
+    }
+  }
+}
+
+// --- badges
+.badge {
+  @extend .label;
+  border-radius: 2.5rem;
+  padding: 0 2rem;
+
+  &.default {
+    border-radius: 2.5rem;
+  }
+}

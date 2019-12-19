@@ -1,119 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	
+	<head>
+		<meta charset="UTF-8" />
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../button-group/view.html">
+		<link rel="import" href="../../button-group/view.html" />
+	</head>
+	<body>
+		<test-fixture id="group">
+			<template>
+				<group-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+				</group-clab>
+			</template>
+		</test-fixture>
 
-</head>
-<body>
-	
-<test-fixture id="group">
-	<template>
-		<group-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-		</group-clab>
-	</template>
-</test-fixture>
+		<script>
+			describe('<group-clab>', function() {
+				var group;
 
+				beforeEach(function() {
+					group = fixture('group');
+				});
 
-<script>
+				context('Test Properties', function() {
+					it('Default Properties', function(done) {
+						expect(group.small).to.equal(false);
+						expect(group.disabled).to.equal(false);
+						expect(group.type).to.equal('');
+						expect(group.value).to.equal(0);
 
-describe('<group-clab>', function() {
-  var group;
+						done();
+					});
+				});
 
-  beforeEach(function() {
-	group = fixture('group');
-  });
+				context('Test DOM Bindings', function() {
+					it('Check size', function(done) {
+						var bool = true;
+						group.small = bool;
 
-  context('Test Properties', function() {
+						setTimeout(function() {
+							expect(
+								group
+									.querySelector('.buttons-group')
+									.classList.contains('small')
+							).to.equal(true);
 
-  	it('Default Properties', function(done) {
-		expect(group.small).to.equal(false);
-		expect(group.disabled).to.equal(false);
-		expect(group.type).to.equal('');
-		expect(group.value).to.equal(0);
+							done();
+						}, 50);
+					});
 
-		done();
-	});
+					it('Check type', function(done) {
+						var type = 'warning';
+						group.type = type;
 
-  });
+						setTimeout(function() {
+							expect(
+								group.querySelector('.buttons-group').classList.contains(type)
+							).to.equal(true);
 
-  context('Test DOM Bindings', function() {
+							done();
+						}, 50);
+					});
 
-	it('Check size', function(done) {
-		var bool = true;
-		group.small = bool;
+					it('Check value', function(done) {
+						var num = Math.floor(Math.random() * 4);
+						group.value = num;
 
-		setTimeout(function(){
-			expect(group.querySelector('.buttons-group').classList.contains('small')).to.equal(true);
+						setTimeout(function() {
+							expect(
+								group.querySelectorAll('button-clab')[num].appearance
+							).to.equal('full');
 
-			done();
-		},50);
-	});
+							done();
+						}, 50);
+					});
 
-	it('Check type', function(done) {
-		var type = 'warning';
-		group.type = type;
+					it('Check disabled', function(done) {
+						var bool = true;
+						group.disabled = bool;
 
-		setTimeout(function(){
-			expect(group.querySelector('.buttons-group').classList.contains(type)).to.equal(true);
+						setTimeout(function() {
+							group.getContentChildren().map(function(btn) {
+								expect(btn.disabled).to.equal(bool);
+							});
 
-			done();
-		},50);
-	});
+							done();
+						}, 50);
+					});
+				});
 
-	it('Check value', function(done) {
-		var num = Math.floor(Math.random() * 4);
-		group.value = num;
+				context('Test Events', function() {
+					it('Change selection on-click', function(done) {
+						var val = 0;
+						group.value = 2;
+						group.querySelectorAll('button')[val].click();
 
-		setTimeout(function(){
-			expect(group.querySelectorAll('button-clab')[num].appearance).to.equal('full');
+						setTimeout(function() {
+							expect(group.value).to.equal(val);
 
-			done();
-		},50);
-	});
-
-	it('Check disabled', function(done) {
-		var bool = true;
-		group.disabled = bool;
-
-		setTimeout(function(){
-			group.getContentChildren().map(function(btn){
-				expect(btn.disabled).to.equal(bool);
+							done();
+						}, 50);
+					});
+				});
 			});
-
-			done();
-		},50);
-	});
-
-  });
-
-  context('Test Events', function() {
-
-  	it('Change selection on-click', function(done) {
-  		var val = 0;
-		group.value = 2;
-		group.querySelectorAll('button')[val].click();
-
-		setTimeout(function(){
-			expect(group.value).to.equal(val);
-
-			done();
-		},50);
-	});
-
-  });
-
-});	
-
-</script>
-</body>
+		</script>
+	</body>
 </html>

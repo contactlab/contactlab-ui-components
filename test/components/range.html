@@ -1,129 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	
+	<head>
+		<meta charset="UTF-8" />
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../range/view.html">
+		<link rel="import" href="../../range/view.html" />
+	</head>
+	<body>
+		<test-fixture id="range">
+			<template>
+				<range-clab></range-clab>
+			</template>
+		</test-fixture>
 
-</head>
-<body>
-	
-<test-fixture id="range">
-	<template>
-	  <range-clab></range-clab>
-	</template>
-</test-fixture>
+		<script>
+			describe('<range-clab>', function() {
+				var range;
 
+				beforeEach(function() {
+					range = fixture('range');
+				});
 
-<script>
+				context('Test Properties', function() {
+					it('Default Properties', function(done) {
+						expect(range.name).to.equal('rangeinput');
+						expect(range.disabled).to.equal(false);
+						expect(range.showDetails).to.equal(false);
 
-describe('<range-clab>', function() {
-  var range;
+						done();
+					});
+				});
 
-	beforeEach(function() {
-		range = fixture('range');
-	});
+				context('Test DOM Bindings', function() {
+					it('Check type', function(done) {
+						var str = 'error';
+						range.label = 'I have a label';
+						range.type = str;
 
-	context('Test Properties', function() {
+						setTimeout(function() {
+							expect(
+								range.querySelector('label').classList.contains(str)
+							).to.equal(true);
+							expect(
+								range.querySelector('input').classList.contains(str)
+							).to.equal(true);
 
-		it('Default Properties', function(done) {
-			expect(range.name).to.equal('rangeinput');
-			expect(range.disabled).to.equal(false);
-			expect(range.showDetails).to.equal(false);
+							done();
+						}, 50);
+					});
 
-			done();
-		});
+					it('Check Disabled', function(done) {
+						range.label = 'I have a label';
+						range.disabled = true;
 
-	});
+						setTimeout(function() {
+							expect(
+								range.querySelector('label').classList.contains('disabled')
+							).to.equal(true);
+							expect(
+								range.querySelector('input').classList.contains('disabled')
+							).to.equal(true);
 
-	context('Test DOM Bindings', function(){
+							done();
+						}, 50);
+					});
 
-		it('Check type', function(done) {
-			var str = 'error';
-			range.label = 'I have a label';
-			range.type = str;
+					it('Check label', function(done) {
+						var label = 'I have a label';
+						range.label = label;
 
-			setTimeout(function(){
-				expect(range.querySelector('label').classList.contains(str)).to.equal(true);
-				expect(range.querySelector('input').classList.contains(str)).to.equal(true);
+						setTimeout(function() {
+							expect(range.querySelector('label').innerText).to.equal(label);
 
-				done();
-			},50);
-		});
+							done();
+						}, 50);
+					});
 
-		it('Check Disabled', function(done) {
-			range.label = 'I have a label';
-			range.disabled = true;
+					it('Check details', function(done) {
+						var bool = true;
+						var wrapper = range.querySelector('.range-wrapper');
+						range.setAttribute('show-details', bool);
 
-			setTimeout(function(){
-				expect(range.querySelector('label').classList.contains('disabled')).to.equal(true);
-				expect(range.querySelector('input').classList.contains('disabled')).to.equal(true);
+						setTimeout(function() {
+							expect(range.showDetails).to.equal(bool);
+							expect(wrapper.querySelectorAll('span').length).to.equal(2);
 
-				done();
-			},50);
-		});
+							done();
+						}, 50);
+					});
 
-		it('Check label', function(done){
-			var label='I have a label';
-			range.label=label;
+					it('Check value', function(done) {
+						var value = 8;
+						range.value = value;
 
-			setTimeout(function(){
-				expect(range.querySelector('label').innerText).to.equal(label);
+						setTimeout(function() {
+							expect(range.querySelector('input').value).to.equal(
+								value.toString()
+							);
 
-				done();
-			},50);
-		});
+							done();
+						}, 50);
+					});
+				});
 
-		it('Check details', function(done) {
-			var bool=true;
-			var wrapper=range.querySelector('.range-wrapper');
-			range.setAttribute('show-details', bool);
+				context('Test Events', function() {
+					it('Update value on-input event', function(done) {
+						var value = 4;
+						var evt = new Event('input');
+						range.querySelector('input').value = value;
+						range.querySelector('input').dispatchEvent(evt);
 
-			setTimeout(function(){
-				expect(range.showDetails).to.equal(bool);
-				expect(wrapper.querySelectorAll('span').length).to.equal(2);
+						setTimeout(function() {
+							expect(range.value).to.equal(value.toString());
 
-				done();
-			},50);
-		});
-
-		it('Check value', function(done) {
-			var value = 8;
-			range.value = value;
-
-			setTimeout(function(){
-				expect(range.querySelector('input').value).to.equal(value.toString());
-
-				done();
-			}, 50);
-		});
-
-	});
-
-
-	context('Test Events', function() {
-
-		it('Update value on-input event',function(done){
-			var value=4;
-			var evt=new Event('input');
-			range.querySelector('input').value=value;
-			range.querySelector('input').dispatchEvent(evt);
-
-			setTimeout(function(){
-				expect(range.value).to.equal(value.toString());
-
-				done();
-			}, 50);
-		});
-
-	});
-
-});	
-
-</script>
-</body>
+							done();
+						}, 50);
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

@@ -1,89 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../accordion/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="accordion">
+			<template>
+				<accordion-clab></accordion-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../accordion/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<accordion-clab>', function() {
+				var accordion;
 
-
-</head>
-<body>
-
-<test-fixture id="accordion">
-	<template>
-	  <accordion-clab></accordion-clab>
-	</template>
-</test-fixture>
-
-
-<script>
-
-suite('<accordion-clab>', function() {
-  var accordion;
-
-  setup(function() {
-	  accordion = fixture('accordion');
-  });
-
-  suite('Test Properties', function() {
-
-  	test('Default Properties', function() {
-		  assert.equal(accordion.title, "Title", "Accordion title: Title");
-      assert.equal(accordion.type, "", "Accordion type: empty");
-      assert.isFalse(accordion.open, "Accordion open: false");
-	  });
-  });
-
-  suite('Test DOM Bindings', function() {
-
-  	test('Check type', function() {
-      var style = 'error';
-      accordion.type = style;
-
-      //setTimeout(function(){
-        var accordionClasses = accordion.$$('.accordion-block').classList;
-        assert.isTrue(accordionClasses.contains(style), 'Accordion Classes: contains "error"');
-        //done();
-      //}, 50);
-	  });
-  });
-
-  suite('Test Events', function() {
-
-    test('Toggle accordion on-click', function(done) {
-      var accordionTitle = accordion.$$('.accordion-title');
-			var click = new Event('click');
-      accordionTitle.addEventListener('click', function(evt) {
-				setTimeout(function () {
-	        var accordionClasses = accordion.$$('.accordion-block').classList;
-	        assert.isTrue(accordion.open, "Accordion open: true");
-	        assert.isTrue(accordionClasses.contains("active"), 'Accordion Classes: contains "active"');
-	        done();
+				setup(function() {
+					accordion = fixture('accordion');
 				});
-      });
-      accordionTitle.dispatchEvent(click);
-    });
 
-    test('Toggle accordion with _toggleActive()', function(done) {
-      accordion._toggleActive();
-			setTimeout(function () {
-				var accordionClasses = accordion.$$('.accordion-block').classList;
-	      assert.isTrue(accordion.open, "Accordion open: true");
-	      assert.isTrue(accordionClasses.contains("active"), 'Accordion Classes: contains "active"');
-				done()
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.equal(accordion.title, 'Title', 'Accordion title: Title');
+						assert.equal(accordion.type, '', 'Accordion type: empty');
+						assert.isFalse(accordion.open, 'Accordion open: false');
+					});
+				});
+
+				suite('Test DOM Bindings', function() {
+					test('Check type', function() {
+						var style = 'error';
+						accordion.type = style;
+
+						//setTimeout(function(){
+						var accordionClasses = accordion.$$('.accordion-block').classList;
+						assert.isTrue(
+							accordionClasses.contains(style),
+							'Accordion Classes: contains "error"'
+						);
+						//done();
+						//}, 50);
+					});
+				});
+
+				suite('Test Events', function() {
+					test('Toggle accordion on-click', function(done) {
+						var accordionTitle = accordion.$$('.accordion-title');
+						var click = new Event('click');
+						accordionTitle.addEventListener('click', function(evt) {
+							setTimeout(function() {
+								var accordionClasses = accordion.$$('.accordion-block')
+									.classList;
+								assert.isTrue(accordion.open, 'Accordion open: true');
+								assert.isTrue(
+									accordionClasses.contains('active'),
+									'Accordion Classes: contains "active"'
+								);
+								done();
+							});
+						});
+						accordionTitle.dispatchEvent(click);
+					});
+
+					test('Toggle accordion with _toggleActive()', function(done) {
+						accordion._toggleActive();
+						setTimeout(function() {
+							var accordionClasses = accordion.$$('.accordion-block').classList;
+							assert.isTrue(accordion.open, 'Accordion open: true');
+							assert.isTrue(
+								accordionClasses.contains('active'),
+								'Accordion Classes: contains "active"'
+							);
+							done();
+						});
+					});
+				});
 			});
-    });
-  });
-
-});
-
-</script>
-</body>
+		</script>
+	</body>
 </html>

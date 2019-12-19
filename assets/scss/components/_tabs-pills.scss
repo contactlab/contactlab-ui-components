@@ -1,0 +1,149 @@
+tabs-clab {
+  display: block;
+  width: 100%;
+}
+
+.tabs {
+  display: flex;
+  width: 100%;
+  flex-flow: column wrap;
+
+  > ul {
+    display: flex;
+    width: 100%;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: flex-start;
+    text-align: center;
+    line-height: 1;
+  }
+
+  li.tab {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      @extend %slow-transition;
+      content: '';
+      display: block;
+      width: 0;
+      height: 0.4rem;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: get-color('base300');
+    }
+
+    a {
+      @extend %truncate;
+      display: inline-block;
+      padding: 1.2rem 1.6rem;
+      color: get-color('base900');
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &.active {
+      &::after {
+        @extend %slow-transition;
+        width: 100%;
+        background-color: get-color('accent500');
+      }
+
+      a {
+        color: get-color('accent500');
+      }
+    }
+  }
+
+  &.disabled li.tab {
+    a {
+      color: get-color('base200');
+      cursor: not-allowed;
+    }
+  }
+
+  &.bordered {
+    > ul {
+      border-bottom: 0.1rem solid get-color('base200');
+    }
+  }
+
+  &.centered {
+    > ul {
+      justify-content: center;
+    }
+  }
+
+  &.vertical {
+    flex-flow: row nowrap;
+
+    > ul {
+      border-right: 0.1rem solid get-color('base200');
+      border-bottom: none;
+      flex-basis: 20rem;
+      flex-flow: column wrap;
+      flex-shrink: 0;
+      text-align: left;
+
+      .tab {
+        border-bottom: 0.1rem solid get-color('base200');
+
+        &:last-of-type {
+          border-bottom: none;
+        }
+
+        a {
+          padding: 1.2rem;
+
+          &::after {
+            content: '';
+            width: 0.3rem;
+            height: auto;
+            position: absolute;
+            top: 0;
+            right: -0.1rem;
+            bottom: 0;
+            left: auto;
+            background-color: transparent;
+          }
+        }
+
+        &.active a::after {
+          background-color: get-color('accent500');
+        }
+      }
+    }
+
+    .tab-content {
+      padding: 0 0 0 2rem;
+    }
+  }
+}
+
+// --- pills
+.pills {
+  @extend .tabs;
+
+  ul {
+    border-bottom: none;
+
+    .tab {
+      margin-right: 0;
+
+      a {
+        border: none;
+      }
+
+      &.active a {
+        color: get-color('white');
+        background-color: get-color('accent500');
+      }
+    }
+  }
+}
+
+.pills .ui-widget-header {
+  border: none;
+}

@@ -1,0 +1,124 @@
+autocomplete-clab {
+  flex-grow: 1;
+}
+
+multiple-clab {
+  max-width: 100%;
+  flex-grow: 1;
+}
+
+select[multiple],
+ol.multiple-clab {
+  margin-bottom: 0.4rem;
+  border: 0.1rem solid get-color('base200');
+  border-radius: 0.4rem;
+  flex-grow: 1;
+  background-color: get-color('white');
+
+  li {
+    min-height: 3.2rem;
+    padding: 0.4rem 1.6rem;
+    outline: none;
+    cursor: pointer;
+
+    &.selected {
+      color: get-color('white');
+      background-color: get-color('accent500');
+    }
+  }
+}
+
+.dropdown-clab {
+  .value_wrapper {
+    @extend input, [type='text'];
+    @extend %truncate;
+    display: flex;
+    padding-right: 2rem;
+    align-items: center;
+    text-align: left;
+    cursor: pointer;
+  }
+
+  .placeholder {
+    color: get-color('base500');
+  }
+
+  .input {
+    input {
+      padding-right: 2.4rem;
+    }
+
+    &::after {
+      @extend %fast-transition;
+      content: '\e902';
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      color: get-color('base300');
+      font-family: ikonograph;
+      font-size: 1.2rem;
+      line-height: 1;
+      pointer-events: none;
+    }
+  }
+}
+
+.autocomplete-clab,
+.dropdown-clab {
+  .value_wrapper.disabled {
+    &.active {
+      border-bottom-color: get-color('accent500');
+    }
+
+    &.disabled {
+      color: get-color('base200');
+      cursor: not-allowed;
+    }
+  }
+
+  .options-list {
+    display: none;
+    overflow: auto;
+    margin-bottom: 0;
+    position: absolute;
+    top: 3.4rem;
+    right: 0;
+    left: 0;
+    z-index: 3;
+    background-color: get-color('white');
+    box-shadow: get-elevation('z2');
+
+    li {
+      margin: 0;
+      padding: 0.4rem 1.2rem;
+      background-color: get-color('white');
+      cursor: pointer;
+
+      &[data-disabled='true'] {
+        color: get-color('base200');
+        cursor: not-allowed;
+      }
+
+      &.hide {
+        display: none;
+      }
+
+      &.selected {
+        color: get-color('accent500');
+      }
+    }
+
+    &.active {
+      display: block;
+    }
+
+    &.hidden {
+      display: block;
+      opacity: 0;
+    }
+
+    .noResults {
+      cursor: initial;
+    }
+  }
+}

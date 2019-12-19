@@ -1,9 +1,6 @@
-node_modules/
-.sublime-gulp.cache
-**/*.sublime-project
-**/*.sublime-workspace
-**/*.sass-cache
-workspace
-demo/components.js
-demo/components.js.map
+node_modules
+.coverage
+.cache
+.DS_Store
+.env.*
 *.log*

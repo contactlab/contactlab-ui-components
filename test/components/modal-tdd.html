@@ -1,217 +1,233 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-animations-js/web-animations-next.min.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-animations-js/web-animations-next.min.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../modal/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="modal">
+			<template>
+				<modal-clab></modal-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../modal/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<modal-clab>', function() {
+				var modal;
 
-</head>
-<body>
+				setup(function() {
+					modal = fixture('modal');
+				});
 
-<test-fixture id="modal">
-	<template>
-	  <modal-clab></modal-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default properties', function() {
+						assert.isFalse(modal.visible);
+						assert.equal(modal.title, 'Modal title');
+						assert.isNull(modal.primary);
+						assert.isNull(modal.secondary);
+						assert.isNull(modal.warning);
+						assert.isFalse(modal.primaryDisabled);
+						assert.isNull(modal.content);
+						assert.isFalse(modal.noAnimation);
+						assert.isFalse(modal.stopClose);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check title', function() {
+						var title = 'A new title';
+						modal.visible = true;
+						modal.title = title;
 
-<script>
+						var el = modal.$$('.modal-overlay .modal-title');
+						assert.equal(el.innerText, title, 'Title modal: correct');
+					});
 
-suite('<modal-clab>', function() {
-  var modal;
+					test('Check visible', function() {
+						modal.visible = true;
 
-  setup(function() {
-	  modal = fixture('modal');
-  });
+						var el = modal.$$('.modal-overlay');
+						assert.equal(
+							getComputedStyle(el).display,
+							'block',
+							'Modal visible: correct'
+						);
+					});
 
-  suite('Test Properties', function() {
+					test('Check primary, secondary and warning', function(done) {
+						var first = 'this is first';
+						var second = 'this is second';
+						var warning = 'this is warning';
+						modal.visible = true;
+						modal.primary = first;
+						modal.secondary = second;
+						modal.warning = warning;
+						setTimeout(function() {
+							var btnsClab = modal.querySelectorAll('button-clab button');
+							assert.equal(
+								btnsClab[2].innerText.trim(),
+								first,
+								'Primary button: correct'
+							);
+							assert.equal(
+								btnsClab[1].innerText.trim(),
+								second,
+								'Secondary button: correct'
+							);
+							assert.equal(
+								btnsClab[0].innerText.trim(),
+								warning,
+								'Warning button: correct'
+							);
+							done();
+						});
+					});
 
-  	test('Default properties', function() {
-  		assert.isFalse(modal.visible);
-  		assert.equal(modal.title, 'Modal title');
-  		assert.isNull(modal.primary);
-  		assert.isNull(modal.secondary);
-  		assert.isNull(modal.warning);
-      assert.isFalse(modal.primaryDisabled);
-  		assert.isNull(modal.content);
-      assert.isFalse(modal.noAnimation);
-      assert.isFalse(modal.stopClose);
-	  });
+					test('Check primaryDisabled', function(done) {
+						var primary = 'this is primary';
+						modal.visible = true;
+						modal.primary = primary;
+						modal.primaryDisabled = true;
 
-  });
+						setTimeout(function() {
+							var btnPrimary = modal.querySelectorAll('button-clab button')[0];
+							assert.isTrue(btnPrimary.disabled, 'Primary disabled: correct');
+							done();
+						});
+					});
 
-  suite('Test DOM Bindings', function() {
+					test('Check content', function(done) {
+						var content = 'this is the content';
+						modal.visible = true;
+						modal.content = content;
+						setTimeout(function() {
+							var el = modal.$$('.modal-body p');
+							assert.equal(el.innerText, content, 'Modal content: correct');
+							done();
+						});
+					});
 
-    test('Check title', function() {
-      var title = 'A new title';
-      modal.visible = true;
-      modal.title = title;
+					test('Check noAnimation', function(done) {
+						modal.noAnimation = true;
+						modal.visible = true;
+						setTimeout(function() {
+							var el = modal.$$('.modal-overlay');
+							assert.equal(
+								getComputedStyle(el).opacity,
+								1,
+								'No Animation: correct'
+							);
+							done();
+						});
+					});
 
-      var el = modal.$$('.modal-overlay .modal-title');
-      assert.equal(el.innerText, title, "Title modal: correct");
-    });
+					test('Check stopClose', function(done) {
+						modal.stopClose = true;
+						modal.visible = true;
+						var click = new Event('click');
+						setTimeout(function() {
+							var el = modal.$$('.close-overlay');
+							modal.addEventListener('close', function() {
+								setTimeout(function() {
+									var modalEl = modal.$$('.modal-overlay');
+									assert.equal(
+										getComputedStyle(modalEl).display,
+										'block',
+										'Modal visible always: correct'
+									);
+									done();
+								}, 300);
+							});
+							el.dispatchEvent(click);
+						});
+					});
 
-  	test('Check visible', function() {
-  		modal.visible = true;
+					suite('Test Events', function() {
+						test('Close modal on-click', function(done) {
+							var click = new Event('click');
+							modal.visible = true;
 
-      var el = modal.$$('.modal-overlay');
-      assert.equal(getComputedStyle(el).display, 'block', "Modal visible: correct");
-	  });
+							var el = modal.$$('.close-overlay');
+							modal.addEventListener('close', function(evt) {
+								setTimeout(function() {
+									var modalEl = modal.$$('.modal-overlay');
+									assert.equal(evt.type, 'close');
+									assert.equal(
+										getComputedStyle(modalEl).display,
+										'none',
+										'Modal close on-click: correct'
+									);
+									done();
+								}, 200);
+							});
+							el.dispatchEvent(click);
+						});
 
+						test('Buttons actions (primary, secondary, warning)', function(done) {
+							var click = new Event('click');
+							var p = 'Primary';
+							var s = 'Secondary';
+							var w = 'Warning';
+							modal.visible = true;
+							modal.primary = p;
+							modal.secondary = s;
+							modal.warning = w;
 
-  	test('Check primary, secondary and warning', function(done) {
-      var first = 'this is first';
-  		var second = 'this is second';
-  		var warning = 'this is warning';
-      modal.visible = true;
-      modal.primary = first;
-  		modal.secondary = second;
-  		modal.warning = warning;
-      setTimeout(function () {
-        var btnsClab = modal.querySelectorAll('button-clab button');
-        assert.equal(btnsClab[2].innerText.trim(), first, "Primary button: correct");
-        assert.equal(btnsClab[1].innerText.trim(), second, "Secondary button: correct");
-        assert.equal(btnsClab[0].innerText.trim(), warning, "Warning button: correct");
-        done();
-      });
-    });
+							setTimeout(function() {
+								var btns = modal.querySelectorAll('button-clab button');
+								modal.addEventListener('modal-warning', function(evt) {
+									assert.equal(evt.type, 'modal-warning');
+									// TODO: assert with detail event (not present at the moment)
+								});
+								modal.addEventListener('modal-secondary', function(evt) {
+									assert.equal(evt.type, 'modal-secondary');
+									// TODO: assert with detail event (not present at the moment)
+								});
+								modal.addEventListener('modal-primary', function(evt) {
+									assert.equal(evt.type, 'modal-primary');
+									// TODO: assert with detail event (not present at the moment)
+									done();
+								});
 
-    test('Check primaryDisabled', function(done) {
-      var primary = "this is primary";
-  		modal.visible = true;
-      modal.primary = primary;
-      modal.primaryDisabled = true;
+								// Warning
+								btns[0].dispatchEvent(click);
+								// Secondary
+								btns[1].dispatchEvent(click);
+								// Primary
+								btns[2].dispatchEvent(click);
+							});
+						});
+					});
 
-      setTimeout(function () {
-        var btnPrimary = modal.querySelectorAll('button-clab button')[0];
-        assert.isTrue(btnPrimary.disabled, "Primary disabled: correct");
-        done();
-      });
-	  });
+					suite('Test Methods', function() {
+						test('Trigger show()', function() {
+							assert.isFalse(modal.visible, 'Initial not showing: correct');
+							modal.show();
+							assert.isTrue(
+								modal.visible,
+								"Property 'visible' changed to true: correct"
+							);
+						});
 
-    test('Check content', function(done) {
-      var content = "this is the content";
-  		modal.visible = true;
-      modal.content = content;
-      setTimeout(function () {
-        var el = modal.$$('.modal-body p');
-        assert.equal(el.innerText, content, "Modal content: correct");
-        done();
-      });
-	  });
-
-    test('Check noAnimation', function(done) {
-      modal.noAnimation = true;
-  		modal.visible = true;
-      setTimeout(function () {
-        var el = modal.$$('.modal-overlay');
-        assert.equal(getComputedStyle(el).opacity, 1, "No Animation: correct");
-        done();
-      });
-	  });
-
-    test('Check stopClose', function(done) {
-      modal.stopClose = true;
-  		modal.visible = true;
-      var click = new Event('click');
-      setTimeout(function () {
-        var el = modal.$$('.close-overlay');
-        modal.addEventListener('close', function () {
-          setTimeout(function () {
-            var modalEl = modal.$$('.modal-overlay');
-            assert.equal(getComputedStyle(modalEl).display, 'block', "Modal visible always: correct");
-            done();
-          }, 300);
-        });
-        el.dispatchEvent(click);
-      });
-	  });
-
-
-    suite('Test Events', function() {
-
-    	test('Close modal on-click', function(done) {
-    		var click = new Event('click');
-        modal.visible = true;
-
-        var el = modal.$$('.close-overlay');
-        modal.addEventListener('close', function (evt) {
-          setTimeout(function () {
-            var modalEl = modal.$$('.modal-overlay');
-            assert.equal(evt.type, 'close');
-            assert.equal(getComputedStyle(modalEl).display, 'none', "Modal close on-click: correct");
-            done();
-          }, 200);
-        });
-        el.dispatchEvent(click);
-  	  });
-
-      test('Buttons actions (primary, secondary, warning)', function(done) {
-    		var click = new Event('click');
-        var p = "Primary";
-        var s = "Secondary";
-        var w = "Warning";
-        modal.visible = true;
-        modal.primary = p;
-        modal.secondary = s;
-        modal.warning = w;
-
-        setTimeout(function () {
-          var btns = modal.querySelectorAll('button-clab button');
-          modal.addEventListener('modal-warning', function (evt) {
-            assert.equal(evt.type, "modal-warning");
-            // TODO: assert with detail event (not present at the moment)
-
-          });
-          modal.addEventListener('modal-secondary', function (evt) {
-            assert.equal(evt.type, "modal-secondary");
-            // TODO: assert with detail event (not present at the moment)
-
-          });
-          modal.addEventListener('modal-primary', function (evt) {
-            assert.equal(evt.type, "modal-primary");
-            // TODO: assert with detail event (not present at the moment)
-            done();
-          });
-
-          // Warning
-          btns[0].dispatchEvent(click);
-          // Secondary
-          btns[1].dispatchEvent(click);
-          // Primary
-          btns[2].dispatchEvent(click);
-
-        });
-  	  });
-    });
-
-    suite('Test Methods', function() {
-
-    	test('Trigger show()', function() {
-    		assert.isFalse(modal.visible, "Initial not showing: correct");
-        modal.show();
-        assert.isTrue(modal.visible, "Property 'visible' changed to true: correct")
-  	  });
-
-      test('Trigger hide()', function() {
-        // Start with visible true
-        modal.visible = true;
-        modal.hide();
-        assert.isFalse(modal.visible, "Property 'visible' changed to false: correct")
-  	  });
-
-    });
-
-  });
-});
-
-</script>
-</body>
+						test('Trigger hide()', function() {
+							// Start with visible true
+							modal.visible = true;
+							modal.hide();
+							assert.isFalse(
+								modal.visible,
+								"Property 'visible' changed to false: correct"
+							);
+						});
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

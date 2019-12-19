@@ -1,129 +1,116 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../pagination/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="pagination">
+			<template>
+				<pagination-clab></pagination-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../pagination/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<pagination-clab>', function() {
+				var pagination;
 
-</head>
-<body>
-
-<test-fixture id="pagination">
-	<template>
-	  <pagination-clab></pagination-clab>
-	</template>
-</test-fixture>
-
-
-<script>
-
-suite('<pagination-clab>', function() {
-  var pagination;
-
-	setup(function() {
-		pagination = fixture('pagination');
-	});
-
-	suite('Test Properties', function() {
-
-		test('Default Properties', function() {
-			assert.isUndefined(pagination.tot);
-			assert.isUndefined(pagination.link)
-			assert.isArray(pagination.pages);
-			assert.equal(pagination.currentPage, 0);
-			assert.equal(pagination.range, 8);
-			assert.equal(pagination.firstPage, 0)
-			assert.equal(pagination.lastPage, -1);
-			assert.isNotNumber(pagination.prevPage);
-			assert.isNotNumber(pagination.nextPage);
-			assert.isNumber(pagination.availableStart);
-			assert.isNumber(pagination.availableEnd);
-		});
-
-	});
-
-	suite('Test DOM Bindings', function() {
-
-		test('Check tot (pages, lastPage, nextPage, availableStart, availableEnd)', function(done) {
-			var n = 10;
-			pagination.tot = n;
-			assert.lengthOf(pagination.pages, n);
-			assert.equal(pagination.lastPage, n - 1);
-			assert.equal(pagination.nextPage, 1);
-			assert.equal(pagination.availableStart, 0);
-			assert.equal(pagination.availableEnd, 8);
-			setTimeout(function () {
-				var el = pagination.$$('.last');
-				assert.equal(el.getAttribute('data-index'), n - 1);
-				done();
-			});
-
-		});
-
-		test('Check currentPage (prevPage)', function(done) {
-			var n = 10;
-			var curr = 4
-			pagination.tot = n;
-			pagination.currentPage = curr;
-
-			assert.equal(pagination.prevPage, curr - 1);
-			setTimeout(function () {
-				var el = pagination.$$('.active');
-				assert.equal(el.getAttribute('data-index'), curr);
-				done();
-			});
-
-		});
-
-		test('Check range ', function(done) {
-			var n = 20;
-			var range = 15;
-			pagination.tot = n;
-			pagination.range = range;
-			var tap = new Event('click');
-
-			setTimeout(function () {
-				var arrow = pagination.querySelector('li[data-type="next"]');
-				arrow.dispatchEvent(tap);
-				setTimeout(function () {
-
-					var els = Polymer.dom(pagination.root).querySelectorAll('.page');
-					assert.lengthOf(els, range + 1);
-					done();
-				})
-			});
-		});
-
-	});
-
-	suite('Test Events', function() {
-		test('Test change page on-click', function(done) {
-			var n = 20;
-			var clicked = 4
-			pagination.tot = n;
-
-			var click = new Event('click');
-
-			setTimeout(function () {
-				pagination.addEventListener('change', function (evt) {
-					assert.equal(evt.detail.currentPage, clicked);
-					done();
+				setup(function() {
+					pagination = fixture('pagination');
 				});
-				var els = Polymer.dom(pagination.root).querySelectorAll('.page');
-				els[clicked].dispatchEvent(click);
+
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.isUndefined(pagination.tot);
+						assert.isUndefined(pagination.link);
+						assert.isArray(pagination.pages);
+						assert.equal(pagination.currentPage, 0);
+						assert.equal(pagination.range, 8);
+						assert.equal(pagination.firstPage, 0);
+						assert.equal(pagination.lastPage, -1);
+						assert.isNotNumber(pagination.prevPage);
+						assert.isNotNumber(pagination.nextPage);
+						assert.isNumber(pagination.availableStart);
+						assert.isNumber(pagination.availableEnd);
+					});
+				});
+
+				suite('Test DOM Bindings', function() {
+					test('Check tot (pages, lastPage, nextPage, availableStart, availableEnd)', function(done) {
+						var n = 10;
+						pagination.tot = n;
+						assert.lengthOf(pagination.pages, n);
+						assert.equal(pagination.lastPage, n - 1);
+						assert.equal(pagination.nextPage, 1);
+						assert.equal(pagination.availableStart, 0);
+						assert.equal(pagination.availableEnd, 8);
+						setTimeout(function() {
+							var el = pagination.$$('.last');
+							assert.equal(el.getAttribute('data-index'), n - 1);
+							done();
+						});
+					});
+
+					test('Check currentPage (prevPage)', function(done) {
+						var n = 10;
+						var curr = 4;
+						pagination.tot = n;
+						pagination.currentPage = curr;
+
+						assert.equal(pagination.prevPage, curr - 1);
+						setTimeout(function() {
+							var el = pagination.$$('.active');
+							assert.equal(el.getAttribute('data-index'), curr);
+							done();
+						});
+					});
+
+					test('Check range ', function(done) {
+						var n = 20;
+						var range = 15;
+						pagination.tot = n;
+						pagination.range = range;
+						var tap = new Event('click');
+
+						setTimeout(function() {
+							var arrow = pagination.querySelector('li[data-type="next"]');
+							arrow.dispatchEvent(tap);
+							setTimeout(function() {
+								var els = Polymer.dom(pagination.root).querySelectorAll(
+									'.page'
+								);
+								assert.lengthOf(els, range + 1);
+								done();
+							});
+						});
+					});
+				});
+
+				suite('Test Events', function() {
+					test('Test change page on-click', function(done) {
+						var n = 20;
+						var clicked = 4;
+						pagination.tot = n;
+
+						var click = new Event('click');
+
+						setTimeout(function() {
+							pagination.addEventListener('change', function(evt) {
+								assert.equal(evt.detail.currentPage, clicked);
+								done();
+							});
+							var els = Polymer.dom(pagination.root).querySelectorAll('.page');
+							els[clicked].dispatchEvent(click);
+						});
+					});
+				});
 			});
-		});
-
-	});
-
-});
-
-</script>
-</body>
+		</script>
+	</body>
 </html>

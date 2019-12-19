@@ -1,0 +1,265 @@
+.main-nav {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  align-items: center;
+  justify-content: flex-end;
+
+  > ul {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    flex-flow: row nowrap;
+    align-items: flex-end;
+    justify-content: center;
+    line-height: 1;
+  }
+
+  > ul > li {
+    position: relative;
+    cursor: pointer;
+
+    &::after {
+      @extend %slow-transition;
+      content: '';
+      display: block;
+      width: 0;
+      height: 0.4rem;
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      background-color: get-color('base300');
+    }
+
+    a {
+      @extend %truncate;
+      display: inline-block;
+      padding: 1.4rem 1.8rem;
+      color: get-color('base900');
+      font-size: inherit;
+      text-decoration: none;
+    }
+
+    &.active {
+      &::after {
+        @extend %slow-transition;
+        width: 100%;
+        background-color: get-color('accent500');
+      }
+
+      a {
+        color: get-color('accent500');
+      }
+    }
+  }
+}
+
+.user {
+  display: inline-block;
+  height: 100%;
+  position: relative;
+  color: get-color('base900');
+  cursor: pointer;
+  user-select: auto;
+
+  &.active {
+    .user-picture {
+      border-color: get-color('accent500');
+    }
+
+    .user-panel {
+      display: block;
+    }
+  }
+}
+
+.user-details {
+  display: flex;
+  height: 100%;
+  flex-flow: row nowrap;
+  align-items: center;
+}
+
+.user-info {
+  max-width: 24rem;
+  text-align: right;
+  line-height: 1;
+
+  .company,
+  .username {
+    @extend %truncate;
+  }
+
+  .username {
+    margin-bottom: 0.4rem;
+    font-size: 1.6rem;
+    font-weight: bold;
+  }
+}
+
+.user-panel {
+  display: none;
+  width: 100%;
+  border: 0.1rem solid get-color('base200');
+  border-bottom: none;
+  position: absolute;
+  top: initial;
+  right: 0;
+  background-color: get-color('white');
+  box-shadow: 0 0.6rem 0.6rem 0 rgba(0, 20, 32, 0.09),
+    0 1rem 2rem 0 rgba(0, 20, 32, 0.13);
+  text-align: left;
+  transition: box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+
+  a {
+    @extend %default-link-effect;
+    display: block;
+    border-bottom: 0.1rem solid get-color('base200');
+    padding: 0.8rem 1.6rem;
+    color: get-color('base900');
+    line-height: 1;
+  }
+}
+
+.user-picture {
+  display: flex;
+  width: 4.5rem;
+  height: 4.5rem;
+  margin: 0;
+  border: 0.2rem solid get-color('base300');
+  border-radius: 50%;
+  padding: 0;
+  position: relative;
+  flex: 0 0 4.5rem;
+  align-items: center;
+  justify-content: center;
+  order: 0;
+  color: get-color('base300');
+  font-size: 1.8rem;
+
+  img {
+    width: 4rem;
+    height: 4rem;
+    border-radius: 50%;
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+  }
+}
+
+.user-picture .notifications {
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
+  position: absolute;
+  top: 0;
+  right: -0.8rem;
+  color: get-color('white');
+  background-color: get-color('accent500');
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 1.8rem;
+}
+
+.contextual-menu {
+  display: flex;
+  width: 100%;
+  margin-bottom: 2rem;
+  border-top: 0.1rem solid get-color('base300');
+  flex-direction: column;
+  user-select: auto;
+
+  ul {
+    display: none;
+    overflow: auto;
+    max-height: 44rem;
+    border: 0.1rem solid get-color('base300');
+    border-right: none;
+    border-left: none;
+    background-color: get-color('white');
+
+    > li a {
+      padding: 1.2rem 2rem;
+      padding-right: 1.2rem;
+      padding-left: 3rem;
+      text-transform: none;
+    }
+  }
+
+  > ul {
+    display: flex;
+    margin: 0;
+    border-bottom: 0.1rem solid get-color('base300');
+    padding: 0;
+    flex-direction: column;
+    flex-grow: 1;
+    align-content: flex-start;
+    justify-content: flex-start;
+
+    li {
+      margin: 0;
+      padding: 0;
+      position: relative;
+      flex-grow: 0;
+
+      a {
+        @extend %default-link-effect;
+        display: block;
+        padding: 1.2rem 3rem 1.2rem 0;
+        padding-right: 1.2rem;
+        padding-left: 2rem;
+        cursor: pointer;
+      }
+
+      .arrow {
+        margin-left: 0.4rem;
+        float: right;
+        font-size: 1.2rem;
+      }
+    }
+  }
+}
+
+// --- action bar
+.main-actions {
+  display: flex;
+  margin-top: 0;
+  border: none;
+  padding: 0;
+  flex-flow: row nowrap;
+  justify-content: flex-end;
+
+  button-clab + button-clab {
+    margin-left: 1rem;
+  }
+}
+
+// --- footer
+footer {
+  padding: 2rem;
+  background-color: get-color('accent300');
+}
+
+// --- close overlay
+.close-overlay {
+  display: flex;
+  width: 3.2rem;
+  height: 3.2rem;
+  align-items: center;
+  justify-content: center;
+  color: get-color('base500');
+  font-size: 1.4rem;
+  cursor: pointer;
+
+  &:hover,
+  &:focus {
+    color: darken($color: get-color('base500'), $amount: 10%);
+  }
+
+  &:active {
+    color: lighten($color: get-color('base500'), $amount: 10%);
+  }
+}

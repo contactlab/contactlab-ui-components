@@ -9,7 +9,7 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.title.value, 'Title');
 
   t.is(props.type.type, String);
-  t.is(props.type.value, 'success');
+  t.is(props.type.value, 'info');
 
   t.is(props.visible.type, Boolean);
   t.is(props.visible.value, false);
@@ -28,4 +28,3 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.noAnimation.type, Boolean);
   t.is(props.noAnimation.value, false);
 });
-

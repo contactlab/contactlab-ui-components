@@ -17,8 +17,8 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.centered.type, Boolean);
   t.false(props.centered.value);
 
-  t.is(props.fullWidth.type, Boolean);
-  t.false(props.fullWidth.value);
+  t.is(props.bordered.type, Boolean);
+  t.false(props.bordered.value);
 
   t.is(props.active.type, Number);
   t.is(props.active.value, 0);

@@ -1,104 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../button-group/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="group">
+			<template>
+				<group-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+					<button-clab></button-clab>
+				</group-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../button-group/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<group-clab>', function() {
+				var group;
 
-</head>
-<body>
+				setup(function() {
+					group = fixture('group');
+				});
 
-<test-fixture id="group">
-	<template>
-		<group-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-			<button-clab></button-clab>
-		</group-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.equal(group.size, '');
+						assert.equal(group.type, '');
+						assert.equal(group.value, 0);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check size "small"', function() {
+						var str = 'small';
+						group.size = str;
+						var el = group.$$('.buttons-group');
+						assert.include(el.classList.value, 'small', "Size 'small' correct");
+					});
+					test('Check size "smaller"', function() {
+						var str = 'smaller';
+						group.size = str;
+						var el = group.$$('.buttons-group');
+						assert.include(
+							el.classList.value,
+							'smaller',
+							"Size 'smaller' correct"
+						);
+					});
 
-<script>
+					test('Check type', function() {
+						var type = 'warning';
+						group.type = type;
+						var el = group.$$('.buttons-group');
+						assert.include(el.classList.value, type, 'Type correct');
+					});
 
-suite('<group-clab>', function() {
-  var group;
+					test('Check value selected', function() {
+						var num = Math.floor(Math.random() * 4);
+						group.value = num;
+						// Check that single button have not "empty" class
+						var el = group.querySelectorAll('button-clab button')[num];
+						assert.notInclude(
+							el.classList.value,
+							'empty',
+							'Button not empty: selected'
+						);
+					});
 
-  setup(function() {
-	  group = fixture('group');
-  });
+					test('Check disabled', function() {
+						var bool = true;
+						group.disabled = bool;
 
-  suite('Test Properties', function() {
+						group.getContentChildren().map(function(btn) {
+							assert.isTrue(btn.disabled, 'All buttons disabled');
+						});
+					});
+				});
 
-  	test('Default Properties', function() {
-  		assert.equal(group.size, '');
-  		assert.equal(group.type, '');
-  		assert.equal(group.value, 0);
-	  });
-
-  });
-
-  suite('Test DOM Bindings', function() {
-    test('Check size "small"', function() {
-  		var str = "small";
-  		group.size = str;
-      var el = group.$$('.buttons-group');
-      assert.include(el.classList.value, 'small', "Size 'small' correct");
-    });
-    test('Check size "smaller"', function() {
-      var str = "smaller";
-      group.size = str;
-      var el = group.$$('.buttons-group');
-      assert.include(el.classList.value, 'smaller', "Size 'smaller' correct");
-    });
-
-    test('Check type', function() {
-      var type = "warning";
-      group.type = type;
-      var el = group.$$('.buttons-group');
-      assert.include(el.classList.value, type, "Type correct");
-    });
-
-    test('Check value selected', function() {
-      var num = Math.floor(Math.random() * 4);
-      group.value = num;
-      // Check that single button have not "empty" class
-      var el = group.querySelectorAll('button-clab button')[num];
-      assert.notInclude(el.classList.value, 'empty', "Button not empty: selected");
-    });
-
-    test('Check disabled', function() {
-      var bool = true;
-      group.disabled = bool;
-
-      group.getContentChildren().map(function(btn){
-				assert.isTrue(btn.disabled, "All buttons disabled");
+				suite('Test Events', function() {
+					test('Change selection on-click', function() {
+						var val = 2;
+						// Preselected value
+						group.value = 0;
+						// Click on the second button of the group
+						group.querySelectorAll('button-clab button')[val].click();
+						// Check value changed
+						assert.equal(group.value, val, 'On-click: value changed');
+					});
+				});
 			});
-    });
-
-  });
-
-  suite('Test Events', function () {
-    test('Change selection on-click', function () {
-      var val = 2;
-      // Preselected value
-      group.value = 0;
-      // Click on the second button of the group
-      group.querySelectorAll('button-clab button')[val].click();
-      // Check value changed
-      assert.equal(group.value, val, "On-click: value changed");
-    });
-  });
-
-});
-
-</script>
-</body>
+		</script>
+	</body>
 </html>

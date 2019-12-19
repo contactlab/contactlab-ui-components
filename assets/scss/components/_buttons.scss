@@ -1,0 +1,235 @@
+button-clab {
+  display: inline-flex;
+
+  &:not(:last-of-type) {
+    margin-right: 0.8rem;
+  }
+}
+
+button-clab[block] {
+  width: 100%;
+}
+
+button-clab[size='small'] .btn {
+  height: 3.2rem;
+  font-size: 1.4rem;
+}
+
+button-clab[size='smaller'] .btn {
+  height: 2.2rem;
+  padding: 0 0.8rem;
+  font-size: 1.2rem;
+}
+
+group-clab[size='small'] .btn {
+  height: 3.2rem;
+  font-size: 1.4;
+}
+
+group-clab[size='smaller'] .btn {
+  height: 2.2rem;
+  padding: 0 0.8rem;
+  font-size: 1.2rem;
+}
+
+group-clab[block] button-clab {
+  flex: 1 1;
+}
+
+.buttons-group {
+  display: inline-flex;
+  border: 0.1rem solid get-color('base200');
+  border-radius: 0.4rem;
+  flex-flow: row nowrap;
+
+  button-clab {
+    margin: 0;
+    margin-left: -0.1rem;
+
+    &:not(:last-of-type) {
+      border-right: 0.1rem solid get-color('base200');
+    }
+  }
+
+  .btn {
+    margin: 0;
+    border: none;
+    border-radius: initial;
+
+    &:hover {
+      color: get-color('base800');
+    }
+
+    &:focus,
+    &:active,
+    &.active {
+      color: get-color('base900');
+    }
+  }
+
+  @each $status, $color in $default-status {
+    &.#{$status} {
+      border-color: nth($color, 1);
+
+      button-clab {
+        border-color: nth($color, 1);
+      }
+
+      .btn {
+        @extend .#{$status};
+        color: nth($color, 2);
+
+        &:hover {
+          border-color: lighten($color: nth($color, 1), $amount: 8%);
+          background-color: lighten($color: nth($color, 1), $amount: 8%);
+        }
+
+        &:focus,
+        &:active,
+        &.active {
+          border-color: darken($color: nth($color, 1), $amount: 4%);
+          color: nth($color, 2);
+          background-color: darken($color: nth($color, 1), $amount: 4%);
+        }
+      }
+
+      .btn.empty {
+        &:hover {
+          color: nth($color, 2);
+        }
+
+        &:focus,
+        &:active,
+        &.active {
+          color: nth($color, 2);
+        }
+      }
+    }
+  }
+}
+
+group-clab[block] {
+  width: 100%;
+}
+
+group-clab[block] .buttons-group {
+  display: flex;
+
+  .btn {
+    width: 100%;
+  }
+}
+
+.btn {
+  display: inline-block;
+  height: 4rem;
+  border: 0.1rem solid get-color('base200');
+  border-radius: 0.4rem;
+  padding: 0 1.4rem;
+  color: get-color('base800');
+  background-color: get-color('base200');
+  box-shadow: 0 0.2rem 0 rgba(0, 20, 32, 0.04);
+  font-size: 1.6rem;
+  text-align: center;
+  line-height: 1.5;
+  white-space: nowrap;
+  transition: 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  cursor: pointer;
+  user-select: none;
+  touch-action: manipulation;
+
+  &:hover,
+  &:focus {
+    border-color: get-color('base300');
+    color: get-color('base800');
+  }
+
+  &:active,
+  &.active {
+    border-color: get-color('base500');
+    color: get-color('base800');
+  }
+
+  @each $status, $color in $default-status {
+    &.#{$status} {
+      border: nth($color, 1);
+      color: nth($color, 2);
+      background-color: nth($color, 1);
+
+      &:hover {
+        background-color: lighten($color: nth($color, 1), $amount: 8%);
+      }
+
+      &:focus,
+      &:active,
+      &.active {
+        background-color: darken($color: nth($color, 1), $amount: 4%);
+      }
+    }
+  }
+
+  &.empty {
+    border: 0.1rem solid get-color('base200');
+    background-color: transparent;
+
+    &:hover,
+    &:focus {
+      border-color: lighten($color: get-color('accent500'), $amount: 8%);
+      color: lighten($color: get-color('accent500'), $amount: 8%);
+    }
+
+    &:active,
+    &.active {
+      border-color: darken($color: get-color('accent500'), $amount: 4%);
+      color: darken($color: get-color('accent500'), $amount: 4%);
+    }
+
+    @each $status, $color in $default-status {
+      &.#{$status} {
+        border-color: nth($color, 1);
+        color: nth($color, 1);
+        background-color: transparent;
+
+        &:hover {
+          border-color: darken($color: nth($color, 1), $amount: 8%);
+          color: darken($color: nth($color, 1), $amount: 8%);
+        }
+
+        &:focus,
+        &:active,
+        &.active {
+          border-color: lighten($color: nth($color, 1), $amount: 8%);
+          color: lighten($color: nth($color, 1), $amount: 8%);
+        }
+      }
+    }
+  }
+
+  &.block {
+    width: 100%;
+  }
+
+  .icon {
+    display: inline-block;
+
+    + span {
+      padding-left: 0.4rem;
+    }
+  }
+
+  &[disabled] {
+    border-color: darken($color: get-color('base200'), $amount: 8%);
+    color: darken($color: get-color('base200'), $amount: 8%);
+    background-color: rgba(0, 20, 32, 0.04);
+    box-shadow: none;
+    cursor: not-allowed;
+  }
+
+  &[disabled]:hover,
+  &[disabled]:active,
+  &[disabled].active {
+    border-color: darken($color: get-color('base200'), $amount: 16%);
+    color: darken($color: get-color('base200'), $amount: 16%);
+    background-color: rgba(0, 20, 32, 0.08);
+  }
+}

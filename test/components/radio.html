@@ -1,102 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
+		<link rel="import" href="../../radio/view.html" />
+	</head>
+	<body>
+		<test-fixture id="radio">
+			<template>
+				<radio-clab></radio-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../radio/view.html">
+		<script>
+			describe('<radio-clab>', function() {
+				var radio;
 
-</head>
-<body>
-
-<test-fixture id="radio">
-	<template>
-	  <radio-clab></radio-clab>
-	</template>
-</test-fixture>
-
-
-<script>
-
-describe('<radio-clab>', function() {
-  var radio;
-
-	beforeEach(function() {
-		radio = fixture('radio');
-	});
-
-	context('Test Properties', function() {
-
-		it('Default Properties', function(done) {
-			expect(radio.labels.length).to.equal(0);
-			expect(radio.name).to.be.undefined;
-			expect(radio.wrapperType).to.equal('');
-			expect(radio.active).to.equal(0);
-			expect(radio.disabled.length).to.equal(0);
-
-			done();
-		});
-
-	});
-
-	context('Test DOM Bindings', function(){
-
-		it('Check labels', function(done) {
-			radio.labels=["radio 1", "radio 2"];
-
-			setTimeout(function(){
-				expect(radio.querySelectorAll('.row').length).to.equal(radio.labels.length);
-
-				done();
-			},50);
-		});
-
-		it('Check wrapperType', function(done) {
-			var str = 'error';
-			radio.labels=["radio 1", "radio 2"];
-			radio.wrapperType = str;
-
-			setTimeout(function(){
-				expect(radio.querySelector('.row').classList.contains(str)).to.equal(true);
-
-				done();
-			},50);
-		});
-
-		it('Check disabled', function(done) {
-			radio.labels=["radio 1", "radio 2"];
-			radio.disabled = [0,1];
-
-			setTimeout(function(){
-				Array.prototype.map.call(radio.querySelectorAll('input[type=radio]'), function(el, i){
-					for(var n=0; n<radio.disabled.length; n++){
-						if(n==i) expect(el.disabled).to.equal(true);
-					}
-
+				beforeEach(function() {
+					radio = fixture('radio');
 				});
 
-				done();
-			},50);
-		});
+				context('Test Properties', function() {
+					it('Default Properties', function(done) {
+						expect(radio.labels.length).to.equal(0);
+						expect(radio.name).to.be.undefined;
+						expect(radio.wrapperType).to.equal('');
+						expect(radio.active).to.equal(0);
+						expect(radio.disabled.length).to.equal(0);
 
-		it('Check active', function(done) {
-			radio.labels=["radio 1", "radio 2"];
-			radio.active = 1;
+						done();
+					});
+				});
 
-			setTimeout(function(){
-				expect(radio.querySelectorAll('input[type=radio]')[1].checked).to.equal(true);
+				context('Test DOM Bindings', function() {
+					it('Check labels', function(done) {
+						radio.labels = ['radio 1', 'radio 2'];
 
-				done();
-			},50);
-		});
+						setTimeout(function() {
+							expect(radio.querySelectorAll('.row').length).to.equal(
+								radio.labels.length
+							);
 
-	});
+							done();
+						}, 50);
+					});
 
-});
+					it('Check wrapperType', function(done) {
+						var str = 'error';
+						radio.labels = ['radio 1', 'radio 2'];
+						radio.wrapperType = str;
 
-</script>
-</body>
+						setTimeout(function() {
+							expect(
+								radio.querySelector('.row').classList.contains(str)
+							).to.equal(true);
+
+							done();
+						}, 50);
+					});
+
+					it('Check disabled', function(done) {
+						radio.labels = ['radio 1', 'radio 2'];
+						radio.disabled = [0, 1];
+
+						setTimeout(function() {
+							Array.prototype.map.call(
+								radio.querySelectorAll('input[type=radio]'),
+								function(el, i) {
+									for (var n = 0; n < radio.disabled.length; n++) {
+										if (n == i) expect(el.disabled).to.equal(true);
+									}
+								}
+							);
+
+							done();
+						}, 50);
+					});
+
+					it('Check active', function(done) {
+						radio.labels = ['radio 1', 'radio 2'];
+						radio.active = 1;
+
+						setTimeout(function() {
+							expect(
+								radio.querySelectorAll('input[type=radio]')[1].checked
+							).to.equal(true);
+
+							done();
+						}, 50);
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

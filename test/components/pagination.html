@@ -1,73 +1,68 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
-	
+	<head>
+		<meta charset="UTF-8" />
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-component-tester/browser.js"></script>
 
-	<link rel="import" href="./../../pagination/view.html">
+		<link rel="import" href="../../pagination/view.html" />
+	</head>
+	<body>
+		<test-fixture id="pagination">
+			<template>
+				<pagination-clab></pagination-clab>
+			</template>
+		</test-fixture>
 
-</head>
-<body>
-	
-<test-fixture id="pagination">
-	<template>
-	  <pagination-clab></pagination-clab>
-	</template>
-</test-fixture>
+		<script>
+			describe('<pagination-clab>', function() {
+				var pagination;
 
+				beforeEach(function() {
+					pagination = fixture('pagination');
+				});
 
-<script>
+				context('Test Properties', function() {
+					it('Default Properties', function(done) {
+						expect(pagination.pages).to.be.an('array');
+						expect(pagination.currentPage).to.equal(1);
 
-describe('<pagination-clab>', function() {
-  var pagination;
+						done();
+					});
+				});
 
-	beforeEach(function() {
-		pagination = fixture('pagination');
-	});
+				context('Test DOM Bindings', function() {
+					it('Check pages', function(done) {
+						var arr = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8'];
+						pagination.pages = arr;
 
-	context('Test Properties', function() {
+						setTimeout(function() {
+							expect(pagination.querySelectorAll('.page').length).to.equal(
+								arr.length
+							);
 
-		it('Default Properties', function(done) {
-			expect(pagination.pages).to.be.an('array');
-			expect(pagination.currentPage).to.equal(1);
+							done();
+						}, 150);
+					});
 
-			done();
-		});
+					it('Check currentPage', function(done) {
+						var arr = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8'];
+						pagination.pages = arr;
+						pagination.currentPage = 3;
 
-	});
+						setTimeout(function() {
+							expect(
+								pagination
+									.querySelectorAll('.page')
+									[3 - 1].classList.contains('active')
+							).to.equal(true);
 
-	context('Test DOM Bindings', function(){
-
-		it('Check pages', function(done) {
-			var arr=["#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8"];
-			pagination.pages=arr;
-
-			setTimeout(function(){
-				expect(pagination.querySelectorAll('.page').length).to.equal(arr.length);
-
-				done();
-			},150);
-		});
-
-		it('Check currentPage', function(done) {
-			var arr=["#1", "#2", "#3", "#4", "#5", "#6", "#7", "#8"];
-			pagination.pages=arr;
-			pagination.currentPage=3;
-
-			setTimeout(function(){
-				expect(pagination.querySelectorAll('.page')[3-1].classList.contains('active')).to.equal(true);
-
-				done();
-			},150);
-		});
-
-	});
-
-});	
-
-</script>
-</body>
+							done();
+						}, 150);
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

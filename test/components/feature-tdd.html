@@ -1,103 +1,92 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../node_modules/web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../node_modules/web-component-tester/browser.js"></script>
+		<link rel="import" href="../../../polymer/polymer.html" />
+		<link rel="import" href="../../feature/view.html" />
+		<script src="../../_components/bundle.js"></script>
+	</head>
+	<body>
+		<test-fixture id="feature">
+			<template>
+				<feature-clab></feature-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../../polymer/polymer.html">
-	<link rel="import" href="./../../feature/view.html">
-	<script src="./../../_components/bundle.js"></script>
+		<script>
+			suite('<feature-clab>', function() {
+				var feature;
 
-</head>
-<body>
+				setup(function() {
+					feature = fixture('feature');
+				});
 
-<test-fixture id="feature">
-	<template>
-	  <feature-clab></feature-clab>
-	</template>
-</test-fixture>
+				suite('Test Properties', function() {
+					test('Default Properties', function() {
+						assert.isNull(feature.link);
+						assert.isNull(feature.iconClass);
+						assert.isNull(feature.src);
+						assert.isNull(feature.size);
+						assert.isFalse(feature.vertical);
+					});
+				});
 
+				suite('Test DOM Bindings', function() {
+					test('Check link', function(done) {
+						var link = 'www.example.com';
+						feature.link = link;
+						setTimeout(function() {
+							var el = feature.querySelector('.feature a');
+							assert.equal(el.getAttribute('href'), link);
+							done();
+						});
+					});
 
-<script>
+					test('Check iconClass', function(done) {
+						var icon = 'icon-class';
+						feature.iconClass = icon;
+						setTimeout(function() {
+							var el = feature.$$('.image i');
+							assert.isTrue(el.classList.contains(icon));
+							done();
+						});
+					});
 
-suite('<feature-clab>', function() {
-  var feature;
+					test('Check src', function(done) {
+						var src = 'path/to/img.jpg';
+						feature.src = src;
+						setTimeout(function() {
+							var el = feature.$$('.image img');
+							assert.equal(el.getAttribute('src'), src);
+							done();
+						});
+					});
 
-	setup(function() {
-		feature = fixture('feature');
-	});
+					test('Check size', function(done) {
+						var size = 'small';
+						feature.size = size;
+						setTimeout(function() {
+							var el = feature.$$('.feature');
+							assert.isTrue(el.classList.contains(size));
+							done();
+						});
+					});
 
-	suite('Test Properties', function() {
-
-		test('Default Properties', function() {
-			assert.isNull(feature.link);
-			assert.isNull(feature.iconClass);
-			assert.isNull(feature.src);
-			assert.isNull(feature.size);
-			assert.isFalse(feature.vertical);
-		});
-
-	});
-
-  suite('Test DOM Bindings', function() {
-
-    test('Check link', function(done) {
-      var link = 'www.example.com';
-      feature.link = link;
-      setTimeout(function () {
-        var el = feature.querySelector('.feature a');
-        assert.equal(el.getAttribute('href'), link);
-        done();
-      });
-    });
-
-    test('Check iconClass', function(done) {
-      var icon = 'icon-class';
-      feature.iconClass = icon;
-      setTimeout(function () {
-        var el = feature.$$('.image i');
-        assert.isTrue(el.classList.contains(icon));
-        done()
-      });
-    });
-
-    test('Check src', function(done) {
-      var src = 'path/to/img.jpg';
-      feature.src = src;
-      setTimeout(function () {
-        var el = feature.$$('.image img');
-        assert.equal(el.getAttribute('src'), src);
-        done();
-      });
-    });
-
-    test('Check size', function(done) {
-      var size = 'small';
-      feature.size = size;
-      setTimeout(function () {
-        var el = feature.$$('.feature');
-        assert.isTrue(el.classList.contains(size));
-        done();
-      });
-    });
-
-		test('Check vertical', function(done) {
-      var bool = true;
-      feature.vertical = bool;
-      setTimeout(function () {
-        var el = feature.$$('.feature');
-        assert.isTrue(el.classList.contains("vertical"));
-        done();
-      });
-    });
-
-  });
-
-});
-
-</script>
-</body>
+					test('Check vertical', function(done) {
+						var bool = true;
+						feature.vertical = bool;
+						setTimeout(function() {
+							var el = feature.$$('.feature');
+							assert.isTrue(el.classList.contains('vertical'));
+							done();
+						});
+					});
+				});
+			});
+		</script>
+	</body>
 </html>

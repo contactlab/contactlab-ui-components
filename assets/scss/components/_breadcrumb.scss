@@ -1,0 +1,17 @@
+.breadcrumb {
+  font-size: 1.6rem;
+
+  li {
+    display: inline;
+
+    &::after {
+      content: '/';
+      margin: 0 0.4rem;
+      color: get-color('base300');
+    }
+
+    &:last-child::after {
+      content: '';
+    }
+  }
+}

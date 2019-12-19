@@ -20,7 +20,7 @@ test(`${element} properties: types & default values`, t => {
   t.is(props.position.value, 'absolute');
 
   t.is(props.background.type, String);
-  t.is(props.background.value, '240, 240, 240, 0.9');
+  t.is(props.background.value, '247, 252, 255, 0.8');
 
   t.is(props.color.type, String);
   t.is(props.color.value, '101, 109, 120, 0.9');

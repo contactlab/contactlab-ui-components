@@ -1,13 +1,12 @@
 <dom-module id="file-clab">
   <style>
-    input[type=file] {
+    input[type='file'] {
       display: none;
     }
 
-    input[type=text]::-ms-clear {
+    input[type='text']::-ms-clear {
       display: none;
     }
-
   </style>
 
   <template>
@@ -17,7 +16,14 @@
       </template>
 
       <div class="input" on-click="_selection">
-        <input class$="[[type]]" type="text" name$="[[dashify(name)]]" disabled="[[disabled]]" value="{{value}}" on-change="_checkIfResetPreview">
+        <input
+          class$="[[type]]"
+          type="text"
+          name$="[[dashify(name)]]"
+          disabled="[[disabled]]"
+          value="{{value}}"
+          on-change="_checkIfResetPreview"
+        />
         <button class="btn"><i class="clab-icon icon-folder"></i></button>
       </div>
 
@@ -25,10 +31,15 @@
         <slot name="note"></slot>
       </note-clab>
 
-      <input id="input_file" type="file" multiple$="[[multiple]]" disabled="[[disabled]]" on-change="_updateValue">
+      <input
+        id="input_file"
+        type="file"
+        multiple$="[[multiple]]"
+        disabled="[[disabled]]"
+        on-change="_updateValue"
+      />
 
       <div id="preview"></div>
     </div>
   </template>
-
 </dom-module>

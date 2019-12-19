@@ -1,0 +1,50 @@
+// --- maps
+$default-status: (
+  primary: (
+    get-color('accent500'),
+    get-color('white'),
+  ),
+  info: (
+    get-color('base500'),
+    get-color('base900'),
+  ),
+  success: (
+    get-color('success'),
+    get-color('base900'),
+  ),
+  warning: (
+    get-color('warning'),
+    get-color('base900'),
+  ),
+  error: (
+    get-color('error'),
+    get-color('base900'),
+  ),
+);
+
+// --- placeholders
+%default-link-effect {
+  color: get-color('base900');
+
+  &:active {
+    color: get-color('accent500');
+  }
+}
+
+%default-transition {
+  transition: 150ms ease-in-out;
+}
+
+%fast-transition {
+  transition: 100ms ease-in-out;
+}
+
+%slow-transition {
+  transition: 200ms ease-in-out;
+}
+
+%truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

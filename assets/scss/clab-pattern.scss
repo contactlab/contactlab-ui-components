@@ -1,0 +1,30 @@
+// --- design tokens
+@import '@contactlab/ds-tokens/lib/styles/scss/resets';
+@import '@contactlab/ds-tokens/lib/styles/scss/colors';
+@import '@contactlab/ds-tokens/lib/styles/scss/elevations';
+@import '@contactlab/ds-tokens/lib/styles/scss/typography';
+@import '@contactlab/ds-tokens/lib/styles/scss/commons';
+
+// --- common styles
+@import './commons/abstracts';
+@import './commons/utils';
+@import './commons/general';
+@import './commons/layout';
+
+// --- component styles
+@import './components/buttons';
+@import './components/forms';
+@import './components/alerts';
+@import './components/breadcrumb';
+@import './components/features';
+@import './components/labels-badges';
+@import './components/pagination';
+@import './components/progress-bar';
+@import './components/spinner';
+@import './components/tables';
+@import './components/accordion';
+@import './components/tooltips';
+@import './components/datepicker';
+@import './components/modals';
+@import './components/tabs-pills';
+@import './components/select';

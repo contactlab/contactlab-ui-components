@@ -1,0 +1,39 @@
+.pagination {
+  user-select: none;
+  display: flex;
+  justify-content: flex-end;
+
+  .clab-icon {
+    font-size: 1rem;
+  }
+
+  li {
+    @extend %truncate;
+    display: flex;
+    width: 2.4rem;
+    height: 2.4rem;
+    margin: 0.2rem;
+    border: 0.1rem solid get-color('base200');
+    border-radius: 0.4rem;
+    padding: 0.4rem;
+    align-items: center;
+    justify-content: center;
+    font-size: inherit;
+    line-height: 1;
+    cursor: pointer;
+    user-select: none;
+
+    &.page {
+      &.active {
+        border-color: get-color('accent500');
+        color: get-color('white');
+        background-color: get-color('accent500');
+      }
+    }
+
+    &.unactive {
+      opacity: 0.4;
+      pointer-events: none;
+    }
+  }
+}

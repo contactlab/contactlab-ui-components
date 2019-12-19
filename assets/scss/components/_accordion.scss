@@ -1,0 +1,44 @@
+.accordion-title {
+  padding-left: 3rem;
+  position: relative;
+  cursor: pointer;
+  user-select: auto;
+
+  &::before {
+    content: '\e902';
+    width: 3rem;
+    position: absolute;
+    top: 0;
+    left: 0;
+    font-family: ikonograph;
+  }
+}
+
+.accordion-content {
+  @extend %default-transition;
+  overflow: hidden;
+  height: 0;
+  padding-top: 1.2rem;
+  padding-left: 3rem;
+
+  &.opened {
+    overflow: inherit;
+  }
+}
+
+.accordion-block {
+  @extend %default-transition;
+  padding-bottom: 0.4rem;
+
+  &.active {
+    margin-bottom: 2rem;
+
+    .accordion-title::before {
+      content: '\e909';
+    }
+
+    .accordion-content {
+      padding-bottom: 2rem;
+    }
+  }
+}

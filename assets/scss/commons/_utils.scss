@@ -1,0 +1,39 @@
+// --- box-model
+.hide {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+// --- typography
+.truncate {
+  @extend %truncate;
+}
+
+// --- transitions
+.default-transition {
+  @extend %default-transition;
+}
+
+.fast-transition {
+  @extend %fast-transition;
+}
+
+.slow-transition {
+  @extend %slow-transition;
+}
+
+// --- layouts
+.txt-center {
+  text-align: center;
+}
+
+.txt-left {
+  text-align: left;
+}
+
+.txt-right {
+  text-align: right;
+}

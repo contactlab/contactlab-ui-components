@@ -1,116 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-	<meta charset="UTF-8">
+	<head>
+		<meta charset="UTF-8" />
 
+		<script src="../../../webcomponentsjs/webcomponents-lite.js"></script>
+		<script src="../../../web-component-tester/browser.js"></script>
 
-	<script src="./../../../webcomponentsjs/webcomponents-lite.js"></script>
-	<script src="./../../../web-component-tester/browser.js"></script>
+		<link rel="import" href="../../button/view.html" />
+	</head>
+	<body>
+		<test-fixture id="button">
+			<template>
+				<button-clab></button-clab>
+			</template>
+		</test-fixture>
 
-	<link rel="import" href="./../../button/view.html">
+		<script>
+			describe('<button-clab>', function() {
+				var button;
 
-</head>
-<body>
+				beforeEach(function() {
+					button = fixture('button');
+				});
 
-<test-fixture id="button">
-	<template>
-	  <button-clab></button-clab>
-	</template>
-</test-fixture>
+				context('Test Properties', function() {
+					it('Default Properties', function(done) {
+						expect(button.type).to.equal('');
+						expect(button.appearance).to.equal('');
+						expect(button.size).to.equal('');
+						expect(button.icon).to.equal('');
+						expect(button.disabled).to.equal(false);
 
+						done();
+					});
 
-<script>
-
-describe('<button-clab>', function() {
-  var button;
-
-  beforeEach(function() {
-		button = fixture('button');
-  });
-
-  context('Test Properties', function() {
-
-  	it('Default Properties', function(done) {
-			expect(button.type).to.equal('');
-			expect(button.appearance).to.equal('');
-			expect(button.size).to.equal('');
-			expect(button.icon).to.equal('');
-			expect(button.disabled).to.equal(false);
-
-			done();
-		});
-
-	/*it('change a random property', function() {
+					/*it('change a random property', function() {
 		var arr = ['type','size','appearance','icon'];
 		var i = Math.floor(Math.random() * arr.length);
 		var str = 'prop value';
 		button[arr[i]] = str;
 		expect(button[arr[i]]).to.equal(str);
 	});*/
-  });
+				});
 
-  context('Test DOM Bindings', function(){
+				context('Test DOM Bindings', function() {
+					it('Check type', function(done) {
+						var str = 'error';
+						button.type = str;
 
-  	it('Check type', function(done) {
-			var str = 'error';
-			button.type = str;
+						setTimeout(function() {
+							expect(
+								button.querySelector('button').classList.contains(str)
+							).to.equal(true);
 
-			setTimeout(function(){
-				expect(button.querySelector('button').classList.contains(str)).to.equal(true);
+							done();
+						}, 50);
+					});
 
-				done();
-			},50);
-		});
+					it('Check appearance', function(done) {
+						var str = 'full';
+						button.appearance = str;
 
-  	it('Check appearance', function(done) {
-			var str = 'full';
-			button.appearance = str;
+						setTimeout(function() {
+							expect(
+								button.querySelector('button').classList.contains(str)
+							).to.equal(true);
 
-			setTimeout(function(){
-				expect(button.querySelector('button').classList.contains(str)).to.equal(true);
+							done();
+						}, 50);
+					});
 
-				done();
-			},50);
-		});
+					it('Check size', function(done) {
+						var str = 'small';
+						button.size = str;
 
-  	it('Check size', function(done) {
-			var str = 'small';
-			button.size = str;
+						setTimeout(function() {
+							expect(
+								button.querySelector('button').classList.contains(str)
+							).to.equal(true);
 
-			setTimeout(function(){
-				expect(button.querySelector('button').classList.contains(str)).to.equal(true);
+							done();
+						}, 50);
+					});
 
-				done();
-			},50);
-		});
+					it('Check icon', function(done) {
+						var str = 'fa-camion';
+						button.icon = str;
 
-  	it('Check icon', function(done) {
-			var str = 'fa-camion';
-			button.icon = str;
+						setTimeout(function() {
+							expect(button.querySelector('i')).to.not.be.undefined;
+							expect(
+								button.querySelector('i').classList.contains(str)
+							).to.equal(true);
 
-			setTimeout(function(){
-				expect(button.querySelector('i')).to.not.be.undefined;
-				expect(button.querySelector('i').classList.contains(str)).to.equal(true);
+							done();
+						}, 50);
+					});
 
-				done();
-			},50);
-		});
+					it('Check disabled', function(done) {
+						var bool = true;
+						button.disabled = bool;
 
-  	it('Check disabled', function(done) {
-			var bool = true;
-			button.disabled = bool;
+						setTimeout(function() {
+							expect(button.querySelector('button').disabled).to.equal(bool);
 
-			setTimeout(function(){
-				expect(button.querySelector('button').disabled).to.equal(bool);
-
-				done();
-			},50);
-		});
-
-  });
-
-});
-
-</script>
-</body>
+							done();
+						}, 50);
+					});
+				});
+			});
+		</script>
+	</body>
 </html>
