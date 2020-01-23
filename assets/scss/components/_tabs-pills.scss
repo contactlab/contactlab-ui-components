@@ -11,9 +11,7 @@ tabs-clab {
   > ul {
     display: flex;
     width: 100%;
-    flex-flow: row nowrap;
     align-items: flex-end;
-    justify-content: flex-start;
     text-align: center;
     line-height: 1;
   }
@@ -59,7 +57,7 @@ tabs-clab {
 
   &.disabled li.tab {
     a {
-      color: get-color('base200');
+      color: get-color('base300');
       cursor: not-allowed;
     }
   }

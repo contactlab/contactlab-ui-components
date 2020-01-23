@@ -49,13 +49,13 @@ label {
 
   input[type='radio']:disabled + &,
   input[type='radio']:disabled + &::before {
-    color: get-color('base200');
+    color: get-color('base300');
     cursor: not-allowed;
   }
 
   input[type='checkbox']:disabled + &,
   input[type='checkbox']:disabled + &::before {
-    color: get-color('base200');
+    color: get-color('base300');
     cursor: not-allowed;
   }
 }
@@ -99,15 +99,18 @@ textarea {
     box-shadow: 0 0 0 0.2rem rgba(3, 145, 236, 0.2);
   }
 
+  &[readonly],
   &:disabled {
-    color: get-color('base200');
-    background-color: rgba(0, 20, 32, 0.04);
+    color: get-color('base300');
+    background-color: rgba(0, 0, 0, 0.01);
     box-shadow: none;
     cursor: not-allowed;
-  }
 
-  &[readonly] {
-    cursor: not-allowed;
+    &:active,
+    &:focus {
+      border-color: get-color('base200');
+      box-shadow: none;
+    }
   }
 }
 
@@ -280,9 +283,7 @@ input-clab {
 
   &.inline {
     display: flex;
-    flex-flow: row nowrap;
     align-items: center;
-    justify-content: flex-start;
 
     label {
       padding-right: 0.8rem;

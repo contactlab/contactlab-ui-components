@@ -40,7 +40,7 @@ ol.multiple-clab {
   }
 
   .placeholder {
-    color: get-color('base500');
+    color: inherit;
   }
 
   .input {
@@ -67,12 +67,19 @@ ol.multiple-clab {
 .dropdown-clab {
   .value_wrapper.disabled {
     &.active {
-      border-bottom-color: get-color('accent500');
+      border-color: get-color('accent500');
     }
 
     &.disabled {
-      color: get-color('base200');
+      color: get-color('base300');
+      background-color: rgba(0, 0, 0, 0.01);
       cursor: not-allowed;
+
+      &:active,
+      &:focus {
+        border-color: get-color('base200');
+        box-shadow: none;
+      }
     }
   }
 
@@ -95,7 +102,7 @@ ol.multiple-clab {
       cursor: pointer;
 
       &[data-disabled='true'] {
-        color: get-color('base200');
+        color: get-color('base300');
         cursor: not-allowed;
       }
 

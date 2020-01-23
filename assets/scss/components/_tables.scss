@@ -115,18 +115,46 @@ tr:not(:last-of-type) > td {
   margin-bottom: 2.4rem;
 }
 
-.table-heading,
-.table-pagination {
-  display: grid;
-  margin-bottom: 2.4rem;
-  grid-column-gap: 6.4rem;
-  justify-content: flex-start;
-  line-height: 1;
+.table-responsive {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+
+  .table-container-scrollable {
+    overflow-x: auto;
+  }
+
+  // forces scrollbar for webkit
+  ::-webkit-scrollbar {
+    height: 1.2rem;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: #f0f0f0;
+    box-shadow: 0 0 0.2rem rgba(0, 0, 0, 0.15) inset;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    border-radius: 0.6px;
+    background: #ccc;
+  }
+
+  thead > tr > th,
+  tbody > tr > td,
+  .thead > .tr > .th,
+  .tbody > .tr > .td {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
 }
 
 .table-heading {
+  display: grid;
+  margin-bottom: 2.4rem;
   grid-template-columns: 50% minmax(18rem, 50%);
+  grid-column-gap: 6.4rem;
   align-items: flex-end;
+  line-height: 1;
 }
 
 .items-to-show {
@@ -135,23 +163,26 @@ tr:not(:last-of-type) > td {
   justify-self: end;
 }
 
-.table-pagination {
-  grid-template-columns: max-content 1fr;
+.table-footer {
+  display: grid;
+  margin-bottom: 2.4rem;
+  grid-template-areas: 'counter pagination';
+  grid-template-columns: repeat(2, auto);
   align-items: center;
+  justify-content: space-between;
 }
 
-.counters {
+.table-counter {
   @extend %truncate;
-  grid-column: 1 / span 1;
+  grid-area: counter;
 }
 
-.pag {
-  grid-column: 2 / -1;
+.table-pagination {
+  grid-area: pagination;
 }
 
 .table-triggers {
   display: flex;
-  flex-flow: row nowrap;
   align-items: center;
   justify-content: flex-end;
 

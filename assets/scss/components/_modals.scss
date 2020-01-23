@@ -16,6 +16,14 @@
   padding: 3.2rem;
   justify-content: center;
 
+  @media (--to-large) {
+    padding: 2.4rem;
+  }
+
+  @media (--to-medium) {
+    padding: 1.6rem;
+  }
+
   .arrows {
     .prev,
     .next {
@@ -30,7 +38,7 @@
       font-size: 2rem;
       cursor: pointer;
 
-      &:active,
+      &:hover,
       &:active {
         color: get-color('accent500');
       }
@@ -70,26 +78,33 @@ modal-clab[classic] .modal-wrapper {
   @extend h2;
 }
 
-.modal-info {
+ul.modal-info {
   display: grid;
-  margin-bottom: 2.4rem;
-  grid-template-rows: repeat(2, auto);
-  grid-auto-columns: max-content;
-  grid-auto-flow: column;
+  margin-bottom: 3.2rem;
+  grid-template-columns: repeat(3, minmax(10rem, auto));
   grid-gap: 1.6rem 3.2rem;
-  line-height: 1;
+  justify-content: flex-start;
+
+  @media (--to-large) {
+    grid-column-gap: 2.4rem;
+  }
+
+  @media (--to-medium) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-column-gap: 1.6rem;
+  }
+
+  @media (--to-small) {
+    grid-template-columns: 1fr;
+  }
 
   li {
     display: flex;
-    margin: 0;
-    flex-flow: row nowrap;
-    align-items: center;
-    justify-content: flex-start;
-  }
 
-  li > span:first-child {
-    padding-right: 0.4rem;
-    color: get-color('base500');
+    > span:first-child {
+      margin-right: 0.6rem;
+      color: get-color('base500');
+    }
   }
 }
 

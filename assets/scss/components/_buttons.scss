@@ -40,7 +40,6 @@ group-clab[block] button-clab {
   display: inline-flex;
   border: 0.1rem solid get-color('base200');
   border-radius: 0.4rem;
-  flex-flow: row nowrap;
 
   button-clab {
     margin: 0;
@@ -218,8 +217,8 @@ group-clab[block] .buttons-group {
   }
 
   &[disabled] {
-    border-color: darken($color: get-color('base200'), $amount: 8%);
-    color: darken($color: get-color('base200'), $amount: 8%);
+    border-color: darken($color: get-color('base300'), $amount: 8%);
+    color: darken($color: get-color('base300'), $amount: 8%);
     background-color: rgba(0, 20, 32, 0.04);
     box-shadow: none;
     cursor: not-allowed;
@@ -228,8 +227,8 @@ group-clab[block] .buttons-group {
   &[disabled]:hover,
   &[disabled]:active,
   &[disabled].active {
-    border-color: darken($color: get-color('base200'), $amount: 16%);
-    color: darken($color: get-color('base200'), $amount: 16%);
+    border-color: darken($color: get-color('base300'), $amount: 16%);
+    color: darken($color: get-color('base300'), $amount: 16%);
     background-color: rgba(0, 20, 32, 0.08);
   }
 }
