@@ -1,5 +1,9 @@
 {
-  "extends": "@giotramu/stylelint-config",
+  "extends": [
+    "@giotramu/stylelint-config",
+    "@giotramu/stylelint-config/scss",
+    "@giotramu/stylelint-config/prettier"
+  ],
   "rules": {
     "declaration-no-important": null,
     "scss/at-extend-no-missing-placeholder": null,

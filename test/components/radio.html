@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<radio-clab>', function() {
+      describe('<radio-clab>', function () {
         var radio;
 
-        beforeEach(function() {
+        beforeEach(function () {
           radio = fixture('radio');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(radio.labels.length).to.equal(0);
             expect(radio.name).to.be.undefined;
             expect(radio.wrapperType).to.equal('');
@@ -35,11 +35,11 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check labels', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check labels', function (done) {
             radio.labels = ['radio 1', 'radio 2'];
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(radio.querySelectorAll('.row').length).to.equal(
                 radio.labels.length
               );
@@ -48,12 +48,12 @@
             }, 50);
           });
 
-          it('Check wrapperType', function(done) {
+          it('Check wrapperType', function (done) {
             var str = 'error';
             radio.labels = ['radio 1', 'radio 2'];
             radio.wrapperType = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 radio.querySelector('.row').classList.contains(str)
               ).to.equal(true);
@@ -62,14 +62,14 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             radio.labels = ['radio 1', 'radio 2'];
             radio.disabled = [0, 1];
 
-            setTimeout(function() {
+            setTimeout(function () {
               Array.prototype.map.call(
                 radio.querySelectorAll('input[type=radio]'),
-                function(el, i) {
+                function (el, i) {
                   for (var n = 0; n < radio.disabled.length; n++) {
                     if (n == i) expect(el.disabled).to.equal(true);
                   }
@@ -80,11 +80,11 @@
             }, 50);
           });
 
-          it('Check active', function(done) {
+          it('Check active', function (done) {
             radio.labels = ['radio 1', 'radio 2'];
             radio.active = 1;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 radio.querySelectorAll('input[type=radio]')[1].checked
               ).to.equal(true);

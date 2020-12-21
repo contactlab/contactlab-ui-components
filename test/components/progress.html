@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<progress-clab>', function() {
+      describe('<progress-clab>', function () {
         var progress;
 
-        beforeEach(function() {
+        beforeEach(function () {
           progress = fixture('progress');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(progress.value).to.equal(0);
             expect(progress.minimal).to.equal(false);
             expect(progress.type).to.equal(null);
@@ -33,13 +33,13 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check value', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check value', function (done) {
             var num = Math.floor(Math.random() * 100);
             var perc = progress._percent(num);
             progress.value = num;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(progress.querySelector('article').style.width).to.equal(
                 perc
               );
@@ -48,11 +48,11 @@
             }, 50);
           });
 
-          it('Check minimal', function(done) {
+          it('Check minimal', function (done) {
             var bool = true;
             progress.minimal = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 progress
                   .querySelector('.progress-bar')
@@ -63,11 +63,11 @@
             }, 50);
           });
 
-          it('Check type', function(done) {
+          it('Check type', function (done) {
             var str = 'error';
             progress.type = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 progress.querySelector('.progress-bar').classList.contains(str)
               ).to.equal(true);
@@ -77,12 +77,12 @@
           });
         });
 
-        context('Test Methods', function() {
-          it('Get % of value', function(done) {
+        context('Test Methods', function () {
+          it('Get % of value', function (done) {
             var num = Math.floor(Math.random() * 100);
             var perc = progress._percent(num);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(perc).to.equal(num + '%');
 
               done();

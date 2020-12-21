@@ -19,17 +19,17 @@
     </test-fixture>
 
     <script>
-      suite('<checkbox-clab>', function() {
+      suite('<checkbox-clab>', function () {
         var checkbox;
         var label = 'test';
         var type = 'error';
 
-        setup(function() {
+        setup(function () {
           checkbox = fixture('checkbox');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(checkbox.label);
             assert.isUndefined(checkbox.wrapperType);
             assert.isFalse(checkbox.active);
@@ -37,11 +37,11 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label', function (done) {
             checkbox.label = label;
             checkbox.wrapperType = type;
-            flush(function() {
+            flush(function () {
               var rows = checkbox.querySelectorAll('.row');
               var singleCheck = checkbox.querySelectorAll('.row label')[0];
               assert.equal(
@@ -53,10 +53,10 @@
             });
           });
 
-          test('Check wrapperType', function(done) {
+          test('Check wrapperType', function (done) {
             checkbox.label = label;
             checkbox.wrapperType = type;
-            flush(function() {
+            flush(function () {
               var row = checkbox.$$('.row');
               assert.include(
                 row.classList.value,
@@ -67,15 +67,15 @@
             });
           });
 
-          test('Check disabled', function(done) {
+          test('Check disabled', function (done) {
             checkbox.label = label;
             checkbox.wrapperType = type;
             // Fill array of disabled checkbox
             checkbox.disabled = [0, 1];
-            setTimeout(function() {
+            setTimeout(function () {
               Array.prototype.map.call(
                 checkbox.querySelectorAll('input[type=checkbox]'),
-                function(el, i) {
+                function (el, i) {
                   for (var n = 0; n < checkbox.disabled.length; n++) {
                     if (n == i) assert.isTrue(el.disabled);
                   }
@@ -85,11 +85,11 @@
             });
           });
 
-          test('Check active', function(done) {
+          test('Check active', function (done) {
             checkbox.label = label;
             checkbox.wrapperType = type;
             checkbox.active = true;
-            flush(function() {
+            flush(function () {
               var inputActive = checkbox.querySelectorAll(
                 'input[type=checkbox]'
               )[0];
@@ -99,16 +99,16 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Update active on-click', function(done) {
+        suite('Test Events', function () {
+          test('Update active on-click', function (done) {
             checkbox.label = label;
             checkbox.wrapperType = type;
             // TODO: must be set on element as default value
             //checkbox.active = [];
-            flush(function() {
+            flush(function () {
               var check = checkbox.querySelectorAll('input[type=checkbox]')[0];
-              check.addEventListener('click', function(evt) {
-                flush(function() {
+              check.addEventListener('click', function (evt) {
+                flush(function () {
                   assert.isTrue(
                     checkbox.active,
                     'Checkbox.active is true: correct'

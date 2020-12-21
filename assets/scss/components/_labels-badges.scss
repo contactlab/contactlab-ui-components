@@ -1,58 +1,55 @@
-// --- labels
+// --- Labels
 .label {
-  display: inline-block;
+  display: inline-flex;
   overflow: hidden;
   min-width: 2rem;
   height: 2rem;
-  border: 0.1rem solid get-color('base300');
+  border: 1px solid colors('base300');
   border-radius: 0.4rem;
-  padding: 0 1.2rem;
-  color: get-color('base900');
-  background-color: get-color('base200');
+  padding: 0 0.8rem;
+  align-items: center;
+  justify-content: center;
+  color: colors('base900');
+  background-color: colors('base200');
   font-size: 1.2rem;
-  text-align: center;
-  line-height: 2rem;
+  line-height: 1;
   white-space: nowrap;
 
   .counter {
     margin-left: 0.4rem;
     border-radius: 1rem;
-    padding: 0 0.4rem;
-    color: get-color('base900');
-    background-color: get-color('white');
+    color: colors('base900');
+    background-color: colors('white');
   }
 
   .remove {
-    padding: 0.3rem 0 0.3rem 0.5rem;
-    color: rgba(255, 255, 255, 0.6);
-    font-size: 0.8rem;
-    text-align: right;
+    display: flex;
+    margin-left: 0.8rem;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgba(colors('base900'), 0.4);
+    cursor: pointer;
 
-    .clab {
-      font-size: 0.8rem;
-    }
-
-    &:hover {
-      color: get-color('white');
-      cursor: pointer;
+    .fa {
+      font-size: 1rem;
     }
   }
 
   &.empty {
-    border: 0.1rem solid get-color('base900');
-    color: get-color('base900');
+    border: 1px solid colors('base900');
+    color: colors('base900');
     background-color: transparent;
 
     .counter {
-      color: get-color('white');
-      background-color: get-color('base900');
+      color: colors('white');
+      background-color: colors('base900');
     }
 
     .remove {
-      color: rgba(get-color('base900'), 0.6);
+      color: rgba(colors('base900'), 0.4);
 
       &:hover {
-        color: get-color('base900');
+        color: rgba(colors('base900'), 0.8);
       }
     }
   }
@@ -77,8 +74,16 @@
         color: $label-status-color;
       }
 
+      .remove {
+        color: darken($color: $label-status-color, $amount: 10%);
+
+        &:hover {
+          color: darken($color: $label-status-color, $amount: 15%);
+        }
+      }
+
       &.empty {
-        border: 0.1rem solid $label-status-color;
+        border: 1px solid $label-status-color;
         color: $label-status-color;
         background-color: transparent;
 
@@ -99,11 +104,11 @@
   }
 }
 
-// --- badges
+// --- Badges
 .badge {
   @extend .label;
   border-radius: 2.5rem;
-  padding: 0 2rem;
+  padding: 0 1.6rem;
 
   &.default {
     border-radius: 2.5rem;

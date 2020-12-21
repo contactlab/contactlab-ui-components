@@ -1,6 +1,6 @@
 {
   "name": "contactlab-ui-components",
-  "version": "1.8.0",
+  "version": "1.9.0",
   "description": "Polymer UI components of the Contactlab Pattern Library",
   "author": "Contactlab",
   "license": "Apache-2.0",
@@ -19,18 +19,17 @@
     "assets"
   ],
   "scripts": {
-    "lint:scss": "stylelint ./assets/scss/**/*.scss --syntax scss --ignore-path .gitignore",
-    "build:scss": "postcss ./assets/scss/clab-pattern.scss --dir ./assets/css/ --ext min.css --verbose",
-    "watch:scss": "npm run build:scss -- --map --watch",
+    "lint:css": "stylelint ./assets/scss/**/*.scss --syntax scss --ignore-path .gitignore",
+    "build:css": "postcss ./assets/scss/clab-pattern.scss --dir ./assets/css/ --ext min.css --verbose",
+    "watch:css": "npm run build:css -- --map --watch",
     "dev-server": "webpack-dev-server --port 3000",
-    "dev": "run-p -cln watch:scss dev-server",
+    "dev": "run-p -cln watch:css dev-server",
     "test": "ava"
   },
   "dependencies": {
     "@babel/runtime": "7.8.3",
-    "@contactlab/ds-tokens": "0.4.3",
+    "@contactlab/ds-tokens": "1.7.0",
     "escape-string-regexp": "1.0.5",
-    "ikonograph": "2.0.0",
     "moment": "2.24.0",
     "rome": "2.1.22",
     "web-animations-js": "2.3.2",
@@ -39,19 +38,21 @@
   "devDependencies": {
     "@babel/plugin-transform-runtime": "7.8.3",
     "@contactlab/babelrc": "4.2.0",
-    "@giotramu/postcss-config": "1.1.0",
-    "@giotramu/stylelint-config": "1.1.0",
+    "@giotramu/postcss-config": "3.4.4",
+    "@giotramu/stylelint-config": "6.0.0",
     "ava": "2.4.0",
     "html-webpack-plugin": "3.2.0",
-    "husky": "4.0.10",
+    "husky": "4.3.6",
     "jsdom-wc": "11.0.0-alpha-1",
     "npm-run-all": "4.1.5",
     "polymer-webpack-loader": "2.0.3",
-    "postcss-cli": "7.1.0",
-    "prettier": "1.19.1",
-    "pretty-quick": "2.0.1",
+    "postcss-cli": "7.1.2",
+    "prettier": "2.2.1",
+    "pretty-quick": "3.1.0",
+    "stylelint": "13.8.0",
+    "stylelint-scss": "3.18.0",
     "webpack": "4.41.5",
     "webpack-cli": "3.3.10",
-    "webpack-dev-server": "3.10.1"
+    "webpack-dev-server": "3.11.0"
   }
 }

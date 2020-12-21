@@ -25,19 +25,19 @@ tabs-clab {
       content: '';
       display: block;
       width: 0;
-      height: 0.4rem;
+      height: 0.3rem;
       position: absolute;
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      background-color: get-color('base300');
+      background-color: colors('base300');
     }
 
     a {
       @extend %truncate;
       display: inline-block;
       padding: 1.2rem 1.6rem;
-      color: get-color('base900');
+      color: colors('base900');
       font-size: inherit;
       text-decoration: none;
     }
@@ -46,25 +46,25 @@ tabs-clab {
       &::after {
         @extend %slow-transition;
         width: 100%;
-        background-color: get-color('accent500');
+        background-color: colors('accent500');
       }
 
       a {
-        color: get-color('accent500');
+        color: colors('accent500');
       }
     }
   }
 
   &.disabled li.tab {
     a {
-      color: get-color('base300');
+      color: colors('base300');
       cursor: not-allowed;
     }
   }
 
   &.bordered {
     > ul {
-      border-bottom: 0.1rem solid get-color('base200');
+      border-bottom: 1px solid colors('base200');
     }
   }
 
@@ -78,15 +78,15 @@ tabs-clab {
     flex-flow: row nowrap;
 
     > ul {
-      border-right: 0.1rem solid get-color('base200');
+      border-right: 1px solid colors('base200');
       border-bottom: none;
       flex-basis: 20rem;
       flex-flow: column wrap;
       flex-shrink: 0;
       text-align: left;
 
-      .tab {
-        border-bottom: 0.1rem solid get-color('base200');
+      li.tab {
+        border-bottom: 1px solid colors('base200');
 
         &:last-of-type {
           border-bottom: none;
@@ -101,15 +101,19 @@ tabs-clab {
             height: auto;
             position: absolute;
             top: 0;
-            right: -0.1rem;
+            right: -1px;
             bottom: 0;
             left: auto;
             background-color: transparent;
           }
         }
 
+        &::after {
+          height: 0;
+        }
+
         &.active a::after {
-          background-color: get-color('accent500');
+          background-color: colors('accent500');
         }
       }
     }
@@ -120,7 +124,7 @@ tabs-clab {
   }
 }
 
-// --- pills
+// --- Pills
 .pills {
   @extend .tabs;
 
@@ -135,8 +139,8 @@ tabs-clab {
       }
 
       &.active a {
-        color: get-color('white');
-        background-color: get-color('accent500');
+        color: colors('white');
+        background-color: colors('accent500');
       }
     }
   }

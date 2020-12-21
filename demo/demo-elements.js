@@ -9,32 +9,32 @@ Polymer({
     }
   },
 
-  attached: function() {
+  attached: function () {
     this.async(
-      function() {
+      function () {
         // MODAL
         this.modal1 = document.querySelector('#modal-one');
         this.modal2 = document.querySelector('#modal-two');
 
-        this.modal1.addEventListener('modal-primary', function() {
+        this.modal1.addEventListener('modal-primary', function () {
           alert('Clicked');
         });
 
-        this.modal1.addEventListener('modal-secondary', function(evt) {
+        this.modal1.addEventListener('modal-secondary', function (evt) {
           evt.target.hide();
         });
 
-        this.modal2.addEventListener('modal-primary', function() {
+        this.modal2.addEventListener('modal-primary', function () {
           alert('Clicked');
         });
 
-        this.modal2.addEventListener('modal-secondary', function(evt) {
+        this.modal2.addEventListener('modal-secondary', function (evt) {
           evt.target.hide();
         });
 
         this.modal2.addEventListener(
           'modal-warning',
-          function(evt) {
+          function (evt) {
             if (this.modal2.primaryDisabled)
               this.modal2.primaryDisabled = false;
           }.bind(this)
@@ -48,14 +48,14 @@ Polymer({
 
         Array.prototype.map.call(
           document.querySelectorAll('autocomplete-clab'),
-          function(el) {
-            el.addEventListener('change', function(evt) {
+          function (el) {
+            el.addEventListener('change', function (evt) {
               console.log('autocomplete-clab ', evt.detail);
             });
-            el.addEventListener('sendRes', function(evt) {
+            el.addEventListener('sendRes', function (evt) {
               console.log('autocomplete-clab ', evt.detail);
             });
-            el.addEventListener('typing', function(evt) {
+            el.addEventListener('typing', function (evt) {
               console.log('autocomplete-clab typing', evt);
             });
           }
@@ -63,8 +63,8 @@ Polymer({
 
         Array.prototype.map.call(
           document.querySelectorAll('dropdown-clab'),
-          function(dropdown) {
-            dropdown.addEventListener('change', function(evt) {
+          function (dropdown) {
+            dropdown.addEventListener('change', function (evt) {
               console.log('dropdown-clab ', evt.detail);
             });
           }
@@ -72,7 +72,7 @@ Polymer({
 
         document
           .querySelector('multiple-clab')
-          .addEventListener('change', function(evt) {
+          .addEventListener('change', function (evt) {
             console.log('multiple-clab ', evt.detail.selected);
           });
       }.bind(this),
@@ -89,22 +89,22 @@ Polymer({
       {
         label: 'Plans',
         url: '#/plans',
-        icon: 'clab-icon icon-dashboard icon'
+        icon: 'fa fa-tachometer icon'
       },
       {
         label: 'Segments',
         url: '#/segments',
-        icon: 'clab-icon icon-segment icon'
+        icon: 'fa fa-users icon'
       },
       {
         label: 'Reports',
         url: '#/reports',
-        icon: 'clab-icon icon-analytics icon'
+        icon: 'fa fa-bar-chart icon'
       },
       {
         label: 'Settings',
         url: '#/settings',
-        icon: 'clab-icon icon-settings icon',
+        icon: 'fa fa-cog icon',
         submenu: [
           {
             label: 'Showed fields',
@@ -127,27 +127,27 @@ Polymer({
     ];
   },
 
-  _openModal1: function() {
+  _openModal1: function () {
     this.modal1.show();
   },
 
-  _openModal2: function() {
+  _openModal2: function () {
     this.modal2.show();
   },
 
-  _notify: function(evt) {
+  _notify: function (evt) {
     this.querySelector('#notify').visible = true;
   },
 
-  _fire: function(evt) {
+  _fire: function (evt) {
     console.log('primary');
   },
 
-  _checkboxChange: function(evt) {
+  _checkboxChange: function (evt) {
     console.log(evt.target);
   },
 
-  _changeCurrentHash: function(evt) {
+  _changeCurrentHash: function (evt) {
     this.set('currentHash', evt.detail.href);
   },
 

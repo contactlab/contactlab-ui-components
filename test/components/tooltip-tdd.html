@@ -18,23 +18,23 @@
     </test-fixture>
 
     <script>
-      suite('<tooltip-clab>', function() {
+      suite('<tooltip-clab>', function () {
         var tooltip;
 
-        setup(function() {
+        setup(function () {
           tooltip = fixture('tooltip');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.equal(tooltip.type, '');
             assert.isFalse(tooltip.visible);
             assert.equal(tooltip.wait, 500);
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check type', function() {
+        suite('Test DOM Bindings', function () {
+          test('Check type', function () {
             var type = 'error';
             tooltip.type = type;
 
@@ -42,21 +42,21 @@
             assert.isTrue(elClass.contains(type));
           });
 
-          test('Check visible', function() {
+          test('Check visible', function () {
             tooltip.visible = true;
 
             var elClass = tooltip.$$('.tooltip').classList;
             assert.isTrue(elClass.contains('visible'));
           });
 
-          test('Check wait', function(done) {
+          test('Check wait', function (done) {
             tooltip.wait = 400;
             var mouseEnter = new Event('mouseenter');
             var mouseLeave = new MouseEvent('mouseleave');
 
             var el = tooltip.$$('span');
             el.dispatchEvent(mouseEnter);
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = tooltip.$$('.tooltip').classList;
               assert.isTrue(
                 elClass.contains('visible'),
@@ -67,8 +67,8 @@
           });
         });
 
-        suite('Test Methods', function() {
-          test('show()', function() {
+        suite('Test Methods', function () {
+          test('show()', function () {
             assert.isFalse(tooltip.visible);
             tooltip.show();
             assert.isTrue(tooltip.visible);
@@ -76,7 +76,7 @@
             assert.equal(el.style.opacity, 1);
           });
 
-          test('hide()', function() {
+          test('hide()', function () {
             tooltip.visible = true;
             tooltip.hide();
             assert.isFalse(tooltip.visible);

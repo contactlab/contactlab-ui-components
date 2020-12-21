@@ -38,15 +38,15 @@ group-clab[block] button-clab {
 
 .buttons-group {
   display: inline-flex;
-  border: 0.1rem solid get-color('base200');
+  border: 1px solid colors('base200');
   border-radius: 0.4rem;
 
   button-clab {
     margin: 0;
-    margin-left: -0.1rem;
+    margin-left: -1px;
 
     &:not(:last-of-type) {
-      border-right: 0.1rem solid get-color('base200');
+      border-right: 1px solid colors('base200');
     }
   }
 
@@ -56,13 +56,13 @@ group-clab[block] button-clab {
     border-radius: initial;
 
     &:hover {
-      color: get-color('base800');
+      color: colors('base800');
     }
 
     &:focus,
     &:active,
     &.active {
-      color: get-color('base900');
+      color: colors('base900');
     }
   }
 
@@ -122,11 +122,11 @@ group-clab[block] .buttons-group {
 .btn {
   display: inline-block;
   height: 4rem;
-  border: 0.1rem solid get-color('base200');
+  border: 1px solid colors('base200');
   border-radius: 0.4rem;
   padding: 0 1.4rem;
-  color: get-color('base800');
-  background-color: get-color('base200');
+  color: colors('base800');
+  background-color: colors('base200');
   box-shadow: 0 0.2rem 0 rgba(0, 20, 32, 0.04);
   font-size: 1.6rem;
   text-align: center;
@@ -139,14 +139,14 @@ group-clab[block] .buttons-group {
 
   &:hover,
   &:focus {
-    border-color: get-color('base300');
-    color: get-color('base800');
+    border-color: colors('base300');
+    color: colors('base800');
   }
 
   &:active,
   &.active {
-    border-color: get-color('base500');
-    color: get-color('base800');
+    border-color: colors('base500');
+    color: colors('base800');
   }
 
   @each $status, $color in $default-status {
@@ -168,19 +168,19 @@ group-clab[block] .buttons-group {
   }
 
   &.empty {
-    border: 0.1rem solid get-color('base200');
+    border: 1px solid colors('base200');
     background-color: transparent;
 
     &:hover,
     &:focus {
-      border-color: lighten($color: get-color('accent500'), $amount: 8%);
-      color: lighten($color: get-color('accent500'), $amount: 8%);
+      border-color: lighten($color: colors('accent500'), $amount: 8%);
+      color: lighten($color: colors('accent500'), $amount: 8%);
     }
 
     &:active,
     &.active {
-      border-color: darken($color: get-color('accent500'), $amount: 4%);
-      color: darken($color: get-color('accent500'), $amount: 4%);
+      border-color: darken($color: colors('accent500'), $amount: 4%);
+      color: darken($color: colors('accent500'), $amount: 4%);
     }
 
     @each $status, $color in $default-status {
@@ -217,8 +217,8 @@ group-clab[block] .buttons-group {
   }
 
   &[disabled] {
-    border-color: darken($color: get-color('base300'), $amount: 8%);
-    color: darken($color: get-color('base300'), $amount: 8%);
+    border-color: darken($color: colors('base300'), $amount: 8%);
+    color: darken($color: colors('base300'), $amount: 8%);
     background-color: rgba(0, 20, 32, 0.04);
     box-shadow: none;
     cursor: not-allowed;
@@ -227,8 +227,8 @@ group-clab[block] .buttons-group {
   &[disabled]:hover,
   &[disabled]:active,
   &[disabled].active {
-    border-color: darken($color: get-color('base300'), $amount: 16%);
-    color: darken($color: get-color('base300'), $amount: 16%);
+    border-color: darken($color: colors('base300'), $amount: 16%);
+    color: darken($color: colors('base300'), $amount: 16%);
     background-color: rgba(0, 20, 32, 0.08);
   }
 }

@@ -19,15 +19,15 @@
     </test-fixture>
 
     <script>
-      suite('<input-clab>', function() {
+      suite('<input-clab>', function () {
         var input;
 
-        setup(function() {
+        setup(function () {
           input = fixture('input');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isNull(input.name);
             assert.isNull(input.label);
             assert.isNull(input.icon);
@@ -46,8 +46,8 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label, type, noteType', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label, type, noteType', function (done) {
             var label = 'This is a label';
             var type = 'Error';
             var noteType = 'error-note';
@@ -55,7 +55,7 @@
             input.type = type;
             input.noteType = noteType;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var labelEl = input.$$('label');
               var inputClass = input.$$('input').classList;
               var noteClass = input.querySelector('.input-note').classList;
@@ -66,24 +66,24 @@
             });
           });
 
-          test('Check icon', function(done) {
+          test('Check icon', function (done) {
             var icon = 'icon-class';
             input.icon = icon;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var iconClass = input.$$('label i').classList;
               assert.isTrue(iconClass.contains(icon));
               done();
             });
           });
 
-          test('Check name input and value', function(done) {
+          test('Check name input and value', function (done) {
             var name = 'newname';
             var value = 'this is value';
             input.name = name;
             input.value = value;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var inputText = input.$$('input[type=text]');
               assert.equal(input.getAttribute('name'), name);
               assert.equal(input.value, value);
@@ -91,7 +91,7 @@
             });
           });
 
-          test('Check disabled', function() {
+          test('Check disabled', function () {
             var bool = true;
             input.disabled = bool;
 
@@ -99,7 +99,7 @@
             assert.isTrue(el.disabled);
           });
 
-          test('Check inline', function() {
+          test('Check inline', function () {
             var bool = true;
             input.inline = bool;
 
@@ -110,13 +110,13 @@
             );
           });
 
-          test('Check labelSize (inline dep)', function(done) {
+          test('Check labelSize (inline dep)', function (done) {
             var size = 'small';
             var label = 'This is a label';
             input.label = label;
             input.inline = true;
             input.labelSize = size;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = input.$$('.input-wrapper').classList;
               assert.isTrue(
                 elClass.contains('small-label'),
@@ -126,10 +126,10 @@
             });
           });
 
-          test('Check placeholder', function(done) {
+          test('Check placeholder', function (done) {
             var placeholder = 'This is a placeholder';
             input.placeholder = placeholder;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = input.$$('input[type=text]');
               assert.equal(
                 el.getAttribute('placeholder'),
@@ -140,34 +140,34 @@
             });
           });
 
-          test('Check check (property)', function(done) {
+          test('Check check (property)', function (done) {
             var bool = true;
             input.check = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = input.$$('.password-toggle');
               assert.isNotNull(el, 'Password toggle shows: correct');
               done();
             });
           });
 
-          test('Check required', function(done) {
+          test('Check required', function (done) {
             var bool = true;
             input.required = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = input.$$('input[type=text]');
               assert.isTrue(el.required, 'Input required: correct');
               done();
             });
           });
 
-          test('Check password (check dep)', function(done) {
+          test('Check password (check dep)', function (done) {
             var bool = true;
             input.check = true;
             input.password = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var btnClab = input.$$('button-clab');
               var pwd = Polymer.dom(btnClab.root).querySelector('button');
               assert.equal(
@@ -205,10 +205,10 @@
           });*/
           });
 
-          suite('Test Events', function() {
-            test('Input type toggle', function(done) {
+          suite('Test Events', function () {
+            test('Input type toggle', function (done) {
               input.set('check', true);
-              input.addEventListener('btnclick', function(evt) {
+              input.addEventListener('btnclick', function (evt) {
                 var btnClab = input.$$('button-clab');
                 var pwd = Polymer.dom(btnClab.root).querySelector('button');
                 assert.equal(
@@ -219,7 +219,7 @@
                 done();
               });
 
-              flush(function() {
+              flush(function () {
                 var btnClab = input.$$('button-clab');
                 var pwd = Polymer.dom(btnClab.root).querySelector('button');
                 assert.equal(
@@ -231,7 +231,7 @@
               });
             });
 
-            test('Input blur and focus', function(done) {
+            test('Input blur and focus', function (done) {
               var name = 'textinput';
               input.name = name;
 
@@ -239,13 +239,13 @@
               var focus = new Event('focus');
               var el = input.$$('input');
 
-              input.addEventListener('blur', function(evt) {
+              input.addEventListener('blur', function (evt) {
                 var nameInput = evt.detail.input.currentTarget.getAttribute(
                   'name'
                 );
                 assert.equal(nameInput, 'textinput');
               });
-              input.addEventListener('focus', function(evt) {
+              input.addEventListener('focus', function (evt) {
                 var nameInput = evt.detail.input.currentTarget.getAttribute(
                   'name'
                 );

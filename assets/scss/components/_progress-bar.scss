@@ -8,7 +8,7 @@
     margin: 0 !important;
     padding: 0 !important;
     position: relative;
-    background-color: get-color('base300');
+    background-color: colors('base300');
     text-align: right;
 
     article {
@@ -17,7 +17,7 @@
       position: absolute;
       top: 0;
       left: 0;
-      background-color: get-color('base800');
+      background-color: colors('base800');
       text-align: center;
     }
 

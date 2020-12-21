@@ -5,8 +5,8 @@
 
 .rd-container {
   width: 26.5rem;
-  background-color: get-color('white');
-  box-shadow: get-elevation('z4');
+  background-color: colors('white');
+  box-shadow: elevations('z4');
   text-align: center;
 
   .rd-month {
@@ -39,34 +39,35 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #eaeced;
-    font: normal normal normal 1.2rem/1 ikonograph;
+    color: colors('white');
+    font: 400 normal normal 1.4rem/1 FontAwesome;
     cursor: pointer;
   }
 
   .rd-next::after {
-    content: '\e908';
+    content: '\f105';
     right: 0;
     left: auto;
   }
 
   .rd-back::after {
-    content: '\e907';
+    content: '\f104';
     left: 0;
   }
 
   .rd-month-label {
     border: none;
     padding: 1.2rem 2rem;
-    color: get-color('white');
-    background-color: get-color('base800');
+    color: colors('white');
+    background-color: colors('base800');
     font-size: 1.4rem;
-    font-weight: normal;
+    font-weight: 400;
     text-align: center;
   }
 
   .rd-days {
     padding: 1.2rem 0;
+
     td {
       border: none;
       padding: 0.6rem;
@@ -82,7 +83,7 @@
 
   .rd-days-head {
     border: none;
-    border-top: 0.1rem solid get-color('base200');
+    border-top: 1px solid colors('base200');
     border-bottom: none;
     padding: 1em 0;
     font-size: 1.4rem;
@@ -90,27 +91,27 @@
     th {
       border-bottom: none;
       padding: 0.4rem;
-      background-color: get-color('white');
+      background-color: colors('white');
       text-align: center;
     }
   }
 
   .rd-day-selected {
-    color: get-color('accent500');
-    font-weight: bold;
+    color: colors('accent500');
+    font-weight: 700;
   }
 
   .rd-day-prev-month,
   .rd-day-next-month {
-    color: get-color('base300');
+    color: colors('base300');
   }
 
   .rd-time {
     display: flex;
     min-width: 8rem;
     position: relative;
-    color: get-color('white');
-    background-color: get-color('base800');
+    color: colors('white');
+    background-color: colors('base800');
     font-size: 1.6rem;
   }
 
@@ -123,8 +124,8 @@
     top: 100%;
     left: 50%;
     z-index: 10;
-    color: get-color('base900');
-    background-color: get-color('white');
+    color: colors('base900');
+    background-color: colors('white');
     overflow-y: scroll;
   }
 
@@ -134,7 +135,7 @@
     cursor: pointer;
 
     &:active {
-      background-color: get-color('base800');
+      background-color: colors('base800');
     }
   }
 
@@ -143,7 +144,7 @@
     cursor: pointer;
 
     &:active {
-      color: get-color('accent500');
+      color: colors('accent500');
     }
   }
 

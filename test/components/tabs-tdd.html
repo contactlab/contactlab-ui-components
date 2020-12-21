@@ -27,15 +27,15 @@
     </test-fixture>
 
     <script>
-      suite('<tabs-clab>', function() {
+      suite('<tabs-clab>', function () {
         var tabs;
 
-        setup(function() {
+        setup(function () {
           tabs = fixture('tabs');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isArray(tabs.labels);
             assert.isFalse(tabs.pills);
             assert.isFalse(tabs.vertical);
@@ -45,29 +45,29 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check labels', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check labels', function (done) {
             var labels = ['label 1', 'label 2', 'label 3'];
             tabs.labels = labels;
-            setTimeout(function() {
+            setTimeout(function () {
               var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
               assert.lengthOf(els, labels.length);
               done();
             });
           });
 
-          test('Check pills', function(done) {
+          test('Check pills', function (done) {
             tabs.pills = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tabs.$$('.pills');
               assert.isNotNull(el, 'Pills present');
               done();
             });
           });
 
-          test('Check vertical', function(done) {
+          test('Check vertical', function (done) {
             tabs.vertical = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = tabs.$$('.tabs').classList;
               assert.isTrue(
                 elClass.contains('vertical'),
@@ -77,30 +77,30 @@
             });
           });
 
-          test('Check centered', function(done) {
+          test('Check centered', function (done) {
             tabs.centered = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = tabs.$$('.tabs').classList;
               assert.isTrue(elClass.contains('centered'), 'Centerd tabs');
               done();
             });
           });
 
-          test('Check fullWidth', function(done) {
+          test('Check fullWidth', function (done) {
             tabs.fullWidth = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = tabs.$$('.tabs').classList;
               assert.isTrue(elClass.contains('full-width'), 'Full width tab');
               done();
             });
           });
 
-          test('Check active', function(done) {
+          test('Check active', function (done) {
             var n = 1;
             var labels = ['label 1', 'label 2', 'label 3'];
             tabs.labels = labels;
             tabs.active = n;
-            setTimeout(function() {
+            setTimeout(function () {
               var els = Polymer.dom(tabs.root).querySelectorAll('.tab');
               var elClass = els[n].classList;
               assert.isTrue(elClass.contains('active'), 'Active tab');
@@ -109,17 +109,17 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Change on activate tab', function(done) {
+        suite('Test Events', function () {
+          test('Change on activate tab', function (done) {
             var click = new Event('click');
             var labels = ['label 1', 'label 2', 'label 3'];
             var n = 2;
             tabs.labels = labels;
-            tabs.addEventListener('change', function(evt) {
+            tabs.addEventListener('change', function (evt) {
               assert.equal(evt.detail.active, n);
               done();
             });
-            setTimeout(function() {
+            setTimeout(function () {
               var els = Polymer.dom(tabs.root).querySelectorAll('.tab a');
               els[n].dispatchEvent(click);
             });

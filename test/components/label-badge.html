@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<label-clab>', function() {
+      describe('<label-clab>', function () {
         var label;
 
-        beforeEach(function() {
+        beforeEach(function () {
           label = fixture('label');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(label.type).to.equal('');
             expect(label.counter).to.equal(null);
             expect(label.remove).to.equal(false);
@@ -34,12 +34,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type', function (done) {
             var str = 'error';
             label.type = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               if (label.badge)
                 expect(
                   label.querySelector('.badge').classList.contains(str)
@@ -53,30 +53,30 @@
             }, 50);
           });
 
-          it('Check counter', function(done) {
+          it('Check counter', function (done) {
             label.counter = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(label.querySelector('.counter')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check remove', function(done) {
+          it('Check remove', function (done) {
             label.remove = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(label.querySelector('.remove')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check badge', function(done) {
+          it('Check badge', function (done) {
             label.badge = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(label.querySelector('.badge')).to.not.be.undefined;
 
               done();

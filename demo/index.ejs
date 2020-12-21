@@ -1,39 +1,75 @@
-<%
-  const $main = htmlWebpackPlugin.files.chunks.main.entry;
-  %>
+<% const $main = htmlWebpackPlugin.files.chunks.main.entry; %>
 
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Contactlab UI Components | Demo</title>
 
-    <!-- Google Fonts CDN -->
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,700&display=swap">
+    <!-- Favicon -->
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="https://cdn.jsdelivr.net/npm/@contactlab/marketing-cloud-logo/resources/favicon/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="https://cdn.jsdelivr.net/npm/@contactlab/marketing-cloud-logo/resources/favicon/favicon-32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="https://cdn.jsdelivr.net/npm/@contactlab/marketing-cloud-logo/resources/favicon/favicon-16.png"
+    />
 
-    <link rel="stylesheet" href="../assets/css/clab-pattern.min.css">
-    <link rel="stylesheet" href="../node_modules/ikonograph/dist/ikonograph.min.css">
+    <!-- Styles -->
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css?family=Montserrat:400,400i,500,700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+    />
+    <link rel="stylesheet" href="../assets/css/clab-pattern.min.css" />
 
+    <style>
+      demo-elements {
+        display: block;
+        padding: 3.2rem;
+      }
+
+      demo-elements section {
+        margin-bottom: 4rem;
+      }
+    </style>
+
+    <!-- Scripts -->
     <script src="../node_modules/webcomponents.js/webcomponents-lite.min.js"></script>
     <script>
       window.Polymer = {
         lazyRegister: true
       };
 
-      window.addEventListener('WebComponentsReady', function(){
+      window.addEventListener('WebComponentsReady', function () {
         const script = document.createElement('script');
         script.async = true;
         script.src = '<%= $main %>';
         document.body.appendChild(script);
       });
     </script>
-    <link rel="import" href="https://cdn.rawgit.com/Polymer/polymer/1.x/polymer.html">
-</head>
-<body>
 
-   <demo-elements></demo-elements>
-
-</body>
+    <link
+      rel="import"
+      href="https://cdn.rawgit.com/Polymer/polymer/1.x/polymer.html"
+    />
+  </head>
+  <body>
+    <demo-elements></demo-elements>
+  </body>
 </html>

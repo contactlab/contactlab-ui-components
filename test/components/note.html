@@ -16,27 +16,27 @@
     </test-fixture>
 
     <script>
-      describe('<note-clab>', function() {
+      describe('<note-clab>', function () {
         var note;
 
-        beforeEach(function() {
+        beforeEach(function () {
           note = fixture('note');
         });
 
-        context('Test Properties', function() {
-          it('default properties', function(done) {
+        context('Test Properties', function () {
+          it('default properties', function (done) {
             expect(note.type).to.be.undefined;
 
             done();
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type', function (done) {
             var str = 'error';
             note.type = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 note.querySelector('.input-note').classList.contains(str)
               ).to.equal(true);

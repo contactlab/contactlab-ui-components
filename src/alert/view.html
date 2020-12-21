@@ -10,7 +10,7 @@
     <template is="dom-if" if="[[!notify]]">
       <div class$="[[_computeClasses(type, fixed)]]" style$="[[_alertStyle]]">
         <div class="close" on-click="_close">
-          <i class="clab-icon icon-close"></i>
+          <i class="fa fa-lg fa-times"></i>
         </div>
         <div class="title">[[title]]</div>
         <p>
@@ -27,7 +27,7 @@
     <template is="dom-if" if="[[notify]]">
       <div class$="[[_computeClasses(type, fixed)]]" style$="[[_alertStyle]]">
         <div class="close" on-click="_close">
-          <i class="clab-icon icon-close"></i>
+          <i class="fa fa-lg fa-times"></i>
         </div>
         <div class="title">[[title]]</div>
         <p>

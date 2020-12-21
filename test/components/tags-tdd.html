@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<tags-clab>', function() {
+      suite('<tags-clab>', function () {
         var tags;
 
-        setup(function() {
+        setup(function () {
           tags = fixture('tags');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(tags.label);
             assert.equal(tags.name, 'tags input');
             assert.isUndefined(tags.inputString);
@@ -43,96 +43,96 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label', function (done) {
             var label = 'this is a label';
             tags.label = label;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('.input-wrapper label');
               assert.equal(el.innerText, label);
               done();
             });
           });
 
-          test('Check name', function(done) {
+          test('Check name', function (done) {
             var name = 'newname';
             tags.name = name;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('.input-wrapper input');
               assert.equal(el.getAttribute('name'), name);
               done();
             });
           });
 
-          test('Check inputString', function(done) {
+          test('Check inputString', function (done) {
             var str = 'string input';
             tags.inputString = str;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('.input input');
               assert.equal(el.value, str);
               done();
             });
           });
 
-          test('Check disabled', function(done) {
+          test('Check disabled', function (done) {
             tags.disabled = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('.input input');
               assert.isTrue(el.disabled);
               done();
             });
           });
 
-          test('Check placeholder', function(done) {
+          test('Check placeholder', function (done) {
             var place = 'this is a placeholder';
             tags.placeholder = place;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('.input input');
               assert.equal(el.placeholder, place);
               done();
             });
           });
 
-          test('Check stacked', function(done) {
+          test('Check stacked', function (done) {
             tags.stacked = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.$$('.selected-values');
               assert.isNotNull(el);
               done();
             });
           });
 
-          test('Check tags', function(done) {
+          test('Check tags', function (done) {
             var arr = ['ciccio puzzo', 'bella', 'raga'];
             tags.tags = arr;
-            setTimeout(function() {
+            setTimeout(function () {
               var els = Polymer.dom(tags.root).querySelectorAll('label-clab');
               assert.lengthOf(els, arr.length);
               done();
             });
           });
 
-          test('Check inputType', function(done) {
+          test('Check inputType', function (done) {
             var type = 'error';
             tags.type = type;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = tags.querySelector('.input input').classList;
               assert.isTrue(elClass.contains(type));
               done();
             });
           });
 
-          test('Check btnLabel', function(done) {
+          test('Check btnLabel', function (done) {
             var btnLabel = 'New Label';
             tags.btnLabel = btnLabel;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('button-clab button');
               assert.equal(el.innerText, btnLabel);
               done();
             });
           });
 
-          test('Check btn attributes', function(done) {
+          test('Check btn attributes', function (done) {
             var btnAppearence = 'appearance';
             var btnSize = 'small';
             var btnIcon = 'icon-ciao';
@@ -140,7 +140,7 @@
             tags.btnSize = btnSize;
             tags.btnIcon = btnIcon;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.querySelector('button-clab');
               assert.equal(el.appearance, btnAppearence);
               assert.equal(el.size, btnSize);
@@ -149,10 +149,10 @@
             });
           });
 
-          test('Check hideInput', function(done) {
+          test('Check hideInput', function (done) {
             tags.hideInput = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = tags.$$('input-clab');
               assert.isNull(el);
               done();
@@ -160,15 +160,15 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Change on add tag', function(done) {
-            setTimeout(function() {
+        suite('Test Events', function () {
+          test('Change on add tag', function (done) {
+            setTimeout(function () {
               var newTag = 'this is tag';
               var inputEl = tags.$$('input-clab');
               var button = tags.querySelector('button-clab button');
               var click = new Event('click');
               inputEl.value = newTag;
-              tags.addEventListener('change', function(event) {
+              tags.addEventListener('change', function (event) {
                 assert.lengthOf(event.detail.tags, 1);
                 assert.equal(event.detail.new.value, newTag);
                 done();
@@ -177,13 +177,13 @@
             });
           });
 
-          test('Change on remove', function(done) {
+          test('Change on remove', function (done) {
             var newTags = ['ciao', 'bello'];
             tags.tags = newTags.slice();
-            setTimeout(function() {
+            setTimeout(function () {
               var close = tags.querySelector('.remove');
               var click = new Event('click');
-              tags.addEventListener('change', function(evt) {
+              tags.addEventListener('change', function (evt) {
                 assert.lengthOf(evt.detail.tags, newTags.length - 1);
                 assert.equal(
                   evt.detail.removed,
@@ -197,13 +197,13 @@
           });
         });
 
-        suite('Test Methods', function() {
-          test('setTags()', function(done) {
+        suite('Test Methods', function () {
+          test('setTags()', function (done) {
             // --- TODO strange
             tags.tags = [];
             // -----------
             var arr = ['ciao', 'bello'];
-            tags.addEventListener('change', function(evt) {
+            tags.addEventListener('change', function (evt) {
               assert.lengthOf(evt.detail.tags, arr.length);
               assert.equal(JSON.stringify(evt.detail.new), JSON.stringify(arr));
               done();

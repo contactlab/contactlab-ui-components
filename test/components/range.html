@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<range-clab>', function() {
+      describe('<range-clab>', function () {
         var range;
 
-        beforeEach(function() {
+        beforeEach(function () {
           range = fixture('range');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(range.name).to.equal('rangeinput');
             expect(range.disabled).to.equal(false);
             expect(range.showDetails).to.equal(false);
@@ -33,13 +33,13 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type', function (done) {
             var str = 'error';
             range.label = 'I have a label';
             range.type = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 range.querySelector('label').classList.contains(str)
               ).to.equal(true);
@@ -51,11 +51,11 @@
             }, 50);
           });
 
-          it('Check Disabled', function(done) {
+          it('Check Disabled', function (done) {
             range.label = 'I have a label';
             range.disabled = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 range.querySelector('label').classList.contains('disabled')
               ).to.equal(true);
@@ -67,23 +67,23 @@
             }, 50);
           });
 
-          it('Check label', function(done) {
+          it('Check label', function (done) {
             var label = 'I have a label';
             range.label = label;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(range.querySelector('label').innerText).to.equal(label);
 
               done();
             }, 50);
           });
 
-          it('Check details', function(done) {
+          it('Check details', function (done) {
             var bool = true;
             var wrapper = range.querySelector('.range-wrapper');
             range.setAttribute('show-details', bool);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(range.showDetails).to.equal(bool);
               expect(wrapper.querySelectorAll('span').length).to.equal(2);
 
@@ -91,11 +91,11 @@
             }, 50);
           });
 
-          it('Check value', function(done) {
+          it('Check value', function (done) {
             var value = 8;
             range.value = value;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(range.querySelector('input').value).to.equal(
                 value.toString()
               );
@@ -105,14 +105,14 @@
           });
         });
 
-        context('Test Events', function() {
-          it('Update value on-input event', function(done) {
+        context('Test Events', function () {
+          it('Update value on-input event', function (done) {
             var value = 4;
             var evt = new Event('input');
             range.querySelector('input').value = value;
             range.querySelector('input').dispatchEvent(evt);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(range.value).to.equal(value.toString());
 
               done();

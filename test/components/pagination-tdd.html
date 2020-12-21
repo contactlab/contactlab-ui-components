@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<pagination-clab>', function() {
+      suite('<pagination-clab>', function () {
         var pagination;
 
-        setup(function() {
+        setup(function () {
           pagination = fixture('pagination');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(pagination.tot);
             assert.isUndefined(pagination.link);
             assert.isArray(pagination.pages);
@@ -41,8 +41,8 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check tot (pages, lastPage, nextPage, availableStart, availableEnd)', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check tot (pages, lastPage, nextPage, availableStart, availableEnd)', function (done) {
             var n = 10;
             pagination.tot = n;
             assert.lengthOf(pagination.pages, n);
@@ -50,38 +50,38 @@
             assert.equal(pagination.nextPage, 1);
             assert.equal(pagination.availableStart, 0);
             assert.equal(pagination.availableEnd, 8);
-            setTimeout(function() {
+            setTimeout(function () {
               var el = pagination.$$('.last');
               assert.equal(el.getAttribute('data-index'), n - 1);
               done();
             });
           });
 
-          test('Check currentPage (prevPage)', function(done) {
+          test('Check currentPage (prevPage)', function (done) {
             var n = 10;
             var curr = 4;
             pagination.tot = n;
             pagination.currentPage = curr;
 
             assert.equal(pagination.prevPage, curr - 1);
-            setTimeout(function() {
+            setTimeout(function () {
               var el = pagination.$$('.active');
               assert.equal(el.getAttribute('data-index'), curr);
               done();
             });
           });
 
-          test('Check range ', function(done) {
+          test('Check range ', function (done) {
             var n = 20;
             var range = 15;
             pagination.tot = n;
             pagination.range = range;
             var tap = new Event('click');
 
-            setTimeout(function() {
+            setTimeout(function () {
               var arrow = pagination.querySelector('li[data-type="next"]');
               arrow.dispatchEvent(tap);
-              setTimeout(function() {
+              setTimeout(function () {
                 var els = Polymer.dom(pagination.root).querySelectorAll(
                   '.page'
                 );
@@ -92,16 +92,16 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Test change page on-click', function(done) {
+        suite('Test Events', function () {
+          test('Test change page on-click', function (done) {
             var n = 20;
             var clicked = 4;
             pagination.tot = n;
 
             var click = new Event('click');
 
-            setTimeout(function() {
-              pagination.addEventListener('change', function(evt) {
+            setTimeout(function () {
+              pagination.addEventListener('change', function (evt) {
                 assert.equal(evt.detail.currentPage, clicked);
                 done();
               });

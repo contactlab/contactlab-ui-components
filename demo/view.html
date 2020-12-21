@@ -18,20 +18,15 @@
 
     <main class="main-content">
       <section class="icons" style="font-size: 5rem">
-        <i class="clab-icon icon-play"></i>
-        <i class="clab-icon icon-pause"></i>
-        <i class="clab-icon icon-stop"></i>
-        <i class="clab-icon icon-fast-backward"></i>
-        <i class="clab-icon icon-backward"></i>
-        <i class="clab-icon icon-forward"></i>
-        <i class="clab-icon icon-fast-forward"></i>
-        <i class="clab-icon icon-equal-circle"></i>
-        <i class="clab-icon icon-equal-circle-full"></i>
-        <i class="clab-icon icon-full-arrow-top"></i>
-        <i class="clab-icon icon-full-arrow-right"></i>
-        <i class="clab-icon icon-full-arrow-down"></i>
-        <i class="clab-icon icon-full-arrow-left"></i>
+        <i class="fa fa-play"></i>
+        <i class="fa fa-pause"></i>
+        <i class="fa fa-stop"></i>
+        <i class="fa fa-fast-backward"></i>
+        <i class="fa fa-backward"></i>
+        <i class="fa fa-forward"></i>
+        <i class="fa fa-fast-forward"></i>
       </section>
+
       <section>
         <h2>Alerts</h2>
         <article>
@@ -265,25 +260,15 @@
         </article>
 
         <article>
-          <button-clab>
-            Default
-          </button-clab>
+          <button-clab> Default </button-clab>
 
-          <button-clab type="primary">
-            Primary
-          </button-clab>
+          <button-clab type="primary"> Primary </button-clab>
 
-          <button-clab type="success">
-            Success
-          </button-clab>
+          <button-clab type="success"> Success </button-clab>
 
-          <button-clab type="warning">
-            Warning
-          </button-clab>
+          <button-clab type="warning"> Warning </button-clab>
 
-          <button-clab type="error">
-            Error
-          </button-clab>
+          <button-clab type="error"> Error </button-clab>
         </article>
 
         <article>
@@ -309,9 +294,7 @@
         </article>
 
         <article>
-          <button-clab disabled>
-            Disabled
-          </button-clab>
+          <button-clab disabled> Disabled </button-clab>
         </article>
       </section>
 
@@ -381,7 +364,7 @@
       <section>
         <h2>Features</h2>
         <article>
-          <feature-clab icon-class="clab-icon icon-heart-full" size="small">
+          <feature-clab icon-class="fa fa-heart" size="small">
             <div class="title">Title</div>
             <div class="text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
@@ -393,11 +376,7 @@
         </article>
 
         <article>
-          <feature-clab
-            icon-class="clab-icon icon-heart-full"
-            link="#"
-            vertical
-          >
+          <feature-clab icon-class="fa fa-heart" link="#" vertical>
             <div class="title">Title</div>
             <div class="text">
               Lorem ipsum dolor sit amet, consectetur adipisicing elit. Porro
@@ -444,21 +423,21 @@
 
       <section>
         <h2>Spinner</h2>
-        <div style="display: flex;">
-          <article style=" height: 20rem; position: relative; flex-grow: 1;">
+        <div style="display: flex">
+          <article style="height: 20rem; position: relative; flex-grow: 1">
             <spinner-clab visible></spinner-clab>
           </article>
-          <article style=" height: 20rem; position: relative; flex-grow: 1;">
+          <article style="height: 20rem; position: relative; flex-grow: 1">
             <spinner-clab
               visible
               small
               background="255, 0, 255, 0"
             ></spinner-clab>
           </article>
-          <article style=" height: 20rem; position: relative; flex-grow: 1;">
+          <article style="height: 20rem; position: relative; flex-grow: 1">
             <spinner-clab visible big dark></spinner-clab>
           </article>
-          <article style=" height: 20rem; position: relative; flex-grow: 1;">
+          <article style="height: 20rem; position: relative; flex-grow: 1">
             <spinner-clab
               visible
               background="39, 115, 190, 0.75"
@@ -583,30 +562,30 @@
       <section>
         <h2>Label & badges</h2>
         <article>
-          <label-clab>Label</label-clab>
-          <label-clab type="primary">Label</label-clab>
-          <label-clab type="info">Label</label-clab>
-          <label-clab type="success">Label</label-clab>
+          <label-clab remove>Label</label-clab>
+          <label-clab type="primary" remove>Label</label-clab>
+          <label-clab type="info" remove>Label</label-clab>
+          <label-clab type="success" remove>Label</label-clab>
           <label-clab type="warning">Label</label-clab>
           <label-clab type="error">Label</label-clab>
-          <label-clab type="empty">Label</label-clab>
-          <label-clab type="primary empty">Label</label-clab>
-          <label-clab type="info empty">Label</label-clab>
-          <label-clab type="success empty">Label</label-clab>
+          <label-clab type="empty" remove>Label</label-clab>
+          <label-clab type="primary empty" remove>Label</label-clab>
+          <label-clab type="info empty" remove>Label</label-clab>
+          <label-clab type="success empty" remove>Label</label-clab>
           <label-clab type="warning empty">Label</label-clab>
           <label-clab type="error empty">Label</label-clab>
         </article>
         <article>
           <label-clab badge>8</label-clab>
-          <label-clab badge type="primary">8</label-clab>
-          <label-clab badge type="info">16</label-clab>
-          <label-clab badge type="success">32</label-clab>
+          <label-clab badge type="primary" remove>8</label-clab>
+          <label-clab badge type="info" remove>16</label-clab>
+          <label-clab badge type="success" remove>32</label-clab>
           <label-clab badge type="warning">64</label-clab>
           <label-clab badge type="error">128</label-clab>
-          <label-clab badge type="empty">8</label-clab>
-          <label-clab badge type="primary empty">16</label-clab>
-          <label-clab badge type="info empty">32</label-clab>
-          <label-clab badge type="success empty">64</label-clab>
+          <label-clab badge type="empty" remove>8</label-clab>
+          <label-clab badge type="primary empty" remove>16</label-clab>
+          <label-clab badge type="info empty" remove>32</label-clab>
+          <label-clab badge type="success empty" remove>64</label-clab>
           <label-clab badge type="warning empty">128</label-clab>
           <label-clab badge type="error empty">8</label-clab>
         </article>
@@ -973,10 +952,10 @@
         <h2>Row Actions</h2>
         <article>
           <div class="row-action success">
-            <a><i class="clab-icon icon-check"></i></a>
+            <a><i class="fa fa-check"></i></a>
           </div>
           <div class="row-action error">
-            <a><i class="clab-icon icon-close"></i></a>
+            <a><i class="fa fa-times"></i></a>
           </div>
         </article>
       </section>

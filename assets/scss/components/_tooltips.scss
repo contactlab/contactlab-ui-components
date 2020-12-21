@@ -1,14 +1,14 @@
 .tooltip {
   border-radius: 0.4rem;
   padding: 0.4rem;
-  color: get-color('white');
-  background-color: get-color('base800');
+  color: colors('white');
+  background-color: colors('base800');
   font-size: 1.2rem;
-  font-weight: normal;
+  font-weight: 400;
   line-height: 1;
 
   a {
-    color: get-color('white');
+    color: colors('white');
     text-decoration: underline;
     cursor: pointer;
   }

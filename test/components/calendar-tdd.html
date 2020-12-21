@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<calendar-clab>', function() {
+      suite('<calendar-clab>', function () {
         var calendar;
 
-        setup(function() {
+        setup(function () {
           calendar = fixture('calendar');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(calendar.label);
             assert.isFalse(calendar.disabled);
             assert.isNull(calendar.valueStr);
@@ -38,50 +38,50 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label', function (done) {
             var label = 'this is a label';
             calendar.label = label;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = calendar.$$('label');
               assert.equal(el.innerText, label);
               done();
             });
           });
 
-          test('Check disabled', function(done) {
+          test('Check disabled', function (done) {
             calendar.disabled = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = calendar.$$('input[type=text]');
               assert.isTrue(el.disabled);
               done();
             });
           });
 
-          test('Check inline', function(done) {
+          test('Check inline', function (done) {
             calendar.inline = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = calendar.$$('.inline-cal');
               assert.isDefined(el);
               done();
             });
           });
 
-          test('Check placeholder', function(done) {
+          test('Check placeholder', function (done) {
             var placeholder = 'this is a placeholder';
             calendar.placeholder = placeholder;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = calendar.$$('input[type=text]');
               assert.equal(el.getAttribute('placeholder'), placeholder);
               done();
             });
           });
 
-          test('Check type and noteType', function(done) {
+          test('Check type and noteType', function (done) {
             var type = 'error';
             calendar.type = type;
             calendar.noteType = type;
-            setTimeout(function() {
+            setTimeout(function () {
               var elInputClass = calendar.$$('input[type=text]').classList;
               var elNoteClass = calendar.querySelector('.input-note').classList;
               assert.isTrue(elInputClass.contains(type));
@@ -90,12 +90,12 @@
             });
           });
 
-          test('Check valueStr', function(done) {
+          test('Check valueStr', function (done) {
             var str = 'A string here';
             calendar.valueStr = str;
-            setTimeout(function() {
+            setTimeout(function () {
               var elInput = calendar.$$('input[type=text]');
-              setTimeout(function() {
+              setTimeout(function () {
                 assert.equal(elInput.value, str);
                 done();
               });
@@ -103,15 +103,15 @@
           });
         });
 
-        suite('Test Methods', function() {
-          test('Check setValue() (and _getFormat())', function() {
+        suite('Test Methods', function () {
+          test('Check setValue() (and _getFormat())', function () {
             var date = '10/10/2010';
             var dateFormatted = '2010-10-10 00:00';
             calendar.setValue(date);
             assert.equal(calendar.valueStr, dateFormatted);
           });
 
-          test('Check getValue() (and _getFormat())', function() {
+          test('Check getValue() (and _getFormat())', function () {
             var date = '10/10/2010';
             calendar.valueStr = date;
             var dateFormatted = '2010-10-20T10:00:00+02:00';
@@ -119,10 +119,10 @@
             assert.equal(valueFormatted, dateFormatted);
           });
 
-          test('Check _createInstance and getRomeInstance()', function(done) {
+          test('Check _createInstance and getRomeInstance()', function (done) {
             var date = '10/10/2010';
             var selector = 'input[type=text]';
-            setTimeout(function() {
+            setTimeout(function () {
               calendar._createInstance(selector);
               var romeInstance = calendar.getRomeInstance();
               assert.isObject(romeInstance);
@@ -130,11 +130,11 @@
             });
           });
 
-          test('Check clear()', function(done) {
+          test('Check clear()', function (done) {
             var date = '10/10/2010';
             var selector = 'input[type=text]';
             calendar.valueStr = date;
-            setTimeout(function() {
+            setTimeout(function () {
               calendar._createInstance(selector);
               calendar.clear();
               assert.isNull(calendar.valueStr);
@@ -144,23 +144,23 @@
             });
           });
 
-          test('Check calendar.options.locale and _getLocale())', function() {
+          test('Check calendar.options.locale and _getLocale())', function () {
             var locale = 'it';
             calendar.options.locale = locale;
             assert.equal(calendar.options.locale, calendar._getLocale());
           });
 
-          test('Check setLocale() and getLocale())', function() {
+          test('Check setLocale() and getLocale())', function () {
             var locale = 'it';
             calendar.options.locale = locale;
             calendar.setLocale();
             assert.equal(calendar.getLocale(), locale);
           });
 
-          test('Check restore()', function(done) {
+          test('Check restore()', function (done) {
             calendar.options.locale = 'it';
             calendar.options.time = true;
-            setTimeout(function() {
+            setTimeout(function () {
               const currentCalendar = calendar.restore();
               assert.equal(currentCalendar.tagName, 'INPUT');
               done();
@@ -168,13 +168,13 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Check datechange (_changeDate())', function(done) {
+        suite('Test Events', function () {
+          test('Check datechange (_changeDate())', function (done) {
             var selector = 'input[type=text]';
             var date = '10/10/2010';
             //calendar.valueStr = date;
-            setTimeout(function() {
-              calendar.addEventListener('datechange', function(evt) {
+            setTimeout(function () {
+              calendar.addEventListener('datechange', function (evt) {
                 assert.equal(evt.detail.date, date);
                 done();
               });
@@ -182,8 +182,8 @@
             });
           });
 
-          test('on-instance-created', function(done) {
-            calendar.addEventListener('instance-created', function(evt) {
+          test('on-instance-created', function (done) {
+            calendar.addEventListener('instance-created', function (evt) {
               assert.ok(evt.detail, 'Instance created event correct');
               done();
             });

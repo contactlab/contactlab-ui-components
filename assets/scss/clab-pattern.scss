@@ -1,17 +1,13 @@
-// --- design tokens
-@import '@contactlab/ds-tokens/lib/styles/scss/resets';
-@import '@contactlab/ds-tokens/lib/styles/scss/colors';
-@import '@contactlab/ds-tokens/lib/styles/scss/elevations';
-@import '@contactlab/ds-tokens/lib/styles/scss/typography';
-@import '@contactlab/ds-tokens/lib/styles/scss/commons';
+// --- Design Tokens
+@import '@contactlab/ds-tokens/styles/scss/core';
 
-// --- common styles
+// --- Common Styles
 @import './commons/abstracts';
 @import './commons/utils';
 @import './commons/general';
 @import './commons/layout';
 
-// --- component styles
+// --- Component Styles
 @import './components/buttons';
 @import './components/forms';
 @import './components/alerts';

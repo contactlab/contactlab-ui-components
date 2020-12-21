@@ -4,7 +4,7 @@
 
   a {
     display: flex;
-    color: get-color('base900');
+    color: colors('base900');
   }
 
   .image {
@@ -19,7 +19,7 @@
 
   .title {
     padding-bottom: 0.4rem;
-    font-weight: bold;
+    font-weight: 700;
   }
 
   .description {

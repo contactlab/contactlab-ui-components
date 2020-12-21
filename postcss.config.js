@@ -1,14 +1,16 @@
-/*eslint-env node */
-const path = require('path');
-const MQ_SRC =
-  './node_modules/@contactlab/ds-tokens/lib/styles/css/media-queries.css';
+const {join, resolve} = require('path');
+const configExt = require('@giotramu/postcss-config/extends');
 
-module.exports = require('@giotramu/postcss-config').expandDefault({
-  map: true,
-  plugins: {
-    'postcss-custom-media': {importFrom: MQ_SRC},
-    '@csstools/postcss-sass': {
-      includePaths: [path.join(__dirname, 'node_modules')]
-    }
-  }
-});
+const NODE_MODULE = resolve(__dirname, 'node_modules');
+const MEDIA_QUERIES = join(
+  NODE_MODULE,
+  '@contactlab',
+  'ds-tokens',
+  'styles',
+  'custom-media.css'
+);
+
+module.exports = configExt([
+  ['postcss-custom-media', {importFrom: MEDIA_QUERIES}],
+  ['@csstools/postcss-sass', {includePaths: [NODE_MODULE]}]
+]);

@@ -2,7 +2,7 @@ label {
   display: block;
   width: 100%;
   padding-bottom: 0.4rem;
-  color: get-color('base500');
+  color: colors('base800');
   text-align: left;
 
   input[type='radio'] + &,
@@ -10,19 +10,19 @@ label {
     display: flex;
     width: auto !important;
     padding: 0;
-    align-items: baseline;
+    align-items: center;
     font-size: 1.4rem;
-    font-weight: normal;
-    line-height: normal;
+    font-weight: 400;
+    line-height: 1.2;
     user-select: auto;
   }
 
   input[type='radio'] + &::before,
   input[type='checkbox'] + &::before {
     margin-right: 0.4rem;
-    color: get-color('base900');
-    font-family: ikonograph;
-    font-size: 1.4rem;
+    color: colors('base800');
+    font-family: FontAwesome;
+    font-size: 1.6rem;
     cursor: pointer;
   }
 
@@ -32,30 +32,30 @@ label {
   }
 
   input[type='radio'] + &::before {
-    content: '\e960';
+    content: '\f1db';
   }
 
   input[type='checkbox'] + &::before {
-    content: '\e916';
+    content: '\f096';
   }
 
   input[type='radio']:checked + &::before {
-    content: '\e95f';
+    content: '\f192';
   }
 
   input[type='checkbox']:checked + &::before {
-    content: '\e915';
+    content: '\f14a';
   }
 
   input[type='radio']:disabled + &,
   input[type='radio']:disabled + &::before {
-    color: get-color('base300');
+    color: colors('base400');
     cursor: not-allowed;
   }
 
   input[type='checkbox']:disabled + &,
   input[type='checkbox']:disabled + &::before {
-    color: get-color('base300');
+    color: colors('base400');
     cursor: not-allowed;
   }
 }
@@ -84,31 +84,31 @@ textarea {
   width: 100%;
   min-width: 18rem;
   height: 3.2rem;
-  border: 0.1rem solid get-color('base200');
+  border: 1px solid colors('base200');
   border-radius: 0.4rem;
   padding: 0.4rem 1rem;
-  background-color: get-color('white');
+  background-color: colors('white');
   line-height: 1.5;
   transition: 0.3s linear;
   touch-action: manipulation;
 
   &:active,
   &:focus {
-    border-color: get-color('accent500');
+    border-color: colors('accent500');
     outline: none;
     box-shadow: 0 0 0 0.2rem rgba(3, 145, 236, 0.2);
   }
 
   &[readonly],
   &:disabled {
-    color: get-color('base300');
+    color: colors('base300');
     background-color: rgba(0, 0, 0, 0.01);
     box-shadow: none;
     cursor: not-allowed;
 
     &:active,
     &:focus {
-      border-color: get-color('base200');
+      border-color: colors('base200');
       box-shadow: none;
     }
   }
@@ -145,7 +145,7 @@ input[type='range'] {
     height: 0.3rem;
     border: 0 solid #000101;
     border-radius: none;
-    background-color: get-color('base200');
+    background-color: colors('base200');
     cursor: pointer;
   }
 
@@ -155,7 +155,7 @@ input[type='range'] {
     margin-top: -0.65rem;
     border: none;
     border-radius: 50%;
-    background-color: get-color('accent500');
+    background-color: colors('accent500');
     transition: transform 200ms ease-in-out;
     cursor: pointer;
     -webkit-appearance: none;
@@ -164,12 +164,12 @@ input[type='range'] {
   &:hover::-webkit-slider-thumb,
   &:focus::-webkit-slider-thumb,
   &:active::-webkit-slider-thumb {
-    background-color: lighten($color: get-color('accent500'), $amount: 4%);
+    background-color: lighten($color: colors('accent500'), $amount: 4%);
     transition: transform 200ms ease-in-out;
   }
 
   &:focus::-webkit-slider-runnable-track {
-    background-color: get-color('base300');
+    background-color: colors('base300');
   }
 
   &::-moz-range-track {
@@ -177,7 +177,7 @@ input[type='range'] {
     height: 0.3rem;
     border: 0 solid #000101;
     border-radius: 2.5rem;
-    background-color: get-color('base200');
+    background-color: colors('base200');
     cursor: pointer;
   }
 
@@ -186,7 +186,7 @@ input[type='range'] {
     height: 1.6rem;
     border: 0 solid #000;
     border-radius: 50%;
-    background-color: get-color('accent500');
+    background-color: colors('accent500');
     cursor: pointer;
   }
 
@@ -225,11 +225,11 @@ input[type='range'] {
   }
 
   &:focus::-ms-fill-lower {
-    background-color: get-color('accent500');
+    background-color: colors('accent500');
   }
 
   &:focus::-ms-fill-upper {
-    background-color: get-color('accent500');
+    background-color: colors('accent500');
   }
 }
 
@@ -244,7 +244,7 @@ input[type='range'] {
 note-clab {
   display: block;
   width: 100%;
-  color: lighten($color: get-color('base500'), $amount: 10%);
+  color: colors('base600');
   font-size: 1.2rem;
 }
 

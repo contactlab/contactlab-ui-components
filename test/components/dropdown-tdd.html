@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<dropdown-clab>', function() {
+      suite('<dropdown-clab>', function () {
         var dropdown;
 
-        setup(function() {
+        setup(function () {
           dropdown = fixture('dropdown');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isNull(dropdown.label);
             assert.equal(dropdown.icon, '');
             assert.equal(dropdown.type, '');
@@ -194,8 +194,8 @@
 
 	});*/
 
-        suite('Test Events', function() {
-          test('Change event', function(done) {
+        suite('Test Events', function () {
+          test('Change event', function (done) {
             var obj = {value: 'A', label: 'Option 1'};
             var options = [
               {value: 'A', label: 'Option 1'},
@@ -204,7 +204,7 @@
               {value: 'D', label: 'Option 2'}
             ];
 
-            dropdown.addEventListener('change', function(evt) {
+            dropdown.addEventListener('change', function (evt) {
               assert.equal(
                 evt.detail.selected,
                 obj.value,

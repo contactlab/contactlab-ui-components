@@ -21,15 +21,15 @@
     </test-fixture>
 
     <script>
-      describe('<group-clab>', function() {
+      describe('<group-clab>', function () {
         var group;
 
-        beforeEach(function() {
+        beforeEach(function () {
           group = fixture('group');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(group.small).to.equal(false);
             expect(group.disabled).to.equal(false);
             expect(group.type).to.equal('');
@@ -39,12 +39,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check size', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check size', function (done) {
             var bool = true;
             group.small = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 group
                   .querySelector('.buttons-group')
@@ -55,11 +55,11 @@
             }, 50);
           });
 
-          it('Check type', function(done) {
+          it('Check type', function (done) {
             var type = 'warning';
             group.type = type;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 group.querySelector('.buttons-group').classList.contains(type)
               ).to.equal(true);
@@ -68,11 +68,11 @@
             }, 50);
           });
 
-          it('Check value', function(done) {
+          it('Check value', function (done) {
             var num = Math.floor(Math.random() * 4);
             group.value = num;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 group.querySelectorAll('button-clab')[num].appearance
               ).to.equal('full');
@@ -81,12 +81,12 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             var bool = true;
             group.disabled = bool;
 
-            setTimeout(function() {
-              group.getContentChildren().map(function(btn) {
+            setTimeout(function () {
+              group.getContentChildren().map(function (btn) {
                 expect(btn.disabled).to.equal(bool);
               });
 
@@ -95,13 +95,13 @@
           });
         });
 
-        context('Test Events', function() {
-          it('Change selection on-click', function(done) {
+        context('Test Events', function () {
+          it('Change selection on-click', function (done) {
             var val = 0;
             group.value = 2;
             group.querySelectorAll('button')[val].click();
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(group.value).to.equal(val);
 
               done();

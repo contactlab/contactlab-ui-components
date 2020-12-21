@@ -16,7 +16,7 @@
       <div class="modal">
         <div class="modal-wrapper">
           <div class="close-overlay" on-click="_closeModal">
-            <i class="clab-icon icon-close"></i>
+            <i class="fa fa-lg fa-times"></i>
           </div>
 
           <div class="modal-title">[[title]]</div>
@@ -35,7 +35,10 @@
             <div class="main-actions">
               <div class="primary">
                 <template is="dom-if" if="[[warning]]">
-                  <button-clab type="error third" on-btnclick="_warningAction"
+                  <button-clab
+                    type="error third"
+                    appearance="empty"
+                    on-btnclick="_warningAction"
                     >[[warning]]</button-clab
                   >
                 </template>

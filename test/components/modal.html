@@ -17,15 +17,15 @@
     </test-fixture>
 
     <script>
-      describe('<modal-clab>', function() {
+      describe('<modal-clab>', function () {
         var modal;
 
-        beforeEach(function() {
+        beforeEach(function () {
           modal = fixture('modal');
         });
 
-        context('Test Properties', function() {
-          it('default properties', function(done) {
+        context('Test Properties', function () {
+          it('default properties', function (done) {
             expect(modal.visible).to.equal(false);
             expect(modal.title).to.equal('Modal title');
             expect(modal.primary).to.be.undefined;
@@ -36,23 +36,23 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check visible', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check visible', function (done) {
             modal.visible = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(modal.querySelector('.modal-overlay')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check title', function(done) {
+          it('Check title', function (done) {
             var title = 'A new title';
             modal.visible = true;
             modal.title = title;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(modal.querySelector('.modal-title').innerText).to.equal(
                 title
               );
@@ -61,7 +61,7 @@
             }, 50);
           });
 
-          it('Check primary & secondary', function(done) {
+          it('Check primary & secondary', function (done) {
             var pri = 'this is first';
             var sec = 'this is second';
             var thi = 'this is third';
@@ -70,7 +70,7 @@
             modal.secondary = sec;
             modal.warningBtn = thi;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 modal.querySelector('.btn.primary').innerText.trim()
               ).to.equal(pri);
@@ -85,12 +85,12 @@
             }, 50);
           });
 
-          it('Check content', function(done) {
+          it('Check content', function (done) {
             var str = 'A new content';
             modal.visible = true;
             modal.content = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(modal.querySelector('.modal-body p').innerText).to.equal(
                 str
               );
@@ -100,11 +100,11 @@
           });
         });
 
-        context('Test Events', function() {
-          it('Closing the modal on-click', function(done) {
+        context('Test Events', function () {
+          it('Closing the modal on-click', function (done) {
             modal.visible = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var evt = new Event('click');
               modal.querySelector('.close-overlay').dispatchEvent(evt);
               expect(modal.visible).to.equal(false);

@@ -157,7 +157,7 @@ class MultipleClab {
 
   _removeThis(elem) {
     let i = elem.getAttribute('data-index');
-    let temp = this.selected.filter(function(obj) {
+    let temp = this.selected.filter(function (obj) {
       return obj.label !== elem.innerHTML;
     });
     this.set('selected', temp);

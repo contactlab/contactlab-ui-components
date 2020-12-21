@@ -6,13 +6,12 @@ name: Node CI
 # --- Run pipeline only for "master" changes
 on:
   push:
-    branches: [ master ]
+    branches: [master]
   pull_request:
-    branches: [ master ]
+    branches: [master]
 
 jobs:
   test:
-    
     # --- Ubuntu agent
     runs-on: ubuntu-latest
 
@@ -23,10 +22,10 @@ jobs:
 
     # --- Job tasks
     steps:
-    - uses: actions/checkout@v2
-    - name: Use Node.js ${{ matrix.node-version }}
-      uses: actions/setup-node@v1
-      with:
-        node-version: ${{ matrix.node-version }}
-    - run: npm ci
-    - run: npm test
+      - uses: actions/checkout@v2
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm ci
+      - run: npm test

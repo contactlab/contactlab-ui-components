@@ -17,15 +17,15 @@
     </test-fixture>
 
     <script>
-      describe('<input-clab>', function() {
+      describe('<input-clab>', function () {
         var input;
 
-        beforeEach(function() {
+        beforeEach(function () {
           input = fixture('input');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(input.name).to.equal('textinput');
             expect(input.label).to.be.undefined;
             expect(input.type).to.equal('');
@@ -41,15 +41,15 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type & noteType', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type & noteType', function (done) {
             var str = 'error';
             var note = 'error-note';
             input.label = 'This is my label';
             input.type = str;
             input.noteType = note;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 input.querySelector('label').classList.contains(str)
               ).to.equal(true);
@@ -64,11 +64,11 @@
             }, 50);
           });
 
-          it('Check label', function(done) {
+          it('Check label', function (done) {
             var str = 'This is my label';
             input.label = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(input.querySelector('label')).to.not.be.undefined;
               expect(input.querySelector('label').innerText).to.equal(str);
 
@@ -76,12 +76,12 @@
             }, 50);
           });
 
-          it('Check name', function(done) {
+          it('Check name', function (done) {
             var str = 'another name';
             input.label = 'This is my label';
             input.name = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 input.querySelector('input[type=text]').getAttribute('name')
               ).to.equal(input._dashify(input.name));
@@ -93,11 +93,11 @@
             }, 50);
           });
 
-          it('Check value', function(done) {
+          it('Check value', function (done) {
             var str = 'input/in/path.pdf';
             input.value = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(input.querySelector('input[type=text]').value).to.equal(
                 str
               );
@@ -106,10 +106,10 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             input.disabled = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(input.querySelector('input[type=text]').disabled).to.equal(
                 true
               );
@@ -118,10 +118,10 @@
             }, 50);
           });
 
-          it('Check password', function(done) {
+          it('Check password', function (done) {
             input.password = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 input.querySelector('input[type=password]')
               ).to.not.be.undefined;
@@ -130,21 +130,21 @@
             }, 50);
           });
 
-          it('Check check', function(done) {
+          it('Check check', function (done) {
             input.check = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(input.querySelector('button-clab')).to.not.equal(null);
 
               done();
             }, 50);
           });
 
-          it('Check placeholder', function(done) {
+          it('Check placeholder', function (done) {
             var str = 'this is it';
             input.placeholder = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 input
                   .querySelector('input[type=text]')
@@ -155,7 +155,7 @@
             }, 50);
           });
 
-          it('Check btnConfig', function(done) {
+          it('Check btnConfig', function (done) {
             var obj = {
               show: {
                 icon: 'fa fa-eye',
@@ -176,7 +176,7 @@
             input.check = true;
             input.password = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 input
                   .querySelector('button-clab i')
@@ -199,7 +199,7 @@
 
               input.password = false;
 
-              setTimeout(function() {
+              setTimeout(function () {
                 expect(
                   input
                     .querySelector('button-clab i')

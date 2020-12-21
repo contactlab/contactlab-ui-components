@@ -20,15 +20,15 @@
     </test-fixture>
 
     <script>
-      suite('<menu-clab>', function() {
+      suite('<menu-clab>', function () {
         var menu;
 
-        setup(function() {
+        setup(function () {
           menu = fixture('menu');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             //assert.equal(menu.title, 'Title');
             assert.equal(menu.titleIcon, 'fa-hand-peace-o');
             assert.isArray(menu.menu);
@@ -41,39 +41,39 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check titleIcon', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check titleIcon', function (done) {
             var icon = 'icon-class';
             menu.titleIcon = icon;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var iconClass = menu.$$('.logo i').classList;
               assert.isTrue(iconClass.contains(icon));
               done();
             });
           });
 
-          test('Check menu (array) NO-submenu', function(done) {
+          test('Check menu (array) NO-submenu', function (done) {
             var arr = [
               {
                 label: 'Plans',
                 url: '#/plans',
-                icon: 'clab-icon icon-dashboard icon'
+                icon: 'fa fa-tachometer icon'
               },
               {
                 label: 'Segments',
                 url: '#/segments',
-                icon: 'clab-icon icon-segment icon'
+                icon: 'fa fa-users icon'
               },
               {
                 label: 'Reports',
                 url: '#/reports',
-                icon: 'clab-icon icon-analytics icon'
+                icon: 'fa fa-bar-chart icon'
               }
             ];
             menu.menu = arr;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var list = Polymer.dom(menu.root).querySelectorAll(
                 '.main-nav li'
               );
@@ -82,7 +82,7 @@
             });
           });
 
-          test('Check link', function() {
+          test('Check link', function () {
             var link = 'www.example.com';
             menu.link = link;
 
@@ -90,10 +90,10 @@
             assert.equal(anchor, link);
           });
 
-          test('Check draft', function(done) {
+          test('Check draft', function (done) {
             var draft = 'Text example';
             menu.draft = draft;
-            setTimeout(function() {
+            setTimeout(function () {
               var draftRibbon = Polymer.dom(menu.root).querySelector(
                 '#draft-ribbon'
               );
@@ -102,27 +102,27 @@
             });
           });
 
-          test('Check currentHash', function(done) {
+          test('Check currentHash', function (done) {
             var arr = [
               {
                 label: 'Plans',
                 url: '#/plans',
-                icon: 'clab-icon icon-dashboard icon'
+                icon: 'fa fa-tachometer icon'
               },
               {
                 label: 'Segments',
                 url: '#/segments',
-                icon: 'clab-icon icon-segment icon'
+                icon: 'fa fa-users icon'
               },
               {
                 label: 'Reports',
                 url: '#/reports',
-                icon: 'clab-icon icon-analytics icon'
+                icon: 'fa fa-bar-chart icon'
               }
             ];
             menu.menu = arr;
             menu.currentHash = arr[0].url;
-            setTimeout(function() {
+            setTimeout(function () {
               var firstEl = Polymer.dom(menu.root).querySelectorAll(
                 '.main-nav li'
               )[0];
@@ -132,34 +132,34 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('_toggleMenu()', function(done) {
+        suite('Test Events', function () {
+          test('_toggleMenu()', function (done) {
             assert.isFalse(
               menu._mainNav,
               'Start with _mainNav = false: correct'
             );
             var openMenu = menu.$$('.open-menu');
             var click = new Event('click');
-            openMenu.addEventListener('click', function() {
+            openMenu.addEventListener('click', function () {
               assert.isTrue(menu._mainNav, 'Change _mainNav = true: correct');
               done();
             });
             openMenu.dispatchEvent(click);
           });
 
-          test('_linkClicked()', function(done) {
+          test('_linkClicked()', function (done) {
             var arr = [
               {
                 label: 'Plans',
                 url: '#/plans',
-                icon: 'clab-icon icon-dashboard icon'
+                icon: 'fa fa-tachometer icon'
               }
             ];
             var click = new Event('click');
             menu.menu = arr;
-            setTimeout(function() {
+            setTimeout(function () {
               var anchorMenu = menu.$$('.main-nav a');
-              menu.addEventListener('a-click', function(evt) {
+              menu.addEventListener('a-click', function (evt) {
                 assert.equal(
                   evt.detail.href,
                   arr[0].url,

@@ -140,7 +140,7 @@ class DropdownClab {
   }
 
   _compIcon(icon) {
-    return !isNilOrEmptyStr(icon) ? `clab-icon ${icon}` : '';
+    return !isNilOrEmptyStr(icon) ? `fa ${icon}` : '';
   }
 
   _compWrapperType(disabled, type, inline, labelSize) {

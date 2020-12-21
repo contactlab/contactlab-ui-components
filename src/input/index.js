@@ -82,7 +82,7 @@ class InputClab {
   }
 
   _compIcon(icon) {
-    if (icon != undefined) return 'clab-icon ' + icon;
+    if (icon != undefined) return 'fa ' + icon;
     else return '';
   }
 

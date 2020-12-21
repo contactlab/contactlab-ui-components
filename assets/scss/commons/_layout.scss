@@ -28,14 +28,14 @@
       bottom: 0;
       left: 50%;
       transform: translateX(-50%);
-      background-color: get-color('base300');
+      background-color: colors('base300');
     }
 
     a {
       @extend %truncate;
       display: inline-block;
       padding: 1.4rem 1.8rem;
-      color: get-color('base900');
+      color: colors('base900');
       font-size: inherit;
       text-decoration: none;
     }
@@ -44,11 +44,11 @@
       &::after {
         @extend %slow-transition;
         width: 100%;
-        background-color: get-color('accent500');
+        background-color: colors('accent500');
       }
 
       a {
-        color: get-color('accent500');
+        color: colors('accent500');
       }
     }
   }
@@ -58,13 +58,13 @@
   display: inline-block;
   height: 100%;
   position: relative;
-  color: get-color('base900');
+  color: colors('base900');
   cursor: pointer;
   user-select: auto;
 
   &.active {
     .user-picture {
-      border-color: get-color('accent500');
+      border-color: colors('accent500');
     }
 
     .user-panel {
@@ -92,19 +92,19 @@
   .username {
     margin-bottom: 0.4rem;
     font-size: 1.6rem;
-    font-weight: bold;
+    font-weight: 700;
   }
 }
 
 .user-panel {
   display: none;
   width: 100%;
-  border: 0.1rem solid get-color('base200');
+  border: 1px solid colors('base200');
   border-bottom: none;
   position: absolute;
   top: initial;
   right: 0;
-  background-color: get-color('white');
+  background-color: colors('white');
   box-shadow: 0 0.6rem 0.6rem 0 rgba(0, 20, 32, 0.09),
     0 1rem 2rem 0 rgba(0, 20, 32, 0.13);
   text-align: left;
@@ -113,9 +113,9 @@
   a {
     @extend %default-link-effect;
     display: block;
-    border-bottom: 0.1rem solid get-color('base200');
+    border-bottom: 1px solid colors('base200');
     padding: 0.8rem 1.6rem;
-    color: get-color('base900');
+    color: colors('base900');
     line-height: 1;
   }
 }
@@ -125,7 +125,7 @@
   width: 4.5rem;
   height: 4.5rem;
   margin: 0;
-  border: 0.2rem solid get-color('base300');
+  border: 0.2rem solid colors('base300');
   border-radius: 50%;
   padding: 0;
   position: relative;
@@ -133,7 +133,7 @@
   align-items: center;
   justify-content: center;
   order: 0;
-  color: get-color('base300');
+  color: colors('base300');
   font-size: 1.8rem;
 
   img {
@@ -155,8 +155,8 @@
   position: absolute;
   top: 0;
   right: -0.8rem;
-  color: get-color('white');
-  background-color: get-color('accent500');
+  color: colors('white');
+  background-color: colors('accent500');
   font-size: 1.6rem;
   text-align: center;
   line-height: 1.8rem;
@@ -166,7 +166,7 @@
   display: flex;
   width: 100%;
   margin-bottom: 2rem;
-  border-top: 0.1rem solid get-color('base300');
+  border-top: 1px solid colors('base300');
   flex-direction: column;
   user-select: auto;
 
@@ -174,10 +174,10 @@
     display: none;
     overflow: auto;
     max-height: 44rem;
-    border: 0.1rem solid get-color('base300');
+    border: 1px solid colors('base300');
     border-right: none;
     border-left: none;
-    background-color: get-color('white');
+    background-color: colors('white');
 
     > li a {
       padding: 1.2rem 2rem;
@@ -190,7 +190,7 @@
   > ul {
     display: flex;
     margin: 0;
-    border-bottom: 0.1rem solid get-color('base300');
+    border-bottom: 1px solid colors('base300');
     padding: 0;
     flex-direction: column;
     flex-grow: 1;
@@ -221,7 +221,7 @@
   }
 }
 
-// --- action bar
+// --- Action bar
 .main-actions {
   display: flex;
   margin-top: 0;
@@ -234,29 +234,29 @@
   }
 }
 
-// --- footer
+// --- Footer
 footer {
   padding: 2rem;
-  background-color: get-color('accent300');
+  background-color: colors('accent300');
 }
 
-// --- close overlay
+// --- Close overlay
 .close-overlay {
   display: flex;
   width: 3.2rem;
   height: 3.2rem;
   align-items: center;
   justify-content: center;
-  color: get-color('base500');
+  color: colors('base500');
   font-size: 1.4rem;
   cursor: pointer;
 
   &:hover,
   &:focus {
-    color: darken($color: get-color('base500'), $amount: 10%);
+    color: darken($color: colors('base500'), $amount: 10%);
   }
 
   &:active {
-    color: lighten($color: get-color('base500'), $amount: 10%);
+    color: lighten($color: colors('base500'), $amount: 10%);
   }
 }

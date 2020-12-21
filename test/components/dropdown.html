@@ -16,16 +16,16 @@
     </test-fixture>
 
     <script>
-      describe('<dropdown-clab>', function() {
+      describe('<dropdown-clab>', function () {
         var dropdown;
 
-        beforeEach(function() {
+        beforeEach(function () {
           dropdown = fixture('dropdown');
           dropdown.liHeight = 20;
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(dropdown.label).to.equal(null);
             expect(dropdown.type).to.equal('');
             expect(dropdown.selected).to.be.an('object');

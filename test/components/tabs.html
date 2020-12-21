@@ -25,15 +25,15 @@
     </test-fixture>
 
     <script>
-      describe('<tabs-clab>', function() {
+      describe('<tabs-clab>', function () {
         var tabs;
 
-        beforeEach(function() {
+        beforeEach(function () {
           tabs = fixture('tabs');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(tabs.labels).to.be.an('array');
             expect(tabs.pills).to.equal(false);
             expect(tabs.active).to.equal(0);
@@ -42,22 +42,22 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check pills', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check pills', function (done) {
             tabs.pills = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tabs.querySelector('.pills')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check active', function(done) {
+          it('Check active', function (done) {
             var n = 1;
             tabs.active = n;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 tabs.querySelectorAll('.tab')[n].classList.contains('active')
               ).to.equal(true);

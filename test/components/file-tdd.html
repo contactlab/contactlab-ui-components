@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<file-clab>', function() {
+      suite('<file-clab>', function () {
         var file;
 
-        setup(function() {
+        setup(function () {
           file = fixture('file');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(file.label);
             assert.isNull(file.type);
             assert.isUndefined(file.noteType);
@@ -38,15 +38,15 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label, type and noteType', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label, type and noteType', function (done) {
             var label = 'This is a label';
             var type = 'error';
             var noteType = 'error-note';
             file.label = label;
             file.type = type;
             file.noteType = noteType;
-            setTimeout(function() {
+            setTimeout(function () {
               var labelEl = file.$$('label');
               var wrapperClass = file.$$('.input-wrapper').classList;
               var inputClass = file.$$('input').classList;
@@ -68,13 +68,13 @@
             });
           });
 
-          test('Check name input and value', function(done) {
+          test('Check name input and value', function (done) {
             var name = 'newinput';
             var value = 'file/in/path.pdf';
             file.name = name;
             file.value = value;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = file.$$('input[type=text]');
               assert.equal(
                 el.getAttribute('name'),
@@ -86,7 +86,7 @@
             });
           });
 
-          test('Check disabled', function() {
+          test('Check disabled', function () {
             var bool = true;
             file.disabled = bool;
 
@@ -94,7 +94,7 @@
             assert.isTrue(el.disabled, 'Disabled property true: correct');
           });
 
-          test('Check disabled', function() {
+          test('Check disabled', function () {
             var bool = true;
             file.disabled = bool;
 

@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<spinner-clab>', function() {
+      describe('<spinner-clab>', function () {
         var spinner;
 
-        beforeEach(function() {
+        beforeEach(function () {
           spinner = fixture('spinner');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(spinner.dark).to.equal(false);
             expect(spinner.big).to.equal(false);
             expect(spinner.visible).to.equal(false);
@@ -34,12 +34,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check dark', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check dark', function (done) {
             spinner.visible = true;
             spinner.dark = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 spinner
                   .querySelector('.spinner-overlay')
@@ -50,11 +50,11 @@
             }, 50);
           });
 
-          it('Check big', function(done) {
+          it('Check big', function (done) {
             spinner.visible = true;
             spinner.big = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 spinner
                   .querySelector('.spinner-overlay')
@@ -65,12 +65,12 @@
             }, 50);
           });
 
-          it('Check background', function(done) {
+          it('Check background', function (done) {
             var color = '200, 200, 200, 0.8';
             spinner.visible = true;
             spinner.background = color;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 spinner.querySelector('.spinner-overlay').style.backgroundColor
               ).to.equal('rgba(' + color + ')');

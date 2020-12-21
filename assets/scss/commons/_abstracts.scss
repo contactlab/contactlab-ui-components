@@ -1,33 +1,33 @@
-// --- maps
+// --- Maps
 $default-status: (
   primary: (
-    get-color('accent500'),
-    get-color('white')
+    colors('accent500'),
+    colors('white')
   ),
   info: (
-    get-color('base500'),
-    get-color('base900')
+    colors('base500'),
+    colors('base900')
   ),
   success: (
-    get-color('success'),
-    get-color('base900')
+    colors('success'),
+    colors('base900')
   ),
   warning: (
-    get-color('warning'),
-    get-color('base900')
+    colors('warning'),
+    colors('base900')
   ),
   error: (
-    get-color('error'),
-    get-color('base900')
+    colors('error'),
+    colors('base900')
   )
 );
 
-// --- placeholders
+// --- Placeholders
 %default-link-effect {
-  color: get-color('base900');
+  color: colors('base900');
 
   &:active {
-    color: get-color('accent500');
+    color: colors('accent500');
   }
 }
 

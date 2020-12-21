@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      describe('<menu-clab>', function() {
+      describe('<menu-clab>', function () {
         var menu;
 
-        beforeEach(function() {
+        beforeEach(function () {
           menu = fixture('menu');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(menu.titleIcon).to.equal('fa-hand-peace-o');
             expect(menu.menu).to.be.an('array');
             expect(menu.link).to.equal('/');
@@ -37,41 +37,41 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check titleIcon', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check titleIcon', function (done) {
             var str = 'new-title-icon';
             menu.titleIcon = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
-                menu.querySelector('.clab-icon').classList.contains(str)
+                menu.querySelector('.fa').classList.contains(str)
               ).to.equal(true);
 
               done();
             }, 50);
           });
 
-          it('Check menu', function(done) {
+          it('Check menu', function (done) {
             var obj = [
               {
                 label: 'Plans',
                 url: '#/plans',
-                icon: 'clab-icon icon-dashboard icon'
+                icon: 'fa fa-tachometer icon'
               },
               {
                 label: 'Segments',
                 url: '#/segments',
-                icon: 'clab-icon icon-segment icon'
+                icon: 'fa fa-users icon'
               },
               {
                 label: 'Reports',
                 url: '#/reports',
-                icon: 'clab-icon icon-analytics icon'
+                icon: 'fa fa-bar-chart icon'
               },
               {
                 label: 'Settings',
                 url: '#/settings',
-                icon: 'clab clab-icon-settings icon',
+                icon: 'fa fa-cog icon',
                 submenu: [
                   {
                     label: 'Showed fields',
@@ -94,7 +94,7 @@
             ];
             menu.menu = obj;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(menu.querySelectorAll('.main-menu li').length).to.be.above(
                 0
               );
@@ -103,11 +103,11 @@
             }, 50);
           });
 
-          it('Check link', function(done) {
+          it('Check link', function (done) {
             var str = 'www.ciccio.com';
             menu.link = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 menu.querySelector('#main-logo a').getAttribute('href')
               ).to.equal(str);
@@ -116,10 +116,10 @@
             }, 50);
           });
 
-          it('Check draft', function(done) {
+          it('Check draft', function (done) {
             menu.draft = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(menu.querySelector('#draft-ribbon')).to.not.be.null;
 
               done();

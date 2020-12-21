@@ -19,23 +19,23 @@
     </test-fixture>
 
     <script>
-      suite('<accordion-clab>', function() {
+      suite('<accordion-clab>', function () {
         var accordion;
 
-        setup(function() {
+        setup(function () {
           accordion = fixture('accordion');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.equal(accordion.title, 'Title', 'Accordion title: Title');
             assert.equal(accordion.type, '', 'Accordion type: empty');
             assert.isFalse(accordion.open, 'Accordion open: false');
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check type', function() {
+        suite('Test DOM Bindings', function () {
+          test('Check type', function () {
             var style = 'error';
             accordion.type = style;
 
@@ -50,12 +50,12 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Toggle accordion on-click', function(done) {
+        suite('Test Events', function () {
+          test('Toggle accordion on-click', function (done) {
             var accordionTitle = accordion.$$('.accordion-title');
             var click = new Event('click');
-            accordionTitle.addEventListener('click', function(evt) {
-              setTimeout(function() {
+            accordionTitle.addEventListener('click', function (evt) {
+              setTimeout(function () {
                 var accordionClasses = accordion.$$('.accordion-block')
                   .classList;
                 assert.isTrue(accordion.open, 'Accordion open: true');
@@ -69,9 +69,9 @@
             accordionTitle.dispatchEvent(click);
           });
 
-          test('Toggle accordion with _toggleActive()', function(done) {
+          test('Toggle accordion with _toggleActive()', function (done) {
             accordion._toggleActive();
-            setTimeout(function() {
+            setTimeout(function () {
               var accordionClasses = accordion.$$('.accordion-block').classList;
               assert.isTrue(accordion.open, 'Accordion open: true');
               assert.isTrue(

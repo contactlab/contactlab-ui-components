@@ -4,8 +4,8 @@
   padding: 1.6rem;
   padding-right: 3.2rem;
   position: relative;
-  color: get-color('white');
-  background-color: get-color('base900');
+  color: colors('white');
+  background-color: colors('base900');
 
   p {
     margin-bottom: 0;
@@ -20,15 +20,26 @@
     right: 0.8rem;
     align-items: center;
     justify-content: center;
-    color: get-color('base300');
-    font-size: 1rem;
     line-height: 1;
     cursor: pointer;
 
-    &:hover,
-    &:active {
-      color: get-color('base200');
+    .fa {
+      color: colors('base400');
+      font-size: 1.6rem;
+
+      &:hover,
+      &:active {
+        color: colors('base200');
+      }
     }
+  }
+
+  button-clab {
+    margin-top: 1.6rem;
+  }
+
+  button.empty {
+    color: colors('white');
   }
 
   &.fixed {
@@ -49,7 +60,7 @@
       margin-bottom: 0.8rem;
       color: $status-color;
       font-size: 1.8rem;
-      font-weight: bold;
+      font-weight: 700;
       text-rendering: optimizeLegibility;
       line-height: 1.4em;
     }

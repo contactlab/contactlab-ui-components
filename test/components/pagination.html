@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<pagination-clab>', function() {
+      describe('<pagination-clab>', function () {
         var pagination;
 
-        beforeEach(function() {
+        beforeEach(function () {
           pagination = fixture('pagination');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(pagination.pages).to.be.an('array');
             expect(pagination.currentPage).to.equal(1);
 
@@ -32,12 +32,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check pages', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check pages', function (done) {
             var arr = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8'];
             pagination.pages = arr;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(pagination.querySelectorAll('.page').length).to.equal(
                 arr.length
               );
@@ -46,12 +46,12 @@
             }, 150);
           });
 
-          it('Check currentPage', function(done) {
+          it('Check currentPage', function (done) {
             var arr = ['#1', '#2', '#3', '#4', '#5', '#6', '#7', '#8'];
             pagination.pages = arr;
             pagination.currentPage = 3;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 pagination
                   .querySelectorAll('.page')

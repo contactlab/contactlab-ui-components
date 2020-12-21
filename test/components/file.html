@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<file-clab>', function() {
+      describe('<file-clab>', function () {
         var file;
 
-        beforeEach(function() {
+        beforeEach(function () {
           file = fixture('file');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(file.name).to.equal('fileinput');
             expect(file.label).to.be.undefined;
             expect(file.type).to.equal('');
@@ -37,15 +37,15 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type & noteType', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type & noteType', function (done) {
             var str = 'error';
             var note = 'error-note';
             file.label = 'This is my label';
             file.type = str;
             file.noteType = note;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 file.querySelector('label').classList.contains(str)
               ).to.equal(true);
@@ -60,11 +60,11 @@
             }, 50);
           });
 
-          it('Check label', function(done) {
+          it('Check label', function (done) {
             var str = 'This is my label';
             file.label = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(file.querySelector('label')).to.not.be.undefined;
               expect(file.querySelector('label').innerText).to.equal(str);
 
@@ -72,12 +72,12 @@
             }, 50);
           });
 
-          it('Check name', function(done) {
+          it('Check name', function (done) {
             var str = 'another name';
             file.label = 'This is my label';
             file.name = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 file.querySelector('input[type=text]').getAttribute('name')
               ).to.equal(file._dashify(file.name));
@@ -89,11 +89,11 @@
             }, 50);
           });
 
-          it('Check value', function(done) {
+          it('Check value', function (done) {
             var str = 'file/in/path.pdf';
             file.value = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(file.querySelector('input[type=text]').value).to.equal(
                 str
               );
@@ -102,10 +102,10 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             file.disabled = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(file.querySelector('input[type=text]').disabled).to.equal(
                 true
               );
@@ -114,10 +114,10 @@
             }, 50);
           });
 
-          it('Check multiple', function(done) {
+          it('Check multiple', function (done) {
             file.multiple = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(file.querySelector('input[type=file]').multiple).to.equal(
                 true
               );

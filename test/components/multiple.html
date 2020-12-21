@@ -16,16 +16,16 @@
     </test-fixture>
 
     <script>
-      describe('<multiple-clab>', function() {
+      describe('<multiple-clab>', function () {
         var multiple;
 
-        beforeEach(function() {
+        beforeEach(function () {
           multiple = fixture('multiple');
           multiple.liHeight = 20;
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(multiple.label).to.equal(null);
             expect(multiple.name).to.equal('multiple select');
             expect(multiple.type).to.equal('');
@@ -42,24 +42,24 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check label', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check label', function (done) {
             var str = 'multiple';
             multiple.label = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(multiple.querySelector('label')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check name', function(done) {
+          it('Check name', function (done) {
             var str = 'multiple select 2';
             multiple.label = str;
             multiple.name = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 multiple.querySelector('label').getAttribute('for')
               ).to.equal(multiple._dashify(str));
@@ -71,14 +71,14 @@
             }, 50);
           });
 
-          it('Check type & noteType', function(done) {
+          it('Check type & noteType', function (done) {
             var str = 'error';
             var note = 'note';
             multiple.label = str;
             multiple.type = str;
             multiple.noteType = note;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 multiple.querySelector('label').classList.contains(str)
               ).to.equal(true);
@@ -95,7 +95,7 @@
             }, 50);
           });
 
-          it('Check options', function(done) {
+          it('Check options', function (done) {
             var obj = [
               {label: 'ciccio', value: 'ciccio'},
               {label: 'puzzo raga', value: 'puzzo raga'},
@@ -106,7 +106,7 @@
             ];
             multiple.options = obj;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(multiple.querySelectorAll('li').length).to.equal(
                 obj.length
               );
@@ -115,20 +115,20 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             multiple.disabled = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(multiple.type).to.equal('disabled');
 
               done();
             }, 50);
           });
 
-          it('Check spinner', function(done) {
+          it('Check spinner', function (done) {
             multiple.spinner = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 multiple.querySelector('spinner-clab')
               ).to.not.be.undefined;
@@ -137,7 +137,7 @@
             }, 50);
           });
 
-          it('Check maxInView', function(done) {
+          it('Check maxInView', function (done) {
             multiple.maxInView = 10;
             multiple.options = [
               {label: 'ciccio', value: 'ciccio'},
@@ -148,7 +148,7 @@
               {label: 'tutto rego', value: 'tutto rego'}
             ];
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 multiple.querySelector('.options-list').style.maxHeight
               ).to.equal(multiple.liHeight * multiple.maxInView + 'px');

@@ -18,22 +18,22 @@
     </test-fixture>
 
     <script>
-      suite('<note-clab>', function() {
+      suite('<note-clab>', function () {
         var note;
 
-        setup(function() {
+        setup(function () {
           note = fixture('note');
         });
 
-        suite('Test Properties', function() {
-          test('Default properties', function() {
+        suite('Test Properties', function () {
+          test('Default properties', function () {
             assert.isUndefined(note.type);
             assert.isUndefined(note.classes);
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check type', function() {
+        suite('Test DOM Bindings', function () {
+          test('Check type', function () {
             var type = 'error';
             note.type = type;
 

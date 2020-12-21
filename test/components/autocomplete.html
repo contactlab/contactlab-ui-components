@@ -16,16 +16,16 @@
     </test-fixture>
 
     <script>
-      describe('<autocomplete-clab>', function() {
+      describe('<autocomplete-clab>', function () {
         var autocomplete;
 
-        beforeEach(function() {
+        beforeEach(function () {
           autocomplete = fixture('autocomplete');
           autocomplete.liHeight = 20;
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(autocomplete.label).to.equal(null);
             expect(autocomplete.name).to.equal('auto complete');
             expect(autocomplete.disabled).to.equal(false);
@@ -46,12 +46,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check label', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check label', function (done) {
             var str = 'ciccio';
             autocomplete.name = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(autocomplete.querySelector('input-clab').name).to.equal(
                 str
               );
@@ -60,25 +60,25 @@
             }, 50);
           });
 
-          it('Check name', function(done) {
+          it('Check name', function (done) {
             var str = 'ciccio';
             autocomplete.label = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(autocomplete.querySelector('label')).to.not.be.undefined;
 
               done();
             }, 50);
           });
 
-          it('Check inputType & noteType', function(done) {
+          it('Check inputType & noteType', function (done) {
             var str = 'ciccio';
             var str2 = 'ciccio2';
             autocomplete.label = str;
             autocomplete.inputType = str;
             autocomplete.noteType = str2;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete.querySelector('label').classList.contains(str)
               ).to.equal(true);
@@ -102,7 +102,7 @@
             }, 50);
           });
 
-          it('Check options', function(done) {
+          it('Check options', function (done) {
             var obj = [
               {value: 'A', label: 'Option 1'},
               {value: 'B', label: 'Option 2'},
@@ -111,7 +111,7 @@
             ];
             autocomplete.options = obj;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete.querySelectorAll('.options-list li').length
               ).to.equal(obj.length);
@@ -120,11 +120,11 @@
             }, 50);
           });
 
-          it('Check placeholder', function(done) {
+          it('Check placeholder', function (done) {
             var str = 'ciccio';
             autocomplete.placeholder = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete.querySelector('input-clab').placeholder
               ).to.equal(autocomplete.placeholder);
@@ -133,10 +133,10 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             autocomplete.disabled = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete.querySelector('input-clab').disabled
               ).to.equal(true);
@@ -145,7 +145,7 @@
             }, 50);
           });
 
-          it('Check hideHints', function(done) {
+          it('Check hideHints', function (done) {
             var evt = new Event('keyup');
             autocomplete.hideHints = true;
             autocomplete.inputString = 'opt';
@@ -157,7 +157,7 @@
             ];
             autocomplete.querySelector('input-clab').dispatchEvent(evt);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete
                   .querySelector('.options-list')
@@ -168,7 +168,7 @@
             }, 50);
           });
 
-          it('Check maxInView', function(done) {
+          it('Check maxInView', function (done) {
             var evt = new Event('keyup');
             autocomplete.maxInView = 10;
             autocomplete.inputString = 'opt';
@@ -180,7 +180,7 @@
             ];
             autocomplete.querySelector('input-clab').dispatchEvent(evt);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 autocomplete.querySelector('.options-list').clientHeight
               ).to.be.below(autocomplete.liHeight * autocomplete.maxInView + 1);
@@ -189,10 +189,10 @@
             }, 50);
           });
 
-          it('Check minChar', function(done) {
+          it('Check minChar', function (done) {
             var evt = new Event('keyup');
             var typing = false;
-            var listen = function() {
+            var listen = function () {
               typing = true;
             };
             autocomplete.minChar = 2;
@@ -205,14 +205,14 @@
             autocomplete.inputString = 'op';
             autocomplete.querySelector('input-clab').dispatchEvent(evt);
 
-            setTimeout(function() {
+            setTimeout(function () {
               autocomplete.addEventListener('typing', listen);
               expect(typing).to.equal(false);
 
               autocomplete.inputString = 'opt';
               autocomplete.querySelector('input-clab').dispatchEvent(evt);
 
-              setTimeout(function() {
+              setTimeout(function () {
                 expect(typing).to.equal(true);
 
                 done();

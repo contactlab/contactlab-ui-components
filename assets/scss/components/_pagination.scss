@@ -3,8 +3,8 @@
   display: flex;
   justify-content: flex-end;
 
-  .clab-icon {
-    font-size: 1rem;
+  .fa {
+    font-size: 1.6rem;
   }
 
   li {
@@ -13,7 +13,7 @@
     width: 2.4rem;
     height: 2.4rem;
     margin: 0.2rem;
-    border: 0.1rem solid get-color('base200');
+    border: 1px solid colors('base200');
     border-radius: 0.4rem;
     padding: 0.4rem;
     align-items: center;
@@ -25,9 +25,9 @@
 
     &.page {
       &.active {
-        border-color: get-color('accent500');
-        color: get-color('white');
-        background-color: get-color('accent500');
+        border-color: colors('accent500');
+        color: colors('white');
+        background-color: colors('accent500');
       }
     }
 

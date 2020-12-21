@@ -10,10 +10,10 @@ multiple-clab {
 select[multiple],
 ol.multiple-clab {
   margin-bottom: 0.4rem;
-  border: 0.1rem solid get-color('base200');
+  border: 1px solid colors('base200');
   border-radius: 0.4rem;
   flex-grow: 1;
-  background-color: get-color('white');
+  background-color: colors('white');
 
   li {
     min-height: 3.2rem;
@@ -22,8 +22,8 @@ ol.multiple-clab {
     cursor: pointer;
 
     &.selected {
-      color: get-color('white');
-      background-color: get-color('accent500');
+      color: colors('white');
+      background-color: colors('accent500');
     }
   }
 }
@@ -50,13 +50,13 @@ ol.multiple-clab {
 
     &::after {
       @extend %fast-transition;
-      content: '\e902';
+      content: '\f107';
       position: absolute;
       top: 1rem;
       right: 1rem;
-      color: get-color('base300');
-      font-family: ikonograph;
-      font-size: 1.2rem;
+      color: colors('base500');
+      font-family: FontAwesome;
+      font-size: 1.4rem;
       line-height: 1;
       pointer-events: none;
     }
@@ -67,17 +67,17 @@ ol.multiple-clab {
 .dropdown-clab {
   .value_wrapper.disabled {
     &.active {
-      border-color: get-color('accent500');
+      border-color: colors('accent500');
     }
 
     &.disabled {
-      color: get-color('base300');
+      color: colors('base300');
       background-color: rgba(0, 0, 0, 0.01);
       cursor: not-allowed;
 
       &:active,
       &:focus {
-        border-color: get-color('base200');
+        border-color: colors('base200');
         box-shadow: none;
       }
     }
@@ -92,17 +92,17 @@ ol.multiple-clab {
     right: 0;
     left: 0;
     z-index: 3;
-    background-color: get-color('white');
-    box-shadow: get-elevation('z2');
+    background-color: colors('white');
+    box-shadow: elevations('z2');
 
     li {
       margin: 0;
       padding: 0.4rem 1.2rem;
-      background-color: get-color('white');
+      background-color: colors('white');
       cursor: pointer;
 
       &[data-disabled='true'] {
-        color: get-color('base300');
+        color: colors('base300');
         cursor: not-allowed;
       }
 
@@ -111,7 +111,7 @@ ol.multiple-clab {
       }
 
       &.selected {
-        color: get-color('accent500');
+        color: colors('accent500');
       }
     }
 

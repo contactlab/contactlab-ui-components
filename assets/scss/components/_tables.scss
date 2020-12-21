@@ -20,11 +20,11 @@ th {
   border: none;
   padding: 1rem 1.6rem;
   vertical-align: middle;
-  color: get-color('base900');
-  background-color: get-color('base200');
+  color: colors('base900');
+  background-color: colors('base200');
   font-family: inherit;
   font-size: inherit;
-  font-weight: normal;
+  font-weight: 400;
   text-align: left;
   line-height: 1;
 }
@@ -32,33 +32,33 @@ th {
 td {
   padding: 1rem 1.6rem;
   vertical-align: middle;
-  color: get-color('base900');
+  color: colors('base900');
   font-family: inherit;
   font-size: inherit;
-  font-weight: normal;
+  font-weight: 400;
   text-align: left;
   line-height: inherit;
 }
 
 tr:hover,
 .tr:hover {
-  background-color: get-color('base100');
+  background-color: colors('base100');
 }
 
 tr:not(:last-of-type) > td {
-  border-bottom: 0.1rem solid get-color('base200');
+  border-bottom: 1px solid colors('base200');
 }
 
 .sorting-arrow {
   padding: 0.3rem;
   position: absolute;
   right: 0.4rem;
-  color: get-color('base200');
+  color: colors('base200');
   font-size: 1rem;
   cursor: pointer;
 
   &.active {
-    color: get-color('base900');
+    color: colors('base900');
   }
 
   &.top {
@@ -86,7 +86,7 @@ tr:not(:last-of-type) > td {
 
   .th {
     @extend th;
-    border-bottom: 0.1rem solid get-color('base200');
+    border-bottom: 1px solid colors('base200');
   }
 
   .td {
@@ -94,7 +94,7 @@ tr:not(:last-of-type) > td {
   }
 
   .tr:not(:last-of-type) > .td {
-    border-bottom: 0.1rem solid get-color('base200');
+    border-bottom: 1px solid colors('base200');
   }
 
   .thead {
@@ -105,9 +105,8 @@ tr:not(:last-of-type) > td {
     display: table-row-group;
   }
 
-  .clab-icon {
+  .fa {
     vertical-align: middle;
-    font-size: 3.2rem;
   }
 }
 
@@ -187,7 +186,7 @@ tr:not(:last-of-type) > td {
   justify-content: flex-end;
 
   > * {
-    border-right: 0.1rem solid get-color('base200');
+    border-right: 1px solid colors('base200');
     padding: 0 1.6rem;
 
     &:first-of-type {

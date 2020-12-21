@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<toaster-clab>', function() {
+      describe('<toaster-clab>', function () {
         var toaster;
 
-        beforeEach(function() {
+        beforeEach(function () {
           toaster = fixture('toaster');
         });
 
-        context('Test Properties', function() {
-          it('default properties', function(done) {
+        context('Test Properties', function () {
+          it('default properties', function (done) {
             expect(toaster.right).to.equal(false);
             expect(toaster.message).to.be.undefined;
             expect(toaster.callerType).to.equal('primary');
@@ -35,11 +35,11 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check right', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check right', function (done) {
             toaster.right = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster
                   .querySelector('#toast-right')
@@ -50,11 +50,11 @@
             }, 50);
           });
 
-          it('Check message', function(done) {
+          it('Check message', function (done) {
             var str = 'this is a message';
             toaster.message = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster.querySelector('.toast-message').innerText
               ).to.equal(str);
@@ -63,11 +63,11 @@
             }, 50);
           });
 
-          it('Check callerType', function(done) {
+          it('Check callerType', function (done) {
             var str = 'error';
             toaster.callerType = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster
                   .querySelector('#toast-' + toaster.name + '-btn')
@@ -78,11 +78,11 @@
             }, 50);
           });
 
-          it('Check actionType', function(done) {
+          it('Check actionType', function (done) {
             var str = 'error';
             toaster.actionType = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster.querySelector('.actions button').classList.contains(str)
               ).to.equal(true);
@@ -91,11 +91,11 @@
             }, 50);
           });
 
-          it('Check actionText', function(done) {
+          it('Check actionText', function (done) {
             var str = 'error';
             toaster.actionText = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster.querySelector('.actions button').innerText
               ).to.equal(str);
@@ -105,14 +105,14 @@
           });
         });
 
-        context('Test Events', function() {
-          it('Showing & Hiding toaster on-click', function(done) {
+        context('Test Events', function () {
+          it('Showing & Hiding toaster on-click', function (done) {
             var evt = new Event('click');
             toaster
               .querySelector('#toast-' + toaster.name + '-btn')
               .dispatchEvent(evt);
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 toaster
                   .querySelector('#toast-' + toaster.name)
@@ -121,7 +121,7 @@
 
               toaster.querySelector('.actions button').dispatchEvent(evt);
 
-              setTimeout(function() {
+              setTimeout(function () {
                 expect(
                   toaster
                     .querySelector('#toast-' + toaster.name)

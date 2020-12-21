@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<radio-clab>', function() {
+      suite('<radio-clab>', function () {
         var radio;
 
-        setup(function() {
+        setup(function () {
           radio = fixture('radio');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.equal(radio.labels.length, 0);
             assert.isUndefined(radio.name);
             assert.equal(radio.wrapperType, '');
@@ -35,52 +35,52 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check labels', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check labels', function (done) {
             var lbls = ['radio 1', 'radio 2'];
             radio.labels = lbls;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = Polymer.dom(radio.root).querySelectorAll('.row');
               assert.lengthOf(el, lbls.length);
               done();
             });
           });
 
-          test('Check wrapperType', function(done) {
+          test('Check wrapperType', function (done) {
             var type = 'error';
             var lbls = ['radio 1', 'radio 2'];
             radio.labels = lbls;
             radio.wrapperType = type;
-            setTimeout(function() {
+            setTimeout(function () {
               var elClass = radio.$$('.row').classList;
               assert.isTrue(elClass.contains(type));
               done();
             });
           });
 
-          test('Check disbled', function(done) {
+          test('Check disbled', function (done) {
             var lbls = ['radio 1', 'radio 2', 'radio 3'];
             var dis = [0, 1];
             radio.labels = lbls;
             radio.disabled = dis;
-            setTimeout(function() {
+            setTimeout(function () {
               var els = Polymer.dom(radio.root).querySelectorAll(
                 'input[type=radio]'
               );
-              Array.prototype.map.call(els, function(el, i) {
+              Array.prototype.map.call(els, function (el, i) {
                 if (i < dis.length - 1) assert.isTrue(el.disabled);
               });
               done();
             });
           });
 
-          test('Check active on load', function(done) {
+          test('Check active on load', function (done) {
             var lbls = ['radio 1', 'radio 2', 'radio 3'];
             var active = 1;
             radio.labels = lbls;
             radio.active = active;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = Polymer.dom(radio.root).querySelectorAll(
                 'input[type=radio]'
               )[1];
@@ -89,15 +89,15 @@
             });
           });
 
-          test('Check updating on change checkd', function(done) {
+          test('Check updating on change checkd', function (done) {
             var lbls = ['radio 1', 'radio 2', 'radio 3'];
             var active = 0;
             radio.labels = lbls;
             radio.active = active;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = Polymer.dom(radio.root).querySelectorAll('label')[2];
               el.click();
-              setTimeout(function() {
+              setTimeout(function () {
                 assert.equal(radio.active, 2);
                 done();
               }, 1000);

@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<checkbox-clab>', function() {
+      describe('<checkbox-clab>', function () {
         var checkbox;
 
-        beforeEach(function() {
+        beforeEach(function () {
           checkbox = fixture('checkbox');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(checkbox.labels).to.be.undefined;
             expect(checkbox.wrapperType).to.equal('');
             expect(checkbox.active).to.be.undefined;
@@ -34,11 +34,11 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check labels', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check labels', function (done) {
             checkbox.labels = ['checkbox 1', 'checkbox 2'];
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(checkbox.querySelectorAll('.row').length).to.equal(
                 checkbox.labels.length
               );
@@ -47,12 +47,12 @@
             }, 50);
           });
 
-          it('Check wrapperType', function(done) {
+          it('Check wrapperType', function (done) {
             var str = 'error';
             checkbox.labels = ['checkbox 1', 'checkbox 2'];
             checkbox.wrapperType = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 checkbox.querySelector('.row').classList.contains(str)
               ).to.equal(true);
@@ -61,14 +61,14 @@
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             checkbox.labels = ['checkbox 1', 'checkbox 2'];
             checkbox.disabled = [0, 1];
 
-            setTimeout(function() {
+            setTimeout(function () {
               Array.prototype.map.call(
                 checkbox.querySelectorAll('input[type=checkbox]'),
-                function(el, i) {
+                function (el, i) {
                   for (var n = 0; n < checkbox.disabled.length; n++) {
                     if (n == i) expect(el.disabled).to.equal(true);
                   }
@@ -79,11 +79,11 @@
             }, 50);
           });
 
-          it('Check active', function(done) {
+          it('Check active', function (done) {
             checkbox.labels = ['checkbox 1', 'checkbox 2'];
             checkbox.active = 1;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 checkbox.querySelectorAll('input[type=checkbox]')[1].checked
               ).to.equal(true);

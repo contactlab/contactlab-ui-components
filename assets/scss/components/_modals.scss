@@ -5,7 +5,7 @@
   top: 0;
   left: 0;
   z-index: 3;
-  background-color: rgba(get-color('base900'), 0.55);
+  background-color: rgba(colors('base900'), 0.55);
   overflow-x: hidden;
   overflow-y: auto;
 }
@@ -40,7 +40,7 @@
 
       &:hover,
       &:active {
-        color: get-color('accent500');
+        color: colors('accent500');
       }
     }
 
@@ -59,7 +59,7 @@
   border-radius: 0.8rem;
   padding: 3.2rem;
   position: relative;
-  background-color: get-color('white');
+  background-color: colors('white');
   box-shadow: 0 0.6rem 0.6rem 0 rgba(0, 20, 32, 0.09),
     0 1rem 2rem 0 rgba(0, 20, 32, 0.13);
 }
@@ -103,7 +103,7 @@ ul.modal-info {
 
     > span:first-child {
       margin-right: 0.6rem;
-      color: get-color('base500');
+      color: colors('base500');
     }
   }
 }

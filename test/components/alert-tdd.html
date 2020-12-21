@@ -19,15 +19,15 @@
     </test-fixture>
 
     <script>
-      suite('<alert-clab>', function() {
+      suite('<alert-clab>', function () {
         var alert;
 
-        setup(function() {
+        setup(function () {
           alert = fixture('alert');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             // Default values
             assert.equal(alert.title, 'Title');
             assert.equal(alert.type, 'success');
@@ -39,12 +39,12 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check default binding (not visible and "success" type)', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check default binding (not visible and "success" type)', function (done) {
             // Default not visible
             // No Events
             // Wait with setTimeout
-            setTimeout(function() {
+            setTimeout(function () {
               var el = alert.$$('.alert');
               var h3Title = alert.$$('.alert h3').textContent;
               assert.equal(h3Title, 'Title');
@@ -63,10 +63,10 @@
             }, 5);
           });
 
-          test('Check visibility', function(done) {
+          test('Check visibility', function (done) {
             alert.visible = true;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = alert.$$('.alert');
               assert.equal(
                 getComputedStyle(el).display,
@@ -78,12 +78,12 @@
             }, 5);
           });
 
-          test('Check type', function(done) {
+          test('Check type', function (done) {
             var style = 'error';
             alert.visible = true;
             alert.type = style;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var el = alert.$$('.alert');
               assert.include(
                 el.classList.value,
@@ -94,26 +94,26 @@
             }, 5);
           });
 
-          test('Check title', function(done) {
+          test('Check title', function (done) {
             var title = 'A new title';
             alert.visible = true;
             alert.title = title;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var elTitle = alert.$$('.alert h3').textContent;
               assert.equal(elTitle, title, 'Title is changed');
               done();
             }, 5);
           });
 
-          test('Check labels', function(done) {
+          test('Check labels', function (done) {
             var pri = 'this is first';
             var sec = 'this is second';
             alert.visible = true;
             alert.primary = pri;
             alert.secondary = sec;
 
-            setTimeout(function() {
+            setTimeout(function () {
               var titleLables = alert.querySelectorAll('button-clab');
               assert.equal(
                 titleLables[1].textContent.trim(),
@@ -127,19 +127,19 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Hiding the alert on-click (not Notify version)', function(done) {
+        suite('Test Events', function () {
+          test('Hiding the alert on-click (not Notify version)', function (done) {
             // Show
             alert.visible = true;
             // Hide
-            setTimeout(function() {
+            setTimeout(function () {
               var elClose = alert.$$('.close');
               elClose.click();
             }, 5);
 
-            alert.addEventListener('close', function(evt) {
+            alert.addEventListener('close', function (evt) {
               // Ensure transition complete with setTimeout
-              setTimeout(function() {
+              setTimeout(function () {
                 var el = alert.$$('.alert');
                 assert.equal(
                   getComputedStyle(el).display,
@@ -152,21 +152,21 @@
             });
           });
 
-          test('Hiding the alert on-click (with Notify version)', function(done) {
+          test('Hiding the alert on-click (with Notify version)', function (done) {
             // Show
             alert.visible = true;
             // Set notify version;
             alert.notify = true;
             // Hide
-            setTimeout(function() {
+            setTimeout(function () {
               // Click directly on alert box
               var el = alert.$$('.alert');
               el.click();
             }, 5);
 
-            alert.addEventListener('close', function(evt) {
+            alert.addEventListener('close', function (evt) {
               // Ensure transition complete with setTimeout
-              setTimeout(function() {
+              setTimeout(function () {
                 var el = alert.$$('.alert');
                 assert.equal(
                   getComputedStyle(el).display,

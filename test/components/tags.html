@@ -16,15 +16,15 @@
     </test-fixture>
 
     <script>
-      describe('<tags-clab>', function() {
+      describe('<tags-clab>', function () {
         var tags;
 
-        beforeEach(function() {
+        beforeEach(function () {
           tags = fixture('tags');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(tags.name).to.equal('tags input');
             expect(tags.label).to.be.undefined;
             expect(tags.inputString).to.be.undefined;
@@ -41,45 +41,45 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check inputType', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check inputType', function (done) {
             var str = 'error';
             tags.inputType = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab').type).to.equal(str);
 
               done();
             }, 50);
           });
 
-          it('Check label', function(done) {
+          it('Check label', function (done) {
             var str = 'This is my label';
             tags.label = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab').label).to.equal(str);
 
               done();
             }, 50);
           });
 
-          it('Check name', function(done) {
+          it('Check name', function (done) {
             var str = 'This is my name';
             tags.name = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab').name).to.equal(str);
 
               done();
             }, 50);
           });
 
-          it('Check disabled', function(done) {
+          it('Check disabled', function (done) {
             var bool = true;
             tags.disabled = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab').disabled).to.equal(bool);
               expect(tags.querySelector('button-clab').disabled).to.equal(bool);
 
@@ -87,22 +87,22 @@
             }, 50);
           });
 
-          it('Check inputString', function(done) {
+          it('Check inputString', function (done) {
             var str = 'ciccio puzzo';
             tags.inputString = str;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab').value).to.equal(str);
 
               done();
             }, 50);
           });
 
-          it('Check tags', function(done) {
+          it('Check tags', function (done) {
             var arr = ['ciccio puzzo', 'bella', 'raga'];
             tags.tags = arr;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelectorAll('label-clab').length).to.equal(
                 arr.length
               );
@@ -111,18 +111,18 @@
             }, 50);
           });
 
-          it('Check hideInput', function(done) {
+          it('Check hideInput', function (done) {
             var bool = true;
             tags.hideInput = bool;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(tags.querySelector('input-clab')).to.equal(null);
 
               done();
             }, 50);
           });
 
-          it('Check btn attributes', function(done) {
+          it('Check btn attributes', function (done) {
             var btnAppearence = 'appearance';
             var btnSize = 'size';
             var btnIcon = 'icon';
@@ -132,7 +132,7 @@
             tags.btnSize = btnSize;
             tags.btnIcon = btnIcon;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 tags.querySelector('button-clab').innerText.trim()
               ).to.equal(str);

@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<feature-clab>', function() {
+      suite('<feature-clab>', function () {
         var feature;
 
-        setup(function() {
+        setup(function () {
           feature = fixture('feature');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isNull(feature.link);
             assert.isNull(feature.iconClass);
             assert.isNull(feature.src);
@@ -35,51 +35,51 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check link', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check link', function (done) {
             var link = 'www.example.com';
             feature.link = link;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = feature.querySelector('.feature a');
               assert.equal(el.getAttribute('href'), link);
               done();
             });
           });
 
-          test('Check iconClass', function(done) {
+          test('Check iconClass', function (done) {
             var icon = 'icon-class';
             feature.iconClass = icon;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = feature.$$('.image i');
               assert.isTrue(el.classList.contains(icon));
               done();
             });
           });
 
-          test('Check src', function(done) {
+          test('Check src', function (done) {
             var src = 'path/to/img.jpg';
             feature.src = src;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = feature.$$('.image img');
               assert.equal(el.getAttribute('src'), src);
               done();
             });
           });
 
-          test('Check size', function(done) {
+          test('Check size', function (done) {
             var size = 'small';
             feature.size = size;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = feature.$$('.feature');
               assert.isTrue(el.classList.contains(size));
               done();
             });
           });
 
-          test('Check vertical', function(done) {
+          test('Check vertical', function (done) {
             var bool = true;
             feature.vertical = bool;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = feature.$$('.feature');
               assert.isTrue(el.classList.contains('vertical'));
               done();

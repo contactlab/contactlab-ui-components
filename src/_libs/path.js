@@ -1,6 +1,6 @@
 if (!('path' in Event.prototype))
   Object.defineProperty(Event.prototype, 'path', {
-    get: function() {
+    get: function () {
       var path = [];
       var currentElem = this.target;
       while (currentElem) {

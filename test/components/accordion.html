@@ -17,15 +17,15 @@
     </test-fixture>
 
     <script>
-      describe('<accordion-clab>', function() {
+      describe('<accordion-clab>', function () {
         var accordion;
 
-        beforeEach(function() {
+        beforeEach(function () {
           accordion = fixture('accordion');
         });
 
-        context('Test Properties', function() {
-          it('Default Properties', function(done) {
+        context('Test Properties', function () {
+          it('Default Properties', function (done) {
             expect(accordion.title).to.equal('Title');
             expect(accordion.type).to.equal('');
 
@@ -33,12 +33,12 @@
           });
         });
 
-        context('Test DOM Bindings', function() {
-          it('Check type', function(done) {
+        context('Test DOM Bindings', function () {
+          it('Check type', function (done) {
             var style = 'error';
             accordion.type = style;
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 accordion
                   .querySelector('.accordion-block')
@@ -50,11 +50,11 @@
           });
         });
 
-        context('Test Events', function() {
-          it('Toggle the accordion on-click', function(done) {
+        context('Test Events', function () {
+          it('Toggle the accordion on-click', function (done) {
             accordion._toggleActive();
 
-            setTimeout(function() {
+            setTimeout(function () {
               expect(
                 accordion
                   .querySelector('.accordion-title')

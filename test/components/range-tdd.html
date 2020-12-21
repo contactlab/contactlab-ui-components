@@ -18,15 +18,15 @@
     </test-fixture>
 
     <script>
-      suite('<range-clab>', function() {
+      suite('<range-clab>', function () {
         var range;
 
-        setup(function() {
+        setup(function () {
           range = fixture('range');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.isUndefined(range.label);
             assert.equal(range.name, 'rangeinput');
             assert.isNull(range.type);
@@ -44,23 +44,23 @@
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check label', function(done) {
+        suite('Test DOM Bindings', function () {
+          test('Check label', function (done) {
             var label = 'This is a label';
             range.label = label;
-            setTimeout(function() {
+            setTimeout(function () {
               var el = range.$$('label');
               assert.equal(el.innerText, label);
               done();
             });
           });
 
-          test('Check name', function(done) {
+          test('Check name', function (done) {
             var name = 'newname';
             var label = 'This is a label';
             range.label = label;
             range.name = name;
-            setTimeout(function() {
+            setTimeout(function () {
               var elLabel = range.$$('label');
               var elInput = range.$$('input');
               assert.equal(elLabel.getAttribute('for'), name);
@@ -69,12 +69,12 @@
             });
           });
 
-          test('Check type', function(done) {
+          test('Check type', function (done) {
             var type = 'error';
             var label = 'This is a label';
             range.label = label;
             range.type = type;
-            setTimeout(function() {
+            setTimeout(function () {
               var labelClass = range.$$('label').classList;
               var inputClass = range.$$('input').classList;
               assert.isTrue(labelClass.contains(type));
@@ -83,7 +83,7 @@
             });
           });
 
-          test('Check showDetails and detail (min, max, value)', function(done) {
+          test('Check showDetails and detail (min, max, value)', function (done) {
             var min = 0,
               max = 10,
               value = 5;
@@ -91,7 +91,7 @@
             range.max = max;
             range.value = value;
             range.showDetails = true;
-            setTimeout(function() {
+            setTimeout(function () {
               var input = range.$$('input');
               var elMin = range.$$('.min');
               var elMax = range.$$('.max');
@@ -106,7 +106,7 @@
             });
           });
 
-          test('Check disabled', function() {
+          test('Check disabled', function () {
             var label = 'This is a label';
             range.label = label;
             range.disabled = true;
@@ -115,7 +115,7 @@
             assert.isTrue(input.disabled);
           });
 
-          test('Check rangeWrapperClasses', function() {
+          test('Check rangeWrapperClasses', function () {
             range.showDetails = true;
 
             var elClass = range.$$('.range-wrapper').classList;
@@ -123,8 +123,8 @@
           });
         });
 
-        suite('Test Events', function() {
-          test('Update value on-input event', function() {
+        suite('Test Events', function () {
+          test('Update value on-input event', function () {
             var inputEvt = new Event('input');
             var value = 5;
 

@@ -18,23 +18,23 @@
     </test-fixture>
 
     <script>
-      suite('<progress-clab>', function() {
+      suite('<progress-clab>', function () {
         var progress;
 
-        setup(function() {
+        setup(function () {
           progress = fixture('progress');
         });
 
-        suite('Test Properties', function() {
-          test('Default Properties', function() {
+        suite('Test Properties', function () {
+          test('Default Properties', function () {
             assert.equal(progress.value, 0);
             assert.isFalse(progress.minimal);
             assert.isNull(progress.type);
           });
         });
 
-        suite('Test DOM Bindings', function() {
-          test('Check value', function() {
+        suite('Test DOM Bindings', function () {
+          test('Check value', function () {
             var num = Math.floor(Math.random() * 100);
             // Get percent
             var perc = progress._percent(num);
@@ -44,14 +44,14 @@
             assert.equal(el.style.width, perc);
           });
 
-          test('Check minimal', function() {
+          test('Check minimal', function () {
             progress.minimal = true;
             // Get percent
             var elClass = progress.$$('.progress-bar').classList;
             assert.isTrue(elClass.contains('minimal'));
           });
 
-          test('Check type', function() {
+          test('Check type', function () {
             var type = 'error';
             progress.type = type;
             // Get percent
@@ -60,8 +60,8 @@
           });
         });
 
-        suite('Test Methods', function() {
-          test('Get % of value', function() {
+        suite('Test Methods', function () {
+          test('Get % of value', function () {
             var num = Math.floor(Math.random() * 100);
             var perc = progress._percent(num);
             assert.equal(perc, num + '%');

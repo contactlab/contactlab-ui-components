@@ -1,4 +1,4 @@
-// --- box-model
+// --- Box Model
 .hide {
   display: none;
 }
@@ -7,12 +7,12 @@
   visibility: hidden;
 }
 
-// --- typography
+// --- Typography
 .truncate {
   @extend %truncate;
 }
 
-// --- transitions
+// --- Transitions
 .default-transition {
   @extend %default-transition;
 }
@@ -25,7 +25,7 @@
   @extend %slow-transition;
 }
 
-// --- layouts
+// --- Layouts
 .txt-center {
   text-align: center;
 }

@@ -50,12 +50,12 @@ spinner-clab {
 
   &[dark] {
     .spinner-overlay {
-      color: get-color('white');
+      color: colors('white');
       background-color: rgba(29, 51, 68, 0.85) !important;
 
       .spinner {
         svg {
-          fill: get-color('white') !important;
+          fill: colors('white') !important;
         }
       }
     }

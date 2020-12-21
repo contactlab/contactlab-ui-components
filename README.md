@@ -1,6 +1,6 @@
 ## :warning: Deprecated
 
-This package is deprecated in favor of [our new design system](https://github.com/contactlab/design-system).
+This package is deprecated in favor of [our new design system](https://github.com/contactlab/milky-way).
 
 **Thus:**
 
@@ -59,9 +59,32 @@ $ npm test
 
 Please refer to [CONTRIBUTING.md](CONTRIBUTING.md) to better understand how to develop and integrate changes on this repo.
 
-## How to use & Documentation
+## How to use
 
-For detailed instruction on how to install and use the Contactlab Pattern Library components check out the [documentation website](https://ux.contactlab.com).
+**Apply the styles**
+
+In the head of your HTML document, copy and paste the following CDN links:
+
+```html
+<head>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/font-awesome@4.7.0/css/font-awesome.min.css"
+  />
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/contactlab-ui-components/assets/css/clab-pattern.min.css"
+  />
+</head>
+```
+
+**Use the components**
+
+Import all of the components included with the Contactlab Pattern Library. More details are available in the [official documentation](http://contactlab.github.io/contactlab-pattern-library#/documentation/getting-started):
+
+```js
+import 'contactlab-ui-components';
+```
 
 ## Git branching policies
 
